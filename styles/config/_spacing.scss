@@ -1,0 +1,43 @@
+@use "config";
+@use "tools";
+
+// ================
+// Spacing Tokens
+// ================
+
+//* Padding = if $baseUnit is 16px, then $p-xxxl is 48px
+$p-xxxl: calc(config.$baseUnit * 3); // 48px
+$p-xxl: calc(config.$baseUnit * 2.5); // 40px
+$p-xl: calc(config.$baseUnit * 2); // 32px
+$p-l: calc(config.$baseUnit * 1.5); // 24px
+$p-m: calc(config.$baseUnit * 1); // 16px
+$p-s: calc(config.$baseUnit * 0.5); // 8px
+$p-xs: calc(config.$baseUnit * 0.25); // 4px
+
+@mixin sectionPadding() {
+  @include tools.fluidRem(padding, $p-l, $p-xxl);
+}
+
+//* Margin = if $baseUnit is 16px, then $m-xxxl is 48px
+$m-xxxl: calc(config.$baseUnit * 3);
+$m-xxl: calc(config.$baseUnit * 2.5);
+$m-xl: calc(config.$baseUnit * 2);
+$m-l: calc(config.$baseUnit * 1.5);
+$m-m: calc(config.$baseUnit * 1);
+$m-s: calc(config.$baseUnit * 0.5);
+$m-xs: calc(config.$baseUnit * 0.25);
+
+//* Line Height
+$headingLineHeight: 1.2;
+$bodyLineHeight: 1.6;
+$buttonLineHeight: 1.2;
+
+//* Letter Spacing
+// Note: AO - create letterspacing variable
+$letterSpacing: 1rem;
+
+//* Website Left Offset
+$leftOffset: clamp(5rem, 20vw, 18rem);
+
+//* Website Right Offset
+$rightOffset: clamp(2rem, 5vw, 5rem);

@@ -1,0 +1,22 @@
+@use "../../styles/config";
+
+// article {
+//   //   background: red;
+// }
+
+.article-title {
+  color: config.$c-white;
+  font-size: config.$fontSize-s;
+  font-weight: 300;
+}
+
+// time {
+//   color: config.$c-limeGreen-400;
+//   font-size: config.$fontSize-xxs;
+//   font-weight: 700;
+//   text-transform: uppercase;
+// }
+
+a.article-link {
+  color: config.$c-teal-300;
+}

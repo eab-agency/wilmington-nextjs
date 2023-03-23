@@ -1,0 +1,323 @@
+// ================
+// Royall Mixins
+// ================
+
+@use "sass:math";
+@use "breakpoints";
+
+// ================
+// Mixin: Outputs a @font-face rule
+// More info: https://wiki.eab.com/display/RWD/fontFace%28%29+mixin
+
+@mixin fontFace(
+  $_p-fileName,
+  $_f-fontFamily: $_fileName,
+  $_f-fontWeight: normal,
+  $_f-fontStyle: normal
+) {
+  @font-face {
+    font-family: "#{$_f-fontFamily}";
+    font-weight: $_f-fontWeight;
+    font-style: $_f-fontStyle;
+    src: url("#{$_p-fileName}.woff") format("woff");
+  }
+}
+
+// ================
+// Mixin: Applies specific styles on hi-res displays
+// More info: https://wiki.eab.com/display/RWD/mres%28%29+mixin
+
+@mixin mres($_mq-density: 1.1) {
+  @media (-webkit-min-device-pixel-ratio: $_mq-density),
+    (min-resolution: $_mq-density + "dppx") {
+    @content;
+  }
+}
+
+// ================
+// Mixin: Outputs two background images, one normal, and one optimized for hi-res screens
+// More info: https://wiki.eab.com/display/RWD/backgroundImage%28%29+mixin
+
+@mixin backgroundImage(
+  $_p-img,
+  $_p-ext: "png",
+  $_p-hiRes: "-2x",
+  $_mq-hiResMin: 1.1
+) {
+  background: {
+    image: url($_p-img + "." + $_p-ext);
+    size: contain;
+    repeat: no-repeat;
+  }
+
+  @include mres($_mq-hiResMin) {
+    background-image: url($_p-img + $_p-hiRes + "." + $_p-ext);
+  }
+}
+
+// ================
+// Mixin: Formats RMS forms for wide viewports using inline-block layout
+// More info: https://wiki.eab.com/display/RWD/wideForm%28%29+mixin
+
+@mixin wideForm(
+  $_mq-breakpoint: breakpoints.$mq-900,
+  $_d-formLabelWidth: 33.333%,
+  $_d-formLabelPad: 0.5em,
+  $_x-stackClass: ".question-stacked"
+) {
+  @media (min-width: #{$_mq-breakpoint}) {
+    .type_date,
+    .type_multicheck,
+    .type_radio,
+    .type_select,
+    .type_ssn,
+    .type_telephone,
+    .type_text,
+    .type_textarea {
+      &:not(#{$_x-stackClass}) {
+        & > label,
+        & > .rte-q-label,
+        & > .desc {
+          display: inline-block;
+          width: $_d-formLabelWidth;
+          padding: $_d-formLabelPad 5% $_d-formLabelPad 0;
+          vertical-align: top;
+
+          & ~ * {
+            display: inline-block;
+            width: calc(#{100% - $_d-formLabelWidth} - 0.375em);
+            vertical-align: top;
+
+            &.choice {
+              margin: #{$_d-formLabelPad * 0.75} 0;
+            }
+          }
+
+          & ~ .help {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .type_checkbox,
+    .type_readonly_webcopy {
+      &.related-question {
+        padding-left: calc(#{$_d-formLabelWidth} + 0.375em);
+      }
+    }
+    @content;
+  }
+}
+
+// ================
+// Mixin: Formats RMS forms for wide viewports using Flexbox layout
+// More info: https://wiki.eab.com/display/RWD/wideFormFlex%28%29+mixin
+
+@mixin wideFormFlex(
+  $_mq-breakpoint: breakpoints.$mq-900,
+  $_d-formLabelWidth: 33.333%,
+  $_d-formLabelPad: 0.5em,
+  $_x-stackClass: ".question-stacked"
+) {
+  @media (min-width: #{$_mq-breakpoint}) {
+    .type_date,
+    .type_multicheck,
+    .type_radio,
+    .type_select,
+    .type_ssn,
+    .type_telephone,
+    .type_text,
+    .type_textarea {
+      &:not(#{$_x-stackClass}) {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+
+        & > label,
+        & > .rte-q-label,
+        & > .desc {
+          width: $_d-formLabelWidth;
+          padding: $_d-formLabelPad 5% $_d-formLabelPad 0;
+
+          & ~ * {
+            width: calc(100% - #{$_d-formLabelWidth});
+
+            &.choice {
+              margin: #{$_d-formLabelPad * 0.75} 0;
+            }
+          }
+
+          & ~ .help {
+            width: 100%;
+          }
+        }
+      }
+
+      &.related-question {
+        padding-left: $_d-formLabelWidth;
+      }
+
+      .type_checkbox,
+      .type_readonly_webcopy {
+        &.related-question {
+          padding-left: $_d-formLabelWidth;
+        }
+      }
+    }
+    @content;
+  }
+}
+
+// ================
+// Mixin: Adds a CSS counter to any element
+// More info: https://wiki.eab.com/display/RWD/counter%28%29+mixin
+
+@mixin counter($_x-counterName, $_x-item, $_x-number: null) {
+  counter-reset: $_x-counterName;
+
+  #{$_x-item} {
+    counter-increment: $_x-counterName;
+
+    @if $_x-number == null {
+      &::before {
+        content: counter(#{$_x-counterName});
+      }
+    } @else {
+      #{$_x-number}::before {
+        content: counter(#{$_x-counterName});
+      }
+    }
+  }
+}
+
+// ================
+// Mixin: Creates a Flexbox-based "sticky" footer
+// More info: https://wiki.eab.com/display/RWD/stickyFooter%28%29+mixin
+
+@mixin stickyFooter($_x-content, $_x-wrapper: "body") {
+  #{$_x-wrapper} {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    & > * {
+      flex-shrink: 0;
+    }
+  }
+
+  #{$_x-content} {
+    flex-grow: 1;
+  }
+}
+
+// ================
+// Mixin: Fluidly scales a property from a minimum to a maximum size
+// More info: https://wiki.eab.com/display/RWD/fluidRem%28%29+mixin
+
+@mixin fluidRem(
+  $_x-prop,
+  $_d-minRem,
+  $_d-maxRem,
+  $_mq-min: breakpoints.$mq-300,
+  $_mq-max: breakpoints.$mq-1200
+) {
+  $_d-mid: "";
+
+  @for $_x-i from 1 through length($_d-maxRem) {
+    $_d-iMin: nth($_d-minRem, $_x-i);
+    $_d-iMax: nth($_d-maxRem, $_x-i);
+
+    @if $_d-iMin == 0 {
+      $_d-iMin: 0rem;
+    }
+
+    @if $_d-iMax == 0 {
+      $_d-iMax: 0rem;
+    }
+
+    $_d-iMid: calc(
+      #{$_d-iMin} +
+        #{math.div(($_d-iMax - $_d-iMin), 1rem)} *
+        ((100vw - #{$_mq-min}) / #{math.div(($_mq-max - $_mq-min), 1rem)})
+    );
+
+    @if ($_x-i > 1) {
+      $_d-mid: $_d-mid + " ";
+    }
+    $_d-mid: $_d-mid + $_d-iMid;
+  }
+  #{$_x-prop}: #{$_d-minRem};
+
+  @media (min-width: #{$_mq-min}) {
+    #{$_x-prop}: #{$_d-mid};
+  }
+
+  @media (min-width: #{$_mq-max}) {
+    #{$_x-prop}: #{$_d-maxRem};
+  }
+}
+
+// ================
+// Mixin: Resizes an <iframe> to fit its container
+// More info: https://wiki.eab.com/display/RWD/iframeWrapper%28%29+mixin
+
+@mixin iframeWrapper($_d-iframeWidth: 560, $_d-iframeHeight: 315) {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: ($_d-iframeHeight / $_d-iframeWidth) * 100%;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+  }
+}
+
+// ================
+// Function: Returns a breakpoint value for use in a max media query
+// More info: https://wiki.eab.com/display/RWD/maxMQ%28%29+function
+
+@function maxMQ($_mq-breakpoint) {
+  @return $_mq-breakpoint - 0.0625rem;
+}
+
+// ================
+// Function: Returns the WCAG brightness of a color
+// More info: https://wiki.eab.com/display/RWD/brightness%28%29+function
+
+@function brightness($_c-color) {
+  @return (
+      (red($_c-color) * 0.299) + (green($_c-color) * 0.587) +
+        (blue($_c-color) * 0.114)
+    ) / 255 * 100%;
+}
+
+// ================
+// Function: Returns a light text color for dark backgrounds, and vice versa
+// More info: https://wiki.eab.com/display/RWD/textContrast%28%29+function
+
+@function textContrast(
+  $_c-bgColor,
+  $_c-darkTextColor: #000,
+  $_c-lightTextColor: #fff
+) {
+  @if $_c-bgColor == null {
+    @return null;
+  } @else {
+    $_c-colorBrightness: brightness($_c-bgColor);
+    $_c-lightTextColorBrightness: brightness($_c-lightTextColor);
+    $_c-darkTextColorBrightness: brightness($_c-darkTextColor);
+
+    @return if(
+      abs($_c-colorBrightness - $_c-lightTextColorBrightness) >
+        abs($_c-colorBrightness - $_c-darkTextColorBrightness),
+      $_c-lightTextColor,
+      $_c-darkTextColor
+    );
+  }
+}

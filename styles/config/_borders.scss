@@ -1,0 +1,23 @@
+@use "config";
+@use "colors";
+
+//* Border Radius
+$borderRadius-xl: calc(config.$baseUnit * 1.25);
+$borderRadius-l: calc(config.$baseUnit * 1);
+$borderRadius-m: calc(config.$baseUnit * 0.75);
+$borderRadius-s: calc(config.$baseUnit * 0.5);
+$borderRadius-xs: calc(config.$baseUnit * 0.25);
+
+//* Border Width
+$borderWidth-xl: config.$baseUnit; // 16px
+$borderWidth-l: calc(config.$baseUnit * 0.5); // 8px
+$borderWidth-m: calc(config.$baseUnit * 0.75); // 4px
+$borderWidth-s: calc(config.$baseUnit * 0.875); // 2px
+$borderWidth-xs: 0.0625rem; // 1px
+
+//* Border Color
+$borderColor: colors.$c-gray-400;
+$borderColor-dark: colors.$c-limeGreen-500;
+
+//* Border Style
+// $borderStyle: solid;

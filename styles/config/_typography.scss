@@ -1,0 +1,109 @@
+// ================
+// Typography
+// ================
+@use "config";
+@use "spacing";
+@use "colors";
+@use "fonts";
+@use "mixins";
+
+// $baseUnit: 16;
+// $letter-spacing: 1rem;
+// $line-height: 1.5;
+// $font-size: 1rem;
+
+// ================
+// Root
+
+html {
+  line-height: spacing.$bodyLineHeight;
+  font-family: fonts.$f-bodyFont;
+}
+
+// ================
+// Headlines
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 1rem 0;
+  line-height: spacing.$headingLineHeight;
+  font-family: fonts.$f-headlineFont;
+}
+
+h1 {
+  font-size: clamp(fonts.$fontSize-l, 5vw, fonts.$fontSize-xxxl);
+  font-weight: 400;
+  strong {
+    display: block;
+    font-weight: 700;
+  }
+}
+h2 {
+  font-size: clamp(fonts.$fontSize-m, 4vw, fonts.$fontSize-xl);
+  font-weight: 400;
+  strong {
+    display: block;
+    font-weight: 800;
+  }
+}
+
+h3 {
+  font-size: clamp(fonts.$fontSize-s, 3vw, fonts.$fontSize-l);
+  font-weight: 400;
+  strong {
+    display: block;
+    font-weight: 700;
+  }
+}
+
+h4 {
+}
+
+h5 {
+}
+
+h6 {
+}
+
+// ================
+// Body Copy
+
+p,
+ul,
+ol,
+blockquote,
+address {
+  margin: 0 0 1rem 0;
+  font-style: normal;
+}
+
+ul,
+ol {
+  li {
+  }
+}
+
+a {
+  &:hover,
+  &:focus {
+  }
+}
+
+%small,
+small,
+.copyright {
+  font-size: 0.875em;
+  font-style: italic;
+}
+
+// ================
+// Other Type Styles
+
+.error,
+.val-header {
+  color: colors.$c-error;
+}

@@ -1,0 +1,34 @@
+.table {
+  & table {
+    & td,
+    & th {
+      @apply p-6;
+    }
+
+    & thead {
+      & tr {
+        @apply border-b;
+      }
+
+      & th {
+        @apply uppercase;
+      }
+    }
+
+    & tbody {
+      & tr:nth-child(odd) {
+      }
+    }
+
+    & tfoot {
+      & tr {
+      }
+
+      & td {
+      }
+    }
+  }
+
+  & .caption {
+  }
+}

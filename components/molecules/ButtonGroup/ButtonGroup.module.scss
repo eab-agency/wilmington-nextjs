@@ -1,0 +1,23 @@
+.button-group {
+  display: flex;
+
+  &.horizontal {
+    // @apply flex flex-wrap;
+    flex-flow: row wrap;
+  }
+
+  &.vertical {
+    // @apply flex flex-col;
+    flex-direction: column;
+  }
+
+  &.center {
+    justify-content: center;
+    // @apply justify-center items-center;
+  }
+
+  &.right {
+    justify-content: flex-end;
+    // @apply justify-end items-end;
+  }
+}

@@ -1,0 +1,160 @@
+//* ================
+//* Custom Mixins
+//* ================
+
+@use "config";
+@use "breakpoints";
+@use "fonts";
+@use "borders";
+@use "spacing";
+@use "colors";
+@use "sass:color";
+
+@mixin center($_maxWidth: breakpoints.$mq-900, $_width: 90%) {
+  width: $_width;
+  max-width: $_maxWidth;
+  margin: auto;
+}
+
+// Alignments
+%center,
+.center {
+  @include center();
+}
+
+// Buttons
+@mixin button(
+  $color: black,
+  $bgColor: #efefef,
+  $fontSize: fonts.$fontSize-xxs,
+  $iconBgColor: gray
+) {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  width: auto;
+  color: $color;
+  background: $bgColor;
+  text-decoration: none;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: $fontSize;
+  cursor: pointer;
+  border: 1px solid color.adjust($bgColor, $lightness: -30%);
+  border-radius: borders.$borderRadius-xs;
+  overflow: hidden;
+  box-shadow: 0 0.2em 0.3em rgba(colors.$c-copy, 0.1);
+  transition: all 0.15s ease-in;
+  position: relative;
+  padding: calc(spacing.$p-s * 1.5) spacing.$p-m;
+  padding-right: 4em;
+
+  i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: $iconBgColor;
+    color: white;
+    position: absolute;
+    z-index: config.$layer-2;
+    right: 0;
+    top: 0;
+    width: 1.5em;
+    height: 100%;
+    font-size: calc(#{$fontSize} * 2);
+    transition: all 0.15s ease-in;
+  }
+
+  &:hover,
+  &:focus {
+    background: $iconBgColor;
+
+    i {
+      padding-left: 0.3em;
+      background: transparent;
+    }
+  }
+}
+
+@mixin drawerIn($direction: left, $duration: 0.3s, $timing: ease-in-out) {
+  @if $direction == left {
+    @keyframes drawerInLeft {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+    animation: drawerInLeft $duration $timing;
+  } @else if $direction == right {
+    @keyframes drawerInRight {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+    animation: drawerInRight $duration $timing;
+  } @else if $direction == top {
+    @keyframes drawerInTop {
+      from {
+        transform: translateY(-100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+    animation: drawerInTop $duration $timing;
+  } @else if $direction == bottom {
+    @keyframes drawerInBottom {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+    animation: drawerInBottom $duration $timing;
+  }
+}
+
+@mixin sectionTag(
+  $colorIdentifier: colors.$c-limeGreen-500,
+  $textColor: colors.$c-white
+) {
+  display: flex;
+  align-items: center;
+  gap: spacing.$p-s;
+  color: $textColor;
+  position: relative;
+  font-size: fonts.$fontSize-xxxs;
+  font-weight: 600;
+  text-transform: uppercase;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  position: absolute;
+  left: 0;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 0.5em;
+    height: 0.5em;
+    background: $colorIdentifier;
+    border-radius: 50%;
+  }
+}
+
+@mixin extendedBackground($bg: config.$c-white) {
+  content: "";
+  display: block;
+  width: 100vw;
+  height: 100%;
+  background: $bg;
+  position: absolute;
+  top: 0;
+  right: 100%;
+  z-index: config.$layer-1;
+}

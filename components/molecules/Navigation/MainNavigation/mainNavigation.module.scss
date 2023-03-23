@@ -1,0 +1,167 @@
+@use "../../../../styles/config";
+
+.dropdown {
+  display: none;
+}
+.showMenu {
+  display: block;
+}
+
+.openMenu {
+  display: block;
+}
+
+.closedMenu {
+  display: none;
+}
+
+.openedSubMenu {
+  display: block;
+}
+
+.closedSubMenu {
+  display: none;
+}
+
+.menuItems {
+  padding: 0 0;
+}
+
+.nav-container {
+  border-left: config.$borderWidth-l solid config.$c-darkGreen-800;
+  background: config.$c-white;
+  width: 3.75rem;
+
+  .nav-wrapper {
+    position: sticky;
+    top: 4.45rem;
+    border-top: config.$borderWidth-xs solid config.$c-gray-400;
+
+    .hamburger {
+      background: none;
+      border: none;
+      font-size: config.$fontSize-m;
+      padding-inline: config.$p-m;
+      padding-block: config.$p-s;
+      cursor: pointer;
+      position: relative;
+
+      span {
+        font-size: config.$fontSize-xs;
+        text-transform: uppercase;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+      }
+
+      svg,
+      span {
+        position: relative;
+        z-index: config.$layer-2;
+        color: config.$c-gray-700;
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: config.$c-gray-200;
+        z-index: config.$layer-1;
+        border-right: 1px solid config.$c-gray-400;
+        transition: all 0.2s ease-in-out;
+      }
+
+      &:hover,
+      &:focus {
+        svg,
+        span {
+          color: config.$c-darkGreen-700;
+        }
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+
+    & > ul {
+      background: config.$c-white;
+      width: calc(config.$leftOffset - 4rem);
+      min-width: 15rem;
+      position: absolute;
+      top: 0;
+      left: 3.2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      // &::before {
+      //   content: "";
+      //   display: block;
+      //   width: 100vw;
+      //   height: 100vh;
+      //   position: fixed;
+      //   top: 0;
+      //   left: 0;
+      //   background: config.$c-gray-200;
+      //   z-index: config.$layer-1;
+      // }
+
+      li {
+        border-top: config.$borderWidth-xs solid config.$c-gray-400;
+        position: relative;
+        z-index: config.$layer-2;
+
+        a {
+          display: block;
+          text-transform: uppercase;
+          color: config.$c-gray-600;
+          padding: 1rem;
+          text-decoration: none;
+          font-size: config.$fontSize-xs;
+
+          &:hover {
+            background: config.$c-gray-200;
+            color: config.$c-darkGreen-700;
+          }
+        }
+
+        button {
+          display: block;
+          text-transform: uppercase;
+          color: config.$c-gray-600;
+          border-top: config.$borderWidth-xs solid config.$c-gray-400;
+          padding: 1rem;
+          background: none;
+          border: none;
+          font-size: config.$fontSize-xs;
+          cursor: pointer;
+
+          &:hover {
+            background: config.$c-gray-200;
+            color: config.$c-darkGreen-700;
+          }
+        }
+
+        &:last-child {
+          a {
+            border-bottom: config.$borderWidth-xs solid config.$c-gray-400;
+          }
+        }
+
+        ul {
+          background: #efefef;
+          margin-top: 1em;
+          border-top: 1px solid red;
+          li {
+            a {
+              background: yellow;
+            }
+          }
+        }
+      }
+    }
+  }
+}

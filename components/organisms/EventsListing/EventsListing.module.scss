@@ -1,0 +1,75 @@
+@use "../../../styles/config";
+
+.events-section {
+  width: 100%;
+  background: config.$c-gray-700;
+  padding: 4rem;
+  color: white;
+  // padding-right: 24rem;
+  position: relative;
+
+  &::before {
+    @include config.extendedBackground(config.$c-gray-700);
+  }
+}
+
+.section-tag {
+  @include config.sectionTag();
+}
+
+.events-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  // gap: config.$m-xl;
+  margin-bottom: config.$m-xl;
+
+  // padding-right: 24rem;
+
+  @media (min-width: config.$mq-1200) {
+    flex-direction: row;
+    // flex-wrap: wrap;
+    overflow-x: auto;
+    width: calc(100% - 20rem);
+    // max-width: 35rem;
+  }
+
+  li {
+    min-width: 15rem;
+    position: relative;
+    overflow: hidden;
+    //   padding-block: config.$p-l;
+
+    article {
+      display: flex;
+      flex-direction: column;
+      gap: config.$m-xl;
+      padding-block: config.$p-l;
+      padding-inline: config.$p-l;
+      width: 100%;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      width: 4px;
+      height: 70%;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background: url("../../../assets/divider-draw-line-vertical.svg")
+        no-repeat center;
+      background-size: 100% auto;
+      // transform: rotate(90deg);
+    }
+
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}

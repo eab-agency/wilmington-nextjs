@@ -1,0 +1,113 @@
+@use "../../../styles/config";
+
+.news-section {
+  background: config.$c-darkGreen-700;
+  @include config.sectionPadding();
+  display: flex;
+  flex-direction: column;
+  z-index: config.$layer-10;
+  position: relative;
+
+  &::before {
+    @include config.extendedBackground(config.$c-darkGreen-700);
+  }
+
+  @media (min-width: config.$mq-1200) {
+    flex-direction: row;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .section-head {
+    display: flex;
+    flex-direction: column;
+    gap: config.$m-xl;
+    align-items: flex-start;
+
+    .section-tag {
+      @include config.sectionTag();
+      position: relative;
+    }
+
+    h2 {
+      color: config.$c-white;
+    }
+  }
+
+  .news-container {
+    display: block;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 config.$m-xl 0;
+    display: flex;
+    max-width: 100%;
+
+    li {
+      position: relative;
+      flex: 1;
+
+      article {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+        padding-block: config.$p-l;
+        padding-inline: config.$p-l;
+        border-radius: config.$borderRadius-xs;
+        transition: all 0.2s ease-in;
+
+        @media (min-width: config.$mq-1200) {
+          padding-block: config.$p-xl;
+        }
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        width: 4px;
+        height: 70%;
+        background: url(../../../assets/divider-draw-line-vertical.svg)
+          no-repeat center;
+        background-size: 100% auto;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &:last-child {
+        &::after {
+          display: none;
+        }
+      }
+
+      @media (min-width: config.$mq-1200) {
+        &::after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 4px;
+          margin-top: config.$m-xl;
+          background: url(../../../assets/divider-draw-line.svg) no-repeat
+            center;
+          background-size: 100% auto;
+          top: auto;
+          bottom: 0;
+        }
+      }
+
+      &:last-child {
+        margin-bottom: config.$m-xl;
+      }
+    }
+
+    @media (min-width: config.$mq-1200) {
+      flex-direction: column;
+    }
+  }
+}

@@ -1,0 +1,76 @@
+.hero {
+  min-height: 22rem;
+
+  /* The card background uses css custom properties that are set inline in the component. */
+  /* stylelint-disable-line comment-empty-line-before */ /* prettier-ignore */
+  background: linear-gradient(var(--image-tint-color), var(--image-tint-color)), var(--image-url) center center, var(--image-fallback-color);
+  background-size: cover;
+  background-position: 50%;
+
+  &.alignLeft,
+  &.alignRight {
+  }
+
+  &.alignLeft {
+  }
+
+  &.alignRight {
+  }
+
+  &.contentAlignTop {
+  }
+
+  &.contentAlignBottom {
+  }
+
+  &.contentAlignLeft {
+  }
+
+  &.contentAlignRight {
+  }
+
+  &.fixed {
+  }
+
+  &.fullHeight {
+    min-height: 100vh;
+  }
+
+  &.repeat {
+  }
+
+  & .content {
+    & .subtitle {
+    }
+
+    & .title {
+    }
+
+    & .body {
+    }
+
+    & .body + .button {
+    }
+  }
+
+  & .overlay {
+    background-color: inherit;
+    z-index: 5;
+
+    &.overlayOnly {
+      z-index: auto;
+    }
+  }
+
+  & .filterImage {
+    border: medium none;
+  }
+
+  & > p {
+  }
+}
+
+.filter {
+  left: -9999px;
+  visibility: hidden;
+}

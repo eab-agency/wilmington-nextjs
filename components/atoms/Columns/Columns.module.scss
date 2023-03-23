@@ -1,0 +1,43 @@
+@use "../../../styles/config";
+
+.columns {
+  display: flex;
+
+  &.columnStacked {
+    @media (max-width: config.$mq-800) {
+      flex-direction: column;
+    }
+  }
+
+  &.alignCenter {
+    & .column {
+      background: yellow;
+    }
+  }
+
+  &.alignBottom {
+    & .column {
+      background: green;
+    }
+  }
+
+  &.hasBackground {
+    padding: 8px;
+    border: 5px solid red;
+  }
+
+  & .column {
+    &.hasBackground {
+      padding: 8px;
+      border: 5px solid blue;
+    }
+  }
+}
+
+.off-white {
+  background: config.$c-gray-300;
+
+  &::before {
+    @include config.extendedBackground(config.$c-gray-300);
+  }
+}

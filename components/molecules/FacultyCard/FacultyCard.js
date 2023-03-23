@@ -1,0 +1,27 @@
+import * as React from 'react';
+import Link from '@/components/common/Link';
+import Image from 'next/image';
+
+const FacultyCard = ({
+  title,
+  description,
+  email,
+  phone,
+  link,
+  image,
+}) => {
+  return (
+    <>
+      <pre>FILE: FacultyCard.js</pre>
+      {/* image size is handled in fragments.js under `fragment ProgramTemplateFragment on WpProgram` */}
+      {image && <Image image={image} alt={image.altText || ''} />}
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <a href={`mailto:${email}`}>Send Email</a>
+      {phone ? <a href={`tel:${phone}`}>{phone}</a> : null}
+      <Link href={link}>View Full Bio</Link>
+    </>
+  );
+};
+
+export default FacultyCard;

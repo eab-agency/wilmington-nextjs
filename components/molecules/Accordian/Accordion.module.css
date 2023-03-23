@@ -1,0 +1,23 @@
+.accordionContent {
+  background-color: var(--color-bakcground);
+}
+
+.accordionButton {
+  background-color: transparent;
+  border-style: none;
+  color: var(--color-text);
+}
+
+.accordionContainer {
+  border: 0.2rem solid var(--color-text);
+}
+.accordionTitle {
+  outline: none;
+  background-color: var(--color-bakcground);
+}
+
+.accordionTitle > h2 {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}

@@ -1,0 +1,36 @@
+@use "../../../styles/config";
+
+.single-quote {
+  display: flex;
+  overflow: hidden;
+
+  figure {
+    width: 100%;
+    flex-shrink: 0;
+    overflow: hidden;
+
+    @media (min-width: config.$mq-1400) {
+      min-width: 20rem;
+      min-height: 20rem;
+    }
+  }
+}
+
+.quote-text {
+  padding: config.$p-xxl;
+}
+
+.quote-content {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+}
+
+.featured-testimonial {
+  figure {
+    width: 50%;
+    border-left: 3rem solid config.$c-white;
+    border-top: 3rem solid config.$c-white;
+  }
+}

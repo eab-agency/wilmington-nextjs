@@ -1,0 +1,100 @@
+@use "../../../../styles/config";
+
+.top-menu-items {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-end;
+  list-style: none;
+  grid-column: 1 / span 23;
+  margin: 0;
+  height: 100%;
+  border-top: 1px solid config.$c-gray-200;
+
+  @media (min-width: config.$mq-1200) {
+    grid-column: 1 / 18 span;
+    border: none;
+  }
+
+  li {
+    border-left: 1px solid config.$c-gray-400;
+    a {
+      display: flex;
+      position: relative;
+      align-items: center;
+      flex-direction: column;
+      padding-inline: config.$p-l;
+      padding-block: config.$p-m;
+      color: config.$c-gray-600;
+      text-decoration: none;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: config.$fontSize-xxxs;
+      border-bottom: 2px solid transparent;
+      overflow: hidden;
+      transition: all 0.1s ease-in;
+
+      @media (min-width: config.$mq-1100) {
+        flex-direction: row;
+        font-size: config.$fontSize-xxs;
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: config.$c-limeGreen-700;
+        transition: all 0.2s;
+      }
+
+      svg {
+        color: config.$c-gray-600;
+        font-size: 1.2em;
+        line-height: 1;
+
+        @media (min-width: config.$mq-1100) {
+          margin-right: 0.5em;
+        }
+      }
+
+      &[href*="cincinnati"] {
+        color: config.$c-gray-800;
+        svg {
+          display: none;
+        }
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background: config.$c-cincinnati-700;
+          transition: all 0.3s;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        color: config.$c-gray-800;
+        &::after {
+          height: 4px;
+        }
+
+        svg {
+          color: config.$c-darkGreen-800;
+        }
+
+        &[href*="cincinnati"]:after {
+          bottom: 0em;
+          background: config.$c-cincinnati-700;
+        }
+      }
+    }
+  }
+}

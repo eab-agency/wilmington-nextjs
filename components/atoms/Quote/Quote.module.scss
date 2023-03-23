@@ -1,0 +1,31 @@
+@use "../../../styles/config";
+
+.quote {
+  // @apply mb-8 p-6 px-10 border-l;
+  // background: yellowgreen;
+
+  & blockquote {
+    // @apply mb-8;
+
+    & p {
+      // @apply text-xl mb-0;
+    }
+  }
+
+  & figcaption {
+    // @apply font-bold;
+  }
+}
+.content {
+  text-decoration: none;
+}
+.cite {
+  span {
+    display: block;
+    font-size: config.$fontSize-xxs;
+
+    &:first-child {
+      font-weight: 700;
+    }
+  }
+}

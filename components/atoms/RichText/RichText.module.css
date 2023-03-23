@@ -1,0 +1,57 @@
+.richtext {
+  &.center {
+    text-align: center;
+  }
+
+  &.dropcap {
+    &::first-letter {
+      float: left;
+      font-size: 4em;
+      line-height: 0.8;
+      margin-right: 0.2em;
+      margin-top: -0.2em;
+    }
+  }
+
+  /* List Styles */
+  &.ul,
+  &.ol {
+    list-style-position: inside;
+
+    & li {
+      margin-bottom: 0.5em;
+    }
+
+    & ul,
+    & ol {
+      margin-left: 1em;
+    }
+  }
+
+  /* Unordered Lists */
+  &.ul {
+    & > li {
+      &::before {
+        background: #000;
+        content: '';
+        width: 5px;
+        height: 5px;
+        left: 0.35rem;
+        top: 0.55rem;
+      }
+    }
+  }
+
+  /* Ordered Lists */
+  &.ol {
+    counter-reset: item;
+
+    & > li {
+      &::before {
+        content: counter(item) '. ';
+        counter-increment: item;
+        margin-left: 2px;
+      }
+    }
+  }
+}

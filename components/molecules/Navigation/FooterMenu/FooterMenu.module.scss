@@ -1,0 +1,27 @@
+@use "../../../../styles/config";
+
+.footer-nav {
+}
+
+.footer-menu {
+  list-style: none;
+
+  @media (min-width: config.$mq-800) {
+    columns: 2;
+  }
+
+  li {
+    margin-block: 0.5em;
+    a {
+      color: config.$c-white;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(white, 50%);
+
+      &:hover {
+        color: config.$c-limeGreen-300;
+        text-decoration: none;
+        border-bottom: none;
+      }
+    }
+  }
+}

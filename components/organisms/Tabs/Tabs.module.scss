@@ -1,0 +1,125 @@
+@use "@/styles/config";
+
+.tabs-container {
+  ul[class*="tab-list"] {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      cursor: pointer;
+      width: 7em;
+      height: 7em;
+      margin: 0 1rem 0;
+      padding: 1em;
+      border: 1px solid config.$c-gray-300;
+      position: relative;
+      font-size: config.$fontSize-xxs;
+
+      &:last-child {
+        margin: 0;
+      }
+
+      span {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        color: config.$c-darkGreen-700;
+        text-transform: uppercase;
+
+        &::before {
+          content: "";
+          font-family: config.$f-icons;
+          font-size: 1.5rem;
+        }
+
+        &[class*="facebook"] {
+          &::before {
+            content: config.$i-facebook;
+          }
+        }
+
+        &[class*="twitter"] {
+          &::before {
+            content: config.$i-twitter;
+          }
+        }
+
+        &[class*="youtube"] {
+          &::before {
+            content: config.$i-youtube;
+          }
+        }
+
+        &[class*="instagram"] {
+          &::before {
+            content: config.$i-instagram;
+          }
+        }
+      }
+
+      &[aria-selected="true"] {
+        border: 1px solid config.$c-limeGreen-400;
+        background: config.$c-limeGreen-400;
+        color: config.$c-white;
+
+        span {
+          color: config.$c-darkGreen-800;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -0.75em;
+          border-left: 0.75em solid transparent;
+          border-right: 0.75em solid transparent;
+          border-top: 0.75em solid config.$c-limeGreen-400;
+        }
+      }
+    }
+  }
+
+  div[class*="tab-panel--selected"] {
+    display: flex;
+    border: 0.5em solid config.$c-gray-300;
+
+    & > div {
+      padding: clamp(2rem, 4vw, 4rem);
+      width: 50%;
+    }
+
+    & > div.gatsby-image-wrapper {
+      display: none;
+
+      @media (min-width: config.$mq-800) {
+        display: flex;
+      }
+    }
+
+    &.tab-content {
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 20rem;
+        height: 20rem;
+        background: url(../../../assets/deco-plus-sign.svg) no-repeat center;
+        background-size: contain;
+        position: absolute;
+        left: 50%;
+        bottom: -8.5rem;
+        transform: translateX(-50%);
+        z-index: config.$layer-2;
+        pointer-events: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+// Base Color Variables
+$c-black: #000;
+$c-white: #fff;
+
+// $c-primaryGreen: hsla(85, 68%, 50%, 1);
+
+//* Dark Green
+$c-darkGreen-800: #003a2f;
+$c-darkGreen-750: #024e43;
+$c-darkGreen-700: #005847;
+
+//*Lime Green
+$c-limeGreen-700: #66a409;
+$c-limeGreen-600: #7ab800;
+$c-limeGreen-500: #8ec640;
+$c-limeGreen-400: #a2da54;
+$c-limeGreen-300: #baf269;
+$c-limeGreen-200: #d0f699;
+$c-limeGreen-100: #e5fac7;
+
+//* Cincinnati
+$c-cincinnati-800: #ab5b19;
+$c-cincinnati-700: #e8ae41;
+$c-cincinnati-600: #f1e686;
+
+//* Gray
+$c-gray-800: #001613;
+$c-gray-700: #212927;
+$c-gray-600: #6d6f64;
+$c-gray-500: #c6c6bc;
+$c-gray-400: #e4e4da;
+$c-gray-300: #eeeee2;
+$c-gray-200: #f5f5ee;
+
+//* Teal
+$c-teal-800: #137b91;
+$c-teal-500: #3cb6ce;
+$c-teal-300: #5ad4ec;
+
+//* Lavender
+$c-lavender-800: #81678c;
+$c-lavender-500: #ab8ab8;
+$c-lavender-300: #c49fd3;
+
+//* Orange
+$c-orange-800: #f47710;
+$c-orange-500: #f69240;
+$c-orange-300: #f8ac6d;
+
+//* Sand
+$c-sand-800: #6d6f64;
+$c-sand-500: #dcd6b2;
+$c-sand-300: #e9e5ce;
+
+//* Yellow
+$c-yellow-800: #856700;
+$c-yellow-500: #ebb700;
+$c-yellow-300: #ffd952;
+
+//* Utility Colors
+$c-error: rgb(224, 10, 10);
+$c-valid: rgb(0, 104, 0);
+$c-copy: $c-gray-800;

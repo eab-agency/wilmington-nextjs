@@ -1,0 +1,131 @@
+@use "../../../../styles/config";
+
+// TODO: Andrei, these next 4 styles were throwing warnings bc they are being called in Button.tsx but not available
+
+.iconOnly {
+  display: inline;
+}
+
+.iconLeft {
+  display: inline;
+}
+
+.fluid {
+  display: inline;
+}
+
+.disabled {
+  display: inline;
+}
+
+.button {
+  // @apply inline-flex items-center justify-center rounded border cursor-pointer font-semibold mr-2 mb-2;
+
+  & svg {
+    // @apply ml-4;
+  }
+
+  &.iconLeft {
+    // @apply flex-row-reverse;
+
+    & svg {
+      // @apply mr-12 ml-0;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active:not([disabled]) {
+    // @apply underline;
+    // background: red;
+  }
+
+  /* SIZES */
+  &.lg {
+    // @apply px-4 py-3 text-lg;
+  }
+
+  &.md {
+    // @apply px-3 py-2;
+  }
+
+  &.sm {
+    // @apply px-1.5 py-0.5;
+  }
+
+  &.fluid {
+    // @apply block w-full text-center;
+  }
+
+  /* TYPES */
+  &.primary {
+    @include config.button(
+      config.$c-copy,
+      config.$c-limeGreen-200,
+      config.$fontSize-xxs,
+      config.$c-limeGreen-600
+    );
+
+    &[href*="cincinnati"] {
+      background: config.$c-cincinnati-600;
+      border-color: config.$c-cincinnati-700;
+
+      i {
+        background: config.$c-cincinnati-700;
+      }
+
+      &::after {
+        background-color: config.$c-cincinnati-700;
+      }
+
+      &:hover,
+      &:focus {
+        background: config.$c-cincinnati-700;
+      }
+    }
+
+    &.disabled {
+      // @apply opacity-50;
+    }
+  }
+
+  &.secondary {
+    background-color: config.$c-darkGreen-700;
+    color: config.$c-white;
+
+    i {
+      background-color: config.$c-darkGreen-800;
+    }
+    // &::after {
+    //   background-color: config.$c-darkGreen-800;
+    // }
+
+    &.disabled {
+      // @apply opacity-50;
+    }
+  }
+
+  &.regularlink {
+    display: inline-flex;
+    align-items: center;
+    color: config.$c-teal-300;
+    i {
+      font-size: 1.3em;
+      font-weight: 600;
+      height: 1.2em;
+    }
+  }
+
+  &.disabled {
+    // @apply cursor-not-allowed;
+  }
+
+  &.text {
+    background-color: transparent;
+  }
+
+  /* STYLES */
+  &.styleOutline {
+    border: 2px solid;
+  }
+}

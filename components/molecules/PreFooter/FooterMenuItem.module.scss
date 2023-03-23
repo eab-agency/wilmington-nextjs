@@ -1,0 +1,91 @@
+@use "../../../styles/config";
+
+.link {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1em, 2vw, 2em);
+  padding: clamp(1em, 2vw, 2em);
+  color: config.$c-white;
+  text-decoration: none;
+  position: relative;
+
+  @media (min-width: config.$mq-700) {
+    flex-direction: column;
+  }
+
+  .link-content {
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    z-index: config.$layer-1;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+
+    & > div {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  &:hover {
+    color: config.$c-limeGreen-300;
+    text-decoration: none;
+    border-bottom: none;
+
+    .link-content {
+      opacity: 1;
+      height: 110%;
+    }
+
+    i {
+      background: rgba(0, 0, 0, 0.8);
+      border-color: config.$c-limeGreen-300;
+
+      svg {
+        color: config.$c-white;
+      }
+    }
+  }
+
+  i {
+    position: relative;
+    font-size: clamp(1em, 2vw, 2em);
+    z-index: config.$layer-2;
+    border: 1px solid config.$c-gray-500;
+    border-radius: 50%;
+    padding: 0.3em;
+
+    svg {
+      font-size: 0.8em;
+      color: config.$c-limeGreen-400;
+    }
+  }
+}
+
+.label {
+  position: relative;
+  z-index: config.$layer-2;
+  font-size: clamp(1em, 1.8vw, 1.8em);
+  color: #fff;
+}

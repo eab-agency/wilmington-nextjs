@@ -1,0 +1,30 @@
+@use "../../../../styles/config";
+
+.random-testimonials {
+  display: flex;
+  position: relative;
+  height: 20rem;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 20rem;
+    height: 20rem;
+    background: url(../../../../assets/deco-plus-sign.svg) no-repeat center;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  article {
+    width: 50%;
+  }
+
+  article:last-child {
+    figure {
+      border-bottom: 3rem solid config.$c-white;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+// ================
+// Grid
+// ================
+
+@mixin grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+@mixin grid-24 {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+}
+
+// // dark-theme/_code.scss
+// $border-contrast: false !default;
+
+// code {
+//   background-color: #6b717f;
+//   color: #d2e1dd;
+//   @if $border-contrast {
+//     border-color: #dadbdf;
+//   }
+// }

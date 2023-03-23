@@ -1,0 +1,23 @@
+.pullquote {
+  @apply mb-6 p-5 px-10 text-center;
+
+  & blockquote {
+    @apply mb-8;
+  }
+
+  & figcaption {
+    @apply font-bold;
+  }
+
+  &.styleSolid {
+    & .wrap {
+      @apply max-w-60 text-left mr-auto ml-auto;
+    }
+  }
+  &.content {
+    background-color: #f5f5f5;
+  }
+  &.cite {
+    background-color: red;
+  }
+}
