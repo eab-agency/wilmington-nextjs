@@ -3,7 +3,6 @@ import WordPressProvider from '@/components/common/WordPressProvider'
 import {useWpApollo} from '@/lib/wordpress/connector'
 import '@/styles/index.css'
 import {ApolloProvider} from '@apollo/client'
-import {SessionProvider as NextAuthProvider} from 'next-auth/react'
 import PropTypes from 'prop-types'
 import {useState} from 'react'
 import Custom500 from './500'
@@ -63,7 +62,6 @@ export default function App({Component, pageProps}) {
   })
 
   return (
-    <NextAuthProvider session={session}>
       <ApolloProvider client={apolloClient}>
         <WordPressProvider value={wp}>
           {error ? (
@@ -76,7 +74,6 @@ export default function App({Component, pageProps}) {
           )}
         </WordPressProvider>
       </ApolloProvider>
-    </NextAuthProvider>
   )
 }
 
