@@ -1,10 +1,49 @@
+// File structure
+
+/*
+|- styles/
+|
+|-- config/
+|   |-- index.scss
+|   |-- _borders.scss
+|   |-- _breakpoints.scss
+|   |-- _colors.scss
+|   |-- _dimensions.scss
+|   |-- _fonts.scss
+|   |-- _icons.scss
+|   |-- _variables.scss
+|
+|-- global/
+|   |-- index.scss
+|   |-- _reset.scss
+|   |-- _typography.scss
+|
+|-- objects/
+|   |-- _headings.scss
+|   |-- _buttons.scss
+|   |-- _forms.scss
+|   |-- _grids.scss
+|
+|-- components/
+|   |-- buttons.css
+|   |-- forms.css
+|   |-- grids.css
+|
+|-- layouts/
+|   |-- header.css
+|   |-- footer.css
+|   |-- main.css
+|
+|-- utilities/
+|   |-- tools.css
+|
+|-- styles.scss
+
+
+*/
+
 @use "config";
 @use "reactCarousel";
-
-@font-face {
-  font-family: "icomoon";
-  src: url("../assets/icomoon.woff");
-}
 
 // =======================
 // Intro Home Page Layout
