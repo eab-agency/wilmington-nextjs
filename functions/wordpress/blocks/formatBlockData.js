@@ -3,6 +3,7 @@ import getNewsListingData from '@/functions/wordpress/news/getNewsListingData'
 import getEventsListingData from '@/functions/wordpress/events/getEventsListingData'
 import getFeaturedDeptData from '@/functions/wordpress/departments/getFeaturedDeptData'
 import getTestimonialData, { getRandomTestimonials } from '@/functions/wordpress/testimonials/getTestimonialData'
+import getCustomPostTypePartialByIds from '@/functions/wordpress/postTypes/getCustomPostTypePartialByIds'
 
 /**
  * Format and retrieve expanded block data.
@@ -57,12 +58,15 @@ export default async function formatBlockData(blocks) {
 
         case 'acf/home-tab':
           const count = attributes?.data?.home_tabs
-
-          const homeTabsArray = []
-          // loop through the number of tabs
           for (let i = 0; i < count; i++) {
             attributes.data[`home_tabs_${i}_tab_imageData`] = await getMediaByID(attributes?.data[`home_tabs_${i}_tab_image`])
           }
+          break
+
+        case 'acf/faculty-card':
+          // an await function to return the events posts that are in the attributes.data.events_listing array
+          attributes.facultyData = await getCustomPostTypePartialByIds('facultyMember', attributes?.data?.faculty_member)
+          break
 
       }
 
