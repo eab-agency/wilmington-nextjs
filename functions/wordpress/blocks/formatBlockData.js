@@ -36,8 +36,8 @@ export default async function formatBlockData(blocks) {
           break
 
         case 'acf/events-listing':
-          // an await function to return the events posts that are in the attributes.data.events_listing array
-          attributes.listingData = await getEventsListingData(attributes?.data?.events_listing)
+          // an await function to return the events posts or category events that are in the attributes.data.events_listing array
+          attributes.listingData = await getEventsListingData(attributes?.data?.events_listing, attributes?.data?.event_category)
           break
 
         case 'acf/featured-dept':
