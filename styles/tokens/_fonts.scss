@@ -6,6 +6,12 @@
 // Use the below for Adobe Fonts/Google Fonts. Replace the URL with the font(s) you're planning to use.
 // @import url("https://fontfamily.example.com");
 
+//* Fonts
+@font-face {
+  font-family: "icomoon";
+  src: url("../assets/icomoon.woff");
+}
+
 //* Font Stacks
 $f-headlineFont: "Roboto Slab", serif;
 $f-bodyFont: "Cantarell", sans-serif;

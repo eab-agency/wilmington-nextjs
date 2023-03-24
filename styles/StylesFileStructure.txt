@@ -1,0 +1,36 @@
+# Styles File Structure
+
+
+|- styles/
+|
+|-- base/
+|   |-- index.scss
+|   |-- _reset.scss
+|   |-- _typography.scss
+|
+|-- components/
+|
+|-- layouts/
+|   |-- _homepage.scss
+|
+|-- tokens/
+|   |-- index.scss
+|   |-- _borders.scss
+|   |-- _breakpoints.scss
+|   |-- _colors.scss
+|   |-- _config.scss
+|   |-- _dimensions.scss
+|   |-- _fonts.scss
+|   |-- _grid.scss
+|   |-- _icons.scss
+|   |-- _layers.scss
+|   |-- _shadows.scss
+|   |-- _spacing.scss
+|   |-- _transittions.scss
+|
+|-- utilities/
+|   |-- _mixins.scss
+|   |-- _tools.scss
+|
+|-- styles.scss
+

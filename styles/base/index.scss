@@ -1,11 +1,4 @@
-// @forward "reset";
-// @forward "config";
-@forward "../tokens/spacing";
-@forward "../tokens/breakpoints";
-@forward "../tokens/colors";
-@forward "../tokens/fonts";
-@forward "../tokens/borders";
-@forward "../tokens/icons";
-@forward "../tokens/mixins";
-@forward "../tokens/tools";
-@forward "../tokens/grid";
+// Base styles non-specific to a component or page and non-dependable on other styles, such as variables, mixins, and functions.
+
+@forward "reset";
+@forward "typography";
