@@ -13,15 +13,15 @@ $f-icons: "icomoon";
 
 //* Font Sizes = If you're using a base unit, you can use the calc() function to calculate the font size. Otherwise, you can just use the font size you want. If $baseUnit is 16px, then $fontSize-xxxl is 72px
 
-$fontSize-xxxl: calc(config.$baseUnit * 3.5); // 56px
-$fontSize-xxl: calc(config.$baseUnit * 3); // 48px
-$fontSize-xl: calc(config.$baseUnit * 2.5); // 40px
-$fontSize-l: calc(config.$baseUnit * 2);
-$fontSize-m: calc(config.$baseUnit * 1.5);
-$fontSize-s: calc(config.$baseUnit * 1.25);
-$fontSize-xs: calc(config.$baseUnit * 1);
-$fontSize-xxs: calc(config.$baseUnit * 0.85);
-$fontSize-xxxs: calc(config.$baseUnit * 0.75);
+$fs-xxxl: calc(config.$baseUnit * 3.5); // 56px
+$fs-xxl: calc(config.$baseUnit * 3); // 48px
+$fs-xl: calc(config.$baseUnit * 2.5); // 40px
+$fs-l: calc(config.$baseUnit * 2);
+$fs-m: calc(config.$baseUnit * 1.5);
+$fs-s: calc(config.$baseUnit * 1.25);
+$fs-xs: calc(config.$baseUnit * 1);
+$fs-xxs: calc(config.$baseUnit * 0.85);
+$fs-xxxs: calc(config.$baseUnit * 0.75);
 
 //? Title Colors
 //? Paragraph Colors
