@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react';
-import FacultyCard from '../../../molecules/FacultyCard/FacultyCard';
+import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard';
 
 /**
  * Athlete Block
@@ -12,27 +12,23 @@ import FacultyCard from '../../../molecules/FacultyCard/FacultyCard';
  */
 
 
-export default function BlockFaculty({ faculty_member }) {
-  const faculty = []
-  // destructuring the faculty object but allow for null values
-  const { email, first, last, phone, position } =
-    faculty?.facultyFields?.faculty || {};
-
-  const link = faculty?.link;
-  const fullName = `${first} ${last}`;
-  const image = faculty?.featuredImage?.node?.gatsbyImage;
+export default function BlockFaculty(props) {
+  const { facultyData } = props
 
   return (
-    // only render if faculty is not null
-    faculty && (
-      <FacultyCard
-        title={fullName}
-        description={position}
-        email={email}
-        phone={phone}
-        link={link}
-        image={image}
-      />
-    )
-  );
+    // map over facultyData only  if facultyData is not null
+    facultyData?.map((faculty, index) => {
+      return (
+        <FacultyCard
+          key={index}
+          title={`${faculty.facultyFields.faculty.first} ${faculty.facultyFields.faculty.last}`}
+          description={faculty.facultyFields.faculty.position}
+          image={faculty.featuredImage.node}
+          link={faculty.link}
+          phone={faculty.facultyFields.faculty.phone}
+          email={faculty.facultyFields.faculty.email}
+        />
+      )
+    })
+  )
 }
