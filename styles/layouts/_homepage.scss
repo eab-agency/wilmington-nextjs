@@ -1,4 +1,4 @@
-@use "config";
+@use "tokens";
 
 // =======================
 // Intro Home Page Layout
@@ -8,12 +8,12 @@
   .intro-content {
     padding: 4rem;
     margin-top: -4rem;
-    background: config.$c-white;
-    z-index: config.$layer-10;
+    background: tokens.$c-white;
+    z-index: tokens.$layer-10;
     position: relative;
   }
 
-  @media (min-width: config.$mq-1200) {
+  @media (min-width: tokens.$mq-1200) {
     padding-right: 20rem;
   }
 }
@@ -23,9 +23,9 @@
 // Note: AO This is a temporary solution to the homepage layout. Find a better way to do this.
 .homepage {
   section[class*="news-section"] {
-    @media (min-width: config.$mq-1200) {
+    @media (min-width: tokens.$mq-1200) {
       flex-direction: column;
-      gap: config.$m-xl;
+      gap: tokens.$m-xl;
       align-items: flex-start;
       width: 20rem;
       position: absolute;
@@ -49,7 +49,7 @@
     position: absolute;
     top: 0;
     left: 0.75rem;
-    font-size: config.$fontSize-xxxs;
+    font-size: tokens.$fs-xxxs;
     text-transform: uppercase;
     writing-mode: vertical-rl;
     transform: rotate(180deg);
@@ -60,15 +60,15 @@
     display: block;
     width: 0.5em;
     height: 0.5em;
-    background: config.$c-limeGreen-500;
+    background: tokens.$c-limeGreen-500;
     border-radius: 50%;
     position: absolute;
     top: 0.35rem;
     left: 0;
   }
 
-  @media (min-width: config.$mq-1200) {
-    @include config.grid-24();
+  @media (min-width: tokens.$mq-1200) {
+    @include tokens.grid-24();
 
     &::before {
       top: 6rem;
@@ -84,8 +84,8 @@
     display: block;
     width: 100%;
     grid-column: 1 / span 11;
-    @media (min-width: config.$mq-1200) {
-      padding-right: config.$p-xxxl;
+    @media (min-width: tokens.$mq-1200) {
+      padding-right: tokens.$p-xxxl;
       align-self: end;
     }
   }
@@ -119,7 +119,7 @@
       height: 100%;
       object-fit: cover;
       position: relative;
-      z-index: config.$layer-1;
+      z-index: tokens.$layer-1;
     }
 
     &::before {
@@ -127,11 +127,11 @@
       display: block;
       width: 20rem;
       height: 20rem;
-      background: url(../assets/deco-plus-sign.svg) no-repeat center;
+      background: url(../../assets/deco-plus-sign.svg) no-repeat center;
       background-size: contain;
       position: absolute;
       bottom: -8.5rem;
-      z-index: config.$layer-2;
+      z-index: tokens.$layer-2;
     }
 
     &.right-column::before {
