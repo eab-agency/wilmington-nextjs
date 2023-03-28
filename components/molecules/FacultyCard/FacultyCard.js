@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Link from '@/components/common/Link';
-import Image from 'next/image';
+import Image from '@/components/atoms/Image';
 
 const FacultyCard = ({
   title,
@@ -14,7 +14,7 @@ const FacultyCard = ({
     <>
       <pre>FILE: FacultyCard.js</pre>
       {/* image size is handled in fragments.js under `fragment ProgramTemplateFragment on WpProgram` */}
-      {image && <Image image={image} alt={image.altText || ''} />}
+      {image && <Image url={image.sourceUrl} alt={image.altText || ''} imageMeta={{mediaDetails: image.mediaDetails}} />}
       <h3>{title}</h3>
       <p>{description}</p>
       <a href={`mailto:${email}`}>Send Email</a>
