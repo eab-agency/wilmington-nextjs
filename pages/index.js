@@ -4,6 +4,7 @@ import getPagePropTypes from '@/functions/getPagePropTypes'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
 import Page from './[...slug]'
 
+
 // Define route post type.
 const postType = 'page'
 

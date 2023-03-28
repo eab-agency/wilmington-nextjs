@@ -67,10 +67,10 @@ const Header = ({ search }) => {
             </Link>
             <div className={styles.topMenu}>
               <TopMenu location="UTILITY_NAV" />
-              <button className={styles.search} type="button">
+              {/* <button className={styles.search} type="button">
                 Search
                 <MdSearch />
-              </button>
+              </button> */}
               {search && <div className={styles.search}>{search}</div>}
             </div>
           </div>
