@@ -1,7 +1,6 @@
 import ExitPreview from '@/components/atoms/ExitPreview'
 import WordPressProvider from '@/components/common/WordPressProvider'
 import {useWpApollo} from '@/lib/wordpress/connector'
-// import '@/styles/index.css'
 import '@/styles/styles.scss'
 import {ApolloProvider} from '@apollo/client'
 import PropTypes from 'prop-types'
@@ -17,6 +16,7 @@ import Custom500 from './500'
  * @param  {boolean} props.pageProps Page component props.
  * @return {Element}                 The App component.
  */
+
 export default function App({Component, pageProps}) {
   /**
    * Wrap the app in the ApolloProvider component.
@@ -63,7 +63,7 @@ export default function App({Component, pageProps}) {
   })
 
   return (
-      <ApolloProvider client={apolloClient}>
+      <ApolloProvider client={apolloClient} >
         <WordPressProvider value={wp}>
           {error ? (
             <Custom500 errorMessage={errorMessage} post={componentProps.post} />
