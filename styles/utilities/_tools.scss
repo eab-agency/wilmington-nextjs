@@ -3,7 +3,8 @@
 // ================
 
 @use "sass:math";
-@use "breakpoints";
+// @use "tokens";
+@use "tokens/breakpoints";
 
 // ================
 // Mixin: Outputs a @font-face rule

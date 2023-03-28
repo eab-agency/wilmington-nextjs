@@ -1,5 +1,5 @@
 @use "sass:color";
-@use "../../../styles/config";
+@use "tokens";
 
 .program-card {
   display: block;
@@ -19,7 +19,7 @@
         width: 100%;
         height: 100%;
         border: 2px solid rgba(255, 255, 255, 0);
-        z-index: config.$layer-1;
+        z-index: tokens.$layer-1;
         transition: all 0.3s ease-out;
       }
 
@@ -27,16 +27,16 @@
         content: "+";
         display: block;
         position: absolute;
-        font-size: config.$fontSize-s;
+        font-size: tokens.$fs-s;
         font-weight: bold;
         line-height: 1;
         bottom: 0.5em;
         right: 0.5em;
         padding: 0.5em 0.7em;
-        background: config.$c-limeGreen-600;
-        border-radius: config.$borderRadius-xs;
-        color: config.$c-white;
-        z-index: config.$layer-2;
+        background: tokens.$c-limeGreen-600;
+        border-radius: tokens.$br-xs;
+        color: tokens.$c-white;
+        z-index: tokens.$layer-2;
         transition: all 0.2s ease-out;
       }
     }
@@ -58,7 +58,7 @@
   }
 
   h3 {
-    color: config.$c-copy;
+    color: tokens.$c-copy;
     padding-top: 0.25em;
   }
 
@@ -67,6 +67,6 @@
     overflow: hidden;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    color: config.$c-copy;
+    color: tokens.$c-copy;
   }
 }

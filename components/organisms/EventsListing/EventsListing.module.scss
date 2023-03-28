@@ -1,20 +1,21 @@
-@use "../../../styles/config";
+@use "tokens";
+@use "utilities/mixins";
 
 .events-section {
   width: 100%;
-  background: config.$c-gray-700;
+  background: tokens.$c-gray-700;
   padding: 4rem;
   color: white;
   // padding-right: 24rem;
   position: relative;
 
   &::before {
-    @include config.extendedBackground(config.$c-gray-700);
+    @include mixins.extendedBackground(tokens.$c-gray-700);
   }
 }
 
 .section-tag {
-  @include config.sectionTag();
+  @include mixins.sectionTag();
 }
 
 .events-list {
@@ -23,12 +24,12 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  // gap: config.$m-xl;
-  margin-bottom: config.$m-xl;
+  // gap: tokens.$m-xl;
+  margin-bottom: tokens.$m-xl;
 
   // padding-right: 24rem;
 
-  @media (min-width: config.$mq-1200) {
+  @media (min-width: tokens.$mq-1200) {
     flex-direction: row;
     // flex-wrap: wrap;
     overflow-x: auto;
@@ -40,14 +41,14 @@
     min-width: 15rem;
     position: relative;
     overflow: hidden;
-    //   padding-block: config.$p-l;
+    //   padding-block: tokens.$p-l;
 
     article {
       display: flex;
       flex-direction: column;
-      gap: config.$m-xl;
-      padding-block: config.$p-l;
-      padding-inline: config.$p-l;
+      gap: tokens.$m-xl;
+      padding-block: tokens.$p-l;
+      padding-inline: tokens.$p-l;
       width: 100%;
     }
 
