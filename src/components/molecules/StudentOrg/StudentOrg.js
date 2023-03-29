@@ -29,7 +29,7 @@ function StudentOrg({ heading, url, quickFact }) {
       <pre>FILE: StudentOrg.txs</pre>
       <Heading tag="h3">{heading}</Heading>
       <Button url={url} text="Visit Org" />
-      <QuickFact fact={quickFact} />
+      {quickFact && <QuickFact fact={quickFact} />}
     </>
   )
 }

@@ -59,7 +59,8 @@ export default function App({Component, pageProps}) {
       indexName: algolia?.indexName
     },
     menus: menus,
-    departments: passThruProps?.post?.departments?.nodes
+    departments: passThruProps?.post?.departments?.nodes,
+    studentOrganizations: passThruProps?.post?.programOrgRelationship?.programorg
   })
 
   return (
