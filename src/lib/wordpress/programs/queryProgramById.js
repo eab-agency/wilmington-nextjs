@@ -6,7 +6,7 @@ import { gql } from '@apollo/client'
 
 // Fragment: retrieve single page fields.
 export const singleProgramFragment = gql`
-  fragment SinglePageFields on Program {
+  fragment SingleProgramFields on Program {
     ${globalPostFields}
     blocksJSON
     excerpt
@@ -24,7 +24,7 @@ const queryProgramById = gql`
   ) {
     ${defaultPageData}
     program(id: $id, idType: $idType) {
-      ...SinglePageFields
+      ...SingleProgramFields
       revisions(first: 1, where: {orderby: {field: DATE, order: DESC}}) {
         edges {
           node {
