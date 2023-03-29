@@ -1,1 +1,1 @@
-export { default } from './Accordian.tsx'
+export { default } from './Accordian'
