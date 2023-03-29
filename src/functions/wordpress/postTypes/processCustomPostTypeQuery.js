@@ -6,7 +6,6 @@ import { gql } from '@apollo/client';
 /**
  * Retrieve single post.
  *
- * @author WebDevStudios
  * @param  {string}          postType  WP post type.
  * @param  {number | string} id        Post identifier.
  * @param  {object}          query     Post retrieval query.

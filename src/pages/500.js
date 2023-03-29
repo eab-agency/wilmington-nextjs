@@ -12,21 +12,20 @@ const postType = '500'
 /**
  * Render the Custom500 component.
  *
- * @author WebDevStudios
  * @param  {object}  props              The component attributes as props.
  * @param  {string}  props.errorMessage The 500 error message.
  * @param  {object}  props.post         Post data from WordPress.
  * @return {Element}                    The Custom500 component.
  */
-export default function Custom500({errorMessage, post}) {
-  const {seo = {}} = post
+export default function Custom500({ errorMessage, post }) {
+  const { seo = {} } = post
 
   // Update robots SEO meta.
   seo.metaRobotsNofollow = 'noindex'
   seo.metaRobotsNoindex = 'nofollow'
 
   return (
-    <Layout seo={{...seo}}>
+    <Layout seo={{ ...seo }}>
       <Container>
         <article>
           <RichText tag="h1">500 Error</RichText>
@@ -41,7 +40,6 @@ export default function Custom500({errorMessage, post}) {
 /**
  * Get post static props.
  *
- * @author WebDevStudios
  * @return {object} Post props.
  */
 export async function getStaticProps() {

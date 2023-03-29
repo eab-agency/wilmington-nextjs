@@ -1,7 +1,6 @@
 /**
  * Format archive SEO data.
  *
- * @author WebDevStudios
  * @param  {string} postType     WP post type.
  * @param  {object} postsPageSeo WP posts page SEO data.
  * @param  {object} defaultSeo   Formatted default SEO data.
@@ -25,8 +24,7 @@ export default function formatArchiveSeoData(
   return {
     title:
       archiveSeo?.title ??
-      `${fallbackSeo?.title ? `${fallbackSeo.title} -` : ''}${
-        defaultSeo?.openGraph?.siteName ?? ''
+      `${fallbackSeo?.title ? `${fallbackSeo.title} -` : ''}${defaultSeo?.openGraph?.siteName ?? ''
       }`,
     metaRobotsNofollow: archiveSeo?.metaRobotsNofollow ?? 'follow',
     metaRobotsNoindex: archiveSeo?.metaRobotsNoindex ?? 'index'

@@ -1,5 +1,5 @@
 import mutationInsertComment from '@/lib/wordpress/comments/mutationInsertComment'
-import {initializeWpApollo} from '@/lib/wordpress/connector'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
 
 /**
  * Add a comment to the given post. Follows established WordPress
@@ -15,7 +15,6 @@ import {initializeWpApollo} from '@/lib/wordpress/connector'
  * If the comment does not need manual approval, it will be returned
  * with this query.
  *
- * @author WebDevStudios
  * @param  {string} token       Logged-in user auth token.
  * @param  {number} postId      Database ID for the post being commented on.
  * @param  {string} content     Content of the comment.
@@ -63,7 +62,7 @@ export default async function insertPostComment(
       }
     })
     .then((comment) => {
-      const {createComment} = comment.data
+      const { createComment } = comment.data
 
       // Set error props if data not found.
       if (!createComment) {

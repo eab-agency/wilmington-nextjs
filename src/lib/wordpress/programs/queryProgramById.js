@@ -12,6 +12,20 @@ export const singleProgramFragment = gql`
     excerpt
     ${seoPostFields}
     ${featuredImagePostFields}
+     departments {
+      nodes {
+        name
+        programs {
+          nodes {
+            id
+            title
+            excerpt
+            uri
+            ${featuredImagePostFields}
+          }
+        }
+      }
+    }
   }
 `
 

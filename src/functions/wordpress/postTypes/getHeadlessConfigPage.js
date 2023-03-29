@@ -4,7 +4,6 @@ import headlessConfigPageQuerySeo from '@/lib/wordpress/_config/headlessConfigPa
 /**
  * Retrieve single page set via Headless Config.
  *
- * @author WebDevStudios
  * @param  {string} page Custom page name in config.
  * @return {object}      Object containing Apollo client instance and post data or error object.
  */
@@ -21,9 +20,8 @@ export default async function getHeadlessConfigPage(page) {
     data.post = {
       ...data?.post,
       seo: {
-        title: `${headlessConfigPageQuerySeo[page]?.title ?? ''} - ${
-          data.defaultSeo?.openGraph?.siteName ?? ''
-        }`
+        title: `${headlessConfigPageQuerySeo[page]?.title ?? ''} - ${data.defaultSeo?.openGraph?.siteName ?? ''
+          }`
       }
     }
   }

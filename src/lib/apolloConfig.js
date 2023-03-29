@@ -7,7 +7,6 @@ export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 /**
  * Init Apollo and merge with initial state.
  *
- * @author WebDevStudios
  * @see https://www.apollographql.com/docs/react/get-started/
  * @param  {object} apolloClient Apollo client instance.
  * @param  {*}      initialState The initial state of things.
@@ -41,7 +40,6 @@ export function initializeApollo(apolloClient, initialState = null) {
 /**
  * Pass down Apollo state to page props.
  *
- * @author WebDevStudios
  * @param  {object} client    Apollo  Client props.
  * @param  {object} pageProps Props from getStaticProps().
  * @return {object}           Updated page props.

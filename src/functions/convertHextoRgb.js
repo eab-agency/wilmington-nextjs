@@ -2,7 +2,6 @@
  * Convert a hex color value to RGB.
  *
  * @see https://stackoverflow.com/a/39077686
- * @author WebDevStudios
  * @param  {string} hexValue Hex color value.
  * @return {Array}           RGB color value as array.
  */

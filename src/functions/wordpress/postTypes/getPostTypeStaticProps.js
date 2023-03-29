@@ -11,7 +11,6 @@ import headlessConfigPageQuerySeo from '@/lib/wordpress/_config/headlessConfigPa
 /**
  * Retrieve static props by post type.
  *
- * @author WebDevStudios
  * @param  {string}  params      Post params (e.g., slug).
  * @param  {string}  postType    Post Type.
  * @param  {boolean} preview     Whether requesting preview of post.
@@ -24,7 +23,6 @@ export default async function getPostTypeStaticProps(
   preview = false,
   previewData = null
 ) {
-  console.log("🚀 ~ file: getPostTypeStaticProps.js:27 ~ postType:", postType, params)
   // Set revalidate length (seconds).
   const revalidate = 60 * 5
 

@@ -3,5 +3,8 @@
         "activityBar.background": "#45232F",
         "titleBar.activeBackground": "#613141",
         "titleBar.activeForeground": "#FCF9FA"
+    },
+    "files.exclude": {
+        "**/.next": true,
     }
 }

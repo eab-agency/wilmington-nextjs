@@ -2,7 +2,6 @@
  * Extract numeric RGB values from string.
  *
  * @see https://stackoverflow.com/a/34980657
- * @author WebDevStudios
  * @param  {string} rgbString RGB string.
  * @return {Array}            Array of numeric RGB values.
  */

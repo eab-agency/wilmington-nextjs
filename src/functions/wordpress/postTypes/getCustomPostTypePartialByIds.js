@@ -6,7 +6,6 @@ import {
 /**
  * Retrieve single post by specified identifier.
  *
- * @author WebDevStudios
  * @param  {string}          postType WP post type.
  * @param  {array | string } ids       Post identifier.
  * @param  {string}          idType   Type of ID.

@@ -2,6 +2,7 @@
 import React from 'react';
 import ProgramCard from '@/components/molecules/ProgramCard';
 import Link from "@/components/common/Link"
+import { useWordPressContext } from '@/components/common/WordPressProvider'
 
 /**
  * Featured Programs Block
@@ -14,7 +15,10 @@ import Link from "@/components/common/Link"
 
 export default function BlockFacultyCards({ relatedDepartments }) {
   // flatten all the programs in the needToFlatten array
-  const flattenedPrograms = []
+  const { departments } = useWordPressContext()
+  const flattenedPrograms = departments.reduce((acc, item) => {
+    return [...acc, ...item.programs.nodes];
+  }, []);
 
   return (
     <>
@@ -23,7 +27,7 @@ export default function BlockFacultyCards({ relatedDepartments }) {
           key={index}
           title={program.title}
           excerpt={program.excerpt}
-          link={program.link}
+          link={program.uri}
           image={program.featuredImage?.node?.gatsbyImage}
         />
       ))}

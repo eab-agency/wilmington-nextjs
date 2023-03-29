@@ -5,12 +5,11 @@ import PropTypes from 'prop-types'
 /**
  * Render extra meta tags in the document head.
  *
- * @author WebDevStudios
  * @param  {object}  props     The component attributes as props.
  * @param  {object}  props.seo Yoast SEO data from WordPress.
  * @return {Element}           The Meta component.
  */
-export default function Meta({seo}) {
+export default function Meta({ seo }) {
   // Combine robots data.
   const robots = [
     ...(seo?.metaRobotsNofollow ? [seo.metaRobotsNofollow] : []),

@@ -1,7 +1,6 @@
 /**
  * Check if link is the active page.
  *
- * @author WebDevStudios
  * @see https://nextjs.org/docs/api-reference/next/router#router-object
  * @param  {string}  asPath The path shown in the browser without the configured basePath or locale.
  * @param  {string}  path   The name to search.

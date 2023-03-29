@@ -9,7 +9,6 @@ import { taxonomies } from '@/lib/wordpress/_config/taxonomies'
 /**
  * Retrieve post taxnomy archive.
  *
- * @author WebDevStudios
  * @param  {string}  taxonomy   WP taxonomy type slug.
  * @param  {string}  taxonomyId WP taxonomy term slug.
  * @param  {string}  postType   WP post type.

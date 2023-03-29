@@ -5,7 +5,6 @@ import getPostTypeTaxonomyArchive from '@/functions/wordpress/postTypes/getPostT
 /**
  * Load more posts for an archive.
  *
- * @author WebDevStudios
  * @param {object} req Instance of http.IncomingMessage.
  * @param {object} res Instance of http.ServerResponse.
  */
@@ -67,7 +66,7 @@ export default async function archive(req, res) {
       .status(error?.status || 500)
       .end(
         error?.message ||
-          'An error occurred while attempting to load more posts'
+        'An error occurred while attempting to load more posts'
       )
   }
 }

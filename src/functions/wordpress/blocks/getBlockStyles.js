@@ -1,7 +1,6 @@
 /**
  * Get formatted block styles.
  *
- * @author WebDevStudios
  * @param  {object}          styles                    Various block custom and preset styles.
  * @param  {string}          styles.backgroundColorHex The background color hex value.
  * @param  {string}          styles.gradientHex        The background gradient hex value.
