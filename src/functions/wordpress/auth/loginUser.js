@@ -1,10 +1,9 @@
 import mutationLoginUser from '@/lib/wordpress/auth/mutationLoginUser'
-import {initializeWpApollo} from '@/lib/wordpress/connector'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
 
 /**
  * Log user into WP.
  *
- * @author WebDevStudios
  * @param  {string} username Username.
  * @param  {string} password User password.
  * @return {object}          User data or error object.

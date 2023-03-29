@@ -4,11 +4,11 @@ import getEventsListingData from '@/functions/wordpress/events/getEventsListingD
 import getFeaturedDeptData from '@/functions/wordpress/departments/getFeaturedDeptData'
 import getTestimonialData, { getRandomTestimonials } from '@/functions/wordpress/testimonials/getTestimonialData'
 import getCustomPostTypePartialByIds from '@/functions/wordpress/postTypes/getCustomPostTypePartialByIds'
+import { useWordPressContext } from '@/components/common/WordPressProvider'
 
 /**
  * Format and retrieve expanded block data.
  *
- * @author WebDevStudios
  * @param  {Array} blocks Basic block data.
  * @return {Array}        Formatted block data.
  */
@@ -67,6 +67,11 @@ export default async function formatBlockData(blocks) {
           // an await function to return the events posts that are in the attributes.data.events_listing array
           attributes.facultyData = await getCustomPostTypePartialByIds('facultyMember', attributes?.data?.faculty_member)
           break
+
+        // case 'acf/related-programs':
+        //   const { menus } = useWordPressContext()
+        //   attributes.relatedPrograms = menus
+        //   break
 
       }
 

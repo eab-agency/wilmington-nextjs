@@ -63,7 +63,6 @@ export const archivePropTypes = {
 /**
  * Retrieve basic prop types for a given route.
  *
- * @author WebDevStudios
  * @param  {string} type WP post/taxonomy type.
  * @return {object}      Page prop types.
  */

@@ -30,7 +30,6 @@ const restLink = new RestLink({
  * Create a basic Apollo client for connecting to Next.js API Routes.
  *
  * @see https://www.apollographql.com/docs/react/api/core/ApolloClient/
- * @author WebDevStudios
  * @return {object} Apollo client instance.
  */
 export function createNextApiApolloClient() {
@@ -46,7 +45,6 @@ export function createNextApiApolloClient() {
 /**
  * Init Apollo for Next.js API and merge with initial state.
  *
- * @author WebDevStudios
  * @param  {*}      initialState Initial Apollo state.
  * @return {object}              Next.js API Apollo client instance.
  */

@@ -1,10 +1,9 @@
-import {initializeNextApiApollo} from '@/lib/next-api/connector'
+import { initializeNextApiApollo } from '@/lib/next-api/connector'
 import queryArchivePosts from '@/lib/next-api/wordpress/archive/queryArchivePosts'
 
 /**
  * Retrieve next page of posts for post type archive.
  *
- * @author WebDevStudios
  * @param  {string} postType     WP post type.
  * @param  {string} cursor       Start cursor for pagination.
  * @param  {object} date         Optional date query props.
@@ -26,8 +25,8 @@ export default async function getArchivePosts(
   orderBy = 'DATE',
   order = 'DESC'
 ) {
-  const {day, month, year} = date
-  const {taxonomy, term} = tax
+  const { day, month, year } = date
+  const { taxonomy, term } = tax
   const apolloClient = initializeNextApiApollo()
 
   return apolloClient

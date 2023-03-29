@@ -7,7 +7,6 @@ import { gql } from '@apollo/client'
 /**
  * Retrieve static paths by post type.
  *
- * @author WebDevStudios
  * @param  {string} postType WP post type.
  * @return {object}          Post type paths.
  */

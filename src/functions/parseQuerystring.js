@@ -1,7 +1,6 @@
 /**
  * Parse a querystring by name.
  *
- * @author WebDevStudios
  * @param  {*}      path The complete URL path.
  * @param  {*}      name The name to search.
  * @return {string}      The found query value or empty string.

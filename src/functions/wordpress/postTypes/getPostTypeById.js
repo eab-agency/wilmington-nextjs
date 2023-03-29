@@ -7,7 +7,6 @@ import queryProgramById from '@/lib/wordpress/programs/queryProgramById'
 /**
  * Retrieve single post by specified identifier.
  *
- * @author WebDevStudios
  * @param  {string}          postType WP post type.
  * @param  {number | string} id       Post identifier.
  * @param  {string}          idType   Type of ID.
@@ -35,7 +34,6 @@ export default async function getPostTypeById(
 
   // Retrieve post type query.
   const query = postTypeQuery?.[postType] ?? null
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ file: getPostTypeById.js:37 ~ query:", query)
 
   return processPostTypeQuery(postType, id, query, { id, idType }, preview)
 }

@@ -1,12 +1,11 @@
-import {initializeWpApollo} from '@/lib/wordpress/connector'
-import {taxonomies} from '@/lib/wordpress/_config/taxonomies'
-import {gql} from '@apollo/client'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
+import { taxonomies } from '@/lib/wordpress/_config/taxonomies'
+import { gql } from '@apollo/client'
 import isValidTaxonomy from './isValidTaxonomy'
 
 /**
  * Retrieve static paths by taxonomy.
  *
- * @author WebDevStudios
  * @param  {string} taxonomy WP taxonomy.
  * @return {object}          Taxonomy paths.
  */
@@ -36,7 +35,7 @@ export default async function getTaxonomyStaticPaths(taxonomy) {
 
   // Execute query.
   const terms = await apolloClient
-    .query({query})
+    .query({ query })
     .then((response) => response?.data?.[pluralName]?.edges ?? [])
     .catch(() => [])
 

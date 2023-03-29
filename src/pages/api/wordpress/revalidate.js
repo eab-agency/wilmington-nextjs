@@ -2,7 +2,6 @@
  * On-demand post revalidation.
  *
  * @see https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration#using-on-demand-revalidation
- * @author WebDevStudios
  * @param {object} req Instance of http.IncomingMessage.
  * @param {object} res Instance of http.ServerResponse.
  */

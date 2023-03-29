@@ -8,7 +8,6 @@ import dayjs from 'dayjs'
 /**
  * Retrieve posts date-based archive.
  *
- * @author WebDevStudios
  * @param  {string}  postType WP post type.
  * @param  {number}  year     Date query: year.
  * @param  {number}  month    Date query: month.

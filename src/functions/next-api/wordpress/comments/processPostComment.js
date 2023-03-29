@@ -1,4 +1,4 @@
-import {initializeNextApiApollo} from '@/lib/next-api/connector'
+import { initializeNextApiApollo } from '@/lib/next-api/connector'
 import mutationAddComment from '@/lib/next-api/wordpress/comments/mutationAddComment'
 
 /**
@@ -15,7 +15,6 @@ import mutationAddComment from '@/lib/next-api/wordpress/comments/mutationAddCom
  * If the comment does not need manual approval, it will be returned
  * with this query.
  *
- * @author WebDevStudios
  * @param  {string} token       Logged-in user auth token.
  * @param  {number} postId      Database ID for the post being commented on.
  * @param  {string} content     Content of the comment.

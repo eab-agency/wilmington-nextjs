@@ -1,7 +1,6 @@
 /**
  * Parse and format focal point coordinates into percent.
  *
- * @author WebDevStudios
  * @param  {object} focalPoint The focal point coordinats.
  * @return {object}            Formatted focal point coordinates for styling.
  */

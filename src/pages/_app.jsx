@@ -10,7 +10,6 @@ import Custom500 from './500'
 /**
  * Render the App component.
  *
- * @author WebDevStudios
  * @param  {object}  props           The component attributes as props.
  * @param  {object}  props.Component Page component to display.
  * @param  {boolean} props.pageProps Page component props.
@@ -59,7 +58,8 @@ export default function App({Component, pageProps}) {
     algolia: {
       indexName: algolia?.indexName
     },
-    menus: menus
+    menus: menus,
+    departments: passThruProps?.post?.departments?.nodes
   })
 
   return (

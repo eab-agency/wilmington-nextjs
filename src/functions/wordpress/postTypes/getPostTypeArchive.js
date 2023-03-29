@@ -8,7 +8,6 @@ import { postTypes } from '@/lib/wordpress/_config/postTypes'
 /**
  * Retrieve post archive.
  *
- * @author WebDevStudios
  * @param  {string}  postType WP post type.
  * @param  {string}  orderBy  Order by: field.
  * @param  {string}  order    Order by: direction.

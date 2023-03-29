@@ -21,7 +21,6 @@ let wpApolloClient
  * Create a basic Apollo client for connecting to WP.
  *
  * @see https://www.apollographql.com/docs/react/api/core/ApolloClient/
- * @author WebDevStudios
  * @param  {boolean} auth Whether to include authentication via WP application password.
  * @return {object}       Apollo client instance.
  */
@@ -42,7 +41,6 @@ export function createWpApolloClient(auth = false) {
 /**
  * Init Apollo for WP and merge with initial state.
  *
- * @author WebDevStudios
  * @param  {*}      initialState Initial Apollo state.
  * @return {object}              WP Apollo client instance.
  */
@@ -64,7 +62,6 @@ export function initializeWpApollo(initialState = null) {
 /**
  * Only update when the cache value has changed.
  *
- * @author WebDevStudios
  * @param  {object} pageProps Props from getStaticProps().
  * @return {object}           WP Apollo client instance.
  */

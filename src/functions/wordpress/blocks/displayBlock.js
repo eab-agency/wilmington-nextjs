@@ -7,7 +7,6 @@ import PropTypes from 'prop-types'
 /**
  * Decide which block component to display.
  *
- * @author WebDevStudios
  * @param  {object}  block The block data.
  * @param  {number}  index A unique key required by React.
  * @return {Element}       A block-based component.
@@ -157,10 +156,15 @@ export default function displayBlock(block, index) {
       return <BlockHomeTabs {...attributes.data} key={index} />;
     }
 
-    // case 'acf/faculty-card': {
-    //   const BlockFacultyCard = dynamic(() => import('@/components/blocks/acf/BlockFacultyCard'))
-    //   return <BlockFacultyCard {...attributes} key={index} />;
-    // }
+    case 'acf/faculty-card': {
+      const BlockFacultyCard = dynamic(() => import('@/components/blocks/acf/BlockFacultyCard'))
+      return <BlockFacultyCard {...attributes} key={index} />;
+    }
+
+    case 'acf/related-programs': {
+      const BlockRelatedPrograms = dynamic(() => import('@/components/blocks/acf/BlockRelatedPrograms'))
+      return <BlockRelatedPrograms {...attributes} key={index} />;
+    }
 
     default:
       return <pre key={index}>{JSON.stringify(block, null, 2)}</pre>

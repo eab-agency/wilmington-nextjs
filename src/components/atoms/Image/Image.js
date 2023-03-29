@@ -8,7 +8,6 @@ import styles from './Image.module.css'
 /**
  * Render the Display Image component.
  *
- * @author WebDevStudios
  * @param  {object}  props               The component properties.
  * @param  {string}  props.alt           The image alt attribute.
  * @param  {string}  props.anchor        The image anchor.

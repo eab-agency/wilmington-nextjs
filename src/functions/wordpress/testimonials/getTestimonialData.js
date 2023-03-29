@@ -4,7 +4,6 @@ import queryTestimonyAttributes, { queryTestimonies } from '@/lib/wordpress/test
 /**
  * Retrieve testimony details by ID.
  *
- * @author WebDevStudios
  * @param  {number} id The media's database ID.
  * @return {object}    Object containing Apollo client instance and post data or error object.
  */

@@ -8,7 +8,6 @@ import formatManualSeoMeta from '../seo/formatManualSeoMeta'
 /**
  * Retrieve data for Frontend-only route (i.e., page does not exist in WordPress).
  *
- * @author WebDevStudios
  * @param  {string} route Frontend route.
  * @return {object}       Object containing Apollo client instance and post data or error object.
  */
