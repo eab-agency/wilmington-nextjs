@@ -3,8 +3,8 @@ import getFrontendPage from '@/functions/wordpress/postTypes/getFrontendPage'
 import getHeadlessConfigPage from '@/functions/wordpress/postTypes/getHeadlessConfigPage'
 import getPostTypeArchive from '@/functions/wordpress/postTypes/getPostTypeArchive'
 import getPostTypeById from '@/functions/wordpress/postTypes/getPostTypeById'
-import {algoliaIndexName} from '@/lib/algolia/connector'
-import {addApolloState} from '@/lib/apolloConfig'
+import { algoliaIndexName } from '@/lib/algolia/connector'
+import { addApolloState } from '@/lib/apolloConfig'
 import frontendPageSeo from '@/lib/wordpress/_config/frontendPageSeo'
 import headlessConfigPageQuerySeo from '@/lib/wordpress/_config/headlessConfigPageQuerySeo'
 
@@ -24,6 +24,7 @@ export default async function getPostTypeStaticProps(
   preview = false,
   previewData = null
 ) {
+  console.log("🚀 ~ file: getPostTypeStaticProps.js:27 ~ postType:", postType, params)
   // Set revalidate length (seconds).
   const revalidate = 60 * 5
 
@@ -36,7 +37,7 @@ export default async function getPostTypeStaticProps(
 
   /* -- Handle Frontend-only routes. -- */
   if (Object.keys(frontendPageSeo).includes(postType)) {
-    const {apolloClient, ...routeData} = await getFrontendPage(postType)
+    const { apolloClient, ...routeData } = await getFrontendPage(postType)
 
     return addApolloState(apolloClient, {
       props: {
@@ -51,19 +52,19 @@ export default async function getPostTypeStaticProps(
   if (!params) {
     return '404' !== postType
       ? {
-          notFound: true
-        }
+        notFound: true
+      }
       : {
-          props: {
-            ...sharedProps
-          },
-          revalidate
-        }
+        props: {
+          ...sharedProps
+        },
+        revalidate
+      }
   }
 
   /* -- Handle dynamic archive display. -- */
   if (!Object.keys(params).length) {
-    const {apolloClient, ...archiveData} = await getPostTypeArchive(postType)
+    const { apolloClient, ...archiveData } = await getPostTypeArchive(postType)
 
     // Merge in query results as Apollo state.
     return addApolloState(apolloClient, {
@@ -97,7 +98,7 @@ export default async function getPostTypeStaticProps(
   const isDateArchive = postType === 'page' && (year || month || day)
 
   if (isDateArchive) {
-    const {apolloClient, ...archiveData} = await getPostsDateArchive(
+    const { apolloClient, ...archiveData } = await getPostsDateArchive(
       postType,
       year ?? null,
       month ?? null,
@@ -125,7 +126,7 @@ export default async function getPostTypeStaticProps(
 
   /* -- Handle pages set via Additional Settings. -- */
   if (Object.keys(headlessConfigPageQuerySeo).includes(slug)) {
-    const {apolloClient, ...pageData} = await getHeadlessConfigPage(slug)
+    const { apolloClient, ...pageData } = await getHeadlessConfigPage(slug)
 
     // Display 404 error page if error encountered.
     if (pageData.error && '404' !== slug) {
@@ -157,7 +158,7 @@ export default async function getPostTypeStaticProps(
     (postId === previewData?.post?.id ||
       // Compare URIs with leading and trailing slashes stripped.
       postId.replace(/^\/|\/$/g, '') ===
-        previewData?.post?.uri?.replace(/^\/|\/$/g, ''))
+      previewData?.post?.uri?.replace(/^\/|\/$/g, ''))
 
   // Check if viewing a draft post.
   const isDraft = isCurrentPostPreview && 'draft' === previewData?.post?.status
@@ -167,7 +168,7 @@ export default async function getPostTypeStaticProps(
   const idType = isDraft ? 'DATABASE_ID' : 'SLUG'
 
   // Retrieve post data.
-  const {apolloClient, error, errorMessage, notFound, ...postData} =
+  const { apolloClient, error, errorMessage, notFound, ...postData } =
     await getPostTypeById(
       postType,
       id,
@@ -178,7 +179,7 @@ export default async function getPostTypeStaticProps(
   // Check if dealing with posts page.
   if (postType === 'page' && postData?.post?.isPostsPage) {
     // Override page content with post archive.
-    const {apolloClient: archiveApolloClient, ...archiveData} =
+    const { apolloClient: archiveApolloClient, ...archiveData } =
       await getPostTypeArchive('post')
 
     // Merge in query results as Apollo state.

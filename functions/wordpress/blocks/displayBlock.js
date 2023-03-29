@@ -157,10 +157,10 @@ export default function displayBlock(block, index) {
       return <BlockHomeTabs {...attributes.data} key={index} />;
     }
 
-    case 'acf/faculty-card': {
-      const BlockFacultyCard = dynamic(() => import('@/components/blocks/acf/BlockFacultyCard'))
-      return <BlockFacultyCard {...attributes} key={index} />;
-    }
+    // case 'acf/faculty-card': {
+    //   const BlockFacultyCard = dynamic(() => import('@/components/blocks/acf/BlockFacultyCard'))
+    //   return <BlockFacultyCard {...attributes} key={index} />;
+    // }
 
     default:
       return <pre key={index}>{JSON.stringify(block, null, 2)}</pre>
