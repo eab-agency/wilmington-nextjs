@@ -115,6 +115,10 @@ export default function displayBlock(block, index) {
       return <BlockDefault content={attributes.content} key={index} />
     }
 
+    case 'core/more': {
+      return null;
+    }
+
     case 'acf/home-hero': {
       const BlockHomeHero = dynamic(() => import('@/components/blocks/acf/BlockHomeHero'))
       return (
@@ -139,6 +143,11 @@ export default function displayBlock(block, index) {
     case 'acf/featured-dept': {
       const BlockFeaturedPrograms = dynamic(() => import('@/components/blocks/acf/BlockFeaturedPrograms'))
       return <BlockFeaturedPrograms {...attributes} key={index} />;
+    }
+
+    case 'acf/related-programs': {
+      const BlockRelatedPrograms = dynamic(() => import('@/components/blocks/acf/BlockRelatedPrograms'))
+      return <BlockRelatedPrograms {...attributes} key={index} />;
     }
 
     case 'acf/testimonial-block': {
@@ -166,10 +175,12 @@ export default function displayBlock(block, index) {
       return <BlockAthleteCard {...attributes} key={index} />;
     }
 
-    case 'acf/related-programs': {
-      const BlockRelatedPrograms = dynamic(() => import('@/components/blocks/acf/BlockRelatedPrograms'))
-      return <BlockRelatedPrograms {...attributes} key={index} />;
+    case 'acf/faq-listing': {
+      const BlockFaqListing = dynamic(() => import('@/components/blocks/acf/BlockFaqListing'))
+      return <BlockFaqListing {...attributes} key={index} />;
     }
+
+
 
     default:
       return <pre key={index}>{JSON.stringify(block, null, 2)}</pre>

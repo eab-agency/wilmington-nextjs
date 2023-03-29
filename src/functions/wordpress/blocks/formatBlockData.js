@@ -72,6 +72,10 @@ export default async function formatBlockData(blocks) {
           attributes.imageMeta = await getMediaByID(attributes?.data?.athlete_image)
           break
 
+        case 'acf/faq-listing':
+          attributes.faqData = await getCustomPostTypePartialByIds('fAQ', attributes?.data?.faqs_listing)
+          break
+
       }
 
       const innerBlocksFormatted = await formatBlockData(innerBlocks)
