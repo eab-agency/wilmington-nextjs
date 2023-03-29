@@ -31,26 +31,29 @@ interface Image {
 }
 
 interface Props {
+  data: {
   athlete_name: string
   athlete_content: string
   athlete_image: number
   athlete_link: AthleteLink
+  }
+  imageMeta: any
 }
 
 export default function BlockAthleteCard ({
+  data: {
   athlete_name,
   athlete_content,
-  athlete_image,
   athlete_link
+  },
+  imageMeta
 }: Props) {
-  // const image: Image = useImageItem(athlete_image)
-  const image: Image = { databaaseId: 0, sourceUrl: '', gatsbyImage: null }
-
+  
   return (
       <AthleteCard
         description={athlete_content}
-        link={athlete_link.url}
-        image={image}
+        link={athlete_link?.url}
+        image={imageMeta}
         title={athlete_name}
       />
   )

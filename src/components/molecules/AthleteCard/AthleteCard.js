@@ -1,28 +1,25 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Link from "@/components/common/Link"
-import Image from 'next/image';
+import Image from '@/components/atoms/Image';
 
 
-const AthleteCard = (props) => {
-  const [showDescription, setShowDescription] = React.useState(false);
+const AthleteCard = ({ title, image, description, link }) => {
+  const [showDescription, setShowDescription] = useState(false);
 
-  const onMouseEnter = () => {
-    setShowDescription(true);
+  const toggleDescription = () => {
+    setShowDescription(!showDescription);
   };
-
-  const onMouseLeave = () => {
-    setShowDescription(false);
-  };
-
-  const { title, image, description, link } = props;
 
   return (
     <>
       <pre>FILE: BlockAthleteCard.js</pre>
       <Link href={link}>
-        <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+        <div onMouseEnter={toggleDescription} onMouseLeave={toggleDescription}>
           <h3>{title}</h3>
-          <Image image={image.gatsbyImage} alt={image.altText || ''} />
+          <Image url={image.mediaItemUrl}
+            alt={image.altText}
+            imageMeta={{ mediaDetails: image.mediaDetails }}
+          />
           {showDescription && <p>{description}</p>}
         </div>
       </Link>
