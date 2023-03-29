@@ -1,18 +1,19 @@
-@use "../../../styles/config";
+@use "tokens";
+@use "utilities/mixins";
 
 .news-section {
-  background: config.$c-darkGreen-700;
-  @include config.sectionPadding();
+  background: tokens.$c-darkGreen-700;
+  @include tokens.sectionPadding();
   display: flex;
   flex-direction: column;
-  z-index: config.$layer-10;
+  z-index: tokens.$layer-10;
   position: relative;
 
   &::before {
-    @include config.extendedBackground(config.$c-darkGreen-700);
+    @include mixins.extendedBackground(tokens.$c-darkGreen-700);
   }
 
-  @media (min-width: config.$mq-1200) {
+  @media (min-width: tokens.$mq-1200) {
     flex-direction: row;
 
     &::before {
@@ -23,16 +24,16 @@
   .section-head {
     display: flex;
     flex-direction: column;
-    gap: config.$m-xl;
+    gap: tokens.$m-xl;
     align-items: flex-start;
 
     .section-tag {
-      @include config.sectionTag();
+      @include mixins.sectionTag();
       position: relative;
     }
 
     h2 {
-      color: config.$c-white;
+      color: tokens.$c-white;
     }
   }
 
@@ -43,7 +44,7 @@
   ul {
     list-style: none;
     padding: 0;
-    margin: 0 0 config.$m-xl 0;
+    margin: 0 0 tokens.$m-xl 0;
     display: flex;
     max-width: 100%;
 
@@ -56,13 +57,13 @@
         flex-direction: column;
         align-items: flex-start;
         position: relative;
-        padding-block: config.$p-l;
-        padding-inline: config.$p-l;
-        border-radius: config.$borderRadius-xs;
+        padding-block: tokens.$p-l;
+        padding-inline: tokens.$p-l;
+        border-radius: tokens.$br-xs;
         transition: all 0.2s ease-in;
 
-        @media (min-width: config.$mq-1200) {
-          padding-block: config.$p-xl;
+        @media (min-width: tokens.$mq-1200) {
+          padding-block: tokens.$p-xl;
         }
       }
 
@@ -86,13 +87,13 @@
         }
       }
 
-      @media (min-width: config.$mq-1200) {
+      @media (min-width: tokens.$mq-1200) {
         &::after {
           content: "";
           display: block;
           width: 100%;
           height: 4px;
-          margin-top: config.$m-xl;
+          margin-top: tokens.$m-xl;
           background: url(../../../assets/divider-draw-line.svg) no-repeat
             center;
           background-size: 100% auto;
@@ -102,11 +103,11 @@
       }
 
       &:last-child {
-        margin-bottom: config.$m-xl;
+        margin-bottom: tokens.$m-xl;
       }
     }
 
-    @media (min-width: config.$mq-1200) {
+    @media (min-width: tokens.$mq-1200) {
       flex-direction: column;
     }
   }

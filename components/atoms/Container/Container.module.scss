@@ -1,13 +1,13 @@
-@use "../../../styles/config";
+@use "tokens";
 
 .containerW {
-  background: config.$c-gray-200;
+  background: tokens.$c-gray-200;
 
-  &.paddingTop {
-    @apply pt-12;
-  }
+  // &.paddingTop {
+  //   @apply pt-12;
+  // }
 
-  &.paddingBtm {
-    @apply pb-12;
-  }
+  // &.paddingBtm {
+  //   @apply pb-12;
+  // }
 }

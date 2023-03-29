@@ -1,4 +1,4 @@
-@use "../../../styles/config";
+@use "tokens";
 
 .pre-footer {
 }
@@ -8,30 +8,30 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  background: config.$c-gray-700;
+  background: tokens.$c-gray-700;
   list-style: none;
   padding-inline: 1em;
   margin: 0;
 
-  @media (min-width: config.$mq-600) {
+  @media (min-width: tokens.$mq-600) {
     flex-direction: row;
   }
 
-  @media (min-width: config.$mq-1000) {
-    padding-left: config.$leftOffset;
+  @media (min-width: tokens.$mq-1000) {
+    padding-left: tokens.$leftOffset;
   }
 
   li {
     width: 100%;
-    border-bottom: 1px solid config.$c-gray-600;
+    border-bottom: 1px solid tokens.$c-gray-600;
 
     &:last-child {
       border-bottom: none;
     }
 
-    @media (min-width: config.$mq-600) {
+    @media (min-width: tokens.$mq-600) {
       border-bottom: none;
-      border-right: 1px solid config.$c-gray-600;
+      border-right: 1px solid tokens.$c-gray-600;
 
       max-width: 20rem;
     }
