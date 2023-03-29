@@ -1,4 +1,4 @@
-@use "../../../../styles/config";
+@use "tokens";
 
 .random-testimonials {
   display: flex;
@@ -24,7 +24,7 @@
 
   article:last-child {
     figure {
-      border-bottom: 3rem solid config.$c-white;
+      border-bottom: 3rem solid tokens.$c-white;
     }
   }
 }

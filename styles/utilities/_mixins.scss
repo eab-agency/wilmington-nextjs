@@ -2,15 +2,10 @@
 //* Custom Mixins
 //* ================
 
-@use "config";
-@use "breakpoints";
-@use "fonts";
-@use "borders";
-@use "spacing";
-@use "colors";
 @use "sass:color";
+@use "tokens";
 
-@mixin center($_maxWidth: breakpoints.$mq-900, $_width: 90%) {
+@mixin center($_maxWidth: tokens.$mq-900, $_width: 90%) {
   width: $_width;
   max-width: $_maxWidth;
   margin: auto;
@@ -26,7 +21,7 @@
 @mixin button(
   $color: black,
   $bgColor: #efefef,
-  $fontSize: fonts.$fontSize-xxs,
+  $fontSize: tokens.$fs-xxs,
   $iconBgColor: gray
 ) {
   display: inline-flex;
@@ -41,12 +36,12 @@
   font-size: $fontSize;
   cursor: pointer;
   border: 1px solid color.adjust($bgColor, $lightness: -30%);
-  border-radius: borders.$borderRadius-xs;
+  border-radius: tokens.$br-xs;
   overflow: hidden;
-  box-shadow: 0 0.2em 0.3em rgba(colors.$c-copy, 0.1);
+  box-shadow: 0 0.2em 0.3em rgba(tokens.$c-copy, 0.1);
   transition: all 0.15s ease-in;
   position: relative;
-  padding: calc(spacing.$p-s * 1.5) spacing.$p-m;
+  padding: calc(tokens.$p-s * 1.5) tokens.$p-m;
   padding-right: 4em;
 
   i {
@@ -56,7 +51,7 @@
     background: $iconBgColor;
     color: white;
     position: absolute;
-    z-index: config.$layer-2;
+    z-index: tokens.$layer-2;
     right: 0;
     top: 0;
     width: 1.5em;
@@ -121,15 +116,15 @@
 }
 
 @mixin sectionTag(
-  $colorIdentifier: colors.$c-limeGreen-500,
-  $textColor: colors.$c-white
+  $colorIdentifier: tokens.$c-limeGreen-500,
+  $textColor: tokens.$c-white
 ) {
   display: flex;
   align-items: center;
-  gap: spacing.$p-s;
+  gap: tokens.$p-s;
   color: $textColor;
   position: relative;
-  font-size: fonts.$fontSize-xxxs;
+  font-size: tokens.$fs-xxxs;
   font-weight: 600;
   text-transform: uppercase;
   writing-mode: vertical-lr;
@@ -147,7 +142,7 @@
   }
 }
 
-@mixin extendedBackground($bg: config.$c-white) {
+@mixin extendedBackground($bg: tokens.$c-white) {
   content: "";
   display: block;
   width: 100vw;
@@ -156,5 +151,5 @@
   position: absolute;
   top: 0;
   right: 100%;
-  z-index: config.$layer-1;
+  z-index: tokens.$layer-1;
 }

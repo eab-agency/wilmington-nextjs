@@ -4,6 +4,18 @@ import AlgoliaSearch from '@/components/molecules/AlgoliaSearch'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
 
+import {Roboto_Slab, Cantarell} from '@next/font/google'
+
+const robotoSlab = Roboto_Slab({
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+});
+
+const cantarell = Cantarell({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+});
+
 /**
  * Render the Layout component.
  *
@@ -16,7 +28,7 @@ export default function Layout({ children, seo }) {
   const { menus } = useWordPressContext()
 
   return (
-    <>
+    <div className={`${robotoSlab.className} ${cantarell.className}`}>
       <Meta seo={seo} />
       <Header
         menu={menus?.UTILITY_NAV}
@@ -24,6 +36,6 @@ export default function Layout({ children, seo }) {
       />
       <main id="page-content">{children}</main>
       <Footer />
-    </>
+    </div>
   )
 }

@@ -1,4 +1,4 @@
-@use "../../../../styles/config";
+@use "tokens";
 
 .dropdown {
   display: none;
@@ -28,26 +28,26 @@
 }
 
 .nav-container {
-  border-left: config.$borderWidth-l solid config.$c-darkGreen-800;
-  background: config.$c-white;
+  border-left: tokens.$bw-l solid tokens.$c-darkGreen-800;
+  background: tokens.$c-white;
   width: 3.75rem;
 
   .nav-wrapper {
     position: sticky;
     top: 4.45rem;
-    border-top: config.$borderWidth-xs solid config.$c-gray-400;
+    border-top: tokens.$bw-xs solid tokens.$c-gray-400;
 
     .hamburger {
       background: none;
       border: none;
-      font-size: config.$fontSize-m;
-      padding-inline: config.$p-m;
-      padding-block: config.$p-s;
+      font-size: tokens.$fs-m;
+      padding-inline: tokens.$p-m;
+      padding-block: tokens.$p-s;
       cursor: pointer;
       position: relative;
 
       span {
-        font-size: config.$fontSize-xs;
+        font-size: tokens.$fs-xs;
         text-transform: uppercase;
         writing-mode: vertical-rl;
         transform: rotate(180deg);
@@ -56,8 +56,8 @@
       svg,
       span {
         position: relative;
-        z-index: config.$layer-2;
-        color: config.$c-gray-700;
+        z-index: tokens.$layer-2;
+        color: tokens.$c-gray-700;
       }
 
       &::after {
@@ -68,9 +68,9 @@
         position: absolute;
         top: 0;
         left: 0;
-        background: config.$c-gray-200;
-        z-index: config.$layer-1;
-        border-right: 1px solid config.$c-gray-400;
+        background: tokens.$c-gray-200;
+        z-index: tokens.$layer-1;
+        border-right: 1px solid tokens.$c-gray-400;
         transition: all 0.2s ease-in-out;
       }
 
@@ -78,7 +78,7 @@
       &:focus {
         svg,
         span {
-          color: config.$c-darkGreen-700;
+          color: tokens.$c-darkGreen-700;
         }
         &::after {
           width: 100%;
@@ -87,8 +87,8 @@
     }
 
     & > ul {
-      background: config.$c-white;
-      width: calc(config.$leftOffset - 4rem);
+      background: tokens.$c-white;
+      width: calc(tokens.$leftOffset - 4rem);
       min-width: 15rem;
       position: absolute;
       top: 0;
@@ -105,49 +105,49 @@
       //   position: fixed;
       //   top: 0;
       //   left: 0;
-      //   background: config.$c-gray-200;
-      //   z-index: config.$layer-1;
+      //   background: tokens.$c-gray-200;
+      //   z-index: tokens.$layer-1;
       // }
 
       li {
-        border-top: config.$borderWidth-xs solid config.$c-gray-400;
+        border-top: tokens.$bw-xs solid tokens.$c-gray-400;
         position: relative;
-        z-index: config.$layer-2;
+        z-index: tokens.$layer-2;
 
         a {
           display: block;
           text-transform: uppercase;
-          color: config.$c-gray-600;
+          color: tokens.$c-gray-600;
           padding: 1rem;
           text-decoration: none;
-          font-size: config.$fontSize-xs;
+          font-size: tokens.$fs-xs;
 
           &:hover {
-            background: config.$c-gray-200;
-            color: config.$c-darkGreen-700;
+            background: tokens.$c-gray-200;
+            color: tokens.$c-darkGreen-700;
           }
         }
 
         button {
           display: block;
           text-transform: uppercase;
-          color: config.$c-gray-600;
-          border-top: config.$borderWidth-xs solid config.$c-gray-400;
+          color: tokens.$c-gray-600;
+          border-top: tokens.$bw-xs solid tokens.$c-gray-400;
           padding: 1rem;
           background: none;
           border: none;
-          font-size: config.$fontSize-xs;
+          font-size: tokens.$fs-xs;
           cursor: pointer;
 
           &:hover {
-            background: config.$c-gray-200;
-            color: config.$c-darkGreen-700;
+            background: tokens.$c-gray-200;
+            color: tokens.$c-darkGreen-700;
           }
         }
 
         &:last-child {
           a {
-            border-bottom: config.$borderWidth-xs solid config.$c-gray-400;
+            border-bottom: tokens.$bw-xs solid tokens.$c-gray-400;
           }
         }
 

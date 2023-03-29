@@ -1,0 +1,4 @@
+@use "config";
+
+//* Max Width
+$maxWidth: config.$baseUnit * 105; // 1680px

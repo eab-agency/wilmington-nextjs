@@ -1,4 +1,4 @@
-@use "../../../styles/config";
+@use "tokens";
 
 .quote {
   // @apply mb-8 p-6 px-10 border-l;
@@ -22,7 +22,7 @@
 .cite {
   span {
     display: block;
-    font-size: config.$fontSize-xxs;
+    font-size: tokens.$fs-xxs;
 
     &:first-child {
       font-weight: 700;

@@ -1,5 +1,6 @@
 // @use "styles/theme.scss";
-@use "../../../styles/config";
+@use "tokens";
+@use "utilities/mixins";
 
 .header-wrapper-sticky {
   width: 100%;
@@ -18,9 +19,9 @@
   bottom: 0;
   left: 0;
   background: white;
-  z-index: config.$layer-9999;
+  z-index: tokens.$layer-9999;
 
-  @media (min-width: config.$mq-800) {
+  @media (min-width: tokens.$mq-800) {
     display: flex;
     justify-content: flex-end;
     position: relative;
@@ -40,12 +41,12 @@
     align-items: center;
     line-height: 0;
     grid-column: 24;
-    padding-inline: config.$p-l;
-    padding-block: config.$p-m;
-    border-left: 1px solid config.$c-gray-400;
+    padding-inline: tokens.$p-l;
+    padding-block: tokens.$p-m;
+    border-left: 1px solid tokens.$c-gray-400;
     cursor: pointer;
 
-    @media (min-width: config.$mq-1200) {
+    @media (min-width: tokens.$mq-1200) {
       border-left: none;
       margin-left: clamp(10rem, 20vw, 17rem);
     }
@@ -53,7 +54,7 @@
     svg {
       font-size: 1.5em;
       line-height: 1.5;
-      color: config.$c-copy;
+      color: tokens.$c-copy;
       text-indent: 0;
       position: absolute;
       left: 50%;
@@ -69,20 +70,20 @@
       left: 0;
       width: 100%;
       height: 1px;
-      background: config.$c-limeGreen-500;
+      background: tokens.$c-limeGreen-500;
       transition: all 0.2s;
     }
 
     &:hover,
     &:focus {
-      color: config.$c-gray-800;
+      color: tokens.$c-gray-800;
       &::after {
         height: 4px;
-        background-color: config.$c-limeGreen-700;
+        background-color: tokens.$c-limeGreen-700;
       }
 
       svg {
-        color: config.$c-darkGreen-800;
+        color: tokens.$c-darkGreen-800;
       }
     }
   }
@@ -91,13 +92,13 @@
 .logo {
   text-align: right;
   padding: 1rem 0 0 1rem;
-  border-left: config.$borderWidth-l solid config.$c-limeGreen-500;
+  border-left: tokens.$bw-l solid tokens.$c-limeGreen-500;
   svg {
     width: clamp(5rem, 14vw, 14rem);
     height: clamp(3rem, 7vw, 7rem);
   }
 
-  @media (min-width: config.$mq-800) {
+  @media (min-width: tokens.$mq-800) {
     padding: 1rem 0 0 0;
   }
 }
@@ -119,8 +120,8 @@
   width: 100%;
   max-width: 1680px;
   display: grid;
-  grid-template-columns: calc(config.$leftOffset - 2rem) 1fr;
-  padding-right: config.$rightOffset;
+  grid-template-columns: calc(tokens.$leftOffset - 2rem) 1fr;
+  padding-right: tokens.$rightOffset;
 }
 
 .page-header {
@@ -129,13 +130,14 @@
   &-sticky {
     display: flex;
     position: sticky;
-    @include config.fluidRem(margin-bottom, 0, 2rem);
+    // @include tokens.fluidRem(margin-bottom, 0, 2rem);
+    margin-bottom: clamp(0rem, 2vw, 2rem);
     font-size: 1rem;
     top: 0;
-    @include config.drawerIn(top);
-    z-index: config.$layer-9999;
+    @include mixins.drawerIn(top);
+    z-index: tokens.$layer-9999;
 
-    @media (min-width: config.$mq-1500) {
+    @media (min-width: tokens.$mq-1500) {
       margin-bottom: 4em;
     }
 
@@ -151,8 +153,8 @@
     }
 
     .header-wrapper-sticky {
-      background: config.$c-white;
-      border-bottom: config.$borderWidth-xs solid config.$c-gray-400;
+      background: tokens.$c-white;
+      border-bottom: tokens.$bw-xs solid tokens.$c-gray-400;
     }
   }
 }

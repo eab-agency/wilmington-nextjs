@@ -1,0 +1,20 @@
+@use "config";
+@use "colors";
+
+//* Border Radius
+$br-xl: calc(config.$baseUnit * 1.25);
+$br-l: calc(config.$baseUnit * 1);
+$br-m: calc(config.$baseUnit * 0.75);
+$br-s: calc(config.$baseUnit * 0.5);
+$br-xs: calc(config.$baseUnit * 0.25);
+
+//* Border Width
+$bw-xl: config.$baseUnit;
+$bw-l: calc(config.$baseUnit * 0.5);
+$bw-m: calc(config.$baseUnit * 0.75);
+$bw-s: calc(config.$baseUnit * 0.875);
+$bw-xs: 0.0625rem;
+
+//* Border Color
+$bc-light: colors.$c-gray-400;
+$bc-dark: colors.$c-limeGreen-500;

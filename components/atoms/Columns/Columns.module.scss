@@ -1,10 +1,11 @@
-@use "../../../styles/config";
+@use "tokens";
+@use "utilities/mixins";
 
 .columns {
   display: flex;
 
   &.columnStacked {
-    @media (max-width: config.$mq-800) {
+    @media (max-width: tokens.$mq-800) {
       flex-direction: column;
     }
   }
@@ -35,9 +36,9 @@
 }
 
 .off-white {
-  background: config.$c-gray-300;
+  background: tokens.$c-gray-300;
 
   &::before {
-    @include config.extendedBackground(config.$c-gray-300);
+    @include mixins.extendedBackground(tokens.$c-gray-300);
   }
 }

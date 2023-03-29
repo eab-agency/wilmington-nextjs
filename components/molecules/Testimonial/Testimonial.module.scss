@@ -1,4 +1,4 @@
-@use "../../../styles/config";
+@use "tokens";
 
 .single-quote {
   display: flex;
@@ -9,7 +9,7 @@
     flex-shrink: 0;
     overflow: hidden;
 
-    @media (min-width: config.$mq-1400) {
+    @media (min-width: tokens.$mq-1400) {
       min-width: 20rem;
       min-height: 20rem;
     }
@@ -17,7 +17,7 @@
 }
 
 .quote-text {
-  padding: config.$p-xxl;
+  padding: tokens.$p-xxl;
 }
 
 .quote-content {
@@ -30,7 +30,7 @@
 .featured-testimonial {
   figure {
     width: 50%;
-    border-left: 3rem solid config.$c-white;
-    border-top: 3rem solid config.$c-white;
+    border-left: 3rem solid tokens.$c-white;
+    border-top: 3rem solid tokens.$c-white;
   }
 }

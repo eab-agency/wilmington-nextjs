@@ -1,18 +1,18 @@
-@use "../../../styles/config";
+@use "tokens";
 
 .home-hero {
   position: relative;
-  z-index: config.$layer-1;
+  z-index: tokens.$layer-1;
 }
 
 .hero-intro-content {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background: config.$c-limeGreen-500;
+  background: tokens.$c-limeGreen-500;
   padding-block: 3rem;
   position: relative;
-  z-index: config.$layer-2;
+  z-index: tokens.$layer-2;
 
   &::before {
     content: "";
@@ -22,17 +22,17 @@
     position: absolute;
     top: 0;
     right: 100%;
-    background-color: config.$c-limeGreen-500;
+    background-color: tokens.$c-limeGreen-500;
   }
 
-  @media (min-width: config.$mq-1400) {
+  @media (min-width: tokens.$mq-1400) {
     flex-direction: row;
   }
 }
 
 .hero-image {
   overflow: initial;
-  z-index: config.$layer-1;
+  z-index: tokens.$layer-1;
   max-height: 40rem;
   overflow-y: clip;
 
@@ -42,9 +42,9 @@
     max-height: 40rem;
     left: -7vw;
 
-    @media (min-width: config.$mq-800) {
+    @media (min-width: tokens.$mq-800) {
       width: 93vw;
-      max-width: calc(config.$maxWidth - 7rem);
+      max-width: calc(tokens.$maxWidth - 7rem);
       left: auto;
       right: 0;
     }
@@ -52,18 +52,18 @@
 }
 
 .intro-copy {
-  padding-right: clamp(config.$p-l, 10vw, config.$p-xxxl);
+  padding-right: clamp(tokens.$p-l, 10vw, tokens.$p-xxxl);
 
-  @media (min-width: config.$mq-1200) {
+  @media (min-width: tokens.$mq-1200) {
     // overflow: hidden;
     span h1 {
       width: 160%;
       position: relative;
-      z-index: config.$layer-2;
+      z-index: tokens.$layer-2;
     }
   }
 
-  @media (min-width: config.$mq-1400) {
+  @media (min-width: tokens.$mq-1400) {
     padding-right: 0;
   }
 }
@@ -74,10 +74,10 @@
   margin: 0;
   list-style: none;
   position: relative;
-  padding-block: config.$p-l;
+  padding-block: tokens.$p-l;
 
-  @media (max-width: config.$mq-1400) {
-    padding-right: clamp(config.$p-l, 10vw, config.$p-xxxl);
+  @media (max-width: tokens.$mq-1400) {
+    padding-right: clamp(tokens.$p-l, 10vw, tokens.$p-xxxl);
   }
 
   &::before {
@@ -93,7 +93,7 @@
     pointer-events: none;
   }
 
-  @media (min-width: config.$mq-1400) {
+  @media (min-width: tokens.$mq-1400) {
     align-self: flex-end;
     padding-right: 2rem;
     max-width: 28rem;
@@ -112,14 +112,14 @@
   }
 
   li {
-    border-left: 1px solid config.$c-limeGreen-300;
+    border-left: 1px solid tokens.$c-limeGreen-300;
 
     &:last-child {
-      border-right: 1px solid config.$c-limeGreen-300;
+      border-right: 1px solid tokens.$c-limeGreen-300;
     }
 
-    @media (min-width: config.$mq-1400) {
-      border-right: 1px solid config.$c-limeGreen-300;
+    @media (min-width: tokens.$mq-1400) {
+      border-right: 1px solid tokens.$c-limeGreen-300;
 
       &:first-child {
         border-left: none;
@@ -136,21 +136,21 @@
     text-align: center;
     justify-content: center;
     line-height: 1;
-    gap: config.$p-s;
-    font-size: config.$fontSize-xs;
-    color: config.$c-copy;
+    gap: tokens.$p-s;
+    font-size: tokens.$fs-xs;
+    color: tokens.$c-copy;
     text-transform: uppercase;
     font-weight: 600;
     text-decoration: none;
-    padding-inline: clamp(config.$p-l, 10vw, config.$p-xxl);
+    padding-inline: clamp(tokens.$p-l, 10vw, tokens.$p-xxl);
 
-    @media (min-width: config.$mq-1400) {
-      padding-inline: clamp(config.$p-xs, 1vw, config.$p-s);
+    @media (min-width: tokens.$mq-1400) {
+      padding-inline: clamp(tokens.$p-xs, 1vw, tokens.$p-s);
     }
   }
 
   svg {
-    color: config.$c-white;
-    font-size: config.$fontSize-xl;
+    color: tokens.$c-white;
+    font-size: tokens.$fs-xl;
   }
 }
