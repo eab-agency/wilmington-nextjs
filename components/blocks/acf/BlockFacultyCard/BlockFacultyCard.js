@@ -23,7 +23,7 @@ export default function BlockFaculty(props) {
           key={index}
           title={`${faculty.facultyFields.faculty.first} ${faculty.facultyFields.faculty.last}`}
           description={faculty.facultyFields.faculty.position}
-          image={faculty.featuredImage.node}
+          image={faculty.featuredImage && faculty.featuredImage.node}
           link={faculty.link}
           phone={faculty.facultyFields.faculty.phone}
           email={faculty.facultyFields.faculty.email}
