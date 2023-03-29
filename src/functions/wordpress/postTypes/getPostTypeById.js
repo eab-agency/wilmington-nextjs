@@ -35,7 +35,7 @@ export default async function getPostTypeById(
 
   // Retrieve post type query.
   const query = postTypeQuery?.[postType] ?? null
-  console.log("🚀🚀🚀🚀🚀🚀 ~ file: getPostTypeById.js:37 ~ query:", query)
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ file: getPostTypeById.js:37 ~ query:", query)
 
   return processPostTypeQuery(postType, id, query, { id, idType }, preview)
 }
