@@ -4,7 +4,7 @@ import AlgoliaSearch from '@/components/molecules/AlgoliaSearch'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
 
-import {Roboto_Slab, Cantarell} from '@next/font/google'
+import {Roboto_Slab, Cantarell} from "next/font/google"
 
 const robotoSlab = Roboto_Slab({
   weight: ['400', '500', '700'],
