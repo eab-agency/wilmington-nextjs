@@ -68,10 +68,9 @@ export default async function formatBlockData(blocks) {
           attributes.facultyData = await getCustomPostTypePartialByIds('facultyMember', attributes?.data?.faculty_member)
           break
 
-        // case 'acf/related-programs':
-        //   const { menus } = useWordPressContext()
-        //   attributes.relatedPrograms = menus
-        //   break
+        case 'acf/athlete-card':
+          attributes.imageMeta = await getMediaByID(attributes?.data?.athlete_image)
+          break
 
       }
 
