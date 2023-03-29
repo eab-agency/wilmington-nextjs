@@ -180,6 +180,13 @@ export default function displayBlock(block, index) {
       return <BlockFaqListing {...attributes} key={index} />;
     }
 
+    case 'acf/student-orgs': {
+      const BlockStudentOrgs = dynamic(() => import('@/components/blocks/acf/BlockStudentOrgs'))
+      return <BlockStudentOrgs {...attributes} key={index} />;
+    }
+
+
+
 
 
     default:

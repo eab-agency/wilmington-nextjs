@@ -26,6 +26,18 @@ export const singleProgramFragment = gql`
         }
       }
     }
+  programOrgRelationship {
+      programorg {
+        ... on StudentOrg {
+          id
+          title
+          link
+          orgFields {
+            quickFacts
+          }
+        }
+      }
+    }
   }
 `
 

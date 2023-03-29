@@ -1,10 +1,13 @@
 import React from 'react'
 import StudentOrg from '@/components/molecules/StudentOrg'
+import { useWordPressContext } from '@/components/common/WordPressProvider'
 
-const BlockStudentOrgs = ({ programorg }) => {
+const BlockStudentOrgs = () => {
+  const { studentOrganizations } = useWordPressContext()
+
   return (
     <>
-      {programorg && programorg.map((org, index) => <StudentOrg key={index} heading={org.title} url={org.link} quickFact={org.orgFields.quickFacts} />)}
+      {studentOrganizations && studentOrganizations.map((org, index) => <StudentOrg key={index} heading={org.title} url={org.link} quickFact={org.orgFields.quickFacts} />)}
     </>
   )
 }
