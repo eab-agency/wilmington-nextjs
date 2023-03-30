@@ -1,5 +1,5 @@
 import React from 'react';
-import * as styles from './mainNavigation.module.scss';
+import styles from './mainNavigation.module.scss';
 
 import MainNavigationItem from './MainNavigationItem';
 import { MdMenu, MdClose } from 'react-icons/md';

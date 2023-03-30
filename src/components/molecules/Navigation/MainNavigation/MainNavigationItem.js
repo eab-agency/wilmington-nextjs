@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Link from '@/components/common/Link'
 import Dropdown from './Dropdown'
-import * as styles from './mainNavigation.module.scss'
+import styles from './mainNavigation.module.scss'
 
 const MainNavigationItem = ({ item, depthLevel, index, enableDropdown }) => {
 
   // to control the dropdown state
   const [dropdown, setDropdown] = useState(false)
 
-   const handleButtonClick = item => {
-     setDropdown(!dropdown);
-   };
+  const handleButtonClick = item => {
+    setDropdown(!dropdown);
+  };
 
   // attach this ref to the li below
   const ref = useRef()
@@ -30,7 +30,7 @@ const MainNavigationItem = ({ item, depthLevel, index, enableDropdown }) => {
     }
   }, [dropdown])
 
- 
+
   // TODO: this is messy, need to refactor
   return (
     <li className={styles.menuItems} ref={ref}>
@@ -52,7 +52,7 @@ const MainNavigationItem = ({ item, depthLevel, index, enableDropdown }) => {
               {item.label}{' '}
             </button>
           ) : (
-            <Link href={item.url ?? '#'}>{item.label}</Link>
+            <Link href={item.path ?? '#'}>{item.label}</Link>
           )}
           {enableDropdown ? (
             <Dropdown
@@ -75,7 +75,7 @@ const MainNavigationItem = ({ item, depthLevel, index, enableDropdown }) => {
           )}
         </>
       ) : (
-        <Link href={item.url ?? '#'}>{item.label}</Link>
+        <Link href={item.path ?? '#'}>{item.label}</Link>
       )}
     </li>
   );

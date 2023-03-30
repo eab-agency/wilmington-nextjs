@@ -3,8 +3,9 @@ import { useWordPressContext } from '@/components/common/WordPressProvider'
 import AlgoliaSearch from '@/components/molecules/AlgoliaSearch'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
+import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
 
-import {Roboto_Slab, Cantarell} from "next/font/google"
+import { Roboto_Slab, Cantarell } from "next/font/google"
 
 const robotoSlab = Roboto_Slab({
   weight: ['400', '500', '700'],
@@ -34,7 +35,12 @@ export default function Layout({ children, seo }) {
         menu={menus?.UTILITY_NAV}
         search={<AlgoliaSearch useHistory={true} usePlaceholder={true} />}
       />
-      <main id="page-content">{children}</main>
+      <MainNavigation menuItems={menus?.MAIN_NAV} enableDropdown={true} />
+
+      <div className={'${styles.mainContainer}'} >
+
+        <main id="page-content">{children}</main>
+      </div>
       <Footer />
     </div>
   )
