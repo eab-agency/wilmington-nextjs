@@ -57,7 +57,7 @@ export default function Button({
   size,
   style,
   styleOutline,
-  tag,
+  tag = 'button',
   text,
   type,
   url,

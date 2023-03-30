@@ -22,7 +22,7 @@ export default function BlockTestimonial({
             <Testimonial
               post={item}
               viewAllLink={false}
-              imageOnly
+              imageOnly={true}
               key={index}
             />
           ))}
