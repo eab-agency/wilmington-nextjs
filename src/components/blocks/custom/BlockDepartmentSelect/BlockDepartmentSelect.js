@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import Link from '@/components/common/Link';
+import Image from '@/components/atoms/Image';
 
 const DepartmentSingle = ({ department }) => {
   const {
     name,
     description,
     programs,
+    departmentFields: { deptIcon, deptImage },
   } = department;
 
   return (
     <div key={name}>
+      {deptIcon && (
+        <Image
+          url={deptImage.sourceUrl}
+          alt={deptImage.altText}
+          imageMeta={{ mediaDetails: deptImage.mediaDetails }}
+        />)}
       <h2>{name}</h2>
       <p>{description}</p>
       {programs.length > 0 && (

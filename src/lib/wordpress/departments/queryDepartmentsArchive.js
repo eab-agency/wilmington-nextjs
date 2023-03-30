@@ -12,6 +12,18 @@ export const archiveDepartmentFragment = gql`
     uri
     name
     description
+    departmentFields {
+      deptIcon
+      deptImage {
+        altText
+        caption
+        sourceUrl
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
     programs {
         nodes {
         slug
