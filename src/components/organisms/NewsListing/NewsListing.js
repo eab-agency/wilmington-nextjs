@@ -9,6 +9,16 @@ function NewsListing({
   posts,
   showImage,
 }) {
+
+  // if posts.isError is true then return posts.message
+  if (posts.isError) {
+    return <div>{posts.message}</div>
+  }
+
+  // // if no posts, return null
+  // if (!posts || posts.length === 0) {
+  //   return null
+  // }
   return (
     <section className={styles.newsSection}>
       {/* <pre>FILE: NewsListing.tsx</pre> */}

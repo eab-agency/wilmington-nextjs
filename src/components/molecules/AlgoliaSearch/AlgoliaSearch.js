@@ -1,5 +1,3 @@
-"use client"
-
 import { useWordPressContext } from '@/components/common/WordPressProvider'
 import parseQuerystring from '@/functions/parseQuerystring'
 import cn from 'classnames'

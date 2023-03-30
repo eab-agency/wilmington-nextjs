@@ -11,6 +11,24 @@ function EventsListing({
   posts,
   showImage,
 }) {
+
+  if (posts === null || Object.keys(posts).length === 0) {
+    return null;
+  }
+
+  if (Array.isArray(posts) && posts.length > 0 && posts[0].isError) {
+    return <div>{posts[0].message}</div>;
+  }
+
+  if (posts.isError) {
+    return <div>{posts.message}</div>;
+  }
+
+  // // if no posts, return null
+  // if (!posts || posts.length === 0) {
+  //   return null
+  // }
+
   return (
     // <div className={listing_display === '1' ? 'grid' : ''}>
     <section className={styles.eventsSection}>
