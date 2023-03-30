@@ -4,14 +4,16 @@ import * as styles from './TopMenu.module.scss'
 
 import TopMenuItem from './TopMenuItem'
 
-const TopMenu = ({ location, menuItems = [] }) => {
-  const { menus } = useWordPressContext()
-  const items = menus?.UTILITY_NAV || []
+const TopMenu = ({ menuItems }) => {
+
+  if (!menuItems || !menuItems?.length) {
+    return null
+  }
 
   return (
     <>
       <ul className={styles.topMenuItems}>
-        {items.map((navItem, index) => (
+        {menuItems.map((navItem, index) => (
           <TopMenuItem
             item={navItem}
             key={index}

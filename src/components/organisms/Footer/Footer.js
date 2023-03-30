@@ -3,10 +3,10 @@ import FooterMenu from '@/components/molecules/Navigation/FooterMenu'
 import PreFooter from '@/components/molecules/PreFooter'
 import * as styles from './Footer.module.scss'
 
-const Footer = () => (
-  <footer className={styles.footer}>
+const Footer = ({ menus }) => {
+  return (<footer className={styles.footer}>
     <div className={styles.footerContent}>
-      <PreFooter location="FOOTER_NAV" styles={styles.footerMenux} />
+      <PreFooter menuItems={menus?.FOOTER_NAV} location="FOOTER_NAV" styles={styles.footerMenux} />
       <div className={styles.navAddrSocial}>
         <div className={styles.schoolInfo}>
           <Logo type="dark" />
@@ -27,7 +27,7 @@ const Footer = () => (
             </li>
           </ul>
         </div>
-        <FooterMenu menuTitle="Resources" />
+        <FooterMenu menuItems={menus?.RESOURCE_NAV} menuTitle="Resources" />
         <div className={styles.socialFooter}>
           <h3>Connect</h3>
           <a
@@ -54,6 +54,7 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-)
+  )
+}
 
 export default Footer

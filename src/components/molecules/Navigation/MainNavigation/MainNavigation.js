@@ -27,6 +27,11 @@ const MainNavigation = ({ location, menuItems, enableDropdown }) => {
     setOpen(prev => !prev);
   };
 
+
+  if (!menuItems || !menuItems?.length) {
+    return null
+  }
+
   const openCloseClasses = open
     ? styles.openMenu
     : styles.closedMenu;
@@ -37,7 +42,7 @@ const MainNavigation = ({ location, menuItems, enableDropdown }) => {
         <div className={styles.navWrapper}>
           <Burger open={open} setOpen={handleToggle} />
           <ul className={openCloseClasses}>
-            {items.map((navItem, index) => (
+            {items && items.map((navItem, index) => (
               <MainNavigationItem
                 item={navItem}
                 key={index}
