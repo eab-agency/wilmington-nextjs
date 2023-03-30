@@ -57,7 +57,8 @@ export default function DisplayImage(props) {
     const imageProps = {
       alt: props?.alt,
       id: props?.anchor,
-      src: source
+      src: source,
+      priority: props?.priority
     }
 
     // Add extra props depending on whether image needs to be set to "fill".
