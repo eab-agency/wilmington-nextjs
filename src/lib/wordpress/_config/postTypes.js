@@ -11,6 +11,10 @@ export const postTypes = {
   program: {
     pluralName: 'programs',
     route: 'programs'
+  },
+  department: {
+    pluralName: 'departments',
+    route: 'departments'
   }
 }
 

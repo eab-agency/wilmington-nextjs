@@ -78,6 +78,11 @@ export default function displayBlock(block, index) {
       return <BlockParagraph {...attributes} key={index} />
     }
 
+    case 'core/verse': {
+      const BlockVerse = dynamic(() => import('@/components/blocks/core/BlockVerse'))
+      return <BlockVerse {...attributes} key={index} />
+    }
+
     case 'core/pullquote': {
       const BlockPullQuote = dynamic(() => import('@/components/blocks/core/BlockPullQuote'))
       return <BlockPullQuote {...attributes} key={index} />
@@ -107,12 +112,23 @@ export default function displayBlock(block, index) {
     case 'core/group': {
       const BlockGroup = dynamic(() => import('@/components/blocks/core/BlockGroup'))
       return <BlockGroup {...attributes} innerBlocks={innerBlocks} key={index} />
+
     }
 
     // this takes care of the orginal default block
     case 'core/freeform': {
       const BlockDefault = dynamic(() => import('@/components/blocks/core/BlockDefault'))
       return <BlockDefault content={attributes.content} key={index} />
+    }
+
+    case 'core/html': {
+      // const BlockHtml = dynamic(() => import('@/components/blocks/core/BlockHtml'))
+      // return <BlockHtml {...attributes} key={index} />
+      // WP does not store the HTML in the attributes, so we need to get it from the saveContent
+      // but we can't do that here, so we'll just return null for now
+      // I'm not sure if we want to allow raw HTML in the first place
+      // TODO: figure out if we want to allow raw HTML
+      return null;
     }
 
     case 'core/more': {
@@ -185,8 +201,10 @@ export default function displayBlock(block, index) {
       return <BlockStudentOrgs {...attributes} key={index} />;
     }
 
-
-
+    case 'eab/program-directory': {
+      const BlockDepartmentSelect = dynamic(() => import('@/components/blocks/custom/BlockDepartmentSelect'))
+      return <BlockDepartmentSelect programDepartments={attributes?.departments} key={index} />;
+    }
 
 
     default:

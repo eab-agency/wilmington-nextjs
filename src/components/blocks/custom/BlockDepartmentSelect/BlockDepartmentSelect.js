@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Link from '@/components/common/Link';
-import {
-  useQueryParamString,
-  getQueryParams,
-} from 'react-use-query-param-string';
 
 const DepartmentSingle = ({ department }) => {
   const {
     name,
     description,
-    programs: { nodes: directoryPrograms },
+    programs,
   } = department;
-  // set directoryPrograms to new variable and if it's an empty array, set it to null
-  const programs = directoryPrograms.length ? directoryPrograms : null;
 
   return (
     <div key={name}>
       <h2>{name}</h2>
       <p>{description}</p>
-      {programs && (
+      {programs.length > 0 && (
         <>
           <h3>Programs</h3>
           <ul>
@@ -34,15 +28,14 @@ const DepartmentSingle = ({ department }) => {
   );
 };
 
-const DepartmentListing = ({ department, ...props }) => {
+const DepartmentListing = ({ department }) => {
   // if deparetment is null, undefined, or empty object, return null
   if (!department || Object.keys(department).length === 0) {
     return null;
   }
-
   // if department is an array, map over the array and return a DepartmentSingle for each department
-  if (Array.isArray(department.nodes)) {
-    return department.nodes.map(department => (
+  if (Array.isArray(department)) {
+    return department.map(department => (
       <DepartmentSingle key={department.uri} department={department} />
     ));
   } else {
@@ -52,33 +45,15 @@ const DepartmentListing = ({ department, ...props }) => {
 };
 
 const DepartmentSelector = ({
-  programDepartments,
-  setDepartment,
-  ...props
+  programDepartments, handleDepartmentChange, selectedDepartment
 }) => {
-  const [selectedDepartment, setSelectedDepartment] = React.useState('');
-  const [departmentText, setDepartmentText, initialized] = useQueryParamString(
-    'department',
-    ''
-  );
 
   const handleDropdownChange = e => {
-    const { value } = e.target;
-    setSelectedDepartment(value);
-    setDepartment(value);
-    setDepartmentText(value);
+    handleDepartmentChange(e.target.value);
   };
 
-  // useEffect to watch for changes in the departmentText query param and set the selectedDepartment value
-  useEffect(() => {
-    if (departmentText) {
-      setSelectedDepartment(departmentText);
-      setDepartment(departmentText);
-    }
-  }, [departmentText, setDepartment]);
-
   return (
-    <select onChange={handleDropdownChange} defaultValue={'DEFAULT'}>
+    <select onChange={handleDropdownChange} defaultValue={'DEFAULT'} value={selectedDepartment}>
       <option value="DEFAULT" disabled>
         Chose a department
       </option>
@@ -93,47 +68,33 @@ const DepartmentSelector = ({
 };
 
 export default function BlockDepartmentSelect({
-  programDepartments,
-  innerBlocks,
-  ...props
+  programDepartments
 }) {
   const [selectedDepartment, setSelectedDepartment] = React.useState('');
   const [selectedDepartmentInfo, setSelectedDepartmentInfo] = useState({});
 
-  const [programDepartmentsHold, setProgramDepartmentsHold] =
-    useState(programDepartments);
-
   // use useEffect to set the selectedDepartmentInfo, selectedDepartment values can be null, undefined, ALL, or a department name
   useEffect(() => {
     if (selectedDepartment === 'ALL') {
-      setSelectedDepartmentInfo(programDepartmentsHold);
+      setSelectedDepartmentInfo(programDepartments);
     } else if (selectedDepartment) {
-      const department = programDepartmentsHold.nodes.find(
+      const department = programDepartments.find(
         department => department.name === selectedDepartment
       );
       setSelectedDepartmentInfo(department);
     }
-  }, [selectedDepartment, programDepartmentsHold]);
+  }, [selectedDepartment, programDepartments]);
 
-  //   alphabetize the departments
-  const alphaPrograms = programDepartments.nodes.sort((a, b) => {
-    const nameA = a.name.toUpperCase();
-    const nameB = b.name.toUpperCase();
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    return 0;
-  });
+  const handleDepartmentChange = (selectedValue) => {
+    setSelectedDepartment(selectedValue);
+  };
 
   return (
     <div>
-      {/* TODO: need to figure out a way to pull in the content of this section. Andrei, we will hard code the copy for now :/ */}
       <DepartmentSelector
-        programDepartments={alphaPrograms}
-        setDepartment={department => setSelectedDepartment(department)}
+        programDepartments={programDepartments}
+        handleDepartmentChange={handleDepartmentChange}
+        selectedDepartment={selectedDepartment}
       />
       <DepartmentListing department={selectedDepartmentInfo} />
     </div>

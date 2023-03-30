@@ -4,7 +4,7 @@ import getEventsListingData from '@/functions/wordpress/events/getEventsListingD
 import getFeaturedDeptData from '@/functions/wordpress/departments/getFeaturedDeptData'
 import getTestimonialData, { getRandomTestimonials } from '@/functions/wordpress/testimonials/getTestimonialData'
 import getCustomPostTypePartialByIds from '@/functions/wordpress/postTypes/getCustomPostTypePartialByIds'
-import { useWordPressContext } from '@/components/common/WordPressProvider'
+import getPostTypeArchive from '@/functions/wordpress/postTypes/getPostTypeArchive'
 
 /**
  * Format and retrieve expanded block data.
@@ -74,6 +74,11 @@ export default async function formatBlockData(blocks) {
 
         case 'acf/faq-listing':
           attributes.faqData = await getCustomPostTypePartialByIds('fAQ', attributes?.data?.faqs_listing)
+          break
+
+        case 'eab/program-directory':
+          const { posts } = await getPostTypeArchive('department')
+          attributes.departments = posts
           break
 
       }
