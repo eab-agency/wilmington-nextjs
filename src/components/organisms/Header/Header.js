@@ -7,7 +7,7 @@ import * as styles from './Header.module.scss'
 // import GlobalStyles from '../../../../src/styles/globalStyles'
 // import {createGlobalStyle} from 'styled-components'
 
-const Header = ({ search }) => {
+const Header = ({ search, menu }) => {
   const [scrollPosition, setScrollPosition] = useState(0)
   const handleScroll = () => {
     const position = window.pageYOffset
@@ -66,7 +66,7 @@ const Header = ({ search }) => {
               <Logo className={styles.svg} type="dark" />
             </Link>
             <div className={styles.topMenu}>
-              <TopMenu location="UTILITY_NAV" />
+              <TopMenu menuItems={menu} />
               {/* <button className={styles.search} type="button">
                 Search
                 <MdSearch />

@@ -41,7 +41,7 @@ export default function Layout({ children, seo }) {
 
         <main id="page-content">{children}</main>
       </div>
-      <Footer />
+      <Footer menus={{ FOOTER_NAV: menus?.FOOTER_NAV, RESOURCE_NAV: menus?.RESOURCE_NAV }} />
     </div>
   )
 }

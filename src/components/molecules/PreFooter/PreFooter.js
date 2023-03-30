@@ -2,14 +2,18 @@
 import * as styles from './PreFooter.module.scss'
 import FooterMenuItem from './FooterMenuItem'
 
-const PreeFooter = ({ location, menuItems }) => {
-  // const items = useMenuItems(location) || menuItems
-  const items = []
+const PreFooter = ({ menuItems }) => {
+  console.log("🚀 ~ file: PreFooter.js:6 ~ PreFooter ~ menuItems:", menuItems)
+
+  if (!menuItems || !menuItems?.length) {
+    return null
+  }
 
   return (
     <div className={styles.preFooter}>
+      <h1>hello world</h1>
       <ul className={styles.footerMenu}>
-        {items.map((navItem, index) => (
+        {menuItems.map((navItem, index) => (
           <FooterMenuItem item={navItem} key={index} index={index} />
         ))}
       </ul>
@@ -17,4 +21,4 @@ const PreeFooter = ({ location, menuItems }) => {
   )
 }
 
-export default PreeFooter
+export default PreFooter
