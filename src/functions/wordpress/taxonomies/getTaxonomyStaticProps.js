@@ -16,6 +16,7 @@ export default async function getTaxonomyStaticProps(
   taxonomy,
   postType = 'post'
 ) {
+  console.log("🚀 ~ file: getTaxonomyStaticProps.js:19 ~ params:", params)
   // Set revalidate length (seconds).
   const revalidate = 60 * 5
 

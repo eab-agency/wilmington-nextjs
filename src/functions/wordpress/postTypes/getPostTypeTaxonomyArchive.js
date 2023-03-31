@@ -29,10 +29,12 @@ export default async function getPostTypeTaxonomyArchive(
   getNext = true,
   perPage = 10
 ) {
+  console.log("🚀 ~ file: getPostTypeTaxonomyArchive.js:32 ~ taxonomy:", taxonomy)
   // Define single post query based on taxonomy.
   const postTypeQuery = {
     category: queryPostsByCategory,
-    tag: queryPostsByTag
+    tag: queryPostsByTag,
+    department: queryPostsByTag
   }
 
   // Retrieve taxonomy query.

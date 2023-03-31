@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 const queryEventsListingAttributes = gql`
-  query GET_EVENT_AND_CATEGORY_ATTS($id: ID!, $category: ID!) {
+  query GET_EVENT_AND_CATEGORY_ATTS($id: ID!) {
     event(id: $id, idType: DATABASE_ID) {
       link
       uri
