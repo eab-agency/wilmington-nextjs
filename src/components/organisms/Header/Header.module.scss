@@ -32,19 +32,19 @@
 
   .search {
     display: flex;
-    width: 3rem;
+    // width: 3rem;
     position: relative;
     border-radius: 0;
     background: none;
     border: none;
-    text-indent: -999em;
+    // text-indent: -999em;
     align-items: center;
-    line-height: 0;
-    grid-column: 24;
+    // line-height: 0;
+    // grid-column: 24;
     padding-inline: tokens.$p-l;
     padding-block: tokens.$p-m;
     border-left: 1px solid tokens.$c-gray-400;
-    cursor: pointer;
+    // cursor: pointer;
 
     @media (min-width: tokens.$mq-1200) {
       border-left: none;
@@ -74,18 +74,18 @@
       transition: all 0.2s;
     }
 
-    &:hover,
-    &:focus {
-      color: tokens.$c-gray-800;
-      &::after {
-        height: 4px;
-        background-color: tokens.$c-limeGreen-700;
-      }
+    // &:hover,
+    // &:focus {
+    //   color: tokens.$c-gray-800;
+    //   &::after {
+    //     height: 4px;
+    //     background-color: tokens.$c-limeGreen-700;
+    //   }
 
-      svg {
-        color: tokens.$c-darkGreen-800;
-      }
-    }
+    //   svg {
+    //     color: tokens.$c-darkGreen-800;
+    //   }
+    // }
   }
 }
 
