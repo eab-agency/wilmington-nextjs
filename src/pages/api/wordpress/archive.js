@@ -9,6 +9,7 @@ import getPostTypeTaxonomyArchive from '@/functions/wordpress/postTypes/getPostT
  * @param {object} res Instance of http.ServerResponse.
  */
 export default async function archive(req, res) {
+  console.log("🚀 ~ file: archive.js:12 ~ archive ~ req, res:", req, res)
   try {
     // Retrieve props from request query params.
     const {
