@@ -29,7 +29,7 @@ function Hero({ imageMeta, content, ctas }) {
         <Image
           className={styles.heroImage}
           alt={imageMeta.altText}
-          loading="eager"
+          priority={true}
           imageMeta={imageMeta}
         />
       )}

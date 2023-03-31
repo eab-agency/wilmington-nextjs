@@ -22,6 +22,10 @@ function Testimonial({
   imageOnly,
   featuredTestimonial,
 }) {
+  // if no post, return null
+  if (!post || Object.keys(post).length === 0) {
+    return null;
+  }
   // destructure first, last, desc from post.testimonialFields.testimonial, set default values
   const { altText = '', mediaDetails, mediaItemUrl } = post?.featuredImage?.node
   const { first, last, desc } = post?.testimonialFields?.testimonial ?? {}

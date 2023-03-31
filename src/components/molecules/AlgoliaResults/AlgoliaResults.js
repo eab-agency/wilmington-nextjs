@@ -15,7 +15,7 @@ import SearchResults from './templates/SearchResults'
  * @param  {object}  props.config Algolia configuration.
  * @return {Element}              The AlgoliaResults component.
  */
-export default function AlgoliaResults ({ config }) {
+export default function AlgoliaResults({ config }) {
   const { algolia } = useWordPressContext()
 
   // Dispatch console warning if Index Name missing.

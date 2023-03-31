@@ -15,7 +15,12 @@ export const postTypes = {
   department: {
     pluralName: 'departments',
     route: 'departments'
+  },
+  faq: {
+    pluralName: 'faqs',
+    route: 'faq'
   }
+
 }
 
 // Define hierarchical post types.
