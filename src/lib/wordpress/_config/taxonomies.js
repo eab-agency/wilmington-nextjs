@@ -9,5 +9,10 @@ export const taxonomies = {
     label: 'Tag',
     pluralName: 'tags',
     route: 'tags'
+  },
+  department: {
+    label: 'Department',
+    pluralName: 'departments',
+    route: 'departments'
   }
 }
