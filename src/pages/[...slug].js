@@ -7,6 +7,7 @@ import getPagePropTypes from '@/functions/getPagePropTypes'
 import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
 import { PropTypes } from 'prop-types'
+import { useRouter } from 'next/router'
 
 // Define route post type.
 const postType = 'page'
@@ -43,6 +44,10 @@ export default function Page({
   console.log("🚀 ~ file: [...slug].js:38 ~ day:", day)
   console.log("🚀 ~ file: [...slug].js:38 ~ dateArchive:", dateArchive)
   console.log("🚀 ~ file: [...slug].js:38 ~ archive:", archive)
+
+  const router = useRouter()
+  const isFrontPage = router.asPath === '/';
+
   if (archive) {
     return (
       <Layout seo={{ ...post?.seo }}>
@@ -74,8 +79,10 @@ export default function Page({
   return (
     <Layout seo={{ ...post?.seo }}>
       <Container>
+     
         <article className="innerWrap">
-          <RichText tag="h1">{post?.title}</RichText>
+        {!isFrontPage && (
+          <RichText tag="h1">{post?.title}</RichText>)}
           <Blocks blocks={post?.blocks} />
         </article>
       </Container>

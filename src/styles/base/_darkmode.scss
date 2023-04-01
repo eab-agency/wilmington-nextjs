@@ -1,0 +1,8 @@
+@use "tokens";
+
+// add dark mode
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #262a29;
+  }
+}
