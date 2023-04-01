@@ -1,9 +1,5 @@
 @use "tokens";
 
-body.dark {
-  background-color: #0b0c10; // Note: AO confirm if there will be a dark mode
-}
-
 .main-container {
   display: flex;
   padding-right: tokens.$rightOffset;

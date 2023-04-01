@@ -33,7 +33,7 @@ export default function Layout({ children, seo }) {
       />
       <div className={styles.mainContainer} >
       <MainNavigation menuItems={menus?.MAIN_NAV} enableDropdown={true} />
-        <main id="page-content">{children}</main>
+        <main>{children}</main>
       </div>
       <Footer menus={{ FOOTER_NAV: menus?.FOOTER_NAV, RESOURCE_NAV: menus?.RESOURCE_NAV }} />
     </div>
