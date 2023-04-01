@@ -63,7 +63,7 @@ export default function DisplayImage(props) {
 
     // Add extra props depending on whether image needs to be set to "fill".
     if (props?.nextImageFill) {
-      imageProps.layout = 'fill'
+      imageProps.fill = true
     } else {
       imageProps.height = imageSize?.height
       imageProps.width = imageSize?.width
