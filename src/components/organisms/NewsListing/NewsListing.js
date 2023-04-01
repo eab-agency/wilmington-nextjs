@@ -15,10 +15,6 @@ function NewsListing({
     return <div>{posts.message}</div>
   }
 
-  // // if no posts, return null
-  // if (!posts || posts.length === 0) {
-  //   return null
-  // }
   return (
     <section className={styles.newsSection}>
       {/* <pre>FILE: NewsListing.tsx</pre> */}

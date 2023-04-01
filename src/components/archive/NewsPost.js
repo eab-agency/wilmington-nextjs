@@ -14,6 +14,10 @@ const NewsPost = ({
   showImage = true,
   ...props
 }) => {
+
+  // if post is null or undefined, return null
+  if (!post) return null
+
   const { title, date, featuredImage, uri } = post
 
   const { node: { mediaItemUrl, altText, mediaDetails } = {} } = featuredImage || {};
