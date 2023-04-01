@@ -28,11 +28,16 @@ const postType = 'facultyMember'
 export default function Faculty({
     post
 }) {
+    console.log("🚀 ~ file: [...slug].js:31 ~ post:", post)
     const { email, facebook, first, last, instagram, linkedin, location, phone, position, tiktok, twitter, youtube } = post?.facultyFields?.faculty
 
     const { name: departmentName } = post?.departments?.nodes[0]
 
-    const { altText, sourceUrl } = post?.featuredImage?.node
+    const featuredImage = post?.featuredImage;
+    const sourceUrl = featuredImage?.node?.sourceUrl;
+    const altText = featuredImage?.node?.altText;
+
+
 
     let positionTitle = position;
 
@@ -45,7 +50,7 @@ export default function Faculty({
         <Layout seo={{ ...post?.seo }}>
             <Container>
                 <article className="innerWrap">
-                    <Image id="featured-img" url={sourceUrl} alt={altText} width='300' height='200' />
+                    {featuredImage && <Image id="featured-img" url={sourceUrl} alt={altText} width='300' height='200' />}
                     <RichText tag="h1">{post?.title}</RichText>
                     <RichText tag="h2">{positionTitle}</RichText>
                     <Blocks blocks={post?.blocks} />
