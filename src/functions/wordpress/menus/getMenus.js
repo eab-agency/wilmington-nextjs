@@ -9,7 +9,7 @@ import menuLocations from '@/lib/wordpress/_config/menuLocations'
  * @return {Array}            Returns array of menu objects.
  */
 export default function getMenus(menus, locations = menuLocations) {
-  if (!locations.length > 0) {
+  if (!locations || !locations.length || !menus) {
     return [] // Exit if empty.
   }
 
