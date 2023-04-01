@@ -1,31 +1,28 @@
+import featuredImagePostFields from '@/lib/wordpress/_query-partials/featuredImagePostFields'
 import { gql } from '@apollo/client'
 
 const queryEventsListingAttributes = gql`
-  query GET_EVENT_AND_CATEGORY_ATTS($id: ID!) {
+  query GET_EVENT_AND_CATEGORY_ATTS(
+    $id: ID!,
+    $imageSize: MediaItemSizeEnum = LARGE
+    ) {
     event(id: $id, idType: DATABASE_ID) {
       link
       uri
       date
       title
-      featuredImage {
-        node {
-          altText
-          mediaItemUrl
-          mediaDetails {
-            height
-            width
-          }
-        }
-      }
+      ${featuredImagePostFields}
     }
-  
   }
 `;
 
 export default queryEventsListingAttributes;
 
 export const queryEventsCategoryAttributes = gql`
-  query GET_EVENT_AND_CATEGORY_ATTS($category: ID!) {
+  query GET_EVENT_AND_CATEGORY_ATTS(
+    $category: ID!,
+    $imageSize: MediaItemSizeEnum = LARGE
+    ) {
   eventCategory(id: $category, idType: DATABASE_ID) {
       events {
         nodes {
@@ -34,16 +31,7 @@ export const queryEventsCategoryAttributes = gql`
           date
           title
           databaseId
-          featuredImage {
-            node {
-              altText
-              mediaItemUrl
-              mediaDetails {
-                height
-                width
-              }
-            }
-          }
+          ${featuredImagePostFields}
         }
       }
     }
