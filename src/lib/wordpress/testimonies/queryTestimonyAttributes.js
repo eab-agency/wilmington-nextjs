@@ -1,7 +1,11 @@
+import featuredImagePostFields from '@/lib/wordpress/_query-partials/featuredImagePostFields'
 import { gql } from '@apollo/client'
 
 const queryTestimonyAttributes = gql`
-  query GET_TESTIMONY_ATTS($id: ID!) {
+  query GET_TESTIMONY_ATTS(
+    $id: ID!,
+    $imageSize: MediaItemSizeEnum = LARGE
+) {
     testimonial(id: $id, idType: DATABASE_ID) {
         contentTypeName
           id
@@ -16,39 +20,19 @@ const queryTestimonyAttributes = gql`
               last
             }
           }
-          featuredImage {
-      node {
-      mediaDetails {
-        height
-        width
-        sizes {
-          height
-          name
-          sourceUrl
-          width
-        }
-      }
-      }
-          }
+        ${featuredImagePostFields}
     }
   }
 `
 
 export const queryTestimonies = gql`
-query GET_TESTIMONIALS {
+query GET_TESTIMONIALS(
+  $imageSize: MediaItemSizeEnum = LARGE
+) {
   testimonials(first: 100) {
     nodes {
       databaseId
-      featuredImage {
-        node {
-          altText
-          mediaItemUrl
-          mediaDetails {
-            height
-            width
-          }
-        }
-      }
+      ${featuredImagePostFields}
       testimonialFields {
         testimonial {
           desc
