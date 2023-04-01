@@ -1,19 +1,23 @@
 .image {
-  @apply mb-8;
+  
 
   & img {
-    @apply block rounded;
+    
   }
 
   & .caption {
-    @apply text-center text-xs pt-4;
+    
   }
 
   &.hasImageFill {
-    @apply mb-0;
+     /* object-cover rounded */
+    object-fit: cover;
+    position: relative;
   }
 
   & .imageFill {
-    @apply object-cover rounded;
+   
+
+    
   }
 }
