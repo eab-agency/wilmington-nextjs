@@ -7,7 +7,6 @@ export default function BlockTestimonial({
   featuredTestimonial,
   random,
 }) {
-
   return (
     <>
       <Testimonial
