@@ -1,5 +1,5 @@
 import React from 'react'
-import * as styles from '../AlgoliaSearch.module.css'
+import * as styles from '../AlgoliaSearch.module.scss'
 import SearchIcon from './SearchIcon'
 
 /**
