@@ -5,7 +5,7 @@ import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
 import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
 
-import { Roboto_Slab, Cantarell } from "next/font/google"
+import { Roboto_Slab, Cantarell, Inter } from "next/font/google"
 
 const robotoSlab = Roboto_Slab({
   weight: ['400', '500', '700'],
@@ -14,6 +14,11 @@ const robotoSlab = Roboto_Slab({
 
 const cantarell = Cantarell({
   weight: ['400', '700'],
+  subsets: ['latin'],
+});
+
+const inter = Inter({
+  weight: ['400', '500', '700'],
   subsets: ['latin'],
 });
 
@@ -29,16 +34,14 @@ export default function Layout({ children, seo }) {
   const { menus } = useWordPressContext()
 
   return (
-    <div className={`${robotoSlab.className} ${cantarell.className}`}>
+    <div className={`${cantarell.className} `}>
       <Meta seo={seo} />
       <Header
         menu={menus?.UTILITY_NAV}
         search={<AlgoliaSearch useHistory={true} usePlaceholder={true} />}
       />
+      <div className="main-container" >
       <MainNavigation menuItems={menus?.MAIN_NAV} enableDropdown={true} />
-
-      <div className={'${styles.mainContainer}'} >
-
         <main id="page-content">{children}</main>
       </div>
       <Footer menus={{ FOOTER_NAV: menus?.FOOTER_NAV, RESOURCE_NAV: menus?.RESOURCE_NAV }} />
