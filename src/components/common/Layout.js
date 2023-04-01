@@ -4,21 +4,12 @@ import AlgoliaSearch from '@/components/molecules/AlgoliaSearch'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
 import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
+import * as styles from './Layout.module.scss'
 
-import { Roboto_Slab, Cantarell, Inter } from "next/font/google"
-
-const robotoSlab = Roboto_Slab({
-  weight: ['400', '500', '700'],
-  subsets: ['latin'],
-});
+import {Cantarell } from "next/font/google"
 
 const cantarell = Cantarell({
   weight: ['400', '700'],
-  subsets: ['latin'],
-});
-
-const inter = Inter({
-  weight: ['400', '500', '700'],
   subsets: ['latin'],
 });
 
@@ -40,7 +31,7 @@ export default function Layout({ children, seo }) {
         menu={menus?.UTILITY_NAV}
         search={<AlgoliaSearch useHistory={true} usePlaceholder={true} />}
       />
-      <div className="main-container" >
+      <div className={styles.mainContainer} >
       <MainNavigation menuItems={menus?.MAIN_NAV} enableDropdown={true} />
         <main id="page-content">{children}</main>
       </div>
