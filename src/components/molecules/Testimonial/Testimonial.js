@@ -1,6 +1,5 @@
 import Button from "@/components/atoms/Buttons/Button"
 import React from "react"
-import { FeaturedImage } from "@/components/common/FeaturedImage"
 import Quote from "@/components/atoms/Quote"
 import cn from "classnames"
 import * as styles from "./Testimonial.module.scss"
@@ -27,7 +26,7 @@ function Testimonial({
     return null;
   }
   // destructure first, last, desc from post.testimonialFields.testimonial, set default values
-  const { altText = '', mediaDetails, mediaItemUrl } = post?.featuredImage?.node
+  const { altText, mediaDetails, sourceUrl } = post?.featuredImage?.node
   const { first, last, desc } = post?.testimonialFields?.testimonial ?? {}
   const fullName = `${first} ${last}`
 
@@ -38,9 +37,7 @@ function Testimonial({
         featuredTestimonial && styles.featuredTestimonial
       )}
     >
-      {/* <pre>FILE: Testimonial.js</pre> */}
-      <FeaturedImage post={post} />
-      <Image url={mediaItemUrl} alt={altText} imageMeta={{ mediaDetails }} />
+      <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
       {!imageOnly && (
         <>
           <Quote
