@@ -12,6 +12,7 @@ import ProgramCard from '@/components/molecules/ProgramCard';
 // Define route post type.
 const postType = 'facultyMember'
 
+// TODO: separate this out to its own component (maybe if using it more than once)
 function ProgramList({ programs }) {
     const renderPrograms = (programType, title) => {
         if (programs[programType] && programs[programType].length > 0) {
@@ -75,26 +76,28 @@ export default function Faculty({
             minor: [],
         };
 
-        data.forEach((program) => {
-            const degree = program.programFields.program.degree;
-            const degreeTitle = program.programFields.program.degreeTitle;
+        if (data) {
+            data.forEach((program) => {
+                const degree = program.programFields.program.degree;
+                const degreeTitle = program.programFields.program.degreeTitle;
 
-            if (degree === "major" || degree === "major-grad") {
-                programsArray.major.push({
-                    title: `${program.title} - ${degreeTitle}`,
-                    id: program.id,
-                    link: program.uri,
-                    degreeTitle,
-                });
-            } else if (degree === "minor") {
-                programsArray.minor.push({
-                    title: `${program.title} - ${degreeTitle}`,
-                    id: program.id,
-                    link: program.uri,
-                    degreeTitle,
-                });
-            }
-        });
+                if (degree === "major" || degree === "major-grad") {
+                    programsArray.major.push({
+                        title: `${program.title} - ${degreeTitle}`,
+                        id: program.id,
+                        link: program.uri,
+                        degreeTitle,
+                    });
+                } else if (degree === "minor") {
+                    programsArray.minor.push({
+                        title: `${program.title} - ${degreeTitle}`,
+                        id: program.id,
+                        link: program.uri,
+                        degreeTitle,
+                    });
+                }
+            });
+        }
 
         return programsArray;
     }
