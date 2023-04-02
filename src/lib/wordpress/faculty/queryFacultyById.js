@@ -17,6 +17,22 @@ export const singleFacultyFragment = gql`
         name
       }
     }
+      facultyToProgramRelationship {
+      programfaculty {
+        ... on Program {
+          title
+          id
+          excerpt
+          uri
+          programFields {
+            program {
+              degree
+              degreeTitle
+            }
+          }
+        }
+      }
+    }
     ${facultyAcfFields}
     ${seoPostFields}
     ${featuredImagePostFields}
