@@ -28,10 +28,10 @@ const postType = 'facultyMember'
 export default function Faculty({
     post
 }) {
-    console.log("🚀 ~ file: [...slug].js:31 ~ post:", post)
     const { email, facebook, first, last, instagram, linkedin, location, phone, position, tiktok, twitter, youtube } = post?.facultyFields?.faculty
 
-    const { name: departmentName } = post?.departments?.nodes[0]
+    const department = post?.departments
+    const departmentName = department?.nodes[0]?.name
 
     const featuredImage = post?.featuredImage;
     const sourceUrl = featuredImage?.node?.sourceUrl;
@@ -39,10 +39,8 @@ export default function Faculty({
 
 
 
-    let positionTitle = position;
-
-    // checking if departmentName is not empty so we can add a comma
-    if (departmentName !== "") {
+    let positionTitle = position || "";
+    if (departmentName && departmentName !== "") {
         positionTitle += `, ${departmentName}`;
     }
 
@@ -52,7 +50,7 @@ export default function Faculty({
                 <article className="innerWrap">
                     {featuredImage && <Image id="featured-img" url={sourceUrl} alt={altText} width='300' height='200' />}
                     <RichText tag="h1">{post?.title}</RichText>
-                    <RichText tag="h2">{positionTitle}</RichText>
+                    {positionTitle && <RichText tag="h2">{positionTitle}</RichText>}
                     <Blocks blocks={post?.blocks} />
                 </article>
                 <div className="sidebar">
