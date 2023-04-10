@@ -16,7 +16,6 @@ const postType = 'page'
  * @return {Element}            The HomePage component.
  */
 export default function HomePage({ post }) {
-  console.log("🚀 ~ file: index.js:19 ~ HomePage ~ post:", post)
   const { seo, ...postData } = post
 
   // Display dynamic page data if homepage retrieved from WP.

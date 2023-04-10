@@ -11,6 +11,7 @@ import { gql } from '@apollo/client'
  * @return {object}          Post type paths.
  */
 export default async function getPostTypeStaticPaths(postType) {
+  console.log("💩💩💩💩💩💩 ~ file: getPostTypeStaticPaths.js:14 ~ getPostTypeStaticPaths ~ postType:", postType)
   if (!postType || !isValidPostType(postType)) {
     return null
   }

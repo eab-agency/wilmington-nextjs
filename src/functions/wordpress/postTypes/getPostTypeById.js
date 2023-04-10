@@ -3,6 +3,7 @@ import processPostTypeQuery from '@/functions/wordpress/postTypes/processPostTyp
 import queryPageById from '@/lib/wordpress/pages/queryPageById'
 import queryPostById from '@/lib/wordpress/posts/queryPostById'
 import queryProgramById from '@/lib/wordpress/programs/queryProgramById'
+import queryFacultyById from '@/lib/wordpress/faculty/queryFacultyById'
 
 /**
  * Retrieve single post by specified identifier.
@@ -23,7 +24,8 @@ export default async function getPostTypeById(
   const postTypeQuery = {
     page: queryPageById,
     post: queryPostById,
-    program: queryProgramById
+    program: queryProgramById,
+    facultyMember: queryFacultyById,
   }
 
   // Check if post type is hierarchical.
