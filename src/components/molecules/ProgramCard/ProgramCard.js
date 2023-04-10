@@ -7,11 +7,10 @@ import * as styles from "./ProgramCard.module.scss"
 const ProgramCard = ({ title, excerpt, link, image }) => {
   return (
     <div className={styles.programCard}>
-      <Link href={link}>
-        {image && <Image url={image.mediaItemUrl} alt={image.altText} imageMeta={ {mediaDetails: image.mediaDetails} }/>}
-        <h3>{title}</h3>
-        <ParsedContent content={excerpt} />
-      </Link>
+      {image && <Image url={image.mediaItemUrl} alt={image.altText} imageMeta={{ mediaDetails: image.mediaDetails }} />}
+      <h3>{title}</h3>
+      <ParsedContent content={excerpt} />
+      {link && <Link href={link}>View Program</Link>}
     </div>
   )
 }

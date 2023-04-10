@@ -37,18 +37,14 @@ export default function Page({
   posts,
   year
 }) {
-  console.log("🚀 ~ file: [...slug].js:38 ~ year:", year)
-  console.log("🚀 ~ file: [...slug].js:38 ~ posts:", posts)
-  console.log("🚀 ~ file: [...slug].js:38 ~ post:", post)
-  console.log("🚀 ~ file: [...slug].js:38 ~ pagination:", pagination)
-  console.log("🚀 ~ file: [...slug].js:38 ~ month:", month)
-  console.log("🚀 ~ file: [...slug].js:38 ~ day:", day)
-  console.log("🚀 ~ file: [...slug].js:38 ~ dateArchive:", dateArchive)
-  console.log("🚀 ~ file: [...slug].js:38 ~ archive:", archive)
-
-  const router = useRouter()
-  const isFrontPage = router.asPath === '/';
-
+  // console.log("🚀 ~ file: [...slug].js:38 ~ year:", year)
+  // console.log("🚀 ~ file: [...slug].js:38 ~ posts:", posts)
+  // console.log("🚀 ~ file: [...slug].js:38 ~ post:", post)
+  // console.log("🚀 ~ file: [...slug].js:38 ~ pagination:", pagination)
+  // console.log("🚀 ~ file: [...slug].js:38 ~ month:", month)
+  // console.log("🚀 ~ file: [...slug].js:38 ~ day:", day)
+  // console.log("🚀 ~ file: [...slug].js:38 ~ dateArchive:", dateArchive)
+  // console.log("🚀 ~ file: [...slug].js:38 ~ archive:", archive)
   if (archive) {
     return (
       <Layout seo={{ ...post?.seo }}>
