@@ -8,6 +8,7 @@ import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeS
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
 import { PropTypes } from 'prop-types'
 import { useRouter } from 'next/router'
+import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 
 // Define route post type.
 const postType = 'page'
@@ -79,10 +80,13 @@ export default function Page({
   return (
     <Layout seo={{ ...post?.seo }}>
       <Container>
-     
         <article className="innerWrap">
         {!isFrontPage && (
-          <RichText tag="h1">{post?.title}</RichText>)}
+          <div>
+             <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
+          <RichText tag="h1">{post?.title}</RichText>
+          </div>
+          )}
           <Blocks blocks={post?.blocks} />
         </article>
       </Container>

@@ -1,6 +1,7 @@
 import React from "react"
 import NewsPost from "@/components/archive/NewsPost"
 import Button from "@/components/atoms/Buttons/Button"
+import { useRouter } from "next/router"
 import * as styles from "./NewsListing.module.scss"
 
 function NewsListing({
@@ -15,8 +16,11 @@ function NewsListing({
     return <div>{posts.message}</div>
   }
 
+  const router = useRouter()
+  const isFrontPage = router.asPath === '/';
+
   return (
-    <section className={styles.newsSection}>
+    <section className={`${styles.newsSection}  ${styles.homePage}`}>
       {/* <pre>FILE: NewsListing.tsx</pre> */}
       <div className={styles.sectionHead}>
         <div className={styles.sectionTag}>News</div>
