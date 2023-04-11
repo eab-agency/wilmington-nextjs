@@ -1,5 +1,5 @@
 import React from 'react'
-import * as styles from '../AlgoliaResults.module.css'
+import * as styles from '../AlgoliaResults.module.scss'
 
 /**
  * Render the NoResults component.
