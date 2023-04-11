@@ -2,7 +2,7 @@ import { useWordPressContext } from '@/components/common/WordPressProvider'
 import parseQuerystring from '@/functions/parseQuerystring'
 import cn from 'classnames'
 import React, { useRef, useState } from 'react'
-import * as styles from './AlgoliaSearch.module.css'
+import * as styles from './AlgoliaSearch.module.scss'
 import SearchPlaceholder from './components/SearchPlaceholder'
 import Search from './components/Search'
 

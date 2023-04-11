@@ -1,7 +1,10 @@
+// =======================
+// Homepage Layout
+
 @use "tokens";
 
 // =======================
-// Intro Home Page Layout
+// Intro Home
 
 .intro-home-page {
   // padding-right: clamp(10rem, 20vw, 20rem);
@@ -19,9 +22,9 @@
 }
 
 // =======================
+// News Section Home
 
-// Note: AO This is a temporary solution to the homepage layout. Find a better way to do this.
-.homepage {
+.front-page {
   section[class*="news-section"] {
     @media (min-width: tokens.$mq-1200) {
       flex-direction: column;
@@ -36,7 +39,7 @@
 }
 
 // =======================
-// Testimonials Home
+// Testimonials Section Home
 
 .testimonial-home {
   padding-block: 4rem;
@@ -100,8 +103,6 @@
     height: 100%;
   }
 }
-
-// =======================
 
 // =======================
 // Two Columns Highlight
