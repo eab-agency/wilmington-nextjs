@@ -4,6 +4,7 @@ import AlgoliaSearch from '@/components/molecules/AlgoliaSearch'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
 import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
+import { useRouter } from 'next/router'
 import * as styles from './Layout.module.scss'
 
 import {Cantarell } from "next/font/google"
@@ -24,14 +25,17 @@ const cantarell = Cantarell({
 export default function Layout({ children, seo }) {
   const { menus } = useWordPressContext()
 
+  const router = useRouter()
+  const isFrontPage = router.asPath === '/';
+
   return (
-    <div className={`${cantarell.className} `}>
+    <div className={`${cantarell.className}`}>
       <Meta seo={seo} />
       <Header
         menu={menus?.UTILITY_NAV}
         search={<AlgoliaSearch useHistory={true} usePlaceholder={true} />}
       />
-      <div className={styles.mainContainer} >
+      <div className={`${styles.mainContainer} ${isFrontPage ? 'front-page' : ''}`} >
       <MainNavigation menuItems={menus?.MAIN_NAV} enableDropdown={true} />
         <main>{children}</main>
       </div>

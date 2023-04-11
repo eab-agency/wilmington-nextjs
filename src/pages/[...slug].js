@@ -45,6 +45,10 @@ export default function Page({
   // console.log("🚀 ~ file: [...slug].js:38 ~ day:", day)
   // console.log("🚀 ~ file: [...slug].js:38 ~ dateArchive:", dateArchive)
   // console.log("🚀 ~ file: [...slug].js:38 ~ archive:", archive)
+
+  const router = useRouter()
+  const isFrontPage = router.asPath === '/';
+
   if (archive) {
     return (
       <Layout seo={{ ...post?.seo }}>
@@ -74,9 +78,9 @@ export default function Page({
   }
 
   return (
-    <Layout seo={{ ...post?.seo }}>
+    <Layout className="thelayoutclass" seo={{ ...post?.seo }}>
       <Container>
-        <article className="innerWrap">
+        <article className="inner-wrap">
         {!isFrontPage && (
           <div>
              <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
