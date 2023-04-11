@@ -1,23 +1,14 @@
 // ================
 // Typography
 // ================
-@use "config";
-@use "spacing";
-@use "colors";
-@use "fonts";
-@use "mixins";
-
-// $baseUnit: 16;
-// $letter-spacing: 1rem;
-// $line-height: 1.5;
-// $font-size: 1rem;
+@use "tokens";
 
 // ================
 // Root
 
 html {
-  line-height: spacing.$bodyLineHeight;
-  font-family: fonts.$f-bodyFont;
+  line-height: tokens.$bodyLineHeight;
+  font-family: tokens.$f-bodyFont;
 }
 
 // ================
@@ -30,12 +21,12 @@ h4,
 h5,
 h6 {
   margin: 0 0 1rem 0;
-  line-height: spacing.$headingLineHeight;
-  font-family: fonts.$f-headlineFont;
+  line-height: tokens.$headingLineHeight;
+  font-family: tokens.$f-headlineFont;
 }
 
 h1 {
-  font-size: clamp(fonts.$fontSize-l, 5vw, fonts.$fontSize-xxxl);
+  font-size: clamp(tokens.$fs-l, 5vw, tokens.$fs-xxxl);
   font-weight: 400;
   strong {
     display: block;
@@ -43,7 +34,7 @@ h1 {
   }
 }
 h2 {
-  font-size: clamp(fonts.$fontSize-m, 4vw, fonts.$fontSize-xl);
+  font-size: clamp(tokens.$fs-m, 4vw, tokens.$fs-xl);
   font-weight: 400;
   strong {
     display: block;
@@ -52,7 +43,7 @@ h2 {
 }
 
 h3 {
-  font-size: clamp(fonts.$fontSize-s, 3vw, fonts.$fontSize-l);
+  font-size: clamp(tokens.$fs-s, 3vw, tokens.$fs-l);
   font-weight: 400;
   strong {
     display: block;
@@ -105,5 +96,5 @@ small,
 
 .error,
 .val-header {
-  color: colors.$c-error;
+  color: tokens.$c-error;
 }
