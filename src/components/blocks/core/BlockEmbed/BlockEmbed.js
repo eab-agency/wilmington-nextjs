@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState } from 'react'
 import VideoEmbed from '@/components/atoms/VideoEmbed'
 import PropTypes from 'prop-types'

@@ -43,7 +43,7 @@ export const singleFacultyFragment = gql`
 const queryFacultyById = gql`
   query GET_FACULTY_BY_ID(
      $id: ID!
-    $idType: FacultyMemberIdType = URI
+    $idType: FacultyMemberIdType = SLUG
     $imageSize: MediaItemSizeEnum = MEDIUM
   ) {
   ${defaultPageData}
