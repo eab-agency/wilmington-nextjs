@@ -1,3 +1,5 @@
+'use client'
+
 import { useWordPressContext } from '@/components/common/WordPressProvider'
 import parseQuerystring from '@/functions/parseQuerystring'
 import cn from 'classnames'
@@ -30,7 +32,10 @@ export default function AlgoliaSearch({ useHistory, usePlaceholder, className })
   const query = path.includes('q=') ? parseQuerystring(path, 'q') : '' // Parse the querystring.
   const [loadAlgolia, setLoadAlgolia] = useState(0)
   const searchRef = useRef()
-  const { algolia } = useWordPressContext()
+  // const { algolia } = useWordPressContext()
+  const algolia = {
+    indexName: 'wp_searchable_posts',
+  }
 
   /**
    * Set a min-height value on the search wrapper

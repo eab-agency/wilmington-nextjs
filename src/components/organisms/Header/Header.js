@@ -1,13 +1,15 @@
+'use client'
+
 import Logo from '@/components/atoms/Logo'
 import Link from '@/components/common/Link'
 import TopMenu from '@/components/molecules/Navigation/TopMenu'
 import { useEffect, useState } from 'react'
 import { MdSearch } from 'react-icons/md'
-import * as styles from './Header.module.scss'
+import styles from './Header.module.scss'
 // import GlobalStyles from '../../../../src/styles/globalStyles'
 // import {createGlobalStyle} from 'styled-components'
 
-const Header = ({ search, menu }) => {
+const Header = ({ search, menuItems }) => {
   const [scrollPosition, setScrollPosition] = useState(0)
   const handleScroll = () => {
     const position = window.pageYOffset
@@ -66,7 +68,7 @@ const Header = ({ search, menu }) => {
               <Logo className={styles.svg} type="dark" />
             </Link>
             <div className={styles.topMenu}>
-              <TopMenu menuItems={menu} />
+              <TopMenu menuItems={menuItems} />
               {/* <button className={styles.search} type="button">
                 Search
                 <MdSearch />

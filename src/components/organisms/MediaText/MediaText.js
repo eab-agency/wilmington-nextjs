@@ -1,3 +1,5 @@
+'use client'
+
 import Button from '@/components/atoms/Buttons/Button'
 import DisplayImage from '@/components/atoms/Image'
 import cn from 'classnames'
@@ -24,7 +26,7 @@ import * as styles from './MediaText.module.css'
  * @param  {string}  props.verticalAlignment Vertical alignment of text.
  * @return {Element}                         The MediaText component.
  */
-export default function MediaText ({
+export default function MediaText({
   body,
   children,
   className,
@@ -50,9 +52,9 @@ export default function MediaText ({
   const imageFillStyle = !imageFill
     ? null
     : {
-        backgroundImage: `url(${image?.url || ''})`,
-        backgroundPosition: `${focalPoint.x} ${focalPoint.y}`
-      }
+      backgroundImage: `url(${image?.url || ''})`,
+      backgroundPosition: `${focalPoint.x} ${focalPoint.y}`
+    }
 
   return (
     <section

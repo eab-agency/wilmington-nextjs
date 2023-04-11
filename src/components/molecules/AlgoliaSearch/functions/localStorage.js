@@ -6,7 +6,7 @@
  * @param  {number}   maxLength Maximum history items to store.
  * @return {Function}           Sets the value of the pair identified by key to value
  */
-export function setLocalStorage (name, value, maxLength) {
+export function setLocalStorage(name, value, maxLength) {
   if (!localStorage) {
     return false
   }
@@ -37,7 +37,7 @@ export function setLocalStorage (name, value, maxLength) {
  * @param  {any}      name Local Storage name.
  * @return {Function}      Removes the key/value pair with the given key
  */
-export function deleteLocalStorage (name) {
+export function deleteLocalStorage(name) {
   if (!name) {
     return false
   }
@@ -51,7 +51,7 @@ export function deleteLocalStorage (name) {
  * @param  {*}     value Potential duplicate items.
  * @return {Array}       The the potential storage.
  */
-function removeStorageDuplicates (array = [], value = '') {
+function removeStorageDuplicates(array = [], value = '') {
   if (!array || !value) {
     return false
   }
