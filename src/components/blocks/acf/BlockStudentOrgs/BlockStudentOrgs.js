@@ -1,4 +1,4 @@
-import React from 'react'
+'use client'
 import StudentOrg from '@/components/molecules/StudentOrg'
 import { useWordPressContext } from '@/components/common/WordPressProvider'
 

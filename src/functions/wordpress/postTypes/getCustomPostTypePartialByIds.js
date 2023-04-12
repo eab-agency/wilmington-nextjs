@@ -1,10 +1,8 @@
 import processCustomPostTypeQuery from '@/functions/wordpress/postTypes/processCustomPostTypeQuery'
 import queryFacultyById from '@/lib/wordpress/faculty/queryFacultyById'
 import queryFaqById from '@/lib/wordpress/faq/queryFaqById'
+import queryStudentOrgById from '@/lib/wordpress/student-orgs/queryStudentOrgById'
 
-import {
-    initializeWpApollo
-} from '@/lib/wordpress/connector'
 /**
  * Retrieve single post by specified identifier.
  *
@@ -30,6 +28,7 @@ export default async function getCustomPostTypePartialById(
     const postTypeQuery = {
         facultyMember: queryFacultyById,
         fAQ: queryFaqById,
+        studentOrg: queryStudentOrgById,
     }
 
     // Retrieve post type query.

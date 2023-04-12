@@ -18,16 +18,8 @@ const children = `
     }
 `
 
-// Fragment: retrieve single program fields.
-export const singleProgramFragment = gql`
-  fragment SingleProgramFields on Program {
-    ${globalPostFields}
-    blocksJSON
-    excerpt
-    ${seoPostFields}
-    ${featuredImagePostFields}
-    ${children}
-     departments {
+const departmentsAndStudentOrgs = `
+   departments {
       nodes {
         name
         programs {
@@ -53,6 +45,18 @@ export const singleProgramFragment = gql`
         }
       }
     }
+`
+
+// Fragment: retrieve single program fields.
+export const singleProgramFragment = gql`
+  fragment SingleProgramFields on Program {
+    ${globalPostFields}
+    blocksJSON
+    excerpt
+    ${seoPostFields}
+    ${featuredImagePostFields}
+    ${children}
+    ${departmentsAndStudentOrgs}
   }
 `
 
@@ -93,6 +97,7 @@ export const queryProgramChildrenById = gql`
       title
       ${featuredImagePostFields}
       ${children}
+      ${departmentsAndStudentOrgs}
     }
   }
 `

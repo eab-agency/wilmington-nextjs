@@ -1,4 +1,3 @@
-import TopMenu from '@/components/molecules/Navigation/TopMenu/TopMenu';
 import AlgoliaSearch from '@/components/molecules/AlgoliaSearch'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
@@ -13,7 +12,7 @@ export const metadata = {
 };
 
 
-export default async function RootLayout({ children, }: {
+export default async function RootLayout({ children }: {
   children: React.ReactNode;
 }) {
     const mainNavMenuItems = await getMenuByLocation("MAIN_NAV")
