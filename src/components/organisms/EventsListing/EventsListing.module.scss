@@ -11,6 +11,10 @@
   &::before {
     @include mixins.extendedBackground(tokens.$c-gray-700);
   }
+
+  // @media (min-width: tokens.$mq-1200) {
+  //   @include mixins.sectionPadding;
+  // }
 }
 
 .section-head {
@@ -37,8 +41,6 @@
   flex-direction: column;
   // gap: tokens.$m-xl;
   margin-bottom: tokens.$m-xl;
-
-  // padding-right: 24rem;
 
   @media (min-width: tokens.$mq-1200) {
     flex-direction: row;

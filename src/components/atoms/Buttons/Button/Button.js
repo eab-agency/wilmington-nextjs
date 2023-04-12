@@ -20,7 +20,7 @@ export function ButtonInner({ icon, iconOnly, text }) {
   return (
     <>
       {!iconOnly && <span className={styles.text}>{text}</span>}
-      {icon ? (<Icon icon={icon} title={text} ariaHidden={!!text} />) : (<MdChevronRight />)}
+      {icon ? (<Icon icon={icon} title={text} ariaHidden={!!text} />) : (<i><MdChevronRight /></i>)}
     </>
   )
 }

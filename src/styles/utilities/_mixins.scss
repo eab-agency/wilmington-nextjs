@@ -21,7 +21,7 @@
 // @mixin button(
 //   $color: black,
 //   $bgColor: #efefef,
-//   $fontSize: tokens.$fs-xxs,
+//   $fontSize: tokens.$fs-2xs,
 //   $iconBgColor: gray
 // ) {
 //   display: inline-flex;
@@ -124,7 +124,7 @@
   gap: tokens.$p-s;
   color: $textColor;
   position: relative;
-  font-size: tokens.$fs-xxxs;
+  font-size: tokens.$fs-3xs;
   font-weight: 600;
   text-transform: uppercase;
   writing-mode: vertical-lr;
@@ -154,12 +154,12 @@
   z-index: tokens.$layer-1;
 }
 
-@mixin sectionPadding($type: "default") {
+@mixin sectionPadding($type: "default", $size: 4vw) {
   @if $type == "default" {
-    padding: clamp(tokens.$p-l, 4vw, tokens.$p-4xl);
+    padding: clamp(tokens.$p-l, $size, tokens.$p-4xl);
   } @else if $type == "block" {
-    padding-block: clamp(tokens.$p-l, 4vw, tokens.$p-4xl);
+    padding-block: clamp(tokens.$p-l, $size, tokens.$p-4xl);
   } @else if $type == "inline" {
-    padding-inline: clamp(tokens.$p-l, 4vw, tokens.$p-4xl);
+    padding-inline: clamp(tokens.$p-l, $size, tokens.$p-4xl);
   }
 }

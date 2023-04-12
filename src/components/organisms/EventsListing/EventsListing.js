@@ -44,7 +44,7 @@ function EventsListing({
           </li>
         ))}
       </ul>
-      <Button type="secondary" icon='arrowRight' url="/events" text="View All Events" />
+      <Button url="/events" text="View All Events" />
     </section>
   );
 }
