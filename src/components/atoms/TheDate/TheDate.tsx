@@ -7,7 +7,7 @@ const TheDate = (prop: { date: number }): any => {
     month: "short",
     day: "2-digit",
   })
-  return <time className={styles.time}>{formattedDate}</time>
+  return <time className={styles.theTime}>{formattedDate}</time>
 }
 
 export default TheDate
