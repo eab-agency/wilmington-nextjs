@@ -9,13 +9,14 @@ export default async function Page({ params }) {
     const id = `/programs/${params?.slug}`
     const { props } = await getPostTypeStaticProps({ slug: id }, postType)
     const { post } = props
+    // console.log("🚀 ~ file: page.js:12 ~ Page ~ post:", post)
 
     return (
         <div>
             <Container>
                 <article className="innerWrap">
                     <RichText tag="h1">{post?.title}</RichText>
-                    <Blocks blocks={post?.blocks} />
+                    <Blocks blocks={post?.blocks} departments={post?.departments?.nodes} programOrgRelationship={post?.programOrgRelationship?.programorg} />
                 </article>
             </Container>
         </div>
