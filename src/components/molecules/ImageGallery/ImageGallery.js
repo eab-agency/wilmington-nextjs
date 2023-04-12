@@ -16,10 +16,10 @@ import Block from '@/components/molecules/Blocks';
  * @param  {Array}   props.images    The array of images.
  * @return {Element}                 The ImageGallery component.
  */
-export default function ImageGallery ({
+export default function ImageGallery({
   anchor,
   caption,
-  columns,
+  columns = 3,
   className,
   images,
   innerBlocks,
@@ -64,8 +64,4 @@ ImageGallery.propTypes = {
       url: PropTypes.string
     })
   )
-}
-
-ImageGallery.defaultProps = {
-  columns: 3
 }

@@ -15,11 +15,11 @@ import * as styles from './Select.module.css'
  * @param  {Array}   props.options     Array of input options objects.
  * @return {Element}                   The Select component.
  */
-export default function Select ({
+export default function Select({
   className,
   description,
   id,
-  isRequired,
+  isRequired = false,
   label,
   options
 }) {
@@ -42,8 +42,4 @@ export default function Select ({
       <ErrorMessage name={id} />
     </div>
   )
-}
-
-Select.defaultProps = {
-  isRequired: false
 }

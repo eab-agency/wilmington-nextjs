@@ -10,13 +10,13 @@ const postType = 'page'
 /**
  * Render the Custom404 component.
  *
- * @author WebDevStudios
+
  * @param  {object}  props      The component attributes as props.
  * @param  {object}  props.post Post data from WordPress.
  * @return {Element}            The Custom404 component.
  */
-export default function Custom404({post}) {
-  const {seo, ...postData} = post
+export default function Custom404({ post }) {
+  const { seo, ...postData } = post
 
   // Update robots SEO meta.
   seo.metaRobotsNofollow = 'noindex'
@@ -28,7 +28,7 @@ export default function Custom404({post}) {
   }
 
   return (
-    <Layout seo={{...seo}}>
+    <Layout seo={{ ...seo }}>
       <Container>
         <article>
           <h1>404 Not Found</h1>
@@ -42,11 +42,11 @@ export default function Custom404({post}) {
 /**
  * Get post static props.
  *
- * @author WebDevStudios
+
  * @return {object} Post props.
  */
 export async function getStaticProps() {
-  return await getPostTypeStaticProps({slug: '404'}, postType)
+  return await getPostTypeStaticProps({ slug: '404' }, postType)
 }
 
 Custom404.propTypes = {

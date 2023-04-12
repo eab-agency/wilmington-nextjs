@@ -121,6 +121,7 @@ export default function displayBlock(block, index) {
       return <BlockDefault content={attributes.content} key={index} />
     }
 
+    case 'core/pattern':
     case 'core/html': {
       // const BlockHtml = dynamic(() => import('@/components/blocks/core/BlockHtml'))
       // return <BlockHtml {...attributes} key={index} />
@@ -184,6 +185,11 @@ export default function displayBlock(block, index) {
     case 'acf/faculty-card': {
       const BlockFacultyCard = dynamic(() => import('@/components/blocks/acf/BlockFacultyCard'))
       return <BlockFacultyCard {...attributes} key={index} />;
+    }
+
+    case 'acf/faculty-spotlight': {
+      const BlockFacultyCards = dynamic(() => import('@/components/blocks/acf/BlockFacultyCards'))
+      return <BlockFacultyCards {...attributes} key={index} />;
     }
 
     case 'acf/athlete-card': {

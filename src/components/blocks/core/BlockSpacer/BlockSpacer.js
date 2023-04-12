@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
  * @param  {string}  props.height The height in px of the spacer.
  * @return {Element}              The Spacer component.
  */
-export default function BlockSpacer ({ anchor, height }) {
+export default function BlockSpacer({ anchor, height = 40 }) {
   // remove all but the number from the height string
   const heightNum = parseInt(height.replace(/\D/g, ''), 10)
   return <Spacer height={heightNum} id={anchor} />
@@ -21,7 +21,4 @@ export default function BlockSpacer ({ anchor, height }) {
 BlockSpacer.propTypes = {
   anchor: PropTypes.string,
   height: PropTypes.string
-}
-BlockSpacer.defaultProps = {
-  height: 40
 }

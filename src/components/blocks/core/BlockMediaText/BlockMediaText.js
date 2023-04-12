@@ -104,9 +104,3 @@ BlockMediaText.propTypes = {
   textColorHex: PropTypes.string,
   verticalAlignment: PropTypes.string
 }
-
-BlockMediaText.defaultProps = {
-  media: PropTypes.shape({
-    mediaPosition: 'left'
-  })
-}
