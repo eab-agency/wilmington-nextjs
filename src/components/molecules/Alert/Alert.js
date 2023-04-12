@@ -14,7 +14,7 @@ import * as styles from './Alert.module.css'
  * @param  {string}  props.type      The type of alert.
  * @return {Element}                 The Alert component.
  */
-export default function Alert ({ body, className, icon, type }) {
+export default function Alert({ body, className, icon, type = 'default' }) {
   return (
     <div
       className={cn(
@@ -38,8 +38,4 @@ Alert.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.string,
   type: PropTypes.oneOf(['default', 'error', 'success'])
-}
-
-Alert.defaultProps = {
-  type: 'default'
 }

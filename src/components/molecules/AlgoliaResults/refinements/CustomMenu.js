@@ -20,13 +20,13 @@ import * as styles from '../AlgoliaResults.module.scss'
  * @param  {object}   props.translations A mapping of keys to translation values.
  * @return {Element}                     The Menu component.
  */
-function Menu ({
+function Menu({
   attribute,
   className,
   items,
   limit,
   refine,
-  showCount,
+  showCount = true,
   showMore,
   title,
   translations
@@ -85,10 +85,6 @@ Menu.propTypes = {
   showMore: PropTypes.bool,
   title: PropTypes.string,
   translations: PropTypes.object
-}
-
-Menu.defaultProps = {
-  showCount: true
 }
 
 const CustomMenu = connectMenu(Menu)

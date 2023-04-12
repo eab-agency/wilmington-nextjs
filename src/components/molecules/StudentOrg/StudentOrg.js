@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from "react"
 import Button from "@/components/atoms/Buttons/Button"
 import Heading from "@/components/atoms/Heading"

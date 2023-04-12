@@ -23,8 +23,6 @@ export default async function getPostTypeStaticProps(
   preview = false,
   previewData = null
 ) {
-  console.log("🚀 ~ file: getPostTypeStaticProps.js:26 ~ postType:", postType)
-  console.log("🚀🚀🚀 ~ file: getPostTypeStaticProps.js:26 ~ params:", params)
   // Set revalidate length (seconds).
   const revalidate = 60 * 5
 
@@ -65,7 +63,6 @@ export default async function getPostTypeStaticProps(
   /* -- Handle dynamic archive display. -- */
   if (!Object.keys(params).length) {
     const { apolloClient, ...archiveData } = await getPostTypeArchive(postType)
-
     // Merge in query results as Apollo state.
     return addApolloState(apolloClient, {
       props: {

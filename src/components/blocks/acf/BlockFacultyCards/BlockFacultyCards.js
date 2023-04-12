@@ -11,14 +11,13 @@ import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard';
  * @return {Element}                    The Card component.
  */
 
-export default function BlockFacultyCards({ programfacultyIDs }) {
-  const programfaculty = []
-  // if programfaculty is null or undefined, return null
-  if (!programfaculty) {
+export default function BlockFacultyCards({ facultyData }) {
+  // if facultyData is null or undefined, return null
+  if (!facultyData) {
     return null;
   }
 
-  const facultyRestructured = programfaculty.map(faculty => {
+  const facultyRestructured = facultyData.map(faculty => {
     const { email, first, last, phone, position } =
       faculty?.facultyFields?.faculty;
     return {
@@ -26,13 +25,13 @@ export default function BlockFacultyCards({ programfacultyIDs }) {
       first: first,
       last: last,
       phone: phone,
-      position: position,
       title: `${first} ${last}`,
-      link: faculty.link,
-      image: faculty.featuredImage?.node?.gatsbyImage,
+      link: faculty.uri,
+      image: faculty.featuredImage?.node,
+      description: position,
     };
   });
-  // console.table(facultyRestructured);
+
   return (
     <>
       {facultyRestructured.map((faculty, index) => {

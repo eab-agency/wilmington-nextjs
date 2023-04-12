@@ -21,7 +21,7 @@ import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles';
 export default function Groups({
   id,
   className,
-  groupsCount,
+  groupsCount = 3,
   children,
   style,
   verticalAlignment,
@@ -59,7 +59,4 @@ Groups.propTypes = {
   //   color: PropTypes.string
   // }),
   verticalAlignment: PropTypes.string,
-};
-Groups.defaultProps = {
-  groupsCount: 3,
 };

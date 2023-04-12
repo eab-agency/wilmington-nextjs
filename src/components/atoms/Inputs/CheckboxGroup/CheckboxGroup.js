@@ -14,13 +14,13 @@ import Checkbox from '@/components/atoms/Inputs/Checkbox'
  * @param  {boolean}       props.isRequired  If input is required.
  * @return {Element}                         The CheckboxGroup component.
  */
-export default function CheckboxGroup ({
+export default function CheckboxGroup({
   checkboxes,
   className,
   description,
   id: groupId,
   label,
-  isRequired
+  isRequired = false
 }) {
   return (
     <div
@@ -52,8 +52,4 @@ export default function CheckboxGroup ({
       <ErrorMessage name={groupId} />
     </div>
   )
-}
-
-CheckboxGroup.defaultProps = {
-  isRequired: false
 }
