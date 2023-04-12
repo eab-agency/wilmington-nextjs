@@ -67,10 +67,6 @@ export default function BlockEmbed({
 BlockEmbed.propTypes = {
   className: PropTypes.string,
   url: PropTypes.string,
-  align: PropTypes.string,
   caption: PropTypes.string,
   providerNameSlug: PropTypes.string
-}
-BlockEmbed.defaultProps = {
-  align: 'left'
 }

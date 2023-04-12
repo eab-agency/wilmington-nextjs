@@ -35,7 +35,7 @@ export default function MediaText({
   id,
   image,
   imageFill,
-  mediaLeft,
+  mediaLeft = false,
   isStackedOnMobile,
   style,
   title,
@@ -131,8 +131,4 @@ MediaText.propTypes = {
   }),
   title: PropTypes.string,
   verticalAlignment: PropTypes.string
-}
-
-MediaText.defaultProps = {
-  mediaLeft: false
 }
