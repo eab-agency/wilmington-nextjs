@@ -29,14 +29,14 @@
       text-decoration: none;
       text-align: center;
       text-transform: uppercase;
-      font-size: tokens.$fs-xxxs;
+      font-size: tokens.$fs-3xs;
       border-bottom: 2px solid transparent;
       overflow: hidden;
       transition: all 0.1s ease-in;
 
       @media (min-width: tokens.$mq-1100) {
         flex-direction: row;
-        font-size: tokens.$fs-xxs;
+        font-size: tokens.$fs-2xs;
       }
 
       &::after {

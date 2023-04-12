@@ -17,59 +17,59 @@
   @include center();
 }
 
-// Buttons
-@mixin button(
-  $color: black,
-  $bgColor: #efefef,
-  $fontSize: tokens.$fs-xxs,
-  $iconBgColor: gray
-) {
-  display: inline-flex;
-  position: relative;
-  align-items: center;
-  width: auto;
-  color: $color;
-  background: $bgColor;
-  text-decoration: none;
-  text-align: left;
-  text-transform: uppercase;
-  font-size: $fontSize;
-  cursor: pointer;
-  border: 1px solid color.adjust($bgColor, $lightness: -30%);
-  border-radius: tokens.$br-xs;
-  overflow: hidden;
-  box-shadow: 0 0.2em 0.3em rgba(tokens.$c-copy, 0.1);
-  transition: all 0.15s ease-in;
-  position: relative;
-  padding: calc(tokens.$p-s * 1.5) tokens.$p-m;
-  padding-right: 4em;
+// // Buttons
+// @mixin button(
+//   $color: black,
+//   $bgColor: #efefef,
+//   $fontSize: tokens.$fs-2xs,
+//   $iconBgColor: gray
+// ) {
+//   display: inline-flex;
+//   position: relative;
+//   align-items: center;
+//   width: auto;
+//   color: $color;
+//   background: $bgColor;
+//   text-decoration: none;
+//   text-align: left;
+//   text-transform: uppercase;
+//   font-size: $fontSize;
+//   cursor: pointer;
+//   border: 1px solid color.adjust($bgColor, $lightness: -30%);
+//   border-radius: tokens.$br-xs;
+//   overflow: hidden;
+//   box-shadow: 0 0.2em 0.3em rgba(tokens.$c-copy, 0.1);
+//   transition: all 0.15s ease-in;
+//   position: relative;
+//   padding: calc(tokens.$p-s * 1.5) tokens.$p-m;
+//   padding-right: 4em;
 
-  i {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: $iconBgColor;
-    color: white;
-    position: absolute;
-    z-index: tokens.$layer-2;
-    right: 0;
-    top: 0;
-    width: 1.5em;
-    height: 100%;
-    font-size: calc(#{$fontSize} * 2);
-    transition: all 0.15s ease-in;
-  }
+//   i {
+//     display: inline-flex;
+//     align-items: center;
+//     justify-content: center;
+//     background: $iconBgColor;
+//     color: white;
+//     position: absolute;
+//     z-index: tokens.$layer-2;
+//     right: 0;
+//     top: 0;
+//     width: 1.5em;
+//     height: 100%;
+//     font-size: calc(#{$fontSize} * 2);
+//     transition: all 0.15s ease-in;
+//   }
 
-  &:hover,
-  &:focus {
-    background: $iconBgColor;
+//   &:hover,
+//   &:focus {
+//     background: $iconBgColor;
 
-    i {
-      padding-left: 0.3em;
-      background: transparent;
-    }
-  }
-}
+//     i {
+//       padding-left: 0.3em;
+//       background: transparent;
+//     }
+//   }
+// }
 
 @mixin drawerIn($direction: left, $duration: 0.3s, $timing: ease-in-out) {
   @if $direction == left {
@@ -124,7 +124,7 @@
   gap: tokens.$p-s;
   color: $textColor;
   position: relative;
-  font-size: tokens.$fs-xxxs;
+  font-size: tokens.$fs-3xs;
   font-weight: 600;
   text-transform: uppercase;
   writing-mode: vertical-lr;
@@ -152,4 +152,14 @@
   top: 0;
   right: 100%;
   z-index: tokens.$layer-1;
+}
+
+@mixin sectionPadding($type: "default", $size: 4vw) {
+  @if $type == "default" {
+    padding: clamp(tokens.$p-l, $size, tokens.$p-4xl);
+  } @else if $type == "block" {
+    padding-block: clamp(tokens.$p-l, $size, tokens.$p-4xl);
+  } @else if $type == "inline" {
+    padding-inline: clamp(tokens.$p-l, $size, tokens.$p-4xl);
+  }
 }
