@@ -3,7 +3,7 @@
 
 .news-section {
   background: tokens.$c-darkGreen-700;
-  @include tokens.sectionPadding();
+  @include mixins.sectionPadding(block);
   display: flex;
   flex-direction: column;
   z-index: tokens.$layer-10;

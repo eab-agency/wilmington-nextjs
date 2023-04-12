@@ -1,3 +1,23 @@
+@use "tokens";
+
 .inner-wrap {
   position: relative;
+}
+
+a[class*="button"][href*="cincinnati"] {
+  background: tokens.$c-cincinnati-600 !important;
+  border-color: tokens.$c-cincinnati-700;
+
+  i {
+    background: tokens.$c-cincinnati-700;
+  }
+
+  &::after {
+    background-color: tokens.$c-cincinnati-700;
+  }
+
+  &:hover,
+  &:focus {
+    background: tokens.$c-cincinnati-700;
+  }
 }

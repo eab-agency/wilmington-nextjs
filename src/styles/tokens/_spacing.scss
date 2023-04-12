@@ -1,22 +1,18 @@
 @use "config";
-@use "utilities/tools";
 
 // ================
 // Spacing Tokens
 // ================
 
-//* Padding = if $baseUnit is 16px, then $p-xxxl is 48px
-$p-xxxl: calc(config.$baseUnit * 3); // 48px
+//* Padding = if $baseUnit is 16px, then $p-3xl is 48px
+$p-4xl: calc(config.$baseUnit * 4); // 64px
+$p-3xl: calc(config.$baseUnit * 3); // 48px
 $p-xxl: calc(config.$baseUnit * 2.5); // 40px
 $p-xl: calc(config.$baseUnit * 2); // 32px
 $p-l: calc(config.$baseUnit * 1.5); // 24px
 $p-m: calc(config.$baseUnit * 1); // 16px
 $p-s: calc(config.$baseUnit * 0.5); // 8px
 $p-xs: calc(config.$baseUnit * 0.25); // 4px
-
-@mixin sectionPadding() {
-  @include tools.fluidRem(padding, $p-l, $p-xxl);
-}
 
 //* Margin = if $baseUnit is 16px, then $m-xxxl is 48px
 $m-xxxl: calc(config.$baseUnit * 3);

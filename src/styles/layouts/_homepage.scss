@@ -88,7 +88,7 @@
     width: 100%;
     grid-column: 1 / span 11;
     @media (min-width: tokens.$mq-1200) {
-      padding-right: tokens.$p-xxxl;
+      padding-right: tokens.$p-3xl;
       align-self: end;
     }
   }

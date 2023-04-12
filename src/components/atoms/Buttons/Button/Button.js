@@ -2,6 +2,7 @@ import Icon from "@/components/atoms/Icon"
 import Link from "@/components/common/Link"
 import cn from "classnames"
 import React from "react"
+import {MdChevronRight} from "react-icons/md"
 import styles from "./Button.module.scss"
 
 /**
@@ -19,7 +20,7 @@ export function ButtonInner({ icon, iconOnly, text }) {
   return (
     <>
       {!iconOnly && <span className={styles.text}>{text}</span>}
-      {icon && <Icon icon={icon} title={text} ariaHidden={!!text} />}
+      {icon ? (<Icon icon={icon} title={text} ariaHidden={!!text} />) : (<MdChevronRight />)}
     </>
   )
 }
