@@ -39,6 +39,15 @@ export const singleFacultyFragment = gql`
   }
 `
 
+export const singleFacultyFragmentPartial = gql`
+  fragment SingleFacultyFieldsPartial on FacultyMember {
+     ${globalPostFields}
+    excerpt
+    ${facultyAcfFields}
+    ${featuredImagePostFields}
+  }
+`
+
 // Query: retrieve post by specified identifier.
 const queryFacultyById = gql`
   query GET_FACULTY_BY_ID(
@@ -55,3 +64,16 @@ ${singleFacultyFragment}
 `
 
 export default queryFacultyById
+
+export const queryFacultyPartialById = gql`
+  query GET_FACULTY_PARTIAL_BY_ID(
+     $id: ID!
+    $idType: FacultyMemberIdType = SLUG
+    $imageSize: MediaItemSizeEnum = MEDIUM
+  ) {
+  facultyMember(id: $id, idType: $idType) {
+    ...SingleFacultyFieldsPartial
+  }
+}
+${singleFacultyFragmentPartial}
+`
