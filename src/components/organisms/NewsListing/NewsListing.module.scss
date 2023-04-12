@@ -15,6 +15,7 @@
 
   @media (min-width: tokens.$mq-1200) {
     flex-direction: row;
+    @include mixins.sectionPadding($size: 2vw);
 
     &::before {
       display: none;
