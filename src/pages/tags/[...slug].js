@@ -13,7 +13,7 @@ const taxonomyType = 'tag'
 /**
  * Render the Tag component.
  *
- * @author WebDevStudios
+
  * @param  {object}  props            The component attributes as props.
  * @param  {object}  props.pagination Archive pagination data from WordPress.
  * @param  {object}  props.post       Post data from WordPress.
@@ -21,9 +21,9 @@ const taxonomyType = 'tag'
  * @param  {string}  props.term       WP taxonomy term slug.
  * @return {Element}                  The Tag component.
  */
-export default function Tag({pagination, post, posts, term}) {
+export default function Tag({ pagination, post, posts, term }) {
   return (
-    <Layout seo={{...post?.seo}}>
+    <Layout seo={{ ...post?.seo }}>
       <Container>
         <RichText tag="h1">{post?.title}</RichText>
         <Archive
@@ -41,7 +41,7 @@ export default function Tag({pagination, post, posts, term}) {
 /**
  * Get post static paths.
  *
- * @author WebDevStudios
+
  * @return {object} Object consisting of array of paths and fallback setting.
  */
 export async function getStaticPaths() {
@@ -51,12 +51,12 @@ export async function getStaticPaths() {
 /**
  * Get post static props.
  *
- * @author WebDevStudios
+
  * @param  {object} context        Context for current post.
  * @param  {object} context.params Route parameters for current post.
  * @return {object}                Post props.
  */
-export async function getStaticProps({params}) {
+export async function getStaticProps({ params }) {
   return await getTaxonomyStaticProps(params, taxonomyType)
 }
 

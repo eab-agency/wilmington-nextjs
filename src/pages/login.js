@@ -12,7 +12,7 @@ import React, { useEffect, useState } from 'react'
 /**
  * Render the Login component.
  *
- * @author WebDevStudios
+
  * @param  {object}  props      The component attributes as props.
  * @param  {object}  props.post Post data from WordPress.
  * @return {Element}            The Login component.
@@ -32,7 +32,7 @@ export default function Login({ post }) {
   /**
    * Submit login form.
    *
-   * @author WebDevStudios
+  
    * @param {object} values Field values to submit.
    */
   async function submitForm(values) {
@@ -75,7 +75,7 @@ export default function Login({ post }) {
 /**
  * Get post static props.
  *
- * @author WebDevStudios
+
  * @return {object} Post props.
  */
 export async function getStaticProps() {

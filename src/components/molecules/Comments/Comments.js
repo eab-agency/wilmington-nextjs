@@ -9,7 +9,7 @@ import * as Yup from 'yup'
 /**
  * Render an individual comment component.
  *
- * @author WebDevStudios
+
  * @param  {object}  props         The component attributes as props.
  * @param  {object}  props.comment The comment to display.
  * @return {Element}               The Comment component.
@@ -51,7 +51,7 @@ SingleComment.propTypes = {
 /**
  * Render the Comments component.
  *
- * @author WebDevStudios
+
  * @param  {object}  props          The component attributes as props.
  * @param  {Array}   props.comments The array of comments to display.
  * @param  {number}  props.postId   The database ID of the post.
@@ -71,7 +71,7 @@ export default function Comments({ comments, postId }) {
   /**
    * Handle post comment submission.
    *
-   * @author WebDevStudios
+  
    * @param {object}   values                Form values.
    * @param {object}   actions               Formik form actions.
    * @param {Function} actions.setSubmitting Toggle form submitting state.
