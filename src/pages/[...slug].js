@@ -37,14 +37,6 @@ export default function Page({
   posts,
   year
 }) {
-  // console.log("🚀 ~ file: [...slug].js:38 ~ year:", year)
-  // console.log("🚀 ~ file: [...slug].js:38 ~ posts:", posts)
-  // console.log("🚀 ~ file: [...slug].js:38 ~ post:", post)
-  // console.log("🚀 ~ file: [...slug].js:38 ~ pagination:", pagination)
-  // console.log("🚀 ~ file: [...slug].js:38 ~ month:", month)
-  // console.log("🚀 ~ file: [...slug].js:38 ~ day:", day)
-  // console.log("🚀 ~ file: [...slug].js:38 ~ dateArchive:", dateArchive)
-  // console.log("🚀 ~ file: [...slug].js:38 ~ archive:", archive)
 
   const router = useRouter()
   const isFrontPage = router.asPath === '/';
@@ -81,11 +73,11 @@ export default function Page({
     <Layout className="thelayoutclass" seo={{ ...post?.seo }}>
       <Container>
         <article className="inner-wrap">
-        {!isFrontPage && (
-          <div>
-             <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
-          <RichText tag="h1">{post?.title}</RichText>
-          </div>
+          {!isFrontPage && (
+            <div>
+              <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
+              <RichText tag="h1">{post?.title}</RichText>
+            </div>
           )}
           <Blocks blocks={post?.blocks} />
         </article>
@@ -113,7 +105,6 @@ export async function getStaticPaths() {
  * @return {object}                      Post props.
  */
 export async function getStaticProps({ params, preview, previewData }) {
-  console.log("⭐⭐⭐⭐⭐⭐ ~ file: [...slug].js:105 ~ getStaticProps ~ params:", params)
   return getPostTypeStaticProps(params, postType, preview, previewData)
 }
 

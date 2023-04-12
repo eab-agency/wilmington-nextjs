@@ -11,7 +11,6 @@ import { gql } from '@apollo/client'
  * @return {object}          Post type paths.
  */
 export default async function getPostTypeStaticPaths(postType) {
-  console.log("💩💩💩💩💩💩 ~ file: getPostTypeStaticPaths.js:14 ~ getPostTypeStaticPaths ~ postType:", postType)
   if (!postType || !isValidPostType(postType)) {
     return null
   }
@@ -54,7 +53,6 @@ export default async function getPostTypeStaticPaths(postType) {
       // Trim leading and trailing slashes then split into array on inner slashes.
       const pathFieldValue = post.node[pathField] ?? '';
       const slug = pathFieldValue.replace(/^\/|\/$/g, '').split('/');
-      console.log("🐛🐛🐛🐛🐛 ~ file: getPostTypeStaticPaths.js:57 ~ .map ~ slug:", slug)
 
       // Handle year/month/date slug format for posts.
       if (postType === 'post') {
