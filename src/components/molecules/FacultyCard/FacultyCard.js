@@ -13,8 +13,7 @@ const FacultyCard = ({
   return (
     <>
       <pre>FILE: FacultyCard.js</pre>
-      {/* image size is handled in fragments.js under `fragment ProgramTemplateFragment on WpProgram` */}
-      {image && <Image url={image.sourceUrl} alt={image.altText || ''} imageMeta={{mediaDetails: image.mediaDetails}} />}
+      {image && <Image url={image.sourceUrl} alt={image.altText || ''} imageMeta={{ mediaDetails: image.mediaDetails }} />}
       <h3>{title}</h3>
       <p>{description}</p>
       <a href={`mailto:${email}`}>Send Email</a>

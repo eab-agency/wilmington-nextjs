@@ -19,7 +19,7 @@ import SearchIcon from './SearchIcon'
  * @param  {boolean} props.useHistory Whether to display search history.
  * @return {Element}                  The Search component.
  */
-export default function Search ({ indexName, query, useHistory }) {
+export default function Search({ indexName, query, useHistory = true }) {
   const storageName = indexName // Local Storage Name - set to algolia index.
   const historyLength = 6 // Max amount of history items to save to local storage.
   const hitsPerPage = 6 // Amount of hit to render in drop results.
@@ -59,7 +59,7 @@ export default function Search ({ indexName, query, useHistory }) {
   /**
    * Delete recent searches and clear history.
    */
-  function clearLocalStorage () {
+  function clearLocalStorage() {
     deleteLocalStorage(storageName)
     setSearchHistory([])
   }
@@ -110,8 +110,4 @@ Search.propTypes = {
   indexName: PropTypes.string.isRequired,
   query: PropTypes.string,
   useHistory: PropTypes.bool
-}
-
-Search.defaultProps = {
-  useHistory: true
 }
