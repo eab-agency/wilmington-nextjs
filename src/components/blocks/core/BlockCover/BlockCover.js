@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState } from 'react'
 // import Blocks from '@/components/molecules/Blocks'
 import Blocks from '@/components/molecules/Blocks'
@@ -30,7 +32,7 @@ import PropTypes from 'prop-types'
  * @param  {string}  props.url             The image src attribute.
  * @return {Element}                       The Cover component.
  */
-export default function BlockCover ({
+export default function BlockCover({
   align,
   anchor,
   className,
@@ -114,7 +116,7 @@ export default function BlockCover ({
       repeat={isRepeated}
       style={coverStyle}
     >
-        {newInnerBlocks && <Blocks blocks={newInnerBlocks} />}
+      {newInnerBlocks && <Blocks blocks={newInnerBlocks} />}
     </Hero>
   )
 }

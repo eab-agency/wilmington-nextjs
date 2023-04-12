@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable camelcase */
 import React from 'react';
 import ProgramCard from '@/components/molecules/ProgramCard';
@@ -13,7 +15,7 @@ import { useWordPressContext } from '@/components/common/WordPressProvider'
  * @return {Element}                    The Card component.
  */
 
-export default function BlockFacultyCards({ relatedDepartments }) {
+export default function BlockRelatedPrograms({ relatedDepartments }) {
   // flatten all the programs in the needToFlatten array
   const { departments } = useWordPressContext()
   const flattenedPrograms = departments.reduce((acc, item) => {

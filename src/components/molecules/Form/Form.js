@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import {Form as FormikForm, Formik} from 'formik'
+import { Form as FormikForm, Formik } from 'formik'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styles from './Form.module.css'
@@ -19,7 +19,7 @@ import styles from './Form.module.css'
 export default function Form({
   children,
   className,
-  formDefaults,
+  formDefaults = {},
   id,
   validationSchema,
   onSubmit
@@ -52,8 +52,4 @@ Form.propTypes = {
   id: PropTypes.string,
   validationSchema: PropTypes.object,
   onSubmit: PropTypes.func
-}
-
-Form.defaultProps = {
-  formDefaults: {}
 }

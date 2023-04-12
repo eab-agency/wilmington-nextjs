@@ -4,21 +4,21 @@ import RichText from '@/components/atoms/RichText'
 import Layout from '@/components/common/Layout'
 import Form from '@/components/molecules/Form'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
-import {signIn, useSession} from 'next-auth/react'
-import {useRouter} from 'next/router'
-import React, {useEffect, useState} from 'react'
+import { signIn, useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 
 /**
  * Render the Register component.
  *
- * @author WebDevStudios
+
  * @param  {object}  props      The component attributes as props.
  * @param  {object}  props.post Post data from WordPress.
  * @return {Element}            The Register component.
  */
-export default function Register({post}) {
+export default function Register({ post }) {
   const [errorMessage, setErrorMessage] = useState('')
-  const {data: session} = useSession()
+  const { data: session } = useSession()
   const router = useRouter()
 
   // Redirect to Profile page if user already logged in.
@@ -31,11 +31,11 @@ export default function Register({post}) {
   /**
    * Submit registration form.
    *
-   * @author WebDevStudios
+  
    * @param {object} values Field values to submit.
    */
   async function submitForm(values) {
-    const {firstName, lastName, email, password, username} = values
+    const { firstName, lastName, email, password, username } = values
     const response = await signIn('wpRegister', {
       firstName,
       lastName,
@@ -51,7 +51,7 @@ export default function Register({post}) {
   }
 
   return (
-    <Layout seo={{...post?.seo}}>
+    <Layout seo={{ ...post?.seo }}>
       <Container>
         <RichText tag="h1">Register</RichText>
         {!!errorMessage && <div>{errorMessage}</div>}
@@ -82,7 +82,7 @@ export default function Register({post}) {
 /**
  * Get post static props.
  *
- * @author WebDevStudios
+
  * @return {object} Post props.
  */
 export async function getStaticProps() {

@@ -1,10 +1,12 @@
+'use client'
+
 // import NavIcon from '@/components/atoms/NavIcon'
 import Link from '@/components/common/Link'
-import {useRef} from 'react'
+import { useRef } from 'react'
 // import FooterItemGraphic from './FooterItemGraphic'
 import * as styles from './FooterMenuItem.module.scss'
 
-const FooterMenuItem = ({item}) => {
+const FooterMenuItem = ({ item }) => {
   const ref = useRef()
 
   return (

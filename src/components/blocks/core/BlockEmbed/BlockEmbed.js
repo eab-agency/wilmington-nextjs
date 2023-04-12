@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState } from 'react'
 import VideoEmbed from '@/components/atoms/VideoEmbed'
 import PropTypes from 'prop-types'
@@ -65,10 +67,6 @@ export default function BlockEmbed({
 BlockEmbed.propTypes = {
   className: PropTypes.string,
   url: PropTypes.string,
-  align: PropTypes.string,
   caption: PropTypes.string,
   providerNameSlug: PropTypes.string
-}
-BlockEmbed.defaultProps = {
-  align: 'left'
 }

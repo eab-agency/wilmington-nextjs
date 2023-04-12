@@ -113,6 +113,7 @@ export async function getStaticPaths() {
  * @return {object}                      Post props.
  */
 export async function getStaticProps({ params, preview, previewData }) {
+  console.log("⭐⭐⭐⭐⭐⭐ ~ file: [...slug].js:105 ~ getStaticProps ~ params:", params)
   return getPostTypeStaticProps(params, postType, preview, previewData)
 }
 

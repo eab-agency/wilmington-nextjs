@@ -4,15 +4,22 @@ import globalPostFields from '@/lib/wordpress/_query-partials/globalPostFields'
 import seoPostFields from '@/lib/wordpress/_query-partials/seoPostFields'
 import { gql } from '@apollo/client'
 
-// Fragment: retrieve single page fields.
-export const singleProgramFragment = gql`
-  fragment SingleProgramFields on Program {
-    ${globalPostFields}
-    blocksJSON
-    excerpt
-    ${seoPostFields}
-    ${featuredImagePostFields}
-     departments {
+const children = `
+   children {
+      nodes {
+        link
+        slug
+        ... on Program {
+          id
+          title
+          uri
+        }
+      }
+    }
+`
+
+const departmentsAndStudentOrgs = `
+   departments {
       nodes {
         name
         programs {
@@ -38,6 +45,18 @@ export const singleProgramFragment = gql`
         }
       }
     }
+`
+
+// Fragment: retrieve single program fields.
+export const singleProgramFragment = gql`
+  fragment SingleProgramFields on Program {
+    ${globalPostFields}
+    blocksJSON
+    excerpt
+    ${seoPostFields}
+    ${featuredImagePostFields}
+    ${children}
+    ${departmentsAndStudentOrgs}
   }
 `
 
@@ -63,6 +82,24 @@ const queryProgramById = gql`
     }
   }
   ${singleProgramFragment}
+`
+
+
+// Query: retrieve page by specified identifier.
+export const queryProgramChildrenById = gql`
+  query GET_PROGRAM_CHILDREN_BY_ID(
+    $id: ID!
+    $idType: ProgramIdType = URI
+    $imageSize: MediaItemSizeEnum = LARGE
+  ) {
+    program(id: $id, idType: $idType) {
+      uri
+      title
+      ${featuredImagePostFields}
+      ${children}
+      ${departmentsAndStudentOrgs}
+    }
+  }
 `
 
 export default queryProgramById
