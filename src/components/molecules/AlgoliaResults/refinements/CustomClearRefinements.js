@@ -1,6 +1,6 @@
 import React from 'react'
 import { connectCurrentRefinements } from 'react-instantsearch-dom'
-import * as styles from '../AlgoliaResults.module.css'
+import * as styles from '../AlgoliaResults.module.scss'
 
 /**
  * Render the ClearRefinements component.

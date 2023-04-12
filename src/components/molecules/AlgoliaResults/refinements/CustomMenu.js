@@ -2,7 +2,7 @@ import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { connectMenu } from 'react-instantsearch-dom'
-import * as styles from '../AlgoliaResults.module.css'
+import * as styles from '../AlgoliaResults.module.scss'
 
 /**
  * Render the Menu component.

@@ -15,8 +15,10 @@ function NewsListing({
     return <div>{posts.message}</div>
   }
 
+
+
   return (
-    <section className={styles.newsSection}>
+    <section className={`${styles.newsSection}  ${styles.homePage}`}>
       {/* <pre>FILE: NewsListing.tsx</pre> */}
       <div className={styles.sectionHead}>
         <div className={styles.sectionTag}>News</div>

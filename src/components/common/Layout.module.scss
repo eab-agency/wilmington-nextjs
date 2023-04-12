@@ -1,0 +1,61 @@
+@use "tokens";
+
+.main-container {
+  display: flex;
+  padding-right: tokens.$rightOffset;
+  max-width: tokens.$maxWidth;
+
+  nav[aria-label="Main"] {
+    grid-column: 1 / 1fr;
+    z-index: tokens.$layer-10;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    z-index: tokens.$layer-1;
+    padding-left: clamp(5rem, 14vw, 14rem);
+    overflow: hidden; // Note: AO This is a temporary fix. Find a better way to do this.
+  }
+}
+
+.breadcrumbs {
+  nav {
+    ol {
+      display: flex;
+      gap: 0.5em;
+      list-style: none;
+      li {
+        a {
+          text-transform: uppercase;
+          font-size: tokens.$fs-xxxs;
+          color: tokens.$c-gray-700;
+
+          &:hover {
+            color: tokens.$c-limeGreen-700;
+            text-decoration: none;
+          }
+        }
+
+        &:last-child {
+          a {
+            font-weight: 600;
+            text-decoration: none;
+            cursor: default;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+// div.section,
+// section {
+//   padding-block: tokens.$p-xl;
+//   margin-bottom: tokens.$m-xl;
+// }
+
+// pre {
+//   max-width: 10rem;
+// }

@@ -19,7 +19,7 @@ export default function Breadcrumbs({ breadcrumbs }) {
           {breadcrumbs.map((breadcrumb, index) => (
             <li key={index}>
               <Link href={breadcrumb?.url}>
-                <a>{breadcrumb?.text}</a>
+                {breadcrumb?.text}
               </Link>
               {index < breadcrumbs.length - 1 && (
                 <span className={styles.sep}> &raquo; </span>
