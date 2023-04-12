@@ -52,7 +52,7 @@
 }
 
 .intro-copy {
-  padding-right: clamp(tokens.$p-l, 10vw, tokens.$p-xxxl);
+  padding-right: clamp(tokens.$p-l, 10vw, tokens.$p-3xl);
 
   @media (min-width: tokens.$mq-1200) {
     // overflow: hidden;
@@ -77,7 +77,7 @@
   padding-block: tokens.$p-l;
 
   @media (max-width: tokens.$mq-1400) {
-    padding-right: clamp(tokens.$p-l, 10vw, tokens.$p-xxxl);
+    padding-right: clamp(tokens.$p-l, 10vw, tokens.$p-3xl);
   }
 
   &::before {

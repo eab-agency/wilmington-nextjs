@@ -3,7 +3,7 @@
 
 .news-section {
   background: tokens.$c-darkGreen-700;
-  @include tokens.sectionPadding();
+  @include mixins.sectionPadding(block);
   display: flex;
   flex-direction: column;
   z-index: tokens.$layer-10;
@@ -15,6 +15,7 @@
 
   @media (min-width: tokens.$mq-1200) {
     flex-direction: row;
+    @include mixins.sectionPadding($size: 2vw);
 
     &::before {
       display: none;
