@@ -3,7 +3,7 @@
 
 .news-section {
   background: tokens.$c-darkGreen-700;
-  @include mixins.sectionPadding(block);
+  @include mixins.sectionPadding;
   display: flex;
   flex-direction: column;
   z-index: tokens.$layer-10;
@@ -11,6 +11,11 @@
 
   &::before {
     @include mixins.extendedBackground(tokens.$c-darkGreen-700);
+  }
+
+  @media (min-width: tokens.$mq-800) {
+    padding: 0;
+    @include mixins.sectionPadding(block);
   }
 
   @media (min-width: tokens.$mq-1200) {
@@ -47,39 +52,61 @@
     padding: 0;
     margin: 0 0 tokens.$m-xl 0;
     display: flex;
+    flex-flow: row wrap;
     max-width: 100%;
 
     li {
       position: relative;
-      flex: 1;
+      flex: 1 0 20rem;
+
+      @media (min-width: tokens.$mq-800) {
+        flex: 1;
+      }
 
       article {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         position: relative;
-        padding-block: tokens.$p-l;
-        padding-inline: tokens.$p-l;
+        padding-block: tokens.$p-m;
         border-radius: tokens.$br-xs;
         transition: all 0.2s ease-in;
 
+        @media (min-width: tokens.$mq-800) {
+          padding-block: tokens.$p-l;
+          padding-inline: tokens.$p-l;
+        }
+
         @media (min-width: tokens.$mq-1200) {
           padding-block: tokens.$p-xl;
+          padding-inline: 0;
         }
       }
 
       &::after {
         content: "";
         display: block;
-        width: 4px;
-        height: 70%;
-        background: url(../../../assets/divider-draw-line-vertical.svg)
+        width: 100%;
+        height: 4px;
+        background: url(../../../assets/divider-draw-line-horizontal.svg)
           no-repeat center;
-        background-size: 100% auto;
+        background-size: auto 100%;
         position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
+        left: 50%;
+        transform: translateX(-50%);
+
+        @media (min-width: tokens.$mq-800) {
+          width: 4px;
+          height: 70%;
+          background: url(../../../assets/divider-draw-line-vertical.svg)
+            no-repeat center;
+          background-size: 100% auto;
+          right: 0;
+          top: 50%;
+          left: initial;
+          bottom: initial;
+          transform: translateY(-50%);
+        }
       }
 
       &:last-child {
