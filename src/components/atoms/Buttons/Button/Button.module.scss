@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "tokens";
 @use "utilities/mixins";
 
@@ -21,25 +22,89 @@
 
 .button {
   // @apply inline-flex items-center justify-center rounded border cursor-pointer font-semibold mr-2 mb-2;
+  // @include mixins.button(
+  //   tokens.$c-copy,
+  //   tokens.$c-limeGreen-200,
+  //   tokens.$fs-xxs,
+  //   tokens.$c-limeGreen-600
+  // );
 
-  & svg {
-    // @apply ml-4;
-  }
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  width: auto;
+  color: tokens.$c-copy;
+  background: tokens.$c-limeGreen-200;
+  text-decoration: none;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: tokens.$fs-xxs;
+  cursor: pointer;
+  border: 1px solid color.adjust(tokens.$c-limeGreen-200, $lightness: -30%);
+  border-radius: tokens.$br-xs;
+  overflow: hidden;
+  box-shadow: 0 0.2em 0.3em rgba(tokens.$c-copy, 0.1);
+  transition: all 0.15s ease-in;
+  position: relative;
+  padding: calc(tokens.$p-s * 1.5) tokens.$p-m;
+  padding-right: 4em;
 
-  &.iconLeft {
-    // @apply flex-row-reverse;
+  // i {
+  //   display: inline-flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   background: $iconBgColor;
+  //   color: white;
+  //   position: absolute;
+  //   z-index: tokens.$layer-2;
+  //   right: 0;
+  //   top: 0;
+  //   width: 1.5em;
+  //   height: 100%;
+  //   font-size: calc(#{$fontSize} * 2);
+  //   transition: all 0.15s ease-in;
+  // }
 
-    & svg {
-      // @apply mr-12 ml-0;
+  &:hover,
+  &:focus {
+    background: tokens.$c-limeGreen-400;
+
+    i {
+      padding-left: 0.3em;
+      background: transparent;
     }
   }
 
-  &:hover,
-  &:focus,
-  &:active:not([disabled]) {
-    // @apply underline;
-    // background: red;
-  }
+  // &::after {
+  //   content: "";
+  //   display: block;
+  //   position: absolute;
+  //   right: 1.5em;
+  //   width: 1em;
+  //   height: 1em;
+  //   border-right: 3px solid tokens.$c-darkGreen-750;
+  //   border-bottom: 3px solid tokens.$c-darkGreen-750;
+  //   transform: rotate(-45deg) translateX(-15%) translateY(-15%);
+  // }
+
+  // & svg {
+  //   // @apply ml-4;
+  // }
+
+  // &.iconLeft {
+  //   // @apply flex-row-reverse;
+
+  //   & svg {
+  //     // @apply mr-12 ml-0;
+  //   }
+  // }
+
+  // &:hover,
+  // &:focus,
+  // &:active:not([disabled]) {
+  //   // @apply underline;
+  //   background: red;
+  // }
 
   /* SIZES */
   &.lg {
@@ -60,30 +125,12 @@
 
   /* TYPES */
   &.primary {
-    @include mixins.button(
-      tokens.$c-copy,
-      tokens.$c-limeGreen-200,
-      tokens.$fs-xxs,
-      tokens.$c-limeGreen-600
-    );
-
-    &[href*="cincinnati"] {
-      background: tokens.$c-cincinnati-600;
-      border-color: tokens.$c-cincinnati-700;
-
-      i {
-        background: tokens.$c-cincinnati-700;
-      }
-
-      &::after {
-        background-color: tokens.$c-cincinnati-700;
-      }
-
-      &:hover,
-      &:focus {
-        background: tokens.$c-cincinnati-700;
-      }
-    }
+    // @include mixins.button(
+    //   tokens.$c-copy,
+    //   tokens.$c-limeGreen-200,
+    //   tokens.$fs-xxs,
+    //   tokens.$c-limeGreen-600
+    // );
 
     &.disabled {
       // @apply opacity-50;
@@ -91,6 +138,12 @@
   }
 
   &.secondary {
+    // @include mixins.button(
+    //   tokens.$c-copy,
+    //   tokens.$c-limeGreen-200,
+    //   tokens.$fs-xxs,
+    //   tokens.$c-limeGreen-600
+    // );
     background-color: tokens.$c-darkGreen-700;
     color: tokens.$c-white;
 

@@ -33,8 +33,10 @@ function EventsListing({
     // <div className={listing_display === '1' ? 'grid' : ''}>
     <section className={styles.eventsSection}>
       {/* <pre>FILE: EventsListing.tsx</pre> */}
-      <div className={styles.sectionTag}>Events</div>
-      <Heading tag="h2">{listing_title}</Heading>
+      <div className={styles.sectionHead}>
+        <div className={styles.sectionTag}>Events</div>
+        <Heading tag="h2">{listing_title}</Heading>
+      </div>
       <ul className={styles.eventsList}>
         {posts.map((item, index) => (
           <li key={index}>
@@ -42,7 +44,7 @@ function EventsListing({
           </li>
         ))}
       </ul>
-      <Button url="/events" text="View All Events" />
+      <Button type="secondary" icon='arrowRight' url="/events" text="View All Events" />
     </section>
   );
 }

@@ -4,9 +4,8 @@
 .events-section {
   width: 100%;
   background: tokens.$c-gray-700;
-  padding: 4rem;
+  @include mixins.sectionPadding(block);
   color: white;
-  // padding-right: 24rem;
   position: relative;
 
   &::before {
@@ -14,8 +13,20 @@
   }
 }
 
-.section-tag {
-  @include mixins.sectionTag();
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$m-xl;
+  align-items: flex-start;
+
+  .section-tag {
+    @include mixins.sectionTag();
+    position: relative;
+  }
+
+  h2 {
+    color: tokens.$c-white;
+  }
 }
 
 .events-list {
