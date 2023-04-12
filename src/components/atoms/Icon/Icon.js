@@ -31,11 +31,11 @@ export function sizeToPx(size) {
  * @return {Element}                  The Icon component.
  */
 export default function Icon({
-  ariaHidden,
-  className,
+  ariaHidden = true,
+  className = '',
   icon,
-  size,
-  style,
+  size = 'lg',
+  style = 'line',
   title
 }) {
   return (
@@ -60,11 +60,4 @@ Icon.propTypes = {
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   style: PropTypes.oneOf(['fill', 'line']),
   title: PropTypes.string.isRequired
-}
-
-Icon.defaultProps = {
-  ariaHidden: true,
-  size: 'lg',
-  style: 'line',
-  className: ''
 }

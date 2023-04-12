@@ -21,10 +21,10 @@ export default function RichText({
   attributes,
   children,
   className,
-  dropCap,
+  dropCap = false,
   id,
   style,
-  tag
+  tag = 'div'
 }) {
   const tagClassName = tag !== 'div' ? tag : ''
   return React.createElement(tag, {
@@ -53,9 +53,4 @@ RichText.propTypes = {
     fontSize: PropTypes.string
   }),
   tag: PropTypes.string
-}
-
-RichText.defaultProps = {
-  dropCap: false,
-  tag: 'div'
 }

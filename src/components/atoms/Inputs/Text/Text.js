@@ -16,11 +16,11 @@ import cn from 'classnames'
  * @param  {string}  props.type        Text input type.
  * @return {Element}                   The Text component.
  */
-export default function Text ({
+export default function Text({
   className,
   description,
   id,
-  isRequired,
+  isRequired = false,
   label,
   type
 }) {
@@ -42,8 +42,4 @@ export default function Text ({
       <InputError name={id} />
     </div>
   )
-}
-
-Text.defaultProps = {
-  isRequired: false
 }

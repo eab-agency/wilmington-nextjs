@@ -20,13 +20,13 @@ import * as styles from '../AlgoliaResults.module.css'
  * @param  {object}   props.translations A mapping of keys to translation values.
  * @return {Element}                     The RefinementList component.
  */
-function RefinementList ({
+function RefinementList({
   attribute,
   className,
   items,
   limit,
   refine,
-  showCount,
+  showCount = true,
   showMore,
   title,
   translations
@@ -85,10 +85,6 @@ RefinementList.propTypes = {
   showMore: PropTypes.bool,
   title: PropTypes.string,
   translations: PropTypes.object
-}
-
-RefinementList.defaultProps = {
-  showCount: true
 }
 
 const CustomRefinementList = connectRefinementList(RefinementList)
