@@ -1,5 +1,6 @@
 import { initializeWpApollo } from '@/lib/wordpress/connector'
 import queryMenuItemsByLocation from '@/lib/wordpress/menus/queryMenuItemsByLocation'
+import formatHeirarchialMenu from './formatHeirarchialMenu'
 
 /**
  * Retrieve data for Frontend-only route (i.e., page does not exist in WordPress).
@@ -34,6 +35,7 @@ export default async function getMenuByLocation(location) {
 
             return null
         })
+    const menu = formatHeirarchialMenu(response?.menu?.menuItems?.nodes)
 
-    return response.menu.menuItems.nodes
+    return menu
 }
