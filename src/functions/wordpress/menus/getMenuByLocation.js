@@ -23,7 +23,7 @@ export default async function getMenuByLocation(location) {
     }
 
     // Execute query.
-    response.post = await apolloClient
+    response.menu = await apolloClient
         .query({ query: queryMenuItemsByLocation, variables: { location } })
         .then((res) => {
             return res.data
@@ -35,5 +35,5 @@ export default async function getMenuByLocation(location) {
             return null
         })
 
-    return response.post.menuItems.nodes
+    return response.menu.menuItems.nodes
 }

@@ -12,13 +12,11 @@ export default async function Page({ params }) {
     // console.log("🚀 ~ file: page.js:12 ~ Page ~ post:", post)
 
     return (
-        <div>
-            <Container>
-                <article className="innerWrap">
-                    <RichText tag="h1">{post?.title}</RichText>
-                    <Blocks blocks={post?.blocks} departments={post?.departments?.nodes} programOrgRelationship={post?.programOrgRelationship?.programorg} />
-                </article>
-            </Container>
-        </div>
+        <Container>
+            <article className="innerWrap">
+                <RichText tag="h1">{post?.title}</RichText>
+                <Blocks blocks={post?.blocks} departments={post?.departments?.nodes} programOrgRelationship={post?.programOrgRelationship?.programorg} />
+            </article>
+        </Container>
     )
 }

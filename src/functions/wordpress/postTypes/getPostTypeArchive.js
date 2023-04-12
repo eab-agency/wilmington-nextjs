@@ -65,7 +65,7 @@ export default async function getPostTypeArchive(
       const { siteSeo, menus, ...archiveData } = archive.data
 
       // Retrieve menus.
-      response.menus = getMenus(menus)
+      // response.menus = getMenus(menus)
 
       // Retrieve default SEO data.
       response.defaultSeo = formatDefaultSeoData({ siteSeo })
