@@ -68,6 +68,10 @@ export default async function formatBlockData(blocks) {
           attributes.facultyData = await getCustomPostTypePartialByIds('facultyMember', attributes?.data?.faculty_member)
           break
 
+        case 'acf/faculty-spotlight':
+          attributes.facultyData = await getCustomPostTypePartialByIds('facultyMember', attributes?.data?.faculty_spotlight)
+          break
+
         case 'acf/athlete-card':
           attributes.imageMeta = await getMediaByID(attributes?.data?.athlete_image)
           break
@@ -75,6 +79,7 @@ export default async function formatBlockData(blocks) {
         case 'acf/faq-listing':
           attributes.faqData = await getCustomPostTypePartialByIds('fAQ', attributes?.data?.faqs_listing)
           break
+
 
         case 'eab/program-directory':
           const { posts } = await getPostTypeArchive('department')

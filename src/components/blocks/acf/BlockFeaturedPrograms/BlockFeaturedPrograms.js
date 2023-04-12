@@ -33,7 +33,7 @@ const responsive = {
   },
 }
 
-export default function BlockFacultyCards({ data, listingData }) {
+export default function BlockFeaturedPrograms({ data, listingData }) {
   const featuredPrograms = listingData.flat().concat()
   return (
     <section className={styles.featuredPrograms}>
