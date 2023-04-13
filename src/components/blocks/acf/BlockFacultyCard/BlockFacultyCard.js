@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
-import React from 'react';
-import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard';
+import React from 'react'
+import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard'
 
 /**
  * Athlete Block
@@ -11,9 +11,8 @@ import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard';
  * @return {Element}                    The Card component.
  */
 
-
 export default function BlockFaculty(props) {
-  const { facultyData } = props
+  const {facultyData} = props
 
   return (
     // map over facultyData only  if facultyData is not null

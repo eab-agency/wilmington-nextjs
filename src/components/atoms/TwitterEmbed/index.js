@@ -1,1 +1,1 @@
-export { default } from './TwitterEmbed'
+export {default} from './TwitterEmbed'

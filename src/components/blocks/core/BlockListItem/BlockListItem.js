@@ -1,8 +1,6 @@
 import React from 'react'
-import Blocks from '@/components/molecules/Blocks';
-import RichText from '@/components/atoms/RichText';
-
-
+import Blocks from '@/components/molecules/Blocks'
+import RichText from '@/components/atoms/RichText'
 
 export default function BlockListItem(props) {
   return (
@@ -17,5 +15,5 @@ export default function BlockListItem(props) {
         />
       )}
     </li>
-  );
+  )
 }

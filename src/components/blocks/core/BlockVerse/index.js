@@ -1,1 +1,1 @@
-export { default } from './BlockVerse'
+export {default} from './BlockVerse'

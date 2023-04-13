@@ -1,7 +1,7 @@
 import React from 'react'
 import ArchivePost from './ArchivePost'
 
-export const PostsList = ({ posts, ...props }) => {
+export const PostsList = ({posts, ...props}) => {
   return (
     <div {...props}>
       {posts?.map((post, index) => {

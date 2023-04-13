@@ -1,1 +1,1 @@
-export { default } from './BlockListItem'
+export {default} from './BlockListItem'

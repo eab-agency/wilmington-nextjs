@@ -32,29 +32,24 @@ interface Image {
 
 interface Props {
   data: {
-  athlete_name: string
-  athlete_content: string
-  athlete_image: number
-  athlete_link: AthleteLink
+    athlete_name: string
+    athlete_content: string
+    athlete_image: number
+    athlete_link: AthleteLink
   }
   imageMeta: any
 }
 
-export default function BlockAthleteCard ({
-  data: {
-  athlete_name,
-  athlete_content,
-  athlete_link
-  },
+export default function BlockAthleteCard({
+  data: {athlete_name, athlete_content, athlete_link},
   imageMeta
 }: Props) {
-  
   return (
-      <AthleteCard
-        description={athlete_content}
-        link={athlete_link?.url}
-        image={imageMeta}
-        title={athlete_name}
-      />
+    <AthleteCard
+      description={athlete_content}
+      link={athlete_link?.url}
+      image={imageMeta}
+      title={athlete_name}
+    />
   )
 }

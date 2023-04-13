@@ -1,9 +1,9 @@
-import Icon from "@/components/atoms/Icon"
-import Link from "@/components/common/Link"
-import cn from "classnames"
-import React from "react"
-import {MdChevronRight} from "react-icons/md"
-import styles from "./Button.module.scss"
+import Icon from '@/components/atoms/Icon'
+import Link from '@/components/common/Link'
+import cn from 'classnames'
+import React from 'react'
+import {MdChevronRight} from 'react-icons/md'
+import styles from './Button.module.scss'
 
 /**
  * Render the common inner part of the button component.
@@ -15,12 +15,17 @@ import styles from "./Button.module.scss"
  * @return {Element}                The inside of the Button component.
  */
 
-
-export function ButtonInner({ icon, iconOnly, text }) {
+export function ButtonInner({icon, iconOnly, text}) {
   return (
     <>
       {!iconOnly && <span className={styles.text}>{text}</span>}
-      {icon ? (<Icon icon={icon} title={text} ariaHidden={!!text} />) : (<i><MdChevronRight /></i>)}
+      {icon ? (
+        <Icon icon={icon} title={text} ariaHidden={!!text} />
+      ) : (
+        <i>
+          <MdChevronRight />
+        </i>
+      )}
     </>
   )
 }
@@ -73,7 +78,7 @@ export default function Button({
     disabled && styles.disabled,
     styles[size],
     styles[type],
-    styleOutline && styles.styleOutline,
+    styleOutline && styles.styleOutline
   )
 
   if (url) {
@@ -85,11 +90,7 @@ export default function Button({
         style={style}
         {...attributes}
       >
-        <ButtonInner
-          icon={icon}
-          iconOnly={iconOnly}
-          text={text}
-        />
+        <ButtonInner icon={icon} iconOnly={iconOnly} text={text} />
       </a>
     ) : (
       <Link href={url} legacyBehavior>
@@ -99,11 +100,7 @@ export default function Button({
           style={style}
           {...attributes}
         >
-          <ButtonInner
-            icon={icon}
-            iconOnly={iconOnly}
-            text={text}
-          />
+          <ButtonInner icon={icon} iconOnly={iconOnly} text={text} />
         </a>
       </Link>
     )
@@ -120,11 +117,7 @@ export default function Button({
           disabled,
           style
         },
-        <ButtonInner
-          icon={icon}
-          iconOnly={iconOnly}
-          text={text}
-        />
+        <ButtonInner icon={icon} iconOnly={iconOnly} text={text} />
       )
     )
   }

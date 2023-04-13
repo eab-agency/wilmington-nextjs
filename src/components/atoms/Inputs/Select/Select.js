@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, ErrorMessage } from 'formik'
+import {Field, ErrorMessage} from 'formik'
 import cn from 'classnames'
 import * as styles from './Select.module.css'
 
@@ -29,7 +29,7 @@ export default function Select({
       <Field as="select" id={id} name={id} required={isRequired}>
         {!!options?.length > 0 &&
           options.map((option, key) => {
-            const { text, value } = option
+            const {text, value} = option
 
             return (
               <option key={key} value={value}>

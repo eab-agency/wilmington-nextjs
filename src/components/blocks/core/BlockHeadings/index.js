@@ -1,1 +1,1 @@
-export { default } from './BlockHeadings'
+export {default} from './BlockHeadings'

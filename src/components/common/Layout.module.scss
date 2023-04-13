@@ -1,11 +1,11 @@
-@use "tokens";
+@use 'tokens';
 
 .mainContainer {
   display: flex;
   padding-right: tokens.$rightOffset;
   max-width: tokens.$maxWidth;
 
-  nav[aria-label="Main"] {
+  nav[aria-label='Main'] {
     grid-column: 1 / 1fr;
     z-index: tokens.$layer-10;
   }

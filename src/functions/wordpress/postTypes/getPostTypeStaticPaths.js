@@ -1,9 +1,8 @@
 import isHierarchicalPostType from '@/functions/wordpress/postTypes/isHierarchicalPostType'
 import isValidPostType from '@/functions/wordpress/postTypes/isValidPostType'
-import { initializeWpApollo } from '@/lib/wordpress/connector'
 import { postTypes } from '@/lib/wordpress/_config/postTypes'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
 import { gql } from '@apollo/client'
-
 /**
  * Retrieve static paths by post type.
  *
@@ -51,8 +50,8 @@ export default async function getPostTypeStaticPaths(postType) {
   const paths = posts
     .map((post) => {
       // Trim leading and trailing slashes then split into array on inner slashes.
-      const pathFieldValue = post.node[pathField] ?? '';
-      const slug = pathFieldValue.replace(/^\/|\/$/g, '').split('/');
+      const pathFieldValue = post.node[pathField] ?? ''
+      const slug = pathFieldValue.replace(/^\/|\/$/g, '').split('/')
 
       // Handle year/month/date slug format for posts.
       if (postType === 'post') {

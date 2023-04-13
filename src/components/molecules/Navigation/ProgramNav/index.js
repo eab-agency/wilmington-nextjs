@@ -1,1 +1,1 @@
-export { default } from './ProgramSubMenu'
+export {default} from './ProgramSubMenu'

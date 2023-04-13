@@ -1,1 +1,1 @@
-export { default } from './BlockDepartmentSelect'
+export {default} from './BlockDepartmentSelect'

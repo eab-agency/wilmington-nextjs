@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const CommonLink = ({ children, href, ...others }) => {
+const CommonLink = ({children, href, ...others}) => {
   // check if the link is an internal link and then use GatsbyLink
   const isInternalLink = /^\/(?!\/)/.test(href)
   if (isInternalLink) {
@@ -21,7 +21,7 @@ const CommonLink = ({ children, href, ...others }) => {
       ''
     )
     return (
-      <Link href={url} {...others} >
+      <Link href={url} {...others}>
         {children}
       </Link>
     )

@@ -22,7 +22,7 @@ export default function BlockColumns({
   style,
   verticalAlignment,
   isStackedOnMobile,
-  pageContext, 
+  pageContext,
   ...other
 }) {
   return (
@@ -41,5 +41,5 @@ export default function BlockColumns({
         />
       )}
     </>
-  );
+  )
 }

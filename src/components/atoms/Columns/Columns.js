@@ -2,7 +2,7 @@ import React from 'react'
 import cn from 'classnames'
 import * as styles from './Columns.module.scss'
 import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
-import Blocks from '@/components/molecules/Blocks';
+import Blocks from '@/components/molecules/Blocks'
 
 /**
  * Render the Columns component.
@@ -30,8 +30,8 @@ export default function Columns({
   backgroundColor,
   ...props
 }) {
-  const columnStyles = getBlockStyles({ style });
- 
+  const columnStyles = getBlockStyles({style})
+
   return (
     <section
       id={id || null}
@@ -49,11 +49,11 @@ export default function Columns({
       )}
       style={columnStyles}
     >
-      {columns.map(({ attributes, innerBlocks }, index) => {
+      {columns.map(({attributes, innerBlocks}, index) => {
         const columnStyle = getBlockStyles({
           style: attributes?.style,
-          width: attributes?.width,
-        });
+          width: attributes?.width
+        })
 
         return (
           <div
@@ -71,8 +71,8 @@ export default function Columns({
               />
             )}
           </div>
-        );
+        )
       })}
     </section>
-  );
+  )
 }

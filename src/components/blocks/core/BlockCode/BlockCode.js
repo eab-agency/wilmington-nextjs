@@ -2,7 +2,7 @@ import React from 'react'
 import Code from '@/components/atoms/Code'
 import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
 
-export default function BlockCode ({
+export default function BlockCode({
   anchor,
   className,
   content,
@@ -12,7 +12,7 @@ export default function BlockCode ({
   style,
   title
 }) {
-  const codeStyle = getBlockStyles({ style, fontSize })
+  const codeStyle = getBlockStyles({style, fontSize})
 
   return (
     <Code

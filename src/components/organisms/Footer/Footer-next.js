@@ -1,6 +1,6 @@
 // import Container from '@/components/atoms/Container'
 // import {seoSocialPropTypes} from '@/functions/getPagePropTypes'
-import Link from "@/components/common/Link"
+import Link from '@/components/common/Link'
 // import PropTypes from 'prop-types'
 // import * as styles from './Footer.module.css'
 

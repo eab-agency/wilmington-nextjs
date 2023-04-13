@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from './ProgramSubMenu.module.scss';
+import styles from './ProgramSubMenu.module.scss'
 
 import ProgramSubMenuItem from './ProgramSubMenuItem'
 
-const ProgramSubMenu = ({ location, menuItems }) => {
+const ProgramSubMenu = ({location, menuItems}) => {
   const items = menuItems
 
   return (
@@ -15,7 +15,7 @@ const ProgramSubMenu = ({ location, menuItems }) => {
         ))}
       </ul>
     </>
-  );
+  )
 }
 
-export default ProgramSubMenu;
+export default ProgramSubMenu

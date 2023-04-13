@@ -3,7 +3,7 @@ import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
 import Quote from '@/components/atoms/Quote'
 import Blocks from '@/components/molecules/Blocks'
 
-export default function BlockQuote ({
+export default function BlockQuote({
   citation,
   anchor,
   className,
@@ -11,7 +11,7 @@ export default function BlockQuote ({
   innerBlocks
 }) {
   // convert style from string to object before passing to getBlockStyles, bc it comes in as a string
-  const quoteStyle = getBlockStyles({ style })
+  const quoteStyle = getBlockStyles({style})
 
   return (
     <Quote

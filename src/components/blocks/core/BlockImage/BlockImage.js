@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
  */
 export default function BlockImage(props) {
   // spread props except width and height
-  const { width, height, ...rest } = props
+  const {width, height, ...rest} = props
   // set image size
 
   return <DisplayImage {...rest} />

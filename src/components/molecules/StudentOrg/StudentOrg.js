@@ -1,20 +1,20 @@
 'use client'
 
-import React, { useState } from "react"
-import Button from "@/components/atoms/Buttons/Button"
-import Heading from "@/components/atoms/Heading"
+import React, {useState} from 'react'
+import Button from '@/components/atoms/Buttons/Button'
+import Heading from '@/components/atoms/Heading'
 
-function StudentOrg({ heading, url, quickFact }) {
+function StudentOrg({heading, url, quickFact}) {
   const [isOpen, setIsOpen] = useState(false)
   const handleOpen = () => setIsOpen(!isOpen)
 
   const ShowHideButton = () => (
     <button aria-expanded={isOpen} onClick={handleOpen}>
-      <span>{isOpen ? "- Hide" : "+ Show"} </span>Quick Facts
+      <span>{isOpen ? '- Hide' : '+ Show'} </span>Quick Facts
     </button>
   )
 
-  const QuickFact = ({ fact }) => (
+  const QuickFact = ({fact}) => (
     <>
       <ShowHideButton />
       <div
@@ -22,7 +22,7 @@ function StudentOrg({ heading, url, quickFact }) {
         aria-labelledby="accordion-button"
         hidden={!isOpen}
         role="region"
-        dangerouslySetInnerHTML={{ __html: fact }}
+        dangerouslySetInnerHTML={{__html: fact}}
       />
     </>
   )

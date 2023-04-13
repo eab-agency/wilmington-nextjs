@@ -20,8 +20,9 @@ export default async function getHeadlessConfigPage(page) {
     data.post = {
       ...data?.post,
       seo: {
-        title: `${headlessConfigPageQuerySeo[page]?.title ?? ''} - ${data.defaultSeo?.openGraph?.siteName ?? ''
-          }`
+        title: `${headlessConfigPageQuerySeo[page]?.title ?? ''} - ${
+          data.defaultSeo?.openGraph?.siteName ?? ''
+        }`
       }
     }
   }

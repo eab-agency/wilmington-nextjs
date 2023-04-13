@@ -1,1 +1,1 @@
-export { default } from './BlockNewsListing'
+export {default} from './BlockNewsListing'

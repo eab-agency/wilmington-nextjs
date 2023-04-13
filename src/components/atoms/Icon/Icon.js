@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { icons } from './icons'
+import {icons} from './icons'
 
 /**
  * Convert icon size to px taking rem into account.

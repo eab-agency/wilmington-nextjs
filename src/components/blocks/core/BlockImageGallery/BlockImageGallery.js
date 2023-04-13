@@ -15,7 +15,7 @@ import PropTypes from 'prop-types'
  * @param  {Array}   props.images    The array of images.
  * @return {Element}                 The ImageGallery component.
  */
-export default function BlockImageGallery ({
+export default function BlockImageGallery({
   anchor,
   caption,
   columns,
@@ -30,8 +30,7 @@ export default function BlockImageGallery ({
       columns={columns}
       className={className}
       innerBlocks={innerBlocks}
-   />
-
+    />
   )
 }
 

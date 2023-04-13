@@ -1,1 +1,1 @@
-export { default } from './BlockHomeHero'
+export {default} from './BlockHomeHero'

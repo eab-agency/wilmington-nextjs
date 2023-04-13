@@ -9,7 +9,7 @@ import React from 'react'
  * @param  {Array}   props.type      Type or style of the logo.
  * @return {Element}                 The Logo component.
  */
-export default function Logo ({ className, type }) {
+export default function Logo({className, type}) {
   // prettier-ignore
   return (
     <svg

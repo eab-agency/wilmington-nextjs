@@ -14,7 +14,7 @@ import styles from './Alert.module.scss'
  * @param  {string}  props.type      The type of alert.
  * @return {Element}                 The Alert component.
  */
-export default function Alert({ body, className, icon, type = 'default' }) {
+export default function Alert({body, className, icon, type = 'default'}) {
   return (
     <div
       className={cn(

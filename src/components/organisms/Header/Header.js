@@ -3,13 +3,13 @@
 import Logo from '@/components/atoms/Logo'
 import Link from '@/components/common/Link'
 import TopMenu from '@/components/molecules/Navigation/TopMenu'
-import { useEffect, useState } from 'react'
-import { MdSearch } from 'react-icons/md'
+import {useEffect, useState} from 'react'
+import {MdSearch} from 'react-icons/md'
 import styles from './Header.module.scss'
 // import GlobalStyles from '../../../../src/styles/globalStyles'
 // import {createGlobalStyle} from 'styled-components'
 
-const Header = ({ search, menuItems }) => {
+const Header = ({search, menuItems}) => {
   const [scrollPosition, setScrollPosition] = useState(0)
   const handleScroll = () => {
     const position = window.pageYOffset
@@ -17,7 +17,7 @@ const Header = ({ search, menuItems }) => {
   }
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('scroll', handleScroll, {passive: true})
 
     return () => {
       window.removeEventListener('scroll', handleScroll)

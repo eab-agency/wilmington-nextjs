@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field } from 'formik'
+import {Field} from 'formik'
 
 /**
  * Render Checkbox component.
@@ -12,7 +12,7 @@ import { Field } from 'formik'
  * @param  {string}        props.value     Input value.
  * @return {Element}                       The Checkbox component.
  */
-export default function Checkbox ({ className, id, label, name, value }) {
+export default function Checkbox({className, id, label, name, value}) {
   return (
     <div className={className}>
       {label && (

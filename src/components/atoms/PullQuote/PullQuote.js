@@ -3,22 +3,13 @@ import cn from 'classnames'
 import RichText from '../RichText'
 import * as styles from './PullQuote.module.css'
 
-export default function PullQuote ({
-  citation,
-  className,
-  id,
-  style,
-  value
-}) {
+export default function PullQuote({citation, className, id, style, value}) {
   return (
     <>
       {!!value && (
         <figure
           id={id || null}
-          className={cn(
-            styles.pullquote,
-            className
-          )}
+          className={cn(styles.pullquote, className)}
           style={style}
         >
           <div className={styles.wrap}>

@@ -2,7 +2,7 @@ import React from 'react'
 import Link from '@/components/common/Link'
 import NavIcon from '@/components/atoms/NavIcon/'
 
-const TopMenuItem = ({ item }) => {
+const TopMenuItem = ({item}) => {
   return (
     <li>
       <Link href={item.path ?? '#'}>
@@ -11,7 +11,6 @@ const TopMenuItem = ({ item }) => {
       </Link>
     </li>
   )
-
 }
 
 export default TopMenuItem

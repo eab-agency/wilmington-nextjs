@@ -10,7 +10,7 @@ import CustomRefinementList from '../refinements/CustomRefinementList'
  * @param  {string}  props.className         The component className.
  * @return {Element}                         The PostType component.
  */
-export default function PostType ({ refinements, defaultRefinement, className }) {
+export default function PostType({refinements, defaultRefinement, className}) {
   const data = {
     title: 'Content Type',
     attribute: 'post_type_label',

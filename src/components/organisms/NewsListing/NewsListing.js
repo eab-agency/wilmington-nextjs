@@ -1,21 +1,13 @@
-import React from "react"
-import NewsPost from "@/components/archive/NewsPost"
-import Button from "@/components/atoms/Buttons/Button"
-import * as styles from "./NewsListing.module.scss"
+import React from 'react'
+import NewsPost from '@/components/archive/NewsPost'
+import Button from '@/components/atoms/Buttons/Button'
+import * as styles from './NewsListing.module.scss'
 
-function NewsListing({
-  listing_display,
-  listing_title,
-  posts,
-  showImage,
-}) {
-
+function NewsListing({listing_display, listing_title, posts, showImage}) {
   // if posts.isError is true then return posts.message
   if (posts.isError) {
     return <div>{posts.message}</div>
   }
-
-
 
   return (
     <section className={`${styles.newsSection}  ${styles.homePage}`}>

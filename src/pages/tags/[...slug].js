@@ -21,9 +21,9 @@ const taxonomyType = 'tag'
  * @param  {string}  props.term       WP taxonomy term slug.
  * @return {Element}                  The Tag component.
  */
-export default function Tag({ pagination, post, posts, term }) {
+export default function Tag({pagination, post, posts, term}) {
   return (
-    <Layout seo={{ ...post?.seo }}>
+    <Layout seo={{...post?.seo}}>
       <Container>
         <RichText tag="h1">{post?.title}</RichText>
         <Archive
@@ -56,7 +56,7 @@ export async function getStaticPaths() {
  * @param  {object} context.params Route parameters for current post.
  * @return {object}                Post props.
  */
-export async function getStaticProps({ params }) {
+export async function getStaticProps({params}) {
   return await getTaxonomyStaticProps(params, taxonomyType)
 }
 

@@ -1,6 +1,6 @@
 import getPostTypeById from '@/functions/wordpress/postTypes/getPostTypeById'
-import { wpPreviewSecret } from '@/lib/wordpress/connector'
-import { postTypes } from '@/lib/wordpress/_config/postTypes'
+import {wpPreviewSecret} from '@/lib/wordpress/connector'
+import {postTypes} from '@/lib/wordpress/_config/postTypes'
 
 /**
  * Provide post preview functionality.
@@ -11,7 +11,7 @@ import { postTypes } from '@/lib/wordpress/_config/postTypes'
  */
 export default async function preview(req, res) {
   try {
-    const { token, id, slug, post_type } = req.query
+    const {token, id, slug, post_type} = req.query
 
     // Verify preview secret token.
     if (
@@ -28,7 +28,7 @@ export default async function preview(req, res) {
       ? post_type.charAt(0).toLowerCase() + post_type.slice(1)
       : ''
 
-    const { post, error, errorMessage } = await getPostTypeById(
+    const {post, error, errorMessage} = await getPostTypeById(
       postType,
       id,
       'DATABASE_ID',

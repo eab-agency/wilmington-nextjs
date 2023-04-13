@@ -1,9 +1,10 @@
-import { APOLLO_STATE_PROP_NAME, initializeApollo } from '@/lib/apolloConfig'
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
-import { useMemo } from 'react'
+import {APOLLO_STATE_PROP_NAME, initializeApollo} from '@/lib/apolloConfig'
+import {ApolloClient, HttpLink, InMemoryCache} from '@apollo/client'
+import {useMemo} from 'react'
 
 // Define env vars.
-export const wpApiUrlBase = process.env.WORDPRESS_URL?.replace(/\/?$/, '/') || '/'
+export const wpApiUrlBase =
+  process.env.WORDPRESS_URL?.replace(/\/?$/, '/') || '/'
 export const wpPreviewSecret = process.env.WORDPRESS_PREVIEW_SECRET
 export const graphQlEndpoint =
   process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT || 'graphql'

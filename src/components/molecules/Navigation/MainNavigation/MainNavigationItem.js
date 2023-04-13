@@ -1,24 +1,23 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import Link from '@/components/common/Link'
 import Dropdown from './Dropdown'
 import styles from './mainNavigation.module.scss'
 
-const MainNavigationItem = ({ item, depthLevel, index, enableDropdown }) => {
-
+const MainNavigationItem = ({item, depthLevel, index, enableDropdown}) => {
   // to control the dropdown state
   const [dropdown, setDropdown] = useState(false)
 
-  const handleButtonClick = item => {
-    setDropdown(!dropdown);
-  };
+  const handleButtonClick = (item) => {
+    setDropdown(!dropdown)
+  }
 
   // attach this ref to the li below
   const ref = useRef()
   // closes the dropdown menu when user clicks outside of it by setting event listener on the ref
   useEffect(() => {
-    const handler = event => {
+    const handler = (event) => {
       if (dropdown && ref.current && !ref.current.contains(event.target)) {
         setDropdown(false)
       }
@@ -31,7 +30,6 @@ const MainNavigationItem = ({ item, depthLevel, index, enableDropdown }) => {
       // document.removeEventListener('touchstart', handler);
     }
   }, [dropdown])
-
 
   // TODO: this is messy, need to refactor
   return (
@@ -80,7 +78,7 @@ const MainNavigationItem = ({ item, depthLevel, index, enableDropdown }) => {
         <Link href={item.path ?? '#'}>{item.label}</Link>
       )}
     </li>
-  );
+  )
 }
 
 export default MainNavigationItem

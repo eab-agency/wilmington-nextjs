@@ -9,7 +9,7 @@ import ButtonGroup from '@/components/molecules/ButtonGroup'
  *
  */
 
-export default function BlockButtons ({
+export default function BlockButtons({
   anchor,
   contentJustification,
   innerBlocks,
@@ -22,7 +22,9 @@ export default function BlockButtons ({
       orientation={orientation}
       contentJustification={contentJustification}
     >
-      {!!innerBlocks?.length && <Blocks blocks={innerBlocks} where="BlockButtons" {...props} />}
+      {!!innerBlocks?.length && (
+        <Blocks blocks={innerBlocks} where="BlockButtons" {...props} />
+      )}
     </ButtonGroup>
   )
 }
