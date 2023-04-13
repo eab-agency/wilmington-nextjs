@@ -64,7 +64,6 @@
 
 .pageHeader {
   display: flex;
-  @include mixins.drawerIn(top);
 
   &Sticky {
     display: flex;
