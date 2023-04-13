@@ -12,7 +12,11 @@ import cn from 'classnames'
  * @param  {boolean} props.paddingBtm Should container render bottom padding.
  * @return {Element}                  The Container component.
  */
-export default function Container({ children, paddingTop = true, paddingBtm = true }) {
+export default function Container({
+  children,
+  paddingTop = true,
+  paddingBtm = true
+}) {
   return (
     <div
       className={cn(

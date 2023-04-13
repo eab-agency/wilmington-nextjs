@@ -79,20 +79,20 @@ export default function BlockCover({
       !innerBlocks?.length
         ? []
         : innerBlocks.map((block) => {
-          const classes = (block?.attributes?.className ?? '').split(' ')
+            const classes = (block?.attributes?.className ?? '').split(' ')
 
-          // Extra check to only add class once.
-          if (classes.includes('relative')) {
+            // Extra check to only add class once.
+            if (classes.includes('relative')) {
+              return block
+            }
+
+            block.attributes = {
+              ...block?.attributes,
+              className: `${block?.attributes?.className || ''} relative z-10`
+            }
+
             return block
-          }
-
-          block.attributes = {
-            ...block?.attributes,
-            className: `${block?.attributes?.className || ''} relative z-10`
-          }
-
-          return block
-        })
+          })
     )
   }, [innerBlocks])
 

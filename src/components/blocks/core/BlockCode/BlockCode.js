@@ -1,8 +1,8 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
 import Code from '@/components/atoms/Code'
 import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
 
-export default function BlockCode ({
+export default function BlockCode({
   anchor,
   className,
   content,

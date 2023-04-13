@@ -2,9 +2,9 @@
 // Royall Mixins
 // ================
 
-@use "sass:math";
+@use 'sass:math';
 // @use "tokens";
-@use "tokens/breakpoints";
+@use 'tokens/breakpoints';
 
 // ================
 // Mixin: Outputs a @font-face rule
@@ -17,10 +17,10 @@
   $_f-fontStyle: normal
 ) {
   @font-face {
-    font-family: "#{$_f-fontFamily}";
+    font-family: '#{$_f-fontFamily}';
     font-weight: $_f-fontWeight;
     font-style: $_f-fontStyle;
-    src: url("#{$_p-fileName}.woff") format("woff");
+    src: url('#{$_p-fileName}.woff') format('woff');
   }
 }
 
@@ -30,7 +30,7 @@
 
 @mixin mres($_mq-density: 1.1) {
   @media (-webkit-min-device-pixel-ratio: $_mq-density),
-    (min-resolution: $_mq-density + "dppx") {
+    (min-resolution: $_mq-density + 'dppx') {
     @content;
   }
 }
@@ -41,18 +41,18 @@
 
 @mixin backgroundImage(
   $_p-img,
-  $_p-ext: "png",
-  $_p-hiRes: "-2x",
+  $_p-ext: 'png',
+  $_p-hiRes: '-2x',
   $_mq-hiResMin: 1.1
 ) {
   background: {
-    image: url($_p-img + "." + $_p-ext);
+    image: url($_p-img + '.' + $_p-ext);
     size: contain;
     repeat: no-repeat;
   }
 
   @include mres($_mq-hiResMin) {
-    background-image: url($_p-img + $_p-hiRes + "." + $_p-ext);
+    background-image: url($_p-img + $_p-hiRes + '.' + $_p-ext);
   }
 }
 
@@ -64,7 +64,7 @@
   $_mq-breakpoint: breakpoints.$mq-900,
   $_d-formLabelWidth: 33.333%,
   $_d-formLabelPad: 0.5em,
-  $_x-stackClass: ".question-stacked"
+  $_x-stackClass: '.question-stacked'
 ) {
   @media (min-width: #{$_mq-breakpoint}) {
     .type_date,
@@ -119,7 +119,7 @@
   $_mq-breakpoint: breakpoints.$mq-900,
   $_d-formLabelWidth: 33.333%,
   $_d-formLabelPad: 0.5em,
-  $_x-stackClass: ".question-stacked"
+  $_x-stackClass: '.question-stacked'
 ) {
   @media (min-width: #{$_mq-breakpoint}) {
     .type_date,
@@ -196,7 +196,7 @@
 // Mixin: Creates a Flexbox-based "sticky" footer
 // More info: https://wiki.eab.com/display/RWD/stickyFooter%28%29+mixin
 
-@mixin stickyFooter($_x-content, $_x-wrapper: "body") {
+@mixin stickyFooter($_x-content, $_x-wrapper: 'body') {
   #{$_x-wrapper} {
     display: flex;
     flex-direction: column;
@@ -223,7 +223,7 @@
   $_mq-min: breakpoints.$mq-300,
   $_mq-max: breakpoints.$mq-1200
 ) {
-  $_d-mid: "";
+  $_d-mid: '';
 
   @for $_x-i from 1 through length($_d-maxRem) {
     $_d-iMin: nth($_d-minRem, $_x-i);
@@ -244,7 +244,7 @@
     );
 
     @if ($_x-i > 1) {
-      $_d-mid: $_d-mid + " ";
+      $_d-mid: $_d-mid + ' ';
     }
     $_d-mid: $_d-mid + $_d-iMid;
   }

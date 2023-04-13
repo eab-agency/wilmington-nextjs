@@ -14,7 +14,9 @@ export default function BlockFaqListing({ faqData }) {
     <>
       <pre>FILE: BlockFaqListing.js</pre>
       {faqData.map(({ title, content, id }) => (
-        <Accordian title={title} key={id}><div dangerouslySetInnerHTML={{ __html: content }} /></Accordian>
+        <Accordian title={title} key={id}>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+        </Accordian>
       ))}
     </>
   )

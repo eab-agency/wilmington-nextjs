@@ -6,11 +6,7 @@ const Categories = ({ categories, ...props }) => (
     <pre>components/post/Categories.js</pre>
     <div>
       {categories.map((category) => (
-        <Link
-          size="xs"
-          key={category.slug}
-          to={category.uri}
-        >
+        <Link size="xs" key={category.slug} to={category.uri}>
           {category.name}
         </Link>
       ))}

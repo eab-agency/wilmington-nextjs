@@ -1,7 +1,7 @@
 // =======================
 // Homepage Layout
 
-@use "tokens";
+@use 'tokens';
 
 // =======================
 // Intro Home
@@ -25,7 +25,7 @@
 // News Section Home
 
 .front-page {
-  section[class*="newsSection"] {
+  section[class*='newsSection'] {
     @media (min-width: tokens.$mq-1200) {
       flex-direction: column;
       gap: tokens.$m-xl;
@@ -47,7 +47,7 @@
   flex-direction: column;
 
   &::before {
-    content: "Testimonials";
+    content: 'Testimonials';
     display: block;
     position: absolute;
     top: 0;
@@ -59,7 +59,7 @@
   }
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     width: 0.5em;
     height: 0.5em;
@@ -107,7 +107,7 @@
 // =======================
 // Two Columns Highlight
 
-[class*="two-columns-highlight"] {
+[class*='two-columns-highlight'] {
   position: relative;
   padding-block: 0;
   overflow-y: hidden;
@@ -124,7 +124,7 @@
     }
 
     &::before {
-      content: "";
+      content: '';
       display: block;
       width: 20rem;
       height: 20rem;

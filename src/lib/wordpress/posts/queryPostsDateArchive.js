@@ -1,6 +1,5 @@
 import archivePageInfo from '@/lib/wordpress/_query-partials/archivePageInfo'
 import defaultPageData from '@/lib/wordpress/_query-partials/defaultPageData'
-import seoPostFields from '@/lib/wordpress/_query-partials/seoPostFields'
 import { gql } from '@apollo/client'
 import { archivePostFragment } from './queryPostsArchive'
 

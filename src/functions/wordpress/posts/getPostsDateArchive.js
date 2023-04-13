@@ -66,12 +66,7 @@ export default async function getPostsDateArchive(
   await apolloClient
     .query({ query: queryPostsDateArchive, variables })
     .then((archive) => {
-      const {
-        generalSettings,
-        siteSeo,
-        menus,
-        ...archiveData
-      } = archive.data
+      const { generalSettings, siteSeo, menus, ...archiveData } = archive.data
 
       // Retrieve menus.
       response.menus = getMenus(menus)

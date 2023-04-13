@@ -1,5 +1,5 @@
-import React from 'react';
-import Blocks from '@/components/molecules/Blocks';
+import React from 'react'
+import Blocks from '@/components/molecules/Blocks'
 
 export default function BlockList({
   className,
@@ -8,9 +8,9 @@ export default function BlockList({
   start,
   anchor,
   innerBlocks,
-  pageContext,
+  pageContext
 }) {
-  const Tag = ordered ? 'ol' : 'ul';
+  const Tag = ordered ? 'ol' : 'ul'
 
   return (
     <Tag
@@ -27,5 +27,5 @@ export default function BlockList({
         />
       )}
     </Tag>
-  );
+  )
 }

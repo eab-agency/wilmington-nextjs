@@ -1,10 +1,9 @@
-import Button from "@/components/atoms/Buttons/Button"
-import React from "react"
-import Quote from "@/components/atoms/Quote"
-import cn from "classnames"
-import styles from "./Testimonial.module.scss"
-import Image from "@/components/atoms/Image"
-
+/* eslint-disable no-unsafe-optional-chaining */
+import Button from '@/components/atoms/Buttons/Button'
+import Image from '@/components/atoms/Image'
+import Quote from '@/components/atoms/Quote'
+import cn from 'classnames'
+import styles from './Testimonial.module.scss'
 
 const Citation = (fullName, desc) => {
   return (
@@ -15,15 +14,10 @@ const Citation = (fullName, desc) => {
   )
 }
 
-function Testimonial({
-  post,
-  viewAllLink,
-  imageOnly,
-  featuredTestimonial,
-}) {
+function Testimonial({ post, viewAllLink, imageOnly, featuredTestimonial }) {
   // if no post, return null
   if (!post || Object.keys(post).length === 0) {
-    return null;
+    return null
   }
   // destructure first, last, desc from post.testimonialFields.testimonial, set default values
   const { altText, mediaDetails, sourceUrl } = post?.featuredImage?.node

@@ -1,1 +1,1 @@
-export { default } from './BlockHtml';
+export { default } from './BlockHtml'

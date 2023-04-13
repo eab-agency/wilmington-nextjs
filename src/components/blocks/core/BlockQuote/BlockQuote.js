@@ -3,7 +3,7 @@ import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
 import Quote from '@/components/atoms/Quote'
 import Blocks from '@/components/molecules/Blocks'
 
-export default function BlockQuote ({
+export default function BlockQuote({
   citation,
   anchor,
   className,

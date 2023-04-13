@@ -12,7 +12,7 @@ export const Archive = ({ posts, ctx, name, description }) => {
       <PostsList posts={posts} />
       <Pagination ctx={ctx} />
     </>
-  );
+  )
 }
 
 export default Archive

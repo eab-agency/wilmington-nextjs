@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-import React from 'react'
 // import { useImageItem } from '@hooks/useImageQuery'
 import AthleteCard from '@/components/molecules/AthleteCard'
 
@@ -22,39 +21,26 @@ interface AthleteLink {
   target: string
 }
 
-interface Image {
-  altText?: string
-  caption?: string
-  databaaseId: number
-  sourceUrl: string
-  gatsbyImage: any
-}
-
 interface Props {
   data: {
-  athlete_name: string
-  athlete_content: string
-  athlete_image: number
-  athlete_link: AthleteLink
+    athlete_name: string
+    athlete_content: string
+    athlete_image: number
+    athlete_link: AthleteLink
   }
   imageMeta: any
 }
 
-export default function BlockAthleteCard ({
-  data: {
-  athlete_name,
-  athlete_content,
-  athlete_link
-  },
+export default function BlockAthleteCard({
+  data: { athlete_name, athlete_content, athlete_link },
   imageMeta
 }: Props) {
-  
   return (
-      <AthleteCard
-        description={athlete_content}
-        link={athlete_link?.url}
-        image={imageMeta}
-        title={athlete_name}
-      />
+    <AthleteCard
+      description={athlete_content}
+      link={athlete_link?.url}
+      image={imageMeta}
+      title={athlete_name}
+    />
   )
 }

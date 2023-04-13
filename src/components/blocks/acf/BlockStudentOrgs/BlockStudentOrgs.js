@@ -7,7 +7,15 @@ const BlockStudentOrgs = () => {
 
   return (
     <>
-      {studentOrganizations && studentOrganizations.map((org, index) => <StudentOrg key={index} heading={org.title} url={org.link} quickFact={org.orgFields.quickFacts} />)}
+      {studentOrganizations &&
+        studentOrganizations.map((org, index) => (
+          <StudentOrg
+            key={index}
+            heading={org.title}
+            url={org.link}
+            quickFact={org.orgFields.quickFacts}
+          />
+        ))}
     </>
   )
 }

@@ -25,7 +25,6 @@ export default async function getArchivePosts(
   orderBy = 'DATE',
   order = 'DESC'
 ) {
-  console.log("🚀 ~ file: getArchivePosts.js:28 ~ postType:", postType)
   const { day, month, year } = date
   const { taxonomy, term } = tax
   const apolloClient = initializeNextApiApollo()

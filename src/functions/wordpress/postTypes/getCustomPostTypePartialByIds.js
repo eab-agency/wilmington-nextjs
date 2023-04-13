@@ -13,45 +13,47 @@ import queryStudentOrgById from '@/lib/wordpress/student-orgs/queryStudentOrgByI
  * @return {object}                   Object containing Apollo client instance and post data or error object.
  */
 export default async function getCustomPostTypePartialById(
-    postType,
-    ids,
-    idType = 'DATABASE_ID',
-    preview = null
+  postType,
+  ids,
+  idType = 'DATABASE_ID',
+  preview = null
 ) {
-    // if ids is not an array, make it one
-    if (!Array.isArray(ids)) {
-        ids = [ids]
-    }
+  // if ids is not an array, make it one
+  if (!Array.isArray(ids)) {
+    ids = [ids]
+  }
 
+  // Define single post query based on post type.
+  const postTypeQuery = {
+    facultyMember: queryFacultyPartialById,
+    fAQ: queryFaqById,
+    studentOrg: queryStudentOrgById
+  }
 
-    // Define single post query based on post type.
-    const postTypeQuery = {
-        facultyMember: queryFacultyPartialById,
-        fAQ: queryFaqById,
-        studentOrg: queryStudentOrgById,
-    }
+  // Retrieve post type query.
+  const query = postTypeQuery?.[postType] ?? null
 
-    // Retrieve post type query.
-    const query = postTypeQuery?.[postType] ?? null
+  // Loop over IDs and push results into array.
+  const posts = []
+  for (let i = 0; i < ids.length; i++) {
+    const result = await processCustomPostTypeQuery(
+      postType,
+      ids[i],
+      query,
+      { id: ids[i], idType },
+      preview
+    )
+      .then((res) => {
+        return res
+      })
+      .catch((error) => {
+        return {
+          error: true,
+          errorMessage: error.message
+        }
+      })
+    posts.push(result ?? null)
+  }
 
-    // Loop over IDs and push results into array.
-    const posts = [];
-    for (let i = 0; i < ids.length; i++) {
-        const result = await processCustomPostTypeQuery(
-            postType,
-            ids[i],
-            query,
-            { id: ids[i], idType },
-            preview
-        )
-            .then((res) => {
-                return res
-            })
-            .catch((err) => {
-                return null
-            })
-        posts.push(result ?? null);
-    }
-
-    return posts
+  return posts
 }

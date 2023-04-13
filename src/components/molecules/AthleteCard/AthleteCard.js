@@ -1,16 +1,15 @@
 'use client'
 
-import React, { useState } from 'react';
-import Link from "@/components/common/Link"
-import Image from '@/components/atoms/Image';
-
+import React, { useState } from 'react'
+import Link from '@/components/common/Link'
+import Image from '@/components/atoms/Image'
 
 const AthleteCard = ({ title, image, description, link }) => {
-  const [showDescription, setShowDescription] = useState(false);
+  const [showDescription, setShowDescription] = useState(false)
 
   const toggleDescription = () => {
-    setShowDescription(!showDescription);
-  };
+    setShowDescription(!showDescription)
+  }
 
   return (
     <>
@@ -18,7 +17,8 @@ const AthleteCard = ({ title, image, description, link }) => {
       <Link href={link}>
         <div onMouseEnter={toggleDescription} onMouseLeave={toggleDescription}>
           <h3>{title}</h3>
-          <Image url={image.mediaItemUrl}
+          <Image
+            url={image.mediaItemUrl}
             alt={image.altText}
             imageMeta={{ mediaDetails: image.mediaDetails }}
           />
@@ -26,7 +26,7 @@ const AthleteCard = ({ title, image, description, link }) => {
         </div>
       </Link>
     </>
-  );
-};
+  )
+}
 
-export default AthleteCard;
+export default AthleteCard

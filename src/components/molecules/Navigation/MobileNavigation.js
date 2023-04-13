@@ -7,9 +7,7 @@ const MobileNavigation = ({ children }) => {
       <button type="button" aria-label="Options">
         {isOpen ? 'Less' : 'Menu'}
       </button>
-      <div>
-          {children}
-      </div>
+      <div>{children}</div>
     </>
   )
 }

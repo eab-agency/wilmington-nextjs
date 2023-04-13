@@ -2,7 +2,7 @@ import React from 'react'
 import Table from '@/components/atoms/Table'
 import PropTypes from 'prop-types'
 
-export default function BlockTable ({
+export default function BlockTable({
   anchor,
   body,
   caption,

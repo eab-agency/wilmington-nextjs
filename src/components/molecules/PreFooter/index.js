@@ -1,1 +1,1 @@
-export {default} from './PreFooter';
+export { default } from './PreFooter'

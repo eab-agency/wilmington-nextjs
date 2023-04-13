@@ -1,1 +1,1 @@
-export { default } from './BlockEventsListing';
+export { default } from './BlockEventsListing'

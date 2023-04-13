@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
-import React from 'react';
-import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard';
+import React from 'react'
+import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard'
 
 /**
  * Athlete Block
@@ -10,7 +10,6 @@ import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard';
  * @param  {object}  props              Athlete component props.
  * @return {Element}                    The Card component.
  */
-
 
 export default function BlockFaculty(props) {
   const { facultyData } = props

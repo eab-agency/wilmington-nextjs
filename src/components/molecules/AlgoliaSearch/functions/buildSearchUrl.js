@@ -4,7 +4,7 @@
  * @param  {string} query The search query.
  * @return {string}       The search URL with search query.
  */
-export default function buildSearchUrl (query) {
+export default function buildSearchUrl(query) {
   if (!query) {
     return false
   }

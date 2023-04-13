@@ -1,10 +1,10 @@
 import getMenus from '@/functions/wordpress/menus/getMenus'
 import formatDefaultSeoData from '@/functions/wordpress/seo/formatDefaultSeoData'
+import { postTypes } from '@/lib/wordpress/_config/postTypes'
+import { taxonomies } from '@/lib/wordpress/_config/taxonomies'
 import queryPostsByCategory from '@/lib/wordpress/categories/queryPostsByCategory'
 import { initializeWpApollo } from '@/lib/wordpress/connector'
 import queryPostsByTag from '@/lib/wordpress/tags/queryPostsByTag'
-import { postTypes } from '@/lib/wordpress/_config/postTypes'
-import { taxonomies } from '@/lib/wordpress/_config/taxonomies'
 
 /**
  * Retrieve post taxnomy archive.
@@ -29,7 +29,6 @@ export default async function getPostTypeTaxonomyArchive(
   getNext = true,
   perPage = 10
 ) {
-  console.log("🚀 ~ file: getPostTypeTaxonomyArchive.js:32 ~ taxonomy:", taxonomy)
   // Define single post query based on taxonomy.
   const postTypeQuery = {
     category: queryPostsByCategory,
@@ -116,8 +115,9 @@ export default async function getPostTypeTaxonomyArchive(
           metaRobotsNofollow: archiveSeo?.metaRobotsNofollow ?? 'follow',
           metaRobotsNoindex: archiveSeo?.metaRobotsNoindex ?? 'index'
         },
-        title: `${taxonomies?.[taxonomy]?.label ? `${taxonomies[taxonomy].label}: ` : ''
-          }${data?.name || ''}`
+        title: `${
+          taxonomies?.[taxonomy]?.label ? `${taxonomies[taxonomy].label}: ` : ''
+        }${data?.name || ''}`
       }
 
       // Extract pagination data.

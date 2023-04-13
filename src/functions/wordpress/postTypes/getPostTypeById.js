@@ -25,7 +25,7 @@ export default async function getPostTypeById(
     page: queryPageById,
     post: queryPostById,
     program: queryProgramById,
-    facultyMember: queryFacultyById,
+    facultyMember: queryFacultyById
   }
 
   // Check if post type is hierarchical.

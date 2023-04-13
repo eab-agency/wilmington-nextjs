@@ -1,8 +1,8 @@
-import cn from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import * as styles from './Groups.module.scss';
-import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles';
+import cn from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import * as styles from './Groups.module.scss'
+import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
 
 /**
  * Render the Group component.
@@ -25,9 +25,9 @@ export default function Groups({
   children,
   style,
   verticalAlignment,
-  isStackedOnMobile,
+  isStackedOnMobile
 }) {
-  const groupStyles = getBlockStyles({ style });
+  const groupStyles = getBlockStyles({ style })
   return (
     <>
       <div
@@ -45,7 +45,7 @@ export default function Groups({
         {children}
       </div>
     </>
-  );
+  )
 }
 
 Groups.propTypes = {
@@ -58,5 +58,5 @@ Groups.propTypes = {
   //   backgroundColor: PropTypes.string,
   //   color: PropTypes.string
   // }),
-  verticalAlignment: PropTypes.string,
-};
+  verticalAlignment: PropTypes.string
+}

@@ -9,7 +9,7 @@ import * as styles from './InputError.module.css'
  * @param  {string|number} props.name Input id.
  * @return {Element}                  The InputError component.
  */
-export default function InputError ({ name }) {
+export default function InputError({ name }) {
   return (
     <span className={styles.inputError}>
       <ErrorMessage name={name} />

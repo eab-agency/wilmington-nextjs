@@ -15,13 +15,12 @@ import SearchResults from './templates/SearchResults'
  * @param  {object}  props.config Algolia configuration.
  * @return {Element}              The AlgoliaResults component.
  */
-export default function AlgoliaResults(
-  {
-    config = {
-      query: '',
-      hitsPerPage: 15
-    }
-  }) {
+export default function AlgoliaResults({
+  config = {
+    query: '',
+    hitsPerPage: 15
+  }
+}) {
   const { algolia } = useWordPressContext()
 
   // Dispatch console warning if Index Name missing.

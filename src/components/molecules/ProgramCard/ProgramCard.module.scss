@@ -1,5 +1,5 @@
-@use "sass:color";
-@use "tokens";
+@use 'sass:color';
+@use 'tokens';
 
 .programCard {
   display: block;
@@ -11,7 +11,7 @@
 
     & > div {
       &::before {
-        content: "";
+        content: '';
         display: block;
         position: absolute;
         top: 0;
@@ -24,7 +24,7 @@
       }
 
       &::after {
-        content: "+";
+        content: '+';
         display: block;
         position: absolute;
         font-size: tokens.$fs-s;
