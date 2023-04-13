@@ -1,4 +1,4 @@
-import {initializeWpApollo} from '@/lib/wordpress/connector'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
 import queryMenuItemsByLocation from '@/lib/wordpress/menus/queryMenuItemsByLocation'
 import formatHeirarchialMenu from './formatHeirarchialMenu'
 
@@ -22,7 +22,7 @@ export default async function getMenuByLocation(location) {
 
   // Execute query.
   response.menu = await apolloClient
-    .query({query: queryMenuItemsByLocation, variables: {location}})
+    .query({ query: queryMenuItemsByLocation, variables: { location } })
     .then((res) => {
       return res.data
     })

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MobileNavigation = ({children}) => {
+const MobileNavigation = ({ children }) => {
   const isOpen = false
   return (
     <>

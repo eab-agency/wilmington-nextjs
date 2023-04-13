@@ -1,5 +1,5 @@
 import buildSearchUrl from './buildSearchUrl'
-import {setLocalStorage} from './localStorage'
+import { setLocalStorage } from './localStorage'
 
 /**
  * Search Form Submit Handler

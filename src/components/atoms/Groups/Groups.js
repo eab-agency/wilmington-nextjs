@@ -27,7 +27,7 @@ export default function Groups({
   verticalAlignment,
   isStackedOnMobile
 }) {
-  const groupStyles = getBlockStyles({style})
+  const groupStyles = getBlockStyles({ style })
   return (
     <>
       <div

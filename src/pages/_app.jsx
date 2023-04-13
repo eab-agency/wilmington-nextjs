@@ -1,11 +1,11 @@
 import ExitPreview from '@/components/atoms/ExitPreview'
 import WordPressProvider from '@/components/common/WordPressProvider'
-import {useWpApollo} from '@/lib/wordpress/connector'
+import { useWpApollo } from '@/lib/wordpress/connector'
 import '@/styles/styles.scss'
-import {ApolloProvider} from '@apollo/client'
-import {SessionProvider as NextAuthProvider} from 'next-auth/react'
+import { ApolloProvider } from '@apollo/client'
+import { SessionProvider as NextAuthProvider } from 'next-auth/react'
 import PropTypes from 'prop-types'
-import {useState} from 'react'
+import { useState } from 'react'
 import Custom500 from './500'
 
 /**
@@ -17,7 +17,7 @@ import Custom500 from './500'
  * @return {Element}                 The App component.
  */
 
-export default function App({Component, pageProps}) {
+export default function App({ Component, pageProps }) {
   /**
    * Wrap the app in the ApolloProvider component.
    *
@@ -33,7 +33,7 @@ export default function App({Component, pageProps}) {
 
   // Extract specific props from page props.
   const {
-    defaultSeo: {social, ...defaultSeoData} = {},
+    defaultSeo: { social, ...defaultSeoData } = {},
     menus,
     algolia,
     preview,

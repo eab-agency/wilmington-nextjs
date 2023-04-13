@@ -13,7 +13,7 @@ interface BlockNewsListingProps {
 }
 
 const BlockNewsListing = ({
-  data: {listing_title, news_listing, listing_display, news_category},
+  data: { listing_title, news_listing, listing_display, news_category },
   listingData
 }: BlockNewsListingProps) => {
   const posts = listingData

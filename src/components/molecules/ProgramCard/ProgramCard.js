@@ -4,14 +4,14 @@ import Image from '@/components/atoms/Image'
 import ParsedContent from '@/functions/parsedContent'
 import styles from './ProgramCard.module.scss'
 
-const ProgramCard = ({title, excerpt, link, image}) => {
+const ProgramCard = ({ title, excerpt, link, image }) => {
   return (
     <div className={styles.programCard}>
       {image && (
         <Image
           url={image.mediaItemUrl}
           alt={image.altText}
-          imageMeta={{mediaDetails: image.mediaDetails}}
+          imageMeta={{ mediaDetails: image.mediaDetails }}
         />
       )}
       <h3>{title}</h3>

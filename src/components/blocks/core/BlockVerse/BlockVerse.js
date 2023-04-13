@@ -18,7 +18,7 @@ export default function BlockParagraph({
   style
 }) {
   // convert style from string to object before passing to getBlockStyles, bc it comes in as a string
-  const paragraphStyle = getBlockStyles({style})
+  const paragraphStyle = getBlockStyles({ style })
 
   return (
     <RichText

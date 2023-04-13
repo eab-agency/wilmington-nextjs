@@ -14,8 +14,8 @@ const postType = 'page'
  * @param  {object}  props.post Post data from WordPress.
  * @return {Element}            The HomePage component.
  */
-export default function HomePage({post}) {
-  const {seo, ...postData} = post
+export default function HomePage({ post }) {
+  const { seo, ...postData } = post
 
   // Display dynamic page data if homepage retrieved from WP.
   if (postData && Object.keys(postData).length > 0) {
@@ -24,7 +24,7 @@ export default function HomePage({post}) {
 
   // Display static page content as fallback.
   return (
-    <Layout seo={{...seo}}>
+    <Layout seo={{ ...seo }}>
       <Container>
         <article>
           <p>
@@ -43,7 +43,7 @@ export default function HomePage({post}) {
  * @return {object} Post props.
  */
 export async function getStaticProps() {
-  return await getPostTypeStaticProps({slug: '/'}, postType)
+  return await getPostTypeStaticProps({ slug: '/' }, postType)
 }
 
 HomePage.propTypes = {

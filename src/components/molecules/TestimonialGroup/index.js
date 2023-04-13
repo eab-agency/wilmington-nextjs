@@ -1,1 +1,1 @@
-export {default} from './TestimonialGroup'
+export { default } from './TestimonialGroup'

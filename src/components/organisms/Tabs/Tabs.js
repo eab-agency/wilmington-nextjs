@@ -1,9 +1,9 @@
 import React from 'react'
-import {Tab, Tabs, TabList, TabPanel} from 'react-tabs'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import styles from './Tabs.module.scss'
 import Image from '@/components/atoms/Image'
 
-const TabComponent = ({tabs}) => {
+const TabComponent = ({ tabs }) => {
   return (
     <Tabs className={styles.tabsContainer}>
       <TabList>
@@ -19,12 +19,12 @@ const TabComponent = ({tabs}) => {
       {tabs.map((tab, index) => {
         return (
           <TabPanel className={styles.tabContent} key={index}>
-            <div dangerouslySetInnerHTML={{__html: tab.content}} />
+            <div dangerouslySetInnerHTML={{ __html: tab.content }} />
             {tab.image && (
               <Image
                 url={tab.image.mediaItemUrl}
                 alt={tab.image.altText}
-                imageMeta={{mediaDetails: tab.image.mediaDetails}}
+                imageMeta={{ mediaDetails: tab.image.mediaDetails }}
               />
             )}
           </TabPanel>

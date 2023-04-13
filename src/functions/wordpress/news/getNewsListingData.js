@@ -1,4 +1,4 @@
-import {initializeWpApollo} from '@/lib/wordpress/connector'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
 import queryNewsListingAttributes from '@/lib/wordpress/news-listing/queryNewsListingAttributes'
 
 /**
@@ -10,7 +10,7 @@ Retrieve news listings by their IDs.
 export default async function getNewsListingData(ids) {
   // No IDs? Bail...
   if (!ids || !Array.isArray(ids)) {
-    return {isError: true, message: 'Invalid IDs provided.'}
+    return { isError: true, message: 'Invalid IDs provided.' }
   }
   // Get/create Apollo instance.
   const apolloClient = initializeWpApollo()

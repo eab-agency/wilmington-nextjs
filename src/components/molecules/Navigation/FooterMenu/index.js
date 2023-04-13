@@ -1,1 +1,1 @@
-export {default} from './FooterMenu'
+export { default } from './FooterMenu'

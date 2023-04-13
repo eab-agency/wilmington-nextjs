@@ -21,7 +21,7 @@ export default async function formatBlockData(blocks) {
 
   return await Promise.all(
     blocks.map(async (block) => {
-      const {name, attributes, innerBlocks} = block
+      const { name, attributes, innerBlocks } = block
       // adds extra attributes to the block data
       switch (name) {
         case 'core/image':
@@ -108,14 +108,14 @@ export default async function formatBlockData(blocks) {
           break
 
         case 'eab/program-directory':
-          const {posts} = await getPostTypeArchive('department')
+          const { posts } = await getPostTypeArchive('department')
           attributes.departments = posts
           break
       }
 
       const innerBlocksFormatted = await formatBlockData(innerBlocks)
 
-      return {name, attributes, innerBlocks: innerBlocksFormatted}
+      return { name, attributes, innerBlocks: innerBlocksFormatted }
     })
   )
 }

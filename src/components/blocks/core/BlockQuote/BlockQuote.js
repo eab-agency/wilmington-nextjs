@@ -11,7 +11,7 @@ export default function BlockQuote({
   innerBlocks
 }) {
   // convert style from string to object before passing to getBlockStyles, bc it comes in as a string
-  const quoteStyle = getBlockStyles({style})
+  const quoteStyle = getBlockStyles({ style })
 
   return (
     <Quote

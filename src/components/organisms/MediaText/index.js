@@ -1,1 +1,1 @@
-export {default} from './MediaText'
+export { default } from './MediaText'

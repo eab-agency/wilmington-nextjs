@@ -1,7 +1,7 @@
 import React from 'react'
-import {Taxonomies} from './Taxonomies'
+import { Taxonomies } from './Taxonomies'
 
-export const PostEntryMeta = ({post, ...props}) => {
+export const PostEntryMeta = ({ post, ...props }) => {
   return (
     <div className="entry-meta" {...props}>
       {post.categories && (

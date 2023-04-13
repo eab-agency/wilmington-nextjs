@@ -1,1 +1,1 @@
-export {default} from './AlgoliaResults'
+export { default } from './AlgoliaResults'

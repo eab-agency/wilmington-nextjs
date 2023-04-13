@@ -1,1 +1,1 @@
-export {default} from './BlockDefault'
+export { default } from './BlockDefault'

@@ -1,9 +1,9 @@
 import getMenus from '@/functions/wordpress/menus/getMenus'
 import formatArchiveSeoData from '@/functions/wordpress/seo/formatArchiveSeoData'
 import formatDefaultSeoData from '@/functions/wordpress/seo/formatDefaultSeoData'
-import {initializeWpApollo} from '@/lib/wordpress/connector'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
 import archiveQuerySeo from '@/lib/wordpress/_config/archiveQuerySeo'
-import {postTypes} from '@/lib/wordpress/_config/postTypes'
+import { postTypes } from '@/lib/wordpress/_config/postTypes'
 
 /**
  * Retrieve post archive.
@@ -60,15 +60,15 @@ export default async function getPostTypeArchive(
 
   // Execute query.
   await apolloClient
-    .query({query, variables})
+    .query({ query, variables })
     .then((archive) => {
-      const {siteSeo, menus, ...archiveData} = archive.data
+      const { siteSeo, menus, ...archiveData } = archive.data
 
       // Retrieve menus.
       // response.menus = getMenus(menus)
 
       // Retrieve default SEO data.
-      response.defaultSeo = formatDefaultSeoData({siteSeo})
+      response.defaultSeo = formatDefaultSeoData({ siteSeo })
 
       const pluralType = postTypes[postType]?.pluralName ?? postType
       const data = archiveData?.[pluralType] ?? null

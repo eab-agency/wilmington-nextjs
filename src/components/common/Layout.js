@@ -1,13 +1,13 @@
 import Meta from '@/components/common/Meta'
-import {useWordPressContext} from '@/components/common/WordPressProvider'
+import { useWordPressContext } from '@/components/common/WordPressProvider'
 import AlgoliaSearch from '@/components/molecules/AlgoliaSearch'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
 import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 import styles from './Layout.module.scss'
 
-import {Cantarell} from 'next/font/google'
+import { Cantarell } from 'next/font/google'
 
 const cantarell = Cantarell({
   weight: ['400', '700'],
@@ -22,8 +22,8 @@ const cantarell = Cantarell({
  * @param  {object}  props.seo      Yoast SEO data from WordPress.
  * @return {Element}                The Layout component.
  */
-export default function Layout({children, seo}) {
-  const {menus} = useWordPressContext()
+export default function Layout({ children, seo }) {
+  const { menus } = useWordPressContext()
 
   const router = useRouter()
   const isFrontPage = router.asPath === '/'

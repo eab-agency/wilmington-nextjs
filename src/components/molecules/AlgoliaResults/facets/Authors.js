@@ -10,7 +10,7 @@ import CustomRefinementList from '../refinements/CustomRefinementList'
  * @param  {string}  props.className         The component className.
  * @return {Element}                         The Authors component.
  */
-export default function Authors({refinements, defaultRefinement, className}) {
+export default function Authors({ refinements, defaultRefinement, className }) {
   const data = {
     title: 'Authors',
     attribute: 'post_author.display_name',

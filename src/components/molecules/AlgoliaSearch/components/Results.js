@@ -1,5 +1,5 @@
 import React from 'react'
-import {connectStateResults, Hits} from 'react-instantsearch-dom'
+import { connectStateResults, Hits } from 'react-instantsearch-dom'
 import * as styles from '../AlgoliaSearch.module.scss'
 import buildSearchUrl from '../functions/buildSearchUrl'
 import searchClick from '../functions/searchClick'

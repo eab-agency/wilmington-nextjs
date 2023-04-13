@@ -13,7 +13,7 @@ import Hero from '@/components/organisms/HomeHero'
  */
 
 export default function BlockHomeHero({
-  data: {innerBlocks, hero_content, hero_primary_ctas, hero_image, ...other},
+  data: { innerBlocks, hero_content, hero_primary_ctas, hero_image, ...other },
   imageMeta
 }) {
   const count = hero_primary_ctas

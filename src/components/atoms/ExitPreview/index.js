@@ -1,1 +1,1 @@
-export {default} from './ExitPreview.js'
+export { default } from './ExitPreview.js'

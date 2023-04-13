@@ -1,5 +1,5 @@
-import {initializeWpApollo} from '@/lib/wordpress/connector'
-import {queryProgramChildrenById} from '@/lib/wordpress/programs/queryProgramById'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
+import { queryProgramChildrenById } from '@/lib/wordpress/programs/queryProgramById'
 
 /**
  * Retrieve program details by ID.

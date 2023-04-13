@@ -2,7 +2,7 @@ import * as React from 'react'
 import Link from '@/components/common/Link'
 import Image from '@/components/atoms/Image'
 
-const FacultyCard = ({title, description, email, phone, link, image}) => {
+const FacultyCard = ({ title, description, email, phone, link, image }) => {
   return (
     <>
       <pre>FILE: FacultyCard.js</pre>
@@ -10,7 +10,7 @@ const FacultyCard = ({title, description, email, phone, link, image}) => {
         <Image
           url={image.sourceUrl}
           alt={image.altText || ''}
-          imageMeta={{mediaDetails: image.mediaDetails}}
+          imageMeta={{ mediaDetails: image.mediaDetails }}
         />
       )}
       <h3>{title}</h3>

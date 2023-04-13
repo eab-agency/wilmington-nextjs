@@ -3,7 +3,7 @@ import FooterMenu from '@/components/molecules/Navigation/FooterMenu'
 import PreFooter from '@/components/molecules/PreFooter'
 import * as styles from './Footer.module.scss'
 
-const Footer = ({menus}) => {
+const Footer = ({ menus }) => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>

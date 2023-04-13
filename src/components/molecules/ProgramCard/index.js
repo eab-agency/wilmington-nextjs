@@ -1,1 +1,1 @@
-export {default} from './ProgramCard'
+export { default } from './ProgramCard'

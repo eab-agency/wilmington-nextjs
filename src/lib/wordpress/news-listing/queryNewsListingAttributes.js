@@ -1,5 +1,5 @@
 import featuredImagePostFields from '@/lib/wordpress/_query-partials/featuredImagePostFields'
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 const queryNewsListingAttributes = gql`
   query GET_NEWSLISTING_ATTS(

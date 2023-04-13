@@ -1,5 +1,5 @@
 import React from 'react'
-import {Field} from 'formik'
+import { Field } from 'formik'
 import InputError from '@/components/atoms/Inputs/InputError'
 import * as styles from './Text.module.css'
 import cn from 'classnames'

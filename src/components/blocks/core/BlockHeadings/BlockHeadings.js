@@ -13,7 +13,7 @@ export default function BlockHeadings({
   style,
   textAlign
 }) {
-  const headingStyle = getBlockStyles({style, fontSize, textColor})
+  const headingStyle = getBlockStyles({ style, fontSize, textColor })
 
   return (
     <Heading

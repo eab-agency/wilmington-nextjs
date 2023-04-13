@@ -41,7 +41,7 @@ interface Props {
 }
 
 export default function BlockAthleteCard({
-  data: {athlete_name, athlete_content, athlete_link},
+  data: { athlete_name, athlete_content, athlete_link },
   imageMeta
 }: Props) {
   return (

@@ -1,1 +1,1 @@
-export {default} from './BlockParagraph'
+export { default } from './BlockParagraph'

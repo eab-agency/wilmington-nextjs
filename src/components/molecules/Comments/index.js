@@ -1,1 +1,1 @@
-export {default, SingleComment} from './Comments'
+export { default, SingleComment } from './Comments'

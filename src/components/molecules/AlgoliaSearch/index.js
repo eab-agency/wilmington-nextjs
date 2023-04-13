@@ -1,1 +1,1 @@
-export {default} from './AlgoliaSearch'
+export { default } from './AlgoliaSearch'

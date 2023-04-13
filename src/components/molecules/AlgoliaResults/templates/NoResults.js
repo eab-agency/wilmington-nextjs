@@ -8,7 +8,7 @@ import * as styles from '../AlgoliaResults.module.scss'
  * @param  {object}  props.query The no results data.
  * @return {Element}             The NoResults component.
  */
-export default function NoResults({query}) {
+export default function NoResults({ query }) {
   return (
     <>
       <h1>Search Results</h1>

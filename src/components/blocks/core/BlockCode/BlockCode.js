@@ -12,7 +12,7 @@ export default function BlockCode({
   style,
   title
 }) {
-  const codeStyle = getBlockStyles({style, fontSize})
+  const codeStyle = getBlockStyles({ style, fontSize })
 
   return (
     <Code

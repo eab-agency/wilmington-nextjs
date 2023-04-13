@@ -1,4 +1,4 @@
-import {initializeWpApollo} from '@/lib/wordpress/connector'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
 import queryProgramById from '@/lib/wordpress/programs/queryProgramById'
 
 /**

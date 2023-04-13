@@ -30,7 +30,7 @@ export default function Columns({
   backgroundColor,
   ...props
 }) {
-  const columnStyles = getBlockStyles({style})
+  const columnStyles = getBlockStyles({ style })
 
   return (
     <section
@@ -49,7 +49,7 @@ export default function Columns({
       )}
       style={columnStyles}
     >
-      {columns.map(({attributes, innerBlocks}, index) => {
+      {columns.map(({ attributes, innerBlocks }, index) => {
         const columnStyle = getBlockStyles({
           style: attributes?.style,
           width: attributes?.width

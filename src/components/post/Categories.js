@@ -1,7 +1,7 @@
 import React from 'react'
-import {Link} from 'gatsby'
+import { Link } from 'gatsby'
 
-const Categories = ({categories, ...props}) => (
+const Categories = ({ categories, ...props }) => (
   <section className="entry-taxonomy entry-tags" {...props}>
     <pre>components/post/Categories.js</pre>
     <div>

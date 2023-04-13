@@ -2,7 +2,7 @@
 import RichText from '@/components/atoms/RichText'
 import cn from 'classnames'
 import Image from 'next/image'
-import {PropTypes} from 'prop-types'
+import { PropTypes } from 'prop-types'
 import styles from './Image.module.css'
 
 /**
@@ -103,7 +103,7 @@ export default function DisplayImage(props) {
    * @param  {Array}   props.children Any children.
    * @return {Element}                The ImageLink component.
    */
-  function ImageLink({children}) {
+  function ImageLink({ children }) {
     return (
       <a
         className={props?.linkClass}

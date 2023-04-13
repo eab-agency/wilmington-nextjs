@@ -1,8 +1,8 @@
 import React from 'react'
-import {PostEntryTitle} from '../post/PostEntryTitle'
-import {PostEntryContent} from '../post/PostEntryContent'
-import {PostEntryMeta} from '../post/PostEntryMeta'
-import {FeaturedImage} from '../common/FeaturedImage'
+import { PostEntryTitle } from '../post/PostEntryTitle'
+import { PostEntryContent } from '../post/PostEntryContent'
+import { PostEntryMeta } from '../post/PostEntryMeta'
+import { FeaturedImage } from '../common/FeaturedImage'
 
 const ArchivePost = ({
   isFirst = false,

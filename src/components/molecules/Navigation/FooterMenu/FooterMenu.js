@@ -1,12 +1,12 @@
 import React from 'react'
-import {useWordPressContext} from '@/components/common/WordPressProvider'
+import { useWordPressContext } from '@/components/common/WordPressProvider'
 
 import styles from './FooterMenu.module.scss'
 
 // import { useMenuItems } from '@/hooks'
 import FooterMenuItem from './FooterMenuItem'
 
-const FooterMenu = ({menuItems, menuTitle}) => {
+const FooterMenu = ({ menuItems, menuTitle }) => {
   if (!menuItems || !menuItems?.length) {
     return null
   }

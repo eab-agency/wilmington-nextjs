@@ -3,9 +3,9 @@ import getProgramChildrenByID from '@/functions/wordpress/programs/getProgramChi
 import Link from 'next/link'
 import WordPressProvider from '@/components/common/WordPressProvider'
 
-const programLayout = async ({children, params}) => {
+const programLayout = async ({ children, params }) => {
   const id = `/programs/${params?.slug}`
-  const {program} = await getProgramChildrenByID(id)
+  const { program } = await getProgramChildrenByID(id)
   const {
     featuredImage,
     children: childPages,

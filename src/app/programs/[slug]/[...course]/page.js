@@ -5,10 +5,10 @@ import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeS
 
 const postType = 'program'
 
-const programChildPage = async ({params}) => {
+const programChildPage = async ({ params }) => {
   const id = `/programs/${params?.slug}/${params?.course}`
-  const {props} = await getPostTypeStaticProps({slug: id}, postType)
-  const {post} = props
+  const { props } = await getPostTypeStaticProps({ slug: id }, postType)
+  const { post } = props
 
   return (
     <div>

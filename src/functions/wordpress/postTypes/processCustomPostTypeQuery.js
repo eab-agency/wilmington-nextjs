@@ -1,5 +1,5 @@
-import {initializeWpApollo} from '@/lib/wordpress/connector'
-import {gql} from '@apollo/client'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
+import { gql } from '@apollo/client'
 
 /**
  * Retrieve single post.

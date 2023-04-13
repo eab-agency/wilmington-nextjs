@@ -13,7 +13,7 @@ interface BlockEventsListingProps {
 }
 
 const BlockEventsListing = ({
-  data: {listing_title, events_listing, listing_display, event_category},
+  data: { listing_title, events_listing, listing_display, event_category },
   listingData
 }: BlockEventsListingProps) => {
   const posts = listingData

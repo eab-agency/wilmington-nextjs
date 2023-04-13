@@ -1,1 +1,1 @@
-export {default} from './MainCta'
+export { default } from './MainCta'
