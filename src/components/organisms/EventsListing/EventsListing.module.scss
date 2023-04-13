@@ -1,7 +1,7 @@
 @use "tokens";
 @use "utilities/mixins";
 
-.events-section {
+.eventsSection {
   width: 100%;
   background: tokens.$c-gray-700;
   @include mixins.sectionPadding(block);
@@ -17,13 +17,13 @@
   // }
 }
 
-.section-head {
+.sectionHead {
   display: flex;
   flex-direction: column;
   gap: tokens.$m-xl;
   align-items: flex-start;
 
-  .section-tag {
+  .sectionTag {
     @include mixins.sectionTag();
     position: relative;
   }
@@ -33,7 +33,7 @@
   }
 }
 
-.events-list {
+.eventsList {
   list-style: none;
   padding: 0;
   margin: 0;

@@ -1,5 +1,5 @@
 // import { MdAndroid } from 'react-icons/md' // Icons
-import * as styles from './PreFooter.module.scss'
+import styles from './PreFooter.module.scss'
 import FooterMenuItem from './FooterMenuItem'
 
 const PreFooter = ({ menuItems }) => {

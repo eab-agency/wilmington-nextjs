@@ -1,6 +1,6 @@
 @use "tokens";
 
-.single-quote {
+.singleQuote {
   display: flex;
   overflow: hidden;
 
@@ -16,18 +16,18 @@
   }
 }
 
-.quote-text {
+.quoteText {
   padding: tokens.$p-xxl;
 }
 
-.quote-content {
+.quoteContent {
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
 }
 
-.featured-testimonial {
+.featuredTestimonial {
   figure {
     width: 50%;
     border-left: 3rem solid tokens.$c-white;

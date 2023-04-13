@@ -1,7 +1,7 @@
 import React from 'react'
 import { useWordPressContext } from '@/components/common/WordPressProvider'
 
-import * as styles from './FooterMenu.module.scss'
+import styles from './FooterMenu.module.scss'
 
 // import { useMenuItems } from '@/hooks'
 import FooterMenuItem from './FooterMenuItem'

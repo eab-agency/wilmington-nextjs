@@ -5,7 +5,7 @@ import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
 import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
 import { useRouter } from 'next/router'
-import * as styles from './Layout.module.scss'
+import styles from './Layout.module.scss'
 
 import {Cantarell } from "next/font/google"
 

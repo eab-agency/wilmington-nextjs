@@ -1,9 +1,9 @@
 @use "tokens";
 
-.footer-nav {
+.footerNav {
 }
 
-.footer-menu {
+.footerMenu {
   list-style: none;
 
   @media (min-width: tokens.$mq-800) {
