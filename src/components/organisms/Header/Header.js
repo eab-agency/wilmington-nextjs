@@ -6,11 +6,12 @@ import TopMenu from '@/components/molecules/Navigation/TopMenu'
 import { useEffect, useState } from 'react'
 import { MdSearch } from 'react-icons/md'
 import styles from './Header.module.scss'
-// import GlobalStyles from '../../../../src/styles/globalStyles'
-// import {createGlobalStyle} from 'styled-components'
 
 const Header = ({ search, menuItems }) => {
   const [scrollPosition, setScrollPosition] = useState(0)
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
   const handleScroll = () => {
     const position = window.pageYOffset
     setScrollPosition(position)
@@ -65,14 +66,10 @@ const Header = ({ search, menuItems }) => {
               className={styles.logo}
               aria-label="click to go home"
             >
-              <Logo className={styles.svg} type="dark" />
+              <Logo type="dark" />
             </Link>
             <div className={styles.topMenu}>
               <TopMenu menuItems={menuItems} />
-              {/* <button className={styles.search} type="button">
-                Search
-                <MdSearch />
-              </button> */}
               {search && <div className={styles.search}>{search}</div>}
             </div>
           </div>
