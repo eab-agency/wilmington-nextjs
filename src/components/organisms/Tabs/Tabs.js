@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
-import * as styles from './Tabs.module.scss'
+import styles from './Tabs.module.scss'
 import Image from '@/components/atoms/Image';
 
 const TabComponent = ({ tabs }) => {

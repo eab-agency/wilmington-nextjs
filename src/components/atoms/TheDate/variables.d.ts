@@ -1,3 +1,3 @@
-declare module "*.module.scss" {
-  export const theTime: string
-}
+// declare module "*.module.scss" {
+//   export const theTime: string
+// }

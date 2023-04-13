@@ -1,6 +1,6 @@
 import React from "react"
 import Testimonial from "@/components/molecules/Testimonial"
-import * as styles from "./BlockTestimonial.module.scss"
+import styles from "./BlockTestimonial.module.scss"
 
 export default function BlockTestimonial({
   data,

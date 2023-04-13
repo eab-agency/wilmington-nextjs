@@ -1,5 +1,5 @@
 import React from 'react'
-import * as styles from './ProgramSubMenu.module.scss';
+import styles from './ProgramSubMenu.module.scss';
 
 import ProgramSubMenuItem from './ProgramSubMenuItem'
 
