@@ -1,9 +1,9 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import Button from '@/components/atoms/Buttons/Button'
-import React from 'react'
+import Image from '@/components/atoms/Image'
 import Quote from '@/components/atoms/Quote'
 import cn from 'classnames'
 import styles from './Testimonial.module.scss'
-import Image from '@/components/atoms/Image'
 
 const Citation = (fullName, desc) => {
   return (

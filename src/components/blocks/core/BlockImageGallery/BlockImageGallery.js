@@ -1,4 +1,4 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
 import ImageGallery from '@/components/molecules/ImageGallery'
 import PropTypes from 'prop-types'
 

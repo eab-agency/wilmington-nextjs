@@ -46,8 +46,11 @@ export default async function getCustomPostTypePartialById(
       .then((res) => {
         return res
       })
-      .catch((err) => {
-        return null
+      .catch((error) => {
+        return {
+          error: true,
+          errorMessage: error.message
+        }
       })
     posts.push(result ?? null)
   }

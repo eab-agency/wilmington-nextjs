@@ -1,9 +1,8 @@
 import Meta from '@/components/common/Meta'
 import { useWordPressContext } from '@/components/common/WordPressProvider'
-import AlgoliaSearch from '@/components/molecules/AlgoliaSearch'
+import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
-import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
 import { useRouter } from 'next/router'
 import styles from './Layout.module.scss'
 
@@ -31,10 +30,7 @@ export default function Layout({ children, seo }) {
   return (
     <div className={`${cantarell.className}`}>
       <Meta seo={seo} />
-      <Header
-        menu={menus?.UTILITY_NAV}
-        search={<AlgoliaSearch useHistory={true} usePlaceholder={true} />}
-      />
+      <Header menu={menus?.UTILITY_NAV} />
       <div
         className={`${styles.mainContainer} ${isFrontPage ? 'front-page' : ''}`}
       >

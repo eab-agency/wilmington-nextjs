@@ -3,8 +3,8 @@
 import React from 'react'
 import styles from './mainNavigation.module.scss'
 
+import { MdClose, MdMenu } from 'react-icons/md'
 import MainNavigationItem from './MainNavigationItem'
-import { MdMenu, MdClose } from 'react-icons/md'
 
 const Burger = ({ open, setOpen }) => {
   return (
@@ -24,7 +24,7 @@ const Burger = ({ open, setOpen }) => {
   )
 }
 
-const MainNavigation = ({ location, menuItems, enableDropdown }) => {
+const MainNavigation = ({ menuItems, enableDropdown }) => {
   const items = menuItems
   const [open, setOpen] = React.useState(false)
   const handleToggle = () => {

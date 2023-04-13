@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
 import Link from '@/components/common/Link'
+import { useEffect, useRef, useState } from 'react'
 import Dropdown from './Dropdown'
 import styles from './mainNavigation.module.scss'
 
@@ -9,7 +9,7 @@ const MainNavigationItem = ({ item, depthLevel, index, enableDropdown }) => {
   // to control the dropdown state
   const [dropdown, setDropdown] = useState(false)
 
-  const handleButtonClick = (item) => {
+  const handleButtonClick = () => {
     setDropdown(!dropdown)
   }
 

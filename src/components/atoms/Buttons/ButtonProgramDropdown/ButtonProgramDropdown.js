@@ -1,7 +1,7 @@
-import React from 'react'
 import { navigate } from 'gatsby'
+import React from 'react'
 
-export default function DirectoryDropDown({ programDepartments, ...props }) {
+export default function DirectoryDropDown({ programDepartments }) {
   const handleDropdownChange = (e) => {
     const { value } = e.target
     navigate(value)

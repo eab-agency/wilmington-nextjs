@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './TopMenu.module.scss'
 
 import TopMenuItem from './TopMenuItem'
@@ -9,6 +8,7 @@ const TopMenu = ({ menuItems }) => {
   }
   return (
     <>
+      <h1>hello world</h1>
       <ul className={styles.topMenuItems}>
         {menuItems.map((navItem, index) => (
           <TopMenuItem item={navItem} key={index} index={index} />

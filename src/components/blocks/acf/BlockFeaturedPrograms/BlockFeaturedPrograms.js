@@ -1,9 +1,8 @@
 /* eslint-disable camelcase */
-import React from 'react'
-import ProgramCard from '@/components/molecules/ProgramCard'
 import Button from '@/components/atoms/Buttons/Button'
-import styles from './BlockFeaturedPrograms.module.scss'
+import ProgramCard from '@/components/molecules/ProgramCard'
 import Carousel from 'react-multi-carousel'
+import styles from './BlockFeaturedPrograms.module.scss'
 
 /**
  * Featured Programs Block
@@ -33,7 +32,7 @@ const responsive = {
   }
 }
 
-export default function BlockFeaturedPrograms({ data, listingData }) {
+export default function BlockFeaturedPrograms({ listingData }) {
   const featuredPrograms = listingData.flat().concat()
   return (
     <section className={styles.featuredPrograms}>

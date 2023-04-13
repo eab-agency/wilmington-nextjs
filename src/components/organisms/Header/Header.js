@@ -2,14 +2,14 @@
 
 import Logo from '@/components/atoms/Logo'
 import Link from '@/components/common/Link'
+import AlgoliaSearch from '@/components/molecules/AlgoliaSearch/AlgoliaSearch'
 import TopMenu from '@/components/molecules/Navigation/TopMenu'
 import { useEffect, useState } from 'react'
-import { MdSearch } from 'react-icons/md'
 import styles from './Header.module.scss'
 // import GlobalStyles from '../../../../src/styles/globalStyles'
 // import {createGlobalStyle} from 'styled-components'
 
-const Header = ({ search, menuItems }) => {
+const Header = ({ menu }) => {
   const [scrollPosition, setScrollPosition] = useState(0)
   const handleScroll = () => {
     const position = window.pageYOffset
@@ -68,12 +68,18 @@ const Header = ({ search, menuItems }) => {
               <Logo className={styles.svg} type="dark" />
             </Link>
             <div className={styles.topMenu}>
-              <TopMenu menuItems={menuItems} />
+              <TopMenu menuItems={menu} />
               {/* <button className={styles.search} type="button">
                 Search
                 <MdSearch />
               </button> */}
-              {search && <div className={styles.search}>{search}</div>}
+              <div className={styles.search}>
+                <AlgoliaSearch
+                  className=""
+                  useHistory={true}
+                  usePlaceholder={true}
+                />
+              </div>
             </div>
           </div>
         </div>

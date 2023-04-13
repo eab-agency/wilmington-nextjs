@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "format": "npx prettier  '**/*.{js,jsx,ts,tsx,md,html,css,scss,json,yml}' --write || true",
-    "lint": "npm run format && npm run lint:js && npm run lint:css && npm run lint:md",
+    "lint": "npm run format && npm run lint:js && npm run lint:css",
     "lint:css": "npx stylelint '**/*.css' --fix || true",
     "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && next lint"
   },

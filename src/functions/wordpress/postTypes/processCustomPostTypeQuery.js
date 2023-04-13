@@ -1,5 +1,4 @@
 import { initializeWpApollo } from '@/lib/wordpress/connector'
-import { gql } from '@apollo/client'
 
 /**
  * Retrieve single post.
@@ -15,8 +14,7 @@ export default async function processCustomPostTypeQuery(
   postType,
   id,
   query,
-  variables = {},
-  preview = null
+  variables = {}
 ) {
   // Get/create Apollo instance.
   const apolloClient = initializeWpApollo()

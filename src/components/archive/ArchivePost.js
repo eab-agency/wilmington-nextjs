@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
-import { PostEntryTitle } from '../post/PostEntryTitle'
+import { FeaturedImage } from '../common/FeaturedImage'
 import { PostEntryContent } from '../post/PostEntryContent'
 import { PostEntryMeta } from '../post/PostEntryMeta'
-import { FeaturedImage } from '../common/FeaturedImage'
+import { PostEntryTitle } from '../post/PostEntryTitle'
 
 const ArchivePost = ({
   isFirst = false,

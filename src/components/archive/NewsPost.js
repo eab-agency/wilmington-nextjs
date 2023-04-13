@@ -1,10 +1,8 @@
-import React from 'react'
-import { PostEntryContent } from '../post/PostEntryContent'
-import { FeaturedImage } from '../common/FeaturedImage'
+/* eslint-disable no-unused-vars */
 import Button from '@/components/atoms/Buttons/Button'
+import Image from '@/components/atoms/Image'
 import TheDate from '@/components/atoms/TheDate'
 import * as styles from './NewsPost.module.scss'
-import Image from '@/components/atoms/Image'
 
 const NewsPost = ({
   isFirst = false,

@@ -1,6 +1,7 @@
+import { isHierarchicalPostType } from '@/functions/wordpress/postTypes/isHierarchicalPostType'
 import isValidPostType from '@/functions/wordpress/postTypes/isValidPostType'
-import { initializeWpApollo } from '@/lib/wordpress/connector'
 import { postTypes } from '@/lib/wordpress/_config/postTypes'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
 import { gql } from '@apollo/client'
 
 /**
