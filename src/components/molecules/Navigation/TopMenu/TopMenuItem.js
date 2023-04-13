@@ -11,7 +11,6 @@ const TopMenuItem = ({ item }) => {
       </Link>
     </li>
   )
-
 }
 
 export default TopMenuItem

@@ -84,7 +84,6 @@ const queryProgramById = gql`
   ${singleProgramFragment}
 `
 
-
 // Query: retrieve page by specified identifier.
 export const queryProgramChildrenById = gql`
   query GET_PROGRAM_CHILDREN_BY_ID(

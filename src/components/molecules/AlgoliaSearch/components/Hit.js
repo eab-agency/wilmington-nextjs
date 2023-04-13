@@ -10,7 +10,7 @@ import searchClick from '../functions/searchClick'
  * @param  {object}  props.hit Renders each hit from the results.
  * @return {Element}           The Hit component.
  */
-export default function Hit ({ hit }) {
+export default function Hit({ hit }) {
   return (
     <button
       type="button"

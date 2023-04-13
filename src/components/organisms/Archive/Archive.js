@@ -21,78 +21,78 @@ import { useRef, useState } from 'react'
  * @return {Element}                  The Archive component.
  */
 export default function Archive({
-    date: { day, month, year } = {},
-    posts,
-    pagination,
-    postType,
-    taxonomy,
-    term
+  date: { day, month, year } = {},
+  posts,
+  pagination,
+  postType,
+  taxonomy,
+  term
 }) {
-    // Track all posts, including initial posts and additionally loaded pages.
-    const [allPosts, setAllPosts] = useState(posts)
+  // Track all posts, including initial posts and additionally loaded pages.
+  const [allPosts, setAllPosts] = useState(posts)
 
-    // Track "load more" button state.
-    const [loadingMore, setLoadingMore] = useState(false)
+  // Track "load more" button state.
+  const [loadingMore, setLoadingMore] = useState(false)
 
-    // Track current pagination object.
-    const paginationRef = useRef(pagination)
+  // Track current pagination object.
+  const paginationRef = useRef(pagination)
 
-    /**
-     * Load more posts for archive.
-     */
-    async function loadPosts() {
-        setLoadingMore(true)
+  /**
+   * Load more posts for archive.
+   */
+  async function loadPosts() {
+    setLoadingMore(true)
 
-        const newPosts = await getArchivePosts(
-            postType,
-            paginationRef.current?.endCursor,
-            { day, month, year },
-            { taxonomy, term }
-        )
-
-        setAllPosts([...allPosts, ...(newPosts?.posts ?? [])])
-
-        // Update pagination ref.
-        paginationRef.current = newPosts?.pagination
-
-        setLoadingMore(false)
-    }
-
-    if (!allPosts || !allPosts.length) {
-        return <p>No posts found.</p>
-    }
-
-    return (
-        <>
-            <div className="grid lg:grid-cols-2 gap-12">
-                {allPosts.map((post, index) => (
-                    <Card
-                        key={index}
-                        title={post?.title}
-                        url={post?.uri}
-                        body={post?.excerpt}
-                    />
-                ))}
-            </div>
-            {paginationRef.current?.hasNextPage && (
-                <Button
-                    onClick={loadPosts}
-                    text={loadingMore ? 'Loading...' : 'Load More'}
-                    type="secondary"
-                    disabled={loadingMore}
-                />
-            )}
-        </>
+    const newPosts = await getArchivePosts(
+      postType,
+      paginationRef.current?.endCursor,
+      { day, month, year },
+      { taxonomy, term }
     )
+
+    setAllPosts([...allPosts, ...(newPosts?.posts ?? [])])
+
+    // Update pagination ref.
+    paginationRef.current = newPosts?.pagination
+
+    setLoadingMore(false)
+  }
+
+  if (!allPosts || !allPosts.length) {
+    return <p>No posts found.</p>
+  }
+
+  return (
+    <>
+      <div className="grid lg:grid-cols-2 gap-12">
+        {allPosts.map((post, index) => (
+          <Card
+            key={index}
+            title={post?.title}
+            url={post?.uri}
+            body={post?.excerpt}
+          />
+        ))}
+      </div>
+      {paginationRef.current?.hasNextPage && (
+        <Button
+          onClick={loadPosts}
+          text={loadingMore ? 'Loading...' : 'Load More'}
+          type="secondary"
+          disabled={loadingMore}
+        />
+      )}
+    </>
+  )
 }
 
 Archive.propTypes = {
-    ...archivePropTypes,
-    date: PropTypes.shape({
-        day: PropTypes.string,
-        month: PropTypes.string,
-        year: PropTypes.string
-    }),
-    taxonomy: PropTypes.string,
-    term: PropTypes.string
+  ...archivePropTypes,
+  date: PropTypes.shape({
+    day: PropTypes.string,
+    month: PropTypes.string,
+    year: PropTypes.string
+  }),
+  taxonomy: PropTypes.string,
+  term: PropTypes.string
 }

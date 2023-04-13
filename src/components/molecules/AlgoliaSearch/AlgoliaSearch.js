@@ -1,12 +1,11 @@
 'use client'
 
-import { useWordPressContext } from '@/components/common/WordPressProvider'
 import parseQuerystring from '@/functions/parseQuerystring'
 import cn from 'classnames'
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import * as styles from './AlgoliaSearch.module.scss'
-import SearchPlaceholder from './components/SearchPlaceholder'
 import Search from './components/Search'
+import SearchPlaceholder from './components/SearchPlaceholder'
 
 // /**
 //  * This always throws an error: Component definition is missing display name.
@@ -27,14 +26,14 @@ import Search from './components/Search'
  * @param  {boolean} props.usePlaceholder Whether to display the placeholder.
  * @return {Element}                      The AlgoliaSearch component.
  */
-export default function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
+function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
   const path = ''
   const query = path.includes('q=') ? parseQuerystring(path, 'q') : '' // Parse the querystring.
   const [loadAlgolia, setLoadAlgolia] = useState(0)
   const searchRef = useRef()
   // const { algolia } = useWordPressContext()
   const algolia = {
-    indexName: 'wp_searchable_posts',
+    indexName: 'wp_searchable_posts'
   }
 
   /**
@@ -62,26 +61,28 @@ export default function AlgoliaSearch({ useHistory, usePlaceholder, className })
   }
 
   return (
-    <>
+    <div>
       {!!algolia?.indexName && (
         <div
           className={cn(styles.algoliaSearch, className)}
           ref={searchRef}
           style={setMinHeight()}
         >
-          {!!loadAlgolia || !usePlaceholder
-            ? (
-              <Search
-                indexName={algolia?.indexName}
-                useHistory={useHistory}
-                query={query}
-              />
-            )
-            : (
-              <SearchPlaceholder query={query} toggleAlgolia={toggleAlgolia} />
-            )}
+          {!!loadAlgolia || !usePlaceholder ? (
+            <Search
+              indexName={algolia?.indexName}
+              useHistory={useHistory}
+              query={query}
+            />
+          ) : (
+            <SearchPlaceholder query={query} toggleAlgolia={toggleAlgolia} />
+          )}
         </div>
       )}
-    </>
+    </div>
   )
 }
+
+AlgoliaSearch.displayName = 'AlgoliaSearch'
+
+export default AlgoliaSearch

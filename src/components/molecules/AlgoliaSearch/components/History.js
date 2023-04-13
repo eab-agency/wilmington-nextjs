@@ -13,7 +13,7 @@ import * as styles from '../AlgoliaSearch.module.scss'
  * @param  {Function} props.searchClick       Click Event for Search Results
  * @return {Element}                          The History component.
  */
-export default function History ({
+export default function History({
   buildSearchUrl,
   clearLocalStorage,
   history,
@@ -27,7 +27,7 @@ export default function History ({
    * @param  {string} time The time as a timestamp.
    * @return {string}      Returns the string of relative time from now.
    */
-  function convertDate (time) {
+  function convertDate(time) {
     dayjs.extend(relativeTime)
     const newTime = dayjs(time).fromNow()
     return newTime

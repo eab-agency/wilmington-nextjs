@@ -6,15 +6,13 @@ export const PostEntryTitle = ({ post, location, ...props }) => {
 
   return (
     <>
-      {location === 'single'
-        ? (
+      {location === 'single' ? (
         <h1
           dangerouslySetInnerHTML={{ __html: title }}
           {...props}
           className="uppercase"
         />
-          )
-        : (
+      ) : (
         <h2 {...props}>
           <Link
             to={`${uri}`}
@@ -22,7 +20,7 @@ export const PostEntryTitle = ({ post, location, ...props }) => {
             className="uppercase hover:text-secondary dark:hover:text-primary"
           />
         </h2>
-          )}
+      )}
     </>
   )
 }

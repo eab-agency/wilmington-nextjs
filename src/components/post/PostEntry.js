@@ -1,11 +1,11 @@
-import { Link } from 'gatsby'
-import React from 'react'
-import parse from 'html-react-parser'
-import Categories from './Categories'
-import { Layout } from '../Layout'
 import FeaturedImage from '@/components/common/FeaturedImage'
+import { Link } from 'gatsby'
+import parse from 'html-react-parser'
+import React from 'react'
+import { Layout } from '../Layout'
+import Categories from './Categories'
 
-const PostEntry = ({ data: { post }, location }) => {
+const PostEntry = ({ data: { post } }) => {
   return (
     <Layout page={post} type="post">
       <article

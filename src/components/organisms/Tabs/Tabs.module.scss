@@ -1,7 +1,7 @@
-@use "tokens";
+@use 'tokens';
 
 .tabsContainer {
-  ul[class*="tab-list"] {
+  ul[class*='tab-list'] {
     list-style: none;
     padding: 0;
     display: flex;
@@ -34,37 +34,37 @@
         text-transform: uppercase;
 
         &::before {
-          content: "";
+          content: '';
           font-family: tokens.$f-icons;
           font-size: 1.5rem;
         }
 
-        &[class*="facebook"] {
+        &[class*='facebook'] {
           &::before {
             content: tokens.$i-facebook;
           }
         }
 
-        &[class*="twitter"] {
+        &[class*='twitter'] {
           &::before {
             content: tokens.$i-twitter;
           }
         }
 
-        &[class*="youtube"] {
+        &[class*='youtube'] {
           &::before {
             content: tokens.$i-youtube;
           }
         }
 
-        &[class*="instagram"] {
+        &[class*='instagram'] {
           &::before {
             content: tokens.$i-instagram;
           }
         }
       }
 
-      &[aria-selected="true"] {
+      &[aria-selected='true'] {
         border: 1px solid tokens.$c-limeGreen-400;
         background: tokens.$c-limeGreen-400;
         color: tokens.$c-white;
@@ -74,7 +74,7 @@
         }
 
         &::after {
-          content: "";
+          content: '';
           position: absolute;
           bottom: -0.75em;
           border-left: 0.75em solid transparent;
@@ -85,7 +85,7 @@
     }
   }
 
-  div[class*="tab-panel--selected"] {
+  div[class*='tab-panel--selected'] {
     display: flex;
     border: 0.5em solid tokens.$c-gray-300;
 
@@ -107,7 +107,7 @@
       overflow: hidden;
 
       &::before {
-        content: "";
+        content: '';
         display: block;
         width: 20rem;
         height: 20rem;

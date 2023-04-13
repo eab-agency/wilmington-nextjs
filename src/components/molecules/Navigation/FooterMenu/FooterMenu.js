@@ -1,13 +1,8 @@
-import React from 'react'
-import { useWordPressContext } from '@/components/common/WordPressProvider'
-
 import styles from './FooterMenu.module.scss'
 
-// import { useMenuItems } from '@/hooks'
 import FooterMenuItem from './FooterMenuItem'
 
 const FooterMenu = ({ menuItems, menuTitle }) => {
-
   if (!menuItems || !menuItems?.length) {
     return null
   }
@@ -17,11 +12,7 @@ const FooterMenu = ({ menuItems, menuTitle }) => {
       <h3>{menuTitle}</h3>
       <ul className={styles.footerMenu}>
         {menuItems.map((navItem, index) => (
-          <FooterMenuItem
-            item={navItem}
-            key={index}
-            index={index}
-          />
+          <FooterMenuItem item={navItem} key={index} index={index} />
         ))}
       </ul>
     </nav>

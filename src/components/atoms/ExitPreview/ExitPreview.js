@@ -7,7 +7,7 @@ import Link from 'next/link'
  * @param  {object}         props.preview Checks if a preview exists.
  * @return {Element | null}               The ExitPreview component.
  */
-export default function ExitPreview({preview}) {
+export default function ExitPreview({ preview }) {
   if (preview) {
     return (
       <p>

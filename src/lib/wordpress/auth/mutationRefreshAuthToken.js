@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 // Mutation: Get Auth Token using Refresh Token.
 const mutationRefreshAuthToken = gql`

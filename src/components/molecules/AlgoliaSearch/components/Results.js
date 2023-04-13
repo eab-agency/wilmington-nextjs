@@ -23,20 +23,18 @@ const Results = connectStateResults(
         searchState.query &&
         searchState.query.length > 0 &&
         searchResults &&
-        searchResults.nbHits > 0
-          ? (
+        searchResults.nbHits > 0 ? (
           <Hits className={styles.hits} hitComponent={Hit} />
-            )
-          : (
-              displayHistory && (
+        ) : (
+          displayHistory && (
             <History
               history={searchHistory}
               searchClick={searchClick}
               clearLocalStorage={clearLocalStorage}
               buildSearchUrl={buildSearchUrl}
             />
-              )
-            )}
+          )
+        )}
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function JankMenu () {
+function JankMenu() {
   return <div>JankMenu</div>
 }
 

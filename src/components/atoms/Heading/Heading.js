@@ -12,7 +12,13 @@ import createMarkup from '@/functions/createMarkup'
  * @param  {string}  props.tag       The tag name you'd like the heading to render as.
  * @return {Element}                 The Heading element.
  */
-export default function Heading({ children, className, id, style, tag = 'h1' }) {
+export default function Heading({
+  children,
+  className,
+  id,
+  style,
+  tag = 'h1'
+}) {
   if (typeof children === 'string') {
     return React.createElement(tag, {
       className,

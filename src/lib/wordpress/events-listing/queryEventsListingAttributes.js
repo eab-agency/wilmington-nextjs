@@ -14,9 +14,9 @@ const queryEventsListingAttributes = gql`
       ${featuredImagePostFields}
     }
   }
-`;
+`
 
-export default queryEventsListingAttributes;
+export default queryEventsListingAttributes
 
 export const queryEventsCategoryAttributes = gql`
   query GET_EVENT_AND_CATEGORY_ATTS(
@@ -36,4 +36,4 @@ export const queryEventsCategoryAttributes = gql`
       }
     }
   }
-`;
+`

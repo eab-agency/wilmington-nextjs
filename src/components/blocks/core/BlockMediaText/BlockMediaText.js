@@ -42,20 +42,20 @@ export default function BlockMediaText({
   mediaWidth,
   style,
   textColor,
-  verticalAlignment,
+  verticalAlignment
 }) {
   const mediaTextStyle = getBlockStyles({
     style,
     backgroundColor,
-    textColor,
-  });
+    textColor
+  })
 
   // Add additional styles.
   const gridtemplatecolumns =
-    mediaPosition === 'left' ? `${mediaWidth}% 1fr` : `1fr ${mediaWidth}%`;
-  mediaTextStyle.gridTemplateColumns = gridtemplatecolumns;
+    mediaPosition === 'left' ? `${mediaWidth}% 1fr` : `1fr ${mediaWidth}%`
+  mediaTextStyle.gridTemplateColumns = gridtemplatecolumns
 
-  const newFocalPoint = imageFill ? formatFocalPoint(focalPoint) : {};
+  const newFocalPoint = imageFill ? formatFocalPoint(focalPoint) : {}
 
   return (
     <>
@@ -76,7 +76,7 @@ export default function BlockMediaText({
         </MediaText>
       )}
     </>
-  );
+  )
 }
 
 BlockMediaText.propTypes = {

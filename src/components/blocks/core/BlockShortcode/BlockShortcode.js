@@ -9,7 +9,7 @@ import React from 'react'
  * @param  {object}  props.props The component props.
  * @return {Element}             The Shortcode component.
  */
-export default function BlockShortcode ({ props }) {
+export default function BlockShortcode({ props }) {
   const { content } = props
 
   return <div dangerouslySetInnerHTML={{ __html: content }} />

@@ -2,6 +2,7 @@
   &.button {
     background-color: red;
   }
+
   @apply md:grid md:grid-cols-12 mb-12 rounded;
 
   &.noStack {

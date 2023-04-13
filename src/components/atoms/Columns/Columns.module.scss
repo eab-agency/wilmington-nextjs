@@ -1,5 +1,5 @@
-@use "tokens";
-@use "utilities/mixins";
+@use 'tokens';
+@use 'utilities/mixins';
 
 section:where(.columns, .column) {
   display: flex;
