@@ -25,7 +25,7 @@
 // News Section Home
 
 .front-page {
-  section[class*="news-section"] {
+  section[class*="newsSection"] {
     @media (min-width: tokens.$mq-1200) {
       flex-direction: column;
       gap: tokens.$m-xl;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from '@/components/atoms/Image';
 import RichText from '@/components/atoms/RichText';
-import * as styles from './HomeHero.module.scss';
+import styles from './HomeHero.module.scss';
 import MainCta from '@/components/atoms/Buttons/MainCta';
 
 function Hero({ imageMeta, content, ctas }) {

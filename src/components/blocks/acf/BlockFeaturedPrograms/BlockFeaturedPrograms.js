@@ -2,7 +2,7 @@
 import React from "react"
 import ProgramCard from "@/components/molecules/ProgramCard"
 import Button from "@/components/atoms/Buttons/Button"
-import * as styles from "./BlockFeaturedPrograms.module.scss"
+import styles from "./BlockFeaturedPrograms.module.scss"
 import Carousel from "react-multi-carousel"
 
 /**

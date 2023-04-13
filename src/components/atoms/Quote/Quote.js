@@ -1,7 +1,7 @@
 import React from 'react'
 import RichText from '@/components/atoms/RichText'
 import cn from 'classnames'
-import * as styles from './Quote.module.scss'
+import styles from './Quote.module.scss'
 
 export default function Quote ({ citation, id, className, style, children }) {
   return (

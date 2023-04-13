@@ -1,11 +1,11 @@
 @use "tokens";
 
-.home-hero {
+.homeHero {
   position: relative;
   z-index: tokens.$layer-1;
 }
 
-.hero-intro-content {
+.heroIntroContent {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -30,17 +30,19 @@
   }
 }
 
-.hero-image {
-  overflow: initial;
+.heroImage {
+  position: relative;
   z-index: tokens.$layer-1;
-  max-height: 40rem;
+  // max-height: 40rem;
+  height: clamp(20rem, 40vw, 40rem);
   overflow-y: clip;
 
-  img[data-main-image] {
+  img {
     position: absolute;
     width: 100vw;
     max-height: 40rem;
     left: -7vw;
+    object-fit: cover;
 
     @media (min-width: tokens.$mq-800) {
       width: 93vw;
@@ -51,7 +53,7 @@
   }
 }
 
-.intro-copy {
+.introCopy {
   padding-right: clamp(tokens.$p-l, 10vw, tokens.$p-3xl);
 
   @media (min-width: tokens.$mq-1200) {
@@ -68,7 +70,7 @@
   }
 }
 
-.ctas-row {
+.ctasRow {
   display: flex;
   width: 100%;
   margin: 0;
