@@ -1,6 +1,6 @@
 import React from 'react'
-import {PostEntryContent} from '../post/PostEntryContent'
-import {FeaturedImage} from '../common/FeaturedImage'
+import { PostEntryContent } from '../post/PostEntryContent'
+import { FeaturedImage } from '../common/FeaturedImage'
 import Button from '@/components/atoms/Buttons/Button'
 import TheDate from '@/components/atoms/TheDate'
 import * as styles from './NewsPost.module.scss'
@@ -17,14 +17,15 @@ const NewsPost = ({
   // if post is null or undefined, return null
   if (!post) return null
 
-  const {title, date, featuredImage, uri} = post
+  const { title, date, featuredImage, uri } = post
 
-  const {node: {mediaItemUrl, altText, mediaDetails} = {}} = featuredImage || {}
+  const { node: { mediaItemUrl, altText, mediaDetails } = {} } =
+    featuredImage || {}
 
   return (
     <article className={className} {...props}>
       {mediaItemUrl && (
-        <Image url={mediaItemUrl} alt={altText} imageMeta={{mediaDetails}} />
+        <Image url={mediaItemUrl} alt={altText} imageMeta={{ mediaDetails }} />
       )}
       <TheDate date={date} />
       <h3 className={styles.articleTitle}>{title}</h3>

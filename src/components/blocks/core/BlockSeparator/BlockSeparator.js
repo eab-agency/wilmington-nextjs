@@ -15,7 +15,7 @@ export const CoreSeparatorBlock = `
   }
 `
 
-export default function BlockSeparator({className, anchor}) {
+export default function BlockSeparator({ className, anchor }) {
   const isFullWidth =
     (className && className.includes('is-style-full-width')) > 0
 

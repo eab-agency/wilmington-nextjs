@@ -12,7 +12,7 @@ import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard'
  */
 
 export default function BlockFaculty(props) {
-  const {facultyData} = props
+  const { facultyData } = props
 
   return (
     // map over facultyData only  if facultyData is not null

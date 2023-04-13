@@ -4,10 +4,10 @@ import RichText from '@/components/atoms/RichText'
 import Layout from '@/components/common/Layout'
 import Form from '@/components/molecules/Form'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
-import {signIn, useSession} from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
-import {useRouter} from 'next/router'
-import React, {useEffect, useState} from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 
 /**
  * Render the Login component.
@@ -17,9 +17,9 @@ import React, {useEffect, useState} from 'react'
  * @param  {object}  props.post Post data from WordPress.
  * @return {Element}            The Login component.
  */
-export default function Login({post}) {
+export default function Login({ post }) {
   const [errorMessage, setErrorMessage] = useState('')
-  const {data: session} = useSession()
+  const { data: session } = useSession()
   const router = useRouter()
 
   // Redirect to Profile page if user already logged in.
@@ -36,7 +36,7 @@ export default function Login({post}) {
    * @param {object} values Field values to submit.
    */
   async function submitForm(values) {
-    const {username, password} = values
+    const { username, password } = values
     const response = await signIn('wpLogin', {
       username,
       password,
@@ -49,7 +49,7 @@ export default function Login({post}) {
   }
 
   return (
-    <Layout seo={{...post?.seo}}>
+    <Layout seo={{ ...post?.seo }}>
       <Container>
         <RichText tag="h1">Login</RichText>
         {!!errorMessage && <div>{errorMessage}</div>}

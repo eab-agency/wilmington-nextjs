@@ -5,7 +5,7 @@ import Container from '@/components/atoms/Container'
 
 const FacultyPage = async () => {
   const {
-    props: {posts: faculty}
+    props: { posts: faculty }
   } = await getPostTypeStaticProps({}, 'faculty')
   return (
     <Container>

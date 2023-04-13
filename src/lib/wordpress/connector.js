@@ -1,6 +1,6 @@
-import {APOLLO_STATE_PROP_NAME, initializeApollo} from '@/lib/apolloConfig'
-import {ApolloClient, HttpLink, InMemoryCache} from '@apollo/client'
-import {useMemo} from 'react'
+import { APOLLO_STATE_PROP_NAME, initializeApollo } from '@/lib/apolloConfig'
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
+import { useMemo } from 'react'
 
 // Define env vars.
 export const wpApiUrlBase =

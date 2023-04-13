@@ -1,6 +1,6 @@
 import getMenus from '@/functions/wordpress/menus/getMenus'
 import formatDefaultSeoData from '@/functions/wordpress/seo/formatDefaultSeoData'
-import {initializeWpApollo} from '@/lib/wordpress/connector'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
 import queryDefaultPageData from '@/lib/wordpress/pages/queryDefaultPageData'
 import frontendPageSeo from '@/lib/wordpress/_config/frontendPageSeo'
 import formatManualSeoMeta from '../seo/formatManualSeoMeta'
@@ -24,15 +24,15 @@ export default async function getFrontendPage(route) {
 
   // Execute query.
   response.post = await apolloClient
-    .query({query: queryDefaultPageData})
+    .query({ query: queryDefaultPageData })
     .then((res) => {
-      const {generalSettings, siteSeo, menus} = res.data
+      const { generalSettings, siteSeo, menus } = res.data
 
       // Retrieve menus.
       response.menus = getMenus(menus)
 
       // Retrieve default SEO data.
-      response.defaultSeo = formatDefaultSeoData({siteSeo})
+      response.defaultSeo = formatDefaultSeoData({ siteSeo })
 
       // Determine SEO.
       return {

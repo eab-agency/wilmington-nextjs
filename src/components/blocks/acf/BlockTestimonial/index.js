@@ -1,1 +1,1 @@
-export {default} from './BlockTestimonial'
+export { default } from './BlockTestimonial'

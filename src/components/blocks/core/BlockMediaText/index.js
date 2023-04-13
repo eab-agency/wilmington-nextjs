@@ -1,1 +1,1 @@
-export {default} from './BlockMediaText'
+export { default } from './BlockMediaText'

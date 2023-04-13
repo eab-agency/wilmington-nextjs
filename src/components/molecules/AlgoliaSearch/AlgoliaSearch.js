@@ -1,9 +1,9 @@
 'use client'
 
-import {useWordPressContext} from '@/components/common/WordPressProvider'
+import { useWordPressContext } from '@/components/common/WordPressProvider'
 import parseQuerystring from '@/functions/parseQuerystring'
 import cn from 'classnames'
-import React, {useRef, useState} from 'react'
+import React, { useRef, useState } from 'react'
 import * as styles from './AlgoliaSearch.module.scss'
 import SearchPlaceholder from './components/SearchPlaceholder'
 import Search from './components/Search'
@@ -27,7 +27,11 @@ import Search from './components/Search'
  * @param  {boolean} props.usePlaceholder Whether to display the placeholder.
  * @return {Element}                      The AlgoliaSearch component.
  */
-export default function AlgoliaSearch({useHistory, usePlaceholder, className}) {
+export default function AlgoliaSearch({
+  useHistory,
+  usePlaceholder,
+  className
+}) {
   const path = ''
   const query = path.includes('q=') ? parseQuerystring(path, 'q') : '' // Parse the querystring.
   const [loadAlgolia, setLoadAlgolia] = useState(0)
@@ -48,7 +52,7 @@ export default function AlgoliaSearch({useHistory, usePlaceholder, className}) {
       searchRef?.current && usePlaceholder
         ? searchRef.current.offsetHeight
         : '0'
-    return {minHeight: `${minHeight}px`}
+    return { minHeight: `${minHeight}px` }
   }
 
   /**

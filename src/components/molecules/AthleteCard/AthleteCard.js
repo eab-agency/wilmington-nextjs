@@ -1,10 +1,10 @@
 'use client'
 
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Link from '@/components/common/Link'
 import Image from '@/components/atoms/Image'
 
-const AthleteCard = ({title, image, description, link}) => {
+const AthleteCard = ({ title, image, description, link }) => {
   const [showDescription, setShowDescription] = useState(false)
 
   const toggleDescription = () => {
@@ -20,7 +20,7 @@ const AthleteCard = ({title, image, description, link}) => {
           <Image
             url={image.mediaItemUrl}
             alt={image.altText}
-            imageMeta={{mediaDetails: image.mediaDetails}}
+            imageMeta={{ mediaDetails: image.mediaDetails }}
           />
           {showDescription && <p>{description}</p>}
         </div>

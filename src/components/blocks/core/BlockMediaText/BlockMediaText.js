@@ -64,7 +64,7 @@ export default function BlockMediaText({
           className={className}
           focalPoint={newFocalPoint}
           id={anchor}
-          image={{url: mediaUrl, alt: mediaAlt}}
+          image={{ url: mediaUrl, alt: mediaAlt }}
           imageFill={imageFill}
           mediaLeft={mediaPosition === 'left'}
           mediaWidth={mediaWidth}

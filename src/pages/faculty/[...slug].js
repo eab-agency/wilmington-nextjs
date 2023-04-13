@@ -13,7 +13,7 @@ import ProgramCard from '@/components/molecules/ProgramCard'
 const postType = 'facultyMember'
 
 // TODO: separate this out to its own component (maybe if using it more than once)
-function ProgramList({programs}) {
+function ProgramList({ programs }) {
   const renderPrograms = (programType, title) => {
     if (programs[programType] && programs[programType].length > 0) {
       return (
@@ -55,7 +55,7 @@ function ProgramList({programs}) {
  * @param  {string}  props.year        Date query: year.
  * @return {Element}                   The Page component.
  */
-export default function Faculty({post}) {
+export default function Faculty({ post }) {
   const {
     email,
     facebook,
@@ -119,7 +119,7 @@ export default function Faculty({post}) {
   const updatedPrograms = programsByDegree(programs)
 
   return (
-    <Layout seo={{...post?.seo}}>
+    <Layout seo={{ ...post?.seo }}>
       <Container>
         <article className="innerWrap">
           {featuredImage && (
@@ -187,7 +187,7 @@ export async function getStaticPaths() {
  * @param  {object}  context.previewData Post preview data.
  * @return {object}                      Post props.
  */
-export async function getStaticProps({params, preview, previewData}) {
+export async function getStaticProps({ params, preview, previewData }) {
   return getPostTypeStaticProps(params, postType, preview, previewData)
 }
 

@@ -1,1 +1,1 @@
-export {default} from './BlockRelatedPrograms'
+export { default } from './BlockRelatedPrograms'

@@ -1,1 +1,1 @@
-export {default} from './PullQuote'
+export { default } from './PullQuote'

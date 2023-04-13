@@ -1,1 +1,1 @@
-export {default} from './BlockFaqListing'
+export { default } from './BlockFaqListing'

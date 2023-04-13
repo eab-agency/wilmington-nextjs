@@ -2,7 +2,11 @@ import React from 'react'
 import Testimonial from '@/components/molecules/Testimonial'
 import styles from './BlockTestimonial.module.scss'
 
-export default function BlockTestimonial({data, featuredTestimonial, random}) {
+export default function BlockTestimonial({
+  data,
+  featuredTestimonial,
+  random
+}) {
   return (
     <>
       <Testimonial

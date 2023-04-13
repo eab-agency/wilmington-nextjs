@@ -2,7 +2,7 @@ import React from 'react'
 import Container from '@/components/atoms/Container'
 import Logo from '@/components/atoms/Logo'
 import Navigation from '@/components/molecules/Navigation'
-import {Link} from 'gatsby'
+import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import * as styles from './Header.module.css'
 
@@ -14,7 +14,7 @@ import * as styles from './Header.module.css'
  * @param  {Element} props.search The search component.
  * @return {Element}              The Header component.
  */
-export default function Header({menu, search}) {
+export default function Header({ menu, search }) {
   return (
     <>
       <a className={styles.skip} href="#page-content">

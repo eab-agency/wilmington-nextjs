@@ -16,7 +16,7 @@ import * as styles from './Table.module.css'
  * @param  {string}  props.className Optional classnames.
  * @return {Element}                 The Table component.
  */
-export default function Table({id, head, body, foot, caption, className}) {
+export default function Table({ id, head, body, foot, caption, className }) {
   return (
     <>
       {!!body.length && (

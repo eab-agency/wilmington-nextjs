@@ -1,4 +1,4 @@
-import {initializeNextApiApollo} from '@/lib/next-api/connector'
+import { initializeNextApiApollo } from '@/lib/next-api/connector'
 import queryArchivePosts from '@/lib/next-api/wordpress/archive/queryArchivePosts'
 
 /**
@@ -26,8 +26,8 @@ export default async function getArchivePosts(
   order = 'DESC'
 ) {
   console.log('🚀 ~ file: getArchivePosts.js:28 ~ postType:', postType)
-  const {day, month, year} = date
-  const {taxonomy, term} = tax
+  const { day, month, year } = date
+  const { taxonomy, term } = tax
   const apolloClient = initializeNextApiApollo()
 
   return apolloClient

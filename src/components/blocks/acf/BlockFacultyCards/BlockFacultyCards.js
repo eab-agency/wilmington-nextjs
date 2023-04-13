@@ -11,14 +11,14 @@ import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard'
  * @return {Element}                    The Card component.
  */
 
-export default function BlockFacultyCards({facultyData}) {
+export default function BlockFacultyCards({ facultyData }) {
   // if facultyData is null or undefined, return null
   if (!facultyData) {
     return null
   }
 
   const facultyRestructured = facultyData.map((faculty) => {
-    const {email, first, last, phone, position} =
+    const { email, first, last, phone, position } =
       faculty?.facultyFields?.faculty
     return {
       email: email,

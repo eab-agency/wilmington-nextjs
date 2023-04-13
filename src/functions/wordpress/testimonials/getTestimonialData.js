@@ -1,4 +1,4 @@
-import {initializeWpApollo} from '@/lib/wordpress/connector'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
 import queryTestimonyAttributes, {
   queryTestimonies
 } from '@/lib/wordpress/testimonies/queryTestimonyAttributes'

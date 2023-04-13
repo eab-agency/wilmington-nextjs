@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
  * @return {Element}       A block-based component.
  */
 export default function displayBlock(block, index) {
-  const {attributes, name, innerBlocks} = block
+  const { attributes, name, innerBlocks } = block
 
   // prettier-ignore
   switch (name) {

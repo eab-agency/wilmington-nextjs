@@ -3,7 +3,7 @@ import RichText from '@/components/atoms/RichText'
 import cn from 'classnames'
 import styles from './Quote.module.scss'
 
-export default function Quote({citation, id, className, style, children}) {
+export default function Quote({ citation, id, className, style, children }) {
   return (
     <>
       {!!children && (

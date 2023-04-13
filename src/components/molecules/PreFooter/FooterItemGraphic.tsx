@@ -6,7 +6,7 @@ interface FooterItemGraphicProps {
   graphic: string
 }
 
-const FooterItemGraphic = ({className, graphic}: FooterItemGraphicProps) => {
+const FooterItemGraphic = ({ className, graphic }: FooterItemGraphicProps) => {
   const graphicName = graphic.replace(/ /g, '-').toLowerCase()
 
   // Note: AO fix these images

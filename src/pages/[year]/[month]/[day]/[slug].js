@@ -18,9 +18,9 @@ const postType = 'post'
  * @param  {object}  props.post Post data from WordPress.
  * @return {Element}            The BlogPost component.
  */
-export default function BlogPost({post}) {
+export default function BlogPost({ post }) {
   return (
-    <Layout seo={{...post?.seo}}>
+    <Layout seo={{ ...post?.seo }}>
       <Container>
         <article className="innerWrap">
           {!!post?.seo?.breadcrumbs && (
@@ -54,7 +54,7 @@ export async function getStaticPaths() {
  * @param  {object}  context.previewData Post preview data.
  * @return {object}                      Post props.
  */
-export async function getStaticProps({params, preview, previewData}) {
+export async function getStaticProps({ params, preview, previewData }) {
   return getPostTypeStaticProps(params, postType, preview, previewData)
 }
 

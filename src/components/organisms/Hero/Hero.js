@@ -16,7 +16,7 @@ import * as styles from './Hero.module.css'
  * @param  {string}  props.id        Unique filter ID.
  * @return {Element}                 The DuotoneFilter component.
  */
-function DuotoneFilter({className, duotone, id}) {
+function DuotoneFilter({ className, duotone, id }) {
   const rgbValues =
     duotone?.length &&
     duotone.map((color) =>
@@ -171,7 +171,7 @@ export default function Hero({
             styles.overlay,
             !backgroundImage?.url ? styles.overlayOnly : null
           )}
-          style={{opacity: overlayopacity}}
+          style={{ opacity: overlayopacity }}
         ></div>
         <div className={styles.content}>
           {!!subtitle && <p className={styles.subtitle}>{subtitle}</p>}

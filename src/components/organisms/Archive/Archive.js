@@ -1,9 +1,9 @@
 import Button from '@/components/atoms/Buttons/Button'
 import Card from '@/components/molecules/Card'
-import {archivePropTypes} from '@/functions/getPagePropTypes'
+import { archivePropTypes } from '@/functions/getPagePropTypes'
 import getArchivePosts from '@/functions/next-api/wordpress/archive/getArchivePosts'
-import {PropTypes} from 'prop-types'
-import {useRef, useState} from 'react'
+import { PropTypes } from 'prop-types'
+import { useRef, useState } from 'react'
 
 /**
  * Render the Archive component.
@@ -21,7 +21,7 @@ import {useRef, useState} from 'react'
  * @return {Element}                  The Archive component.
  */
 export default function Archive({
-  date: {day, month, year} = {},
+  date: { day, month, year } = {},
   posts,
   pagination,
   postType,
@@ -46,8 +46,8 @@ export default function Archive({
     const newPosts = await getArchivePosts(
       postType,
       paginationRef.current?.endCursor,
-      {day, month, year},
-      {taxonomy, term}
+      { day, month, year },
+      { taxonomy, term }
     )
 
     setAllPosts([...allPosts, ...(newPosts?.posts ?? [])])

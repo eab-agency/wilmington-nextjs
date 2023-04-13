@@ -11,7 +11,7 @@ export default function BlockPullQuote({
   style
 }) {
   // convert style from string to object before passing to getBlockStyles, bc it comes in as a string
-  const pullQuoteStyle = getBlockStyles({style, fontSize})
+  const pullQuoteStyle = getBlockStyles({ style, fontSize })
 
   return (
     <PullQuote

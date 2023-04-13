@@ -11,7 +11,7 @@ import styles from './Breadcrumbs.module.scss'
  * @param  {Array}   props.breadcrumbs The breadcrumb array.
  * @return {Element}                   The Breadcrumbs component.
  */
-export default function Breadcrumbs({breadcrumbs}) {
+export default function Breadcrumbs({ breadcrumbs }) {
   return (
     <>
       {!!breadcrumbs?.length && (

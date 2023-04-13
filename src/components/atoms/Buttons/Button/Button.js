@@ -2,7 +2,7 @@ import Icon from '@/components/atoms/Icon'
 import Link from '@/components/common/Link'
 import cn from 'classnames'
 import React from 'react'
-import {MdChevronRight} from 'react-icons/md'
+import { MdChevronRight } from 'react-icons/md'
 import styles from './Button.module.scss'
 
 /**
@@ -15,7 +15,7 @@ import styles from './Button.module.scss'
  * @return {Element}                The inside of the Button component.
  */
 
-export function ButtonInner({icon, iconOnly, text}) {
+export function ButtonInner({ icon, iconOnly, text }) {
   return (
     <>
       {!iconOnly && <span className={styles.text}>{text}</span>}

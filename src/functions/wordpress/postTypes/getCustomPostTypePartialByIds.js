@@ -1,5 +1,5 @@
 import processCustomPostTypeQuery from '@/functions/wordpress/postTypes/processCustomPostTypeQuery'
-import {queryFacultyPartialById} from '@/lib/wordpress/faculty/queryFacultyById'
+import { queryFacultyPartialById } from '@/lib/wordpress/faculty/queryFacultyById'
 import queryFaqById from '@/lib/wordpress/faq/queryFaqById'
 import queryStudentOrgById from '@/lib/wordpress/student-orgs/queryStudentOrgById'
 
@@ -40,7 +40,7 @@ export default async function getCustomPostTypePartialById(
       postType,
       ids[i],
       query,
-      {id: ids[i], idType},
+      { id: ids[i], idType },
       preview
     )
       .then((res) => {

@@ -5,5 +5,5 @@
  * @return {object}       HTML markup for rendering.
  */
 export default function createMarkup(props) {
-  return {__html: props}
+  return { __html: props }
 }

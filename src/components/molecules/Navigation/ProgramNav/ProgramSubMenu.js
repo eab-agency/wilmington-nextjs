@@ -3,7 +3,7 @@ import styles from './ProgramSubMenu.module.scss'
 
 import ProgramSubMenuItem from './ProgramSubMenuItem'
 
-const ProgramSubMenu = ({location, menuItems}) => {
+const ProgramSubMenu = ({ location, menuItems }) => {
   const items = menuItems
 
   return (

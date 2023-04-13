@@ -4,7 +4,7 @@ import Button from '@/components/atoms/Buttons/Button'
 import DisplayImage from '@/components/atoms/Image'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import * as styles from './MediaText.module.css'
 
 /**
@@ -93,7 +93,7 @@ export default function MediaText({
           <DisplayImage
             className={styles.imageWrap}
             alt={image.alt}
-            imageMeta={{mediaItemUrl: image.url, altText: image.alt}}
+            imageMeta={{ mediaItemUrl: image.url, altText: image.alt }}
             url={image.url}
             nextImageFill={true}
           />

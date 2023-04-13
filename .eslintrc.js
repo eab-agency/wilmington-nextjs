@@ -5,17 +5,13 @@ module.exports = {
     node: true,
     es6: true
   },
-  extends: [
-    'eslint:recommended',
-    'next',
-    'prettier'
-  ],
+  extends: ['eslint:recommended', 'next', 'prettier'],
   plugins: ['prettier'],
   rules: {
     '@next/next/no-img-element': 'off',
     'func-style': ['error', 'declaration'],
     'jsx-a11y/anchor-is-valid': 'off',
-    'no-console': ['error', {allow: ['warn', 'error']}],
+    'no-console': ['error', { allow: ['warn', 'error'] }],
     'prettier/prettier': 'error'
   }
 }

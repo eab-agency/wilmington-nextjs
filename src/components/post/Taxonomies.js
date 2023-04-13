@@ -1,7 +1,7 @@
 import React from 'react'
-import {TaxonomyItem} from './TaxonomyItem'
+import { TaxonomyItem } from './TaxonomyItem'
 
-export const Taxonomies = ({post, taxName, singularName, ...props}) => {
+export const Taxonomies = ({ post, taxName, singularName, ...props }) => {
   const taxonomies = post[taxName]?.nodes
 
   return (

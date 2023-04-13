@@ -14,7 +14,7 @@ interface MainCtaProps {
   url: string
 }
 
-function MainCta({text, icon, url}: MainCtaProps) {
+function MainCta({ text, icon, url }: MainCtaProps) {
   return (
     <Link href={url}>
       {icon === 'location_on' && (

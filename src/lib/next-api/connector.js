@@ -1,7 +1,7 @@
-import {initializeApollo} from '@/lib/apolloConfig'
-import {typeDefs} from '@/lib/next-api/wordpress/_config/schema'
-import {ApolloClient, InMemoryCache} from '@apollo/client'
-import {RestLink} from 'apollo-link-rest'
+import { initializeApollo } from '@/lib/apolloConfig'
+import { typeDefs } from '@/lib/next-api/wordpress/_config/schema'
+import { ApolloClient, InMemoryCache } from '@apollo/client'
+import { RestLink } from 'apollo-link-rest'
 
 let nextApiApolloClient
 

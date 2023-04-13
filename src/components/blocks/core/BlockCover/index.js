@@ -1,1 +1,1 @@
-export {default} from './BlockCover'
+export { default } from './BlockCover'

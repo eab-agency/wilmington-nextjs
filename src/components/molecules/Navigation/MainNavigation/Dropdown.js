@@ -2,7 +2,7 @@ import React from 'react'
 import MainNavigationItem from './MainNavigationItem'
 import * as styles from './mainNavigation.module.scss'
 
-const Dropdown = ({submenus, dropdown, depthLevel, enableDropdown}) => {
+const Dropdown = ({ submenus, dropdown, depthLevel, enableDropdown }) => {
   const openCloseClasses = dropdown
     ? styles.openedSubMenu
     : styles.closedSubMenu

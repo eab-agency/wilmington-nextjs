@@ -1,9 +1,9 @@
-import {searchClient} from '@/lib/algolia/connector'
+import { searchClient } from '@/lib/algolia/connector'
 import PropTypes from 'prop-types'
-import React, {useCallback, useEffect, useState} from 'react'
-import {Configure, InstantSearch, SearchBox} from 'react-instantsearch-dom'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Configure, InstantSearch, SearchBox } from 'react-instantsearch-dom'
 import * as styles from '../AlgoliaSearch.module.scss'
-import {deleteLocalStorage} from '../functions/localStorage'
+import { deleteLocalStorage } from '../functions/localStorage'
 import searchSubmit from '../functions/searchSubmit'
 import Results from './Results'
 import SearchIcon from './SearchIcon'
@@ -19,7 +19,7 @@ import SearchIcon from './SearchIcon'
  * @param  {boolean} props.useHistory Whether to display search history.
  * @return {Element}                  The Search component.
  */
-export default function Search({indexName, query, useHistory = true}) {
+export default function Search({ indexName, query, useHistory = true }) {
   const storageName = indexName // Local Storage Name - set to algolia index.
   const historyLength = 6 // Max amount of history items to save to local storage.
   const hitsPerPage = 6 // Amount of hit to render in drop results.

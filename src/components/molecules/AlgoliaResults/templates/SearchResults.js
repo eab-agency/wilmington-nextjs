@@ -1,7 +1,7 @@
 import RichText from '@/components/atoms/RichText'
 import PropTypes from 'prop-types'
 import React from 'react'
-import {connectStateResults, InfiniteHits} from 'react-instantsearch-dom'
+import { connectStateResults, InfiniteHits } from 'react-instantsearch-dom'
 import styles from '../AlgoliaResults.module.scss'
 import PostType from '../facets/PostType'
 import Sort from '../facets/Sort'
@@ -24,7 +24,7 @@ const refinements = {
 /**
  * Component for rendering search results.
  */
-const SearchResults = connectStateResults(({searchResults, indexName}) => {
+const SearchResults = connectStateResults(({ searchResults, indexName }) => {
   return (
     <>
       {searchResults && searchResults.nbHits ? (

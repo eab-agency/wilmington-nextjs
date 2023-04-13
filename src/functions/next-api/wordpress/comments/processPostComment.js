@@ -1,4 +1,4 @@
-import {initializeNextApiApollo} from '@/lib/next-api/connector'
+import { initializeNextApiApollo } from '@/lib/next-api/connector'
 import mutationAddComment from '@/lib/next-api/wordpress/comments/mutationAddComment'
 
 /**

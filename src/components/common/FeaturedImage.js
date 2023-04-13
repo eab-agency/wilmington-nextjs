@@ -3,9 +3,9 @@ import React from 'react'
 import Link from '@/components/common/Link'
 import Image from '@/components/atoms/Image'
 
-const FeaturedImage = ({image, showCaption}) => {
+const FeaturedImage = ({ image, showCaption }) => {
   // grab featuredImage from post.featuredImage, only if it exists
-  const {altText, mediaDetails, sourceUrl, caption} = image
+  const { altText, mediaDetails, sourceUrl, caption } = image
   // if featuredImage exists, destructure altText and caption from featuredImage
   if (sourceUrl) {
     // const theImage = getImage(featuredImage.node.gatsbyImage)
@@ -18,12 +18,12 @@ const FeaturedImage = ({image, showCaption}) => {
           id="featured-img"
           url={sourceUrl}
           alt={altText}
-          imageMeta={{mediaDetails}}
+          imageMeta={{ mediaDetails }}
           nextImageFill={true}
         />
         {/* if showCaption and captionText is not null then show <figcaption> */}
         {showCaption && captionText && (
-          <figcaption dangerouslySetInnerHTML={{__html: captionText}} />
+          <figcaption dangerouslySetInnerHTML={{ __html: captionText }} />
         )}
       </figure>
     )

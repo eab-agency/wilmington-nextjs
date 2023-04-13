@@ -1,4 +1,4 @@
-import {initializeWpApollo} from '@/lib/wordpress/connector'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
 import queryEventsListingAttributes, {
   queryEventsCategoryAttributes
 } from '@/lib/wordpress/events-listing/queryEventsListingAttributes'
@@ -13,7 +13,7 @@ Retrieve news listings by their IDs.
 export default async function getEventsListingData(ids, category) {
   // No IDs? Bail...
   if ((!ids || !Array.isArray(ids)) && !category) {
-    return {isError: true, message: 'Invalid IDs or category provided.'}
+    return { isError: true, message: 'Invalid IDs or category provided.' }
   }
   // Get/create Apollo instance.
   const apolloClient = initializeWpApollo()

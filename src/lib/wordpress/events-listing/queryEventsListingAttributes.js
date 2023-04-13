@@ -1,5 +1,5 @@
 import featuredImagePostFields from '@/lib/wordpress/_query-partials/featuredImagePostFields'
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 const queryEventsListingAttributes = gql`
   query GET_EVENT_AND_CATEGORY_ATTS(

@@ -1,6 +1,6 @@
 import HTMLReactParser from 'html-react-parser'
 
-const ParsedContent = ({content}) => {
+const ParsedContent = ({ content }) => {
   if (typeof content !== 'string') {
     return content
   }

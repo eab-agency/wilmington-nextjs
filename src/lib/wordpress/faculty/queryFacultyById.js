@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 import defaultPageData from '@/lib/wordpress/_query-partials/defaultPageData'
 import globalPostFields from '@/lib/wordpress/_query-partials/globalPostFields'
 import featuredImagePostFields from '@/lib/wordpress/_query-partials/featuredImagePostFields'

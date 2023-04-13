@@ -1,9 +1,9 @@
 'use client'
 import StudentOrg from '@/components/molecules/StudentOrg'
-import {useWordPressContext} from '@/components/common/WordPressProvider'
+import { useWordPressContext } from '@/components/common/WordPressProvider'
 
 const BlockStudentOrgs = () => {
-  const {studentOrganizations} = useWordPressContext()
+  const { studentOrganizations } = useWordPressContext()
 
   return (
     <>

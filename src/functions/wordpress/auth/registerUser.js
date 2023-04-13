@@ -1,5 +1,5 @@
 import mutationRegisterUser from '@/lib/wordpress/auth/mutationRegisterUser'
-import {initializeWpApollo} from '@/lib/wordpress/connector'
+import { initializeWpApollo } from '@/lib/wordpress/connector'
 
 /**
  * Register a user in WP.

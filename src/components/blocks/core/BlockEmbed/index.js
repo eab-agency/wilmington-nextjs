@@ -1,1 +1,1 @@
-export {default} from './BlockEmbed'
+export { default } from './BlockEmbed'

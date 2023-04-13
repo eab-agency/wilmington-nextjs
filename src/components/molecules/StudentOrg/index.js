@@ -1,1 +1,1 @@
-export {default} from './StudentOrg'
+export { default } from './StudentOrg'

@@ -8,7 +8,7 @@ import React from 'react'
  * @param  {Array}   props.blocks The array of blocks.
  * @return {Element}              The Blocks component.
  */
-export default function Blocks({blocks}) {
+export default function Blocks({ blocks }) {
   return (
     <>
       {

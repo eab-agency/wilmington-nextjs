@@ -12,7 +12,7 @@ import SearchIcon from './SearchIcon'
  * @param  {string}   props.query         The search query.
  * @return {Element}                      The SearchPlaceholder component.
  */
-export default function SearchPlaceholder({toggleAlgolia, query}) {
+export default function SearchPlaceholder({ toggleAlgolia, query }) {
   return (
     <div className={styles.searchPlaceholder}>
       <div className={styles.searchBox}>

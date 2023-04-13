@@ -1,5 +1,5 @@
 import featuredImagePostFields from '@/lib/wordpress/_query-partials/featuredImagePostFields'
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 const queryTestimonyAttributes = gql`
   query GET_TESTIMONY_ATTS(

@@ -4,7 +4,7 @@ import RichText from '@/components/atoms/RichText'
 import styles from './HomeHero.module.scss'
 import MainCta from '@/components/atoms/Buttons/MainCta'
 
-function Hero({imageMeta, content, ctas}) {
+function Hero({ imageMeta, content, ctas }) {
   return (
     <div className={styles.homeHero}>
       {/* <pre>FILE: HomeHero.tsx</pre> */}

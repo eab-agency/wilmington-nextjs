@@ -1,5 +1,5 @@
 import React from 'react'
-import {SortBy} from 'react-instantsearch-dom'
+import { SortBy } from 'react-instantsearch-dom'
 
 /**
  * Render the Sort component.
@@ -9,7 +9,7 @@ import {SortBy} from 'react-instantsearch-dom'
  * @param  {string}  props.defaultRefinement The default refinement setting.
  * @return {Element}                         The Sort component.
  */
-export default function Sort({index, defaultRefinement}) {
+export default function Sort({ index, defaultRefinement }) {
   return (
     <SortBy
       items={[

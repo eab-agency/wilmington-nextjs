@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 // Query: retrieve post by specified identifier.
 const queryFAQById = gql`

@@ -14,14 +14,14 @@ const Citation = (fullName, desc) => {
   )
 }
 
-function Testimonial({post, viewAllLink, imageOnly, featuredTestimonial}) {
+function Testimonial({ post, viewAllLink, imageOnly, featuredTestimonial }) {
   // if no post, return null
   if (!post || Object.keys(post).length === 0) {
     return null
   }
   // destructure first, last, desc from post.testimonialFields.testimonial, set default values
-  const {altText, mediaDetails, sourceUrl} = post?.featuredImage?.node
-  const {first, last, desc} = post?.testimonialFields?.testimonial ?? {}
+  const { altText, mediaDetails, sourceUrl } = post?.featuredImage?.node
+  const { first, last, desc } = post?.testimonialFields?.testimonial ?? {}
   const fullName = `${first} ${last}`
 
   return (
@@ -31,7 +31,7 @@ function Testimonial({post, viewAllLink, imageOnly, featuredTestimonial}) {
         featuredTestimonial && styles.featuredTestimonial
       )}
     >
-      <Image url={sourceUrl} alt={altText} imageMeta={{mediaDetails}} />
+      <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
       {!imageOnly && (
         <>
           <Quote
@@ -40,7 +40,7 @@ function Testimonial({post, viewAllLink, imageOnly, featuredTestimonial}) {
           >
             <span
               className={styles.quoteContent}
-              dangerouslySetInnerHTML={{__html: post?.content}}
+              dangerouslySetInnerHTML={{ __html: post?.content }}
             />
           </Quote>
           {!viewAllLink && (

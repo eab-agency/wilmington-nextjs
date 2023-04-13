@@ -46,15 +46,15 @@ export default async function processPostTypeQuery(
 
   // Execute query.
   response.post = await apolloClient
-    .query({query, variables})
+    .query({ query, variables })
     .then((res) => {
-      const {siteSeo, menus, ...postData} = res.data
+      const { siteSeo, menus, ...postData } = res.data
 
       // Retrieve menus.
       response.menus = getMenus(menus)
 
       // Retrieve default SEO data.
-      response.defaultSeo = formatDefaultSeoData({siteSeo})
+      response.defaultSeo = formatDefaultSeoData({ siteSeo })
 
       // Retrieve post data.
       let post =

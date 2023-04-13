@@ -1,9 +1,9 @@
 import Text from '@/components/atoms/Inputs/Text'
 import Form from '@/components/molecules/Form'
 import processPostComment from '@/functions/next-api/wordpress/comments/processPostComment'
-import {useSession} from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import PropTypes from 'prop-types'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import * as Yup from 'yup'
 
 /**
@@ -14,12 +14,12 @@ import * as Yup from 'yup'
  * @param  {object}  props.comment The comment to display.
  * @return {Element}               The Comment component.
  */
-export function SingleComment({comment = {}}) {
+export function SingleComment({ comment = {} }) {
   if (!comment) {
     return ''
   }
-  const {content, date, author} = comment
-  const {name, url} = author.node
+  const { content, date, author } = comment
+  const { name, url } = author.node
   let nameElement = <span>{name}</span>
   if (url) {
     nameElement = (
@@ -57,10 +57,10 @@ SingleComment.propTypes = {
  * @param  {number}  props.postId   The database ID of the post.
  * @return {Element}                The Comments component.
  */
-export default function Comments({comments, postId}) {
+export default function Comments({ comments, postId }) {
   const [message, setMessage] = useState('')
   const [postedComment, setPostedComment] = useState(false)
-  const {data: session, status} = useSession()
+  const { data: session, status } = useSession()
   const loading = status === 'loading'
 
   // Avoid flash if loading.
@@ -76,7 +76,7 @@ export default function Comments({comments, postId}) {
    * @param {object}   actions               Formik form actions.
    * @param {Function} actions.setSubmitting Toggle form submitting state.
    */
-  async function handlePostComment(values, {setSubmitting}) {
+  async function handlePostComment(values, { setSubmitting }) {
     const {
       author = null,
       authorEmail = null,

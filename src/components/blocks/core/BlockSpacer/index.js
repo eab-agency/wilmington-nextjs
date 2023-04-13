@@ -1,1 +1,1 @@
-export {default} from './BlockSpacer'
+export { default } from './BlockSpacer'

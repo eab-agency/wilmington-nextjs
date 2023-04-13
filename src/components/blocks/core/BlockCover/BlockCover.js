@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 // import Blocks from '@/components/molecules/Blocks'
 import Blocks from '@/components/molecules/Blocks'
 
@@ -105,7 +105,7 @@ export default function BlockCover({
     <Hero
       align={align}
       contentAlign={contentPosition}
-      backgroundImage={{url}}
+      backgroundImage={{ url }}
       className={className}
       duotone={style?.color?.duotone}
       fixed={hasParallax}

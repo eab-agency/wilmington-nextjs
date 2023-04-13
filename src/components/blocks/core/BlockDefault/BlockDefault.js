@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
  * @param  {string}  props.dynamicContent     HTML that comes from the WordPress editor.
  * @return {Element}                          The  component.
  */
-export default function BlockDefault({content}) {
+export default function BlockDefault({ content }) {
   // filter out links that are internal to the site but keep image paths
   // const filteredContent = content.replace(
   //   /(?<=href=["'])(?!(?:https?:\/\/(?:www\.)?wilmington\.edu\/wp-content))(?:https?:\/\/(?:www\.)?wilmington\.edu)(?=[^"']*(?:["']|$))/g,
@@ -27,7 +27,7 @@ export default function BlockDefault({content}) {
       {content && (
         <div
           className="wp-default-block"
-          dangerouslySetInnerHTML={{__html: filteredContent}}
+          dangerouslySetInnerHTML={{ __html: filteredContent }}
         />
       )}
     </>

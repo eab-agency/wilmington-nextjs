@@ -1,1 +1,1 @@
-export {default} from './MusicEmbed'
+export { default } from './MusicEmbed'

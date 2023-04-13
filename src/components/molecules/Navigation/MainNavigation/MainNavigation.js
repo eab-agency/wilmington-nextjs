@@ -4,9 +4,9 @@ import React from 'react'
 import styles from './mainNavigation.module.scss'
 
 import MainNavigationItem from './MainNavigationItem'
-import {MdMenu, MdClose} from 'react-icons/md'
+import { MdMenu, MdClose } from 'react-icons/md'
 
-const Burger = ({open, setOpen}) => {
+const Burger = ({ open, setOpen }) => {
   return (
     <button
       className={styles.hamburger}
@@ -24,7 +24,7 @@ const Burger = ({open, setOpen}) => {
   )
 }
 
-const MainNavigation = ({location, menuItems, enableDropdown}) => {
+const MainNavigation = ({ location, menuItems, enableDropdown }) => {
   const items = menuItems
   const [open, setOpen] = React.useState(false)
   const handleToggle = () => {

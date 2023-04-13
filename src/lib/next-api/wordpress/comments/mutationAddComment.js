@@ -1,6 +1,6 @@
-import {nextApiRoutes} from '@/lib/next-api/connector'
+import { nextApiRoutes } from '@/lib/next-api/connector'
 import commentsFields from '@/lib/wordpress/_query-partials/commentsFields'
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 // Mutation: Add a comment to the given post.
 const mutationAddComment = gql`

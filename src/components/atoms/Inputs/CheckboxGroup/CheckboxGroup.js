@@ -1,5 +1,5 @@
 import React from 'react'
-import {ErrorMessage} from 'formik'
+import { ErrorMessage } from 'formik'
 import Checkbox from '@/components/atoms/Inputs/Checkbox'
 
 /**
@@ -37,7 +37,7 @@ export default function CheckboxGroup({
       {description && <p>{description}</p>}
       {!!checkboxes.length > 0 &&
         checkboxes.map((checkbox) => {
-          const {id, label, value} = checkbox
+          const { id, label, value } = checkbox
 
           return (
             <Checkbox

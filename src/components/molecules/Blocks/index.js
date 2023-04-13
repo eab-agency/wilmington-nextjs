@@ -1,1 +1,1 @@
-export {default} from './Blocks'
+export { default } from './Blocks'

@@ -1,1 +1,1 @@
-export {default} from './BlockFacultyCards'
+export { default } from './BlockFacultyCards'

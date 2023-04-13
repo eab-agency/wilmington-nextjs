@@ -8,7 +8,7 @@ import * as styles from '../AlgoliaResults.module.scss'
  * @param  {object}  props.hit The hit data.
  * @return {Element}           The Hit component.
  */
-export default function Hit({hit}) {
+export default function Hit({ hit }) {
   return (
     <div className={styles.hit}>
       <h3>{hit.post_title}</h3>

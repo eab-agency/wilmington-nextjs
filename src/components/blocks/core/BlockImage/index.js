@@ -1,1 +1,1 @@
-export {default} from './BlockImage'
+export { default } from './BlockImage'

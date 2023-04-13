@@ -1,15 +1,15 @@
 'use client'
 
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from '@/components/common/Link'
 import Image from '@/components/atoms/Image'
 
-const DepartmentSingle = ({department}) => {
+const DepartmentSingle = ({ department }) => {
   const {
     name,
     description,
     programs,
-    departmentFields: {deptIcon, deptImage}
+    departmentFields: { deptIcon, deptImage }
   } = department
 
   return (
@@ -18,7 +18,7 @@ const DepartmentSingle = ({department}) => {
         <Image
           url={deptImage.sourceUrl}
           alt={deptImage.altText}
-          imageMeta={{mediaDetails: deptImage.mediaDetails}}
+          imageMeta={{ mediaDetails: deptImage.mediaDetails }}
         />
       )}
       <h2>{name}</h2>
@@ -39,7 +39,7 @@ const DepartmentSingle = ({department}) => {
   )
 }
 
-const DepartmentListing = ({department}) => {
+const DepartmentListing = ({ department }) => {
   // if deparetment is null, undefined, or empty object, return null
   if (!department || Object.keys(department).length === 0) {
     return null
@@ -83,7 +83,7 @@ const DepartmentSelector = ({
   )
 }
 
-export default function BlockDepartmentSelect({programDepartments}) {
+export default function BlockDepartmentSelect({ programDepartments }) {
   const [selectedDepartment, setSelectedDepartment] = React.useState('')
   const [selectedDepartmentInfo, setSelectedDepartmentInfo] = useState({})
 

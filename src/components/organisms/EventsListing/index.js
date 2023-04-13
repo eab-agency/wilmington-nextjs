@@ -1,1 +1,1 @@
-export {default} from './EventsListing'
+export { default } from './EventsListing'
