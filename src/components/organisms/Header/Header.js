@@ -4,7 +4,7 @@ import Logo from '@/components/atoms/Logo'
 import Link from '@/components/common/Link'
 import AlgoliaSearch from '@/components/molecules/AlgoliaSearch/AlgoliaSearch'
 import TopMenu from '@/components/molecules/Navigation/TopMenu'
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 import styles from './Header.module.scss'
 
 const Header = ({ menu }) => {
@@ -69,10 +69,6 @@ const Header = ({ menu }) => {
               <Logo type="dark" />
             </Link>
             <div className={styles.topMenu}>
-<<<<<<< HEAD
-              <TopMenu menuItems={menuItems} />
-              {search && <div className={styles.search}>{search}</div>}
-=======
               <TopMenu menuItems={menu} />
               {/* <button className={styles.search} type="button">
                 Search
@@ -85,7 +81,6 @@ const Header = ({ menu }) => {
                   usePlaceholder={true}
                 />
               </div>
->>>>>>> main
             </div>
           </div>
         </div>
