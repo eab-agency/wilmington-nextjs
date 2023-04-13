@@ -1,6 +1,6 @@
 import React from 'react'
 import TabComponent from '@/components/organisms/Tabs'
-import * as styles from './BlockHomeTabs.module.scss'
+import styles from './BlockHomeTabs.module.scss'
 
 const BlockHomeTabs = (props) => {
   // create an array of objects with the tab title and content based on the length of props.home_tabs

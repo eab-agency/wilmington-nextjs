@@ -27,12 +27,12 @@
   padding: 0 0;
 }
 
-.nav-container {
+.navContainer {
   border-left: tokens.$bw-l solid tokens.$c-darkGreen-800;
   background: tokens.$c-white;
   width: 3.75rem;
 
-  .nav-wrapper {
+  .navWrapper {
     position: sticky;
     top: 4.45rem;
     border-top: tokens.$bw-xs solid tokens.$c-gray-400;

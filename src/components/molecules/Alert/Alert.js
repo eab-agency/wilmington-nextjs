@@ -2,7 +2,7 @@ import Icon from '@/components/atoms/Icon'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import * as styles from './Alert.module.css'
+import styles from './Alert.module.scss'
 
 /**
  * Render the Alert component.

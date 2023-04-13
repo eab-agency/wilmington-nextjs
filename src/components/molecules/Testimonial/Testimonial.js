@@ -2,7 +2,7 @@ import Button from "@/components/atoms/Buttons/Button"
 import React from "react"
 import Quote from "@/components/atoms/Quote"
 import cn from "classnames"
-import * as styles from "./Testimonial.module.scss"
+import styles from "./Testimonial.module.scss"
 import Image from "@/components/atoms/Image"
 
 

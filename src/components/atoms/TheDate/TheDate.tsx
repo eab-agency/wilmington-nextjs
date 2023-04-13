@@ -1,5 +1,5 @@
 import React from "react"
-import * as styles from "./theDate.module.scss"
+import styles from "./theDate.module.scss"
 
 const TheDate = (prop: { date: number }): any => {
   const theDate = new Date(prop.date)

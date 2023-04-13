@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import * as styles from './Accordion.module.css'
+import styles from './Accordion.module.scss'
 
 
 const Accordion = ({ title, children }) => {

@@ -1,6 +1,6 @@
 @use "tokens";
 
-.main-container {
+.mainContainer {
   display: flex;
   padding-right: tokens.$rightOffset;
   max-width: tokens.$maxWidth;

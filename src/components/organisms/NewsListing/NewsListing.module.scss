@@ -1,7 +1,7 @@
 @use "tokens";
 @use "utilities/mixins";
 
-.news-section {
+.newsSection {
   background: tokens.$c-darkGreen-700;
   @include mixins.sectionPadding;
   display: flex;
@@ -27,13 +27,13 @@
     }
   }
 
-  .section-head {
+  .sectionHead {
     display: flex;
     flex-direction: column;
     gap: tokens.$m-xl;
     align-items: flex-start;
 
-    .section-tag {
+    .sectionTag {
       @include mixins.sectionTag();
       position: relative;
     }
@@ -43,7 +43,7 @@
     }
   }
 
-  .news-container {
+  .newsContainer {
     display: block;
   }
 

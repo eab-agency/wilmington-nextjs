@@ -1,7 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
-import * as styles from './ButtonGroup.module.scss'
+import styles from './ButtonGroup.module.scss'
 
 /**
  * Render the ButtonGroup component.

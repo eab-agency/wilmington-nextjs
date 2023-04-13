@@ -1,11 +1,11 @@
 @use "tokens";
 
-.article-title {
+.articleTitle {
   color: tokens.$c-white;
   font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-s);
   font-weight: 300;
 }
 
-a.article-link {
+a.articleLink {
   color: tokens.$c-teal-300;
 }
