@@ -1,6 +1,6 @@
 import defaultPageData from '@/lib/wordpress/_query-partials/defaultPageData'
-import {gql} from '@apollo/client'
-import {singlePageFragment} from './queryPageById'
+import { gql } from '@apollo/client'
+import { singlePageFragment } from './queryPageById'
 
 // Query: retrieve 404 error page.
 const queryError404Page = gql`

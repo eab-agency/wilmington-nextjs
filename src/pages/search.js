@@ -17,21 +17,21 @@ const postType = 'page'
  * @return {Element}            The Search component.
  */
 export default function Search({ post }) {
-    const router = useRouter()
-    const path = router?.asPath // URL from router.
-    const query = path.includes('q=') ? parseQuerystring(path, 'q') : '' // Parse the querystring.
-    const algoliaConfig = {
-        query: query,
-        hitsPerPage: 15
-    }
+  const router = useRouter()
+  const path = router?.asPath // URL from router.
+  const query = path.includes('q=') ? parseQuerystring(path, 'q') : '' // Parse the querystring.
+  const algoliaConfig = {
+    query: query,
+    hitsPerPage: 15
+  }
 
-    return (
-        <Layout seo={{ ...post?.seo }}>
-            <Container>
-                <AlgoliaResults config={algoliaConfig} isSearch={true} />
-            </Container>
-        </Layout>
-    )
+  return (
+    <Layout seo={{ ...post?.seo }}>
+      <Container>
+        <AlgoliaResults config={algoliaConfig} isSearch={true} />
+      </Container>
+    </Layout>
+  )
 }
 
 /**
@@ -40,9 +40,9 @@ export default function Search({ post }) {
  * @return {object} Post props.
  */
 export async function getStaticProps() {
-    return await getPostTypeStaticProps(null, 'search')
+  return await getPostTypeStaticProps(null, 'search')
 }
 
 Search.propTypes = {
-    ...getPagePropTypes(postType)
+  ...getPagePropTypes(postType)
 }

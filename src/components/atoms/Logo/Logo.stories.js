@@ -7,7 +7,7 @@ export default {
   title: 'Components/Atoms/Logo'
 }
 
-const Template = args => <Logo {...args} />
+const Template = (args) => <Logo {...args} />
 
 export const Default = Template.bind({})
 Default.args = {

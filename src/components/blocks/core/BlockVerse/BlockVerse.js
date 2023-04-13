@@ -9,7 +9,7 @@ import RichText from '@/components/atoms/RichText'
  * The core Paragraph block from Gutenberg.
  *
  */
-export default function BlockParagraph ({
+export default function BlockParagraph({
   align,
   anchor,
   className,

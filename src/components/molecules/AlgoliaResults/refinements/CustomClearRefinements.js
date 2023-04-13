@@ -11,7 +11,7 @@ import * as styles from '../AlgoliaResults.module.scss'
  * @param  {Function} props.refine Modifies the items being displayed.
  * @return {Element}               The ClearRefinements component.
  */
-function ClearRefinements ({ items, refine }) {
+function ClearRefinements({ items, refine }) {
   return (
     <>
       {!!items?.length && (

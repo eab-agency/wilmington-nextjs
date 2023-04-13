@@ -6,7 +6,7 @@ import featuredImagePostFields from '@/lib/wordpress/_query-partials/featuredIma
 import globalPostFields from '@/lib/wordpress/_query-partials/globalPostFields'
 import seoPostFields from '@/lib/wordpress/_query-partials/seoPostFields'
 import tagsPostFields from '@/lib/wordpress/_query-partials/tagsPostFields'
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 // Fragment: retrieve single post fields.
 const singlePostFragment = gql`

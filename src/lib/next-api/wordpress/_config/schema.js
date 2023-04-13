@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 // Define WP Next.js API GraphQL schema.
 export const typeDefs = gql`

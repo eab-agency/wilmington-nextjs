@@ -1,16 +1,16 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
-import Link from '@/components/common/Link';
-import Image from '@/components/atoms/Image';
+import React, { useEffect, useState } from 'react'
+import Link from '@/components/common/Link'
+import Image from '@/components/atoms/Image'
 
 const DepartmentSingle = ({ department }) => {
   const {
     name,
     description,
     programs,
-    departmentFields: { deptIcon, deptImage },
-  } = department;
+    departmentFields: { deptIcon, deptImage }
+  } = department
 
   return (
     <div key={name}>
@@ -19,14 +19,15 @@ const DepartmentSingle = ({ department }) => {
           url={deptImage.sourceUrl}
           alt={deptImage.altText}
           imageMeta={{ mediaDetails: deptImage.mediaDetails }}
-        />)}
+        />
+      )}
       <h2>{name}</h2>
       <p>{description}</p>
       {programs.length > 0 && (
         <>
           <h3>Programs</h3>
           <ul>
-            {programs.map(program => (
+            {programs.map((program) => (
               <li key={program.uri}>
                 <Link href={program.uri}>{program.title}</Link>
               </li>
@@ -35,69 +36,72 @@ const DepartmentSingle = ({ department }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
 const DepartmentListing = ({ department }) => {
   // if deparetment is null, undefined, or empty object, return null
   if (!department || Object.keys(department).length === 0) {
-    return null;
+    return null
   }
   // if department is an array, map over the array and return a DepartmentSingle for each department
   if (Array.isArray(department)) {
-    return department.map(department => (
+    return department.map((department) => (
       <DepartmentSingle key={department.uri} department={department} />
-    ));
+    ))
   } else {
     // return a single DepartmentSingle
-    return <DepartmentSingle department={department} />;
+    return <DepartmentSingle department={department} />
   }
-};
+}
 
 const DepartmentSelector = ({
-  programDepartments, handleDepartmentChange, selectedDepartment
+  programDepartments,
+  handleDepartmentChange,
+  selectedDepartment
 }) => {
-
-  const handleDropdownChange = e => {
-    handleDepartmentChange(e.target.value);
-  };
+  const handleDropdownChange = (e) => {
+    handleDepartmentChange(e.target.value)
+  }
 
   return (
-    <select onChange={handleDropdownChange} defaultValue={'DEFAULT'} value={selectedDepartment}>
+    <select
+      onChange={handleDropdownChange}
+      defaultValue={'DEFAULT'}
+      value={selectedDepartment}
+    >
       <option value="DEFAULT" disabled>
         Chose a department
       </option>
       <option value="ALL">Show All</option>
-      {programDepartments.map(department => (
+      {programDepartments.map((department) => (
         <option key={department.uri} value={department.name}>
           {department.name}
         </option>
       ))}
     </select>
-  );
-};
+  )
+}
 
-export default function BlockDepartmentSelect({
-  programDepartments
-}) {
-  const [selectedDepartment, setSelectedDepartment] = React.useState('');
-  const [selectedDepartmentInfo, setSelectedDepartmentInfo] = useState({});
+export default function BlockDepartmentSelect({ programDepartments }) {
+  const [selectedDepartment, setSelectedDepartment] = React.useState('')
+  const [selectedDepartmentInfo, setSelectedDepartmentInfo] = useState({})
 
   // use useEffect to set the selectedDepartmentInfo, selectedDepartment values can be null, undefined, ALL, or a department name
   useEffect(() => {
     if (selectedDepartment === 'ALL') {
-      setSelectedDepartmentInfo(programDepartments);
+      setSelectedDepartmentInfo(programDepartments)
     } else if (selectedDepartment) {
       const department = programDepartments.find(
-        department => department.name === selectedDepartment
-      );
-      setSelectedDepartmentInfo(department);
+        (department) => department.name === selectedDepartment
+      )
+      setSelectedDepartmentInfo(department)
     }
-  }, [selectedDepartment, programDepartments]);
+  }, [selectedDepartment, programDepartments])
 
   const handleDepartmentChange = (selectedValue) => {
-    setSelectedDepartment(selectedValue);
-  };
+    setSelectedDepartment(selectedValue)
+  }
 
   return (
     <div>
@@ -108,5 +112,5 @@ export default function BlockDepartmentSelect({
       />
       <DepartmentListing department={selectedDepartmentInfo} />
     </div>
-  );
+  )
 }

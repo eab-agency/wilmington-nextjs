@@ -18,9 +18,7 @@ export default function Breadcrumbs({ breadcrumbs }) {
         <ul className={cn(styles.breadcrumbs, 'breadcrumbs')}>
           {breadcrumbs.map((breadcrumb, index) => (
             <li key={index}>
-              <Link href={breadcrumb?.url}>
-                {breadcrumb?.text}
-              </Link>
+              <Link href={breadcrumb?.url}>{breadcrumb?.text}</Link>
               {index < breadcrumbs.length - 1 && (
                 <span className={styles.sep}> &raquo; </span>
               )}

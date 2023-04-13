@@ -9,15 +9,15 @@ import React from 'react'
  * @return {Element}              The Blocks component.
  */
 export default function Blocks({ blocks }) {
-    return (
-        <>
-            {
-                // If there are blocks, loop over and display.
-                !!blocks?.length &&
-                blocks.map((block, index) => {
-                    return displayBlock(block, index)
-                })
-            }
-        </>
-    )
+  return (
+    <>
+      {
+        // If there are blocks, loop over and display.
+        !!blocks?.length &&
+          blocks.map((block, index) => {
+            return displayBlock(block, index)
+          })
+      }
+    </>
+  )
 }

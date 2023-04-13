@@ -2,8 +2,8 @@
 //* Custom Mixins
 //* ================
 
-@use "sass:color";
-@use "tokens";
+@use 'sass:color';
+@use 'tokens';
 
 @mixin center($_maxWidth: tokens.$mq-900, $_width: 90%) {
   width: $_width;
@@ -133,7 +133,7 @@
   left: 0;
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     width: 0.5em;
     height: 0.5em;
@@ -143,7 +143,7 @@
 }
 
 @mixin extendedBackground($bg: tokens.$c-white) {
-  content: "";
+  content: '';
   display: block;
   width: 100vw;
   height: 100%;
@@ -154,12 +154,12 @@
   z-index: tokens.$layer-1;
 }
 
-@mixin sectionPadding($type: "default", $size: 4vw) {
-  @if $type == "default" {
+@mixin sectionPadding($type: 'default', $size: 4vw) {
+  @if $type == 'default' {
     padding: clamp(tokens.$p-l, $size, tokens.$p-4xl);
-  } @else if $type == "block" {
+  } @else if $type == 'block' {
     padding-block: clamp(tokens.$p-l, $size, tokens.$p-4xl);
-  } @else if $type == "inline" {
+  } @else if $type == 'inline' {
     padding-inline: clamp(tokens.$p-l, $size, tokens.$p-4xl);
   }
 }

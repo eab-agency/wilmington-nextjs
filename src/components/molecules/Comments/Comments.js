@@ -113,14 +113,14 @@ export default function Comments({ comments, postId }) {
   // Determine form defaults.
   const formDefaults = !session
     ? {
-      author: '',
-      authorEmail: '',
-      authorUrl: '',
-      content: ''
-    }
+        author: '',
+        authorEmail: '',
+        authorUrl: '',
+        content: ''
+      }
     : {
-      content: ''
-    }
+        content: ''
+      }
 
   return (
     <>
@@ -128,9 +128,9 @@ export default function Comments({ comments, postId }) {
       {
         // If there are comments, loop over and display.
         !!comments?.length &&
-        comments.map((comment, index) => (
-          <SingleComment comment={comment.node} key={index} />
-        ))
+          comments.map((comment, index) => (
+            <SingleComment comment={comment.node} key={index} />
+          ))
       }
 
       {!!postedComment && (
@@ -145,9 +145,9 @@ export default function Comments({ comments, postId }) {
         validationSchema={
           !session
             ? Yup.object().shape({
-              author: Yup.string().required('This field is required.'),
-              authorEmail: Yup.string().required('This field is required.')
-            })
+                author: Yup.string().required('This field is required.'),
+                authorEmail: Yup.string().required('This field is required.')
+              })
             : null
         }
         onSubmit={handlePostComment}

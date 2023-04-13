@@ -10,7 +10,7 @@ const algoliaClient = algoliasearch(algoliaAppId, algoliaSearchKey)
 // https://www.algolia.com/doc/api-client/getting-started/what-is-the-api-client/javascript/?client=javascript
 export const searchClient = {
   search(requests) {
-    if (requests.every(({params}) => !params.query)) {
+    if (requests.every(({ params }) => !params.query)) {
       return Promise.resolve({
         results: requests.map(() => ({
           hits: [],

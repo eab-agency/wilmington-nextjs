@@ -27,39 +27,37 @@ const refinements = {
 const SearchResults = connectStateResults(({ searchResults, indexName }) => {
   return (
     <>
-      {searchResults && searchResults.nbHits
-        ? (
-          <>
-            <div className={styles.resultsHeader}>
-              <div>
-                <RichText tag="h1">Search Results</RichText>
-                <p className={styles.total}>
-                  <span>{searchResults.nbHits} Results</span> for{' '}
-                  {searchResults.query}
-                </p>
-              </div>
-              <Sort index={indexName} />
+      {searchResults && searchResults.nbHits ? (
+        <>
+          <div className={styles.resultsHeader}>
+            <div>
+              <RichText tag="h1">Search Results</RichText>
+              <p className={styles.total}>
+                <span>{searchResults.nbHits} Results</span> for{' '}
+                {searchResults.query}
+              </p>
             </div>
-            <div className={styles.results}>
-              <aside className={styles.sidebar}>
-                <PostType refinements={refinements} />
-                <CustomClearRefinements clearsQuery={true} />
-              </aside>
-              <div className={styles.content}>
-                <InfiniteHits
-                  className={styles.aisHits}
-                  hitComponent={Hit}
-                  translations={{
-                    loadMore: 'Load More'
-                  }}
-                />
-              </div>
+            <Sort index={indexName} />
+          </div>
+          <div className={styles.results}>
+            <aside className={styles.sidebar}>
+              <PostType refinements={refinements} />
+              <CustomClearRefinements clearsQuery={true} />
+            </aside>
+            <div className={styles.content}>
+              <InfiniteHits
+                className={styles.aisHits}
+                hitComponent={Hit}
+                translations={{
+                  loadMore: 'Load More'
+                }}
+              />
             </div>
-          </>
-        )
-        : (
-          <></>
-        )}
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
       {searchResults && searchResults.nbHits === 0 && (
         <NoResults query={searchResults.query} />
       )}

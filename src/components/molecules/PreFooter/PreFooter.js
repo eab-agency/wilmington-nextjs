@@ -3,7 +3,6 @@ import styles from './PreFooter.module.scss'
 import FooterMenuItem from './FooterMenuItem'
 
 const PreFooter = ({ menuItems }) => {
-
   if (!menuItems || !menuItems?.length) {
     return null
   }

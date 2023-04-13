@@ -16,7 +16,7 @@ export default function filterMenusByLocation(menus, locations) {
     const locationName = location.replace(/-/g, '_')
 
     // Filter menus array by location and assign to new object.
-    const wpmenu = menus.filter(function (menu) {
+    const wpmenu = menus.filter((menu) => {
       return menu['locations'].includes(locationName.toUpperCase())
     })
 
