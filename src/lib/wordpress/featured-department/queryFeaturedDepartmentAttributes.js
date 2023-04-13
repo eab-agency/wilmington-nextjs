@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import {gql} from '@apollo/client'
 import featuredImagePostFields from '@/lib/wordpress/_query-partials/featuredImagePostFields'
 
 const queryFeaturedDepartmentAttributes = gql`

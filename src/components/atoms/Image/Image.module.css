@@ -1,23 +1,16 @@
 .image {
-  
-
   & img {
-    
   }
 
   & .caption {
-    
   }
 
   &.hasImageFill {
-     /* object-cover rounded */
+    /* object-cover rounded */
     object-fit: cover;
     position: relative;
   }
 
   & .imageFill {
-   
-
-    
   }
 }

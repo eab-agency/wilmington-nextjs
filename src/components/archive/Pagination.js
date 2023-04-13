@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import {Link} from 'gatsby'
 import styled from 'styled-components'
 
 const PaginationStyles = styled.div`
@@ -13,8 +13,8 @@ const PaginationStyles = styled.div`
   }
 `
 
-export const Pagination = ({ ctx }) => {
-  const { currentPage, totalPages, totalCount, pathPrefix, index } = ctx
+export const Pagination = ({ctx}) => {
+  const {currentPage, totalPages, totalCount, pathPrefix, index} = ctx
   const isFirst = index === 0
   const isLast = index === totalPages - 1
   const previousPagePath =

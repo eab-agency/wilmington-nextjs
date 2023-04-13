@@ -1,5 +1,5 @@
 import buildSearchUrl from './buildSearchUrl'
-import { setLocalStorage } from './localStorage'
+import {setLocalStorage} from './localStorage'
 
 /**
  * Search Form Submit Handler
@@ -11,7 +11,7 @@ import { setLocalStorage } from './localStorage'
  * @param  {number}   maxLength      Maximum history items to store.
  * @return {string}                  The search term.
  */
-export default function searchSubmit (
+export default function searchSubmit(
   event,
   setSearchState,
   searchState,

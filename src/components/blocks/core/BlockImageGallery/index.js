@@ -1,1 +1,1 @@
-export { default } from './BlockImageGallery.js'
+export {default} from './BlockImageGallery.js'

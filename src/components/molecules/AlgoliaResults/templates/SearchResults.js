@@ -1,7 +1,7 @@
 import RichText from '@/components/atoms/RichText'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { connectStateResults, InfiniteHits } from 'react-instantsearch-dom'
+import {connectStateResults, InfiniteHits} from 'react-instantsearch-dom'
 import styles from '../AlgoliaResults.module.scss'
 import PostType from '../facets/PostType'
 import Sort from '../facets/Sort'
@@ -24,42 +24,40 @@ const refinements = {
 /**
  * Component for rendering search results.
  */
-const SearchResults = connectStateResults(({ searchResults, indexName }) => {
+const SearchResults = connectStateResults(({searchResults, indexName}) => {
   return (
     <>
-      {searchResults && searchResults.nbHits
-        ? (
-          <>
-            <div className={styles.resultsHeader}>
-              <div>
-                <RichText tag="h1">Search Results</RichText>
-                <p className={styles.total}>
-                  <span>{searchResults.nbHits} Results</span> for{' '}
-                  {searchResults.query}
-                </p>
-              </div>
-              <Sort index={indexName} />
+      {searchResults && searchResults.nbHits ? (
+        <>
+          <div className={styles.resultsHeader}>
+            <div>
+              <RichText tag="h1">Search Results</RichText>
+              <p className={styles.total}>
+                <span>{searchResults.nbHits} Results</span> for{' '}
+                {searchResults.query}
+              </p>
             </div>
-            <div className={styles.results}>
-              <aside className={styles.sidebar}>
-                <PostType refinements={refinements} />
-                <CustomClearRefinements clearsQuery={true} />
-              </aside>
-              <div className={styles.content}>
-                <InfiniteHits
-                  className={styles.aisHits}
-                  hitComponent={Hit}
-                  translations={{
-                    loadMore: 'Load More'
-                  }}
-                />
-              </div>
+            <Sort index={indexName} />
+          </div>
+          <div className={styles.results}>
+            <aside className={styles.sidebar}>
+              <PostType refinements={refinements} />
+              <CustomClearRefinements clearsQuery={true} />
+            </aside>
+            <div className={styles.content}>
+              <InfiniteHits
+                className={styles.aisHits}
+                hitComponent={Hit}
+                translations={{
+                  loadMore: 'Load More'
+                }}
+              />
             </div>
-          </>
-        )
-        : (
-          <></>
-        )}
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
       {searchResults && searchResults.nbHits === 0 && (
         <NoResults query={searchResults.query} />
       )}

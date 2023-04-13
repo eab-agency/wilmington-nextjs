@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { createContext, useContext } from 'react'
+import {useState} from 'react'
+import {createContext, useContext} from 'react'
 
 // Initialize Menu context object.
 export const WPContext = createContext()
@@ -22,7 +22,7 @@ export function useWordPressContext() {
  * @return {Element}       The child elements wrapped in a context provider.
  */
 export default function WordPressProvider(props) {
-  const { value, children } = props
+  const {value, children} = props
 
   return <WPContext.Provider value={value}>{children}</WPContext.Provider>
 }

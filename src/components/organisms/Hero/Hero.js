@@ -16,7 +16,7 @@ import * as styles from './Hero.module.css'
  * @param  {string}  props.id        Unique filter ID.
  * @return {Element}                 The DuotoneFilter component.
  */
-function DuotoneFilter({ className, duotone, id }) {
+function DuotoneFilter({className, duotone, id}) {
   const rgbValues =
     duotone?.length &&
     duotone.map((color) =>
@@ -101,11 +101,11 @@ export default function Hero({
 }) {
   const heroStyle = backgroundImage?.url
     ? {
-      // These css custom properties are used inside the css module file to set the card's background image, tint overlay, and fallback bg color.
-      '--image-url': `url(${backgroundImage.url})`,
-      '--image-tint-color': '#00000000',
-      '--image-fallback-color': '#000'
-    }
+        // These css custom properties are used inside the css module file to set the card's background image, tint overlay, and fallback bg color.
+        '--image-url': `url(${backgroundImage.url})`,
+        '--image-tint-color': '#00000000',
+        '--image-fallback-color': '#000'
+      }
     : {}
 
   // Rename to stylelint-accepted const name.
@@ -131,7 +131,6 @@ export default function Hero({
 
   return (
     <>
-
       {hasFilter && (
         <DuotoneFilter
           className={styles.filter}
@@ -172,7 +171,7 @@ export default function Hero({
             styles.overlay,
             !backgroundImage?.url ? styles.overlayOnly : null
           )}
-          style={{ opacity: overlayopacity }}
+          style={{opacity: overlayopacity}}
         ></div>
         <div className={styles.content}>
           {!!subtitle && <p className={styles.subtitle}>{subtitle}</p>}

@@ -33,7 +33,7 @@ const userFields = [
  * @return {object}        A new object containing the original data + new data.
  */
 function populateObj(obj, source) {
-  let newObj = { ...obj }
+  let newObj = {...obj}
   for (let field in source) {
     if (!userFields.includes(field)) {
       continue
@@ -81,7 +81,7 @@ const providers = [
       }
     },
     async authorize(credentials) {
-      const { username, password } = credentials
+      const {username, password} = credentials
       const response = await loginUser(username, password)
 
       let errorMessage
@@ -120,7 +120,7 @@ const providers = [
       }
     },
     async authorize(credentials) {
-      const { firstName, lastName, email, password, username } = credentials
+      const {firstName, lastName, email, password, username} = credentials
       const response = await registerUser(email, password, username, {
         firstName,
         lastName
@@ -148,7 +148,7 @@ const jwt = {
 }
 
 const callbacks = {
-  async jwt({ token, user }) {
+  async jwt({token, user}) {
     const token_exp = parseInt(token?.token_exp, 10)
 
     // Get seconds elapsed.
@@ -175,12 +175,12 @@ const callbacks = {
 
     return populateObj(token, user)
   },
-  async session({ session, token }) {
+  async session({session, token}) {
     session.user = populateObj(session.user, token)
 
     return session
   },
-  async redirect({ url }) {
+  async redirect({url}) {
     return url
   }
 }

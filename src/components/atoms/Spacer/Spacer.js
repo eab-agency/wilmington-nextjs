@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
  * @param  {number}  props.height The height of the spacer.
  * @return {Element}              The Spacer component.
  */
-export default function Spacer({ height = 40, anchor }) {
+export default function Spacer({height = 40, anchor}) {
   const rootEmVal = 16
 
   return (

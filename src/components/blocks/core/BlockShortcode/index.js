@@ -1,1 +1,1 @@
-export { default } from './BlockShortcode'
+export {default} from './BlockShortcode'

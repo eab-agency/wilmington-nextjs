@@ -3,7 +3,7 @@ import styles from './TopMenu.module.scss'
 
 import TopMenuItem from './TopMenuItem'
 
-const TopMenu = ({ menuItems }) => {
+const TopMenu = ({menuItems}) => {
   if (!menuItems || !menuItems?.length) {
     return null
   }
@@ -11,11 +11,7 @@ const TopMenu = ({ menuItems }) => {
     <>
       <ul className={styles.topMenuItems}>
         {menuItems.map((navItem, index) => (
-          <TopMenuItem
-            item={navItem}
-            key={index}
-            index={index}
-          />
+          <TopMenuItem item={navItem} key={index} index={index} />
         ))}
       </ul>
     </>

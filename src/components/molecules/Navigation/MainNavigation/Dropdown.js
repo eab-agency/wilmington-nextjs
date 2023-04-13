@@ -1,13 +1,11 @@
 import React from 'react'
 import MainNavigationItem from './MainNavigationItem'
-import * as styles from './mainNavigation.module.scss';
+import * as styles from './mainNavigation.module.scss'
 
-
-const Dropdown = ({ submenus, dropdown, depthLevel, enableDropdown }) => {
-
+const Dropdown = ({submenus, dropdown, depthLevel, enableDropdown}) => {
   const openCloseClasses = dropdown
     ? styles.openedSubMenu
-    : styles.closedSubMenu;
+    : styles.closedSubMenu
   // increment the depthLevel for each submenu
   depthLevel = depthLevel + 1
 
@@ -22,7 +20,7 @@ const Dropdown = ({ submenus, dropdown, depthLevel, enableDropdown }) => {
         />
       ))}
     </ul>
-  );
+  )
 }
 
 export default Dropdown

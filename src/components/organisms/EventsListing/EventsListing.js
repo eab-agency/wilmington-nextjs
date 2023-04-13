@@ -1,27 +1,20 @@
-import React from 'react';
-import Heading from '@/components/atoms/Heading';
-import NewsPost from '@/components/archive/NewsPost';
-import Button from '@/components/atoms/Buttons/Button';
-import * as styles from './EventsListing.module.scss';
+import React from 'react'
+import Heading from '@/components/atoms/Heading'
+import NewsPost from '@/components/archive/NewsPost'
+import Button from '@/components/atoms/Buttons/Button'
+import * as styles from './EventsListing.module.scss'
 
-
-function EventsListing({
-  listing_display,
-  listing_title,
-  posts,
-  showImage,
-}) {
-
+function EventsListing({listing_display, listing_title, posts, showImage}) {
   if (posts === null || Object.keys(posts).length === 0) {
-    return null;
+    return null
   }
 
   if (Array.isArray(posts) && posts.length > 0 && posts[0].isError) {
-    return <div>{posts[0].message}</div>;
+    return <div>{posts[0].message}</div>
   }
 
   if (posts.isError) {
-    return <div>{posts.message}</div>;
+    return <div>{posts.message}</div>
   }
 
   // // if no posts, return null
@@ -46,7 +39,7 @@ function EventsListing({
       </ul>
       <Button url="/events" text="View All Events" />
     </section>
-  );
+  )
 }
 
-export default EventsListing;
+export default EventsListing

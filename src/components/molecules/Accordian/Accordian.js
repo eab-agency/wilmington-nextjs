@@ -1,10 +1,9 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import styles from './Accordion.module.scss'
 
-
-const Accordion = ({ title, children }) => {
+const Accordion = ({title, children}) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleOpen = () => setIsOpen(!isOpen)

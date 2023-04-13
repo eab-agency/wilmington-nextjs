@@ -1,4 +1,4 @@
-import { taxonomies } from '@/lib/wordpress/_config/taxonomies'
+import {taxonomies} from '@/lib/wordpress/_config/taxonomies'
 
 /**
  * Check if taxonomy is valid.

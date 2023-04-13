@@ -1,15 +1,15 @@
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import {tomorrow} from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import * as styles from './Code.module.css'
 
 /**
  * Render the Code component.
  *
-*/
-export default function Code({ id, className, content, style }) {
+ */
+export default function Code({id, className, content, style}) {
   const classNames = className?.length ? className.split(' ') : []
 
   // Use the first entry in className to pass the langauge.
@@ -30,7 +30,7 @@ export default function Code({ id, className, content, style }) {
     return code.replace(/&gt;/g, '>')
   }
 
-  const prismProps = { style: tomorrow, customStyle: style, language }
+  const prismProps = {style: tomorrow, customStyle: style, language}
 
   // Add color to code tag props if custom color provided.
   if (style?.color) {

@@ -1,4 +1,4 @@
-import { hierarchicalPostTypes } from '@/lib/wordpress/_config/postTypes'
+import {hierarchicalPostTypes} from '@/lib/wordpress/_config/postTypes'
 
 /**
  * Check if post type is hierarchical.

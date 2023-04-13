@@ -61,11 +61,12 @@ export default function App({Component, pageProps}) {
     },
     menus: menus,
     departments: passThruProps?.post?.departments?.nodes,
-    studentOrganizations: passThruProps?.post?.programOrgRelationship?.programorg
+    studentOrganizations:
+      passThruProps?.post?.programOrgRelationship?.programorg
   })
 
   return (
-       <NextAuthProvider session={session}>
+    <NextAuthProvider session={session}>
       <ApolloProvider client={apolloClient}>
         <WordPressProvider value={wp}>
           {error ? (

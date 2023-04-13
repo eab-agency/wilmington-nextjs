@@ -1,11 +1,9 @@
-import { gql } from '@apollo/client'
+import {gql} from '@apollo/client'
 
 // Query: retrieve page by specified identifier.
 const queryMenuItemsByLocation = gql`
-  query GET_MENU_BY_LOCATION(
-    $location: MenuLocationEnum!
-  ) {
-  menuItems(where: {location: $location}) {
+  query GET_MENU_BY_LOCATION($location: MenuLocationEnum!) {
+    menuItems(where: {location: $location}) {
       nodes {
         id
         parentId

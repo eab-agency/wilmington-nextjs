@@ -2,9 +2,9 @@ import Container from '@/components/atoms/Container'
 import RichText from '@/components/atoms/RichText'
 import Layout from '@/components/common/Layout'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
-import { signOut, useSession } from 'next-auth/react'
-import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import {signOut, useSession} from 'next-auth/react'
+import {useRouter} from 'next/router'
+import React, {useEffect} from 'react'
 
 /**
  * Render the Profile component.
@@ -14,8 +14,8 @@ import React, { useEffect } from 'react'
  * @param  {object}  props.post Post data from WordPress.
  * @return {Element}            The Profile component.
  */
-export default function Profile({ post }) {
-  const { data: session, status } = useSession()
+export default function Profile({post}) {
+  const {data: session, status} = useSession()
   const loading = status === 'loading'
   const router = useRouter()
 
@@ -47,7 +47,7 @@ export default function Profile({ post }) {
   user.lastName && fullName.push(user.lastName)
 
   return (
-    <Layout seo={{ ...post?.seo }}>
+    <Layout seo={{...post?.seo}}>
       <Container>
         <RichText tag="h1">Profile</RichText>
         {loading ? (

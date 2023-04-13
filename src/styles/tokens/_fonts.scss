@@ -1,21 +1,21 @@
 // ================
 // Fonts
 
-@use "config";
+@use 'config';
 
 // Use the below for Adobe Fonts/Google Fonts. Replace the URL with the font(s) you're planning to use.
 // @import url("https://fontfamily.example.com");
 
 //* Fonts
 @font-face {
-  font-family: "icomoon";
-  src: url("../../assets/icomoon.woff");
+  font-family: 'icomoon';
+  src: url('../../assets/icomoon.woff');
 }
 
 //* Font Stacks
-$f-headlineFont: "Roboto Slab", serif;
-$f-bodyFont: "Cantarell", sans-serif;
-$f-icons: "icomoon";
+$f-headlineFont: 'Roboto Slab', serif;
+$f-bodyFont: 'Cantarell', sans-serif;
+$f-icons: 'icomoon';
 
 //* Font Sizes = If you're using a base unit, you can use the calc() function to calculate the font size. Otherwise, you can just use the font size you want. If $baseUnit is 16px, then $fontSize-xxxl is 72px
 

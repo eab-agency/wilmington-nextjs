@@ -1,10 +1,10 @@
 import getMenus from '@/functions/wordpress/menus/getMenus'
 import formatDefaultSeoData from '@/functions/wordpress/seo/formatDefaultSeoData'
 import queryPostsByCategory from '@/lib/wordpress/categories/queryPostsByCategory'
-import { initializeWpApollo } from '@/lib/wordpress/connector'
+import {initializeWpApollo} from '@/lib/wordpress/connector'
 import queryPostsByTag from '@/lib/wordpress/tags/queryPostsByTag'
-import { postTypes } from '@/lib/wordpress/_config/postTypes'
-import { taxonomies } from '@/lib/wordpress/_config/taxonomies'
+import {postTypes} from '@/lib/wordpress/_config/postTypes'
+import {taxonomies} from '@/lib/wordpress/_config/taxonomies'
 
 /**
  * Retrieve post taxnomy archive.
@@ -29,7 +29,10 @@ export default async function getPostTypeTaxonomyArchive(
   getNext = true,
   perPage = 10
 ) {
-  console.log("🚀 ~ file: getPostTypeTaxonomyArchive.js:32 ~ taxonomy:", taxonomy)
+  console.log(
+    '🚀 ~ file: getPostTypeTaxonomyArchive.js:32 ~ taxonomy:',
+    taxonomy
+  )
   // Define single post query based on taxonomy.
   const postTypeQuery = {
     category: queryPostsByCategory,
@@ -74,15 +77,15 @@ export default async function getPostTypeTaxonomyArchive(
 
   // Execute query.
   await apolloClient
-    .query({ query, variables })
+    .query({query, variables})
     .then((archive) => {
-      const { siteSeo, menus, ...archiveData } = archive.data
+      const {siteSeo, menus, ...archiveData} = archive.data
 
       // Retrieve menus.
       response.menus = getMenus(menus)
 
       // Retrieve default SEO data.
-      response.defaultSeo = formatDefaultSeoData({ siteSeo })
+      response.defaultSeo = formatDefaultSeoData({siteSeo})
 
       const data = archiveData?.[taxonomy] ?? null
 
@@ -93,7 +96,7 @@ export default async function getPostTypeTaxonomyArchive(
       const archiveSeo = data?.seo
 
       // Retrieve posts by post type.
-      const { pageInfo, edges: posts } = data?.[pluralName] ?? {}
+      const {pageInfo, edges: posts} = data?.[pluralName] ?? {}
 
       // Set error props if data not found.
       if (!posts || !pageInfo) {
@@ -116,8 +119,9 @@ export default async function getPostTypeTaxonomyArchive(
           metaRobotsNofollow: archiveSeo?.metaRobotsNofollow ?? 'follow',
           metaRobotsNoindex: archiveSeo?.metaRobotsNoindex ?? 'index'
         },
-        title: `${taxonomies?.[taxonomy]?.label ? `${taxonomies[taxonomy].label}: ` : ''
-          }${data?.name || ''}`
+        title: `${
+          taxonomies?.[taxonomy]?.label ? `${taxonomies[taxonomy].label}: ` : ''
+        }${data?.name || ''}`
       }
 
       // Extract pagination data.

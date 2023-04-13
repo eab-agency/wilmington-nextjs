@@ -14,14 +14,14 @@ import * as styles from './MusicEmbed.module.css'
  * @param  {string}  props.caption   Optional caption.
  * @return {Element}                 The MusicEmbed component.
  */
-export default function MusicEmbed ({ className, url, type, caption }) {
+export default function MusicEmbed({className, url, type, caption}) {
   /**
    * Create URL embed for YouTube or Vimeo musics.
    *
    * @param  {string} url The music URL.
    * @return {string}     Formatted music URL.
    */
-  function createMusicUrl (url) {
+  function createMusicUrl(url) {
     if (!url) {
       return false
     }

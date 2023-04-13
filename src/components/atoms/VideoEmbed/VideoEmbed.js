@@ -14,14 +14,14 @@ import * as styles from './VideoEmbed.module.css'
  * @param  {string}  props.caption   Optional caption.
  * @return {Element}                 The VideoEmbed component.
  */
-export default function VideoEmbed ({ className, url, type, caption }) {
+export default function VideoEmbed({className, url, type, caption}) {
   /**
    * Create URL embed for YouTube or Vimeo videos.
    *
    * @param  {string} url The video URL.
    * @return {string}     Formatted video URL.
    */
-  function createVideoUrl (url) {
+  function createVideoUrl(url) {
     if (!url) {
       return false
     }

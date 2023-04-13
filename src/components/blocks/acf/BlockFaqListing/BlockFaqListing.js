@@ -9,12 +9,14 @@ import Accordian from '@/components/molecules/Accordian'
  * @return {Element}                            The Faq component.
  */
 // eslint-disable-next-line camelcase
-export default function BlockFaqListing({ faqData }) {
+export default function BlockFaqListing({faqData}) {
   return (
     <>
       <pre>FILE: BlockFaqListing.js</pre>
-      {faqData.map(({ title, content, id }) => (
-        <Accordian title={title} key={id}><div dangerouslySetInnerHTML={{ __html: content }} /></Accordian>
+      {faqData.map(({title, content, id}) => (
+        <Accordian title={title} key={id}>
+          <div dangerouslySetInnerHTML={{__html: content}} />
+        </Accordian>
       ))}
     </>
   )

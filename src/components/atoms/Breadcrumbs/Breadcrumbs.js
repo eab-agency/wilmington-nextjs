@@ -11,16 +11,14 @@ import styles from './Breadcrumbs.module.scss'
  * @param  {Array}   props.breadcrumbs The breadcrumb array.
  * @return {Element}                   The Breadcrumbs component.
  */
-export default function Breadcrumbs({ breadcrumbs }) {
+export default function Breadcrumbs({breadcrumbs}) {
   return (
     <>
       {!!breadcrumbs?.length && (
         <ul className={cn(styles.breadcrumbs, 'breadcrumbs')}>
           {breadcrumbs.map((breadcrumb, index) => (
             <li key={index}>
-              <Link href={breadcrumb?.url}>
-                {breadcrumb?.text}
-              </Link>
+              <Link href={breadcrumb?.url}>{breadcrumb?.text}</Link>
               {index < breadcrumbs.length - 1 && (
                 <span className={styles.sep}> &raquo; </span>
               )}

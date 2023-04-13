@@ -1,1 +1,1 @@
-export { default } from './BlockStudentOrgs'
+export {default} from './BlockStudentOrgs'

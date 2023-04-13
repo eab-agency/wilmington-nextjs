@@ -6,8 +6,8 @@ import Archive from '@/components/organisms/Archive'
 import getPagePropTypes from '@/functions/getPagePropTypes'
 import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
-import { PropTypes } from 'prop-types'
-import { useRouter } from 'next/router'
+import {PropTypes} from 'prop-types'
+import {useRouter} from 'next/router'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 
 // Define route post type.
@@ -37,13 +37,12 @@ export default function Page({
   posts,
   year
 }) {
-
   const router = useRouter()
-  const isFrontPage = router.asPath === '/';
+  const isFrontPage = router.asPath === '/'
 
   if (archive) {
     return (
-      <Layout seo={{ ...post?.seo }}>
+      <Layout seo={{...post?.seo}}>
         <Container>
           <Archive posts={posts} postType="post" pagination={pagination} />
         </Container>
@@ -51,7 +50,7 @@ export default function Page({
     )
   } else if (dateArchive) {
     return (
-      <Layout seo={{ ...post?.seo }}>
+      <Layout seo={{...post?.seo}}>
         <Container>
           <RichText tag="h1">{post?.title}</RichText>
           <Archive
@@ -70,7 +69,7 @@ export default function Page({
   }
 
   return (
-    <Layout className="thelayoutclass" seo={{ ...post?.seo }}>
+    <Layout className="thelayoutclass" seo={{...post?.seo}}>
       <Container>
         <article className="inner-wrap">
           {!isFrontPage && (
@@ -104,7 +103,7 @@ export async function getStaticPaths() {
  * @param  {object}  context.previewData Post preview data.
  * @return {object}                      Post props.
  */
-export async function getStaticProps({ params, preview, previewData }) {
+export async function getStaticProps({params, preview, previewData}) {
   return getPostTypeStaticProps(params, postType, preview, previewData)
 }
 

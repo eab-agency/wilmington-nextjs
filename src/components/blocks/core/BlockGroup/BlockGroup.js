@@ -20,7 +20,7 @@ import PropTypes from 'prop-types'
  * @param  {string}  props.verticalAlignment  Vertical alignment of groups.
  * @return {Element}                          The Groups component.
  */
-export default function BlockGroup ({
+export default function BlockGroup({
   anchor,
   className,
   innerBlocks,
@@ -40,7 +40,14 @@ export default function BlockGroup ({
       verticalAlignment={verticalAlignment}
       isStackedOnMobile={isStackedOnMobile}
     >
-      {!!innerBlocks?.length && <Blocks blocks={innerBlocks} where="BlockGroup" pageContext={pageContext} {...props} />}
+      {!!innerBlocks?.length && (
+        <Blocks
+          blocks={innerBlocks}
+          where="BlockGroup"
+          pageContext={pageContext}
+          {...props}
+        />
+      )}
     </Groups>
   )
 }

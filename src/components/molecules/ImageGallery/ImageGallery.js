@@ -3,7 +3,7 @@ import RichText from '@/components/atoms/RichText'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import * as styles from './ImageGallery.module.css'
-import Block from '@/components/molecules/Blocks';
+import Block from '@/components/molecules/Blocks'
 
 /**
  * Render the ImageGallery component.

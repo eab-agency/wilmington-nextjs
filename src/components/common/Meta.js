@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
  * @param  {object}  props.seo Yoast SEO data from WordPress.
  * @return {Element}           The Meta component.
  */
-export default function Meta({ seo }) {
+export default function Meta({seo}) {
   // Combine robots data.
   const robots = [
     ...(seo?.metaRobotsNofollow ? [seo.metaRobotsNofollow] : []),

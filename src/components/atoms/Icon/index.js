@@ -1,1 +1,1 @@
-export { default, sizeToPx } from './Icon'
+export {default, sizeToPx} from './Icon'

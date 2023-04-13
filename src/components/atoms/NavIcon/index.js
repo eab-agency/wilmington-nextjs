@@ -1,1 +1,1 @@
-export {default} from './NavIcon';
+export {default} from './NavIcon'

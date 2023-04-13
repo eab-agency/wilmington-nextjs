@@ -1,5 +1,5 @@
 import React from 'react'
-import { connectStateResults, Hits } from 'react-instantsearch-dom'
+import {connectStateResults, Hits} from 'react-instantsearch-dom'
 import * as styles from '../AlgoliaSearch.module.scss'
 import buildSearchUrl from '../functions/buildSearchUrl'
 import searchClick from '../functions/searchClick'
@@ -23,20 +23,18 @@ const Results = connectStateResults(
         searchState.query &&
         searchState.query.length > 0 &&
         searchResults &&
-        searchResults.nbHits > 0
-          ? (
+        searchResults.nbHits > 0 ? (
           <Hits className={styles.hits} hitComponent={Hit} />
-            )
-          : (
-              displayHistory && (
+        ) : (
+          displayHistory && (
             <History
               history={searchHistory}
               searchClick={searchClick}
               clearLocalStorage={clearLocalStorage}
               buildSearchUrl={buildSearchUrl}
             />
-              )
-            )}
+          )
+        )}
       </div>
     )
   }

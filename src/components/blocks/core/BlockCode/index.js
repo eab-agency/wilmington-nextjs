@@ -1,1 +1,1 @@
-export { default } from './BlockCode'
+export {default} from './BlockCode'

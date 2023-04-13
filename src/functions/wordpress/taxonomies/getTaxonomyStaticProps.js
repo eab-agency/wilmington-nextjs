@@ -1,5 +1,5 @@
-import { algoliaIndexName } from '@/lib/algolia/connector'
-import { addApolloState } from '@/lib/apolloConfig'
+import {algoliaIndexName} from '@/lib/algolia/connector'
+import {addApolloState} from '@/lib/apolloConfig'
 import getPostTypeTaxonomyArchive from '../postTypes/getPostTypeTaxonomyArchive'
 import isValidTaxonomy from './isValidTaxonomy'
 
@@ -16,7 +16,7 @@ export default async function getTaxonomyStaticProps(
   taxonomy,
   postType = 'post'
 ) {
-  console.log("🚀 ~ file: getTaxonomyStaticProps.js:19 ~ params:", params)
+  console.log('🚀 ~ file: getTaxonomyStaticProps.js:19 ~ params:', params)
   // Set revalidate length (seconds).
   const revalidate = 60 * 5
 
@@ -31,7 +31,7 @@ export default async function getTaxonomyStaticProps(
   if (isValidTaxonomy(taxonomy)) {
     const taxonomySlug = params.slug.pop() // Last "slug" piece is the lowest-level taxonomy term slug.
 
-    const { apolloClient, ...archiveData } = await getPostTypeTaxonomyArchive(
+    const {apolloClient, ...archiveData} = await getPostTypeTaxonomyArchive(
       taxonomy,
       taxonomySlug,
       postType

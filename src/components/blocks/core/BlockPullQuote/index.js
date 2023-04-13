@@ -1,1 +1,1 @@
-export { default } from './BlockPullQuote'
+export {default} from './BlockPullQuote'

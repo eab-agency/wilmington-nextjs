@@ -1,1 +1,1 @@
-export { default } from './BlockAthleteCard'
+export {default} from './BlockAthleteCard'

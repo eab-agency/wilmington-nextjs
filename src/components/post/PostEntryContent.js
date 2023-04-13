@@ -3,7 +3,7 @@ import React from 'react'
 import ParsedContent from '@/functions/parsedContent'
 import Link from '@/components/common/Link'
 
-export const PostEntryContent = ({ post, location, ...props }) => {
+export const PostEntryContent = ({post, location, ...props}) => {
   const content = location === 'single' ? post.content : post.excerpt
 
   return (

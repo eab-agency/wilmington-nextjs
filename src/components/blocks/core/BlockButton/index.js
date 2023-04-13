@@ -1,1 +1,1 @@
-export { default } from './BlockButton'
+export {default} from './BlockButton'

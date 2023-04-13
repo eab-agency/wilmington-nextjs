@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { connectToggleRefinement } from 'react-instantsearch-dom'
+import {connectToggleRefinement} from 'react-instantsearch-dom'
 import * as styles from '../AlgoliaResults.module.scss'
 
 /**
@@ -17,7 +17,7 @@ import * as styles from '../AlgoliaResults.module.scss'
  * @param  {string}   props.label             The form label.
  * @return {Element}                          The ToggleRefinement component.
  */
-function ToggleRefinement ({
+function ToggleRefinement({
   className,
   currentRefinement,
   label,

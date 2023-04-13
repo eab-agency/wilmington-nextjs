@@ -5,7 +5,7 @@ import cn from 'classnames'
 import Link from '@/components/common/Link'
 import React from 'react'
 import * as styles from './Card.module.css'
-import Image from 'next/image';
+import Image from 'next/image'
 
 // /**
 //  * Render the Card component.
@@ -45,13 +45,11 @@ const Card = ({
       <div className={styles.content}>
         {meta && <p className={styles.meta}>{meta}</p>}
         {title &&
-          (url
-            ? (
+          (url ? (
             <Link href={url}>{title}</Link>
-              )
-            : (
+          ) : (
             <Heading className={styles.title}>{title}</Heading>
-              ))}
+          ))}
         {body && <RichText className={styles.body}>{body}</RichText>}
       </div>
       <div className={styles.footer}>

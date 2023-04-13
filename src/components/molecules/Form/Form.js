@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { Form as FormikForm, Formik } from 'formik'
+import {Form as FormikForm, Formik} from 'formik'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styles from './Form.module.css'
