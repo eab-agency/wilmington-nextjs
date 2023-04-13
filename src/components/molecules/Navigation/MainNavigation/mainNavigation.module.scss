@@ -7,10 +7,6 @@
   display: block;
 }
 
-.openMenu {
-  display: block;
-}
-
 .closedMenu {
   display: none;
 }
@@ -28,9 +24,20 @@
 }
 
 .navContainer {
-  border-left: tokens.$bw-l solid tokens.$c-darkGreen-800;
-  background: tokens.$c-white;
-  width: 3.75rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: tokens.$layer-9999;
+
+  @media (min-width: tokens.$mq-800) {
+    border-left: tokens.$bw-l solid tokens.$c-darkGreen-800;
+    background: tokens.$c-white;
+    width: 3.75rem;
+    position: initial;
+    top: initial;
+    right: initial;
+    z-index: tokens.$layer-10;
+  }
 
   .navWrapper {
     position: sticky;
@@ -47,10 +54,15 @@
       position: relative;
 
       span {
-        font-size: tokens.$fs-xs;
-        text-transform: uppercase;
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
+        display: none;
+
+        @media (min-width: tokens.$mq-800) {
+          display: block;
+          font-size: tokens.$fs-xs;
+          text-transform: uppercase;
+          writing-mode: vertical-rl;
+          transform: rotate(180deg);
+        }
       }
 
       svg,
@@ -91,23 +103,32 @@
       width: calc(tokens.$leftOffset - 4rem);
       min-width: 15rem;
       position: absolute;
-      top: 0;
-      left: 3.2rem;
+      top: 5rem;
+      right: 0;
       list-style: none;
       margin: 0;
       padding: 0;
 
-      // &::before {
-      //   content: "";
-      //   display: block;
-      //   width: 100vw;
-      //   height: 100vh;
-      //   position: fixed;
-      //   top: 0;
-      //   left: 0;
-      //   background: tokens.$c-gray-200;
-      //   z-index: tokens.$layer-1;
-      // }
+      @media (min-width: tokens.$mq-800) {
+        left: 3.2rem;
+        top: 0;
+      }
+
+      &.openMenu {
+        display: block;
+
+        &::before {
+          content: '';
+          display: block;
+          width: 100vw;
+          height: 100vh;
+          position: fixed;
+          top: 0;
+          left: 0;
+          background: tokens.$c-gray-200;
+          z-index: tokens.$layer-1;
+        }
+      }
 
       li {
         border-top: tokens.$bw-xs solid tokens.$c-gray-400;

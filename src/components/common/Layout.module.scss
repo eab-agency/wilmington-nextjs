@@ -5,10 +5,10 @@
   padding-right: tokens.$rightOffset;
   max-width: tokens.$maxWidth;
 
-  nav[aria-label='Main'] {
-    grid-column: 1 / 1fr;
-    z-index: tokens.$layer-10;
-  }
+  // nav[aria-label='Main'] {
+  //   // grid-column: 1 / 1fr;
+  //   // z-index: tokens.$layer-10;
+  // }
 
   main {
     display: flex;
