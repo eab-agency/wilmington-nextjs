@@ -28,7 +28,6 @@ export default async function revalidate(req, res) {
       message: `Success! The cache for ${req.body.slug} was successfully revalidated.`
     })
   } catch (err) {
-    console.log('🚨🚨🚨🚨🚨🚨 REVALIDATION ERROR:', err)
     return res.status(500).json({
       message: err.message
     })

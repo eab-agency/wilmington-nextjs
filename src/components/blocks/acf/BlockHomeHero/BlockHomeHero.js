@@ -1,4 +1,3 @@
-import React from 'react'
 import Hero from '@/components/organisms/HomeHero'
 
 /**
@@ -13,7 +12,7 @@ import Hero from '@/components/organisms/HomeHero'
  */
 
 export default function BlockHomeHero({
-  data: { innerBlocks, hero_content, hero_primary_ctas, hero_image, ...other },
+  data: { innerBlocks, hero_content, hero_primary_ctas, ...other },
   imageMeta
 }) {
   const count = hero_primary_ctas
@@ -31,9 +30,6 @@ export default function BlockHomeHero({
     // push the object to the array
     hero_ctas_array.push(cta)
   }
-
-  // const image = useImageItem(hero_image, 'full');
-  const image = ''
 
   return (
     <Hero

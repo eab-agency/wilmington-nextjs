@@ -1,13 +1,13 @@
-import FeaturedImage from '@/components/common/FeaturedImage'
+/* eslint-disable no-unsafe-optional-chaining */
 import Container from '@/components/atoms/Container'
+import Image from '@/components/atoms/Image'
 import RichText from '@/components/atoms/RichText'
 import Layout from '@/components/common/Layout'
 import Blocks from '@/components/molecules/Blocks'
+import ProgramCard from '@/components/molecules/ProgramCard'
 import getPagePropTypes from '@/functions/getPagePropTypes'
 import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
-import Image from '@/components/atoms/Image'
-import ProgramCard from '@/components/molecules/ProgramCard'
 
 // Define route post type.
 const postType = 'facultyMember'

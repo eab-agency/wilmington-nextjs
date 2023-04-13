@@ -32,6 +32,7 @@
       @apply text-sm;
     }
   }
+
   & .button {
     @apply text-sm;
   }

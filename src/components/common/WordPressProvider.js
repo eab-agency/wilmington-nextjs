@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { createContext, useContext } from 'react'
 
 // Initialize Menu context object.

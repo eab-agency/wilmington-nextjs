@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-import React from 'react'
 import NewsListing from '@/components/organisms/NewsListing'
 
 interface BlockNewsListingProps {
@@ -13,7 +12,7 @@ interface BlockNewsListingProps {
 }
 
 const BlockNewsListing = ({
-  data: { listing_title, news_listing, listing_display, news_category },
+  data: { listing_title, listing_display },
   listingData
 }: BlockNewsListingProps) => {
   const posts = listingData

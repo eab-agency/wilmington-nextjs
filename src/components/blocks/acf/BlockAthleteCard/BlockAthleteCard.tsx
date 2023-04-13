@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-import React from 'react'
 // import { useImageItem } from '@hooks/useImageQuery'
 import AthleteCard from '@/components/molecules/AthleteCard'
 
@@ -20,14 +19,6 @@ interface AthleteLink {
   title: string
   url: string
   target: string
-}
-
-interface Image {
-  altText?: string
-  caption?: string
-  databaaseId: number
-  sourceUrl: string
-  gatsbyImage: any
 }
 
 interface Props {

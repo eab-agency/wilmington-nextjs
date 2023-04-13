@@ -1,4 +1,3 @@
-import React from 'react'
 import Groups from '@/components/atoms/Groups'
 import Blocks from '@/components/molecules/Blocks'
 import PropTypes from 'prop-types'
@@ -28,7 +27,6 @@ export default function BlockGroup({
   verticalAlignment,
   isStackedOnMobile,
   pageContext,
-  block,
   ...props
 }) {
   return (

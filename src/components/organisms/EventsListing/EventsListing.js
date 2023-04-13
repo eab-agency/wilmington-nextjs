@@ -1,10 +1,10 @@
-import React from 'react'
-import Heading from '@/components/atoms/Heading'
+/* eslint-disable no-unused-vars */
 import NewsPost from '@/components/archive/NewsPost'
 import Button from '@/components/atoms/Buttons/Button'
+import Heading from '@/components/atoms/Heading'
 import * as styles from './EventsListing.module.scss'
 
-function EventsListing({ listing_display, listing_title, posts, showImage }) {
+function EventsListing({ listing_title, posts, showImage, listing_display }) {
   if (posts === null || Object.keys(posts).length === 0) {
     return null
   }

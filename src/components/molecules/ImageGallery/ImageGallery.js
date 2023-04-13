@@ -1,9 +1,8 @@
-import React from 'react'
 import RichText from '@/components/atoms/RichText'
+import Block from '@/components/molecules/Blocks'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import * as styles from './ImageGallery.module.css'
-import Block from '@/components/molecules/Blocks'
 
 /**
  * Render the ImageGallery component.
@@ -21,9 +20,7 @@ export default function ImageGallery({
   caption,
   columns = 3,
   className,
-  images,
-  innerBlocks,
-  children
+  innerBlocks
 }) {
   return (
     <>

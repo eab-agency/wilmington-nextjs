@@ -1,4 +1,4 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
 import DisplayImage from '@/components/atoms/Image'
 import PropTypes from 'prop-types'
 

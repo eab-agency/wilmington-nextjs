@@ -1,11 +1,12 @@
+/* eslint-disable no-unused-vars */
 import Button from '@/components/atoms/Buttons/Button'
 import Heading from '@/components/atoms/Heading'
 import RichText from '@/components/atoms/RichText'
-import cn from 'classnames'
 import Link from '@/components/common/Link'
+import cn from 'classnames'
+import Image from 'next/image'
 import React from 'react'
 import * as styles from './Card.module.css'
-import Image from 'next/image'
 
 // /**
 //  * Render the Card component.

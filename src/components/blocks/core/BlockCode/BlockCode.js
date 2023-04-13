@@ -1,4 +1,4 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
 import Code from '@/components/atoms/Code'
 import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
 

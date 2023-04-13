@@ -1,7 +1,6 @@
+/* eslint-disable no-unused-vars */
 import cn from 'classnames'
 import PropTypes from 'prop-types'
-import React from 'react'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import * as styles from './Code.module.css'
 

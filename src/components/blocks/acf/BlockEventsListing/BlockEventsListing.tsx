@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-import React from 'react'
 import EventsListing from '@/components/organisms/EventsListing'
 
 interface BlockEventsListingProps {
@@ -13,7 +12,7 @@ interface BlockEventsListingProps {
 }
 
 const BlockEventsListing = ({
-  data: { listing_title, events_listing, listing_display, event_category },
+  data: { listing_title, listing_display },
   listingData
 }: BlockEventsListingProps) => {
   const posts = listingData

@@ -87,29 +87,3 @@ export async function getRandomTestimonials(testimonyIdToFilterOut) {
 
   return testimonies
 }
-
-function getTwoRandomTestimonies(testimonyToRemove) {
-  const testimonials = response.data.testimonials.nodes
-
-  // Filter out any object with a databaseId of 687
-  const filteredTestimonials = testimonials.filter(
-    (testimonial) => testimonial.databaseId !== 687
-  )
-
-  // Generate two random indices
-  const randomIndex1 = Math.floor(Math.random() * filteredTestimonials.length)
-  let randomIndex2 = Math.floor(Math.random() * filteredTestimonials.length)
-
-  // Make sure the two indices are different
-  while (randomIndex2 === randomIndex1) {
-    randomIndex2 = Math.floor(Math.random() * filteredTestimonials.length)
-  }
-
-  // Pick the two testimonials at the random indices and push them into a new array
-  const selectedTestimonials = []
-  selectedTestimonials.push(filteredTestimonials[randomIndex1])
-  selectedTestimonials.push(filteredTestimonials[randomIndex2])
-
-  // Return the selected testimonials array
-  return selectedTestimonials
-}

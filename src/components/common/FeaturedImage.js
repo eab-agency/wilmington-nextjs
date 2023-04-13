@@ -1,6 +1,3 @@
-import React from 'react'
-// import { getImage, GatsbyImage } from "gatsby-plugin-image"
-import Link from '@/components/common/Link'
 import Image from '@/components/atoms/Image'
 
 const FeaturedImage = ({ image, showCaption }) => {

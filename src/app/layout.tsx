@@ -1,5 +1,4 @@
 import styles from '@/components/common/Layout.module.scss'
-import AlgoliaSearch from '@/components/molecules/AlgoliaSearch'
 import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
@@ -29,23 +28,13 @@ export default async function RootLayout({
   const mainNavMenuItems = await getMenuByLocation('MAIN_NAV')
   const utilityNavMenuItems = await getMenuByLocation('UTILITY_NAV')
   const footerNavMenuItems = await getMenuByLocation('FOOTER_NAV')
-  const resourceNavMenuItems = await getMenuByLocation('UTILITY_NAV')
+  const resourceNavMenuItems = await getMenuByLocation('RESOURCE_NAV')
 
   return (
     <html lang="en">
       <body>
         <div className={`${cantarell.className}`}>
-          <Header
-            menuItems={utilityNavMenuItems}
-            search={
-              <AlgoliaSearch
-                className=""
-                useHistory={true}
-                usePlaceholder={true}
-              />
-            }
-          />
-          {/* @ts-expect-error Async Server Component */}
+          <Header menu={utilityNavMenuItems} />
           <MainNavigation menuItems={mainNavMenuItems} enableDropdown={true} />
 
           <div className={`${styles.mainContainer}`}>

@@ -1,5 +1,5 @@
+/* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable camelcase */
-import React from 'react'
 import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard'
 
 /**

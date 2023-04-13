@@ -1,9 +1,9 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
 import NewsPost from '@/components/archive/NewsPost'
 import Button from '@/components/atoms/Buttons/Button'
 import * as styles from './NewsListing.module.scss'
 
-function NewsListing({ listing_display, listing_title, posts, showImage }) {
+function NewsListing({ listing_title, posts, showImage, listing_display }) {
   // if posts.isError is true then return posts.message
   if (posts.isError) {
     return <div>{posts.message}</div>

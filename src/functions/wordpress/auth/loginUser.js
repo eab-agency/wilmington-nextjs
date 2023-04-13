@@ -9,11 +9,6 @@ import { initializeWpApollo } from '@/lib/wordpress/connector'
  * @return {object}          User data or error object.
  */
 export default async function loginUser(username, password) {
-  console.log(
-    '🚀 ~ file: loginUser.js:12 ~ loginUser ~ username, password:',
-    username,
-    password
-  )
   const apolloClient = initializeWpApollo()
 
   return apolloClient
