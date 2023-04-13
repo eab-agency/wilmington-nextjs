@@ -4,7 +4,7 @@ import React from 'react'
  *
  * @return {Element} The SearchIcon component.
  */
-export default function SearchIcon () {
+export default function SearchIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

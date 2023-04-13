@@ -21,7 +21,7 @@ const CommonLink = ({ children, href, ...others }) => {
       ''
     )
     return (
-      <Link href={url} {...others} >
+      <Link href={url} {...others}>
         {children}
       </Link>
     )

@@ -1,4 +1,4 @@
-@use "tokens";
+@use 'tokens';
 
 .featuredPrograms {
   position: relative;
@@ -52,7 +52,7 @@
 
   @media (min-width: tokens.$mq-800) {
     &::after {
-      content: "";
+      content: '';
       display: block;
       width: 100%;
       border-top: 1px solid tokens.$c-limeGreen-700;

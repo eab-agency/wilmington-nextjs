@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 // Mutation: log user into WP.
 const mutationLoginUser = gql`

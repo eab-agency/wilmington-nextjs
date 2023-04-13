@@ -9,7 +9,9 @@
 
   & .wrap {
     @apply grid grid-cols-4 gap-2;
+
     background-color: green;
+
     &.columns-1 {
       @apply grid-cols-1;
     }
@@ -20,6 +22,7 @@
 
     &.columns-3 {
       background-color: #f00;
+
       @apply grid-cols-3;
     }
 

@@ -1,4 +1,4 @@
-@use "tokens";
+@use 'tokens';
 
 .topMenuItems {
   display: flex;
@@ -40,7 +40,7 @@
       }
 
       &::after {
-        content: "";
+        content: '';
         display: block;
         position: absolute;
         bottom: 0;
@@ -61,13 +61,13 @@
         }
       }
 
-      &[href*="cincinnati"] {
+      &[href*='cincinnati'] {
         color: tokens.$c-gray-800;
         svg {
           display: none;
         }
         &::before {
-          content: "";
+          content: '';
           display: block;
           position: absolute;
           bottom: 0;
@@ -90,7 +90,7 @@
           color: tokens.$c-darkGreen-800;
         }
 
-        &[href*="cincinnati"]:after {
+        &[href*='cincinnati']:after {
           bottom: 0em;
           background: tokens.$c-cincinnati-700;
         }

@@ -37,9 +37,8 @@ export default function Page({
   posts,
   year
 }) {
-
   const router = useRouter()
-  const isFrontPage = router.asPath === '/';
+  const isFrontPage = router.asPath === '/'
 
   if (archive) {
     return (

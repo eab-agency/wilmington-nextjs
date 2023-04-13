@@ -3,7 +3,7 @@ import defaultPageData from '@/lib/wordpress/_query-partials/defaultPageData'
 import featuredImagePostFields from '@/lib/wordpress/_query-partials/featuredImagePostFields'
 import globalPostFields from '@/lib/wordpress/_query-partials/globalPostFields'
 import seoPostFields from '@/lib/wordpress/_query-partials/seoPostFields'
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 // Fragment: retrieve single page fields.
 export const singlePageFragment = gql`

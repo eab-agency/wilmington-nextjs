@@ -14,7 +14,7 @@ import * as styles from './TwitterEmbed.module.css'
  * @param  {string}  props.url       The full URL to the video.
  * @return {Element}                 The TwitterEmbed component.
  */
-export default function TwitterEmbed ({ className, caption, url }) {
+export default function TwitterEmbed({ className, caption, url }) {
   const tweetURL = url ? url.split('/') : '' // Split URL string into array.
   const tweetId = tweetURL ? tweetURL[tweetURL.length - 1] : '' // Get ID from url array.
 

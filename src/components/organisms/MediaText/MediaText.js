@@ -52,9 +52,9 @@ export default function MediaText({
   const imageFillStyle = !imageFill
     ? null
     : {
-      backgroundImage: `url(${image?.url || ''})`,
-      backgroundPosition: `${focalPoint.x} ${focalPoint.y}`
-    }
+        backgroundImage: `url(${image?.url || ''})`,
+        backgroundPosition: `${focalPoint.x} ${focalPoint.y}`
+      }
 
   return (
     <section

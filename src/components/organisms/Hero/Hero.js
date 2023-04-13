@@ -101,11 +101,11 @@ export default function Hero({
 }) {
   const heroStyle = backgroundImage?.url
     ? {
-      // These css custom properties are used inside the css module file to set the card's background image, tint overlay, and fallback bg color.
-      '--image-url': `url(${backgroundImage.url})`,
-      '--image-tint-color': '#00000000',
-      '--image-fallback-color': '#000'
-    }
+        // These css custom properties are used inside the css module file to set the card's background image, tint overlay, and fallback bg color.
+        '--image-url': `url(${backgroundImage.url})`,
+        '--image-tint-color': '#00000000',
+        '--image-fallback-color': '#000'
+      }
     : {}
 
   // Rename to stylelint-accepted const name.
@@ -131,7 +131,6 @@ export default function Hero({
 
   return (
     <>
-
       {hasFilter && (
         <DuotoneFilter
           className={styles.filter}

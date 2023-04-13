@@ -1,6 +1,6 @@
+/* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable camelcase */
-import React from 'react';
-import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard';
+import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard'
 
 /**
  * Faculty Block
@@ -14,12 +14,12 @@ import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard';
 export default function BlockFacultyCards({ facultyData }) {
   // if facultyData is null or undefined, return null
   if (!facultyData) {
-    return null;
+    return null
   }
 
-  const facultyRestructured = facultyData.map(faculty => {
+  const facultyRestructured = facultyData.map((faculty) => {
     const { email, first, last, phone, position } =
-      faculty?.facultyFields?.faculty;
+      faculty?.facultyFields?.faculty
     return {
       email: email,
       first: first,
@@ -28,15 +28,15 @@ export default function BlockFacultyCards({ facultyData }) {
       title: `${first} ${last}`,
       link: faculty.uri,
       image: faculty.featuredImage?.node,
-      description: position,
-    };
-  });
+      description: position
+    }
+  })
 
   return (
     <>
       {facultyRestructured.map((faculty, index) => {
-        return <FacultyCard {...faculty} key={index} />;
+        return <FacultyCard {...faculty} key={index} />
       })}
     </>
-  );
+  )
 }

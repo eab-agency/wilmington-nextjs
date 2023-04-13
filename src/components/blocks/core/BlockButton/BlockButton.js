@@ -23,7 +23,7 @@ import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
  * @param  {number}  props.width              The width in percent.
  * @return {Element}                          The Button component.
  */
-export default function BlockButton ({
+export default function BlockButton({
   backgroundColor,
   textColor,
   anchor,

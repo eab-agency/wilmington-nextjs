@@ -13,7 +13,7 @@ import styles from './ButtonGroup.module.scss'
  * @param  {string}  props.orientation          The orientation of buttons.
  * @return {Element}                            The ButtonGroup component.
  */
-export default function ButtonGroup ({
+export default function ButtonGroup({
   children,
   contentJustification,
   id,

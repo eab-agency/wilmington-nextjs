@@ -1,6 +1,6 @@
 import archivePageInfo from '@/lib/wordpress/_query-partials/archivePageInfo'
 import commentsFields from '@/lib/wordpress/_query-partials/commentsFields'
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 // Query: retrieve comments by post databaseId.
 const queryCommentsByPostId = gql`

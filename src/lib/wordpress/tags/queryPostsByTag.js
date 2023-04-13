@@ -4,7 +4,7 @@ import {
 } from '@/lib/wordpress/posts/queryPostsArchive'
 import defaultPageData from '@/lib/wordpress/_query-partials/defaultPageData'
 import seoPostFields from '@/lib/wordpress/_query-partials/seoPostFields'
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client'
 
 // Query: retrieve posts tag archive.
 const queryPostsByTag = gql`

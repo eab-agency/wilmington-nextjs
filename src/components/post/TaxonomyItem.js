@@ -7,6 +7,7 @@ export const TaxonomyItem = ({ taxName, item, ...props }) => (
     to={`${item.uri}`}
     aria-label={`visit ${taxName} ${item.name} page`}
     {...props}
-  >{item.name}
+  >
+    {item.name}
   </Link>
 )

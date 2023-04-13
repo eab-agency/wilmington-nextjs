@@ -17,7 +17,7 @@ import * as styles from '../AlgoliaResults.module.scss'
  * @param  {string}   props.label             The form label.
  * @return {Element}                          The ToggleRefinement component.
  */
-function ToggleRefinement ({
+function ToggleRefinement({
   className,
   currentRefinement,
   label,

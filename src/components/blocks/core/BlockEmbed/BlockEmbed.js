@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 'use client'
 
-import React, { useEffect, useState } from 'react'
 import VideoEmbed from '@/components/atoms/VideoEmbed'
 import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react'
 
 // import Tweet from '@/components/atoms/TwitterEmbed'
 // import MusicEmbed from '@/components/atoms/MusicEmbed'

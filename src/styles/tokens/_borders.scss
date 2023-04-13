@@ -1,5 +1,5 @@
-@use "config";
-@use "colors";
+@use 'config';
+@use 'colors';
 
 //* Border Radius
 $br-xl: calc(config.$baseUnit * 1.25);
