@@ -2,6 +2,10 @@
 
 .inner-wrap {
   position: relative;
+
+  @media (min-width: tokens.$mq-800) {
+    margin-top: 4em;
+  }
 }
 
 // Note: AO - Confirm if cincinnati theme is still needed
