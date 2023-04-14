@@ -29,10 +29,29 @@ export default async function Page({ params }) {
   const { props } = await getPostTypeStaticProps({ slug: id }, postType)
   const { post } = props
 
+  // Filter the blocks array for core/heading blocks with level attribute equal to 2
+  const jumpLinks = post?.blocks?.filter(
+    (block) => block.name === 'core/heading' && block.attributes.level === 2
+  )
+
   return (
     <Container>
       <article className="innerWrap">
         <RichText tag="h1">{post?.title}</RichText>
+
+        {/* Render jump links */}
+        {jumpLinks.length > 0 && (
+          <ul>
+            {jumpLinks.map((block, index) => (
+              <li key={index}>
+                <a href={`#${block.attributes.anchor}`}>
+                  {block.attributes.content}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+
         <Blocks
           blocks={post?.blocks}
           departments={post?.departments?.nodes}
