@@ -2,19 +2,17 @@
 
 .mainContainer {
   display: flex;
-  padding-right: tokens.$rightOffset;
   max-width: tokens.$maxWidth;
 
-  // nav[aria-label='Main'] {
-  //   // grid-column: 1 / 1fr;
-  //   // z-index: tokens.$layer-10;
-  // }
+  @media (min-width: tokens.$mq-800) {
+    padding-right: tokens.$rightOffset;
+  }
 
   main {
     display: flex;
     flex-direction: column;
     z-index: tokens.$layer-1;
-    padding-left: clamp(2rem, 4vw, 14rem);
+    // padding-left: clamp(2rem, 4vw, 14rem);
     overflow: hidden;
 
     @media (min-width: tokens.$mq-800) {
