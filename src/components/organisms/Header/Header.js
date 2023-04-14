@@ -1,3 +1,5 @@
+'use client'
+
 import Logo from '@/components/atoms/Logo'
 import Link from '@/components/common/Link'
 import AlgoliaSearch from '@/components/molecules/AlgoliaSearch/AlgoliaSearch'
