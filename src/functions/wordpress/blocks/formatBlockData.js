@@ -114,6 +114,17 @@ export default async function formatBlockData(blocks) {
           attributes.departments = posts
           break
         }
+
+        case 'core/heading': {
+          if (block.attributes.level === 2 && block.attributes.anchor === '') {
+            // convert content to camel case and assign it to anchor
+            const camelCaseContent = block.attributes.content
+              .toLowerCase()
+              .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
+            block.attributes.anchor = camelCaseContent
+          }
+          break
+        }
       }
 
       const innerBlocksFormatted = await formatBlockData(innerBlocks)
