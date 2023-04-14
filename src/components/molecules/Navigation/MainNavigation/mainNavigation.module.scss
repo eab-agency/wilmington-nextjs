@@ -24,8 +24,8 @@
 }
 
 .navContainer {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 0.8em;
   right: 0;
   z-index: tokens.$layer-9999;
 
@@ -42,7 +42,7 @@
   .navWrapper {
     position: sticky;
     top: 4.45rem;
-    border-top: tokens.$bw-xs solid tokens.$c-gray-400;
+    // border-top: tokens.$bw-xs solid tokens.$c-gray-400;
 
     .hamburger {
       background: none;
@@ -86,8 +86,7 @@
         transition: all 0.2s ease-in-out;
       }
 
-      &:hover,
-      &:focus {
+      &:hover {
         svg,
         span {
           color: tokens.$c-darkGreen-700;

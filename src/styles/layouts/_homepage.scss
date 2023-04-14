@@ -2,6 +2,7 @@
 // Homepage Layout
 
 @use 'tokens';
+@use 'utilities/mixins';
 
 // =======================
 // Intro Home
@@ -9,11 +10,15 @@
 .intro-home-page {
   // padding-right: clamp(10rem, 20vw, 20rem);
   .intro-content {
-    padding: 4rem;
-    margin-top: -4rem;
+    @include mixins.sectionPadding;
+
     background: tokens.$c-white;
     z-index: tokens.$layer-10;
     position: relative;
+  }
+
+  @media (min-width: tokens.$mq-800) {
+    margin-top: -4rem;
   }
 
   @media (min-width: tokens.$mq-1200) {
