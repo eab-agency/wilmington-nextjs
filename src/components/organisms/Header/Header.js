@@ -4,60 +4,54 @@ import Logo from '@/components/atoms/Logo'
 import Link from '@/components/common/Link'
 import AlgoliaSearch from '@/components/molecules/AlgoliaSearch/AlgoliaSearch'
 import TopMenu from '@/components/molecules/Navigation/TopMenu'
+import classNames from 'classnames'
 import { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
-// import GlobalStyles from '../../../../src/styles/globalStyles'
-// import {createGlobalStyle} from 'styled-components'
 
 const Header = ({ menu }) => {
+  const [scrollDirection, setScrollDirection] = useState(null)
+  const [prevScrollPos, setPrevScrollPos] = useState(0)
   const [scrollPosition, setScrollPosition] = useState(0)
-  const handleScroll = () => {
-    const position = window.pageYOffset
-    setScrollPosition(position)
-  }
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
+      setScrollDirection(currentScrollPos > prevScrollPos ? 'down' : 'up')
+
+      setPrevScrollPos(currentScrollPos)
+      setScrollPosition(currentScrollPos)
     }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [prevScrollPos])
+
+  const [headerHeight, setHeaderHeight] = useState(0)
+
+  useEffect(() => {
+    const header = document.querySelector('#page-header')
+    const height = header.offsetHeight
+    setHeaderHeight(height)
   }, [])
 
-  // NOTE: AO - This is a work in progress. I'm trying to get the header height to be used in the GlobalStyle component below.
-  const headerHeight = 153
-  // const [headerHeight, setHeaderHeight] = useState(0)
-  // useEffect(() => {
-  //   const header = document.querySelector('#page-header')
-  //   const height = header.offsetHeight
-  //   setHeaderHeight(height)
-  // }, [])
+  const headerClass = classNames({
+    [styles.scrollUp]: scrollDirection === 'up'
+  })
 
-  // const pageHeaderStickyOffset =() =>{
-  //   const heightCalc = () =>  headerHeight / 16
-
-  // }
-
-  // const GlobalStyle = createGlobalStyle`
-  //   :root {
-  //     --page-header-height: ${pageHeaderStickyOffset}rem;
-  //   }
-  // `
+  const pageHeaderClass = classNames({
+    [styles.pageHeaderSticky]: scrollPosition > headerHeight,
+    [styles.pageHeader]: scrollPosition <= headerHeight,
+    [headerClass]: headerClass
+  })
 
   return (
     <>
-      {/* <GlobalStyle /> */}
       <a className={styles.skip} href="#page-content">
         Skip to Main Content
       </a>
-      <header
-        id="page-header"
-        className={
-          scrollPosition > headerHeight
-            ? styles.pageHeaderSticky
-            : styles.pageHeader
-        }
-      >
+      <header id="page-header" className={pageHeaderClass}>
         <div className={styles.headerWrapperSticky}>
           <div className={styles.container}>
             <Link
@@ -65,14 +59,10 @@ const Header = ({ menu }) => {
               className={styles.logo}
               aria-label="click to go home"
             >
-              <Logo className={styles.svg} type="dark" />
+              <Logo type="dark" />
             </Link>
             <div className={styles.topMenu}>
               <TopMenu menuItems={menu} />
-              {/* <button className={styles.search} type="button">
-                Search
-                <MdSearch />
-              </button> */}
               <div className={styles.search}>
                 <AlgoliaSearch
                   className=""

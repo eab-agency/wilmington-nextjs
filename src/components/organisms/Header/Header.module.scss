@@ -3,11 +3,7 @@
 @use 'utilities/mixins';
 
 .headerWrapperSticky {
-  width: 100%;
-}
-
-.svg {
-  background-color: transparent;
+  flex: 1;
 }
 
 .topMenu {
@@ -29,8 +25,6 @@
     left: auto;
     background: transparent;
   }
-
-  // .search {oc
 }
 
 .logo {
@@ -73,13 +67,25 @@
 
   &Sticky {
     display: flex;
-    position: sticky;
-    // @include tokens.fluidRem(margin-bottom, 0, 2rem);
     margin-bottom: clamp(0rem, 2vw, 2rem);
     font-size: 1rem;
-    top: 0;
-    @include mixins.drawerIn(top);
     z-index: tokens.$layer-9999;
+
+    &.scrollUp {
+      @media (max-width: tokens.$mq-800) {
+        position: sticky;
+        top: 0;
+
+        @include mixins.drawerIn(top);
+      }
+    }
+
+    @media (min-width: tokens.$mq-800) {
+      position: sticky;
+      top: 0;
+
+      @include mixins.drawerIn(top);
+    }
 
     @media (min-width: tokens.$mq-1500) {
       margin-bottom: 4em;
