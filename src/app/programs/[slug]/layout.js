@@ -1,19 +1,20 @@
 import FeaturedImage from '@/components/common/FeaturedImage'
+import WordPressProvider from '@/components/common/WordPressProvider'
 import getProgramChildrenByID from '@/functions/wordpress/programs/getProgramChildrenById'
 import Link from 'next/link'
-import WordPressProvider from '@/components/common/WordPressProvider'
 
 const programLayout = async ({ children, params }) => {
   const id = `/programs/${params?.slug}`
   const { program } = await getProgramChildrenByID(id)
   const {
-    featuredImage,
     children: childPages,
     uri,
     title,
     departments,
     programOrgRelationship
   } = program
+
+  const { featuredImage = {} } = program || {}
 
   const wpInitialState = {
     departments: departments?.nodes,
