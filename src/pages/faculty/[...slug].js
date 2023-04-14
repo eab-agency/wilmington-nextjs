@@ -34,7 +34,9 @@ function ProgramList({ programs }) {
 
   return (
     <>
-      <h3>Related Programs</h3>
+      {programs.major.length || programs.minor.length ? (
+        <h3>Related Programs</h3>
+      ) : null}
       {renderPrograms('major', 'Majors')}
       {renderPrograms('minor', 'Minors')}
     </>
