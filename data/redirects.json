@@ -1,767 +1,767 @@
 [
- {
-   "source": "/mol",
-   "destination": "https://www.wilmington.edu/graduate-studies/organizational-leadership/",
-   "permanent": true
- },
- {
-   "source": "/commencement",
-   "destination": "https://www.wilmington.edu/current-students/commencement/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/ovwgrant",
-   "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
-   "permanent": true
- },
- {
-   "source": "/athletics/",
-   "destination": "http://wilmingtonquakers.com/landing/index",
-   "permanent": true
- },
- {
-   "source": "/graduate-studies/graduate-housing/",
-   "destination": "https://www.wilmington.edu/student-life/residence-life/graduate-housing/",
-   "permanent": true
- },
- {
-   "source": "/graduate-studies/graduate-catalog/",
-   "destination": "https://www.wilmington.edu/wp-content/uploads/2022/08/2022-2023-Graduate-Catalog-Final.pdf",
-   "permanent": true
- },
- {
-   "source": "/academics/academic-resources/",
-   "destination": "https://www.wilmington.edu/current-students/academic-resources/",
-   "permanent": true
- },
- {
-   "source": "/graduate-studies/academic-calendar/",
-   "destination": "https://www.wilmington.edu/academics/academic-calendar/",
-   "permanent": true
- },
- {
-   "source": "/ot",
-   "destination": "https://www.wilmington.edu/graduate-studies/occupational-therapy/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/ovwgrant",
-   "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
-   "permanent": true
- },
- {
-   "source": "/athletics/",
-   "destination": "http://wilmingtonquakers.com/landing/index",
-   "permanent": true
- },
- {
-   "source": "/wearedubc",
-   "destination": "https://www.wilmington.edu/current-students/wearedubc/",
-   "permanent": true
- },
- {
-   "source": "/academics/graduate-programs/",
-   "destination": "https://www.wilmington.edu/graduate-studies/",
-   "permanent": true
- },
- {
-   "source": "/cinciapp",
-   "destination": "https://wilmingtoncollege.wufoo.com/forms/xrrfo6b17bzqvn/",
-   "permanent": true
- },
- {
-   "source": "/admission/financial-aid/compare-affordability/",
-   "destination": "https://www.wilmington.edu/admission/affordability/",
-   "permanent": true
- },
- {
-   "source": "/admission/transfer-students/financial-aid-scholarships/",
-   "destination": "https://www.wilmington.edu/admission/financial-aid/scholarships-awards/",
-   "permanent": true
- },
- {
-   "source": "/admission/financial-aid/2021-2022-forms/",
-   "destination": "https://www.wilmington.edu/admission/tuition-fees/billing/",
-   "permanent": true
- },
- {
-   "source": "/msat",
-   "destination": "https://www.wilmington.edu/graduate-studies/athletic-training/",
-   "permanent": true
- },
- {
-   "source": "/catalog",
-   "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/ovwgrant",
-   "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
-   "permanent": true
- },
- {
-   "source": "/athletics/",
-   "destination": "http://wilmingtonquakers.com/landing/index",
-   "permanent": true
- },
- {
-   "source": "/admission/transfer-students/financial-aid-scholarships/",
-   "destination": "https://www.wilmington.edu/admission/financial-aid/scholarships-awards/",
-   "permanent": true
- },
- {
-   "source": "/social-work",
-   "destination": "https://www.wilmington.edu/academics/areas-of-study/social-work/",
-   "permanent": true
- },
- {
-   "source": "/alumni/virtual-engagement/the-quake-radio/",
-   "destination": "https://www.wilmingtonquakeradio.com",
-   "permanent": true
- },
- {
-   "source": "/academics/graduate-programs/",
-   "destination": "https://www.wilmington.edu/graduate-studies/",
-   "permanent": true
- },
- {
-   "source": "/athletics/",
-   "destination": "http://wilmingtonquakers.com/landing/index",
-   "permanent": true
- },
- {
-   "source": "/catalog",
-   "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/business-administration/economics-minor/",
-   "destination": "https://www.wilmington.edu/academics/areas-of-study/economics/",
-   "permanent": true
- },
- {
-   "source": "/graduate-studies/academic-calendar/",
-   "destination": "https://www.wilmington.edu/academics/academic-calendar/",
-   "permanent": true
- },
- {
-   "source": "/graduate-studies/occupational-therapy/curriculum/",
-   "destination": "https://www.wilmington.edu/wp-content/uploads/2022/11/6-Semester-Plan-OT.pdf",
-   "permanent": true
- },
- {
-   "source": "/admission/financial-aid/2021-2022-forms/",
-   "destination": "https://www.wilmington.edu/admission/tuition-fees/billing/",
-   "permanent": true
- },
- {
-   "source": "/alumni/the-link/",
-   "destination": "/link",
-   "permanent": true
- },
- {
-   "source": "/student-life/residence-life/college-commons/",
-   "destination": "https://www.wilmington.edu/about/our-campus/college-commons/",
-   "permanent": true
- },
- {
-   "source": "/current-students/student-success-lounge/",
-   "destination": "/about/our-campus/student-success-lounge/",
-   "permanent": true
- },
- {
-   "source": "/faculty-staff/mail-room-requirements/",
-   "destination": "https://www.wilmington.edu/current-students/campus-mail/requirements/",
-   "permanent": true
- },
- {
-   "source": "/student-life/residence-life/campus-village/",
-   "destination": "https://www.wilmington.edu/about/our-campus/campus-village/",
-   "permanent": true
- },
- {
-   "source": "/alumni/homecoming/",
-   "destination": "/homecoming",
-   "permanent": true
- },
- {
-   "source": "/visit/",
-   "destination": "https://www.wilmington.edu/admission/visit-campus/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/agriculture/food-policy-ag-advocacy/",
-   "destination": "https://www.wilmington.edu/academics/areas-of-study/political-science/food-policy/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/graduate-studies/graduate-catalog/",
-   "destination": "https://www.wilmington.edu/wp-content/uploads/2022/08/2022-2023-Graduate-Catalog-Final.pdf",
-   "permanent": true
- },
- {
-   "source": "/cinciapp",
-   "destination": "https://wilmingtoncollege.wufoo.com/forms/xrrfo6b17bzqvn/",
-   "permanent": true
- },
- {
-   "source": "/student-life/residence-life/marble-hall/",
-   "destination": "https://www.wilmington.edu/about/our-campus/marble-hall/",
-   "permanent": true
- },
- {
-   "source": "/prc/prc-director/",
-   "destination": "/people/tanya-maus/",
-   "permanent": true
- },
- {
-   "source": "/alumni/alumni-services/update-your-info/",
-   "destination": "https://wilmingtoncollege.wufoo.com/forms/w1mnjlu60bsvo56",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/exercise-science/our-facility/",
-   "destination": "https://www.wilmington.edu/about/our-campus/center-for-sport-sciences/",
-   "permanent": true
- },
- {
-   "source": "/admission/transfer-students/financial-aid-scholarships/",
-   "destination": "https://www.wilmington.edu/admission/financial-aid/scholarships-awards/",
-   "permanent": true
- },
- {
-   "source": "/student-life/residence-life/austin-pickett-halls/",
-   "destination": "https://www.wilmington.edu/about/our-campus/austin-pickett-halls/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/communication-arts/music-media/",
-   "destination": "https://www.wilmington.edu/academics/areas-of-study/music-media/",
-   "permanent": true
- },
- {
-   "source": "/student-life/residence-life/denver-hall/",
-   "destination": "/about/our-campus/denver-hall/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/music/music-media/",
-   "destination": "/academics/areas-of-study/music-media/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/agriculture/pre-veterinary-science/",
-   "destination": "https://www.wilmington.edu/academics/pre-professional/",
-   "permanent": true
- },
- {
-   "source": "/student-life/residence-life/friends-hall/",
-   "destination": "https://www.wilmington.edu/about/our-campus/friends-hall/",
-   "permanent": true
- },
- {
-   "source": "/quaker-cupboard",
-   "destination": "https://www.wilmington.edu/current-students/student-resource-center/quaker-cupboard/",
-   "permanent": true
- },
- {
-   "source": "/bands/music-minor/",
-   "destination": "https://www.wilmington.edu/academics/areas-of-study/music/",
-   "permanent": true
- },
- {
-   "source": "/give/",
-   "destination": "https://www.givecampus.com/campaigns/31758/donations/new",
-   "permanent": true
- },
- {
-   "source": "/current-students/student-orgs/",
-   "destination": "https://www.wilmington.edu/student-life/organizations/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/music/bands/",
-   "destination": "https://www.wilmington.edu/bands",
-   "permanent": true
- },
- {
-   "source": "/academics/academic-resources/",
-   "destination": "https://www.wilmington.edu/current-students/academic-resources/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/communication-arts/the-quake-wc-radio/",
-   "destination": "https://www.wilmingtonquakeradio.com",
-   "permanent": true
- },
- {
-   "source": "/admission/financial-aid/compare-affordability/",
-   "destination": "https://www.wilmington.edu/admission/affordability/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/sustainability/agriculture/",
-   "destination": "https://www.wilmington.edu/academics/areas-of-study/agriculture/",
-   "permanent": true
- },
- {
-   "source": "/prc/archives/",
-   "destination": "https://libguides.wilmington.edu/brma",
-   "permanent": true
- },
- {
-   "source": "/catalog",
-   "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/ot",
-   "destination": "https://www.wilmington.edu/graduate-studies/occupational-therapy/",
-   "permanent": true
- },
- {
-   "source": "/mol",
-   "destination": "https://www.wilmington.edu/graduate-studies/organizational-leadership/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/ovwgrant",
-   "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
-   "permanent": true
- },
- {
-   "source": "/athletics/",
-   "destination": "http://wilmingtonquakers.com/landing/index",
-   "permanent": true
- },
- {
-   "source": "/wearedubc",
-   "destination": "https://www.wilmington.edu/current-students/wearedubc/",
-   "permanent": true
- },
- {
-   "source": "/graduate-studies/athletic-training/boc-results/",
-   "destination": "https://caate.net/program-info/329/",
-   "permanent": true
- },
- {
-   "source": "/gradhousing",
-   "destination": "https://wilmington.starrezhousing.com/StarRezPortal",
-   "permanent": true
- },
- {
-   "source": "/admission/financial-aid/compare-affordability/",
-   "destination": "https://www.wilmington.edu/admission/affordability/",
-   "permanent": true
- },
- {
-   "source": "/academics/graduate-programs/",
-   "destination": "https://www.wilmington.edu/graduate-studies/",
-   "permanent": true
- },
- {
-   "source": "/student-life/residence-life/friends-hall/",
-   "destination": "https://www.wilmington.edu/about/our-campus/friends-hall/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/agriculture/pre-veterinary-science/",
-   "destination": "https://www.wilmington.edu/academics/pre-professional/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/gradhousing",
-   "destination": "https://wilmington.starrezhousing.com/StarRezPortal",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/ovwgrant",
-   "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
-   "permanent": true
- },
- {
-   "source": "/athletics/",
-   "destination": "http://wilmingtonquakers.com/landing/index",
-   "permanent": true
- },
- {
-   "source": "/ot",
-   "destination": "https://www.wilmington.edu/graduate-studies/occupational-therapy/",
-   "permanent": true
- },
- {
-   "source": "/msat",
-   "destination": "https://www.wilmington.edu/graduate-studies/athletic-training/",
-   "permanent": true
- },
- {
-   "source": "/catalog",
-   "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
-   "permanent": true
- },
- {
-   "source": "/academics/graduate-programs/",
-   "destination": "https://www.wilmington.edu/graduate-studies/",
-   "permanent": true
- },
- {
-   "source": "/track-raffle",
-   "destination": "https://wilmingtoncollege.wufoo.com/forms/kadxkei06b1slc/",
-   "permanent": true
- },
- {
-   "source": "/mol",
-   "destination": "https://www.wilmington.edu/graduate-studies/organizational-leadership/",
-   "permanent": true
- },
- {
-   "source": "/cinciapp",
-   "destination": "https://wilmingtoncollege.wufoo.com/forms/xrrfo6b17bzqvn/",
-   "permanent": true
- },
- {
-   "source": "/student-life/residence-life/austin-pickett-halls/",
-   "destination": "https://www.wilmington.edu/about/our-campus/austin-pickett-halls/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/english/professional-writing-minor/",
-   "destination": "https://www.wilmington.edu/academics/areas-of-study/professional-writing/",
-   "permanent": true
- },
- {
-   "source": "/admission/financial-aid/compare-affordability/",
-   "destination": "https://www.wilmington.edu/admission/affordability/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/sustainability/course-descriptions/",
-   "destination": "https://www.wilmington.edu/academics/areas-of-study/agriculture/course-descriptions/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/agriculture/sustainability-minor/",
-   "destination": "https://www.wilmington.edu/academics/areas-of-study/sustainability/",
-   "permanent": true
- },
- {
-   "source": "/give/",
-   "destination": "https://www.givecampus.com/campaigns/31758/donations/new",
-   "permanent": true
- },
- {
-   "source": "/ApplyMOL",
-   "destination": "https://www.wilmington.edu/graduate-studies/organizational-leadership/apply-to-mol/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/economics/course-descriptions/",
-   "destination": "https://www.wilmington.edu/academics/areas-of-study/business-administration/course-descriptions/",
-   "permanent": true
- },
- {
-   "source": "/apply",
-   "destination": "https://www.wilmington.edu/admission/apply/",
-   "permanent": true
- },
- {
-   "source": "/academics/graduate-programs/",
-   "destination": "https://www.wilmington.edu/graduate-studies/",
-   "permanent": true
- },
- {
-   "source": "/graduate-studies/graduate-housing/",
-   "destination": "https://www.wilmington.edu/student-life/residence-life/graduate-housing/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/accounting/course-descriptions/",
-   "destination": "https://www.wilmington.edu/academics/areas-of-study/business-administration/course-descriptions/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/chemistry/center-for-the-sciences-agriculture/",
-   "destination": "https://www.wilmington.edu/about/our-campus/center-for-the-sciences-agriculture/",
-   "permanent": true
- },
- {
-   "source": "/transfer-advantage/",
-   "destination": "https://www.wilmington.edu/admission/transfer-students/advantage/",
-   "permanent": true
- },
- {
-   "source": "/bands/music-media-minor/",
-   "destination": "https://www.wilmington.edu/academics/areas-of-study/music-media/",
-   "permanent": true
- },
- {
-   "source": "/academics/areas-of-study/religion-philosophy/peace-studies-minor/",
-   "destination": "/academics/areas-of-study/peace-studies/",
-   "permanent": true
- },
- {
-   "source": "/visit/",
-   "destination": "https://www.wilmington.edu/admission/visit-campus/",
-   "permanent": true
- },
- {
-   "source": "/bands/admission/",
-   "destination": "/admission",
-   "permanent": true
- },
- {
-   "source": "/cincireadmit",
-   "destination": "https://wilmingtoncollege.wufoo.com/forms/x1tjfirx1muo0nw/",
-   "permanent": true
- },
- {
-   "source": "/admission/financial-aid/2021-2022-forms/",
-   "destination": "https://www.wilmington.edu/admission/tuition-fees/billing/",
-   "permanent": true
- },
- {
-   "source": "/admission/transfer-students/financial-aid-scholarships/",
-   "destination": "https://www.wilmington.edu/admission/financial-aid/scholarships-awards/",
-   "permanent": true
- },
- {
-   "source": "/catalog",
-   "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
-   "permanent": true
- },
- {
-   "source": "/academics/graduate-programs/",
-   "destination": "https://www.wilmington.edu/graduate-studies/",
-   "permanent": true
- },
- {
-   "source": "/alumni/homecoming/",
-   "destination": "/homecoming",
-   "permanent": true
- },
- {
-   "source": "/mol",
-   "destination": "https://www.wilmington.edu/graduate-studies/organizational-leadership/",
-   "permanent": true
- },
- {
-   "source": "/visit/",
-   "destination": "https://www.wilmington.edu/admission/visit-campus/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/mol",
-   "destination": "https://www.wilmington.edu/graduate-studies/organizational-leadership/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/graduate-studies/occupational-therapy/curriculum/",
-   "destination": "https://www.wilmington.edu/wp-content/uploads/2022/11/6-Semester-Plan-OT.pdf",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/graduate-studies/graduate-housing/",
-   "destination": "https://www.wilmington.edu/student-life/residence-life/graduate-housing/",
-   "permanent": true
- },
- {
-   "source": "/ovwgrant",
-   "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
-   "permanent": true
- },
- {
-   "source": "/athletics/",
-   "destination": "http://wilmingtonquakers.com/landing/index",
-   "permanent": true
- },
- {
-   "source": "/prc/archives/",
-   "destination": "https://libguides.wilmington.edu/brma",
-   "permanent": true
- },
- {
-   "source": "/catalog",
-   "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
-   "permanent": true
- },
- {
-   "source": "/give/",
-   "destination": "https://www.givecampus.com/campaigns/31758/donations/new",
-   "permanent": true
- },
- {
-   "source": "/catalog",
-   "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
-   "permanent": true
- },
- {
-   "source": "/academics/graduate-programs/",
-   "destination": "https://www.wilmington.edu/graduate-studies/",
-   "permanent": true
- },
- {
-   "source": "/catalog",
-   "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
-   "permanent": true
- },
- {
-   "source": "/msat",
-   "destination": "https://www.wilmington.edu/graduate-studies/athletic-training/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/150-blanket",
-   "destination": "https://wilmingtoncollege.wufoo.com/forms/preorder-wilmington-college-150th-blanket",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/ovwgrant",
-   "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
-   "permanent": true
- },
- {
-   "source": "/athletics/",
-   "destination": "http://wilmingtonquakers.com/landing/index",
-   "permanent": true
- },
- {
-   "source": "/wearedubc",
-   "destination": "https://www.wilmington.edu/current-students/wearedubc/",
-   "permanent": true
- },
- {
-   "source": "/visit/",
-   "destination": "https://www.wilmington.edu/admission/visit-campus/",
-   "permanent": true
- },
- {
-   "source": "/athletics/",
-   "destination": "http://wilmingtonquakers.com/landing/index",
-   "permanent": true
- },
- {
-   "source": "/msat",
-   "destination": "https://www.wilmington.edu/graduate-studies/athletic-training/",
-   "permanent": true
- },
- {
-   "source": "/admission/transfer-students/financial-aid-scholarships/",
-   "destination": "https://www.wilmington.edu/admission/financial-aid/scholarships-awards/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/ovwgrant",
-   "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
-   "permanent": true
- },
- {
-   "source": "/athletics/",
-   "destination": "http://wilmingtonquakers.com/landing/index",
-   "permanent": true
- },
- {
-   "source": "/wcfans",
-   "destination": "https://wilmingtoncollege.wufoo.com/forms/x1vjsal1lb25jd/",
-   "permanent": true
- },
- {
-   "source": "/catalog",
-   "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
-   "permanent": true
- },
- {
-   "source": "/admission/financial-aid/compare-affordability/",
-   "destination": "https://www.wilmington.edu/admission/affordability/",
-   "permanent": true
- },
- {
-   "source": "/watson-library/",
-   "destination": "https://library.wilmington.edu/",
-   "permanent": true
- },
- {
-   "source": "/prc/archives/",
-   "destination": "https://libguides.wilmington.edu/brma",
-   "permanent": true
- }
+  {
+    "source": "/mol",
+    "destination": "https://www.wilmington.edu/graduate-studies/organizational-leadership/",
+    "permanent": true
+  },
+  {
+    "source": "/commencement",
+    "destination": "https://www.wilmington.edu/current-students/commencement/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/ovwgrant",
+    "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
+    "permanent": true
+  },
+  {
+    "source": "/athletics/",
+    "destination": "http://wilmingtonquakers.com/landing/index",
+    "permanent": true
+  },
+  {
+    "source": "/graduate-studies/graduate-housing/",
+    "destination": "https://www.wilmington.edu/student-life/residence-life/graduate-housing/",
+    "permanent": true
+  },
+  {
+    "source": "/graduate-studies/graduate-catalog/",
+    "destination": "https://www.wilmington.edu/wp-content/uploads/2022/08/2022-2023-Graduate-Catalog-Final.pdf",
+    "permanent": true
+  },
+  {
+    "source": "/academics/academic-resources/",
+    "destination": "https://www.wilmington.edu/current-students/academic-resources/",
+    "permanent": true
+  },
+  {
+    "source": "/graduate-studies/academic-calendar/",
+    "destination": "https://www.wilmington.edu/academics/academic-calendar/",
+    "permanent": true
+  },
+  {
+    "source": "/ot",
+    "destination": "https://www.wilmington.edu/graduate-studies/occupational-therapy/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/ovwgrant",
+    "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
+    "permanent": true
+  },
+  {
+    "source": "/athletics/",
+    "destination": "http://wilmingtonquakers.com/landing/index",
+    "permanent": true
+  },
+  {
+    "source": "/wearedubc",
+    "destination": "https://www.wilmington.edu/current-students/wearedubc/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/graduate-programs/",
+    "destination": "https://www.wilmington.edu/graduate-studies/",
+    "permanent": true
+  },
+  {
+    "source": "/cinciapp",
+    "destination": "https://wilmingtoncollege.wufoo.com/forms/xrrfo6b17bzqvn/",
+    "permanent": true
+  },
+  {
+    "source": "/admission/financial-aid/compare-affordability/",
+    "destination": "https://www.wilmington.edu/admission/affordability/",
+    "permanent": true
+  },
+  {
+    "source": "/admission/transfer-students/financial-aid-scholarships/",
+    "destination": "https://www.wilmington.edu/admission/financial-aid/scholarships-awards/",
+    "permanent": true
+  },
+  {
+    "source": "/admission/financial-aid/2021-2022-forms/",
+    "destination": "https://www.wilmington.edu/admission/tuition-fees/billing/",
+    "permanent": true
+  },
+  {
+    "source": "/msat",
+    "destination": "https://www.wilmington.edu/graduate-studies/athletic-training/",
+    "permanent": true
+  },
+  {
+    "source": "/catalog",
+    "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/ovwgrant",
+    "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
+    "permanent": true
+  },
+  {
+    "source": "/athletics/",
+    "destination": "http://wilmingtonquakers.com/landing/index",
+    "permanent": true
+  },
+  {
+    "source": "/admission/transfer-students/financial-aid-scholarships/",
+    "destination": "https://www.wilmington.edu/admission/financial-aid/scholarships-awards/",
+    "permanent": true
+  },
+  {
+    "source": "/social-work",
+    "destination": "https://www.wilmington.edu/academics/areas-of-study/social-work/",
+    "permanent": true
+  },
+  {
+    "source": "/alumni/virtual-engagement/the-quake-radio/",
+    "destination": "https://www.wilmingtonquakeradio.com",
+    "permanent": true
+  },
+  {
+    "source": "/academics/graduate-programs/",
+    "destination": "https://www.wilmington.edu/graduate-studies/",
+    "permanent": true
+  },
+  {
+    "source": "/athletics/",
+    "destination": "http://wilmingtonquakers.com/landing/index",
+    "permanent": true
+  },
+  {
+    "source": "/catalog",
+    "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/business-administration/economics-minor/",
+    "destination": "https://www.wilmington.edu/academics/areas-of-study/economics/",
+    "permanent": true
+  },
+  {
+    "source": "/graduate-studies/academic-calendar/",
+    "destination": "https://www.wilmington.edu/academics/academic-calendar/",
+    "permanent": true
+  },
+  {
+    "source": "/graduate-studies/occupational-therapy/curriculum/",
+    "destination": "https://www.wilmington.edu/wp-content/uploads/2022/11/6-Semester-Plan-OT.pdf",
+    "permanent": true
+  },
+  {
+    "source": "/admission/financial-aid/2021-2022-forms/",
+    "destination": "https://www.wilmington.edu/admission/tuition-fees/billing/",
+    "permanent": true
+  },
+  {
+    "source": "/alumni/the-link/",
+    "destination": "/link",
+    "permanent": true
+  },
+  {
+    "source": "/student-life/residence-life/college-commons/",
+    "destination": "https://www.wilmington.edu/about/our-campus/college-commons/",
+    "permanent": true
+  },
+  {
+    "source": "/current-students/student-success-lounge/",
+    "destination": "/about/our-campus/student-success-lounge/",
+    "permanent": true
+  },
+  {
+    "source": "/faculty-staff/mail-room-requirements/",
+    "destination": "https://www.wilmington.edu/current-students/campus-mail/requirements/",
+    "permanent": true
+  },
+  {
+    "source": "/student-life/residence-life/campus-village/",
+    "destination": "https://www.wilmington.edu/about/our-campus/campus-village/",
+    "permanent": true
+  },
+  {
+    "source": "/alumni/homecoming/",
+    "destination": "/homecoming",
+    "permanent": true
+  },
+  {
+    "source": "/visit/",
+    "destination": "https://www.wilmington.edu/admission/visit-campus/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/agriculture/food-policy-ag-advocacy/",
+    "destination": "https://www.wilmington.edu/academics/areas-of-study/political-science/food-policy/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/graduate-studies/graduate-catalog/",
+    "destination": "https://www.wilmington.edu/wp-content/uploads/2022/08/2022-2023-Graduate-Catalog-Final.pdf",
+    "permanent": true
+  },
+  {
+    "source": "/cinciapp",
+    "destination": "https://wilmingtoncollege.wufoo.com/forms/xrrfo6b17bzqvn/",
+    "permanent": true
+  },
+  {
+    "source": "/student-life/residence-life/marble-hall/",
+    "destination": "https://www.wilmington.edu/about/our-campus/marble-hall/",
+    "permanent": true
+  },
+  {
+    "source": "/prc/prc-director/",
+    "destination": "/people/tanya-maus/",
+    "permanent": true
+  },
+  {
+    "source": "/alumni/alumni-services/update-your-info/",
+    "destination": "https://wilmingtoncollege.wufoo.com/forms/w1mnjlu60bsvo56",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/exercise-science/our-facility/",
+    "destination": "https://www.wilmington.edu/about/our-campus/center-for-sport-sciences/",
+    "permanent": true
+  },
+  {
+    "source": "/admission/transfer-students/financial-aid-scholarships/",
+    "destination": "https://www.wilmington.edu/admission/financial-aid/scholarships-awards/",
+    "permanent": true
+  },
+  {
+    "source": "/student-life/residence-life/austin-pickett-halls/",
+    "destination": "https://www.wilmington.edu/about/our-campus/austin-pickett-halls/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/communication-arts/music-media/",
+    "destination": "https://www.wilmington.edu/academics/areas-of-study/music-media/",
+    "permanent": true
+  },
+  {
+    "source": "/student-life/residence-life/denver-hall/",
+    "destination": "/about/our-campus/denver-hall/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/music/music-media/",
+    "destination": "/academics/areas-of-study/music-media/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/agriculture/pre-veterinary-science/",
+    "destination": "https://www.wilmington.edu/academics/pre-professional/",
+    "permanent": true
+  },
+  {
+    "source": "/student-life/residence-life/friends-hall/",
+    "destination": "https://www.wilmington.edu/about/our-campus/friends-hall/",
+    "permanent": true
+  },
+  {
+    "source": "/quaker-cupboard",
+    "destination": "https://www.wilmington.edu/current-students/student-resource-center/quaker-cupboard/",
+    "permanent": true
+  },
+  {
+    "source": "/bands/music-minor/",
+    "destination": "https://www.wilmington.edu/academics/areas-of-study/music/",
+    "permanent": true
+  },
+  {
+    "source": "/give/",
+    "destination": "https://www.givecampus.com/campaigns/31758/donations/new",
+    "permanent": true
+  },
+  {
+    "source": "/current-students/student-orgs/",
+    "destination": "https://www.wilmington.edu/student-life/organizations/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/music/bands/",
+    "destination": "https://www.wilmington.edu/bands",
+    "permanent": true
+  },
+  {
+    "source": "/academics/academic-resources/",
+    "destination": "https://www.wilmington.edu/current-students/academic-resources/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/communication-arts/the-quake-wc-radio/",
+    "destination": "https://www.wilmingtonquakeradio.com",
+    "permanent": true
+  },
+  {
+    "source": "/admission/financial-aid/compare-affordability/",
+    "destination": "https://www.wilmington.edu/admission/affordability/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/sustainability/agriculture/",
+    "destination": "https://www.wilmington.edu/academics/areas-of-study/agriculture/",
+    "permanent": true
+  },
+  {
+    "source": "/prc/archives/",
+    "destination": "https://libguides.wilmington.edu/brma",
+    "permanent": true
+  },
+  {
+    "source": "/catalog",
+    "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/ot",
+    "destination": "https://www.wilmington.edu/graduate-studies/occupational-therapy/",
+    "permanent": true
+  },
+  {
+    "source": "/mol",
+    "destination": "https://www.wilmington.edu/graduate-studies/organizational-leadership/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/ovwgrant",
+    "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
+    "permanent": true
+  },
+  {
+    "source": "/athletics/",
+    "destination": "http://wilmingtonquakers.com/landing/index",
+    "permanent": true
+  },
+  {
+    "source": "/wearedubc",
+    "destination": "https://www.wilmington.edu/current-students/wearedubc/",
+    "permanent": true
+  },
+  {
+    "source": "/graduate-studies/athletic-training/boc-results/",
+    "destination": "https://caate.net/program-info/329/",
+    "permanent": true
+  },
+  {
+    "source": "/gradhousing",
+    "destination": "https://wilmington.starrezhousing.com/StarRezPortal",
+    "permanent": true
+  },
+  {
+    "source": "/admission/financial-aid/compare-affordability/",
+    "destination": "https://www.wilmington.edu/admission/affordability/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/graduate-programs/",
+    "destination": "https://www.wilmington.edu/graduate-studies/",
+    "permanent": true
+  },
+  {
+    "source": "/student-life/residence-life/friends-hall/",
+    "destination": "https://www.wilmington.edu/about/our-campus/friends-hall/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/agriculture/pre-veterinary-science/",
+    "destination": "https://www.wilmington.edu/academics/pre-professional/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/gradhousing",
+    "destination": "https://wilmington.starrezhousing.com/StarRezPortal",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/ovwgrant",
+    "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
+    "permanent": true
+  },
+  {
+    "source": "/athletics/",
+    "destination": "http://wilmingtonquakers.com/landing/index",
+    "permanent": true
+  },
+  {
+    "source": "/ot",
+    "destination": "https://www.wilmington.edu/graduate-studies/occupational-therapy/",
+    "permanent": true
+  },
+  {
+    "source": "/msat",
+    "destination": "https://www.wilmington.edu/graduate-studies/athletic-training/",
+    "permanent": true
+  },
+  {
+    "source": "/catalog",
+    "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/graduate-programs/",
+    "destination": "https://www.wilmington.edu/graduate-studies/",
+    "permanent": true
+  },
+  {
+    "source": "/track-raffle",
+    "destination": "https://wilmingtoncollege.wufoo.com/forms/kadxkei06b1slc/",
+    "permanent": true
+  },
+  {
+    "source": "/mol",
+    "destination": "https://www.wilmington.edu/graduate-studies/organizational-leadership/",
+    "permanent": true
+  },
+  {
+    "source": "/cinciapp",
+    "destination": "https://wilmingtoncollege.wufoo.com/forms/xrrfo6b17bzqvn/",
+    "permanent": true
+  },
+  {
+    "source": "/student-life/residence-life/austin-pickett-halls/",
+    "destination": "https://www.wilmington.edu/about/our-campus/austin-pickett-halls/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/english/professional-writing-minor/",
+    "destination": "https://www.wilmington.edu/academics/areas-of-study/professional-writing/",
+    "permanent": true
+  },
+  {
+    "source": "/admission/financial-aid/compare-affordability/",
+    "destination": "https://www.wilmington.edu/admission/affordability/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/sustainability/course-descriptions/",
+    "destination": "https://www.wilmington.edu/academics/areas-of-study/agriculture/course-descriptions/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/agriculture/sustainability-minor/",
+    "destination": "https://www.wilmington.edu/academics/areas-of-study/sustainability/",
+    "permanent": true
+  },
+  {
+    "source": "/give/",
+    "destination": "https://www.givecampus.com/campaigns/31758/donations/new",
+    "permanent": true
+  },
+  {
+    "source": "/ApplyMOL",
+    "destination": "https://www.wilmington.edu/graduate-studies/organizational-leadership/apply-to-mol/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/economics/course-descriptions/",
+    "destination": "https://www.wilmington.edu/academics/areas-of-study/business-administration/course-descriptions/",
+    "permanent": true
+  },
+  {
+    "source": "/apply",
+    "destination": "https://www.wilmington.edu/admission/apply/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/graduate-programs/",
+    "destination": "https://www.wilmington.edu/graduate-studies/",
+    "permanent": true
+  },
+  {
+    "source": "/graduate-studies/graduate-housing/",
+    "destination": "https://www.wilmington.edu/student-life/residence-life/graduate-housing/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/accounting/course-descriptions/",
+    "destination": "https://www.wilmington.edu/academics/areas-of-study/business-administration/course-descriptions/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/chemistry/center-for-the-sciences-agriculture/",
+    "destination": "https://www.wilmington.edu/about/our-campus/center-for-the-sciences-agriculture/",
+    "permanent": true
+  },
+  {
+    "source": "/transfer-advantage/",
+    "destination": "https://www.wilmington.edu/admission/transfer-students/advantage/",
+    "permanent": true
+  },
+  {
+    "source": "/bands/music-media-minor/",
+    "destination": "https://www.wilmington.edu/academics/areas-of-study/music-media/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/areas-of-study/religion-philosophy/peace-studies-minor/",
+    "destination": "/academics/areas-of-study/peace-studies/",
+    "permanent": true
+  },
+  {
+    "source": "/visit/",
+    "destination": "https://www.wilmington.edu/admission/visit-campus/",
+    "permanent": true
+  },
+  {
+    "source": "/bands/admission/",
+    "destination": "/admission",
+    "permanent": true
+  },
+  {
+    "source": "/cincireadmit",
+    "destination": "https://wilmingtoncollege.wufoo.com/forms/x1tjfirx1muo0nw/",
+    "permanent": true
+  },
+  {
+    "source": "/admission/financial-aid/2021-2022-forms/",
+    "destination": "https://www.wilmington.edu/admission/tuition-fees/billing/",
+    "permanent": true
+  },
+  {
+    "source": "/admission/transfer-students/financial-aid-scholarships/",
+    "destination": "https://www.wilmington.edu/admission/financial-aid/scholarships-awards/",
+    "permanent": true
+  },
+  {
+    "source": "/catalog",
+    "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/graduate-programs/",
+    "destination": "https://www.wilmington.edu/graduate-studies/",
+    "permanent": true
+  },
+  {
+    "source": "/alumni/homecoming/",
+    "destination": "/homecoming",
+    "permanent": true
+  },
+  {
+    "source": "/mol",
+    "destination": "https://www.wilmington.edu/graduate-studies/organizational-leadership/",
+    "permanent": true
+  },
+  {
+    "source": "/visit/",
+    "destination": "https://www.wilmington.edu/admission/visit-campus/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/mol",
+    "destination": "https://www.wilmington.edu/graduate-studies/organizational-leadership/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/graduate-studies/occupational-therapy/curriculum/",
+    "destination": "https://www.wilmington.edu/wp-content/uploads/2022/11/6-Semester-Plan-OT.pdf",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/graduate-studies/graduate-housing/",
+    "destination": "https://www.wilmington.edu/student-life/residence-life/graduate-housing/",
+    "permanent": true
+  },
+  {
+    "source": "/ovwgrant",
+    "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
+    "permanent": true
+  },
+  {
+    "source": "/athletics/",
+    "destination": "http://wilmingtonquakers.com/landing/index",
+    "permanent": true
+  },
+  {
+    "source": "/prc/archives/",
+    "destination": "https://libguides.wilmington.edu/brma",
+    "permanent": true
+  },
+  {
+    "source": "/catalog",
+    "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
+    "permanent": true
+  },
+  {
+    "source": "/give/",
+    "destination": "https://www.givecampus.com/campaigns/31758/donations/new",
+    "permanent": true
+  },
+  {
+    "source": "/catalog",
+    "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
+    "permanent": true
+  },
+  {
+    "source": "/academics/graduate-programs/",
+    "destination": "https://www.wilmington.edu/graduate-studies/",
+    "permanent": true
+  },
+  {
+    "source": "/catalog",
+    "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
+    "permanent": true
+  },
+  {
+    "source": "/msat",
+    "destination": "https://www.wilmington.edu/graduate-studies/athletic-training/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/150-blanket",
+    "destination": "https://wilmingtoncollege.wufoo.com/forms/preorder-wilmington-college-150th-blanket",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/ovwgrant",
+    "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
+    "permanent": true
+  },
+  {
+    "source": "/athletics/",
+    "destination": "http://wilmingtonquakers.com/landing/index",
+    "permanent": true
+  },
+  {
+    "source": "/wearedubc",
+    "destination": "https://www.wilmington.edu/current-students/wearedubc/",
+    "permanent": true
+  },
+  {
+    "source": "/visit/",
+    "destination": "https://www.wilmington.edu/admission/visit-campus/",
+    "permanent": true
+  },
+  {
+    "source": "/athletics/",
+    "destination": "http://wilmingtonquakers.com/landing/index",
+    "permanent": true
+  },
+  {
+    "source": "/msat",
+    "destination": "https://www.wilmington.edu/graduate-studies/athletic-training/",
+    "permanent": true
+  },
+  {
+    "source": "/admission/transfer-students/financial-aid-scholarships/",
+    "destination": "https://www.wilmington.edu/admission/financial-aid/scholarships-awards/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/ovwgrant",
+    "destination": "https://www.wilmington.edu/current-students/ovw-campus-program/",
+    "permanent": true
+  },
+  {
+    "source": "/athletics/",
+    "destination": "http://wilmingtonquakers.com/landing/index",
+    "permanent": true
+  },
+  {
+    "source": "/wcfans",
+    "destination": "https://wilmingtoncollege.wufoo.com/forms/x1vjsal1lb25jd/",
+    "permanent": true
+  },
+  {
+    "source": "/catalog",
+    "destination": "https://www.wilmington.edu/academics/academic-records/catalog-archives/",
+    "permanent": true
+  },
+  {
+    "source": "/admission/financial-aid/compare-affordability/",
+    "destination": "https://www.wilmington.edu/admission/affordability/",
+    "permanent": true
+  },
+  {
+    "source": "/watson-library/",
+    "destination": "https://library.wilmington.edu/",
+    "permanent": true
+  },
+  {
+    "source": "/prc/archives/",
+    "destination": "https://libguides.wilmington.edu/brma",
+    "permanent": true
+  }
 ]
