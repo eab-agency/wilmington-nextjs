@@ -52,12 +52,13 @@
     padding: 0;
     margin: 0 0 tokens.$m-xl 0;
     display: flex;
-    flex-flow: row wrap;
+    // flex-flow: row wrap;
     max-width: 100%;
+    overflow-x: auto;
 
     li {
       position: relative;
-      flex: 1 0 20rem;
+      flex: 1 0 17rem;
 
       @media (min-width: tokens.$mq-800) {
         flex: 1;

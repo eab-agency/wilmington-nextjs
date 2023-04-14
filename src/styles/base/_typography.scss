@@ -70,6 +70,7 @@ blockquote,
 address {
   margin: 0 0 1rem 0;
   font-style: normal;
+  font-size: clamp(tokens.$fs-2xs, 1.5vw, tokens.$fs-s);
 }
 
 ul,
