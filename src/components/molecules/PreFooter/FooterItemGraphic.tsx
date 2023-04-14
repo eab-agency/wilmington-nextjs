@@ -1,4 +1,3 @@
-import React from 'react'
 import Image from 'next/image'
 
 interface FooterItemGraphicProps {
@@ -15,38 +14,34 @@ const FooterItemGraphic = ({ className, graphic }: FooterItemGraphicProps) => {
     <div className={className}>
       {graphicName.includes('apply') ? (
         <Image
-          src="/../../../assets/apply-prefooter.jpg"
+          src="/apply-prefooter.jpg"
           alt={graphic}
           width={300}
           height={300}
         />
       ) : graphicName.includes('info') ? (
         <Image
-          src="/../../../assets/info-prefooter.jpg"
+          src="/info-prefooter.jpg"
           alt={graphic}
           width={300}
           height={300}
         />
       ) : graphicName.includes('visit') ? (
         <Image
-          src="/../../../assets/visit-prefooter.jpg"
+          src="/visit-prefooter.jpg"
           alt={graphic}
           width={300}
           height={300}
         />
       ) : graphicName.includes('give') ? (
         <Image
-          src="/../../../assets/give-prefooter.jpg"
+          src="/give-prefooter.jpg"
           alt={graphic}
           width={300}
           height={300}
         />
       ) : (
-        <Image
-          src="/../../../assets/img-prefooter.jpg"
-          alt={graphic}
-          width={300}
-        />
+        <Image src="/img-prefooter.jpg" alt={graphic} width={300} />
       )}
     </div>
   )
