@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "clean": "rimraf .next/",
+    "dev": "npm run clean && next dev",
+    "develop": "npm dev",
     "build": "next build",
     "start": "next start",
     "format": "npx prettier  '**/*.{js,jsx,ts,tsx,md,html,css,scss,json,yml}' --write || true",
     "lint": "npm run format && npm run lint:js && npm run lint:css",
     "lint:css": "npx stylelint '**/*.css' --fix || true",
-    "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && next lint"
+    "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && next lint",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@apollo/client": "^3.7.10",
@@ -27,6 +30,7 @@
     "lodash": "^4.17.21",
     "next": "^13.3.0",
     "next-auth": "^4.20.1",
+    "next-sitemap": "^4.0.7",
     "qs": "^6.11.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -35,6 +39,7 @@
     "react-multi-carousel": "^2.8.2",
     "react-syntax-highlighter": "^15.5.0",
     "react-tabs": "^6.0.0",
+    "rimraf": "^5.0.0",
     "sass": "^1.59.3",
     "typescript": "5.0.2",
     "yup": "^1.0.2"
