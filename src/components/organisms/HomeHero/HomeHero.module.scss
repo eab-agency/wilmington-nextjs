@@ -33,7 +33,6 @@
 .heroImage {
   position: relative;
   z-index: tokens.$layer-1;
-  // max-height: 40rem;
   height: clamp(20rem, 40vw, 40rem);
   overflow-y: clip;
 
@@ -41,7 +40,7 @@
     position: absolute;
     width: 100vw;
     max-height: 40rem;
-    left: -7vw;
+    // left: -7vw;
     object-fit: cover;
 
     @media (min-width: tokens.$mq-800) {
