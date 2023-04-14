@@ -24,9 +24,9 @@ $fs-2xl: calc(config.$baseUnit * 3); // 48px
 $fs-xl: calc(config.$baseUnit * 2.5); // 40px
 $fs-l: calc(config.$baseUnit * 2);
 $fs-m: calc(config.$baseUnit * 1.5);
-$fs-s: calc(config.$baseUnit * 1.25);
-$fs-xs: calc(config.$baseUnit * 1);
-$fs-2xs: calc(config.$baseUnit * 0.85);
+$fs-s: calc(config.$baseUnit * 1.25); // 20px
+$fs-xs: calc(config.$baseUnit * 1); // 16px
+$fs-2xs: calc(config.$baseUnit * 0.85); // 14px
 $fs-3xs: calc(config.$baseUnit * 0.75);
 
 $fw-bold: 700;

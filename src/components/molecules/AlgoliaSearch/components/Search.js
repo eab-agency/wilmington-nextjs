@@ -1,6 +1,6 @@
 import { searchClient } from '@/lib/algolia/connector'
 import PropTypes from 'prop-types'
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Configure, InstantSearch, SearchBox } from 'react-instantsearch-dom'
 import * as styles from '../AlgoliaSearch.module.scss'
 import { deleteLocalStorage } from '../functions/localStorage'
