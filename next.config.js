@@ -1,23 +1,15 @@
 /** @type {import('next').NextConfig} */
+const fetchRedirects = require('./src/lib/wordpress/fetchRedirects')
 
 const path = require('path')
-
-// function fetchRedirects() {
-//   return fetch(`${process.env.SITE_URL}/api/wordpress/redirects`)
-//     .then((response) => response.json())
-//     .catch((error) => {
-//       console.error('Error fetching redirects:', error)
-//       throw error
-//     })
-// }
 
 const nextConfig = {
   experimental: {
     appDir: true
   },
-  // async redirects() {
-  //   return await fetchRedirects()
-  // },
+  async redirects() {
+    return await fetchRedirects()
+  },
   reactStrictMode: true,
   images: {
     domains: process.env.NEXT_PUBLIC_IMAGE_DOMAINS
