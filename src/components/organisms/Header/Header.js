@@ -5,7 +5,7 @@ import Link from '@/components/common/Link'
 import AlgoliaSearch from '@/components/molecules/AlgoliaSearch/AlgoliaSearch'
 import TopMenu from '@/components/molecules/Navigation/TopMenu'
 import classNames from 'classnames'
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
 
 const Header = ({ menu }) => {
