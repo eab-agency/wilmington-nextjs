@@ -8,10 +8,7 @@ module.exports = {
         ignoreAtRules: ['layer', 'apply', 'variants', 'responsive', 'screen']
       }
     ],
-    'declaration-block-trailing-semicolon': null,
-    'max-line-length': null,
     'no-descending-specificity': null,
-    'selector-class-pattern': null,
-    'string-quotes': 'single'
+    'selector-class-pattern': null
   }
 }
