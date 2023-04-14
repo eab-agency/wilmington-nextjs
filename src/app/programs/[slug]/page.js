@@ -41,15 +41,18 @@ export default async function Page({ params }) {
 
         {/* Render jump links */}
         {jumpLinks.length > 0 && (
-          <ul>
-            {jumpLinks.map((block, index) => (
-              <li key={index}>
-                <a href={`#${block.attributes.anchor}`}>
-                  {block.attributes.content}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <>
+            <h2>On this page</h2>
+            <ul>
+              {jumpLinks.map((block, index) => (
+                <li key={index}>
+                  <a href={`#${block.attributes.anchor}`}>
+                    {block.attributes.content}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </>
         )}
 
         <Blocks
