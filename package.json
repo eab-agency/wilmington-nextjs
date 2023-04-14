@@ -12,7 +12,8 @@
     "lint": "npm run format && npm run lint:js && npm run lint:css",
     "lint:css": "npx stylelint '**/*.css' --fix || true",
     "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && next lint",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@apollo/client": "^3.7.10",
@@ -54,6 +55,7 @@
     "prettier": "^2.8.7",
     "sharp": "^0.32.0",
     "stylelint": "^15.3.0",
-    "stylelint-config-standard": "^31.0.0"
+    "stylelint-config-standard": "^31.0.0",
+    "husky": "^8.0.0"
   }
 }
