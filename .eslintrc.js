@@ -12,6 +12,6 @@ module.exports = {
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'jsx-a11y/anchor-is-valid': 'off',
     'no-console': ['error', { allow: ['warn', 'error'] }],
-    'prettier/prettier': 'error'
+    'prettier/prettier': 'warn'
   }
 }
