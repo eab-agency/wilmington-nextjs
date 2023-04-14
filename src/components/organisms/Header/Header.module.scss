@@ -75,8 +75,14 @@
       @media (max-width: tokens.$mq-800) {
         position: sticky;
         top: 0;
-
         @include mixins.drawerIn(top);
+
+        & + div {
+          nav {
+            position: fixed;
+            @include mixins.drawerIn(top);
+          }
+        }
       }
     }
 
