@@ -17,21 +17,24 @@ export default function SearchPlaceholder({ toggleAlgolia, query }) {
       <div className={styles.searchBox}>
         <button
           role="button"
-          tabIndex="0"
+          tabIndex={0}
+          type="button"
           className={styles.trigger}
           onClick={() => {
             toggleAlgolia(true)
           }}
-          // onKeyPress={(event) => {
-          //   if (event.key === 'Enter') {
-          //     toggleAlgolia(true)
-          //   }
-          // }}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              toggleAlgolia(true)
+            }
+          }}
         >
           <span>
             <MdOutlineSearch />
           </span>
         </button>
+
+        {/* Note:  The following seems to be unused*/}
         {/* <label htmlFor="search" className="sr-only">
           Enter search term
         </label>
