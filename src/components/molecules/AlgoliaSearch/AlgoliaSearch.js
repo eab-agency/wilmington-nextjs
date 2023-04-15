@@ -2,7 +2,7 @@
 
 import parseQuerystring from '@/functions/parseQuerystring'
 import cn from 'classnames'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as styles from './AlgoliaSearch.module.scss'
 import Search from './components/Search'
 import SearchPlaceholder from './components/SearchPlaceholder'
@@ -29,7 +29,7 @@ import SearchPlaceholder from './components/SearchPlaceholder'
 function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
   const path = ''
   const query = path.includes('q=') ? parseQuerystring(path, 'q') : '' // Parse the querystring.
-  const [loadAlgolia, setLoadAlgolia] = useState(0)
+  const [loadAlgolia, setLoadAlgolia] = useState(false)
   const searchRef = useRef()
   // const { algolia } = useWordPressContext()
   const algolia = {
@@ -37,18 +37,30 @@ function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
   }
 
   /**
-   * Set a min-height value on the search wrapper
-   * to avoid DOM movement during dynamic render.
-   *
-   * @return {object} A minimum height value.
+   * Add a class to the body when the Algolia search is open.
+   * This is to avoid DOM scrolling.
    */
-  function setMinHeight() {
-    const minHeight =
-      searchRef?.current && usePlaceholder
-        ? searchRef.current.offsetHeight
-        : '0'
-    return { minHeight: `${minHeight}px` }
-  }
+  useEffect(() => {
+    if (loadAlgolia) {
+      document.body.classList.add(styles.searchOpen)
+    } else {
+      document.body.classList.remove(styles.searchOpen)
+    }
+  }, [loadAlgolia])
+
+  // /**
+  //  * Set a min-height value on the search wrapper
+  //  * to avoid DOM movement during dynamic render.
+  //  *
+  //  * @return {object} A minimum height value.
+  //  */
+  // function setMinHeight() {
+  //   const minHeight =
+  //     searchRef?.current && usePlaceholder
+  //       ? searchRef.current.offsetHeight
+  //       : '0'
+  //   return { minHeight: `${minHeight}px` }
+  // }
 
   /**
    * Toggle the state of the Algolia `Search`
@@ -66,16 +78,30 @@ function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
         <div
           className={cn(styles.algoliaSearch, className)}
           ref={searchRef}
-          style={setMinHeight()}
+          // style={setMinHeight()}
         >
+          <SearchPlaceholder query={query} toggleAlgolia={toggleAlgolia} />
           {!!loadAlgolia || !usePlaceholder ? (
-            <Search
-              indexName={algolia?.indexName}
-              useHistory={useHistory}
-              query={query}
-            />
+            <>
+              <div className={styles.searchContainer}>
+                <button
+                  type="button"
+                  className={styles.closeSearch}
+                  onClick={() => {
+                    toggleAlgolia(false)
+                  }}
+                >
+                  Click to close the search window
+                </button>
+                <Search
+                  indexName={algolia?.indexName}
+                  useHistory={useHistory}
+                  query={query}
+                />
+              </div>
+            </>
           ) : (
-            <SearchPlaceholder query={query} toggleAlgolia={toggleAlgolia} />
+            <></>
           )}
         </div>
       )}
