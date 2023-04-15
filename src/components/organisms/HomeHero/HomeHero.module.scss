@@ -85,8 +85,8 @@
   position: relative;
   padding-block: tokens.$p-l;
 
-  @media (max-width: tokens.$mq-1400) {
-    padding-right: clamp(tokens.$p-l, 10vw, tokens.$p-3xl);
+  @media (max-width: tokens.$mq-800) {
+    justify-content: center;
   }
 
   &::before {
