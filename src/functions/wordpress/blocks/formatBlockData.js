@@ -116,6 +116,7 @@ export default async function formatBlockData(blocks) {
         }
 
         case 'core/heading': {
+          // need to add an anchor to the heading if it doesn't have one so that jump links work
           if (block.attributes.level === 2 && block.attributes.anchor === '') {
             // convert content to camel case and assign it to anchor
             const camelCaseContent = block.attributes.content
