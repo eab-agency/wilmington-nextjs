@@ -1,6 +1,5 @@
-import React from 'react'
+import { MdOutlineSearch } from 'react-icons/md'
 import * as styles from '../AlgoliaSearch.module.scss'
-import SearchIcon from './SearchIcon'
 
 /**
  * Render the SearchPlaceholder component.
@@ -12,26 +11,32 @@ import SearchIcon from './SearchIcon'
  * @param  {string}   props.query         The search query.
  * @return {Element}                      The SearchPlaceholder component.
  */
-export default function SearchPlaceholder({ toggleAlgolia, query }) {
+// export default function SearchPlaceholder({ toggleAlgolia, query }) {
+export default function SearchPlaceholder({ toggleAlgolia }) {
   return (
     <div className={styles.searchPlaceholder}>
       <div className={styles.searchBox}>
-        <div
+        <button
           role="button"
-          tabIndex="0"
+          tabIndex={0}
+          type="button"
           className={styles.trigger}
           onClick={() => {
             toggleAlgolia(true)
           }}
-          onKeyPress={(event) => {
+          onKeyDown={(event) => {
             if (event.key === 'Enter') {
               toggleAlgolia(true)
             }
           }}
         >
-          <span>Click to start searching</span>
-        </div>
-        <label htmlFor="search" className="sr-only">
+          <span>
+            <MdOutlineSearch />
+          </span>
+        </button>
+
+        {/* Note:  The following seems to be unused*/}
+        {/* <label htmlFor="search" className="sr-only">
           Enter search term
         </label>
         <input
@@ -44,7 +49,7 @@ export default function SearchPlaceholder({ toggleAlgolia, query }) {
         />
         <button aria-label="click to search" disabled tabIndex="-1">
           <SearchIcon />
-        </button>
+        </button> */}
       </div>
     </div>
   )

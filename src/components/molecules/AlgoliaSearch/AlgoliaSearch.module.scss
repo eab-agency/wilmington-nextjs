@@ -1,71 +1,158 @@
-.algoliaSearch {
-  /* @apply relative;
+@use 'tokens';
 
-  height: 100%;
-  width: 260px; */
+.algoliaSearch {
+  position: relative;
+
+  & .searchContainer {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    min-width: 15rem;
+    padding: clamp(1.5rem, 5vw, 4rem);
+    padding-top: clamp(1.5rem, 15vw, 15rem);
+
+    .closeSearch {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      right: 0;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: default;
+      text-indent: -999em;
+      background: rgba(tokens.$c-gray-400, 0.7);
+      backdrop-filter: blur(3px);
+    }
+  }
 
   /* Placeholder Search */
   & .searchPlaceholder {
-    /* @apply relative; */
+    position: relative;
 
     & .trigger {
-      /* @apply absolute left-0 top-0 w-full h-full z-10 cursor-text overflow-hidden; */
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      height: 1.8em;
+      width: 1.8em;
+      border-left: 1px solid tokens.$c-gray-400;
+      background-color: tokens.$c-gray-200;
 
-      /* text-indent: -9999px; */
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: tokens.$c-limeGreen-700;
+        transition: all 0.2s;
+      }
+
+      &:hover {
+        background-color: tokens.$c-limeGreen-300;
+        color: tokens.$c-darkGreen-800;
+        border-color: tokens.$c-gray-600;
+
+        &::after {
+          height: 4px;
+        }
+      }
     }
   }
 
   /* Search Box */
   & .searchBox {
-    /* @apply relative h-full; */
+    position: relative;
+    width: 100%;
+    max-width: tokens.$mq-1000;
 
     & input {
-      /* @apply w-full p-2 pr-12 border rounded text-sm; */
-
-      /* background: #fff;
-      line-height: 1;
+      width: 100%;
+      padding: 1rem 1rem;
+      padding-right: 3.5rem;
+      border: 3px solid tokens.$c-gray-400;
+      border-radius: 0.3em;
+      background: white;
+      font-size: clamp(tokens.$fs-m, 1.5vw, tokens.$fs-l);
+      box-shadow: 0 8px 22px 0 rgba(37, 44, 97, 0.15),
+        0 4px 6px 0 rgba(93, 100, 148, 0.2);
+      font-family: '__Cantarell_da86bb', '__Cantarell_Fallback_da86bb',
+        sans-serif;
 
       &::-webkit-search-decoration,
       &::-webkit-search-cancel-button,
       &::-webkit-search-results-button,
       &::-webkit-search-results-decoration {
         appearance: none;
-      } */
+      }
     }
 
     /* Buttons (Submit, Reset) */
     & button {
-      /* @apply absolute cursor-pointer flex justify-center items-center right-1;
-
-      width: 28px;
-      height: 28px;
-      top: 50%;
-      transform: translateY(-50%); */
-
-      &:hover,
-      &:focus {
-        /* & svg {
-          @apply opacity-100;
-        } */
-      }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: clamp(tokens.$fs-xs, 1.5vw, tokens.$fs-s);
+      background: white;
+      border: none;
+      font-weight: 300;
+      color: tokens.$c-gray-600;
 
       & svg {
-        /* width: 15px;
-        height: 15px; */
+        width: 80%;
+        height: 80%;
+      }
+
+      &[type='submit'] {
+        position: absolute;
+        top: 50%;
+        right: 0.7em;
+        transform: translateY(-50%);
+        font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-m);
+        width: 2em;
+        height: 2em;
+        & svg {
+          width: 100%;
+          height: 100%;
+        }
       }
 
       /* Reset Button */
       &[type='reset'] {
-        /* @apply right-8; */
+        position: absolute;
+        top: 50%;
+        right: 0.7em;
+        cursor: pointer;
+        width: 2em;
+        height: 2em;
+        transform: translateY(-50%);
 
         & svg {
-          /* width: 12px;
-          height: 12px;
-          margin-top: 1px; */
+          width: 70%;
+          height: 70%;
+          fill: tokens.$c-gray-600;
         }
 
         &[hidden] {
-          /* @apply hidden; */
+          @apply hidden;
+        }
+
+        &:hover,
+        &:focus {
+          & svg {
+            fill: tokens.$c-orange-800;
+          }
         }
       }
     }
@@ -73,48 +160,69 @@
 
   /* Drop Menu (Hits &  History) */
   & .dropMenu {
-    /* @apply absolute invisible opacity-0 transition-all duration-150 ease-in-out;
-
+    visibility: hidden;
+    opacity: 0;
+    transition: all 150ms ease-in-out;
     z-index: 999;
-    bottom: -10px;
-    width: 106%;
-    margin-left: -3%; */
+    width: 100%;
+    width: 100%;
+    max-width: tokens.$mq-1000;
   }
 
   /* Show dropmenu on Focus */
   &:focus-within {
     & input {
-      /* @apply shadow; */
+      border-color: tokens.$c-limeGreen-400;
+      outline: none;
     }
 
     & .dropMenu {
-      /* @apply visible opacity-100;
-
-      bottom: -5px; */
+      visibility: visible;
+      opacity: 1;
+      padding-top: 1em;
     }
   }
 
   /* History and Hits Menu */
   & .history,
   & .hits {
-    /* @apply absolute border shadow w-full rounded;
-
-    background-color: #fff; */
+    display: flex;
+    // position: absolute;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    background-color: #fff;
+    z-index: 1;
 
     & ul {
-      /* @apply p-2; */
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      width: 100%;
+      padding: 0rem;
+      margin: 0rem;
     }
 
     & button {
-      /* @apply block w-full p-2 text-left transition font-semibold text-sm; */
+      display: block;
+      width: 100%;
+      padding: 0.8em 1em;
+      text-align: left;
+      font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-m);
+      background: white;
+      border: none;
+      border-bottom: 1px solid tokens.$c-gray-400;
+      transition: font-weight 150ms ease-in-out;
+      cursor: pointer;
 
       &:hover,
       &:focus {
-        /* @apply underline; */
+        text-decoration: underline;
+        background: tokens.$c-limeGreen-200;
       }
 
       & em {
-        /* font-style: normal; */
+        font-style: normal;
       }
     }
   }
@@ -122,19 +230,74 @@
   /* History Menu */
   & .history {
     & button {
-      /* @apply w-full flex justify-between items-center; */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
       & span.time {
-        /* @apply overflow-ellipsis text-right font-normal italic flex-shrink-0 self-start text-xs opacity-50; */
+        overflow: hidden;
+        text-align: right;
+        font-style: italic;
+        font-weight: normal;
+        flex-shrink: 0;
+        align-self: flex-start;
+        font-size: 0.7em;
+        opacity: 0.5;
       }
     }
 
     & .clear {
-      /* @apply mt-2 border-t; */
+      margin-top: 1.5rem;
+      max-width: 7em;
+      // border-top: 1px solid #ccc;
 
       & button {
-        /* @apply mt-2 font-normal text-xs; */
+        display: flex;
+        align-items: center;
+        font-weight: normal;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        position: relative;
+
+        &::before {
+          content: '-';
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 2em;
+        }
+
+        &::after {
+          content: '';
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 2em;
+          width: 0.7em;
+          height: 0.7em;
+          line-height: 0;
+          border: 1px solid tokens.$c-gray-700;
+          border-radius: 50%;
+          position: absolute;
+          left: 0.375em;
+          top: 0.725em;
+        }
+
+        &:hover,
+        &:focus {
+          background: tokens.$c-gray-600;
+          color: white;
+          text-decoration: none;
+
+          &::after {
+            border-color: white;
+          }
+        }
       }
     }
   }
+}
+
+.searchOpen {
+  overflow: hidden;
 }

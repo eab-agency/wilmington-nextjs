@@ -1,12 +1,13 @@
 import { searchClient } from '@/lib/algolia/connector'
 import PropTypes from 'prop-types'
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Configure, InstantSearch, SearchBox } from 'react-instantsearch-dom'
-import * as styles from '../AlgoliaSearch.module.scss'
+import styles from '../AlgoliaSearch.module.scss'
 import { deleteLocalStorage } from '../functions/localStorage'
 import searchSubmit from '../functions/searchSubmit'
 import Results from './Results'
-import SearchIcon from './SearchIcon'
+// import SearchIcon from './SearchIcon'
+import { MdOutlineSearch } from 'react-icons/md'
 
 // TODO: Create Storybook for this component.
 
@@ -88,7 +89,7 @@ export default function Search({ indexName, query, useHistory = true }) {
           onReset={() => {
             setSearchState('')
           }}
-          submit={<SearchIcon />}
+          submit={<MdOutlineSearch />}
           defaultRefinement={query || null}
           translations={{
             submitTitle: 'Submit Search Query.',
