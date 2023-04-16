@@ -45,7 +45,12 @@
       height: 1.8em;
       width: 1.8em;
       border-left: 1px solid tokens.$c-gray-400;
+      border-right: 1px solid tokens.$c-gray-400;
       background-color: tokens.$c-gray-200;
+
+      @media (min-width: tokens.$mq-800) {
+        border-right: none;
+      }
 
       &::after {
         content: '';
@@ -84,7 +89,7 @@
       border: 3px solid tokens.$c-gray-400;
       border-radius: 0.3em;
       background: white;
-      font-size: clamp(tokens.$fs-m, 1.5vw, tokens.$fs-l);
+      font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-l);
       box-shadow: 0 8px 22px 0 rgba(37, 44, 97, 0.15),
         0 4px 6px 0 rgba(93, 100, 148, 0.2);
       font-family: '__Cantarell_da86bb', '__Cantarell_Fallback_da86bb',
@@ -134,7 +139,7 @@
         top: 50%;
         right: 0.7em;
         cursor: pointer;
-        width: 2em;
+        width: 2.5em;
         height: 2em;
         transform: translateY(-50%);
 
@@ -208,7 +213,7 @@
       width: 100%;
       padding: 0.8em 1em;
       text-align: left;
-      font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-m);
+      font-size: clamp(tokens.$fs-xs, 1.5vw, tokens.$fs-m);
       background: white;
       border: none;
       border-bottom: 1px solid tokens.$c-gray-400;
