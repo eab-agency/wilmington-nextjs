@@ -33,7 +33,7 @@
     border-left: tokens.$bw-l solid tokens.$c-darkGreen-800;
     background: tokens.$c-white;
     width: 3.75rem;
-    position: initial;
+    position: relative;
     top: initial;
     right: initial;
     z-index: tokens.$layer-10;
@@ -100,32 +100,35 @@
 
     & > ul {
       background: tokens.$c-white;
-      width: calc(tokens.$leftOffset - 4rem);
-      min-width: 15rem;
+      width: 100vw;
       position: absolute;
       top: 5rem;
       right: 0;
       list-style: none;
       margin: 0;
       padding: 0;
+      height: 100vh;
 
       @media (min-width: tokens.$mq-800) {
         left: 3.2rem;
         top: 0;
+        width: calc(tokens.$leftOffset - 4rem);
+        min-width: 15rem;
       }
 
       &.openMenu {
         display: block;
 
-        &::before {
+        &::after {
           content: '';
           display: block;
           width: 100vw;
           height: 100vh;
-          position: fixed;
+          position: absolute;
           top: 0;
           left: 0;
-          background: tokens.$c-gray-200;
+          background: rgba(tokens.$c-gray-200, 0.9);
+          // backdrop-filter: blur(3px);
           z-index: tokens.$layer-1;
         }
       }
@@ -154,6 +157,7 @@
           text-transform: uppercase;
           color: tokens.$c-gray-600;
           border-top: tokens.$bw-xs solid tokens.$c-gray-400;
+          width: 100%;
           padding: 1rem;
           background: none;
           border: none;
@@ -173,16 +177,36 @@
         }
 
         ul {
-          background: #efefef;
-          margin-top: 1em;
-          border-top: 1px solid red;
+          background: tokens.$c-gray-400;
+
+          width: 100%;
+          margin: 0;
+          list-style: none;
+
+          @media (min-width: tokens.$mq-800) {
+            position: absolute;
+            left: 100%;
+            top: 0;
+          }
+
           li {
+            ul {
+              background: tokens.$c-gray-500;
+            }
             a {
-              background: yellow;
+              // background: yellow;
             }
           }
         }
       }
     }
   }
+
+  button {
+    text-align: left;
+  }
+}
+
+.navOpen {
+  overflow: hidden;
 }
