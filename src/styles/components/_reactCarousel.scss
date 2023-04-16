@@ -6,6 +6,7 @@
 
 .react-multi-carousel-list {
   display: flex;
+  flex-direction: column;
   align-items: center;
   overflow: hidden;
   position: relative;
@@ -73,6 +74,33 @@
 
     &::before {
       border-color: tokens.$c-white;
+    }
+  }
+}
+
+.react-multi-carousel-dot-list {
+  gap: 1em;
+
+  .react-multi-carousel-dot {
+    flex: 1 0 3em;
+
+    &::after {
+      display: none;
+    }
+
+    button {
+      background-color: tokens.$c-gray-200;
+      height: 0.5em;
+      width: 1em;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    &--active {
+      button {
+        background-color: tokens.$c-limeGreen-700;
+      }
     }
   }
 }

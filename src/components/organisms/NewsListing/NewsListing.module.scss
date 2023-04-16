@@ -54,15 +54,15 @@
     display: flex;
     // flex-flow: row wrap;
     max-width: 100%;
-    overflow-x: auto;
+    // overflow-x: auto;
 
     li {
       position: relative;
       flex: 1 0 17rem;
 
-      @media (min-width: tokens.$mq-800) {
-        flex: 1;
-      }
+      // @media (min-width: tokens.$mq-800) {
+      //   flex: 1;
+      // }
 
       article {
         display: flex;
