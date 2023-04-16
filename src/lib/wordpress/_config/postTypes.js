@@ -23,6 +23,10 @@ export const postTypes = {
   facultyMember: {
     pluralName: 'faculty',
     route: 'faculty'
+  },
+  studentOrg: {
+    pluralName: 'studentOrgs',
+    route: 'student-organizations'
   }
 }
 
