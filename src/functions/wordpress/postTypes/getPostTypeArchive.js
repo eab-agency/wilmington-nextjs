@@ -97,6 +97,7 @@ export default async function getPostTypeArchive(
       response.pagination = data.pageInfo
     })
     .catch((error) => {
+      console.log('🚀 ~ file: getPostTypeArchive.js:100 ~ error:', error)
       response.error = true
       response.errorMessage = error.message
     })
