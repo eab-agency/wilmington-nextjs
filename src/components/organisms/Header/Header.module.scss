@@ -7,15 +7,20 @@
 }
 
 .topMenu {
-  display: none;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
-  margin: 0 0 0 auto;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background: white;
-  z-index: tokens.$layer-9999;
+  // margin: 0 0 0 auto;
+  // width: 100%;
+  // position: fixed;
+  // bottom: 0;
+  // left: 0;
+  // background: white;
+  z-index: 999999;
+
+  ul {
+    display: none;
+  }
 
   @media (min-width: tokens.$mq-800) {
     display: flex;
@@ -24,6 +29,10 @@
     bottom: auto;
     left: auto;
     background: transparent;
+
+    ul {
+      display: flex;
+    }
   }
 }
 
@@ -59,7 +68,11 @@
   max-width: 1680px;
   display: grid;
   grid-template-columns: calc(tokens.$leftOffset - 2rem) 1fr;
-  padding-right: tokens.$rightOffset;
+  padding-right: 3.5em;
+
+  @media (min-width: tokens.$mq-800) {
+    padding-right: tokens.$rightOffset;
+  }
 }
 
 .pageHeader {

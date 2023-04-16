@@ -1,10 +1,10 @@
 'use client'
 
 import React from 'react'
-import styles from './mainNavigation.module.scss'
-
 import { MdClose, MdMenu } from 'react-icons/md'
 import MainNavigationItem from './MainNavigationItem'
+
+import styles from './mainNavigation.module.scss'
 
 const Burger = ({ open, setOpen }) => {
   return (
