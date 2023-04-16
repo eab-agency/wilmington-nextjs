@@ -35,9 +35,11 @@ export default async function RootLayout({
       <body>
         <div className={`${cantarell.className}`}>
           <Header menu={utilityNavMenuItems} />
-          <MainNavigation menuItems={mainNavMenuItems} enableDropdown={true} />
-
           <div className={`${styles.mainContainer}`}>
+            <MainNavigation
+              menuItems={mainNavMenuItems}
+              enableDropdown={true}
+            />
             <main id="page-content">{children}</main>
           </div>
           <Footer
