@@ -1,12 +1,21 @@
 'use client'
 
-import React from 'react'
+// import React from 'react'
+import { useEffect, useState } from 'react'
 import { MdClose, MdMenu } from 'react-icons/md'
 import MainNavigationItem from './MainNavigationItem'
 
 import styles from './mainNavigation.module.scss'
 
 const Burger = ({ open, setOpen }) => {
+  useEffect(() => {
+    if (open) {
+      document.body.classList.add(styles.navOpen)
+    } else {
+      document.body.classList.remove(styles.navOpen)
+    }
+  }, [open])
+
   return (
     <button
       className={styles.hamburger}
@@ -26,7 +35,7 @@ const Burger = ({ open, setOpen }) => {
 
 const MainNavigation = ({ menuItems, enableDropdown }) => {
   const items = menuItems
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
   const handleToggle = () => {
     setOpen((prev) => !prev)
   }
