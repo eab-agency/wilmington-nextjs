@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'tokens';
 
 .dropdown {
@@ -108,6 +109,7 @@
       margin: 0;
       padding: 0;
       height: 100vh;
+      // overflow-y: auto;
 
       @media (min-width: tokens.$mq-800) {
         left: 3.2rem;
@@ -140,9 +142,8 @@
 
         a {
           display: block;
-          text-transform: uppercase;
           color: tokens.$c-gray-600;
-          padding: 1rem;
+          padding: 0.5em 0.8em;
           text-decoration: none;
           font-size: tokens.$fs-xs;
 
@@ -153,12 +154,11 @@
         }
 
         button {
-          display: block;
-          text-transform: uppercase;
+          display: flex;
           color: tokens.$c-gray-600;
           border-top: tokens.$bw-xs solid tokens.$c-gray-400;
           width: 100%;
-          padding: 1rem;
+          padding: 0.5em 0.8em;
           background: none;
           border: none;
           font-size: tokens.$fs-xs;
@@ -167,6 +167,18 @@
           &:hover {
             background: tokens.$c-gray-200;
             color: tokens.$c-darkGreen-700;
+          }
+
+          &[aria-expanded='true'] {
+            background: tokens.$c-lavender-800;
+            color: white;
+
+            &::after {
+              content: tokens.$i-chevron-right;
+              font-family: tokens.$f-icons;
+              font-size: 1em;
+              margin-inline: auto 0;
+            }
           }
         }
 
@@ -177,8 +189,8 @@
         }
 
         ul {
-          background: tokens.$c-gray-400;
-
+          background: tokens.$c-gray-300;
+          height: 100vh;
           width: 100%;
           margin: 0;
           list-style: none;
@@ -191,10 +203,19 @@
 
           li {
             ul {
-              background: tokens.$c-gray-500;
+              background: tokens.$c-gray-400;
             }
             a {
               // background: yellow;
+            }
+            button {
+              &[aria-expanded='true'] {
+                background: color.scale(
+                  tokens.$c-lavender-800,
+                  $lightness: -10%
+                );
+                color: white;
+              }
             }
           }
         }
