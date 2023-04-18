@@ -1,5 +1,6 @@
 import { initializeWpApollo } from '@/lib/wordpress/connector'
 import queryEventsListingAttributes, {
+  queryAllEventsAttributes,
   queryEventsCategoryAttributes
 } from '@/lib/wordpress/events-listing/queryEventsListingAttributes'
 
@@ -11,42 +12,32 @@ Retrieve news listings by their IDs.
 @return {Promise<Array>} - Promise that resolves to an array of news listings, or an error object.
 */
 export default async function getEventsListingData(ids, category) {
-  // No IDs? Bail...
-  if ((!ids || !Array.isArray(ids)) && !category) {
-    return { isError: true, message: 'Invalid IDs or category provided.' }
-  }
-  // Get/create Apollo instance.
-  const apolloClient = initializeWpApollo()
+  // No IDs and category? Get all events.
+  if (!ids && !category) {
+    const apolloClient = initializeWpApollo()
 
-  let eventsListings = []
-
-  // If IDs are provided, execute query for each ID.
-  if (ids && Array.isArray(ids)) {
-    eventsListings = await Promise.all(
-      ids.map(async (id) => {
-        const eventsListing = await apolloClient
-          .query({
-            query: queryEventsListingAttributes,
-            variables: {
-              id: id
-            }
-          })
-          .then((result) => {
-            return result?.data?.event ?? null
-          })
-          .catch((error) => {
-            return {
-              isError: true,
-              message: error.message
-            }
-          })
-
-        return eventsListing
+    const allEvents = await apolloClient
+      .query({
+        query: queryAllEventsAttributes
       })
-    )
+      .then((result) => {
+        const events = result?.data?.events?.nodes || []
+        return events
+      })
+      .catch((error) => {
+        return {
+          isError: true,
+          message: error.message
+        }
+      })
+
+    return allEvents
   }
-  // If no IDs are provided, retrieve events listings from the specified category.
-  if (category) {
+
+  // No IDs? Get events from category.
+  if (!ids || !Array.isArray(ids)) {
+    const apolloClient = initializeWpApollo()
+
     const result = await apolloClient
       .query({
         query: queryEventsCategoryAttributes,
@@ -68,6 +59,32 @@ export default async function getEventsListingData(ids, category) {
 
     return result
   }
+
+  // Get/create Apollo instance and execute query for each ID.
+  const apolloClient = initializeWpApollo()
+
+  const eventsListings = await Promise.all(
+    ids.map(async (id) => {
+      const eventsListing = await apolloClient
+        .query({
+          query: queryEventsListingAttributes,
+          variables: {
+            id: id
+          }
+        })
+        .then((result) => {
+          return result?.data?.event ?? null
+        })
+        .catch((error) => {
+          return {
+            isError: true,
+            message: error.message
+          }
+        })
+
+      return eventsListing
+    })
+  )
 
   return eventsListings
 }

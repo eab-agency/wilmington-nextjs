@@ -17,3 +17,19 @@ const queryNewsListingAttributes = gql`
 `
 
 export default queryNewsListingAttributes
+
+export const queryAllNewsListings = gql`
+  query GET_ALL_NEWSLISTING(
+        $imageSize: MediaItemSizeEnum = LARGE
+  ){
+  news(first: 3, where: {orderby: {field: DATE, order: DESC}}) {
+    nodes {
+    link
+    uri
+    date
+    title
+    ${featuredImagePostFields}
+    }
+    }
+  }
+  `
