@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
 import NewsPost from '@/components/archive/NewsPost'
 import Button from '@/components/atoms/Buttons/Button'
-import Carousel from 'react-multi-carousel'
-import * as styles from './NewsListing.module.scss'
+import styles from './NewsListing.module.scss'
 
 const responsive = {
   superLargeDesktop: {
@@ -37,18 +36,18 @@ function NewsListing({ listing_title, posts, showImage, listing_display }) {
         <h2>{listing_title}</h2>
       </div>
       <div className={styles.newsContainer}>
-        <Carousel responsive={responsive} showDots={true}>
-          {posts.map((item, index) => (
-            // <li key={index}>
-            <NewsPost
-              key={index}
-              post={item}
-              ctx={undefined}
-              showImage={showImage}
-            />
-            // </li>
-          ))}
-        </Carousel>
+        {/* <Carousel responsive={responsive} showDots={true}> */}
+        {posts.map((item, index) => (
+          // <li key={index}>
+          <NewsPost
+            key={index}
+            post={item}
+            ctx={undefined}
+            showImage={showImage}
+          />
+          // </li>
+        ))}
+        {/* </Carousel> */}
         <Button url="/news" text="View All News" />
       </div>
     </section>
