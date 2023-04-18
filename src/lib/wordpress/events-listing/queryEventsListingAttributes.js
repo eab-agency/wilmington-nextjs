@@ -42,7 +42,7 @@ export const queryAllEventsAttributes = gql`
   query GET_ALL_EVENTS(
     $imageSize: MediaItemSizeEnum = LARGE
   ){
-    events(first: 3, where: {orderby: {field: DATE, order: DESC}}) {
+    events(first: 4, where: {orderby: {field: DATE, order: DESC}}) {
       nodes {
         link
         uri
