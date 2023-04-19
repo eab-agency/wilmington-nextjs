@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import NewsPost from '@/components/archive/NewsPost'
 import Button from '@/components/atoms/Buttons/Button'
+import MultiCarousel from '@/components/common/MultiCarousel'
 import styles from './NewsListing.module.scss'
 
 const responsive = {
@@ -36,18 +37,18 @@ function NewsListing({ listing_title, posts, showImage, listing_display }) {
         <h2>{listing_title}</h2>
       </div>
       <div className={styles.newsContainer}>
-        {/* <Carousel responsive={responsive} showDots={true}> */}
-        {posts.map((item, index) => (
-          // <li key={index}>
-          <NewsPost
-            key={index}
-            post={item}
-            ctx={undefined}
-            showImage={showImage}
-          />
-          // </li>
-        ))}
-        {/* </Carousel> */}
+        <MultiCarousel>
+          {posts.map((item, index) => (
+            // <li key={index}>
+            <NewsPost
+              key={index}
+              post={item}
+              ctx={undefined}
+              showImage={showImage}
+            />
+            // </li>
+          ))}
+        </MultiCarousel>
         <Button url="/news" text="View All News" />
       </div>
     </section>
