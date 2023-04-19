@@ -38,7 +38,8 @@ export default async function formatBlockData(blocks) {
         case 'acf/news-listing': {
           // an await function to return the news posts that are in the attributes.data.news_listing array
           attributes.listingData = await getNewsListingData(
-            attributes?.data?.news_listing
+            attributes?.data?.news_listing,
+            attributes?.data?.news_category
           )
           break
         }
