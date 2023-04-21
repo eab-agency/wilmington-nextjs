@@ -4,6 +4,7 @@
 .newsSection {
   background: tokens.$c-darkGreen-700;
   @include mixins.sectionPadding;
+  margin-bottom: 0;
   display: flex;
   flex-direction: column;
   z-index: tokens.$layer-10;
@@ -15,6 +16,7 @@
 
   @media (min-width: tokens.$mq-800) {
     padding: 0;
+    padding-right: clamp(1rem, 2vw, 2rem);
     @include mixins.sectionPadding(block);
   }
 
@@ -42,102 +44,54 @@
       color: tokens.$c-white;
     }
   }
+}
 
-  .newsContainer {
-    display: block;
+.newsContainer {
+  display: block;
+  width: 100%;
+}
+
+.newsCarousel {
+  margin-bottom: 3rem;
+  padding-bottom: 4em;
+
+  @media (min-width: tokens.$mq-700) {
+    margin-bottom: -2.5rem;
+    padding-bottom: 6em;
   }
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 tokens.$m-xl 0;
-    display: flex;
-    // flex-flow: row wrap;
-    max-width: 100%;
-    overflow-x: auto;
+  li[class*='item'] {
+    position: relative;
 
-    li {
+    article {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       position: relative;
-      flex: 1 0 17rem;
-
-      @media (min-width: tokens.$mq-800) {
-        flex: 1;
-      }
-
-      article {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        position: relative;
-        padding-block: tokens.$p-m;
-        border-radius: tokens.$br-xs;
-        transition: all 0.2s ease-in;
-
-        @media (min-width: tokens.$mq-800) {
-          padding-block: tokens.$p-l;
-          padding-inline: tokens.$p-l;
-        }
-
-        @media (min-width: tokens.$mq-1200) {
-          padding-block: tokens.$p-xl;
-          padding-inline: 0;
-        }
-      }
-
-      &::after {
-        content: '';
-        display: block;
-        width: 100%;
-        height: 4px;
-        background: url(../../../assets/divider-draw-line-horizontal.svg)
-          no-repeat center;
-        background-size: auto 100%;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-
-        @media (min-width: tokens.$mq-800) {
-          width: 4px;
-          height: 70%;
-          background: url(../../../assets/divider-draw-line-vertical.svg)
-            no-repeat center;
-          background-size: 100% auto;
-          right: 0;
-          top: 50%;
-          left: initial;
-          bottom: initial;
-          transform: translateY(-50%);
-        }
-      }
-
-      &:last-child {
-        &::after {
-          display: none;
-        }
-      }
+      padding-block: tokens.$p-l;
+      padding-inline: tokens.$p-l;
+      transition: all 0.2s ease-in;
 
       @media (min-width: tokens.$mq-1200) {
-        &::after {
-          content: '';
-          display: block;
-          width: 100%;
-          height: 4px;
-          margin-top: tokens.$m-xl;
-          background: url(../../../assets/divider-draw-line.svg) no-repeat
-            center;
-          background-size: 100% auto;
-          top: auto;
-          bottom: 0;
-        }
-      }
-
-      &:last-child {
-        margin-bottom: tokens.$m-xl;
+        padding-block: tokens.$p-xl;
+        padding-inline: 0;
       }
     }
 
-    @media (min-width: tokens.$mq-1200) {
-      flex-direction: column;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 4px;
+      height: 70%;
+      background: url(../../../assets/divider-draw-line-vertical.svg) no-repeat
+        center;
+      background-size: 100% auto;
+      right: 0;
+      top: 50%;
+      left: initial;
+      bottom: initial;
+      transform: translateY(-50%);
     }
   }
 }

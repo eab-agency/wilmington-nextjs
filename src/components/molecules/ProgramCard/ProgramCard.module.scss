@@ -3,13 +3,19 @@
 
 .programCard {
   display: block;
+
   a {
     position: relative;
     text-decoration: none;
     transform: translateY(0);
     transition: all 0.3s ease-out;
+    color: tokens.$c-copy;
 
-    & > div {
+    .image {
+      display: block;
+      position: relative;
+      width: 100%;
+
       &::before {
         content: '';
         display: block;
@@ -20,6 +26,7 @@
         height: 100%;
         border: 2px solid rgba(255, 255, 255, 0);
         z-index: tokens.$layer-1;
+        box-sizing: border-box;
         transition: all 0.3s ease-out;
       }
 
@@ -30,7 +37,7 @@
         font-size: tokens.$fs-s;
         font-weight: bold;
         line-height: 1;
-        bottom: 0.5em;
+        bottom: 0.8em;
         right: 0.5em;
         padding: 0.5em 0.7em;
         background: tokens.$c-limeGreen-600;
@@ -39,11 +46,17 @@
         z-index: tokens.$layer-2;
         transition: all 0.2s ease-out;
       }
+
+      img {
+        width: 100%;
+        height: clamp(14em, 18vw, 18em);
+        object-fit: cover;
+        object-position: center;
+      }
     }
 
     &:hover,
     &:focus {
-      display: block;
       text-decoration: underline;
 
       & > div {
@@ -51,7 +64,7 @@
           border: 1em solid rgba(255, 255, 255, 0.5);
         }
         &::after {
-          bottom: 2em;
+          bottom: 1.5em;
         }
       }
     }
@@ -68,5 +81,6 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     color: tokens.$c-copy;
+    font-size: tokens.$fs-xs;
   }
 }

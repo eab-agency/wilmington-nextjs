@@ -43,7 +43,7 @@ h2 {
 }
 
 h3 {
-  font-size: clamp(tokens.$fs-s, 3vw, tokens.$fs-l);
+  font-size: clamp(tokens.$fs-s, 3vw, tokens.$fs-m);
   font-weight: 400;
   strong {
     display: block;
