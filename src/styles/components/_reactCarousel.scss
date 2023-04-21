@@ -184,8 +184,12 @@
   position: absolute;
   bottom: 0;
   display: flex;
-  left: 0;
-  right: 0;
+  width: 100%;
+  max-width: 10rem;
+  // left: 50%;
+  right: 6rem;
+  bottom: 1em;
+  // transform: translateX(-50%);
   justify-content: center;
   margin: auto;
   padding: 0;
@@ -193,31 +197,38 @@
   list-style: none;
   text-align: center;
 }
-.react-multi-carousel-dot button {
-  display: inline-block;
-  width: 1.5rem;
-  height: 0.7rem;
-  border-radius: 0.5em;
-  opacity: 1;
-  padding: 5px 5px 5px 5px;
-  box-shadow: none;
-  transition: all 0.5s ease;
-  border-width: 2px;
-  border-style: solid;
-  border-color: tokens.$c-darkGreen-750;
-  padding: 0;
-  margin: 0;
-  margin-right: 6px;
-  outline: 0;
-  cursor: pointer;
+.react-multi-carousel-dot {
+  button {
+    display: inline-block;
+    width: 1.5rem;
+    height: 0.7rem;
+    border-radius: 0.5em;
+    opacity: 1;
+    padding: 5px 5px 5px 5px;
+    box-shadow: none;
+    transition: all 0.5s ease;
+    border-width: 2px;
+    border-style: solid;
+    border-color: tokens.$c-darkGreen-750;
+    padding: 0;
+    margin: 0;
+    margin-right: 6px;
+    outline: 0;
+    cursor: pointer;
+
+    &:hover:active {
+      background: tokens.$c-limeGreen-400;
+    }
+  }
+
+  &--active {
+    button {
+      background: tokens.$c-limeGreen-400;
+      width: 2rem;
+    }
+  }
 }
-.react-multi-carousel-dot button:hover:active {
-  background: tokens.$c-limeGreen-400;
-}
-.react-multi-carousel-dot--active button {
-  background: tokens.$c-limeGreen-400;
-  width: 2rem;
-}
+
 .react-multi-carousel-item {
   transform-style: preserve-3d;
   backface-visibility: hidden;

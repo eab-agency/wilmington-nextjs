@@ -15,6 +15,7 @@
 
   @media (min-width: tokens.$mq-800) {
     padding: 0;
+    padding-right: clamp(1rem, 2vw, 2rem);
     @include mixins.sectionPadding(block);
   }
 
@@ -50,7 +51,13 @@
 }
 
 .newsCarousel {
-  margin-bottom: clamp(2rem, 4vw, 4rem);
+  margin-bottom: 3rem;
+  padding-bottom: 4em;
+
+  @media (min-width: tokens.$mq-700) {
+    margin-bottom: -2.5rem;
+    padding-bottom: 6em;
+  }
 
   li[class*='item'] {
     position: relative;
