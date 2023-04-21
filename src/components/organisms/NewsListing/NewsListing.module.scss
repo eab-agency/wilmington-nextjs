@@ -4,6 +4,7 @@
 .newsSection {
   background: tokens.$c-darkGreen-700;
   @include mixins.sectionPadding;
+  margin-bottom: 0;
   display: flex;
   flex-direction: column;
   z-index: tokens.$layer-10;

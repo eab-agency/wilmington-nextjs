@@ -1,48 +1,69 @@
 @use 'tokens';
+@use 'utilities/mixins';
 
 .featuredPrograms {
   position: relative;
+  @include mixins.sectionPadding('inline');
 
-  h2 {
+  @media (min-width: tokens.$mq-800) {
+    padding: 0;
   }
 
-  ul {
-    &:hover {
+  .carouselContainer {
+    overflow: visible;
+
+    ul {
+      padding-bottom: 4em;
+
       li {
         filter: saturate(0);
         transition: all 0.3s ease-out;
+        // padding: clamp(tokens.$p-m, 2vw, tokens.$p-xl);
+        padding: tokens.$p-l;
+      }
+
+      &:hover {
+        li {
+          filter: saturate(0);
+          transition: all 0.3s ease-out;
+        }
+      }
+      li:hover {
+        filter: saturate(100%);
       }
     }
-    li:hover {
-      filter: saturate(100%);
-    }
-  }
-
-  .carousel-container {
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    width: 100vw;
-    padding-right: tokens.$rightOffset;
-    overflow: hidden;
   }
 }
+//   h2 {
+//   }
 
-.carousel {
-  overflow: visible;
+//   .carouselContainer {
+//     display: block;
+//     background: red;
+//     position: relative;
+//     // position: absolute;
+//     // left: 50%;
+//     // top: 50%;
+//     // transform: translateX(-50%) translateY(-50%);
+//     width: 100vw;
+//     // padding-right: tokens.$rightOffset;
+//     // overflow: hidden;
+//   }
+// }
 
-  .react-multi-carousel-track {
-    padding-right: 3rem;
-  }
-}
+// // .carousel {
+// //   overflow: visible;
+
+// //   .react-multi-carousel-track {
+// //     padding-right: 3rem;
+// //   }
+// // }
 
 .viewAllCta {
   display: flex;
   align-items: center;
   position: absolute;
-  bottom: 1.75rem;
+  bottom: 0;
   gap: 2rem;
   width: calc(100% - 7rem);
 

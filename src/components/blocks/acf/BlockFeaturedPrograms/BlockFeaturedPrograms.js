@@ -15,15 +15,15 @@ import styles from './BlockFeaturedPrograms.module.scss'
 
 const responsive = {
   superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
+    breakpoint: { max: 4000, min: 1200 },
     items: 4
   },
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 1200, min: 900 },
     items: 3
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
+    breakpoint: { max: 900, min: 464 },
     items: 2
   },
   mobile: {
@@ -37,13 +37,17 @@ export default function BlockFeaturedPrograms({ listingData }) {
   return (
     <section className={styles.featuredPrograms}>
       <h2>Featured Programs</h2>
-      <Carousel className={styles.carousel} responsive={responsive}>
+      <Carousel
+        containerClass={styles.carouselContainer}
+        responsive={responsive}
+        infinite
+      >
         {featuredPrograms.map((program) => (
           <ProgramCard
             key={program.id}
             title={program.title}
             excerpt={program.excerpt}
-            link={program.link}
+            link={program.uri}
             image={program.featuredImage?.node}
           />
         ))}
