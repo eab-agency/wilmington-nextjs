@@ -8,8 +8,8 @@
 // Intro Home
 
 .intro-home-page {
-  // padding-right: clamp(10rem, 20vw, 20rem);
   .intro-content {
+    margin-top: -4rem;
     @include mixins.sectionPadding;
 
     background: tokens.$c-white;
