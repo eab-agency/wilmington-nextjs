@@ -2,24 +2,16 @@
 import NewsPost from '@/components/archive/NewsPost'
 import Button from '@/components/atoms/Buttons/Button'
 import MultiCarousel from '@/components/common/MultiCarousel'
-// import { useRouter } from 'next/router'
 import styles from './NewsListing.module.scss'
 
 function NewsListing({ listing_title, posts, showImage, listing_display }) {
-  // const router = useRouter()
-  // const isFrontPage = router.asPath === '/'
-
+  // const isFrontPage = UseIsFrontPage()
   // if posts.isError is true then return posts.message
   if (posts.isError) {
     return <div>{posts.message}</div>
   }
 
   const responsive = {
-    // [isFrontPage ? 'superLargeDesktop' : 'desktop']: {},
-    // superLargeDesktop: {
-    //   breakpoint: { max: 4000, min: 1200 },
-    //   items: [isFrontPage ? 5 : 4]
-    // },
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1200 },
       items: 5
@@ -51,9 +43,6 @@ function NewsListing({ listing_title, posts, showImage, listing_display }) {
           responsive={responsive}
           showDots={true}
           containerClass={styles.newsCarousel}
-          // containerClass={`${styles.newsCarousel} ${
-          //   isFrontPage ? styles.frontPage : ''
-          // }`}
         >
           {posts.map((item, index) => (
             <NewsPost

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import styles from '@/components/common/Layout.module.scss'
 import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
 import Footer from '@/components/organisms/Footer'
@@ -32,6 +33,10 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <link
+        href="https://fonts.googleapis.com/css2?&family=Roboto+Slab&display=swap"
+        rel="stylesheet"
+      />
       <body>
         <div className={`${cantarell.className}`}>
           <Header menu={utilityNavMenuItems} />
