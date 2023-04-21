@@ -7,6 +7,7 @@
   @include mixins.sectionPadding(block);
   color: white;
   position: relative;
+  margin-top: 0;
 
   &::before {
     @include mixins.extendedBackground(tokens.$c-gray-700);

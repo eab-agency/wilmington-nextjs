@@ -1,14 +1,14 @@
+import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
 import RichText from '@/components/atoms/RichText'
 import Layout from '@/components/common/Layout'
 import Blocks from '@/components/molecules/Blocks'
 import Archive from '@/components/organisms/Archive'
 import getPagePropTypes from '@/functions/getPagePropTypes'
+import useIsFrontPage from '@/functions/useIsFrontPage'
 import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
 import { PropTypes } from 'prop-types'
-import { useRouter } from 'next/router'
-import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 
 // Define route post type.
 const postType = 'page'
@@ -37,8 +37,7 @@ export default function Page({
   posts,
   year
 }) {
-  const router = useRouter()
-  const isFrontPage = router.asPath === '/'
+  const isFrontPage = useIsFrontPage()
 
   if (archive) {
     return (

@@ -3,7 +3,7 @@ import { useWordPressContext } from '@/components/common/WordPressProvider'
 import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
-import { useRouter } from 'next/router'
+import useIsFrontPage from '@/functions/useIsFrontPage'
 import styles from './Layout.module.scss'
 
 import { Cantarell } from 'next/font/google'
@@ -24,8 +24,7 @@ const cantarell = Cantarell({
 export default function Layout({ children, seo }) {
   const { menus } = useWordPressContext()
 
-  const router = useRouter()
-  const isFrontPage = router.asPath === '/'
+  const isFrontPage = useIsFrontPage()
 
   return (
     <div className={`${cantarell.className}`}>
