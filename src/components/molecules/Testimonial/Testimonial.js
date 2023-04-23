@@ -31,7 +31,9 @@ function Testimonial({ post, viewAllLink, imageOnly, featuredTestimonial }) {
         featuredTestimonial && styles.featuredTestimonial
       )}
     >
-      <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
+      <figure>
+        <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
+      </figure>
       {!imageOnly && (
         <>
           <Quote

@@ -17,8 +17,6 @@ const ProgramCard = ({ title, excerpt, link, image }) => {
         )}
         <h3>{title}</h3>
         <ParsedContent content={excerpt} />
-        {/* {link && <Link href={link}>View Program</Link>}
-         */}
       </Link>
     </div>
   )

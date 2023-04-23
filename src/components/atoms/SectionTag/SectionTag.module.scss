@@ -1,0 +1,5 @@
+@use 'utilities/mixins';
+
+.sectionTag {
+  @include mixins.sectionTag();
+}

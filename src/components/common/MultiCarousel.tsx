@@ -4,6 +4,11 @@ import { ReactNode } from 'react'
 import Carousel, { CarouselProps } from 'react-multi-carousel'
 // import 'react-multi-carousel/lib/styles.css'
 
+/**
+ * @param {string} containerClass - Class to be applied to the container
+ * @param {ReactNode} children - Children to be rendered
+ */
+
 interface MultiCarouselProps extends CarouselProps {
   children: ReactNode
   containerClass?: string

@@ -1,9 +1,11 @@
+import SectionTag from '@/components/atoms/SectionTag/SectionTag'
 import Testimonial from '@/components/molecules/Testimonial'
 import styles from './BlockTestimonial.module.scss'
 
 export default function BlockTestimonial({ featuredTestimonial, random }) {
   return (
     <>
+      <SectionTag text="Testimonials" className={styles.testimonialTag} />
       <Testimonial
         post={featuredTestimonial}
         viewAllLink={true}

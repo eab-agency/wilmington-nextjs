@@ -1,0 +1,43 @@
+@mixin drawerIn($direction: left, $duration: 0.3s, $timing: ease-in-out) {
+  @if $direction == left {
+    @keyframes drawerInLeft {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+    animation: drawerInLeft $duration $timing;
+  } @else if $direction == right {
+    @keyframes drawerInRight {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+    animation: drawerInRight $duration $timing;
+  } @else if $direction == top {
+    @keyframes drawerInTop {
+      from {
+        transform: translateY(-100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+    animation: drawerInTop $duration $timing;
+  } @else if $direction == bottom {
+    @keyframes drawerInBottom {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+    animation: drawerInBottom $duration $timing;
+  }
+}
