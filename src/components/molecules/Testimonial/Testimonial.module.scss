@@ -10,14 +10,29 @@
     overflow: hidden;
 
     @media (min-width: tokens.$mq-1400) {
-      min-width: 20rem;
+      // min-width: 20rem;
       min-height: 20rem;
+    }
+
+    & > div {
+      width: 100%;
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
 }
 
 .quoteText {
   padding: tokens.$p-xxl;
+
+  p {
+    font-size: tokens.$fs-2xs;
+  }
 }
 
 .quoteContent {
@@ -29,6 +44,7 @@
 
 .featuredTestimonial {
   figure {
+    background: yellow;
     width: 50%;
     border-left: 3rem solid tokens.$c-white;
     border-top: 3rem solid tokens.$c-white;

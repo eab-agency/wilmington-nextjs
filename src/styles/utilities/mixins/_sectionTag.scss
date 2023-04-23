@@ -1,0 +1,28 @@
+@use 'tokens';
+
+@mixin sectionTag(
+  $colorIdentifier: tokens.$c-limeGreen-500,
+  $textColor: tokens.$c-white
+) {
+  display: flex;
+  align-items: center;
+  gap: tokens.$p-s;
+  color: $textColor;
+  position: relative;
+  font-size: tokens.$fs-3xs;
+  font-weight: 600;
+  text-transform: uppercase;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  position: absolute;
+  left: 0;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 0.5em;
+    height: 0.5em;
+    background: $colorIdentifier;
+    border-radius: 50%;
+  }
+}

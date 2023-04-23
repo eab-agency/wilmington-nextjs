@@ -82,29 +82,29 @@
   position: relative;
   flex-direction: column;
 
-  &::before {
-    content: 'Testimonials';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0.75rem;
-    font-size: tokens.$fs-3xs;
-    text-transform: uppercase;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-  }
+  // &::before {
+  //   content: 'Testimonials';
+  //   display: block;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0.75rem;
+  //   font-size: tokens.$fs-3xs;
+  //   text-transform: uppercase;
+  //   writing-mode: vertical-rl;
+  //   transform: rotate(180deg);
+  // }
 
-  &::after {
-    content: '';
-    display: block;
-    width: 0.5em;
-    height: 0.5em;
-    background: tokens.$c-limeGreen-500;
-    border-radius: 50%;
-    position: absolute;
-    top: 0.35rem;
-    left: 0;
-  }
+  // &::after {
+  //   content: '';
+  //   display: block;
+  //   width: 0.5em;
+  //   height: 0.5em;
+  //   background: tokens.$c-limeGreen-500;
+  //   border-radius: 50%;
+  //   position: absolute;
+  //   top: 0.35rem;
+  //   left: 0;
+  // }
 
   @media (min-width: tokens.$mq-1200) {
     @include tokens.grid-24();
