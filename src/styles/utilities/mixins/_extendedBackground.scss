@@ -1,0 +1,23 @@
+@use 'tokens';
+
+@mixin extendedBackground($bg: tokens.$c-white) {
+  content: '';
+  display: block;
+  width: 100vw;
+  height: 100%;
+  background: $bg;
+  position: absolute;
+  top: 0;
+  right: 100%;
+  z-index: tokens.$layer-1;
+}
+
+@mixin sectionPadding($type: 'default', $size: 4vw) {
+  @if $type == 'default' {
+    padding: clamp(tokens.$p-l, $size, tokens.$p-4xl);
+  } @else if $type == 'block' {
+    padding-block: clamp(tokens.$p-l, $size, tokens.$p-4xl);
+  } @else if $type == 'inline' {
+    padding-inline: clamp(tokens.$p-l, $size, tokens.$p-4xl);
+  }
+}
