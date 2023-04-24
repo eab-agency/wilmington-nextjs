@@ -2,7 +2,12 @@
 
 .singleQuote {
   display: flex;
+  flex-direction: column;
   overflow: hidden;
+
+  @media (min-width: tokens.$mq-800) {
+    flex-direction: row;
+  }
 
   figure {
     width: 100%;
@@ -43,10 +48,14 @@
 }
 
 .featuredTestimonial {
-  figure {
-    background: yellow;
-    width: 50%;
-    border-left: 3rem solid tokens.$c-white;
-    border-top: 3rem solid tokens.$c-white;
+  margin-top: 3rem;
+
+  @media (min-width: tokens.$mq-800) {
+    margin: 0;
+    figure {
+      width: 50%;
+      border-left: 3rem solid tokens.$c-white;
+      border-top: 3rem solid tokens.$c-white;
+    }
   }
 }

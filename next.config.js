@@ -2,6 +2,7 @@
 const fetchRedirects = require('./src/lib/wordpress/fetchRedirects')
 
 const path = require('path')
+const glob = require('glob')
 
 const nextConfig = {
   experimental: {
@@ -18,7 +19,10 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp']
   },
   sassOptions: {
-    includePaths: [path.join(__dirname, 'src/styles')]
+    includePaths: [
+      path.join(__dirname, 'src/styles'),
+      ...glob.sync(path.join(__dirname, 'src/styles/**/'))
+    ]
   }
 }
 
