@@ -7,10 +7,6 @@ import getNewsListingData from '@/functions/wordpress/news/getNewsListingData'
 const NewsAndEventsPage = async () => {
   const news = await getNewsListingData()
   const [firstNewsItem, ...restOfNews] = news // Destructure the first item from the array
-  console.log(
-    '🚀 ~ file: page.js:9 ~ NewsAndEventsPage ~ firstNewsItem:',
-    firstNewsItem
-  )
 
   const events = await getEventsListingData()
 
