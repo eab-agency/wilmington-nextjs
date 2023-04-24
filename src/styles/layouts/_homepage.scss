@@ -8,8 +8,8 @@
 // Intro Home
 
 .intro-home-page {
-  // padding-right: clamp(10rem, 20vw, 20rem);
   .intro-content {
+    margin-top: -4rem;
     @include mixins.sectionPadding;
 
     background: tokens.$c-white;
@@ -78,36 +78,14 @@
 // Testimonials Section Home
 
 .testimonial-home {
-  padding-block: 4rem;
+  padding-top: 8rem;
+  // padding-bottom: 2rem;
   position: relative;
   flex-direction: column;
 
-  &::before {
-    content: 'Testimonials';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0.75rem;
-    font-size: tokens.$fs-3xs;
-    text-transform: uppercase;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-  }
-
-  &::after {
-    content: '';
-    display: block;
-    width: 0.5em;
-    height: 0.5em;
-    background: tokens.$c-limeGreen-500;
-    border-radius: 50%;
-    position: absolute;
-    top: 0.35rem;
-    left: 0;
-  }
-
   @media (min-width: tokens.$mq-1200) {
     @include tokens.grid-24();
+    padding-block: 4rem;
 
     &::before {
       top: 6rem;
