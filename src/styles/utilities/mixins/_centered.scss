@@ -1,0 +1,7 @@
+@use 'tokens';
+
+@mixin center($_maxWidth: tokens.$mq-900, $_width: 90%) {
+  width: $_width;
+  max-width: $_maxWidth;
+  margin: auto;
+}
