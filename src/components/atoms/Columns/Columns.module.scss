@@ -5,6 +5,14 @@
 section:where(.columns, .column) {
   display: flex;
 
+  @media (max-width: tokens.$mq-800) {
+    flex-direction: column;
+
+    & > div {
+      flex: 1 1 auto;
+    }
+  }
+
   &.columnStacked {
     @media (max-width: tokens.$mq-800) {
       flex-direction: column;
