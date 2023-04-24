@@ -24,6 +24,16 @@ const archiveQuerySeo = {
     query: queryStudentOrgArchive,
     title: 'Student Organizations',
     description: ''
+  },
+  news: {
+    // query: queryNewsArchive,
+    title: 'News',
+    description: ''
+  },
+  events: {
+    // query: queryEventsArchive,
+    title: 'Events',
+    description: ''
   }
 }
 
