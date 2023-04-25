@@ -58,15 +58,11 @@
   }
 
   &::after {
-    content: '';
-    display: block;
-    width: 20rem;
-    height: 20rem;
-    position: absolute;
+    @include tokens.decoPlusSign;
+    left: initial;
+    top: initial;
     bottom: 0;
     right: 0;
-    background: url(../../../assets/deco-plus-sign.svg) no-repeat;
-    background-size: contain;
     transform: translateX(43%) translateY(25%);
   }
 }

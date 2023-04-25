@@ -1,3 +1,2 @@
 // eslint-disable-next-line prettier/prettier
-export { default } from './SectionTag';
-
+export { default } from './SectionTag'
