@@ -8,8 +8,6 @@ interface FooterItemGraphicProps {
 const FooterItemGraphic = ({ className, graphic }: FooterItemGraphicProps) => {
   const graphicName = graphic.replace(/ /g, '-').toLowerCase()
 
-  // Note: AO fix these images
-
   return (
     <div className={className}>
       {graphicName.includes('apply') ? (
