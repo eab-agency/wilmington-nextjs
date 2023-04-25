@@ -9,9 +9,7 @@
   position: relative;
   margin-top: 0;
 
-  &::before {
-    @include mixins.extendedBackground(tokens.$c-gray-700);
-  }
+  @include mixins.extendedBackground('before', tokens.$c-gray-700);
 
   // @media (min-width: tokens.$mq-1200) {
   //   @include mixins.sectionPadding;

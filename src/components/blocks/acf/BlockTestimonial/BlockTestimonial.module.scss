@@ -3,28 +3,16 @@
 .randomTestimonials {
   display: flex;
   position: relative;
-  height: 20rem;
+  overflow: hidden;
+  // height: 20rem;
 
-  @media (max-width: tokens.$mq-800) {
-    overflow: hidden;
+  @media (min-width: tokens.$mq-800) {
+    overflow: visible;
+    height: 20rem;
   }
 
   &::after {
-    content: '';
-    display: block;
-    width: clamp(10rem, 50vw, 20rem);
-    height: clamp(10rem, 50vw, 20rem);
-    background: url(../../../../assets/deco-plus-sign.svg) no-repeat center;
-    background-size: contain;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-
-    @media (min-width: tokens.$mq-800) {
-      width: 20rem;
-      height: 20rem;
-    }
+    @include tokens.decoPlusSign;
   }
 
   article {
