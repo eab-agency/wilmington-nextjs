@@ -1,21 +1,30 @@
 @use 'tokens';
-// @use 'styles/utilities/mixins';
 @use 'utilities/mixins';
 
 section:where(.columns, .column) {
   display: flex;
 
-  @media (max-width: tokens.$mq-800) {
-    flex-direction: column;
-
-    & > div {
-      flex: 1 1 auto;
-    }
-  }
-
   &.columnStacked {
     @media (max-width: tokens.$mq-800) {
       flex-direction: column;
+
+      & > div {
+        flex: 1 1 auto;
+        min-width: 100%;
+      }
+
+      & > div[class*='media-element'] {
+        order: 0;
+      }
+      & > div[class*='copy-block-element'] {
+        order: 1;
+      }
+    }
+
+    @media (max-width: tokens.$mq-1100) {
+      & > div {
+        max-width: 50%;
+      }
     }
   }
 
@@ -47,7 +56,5 @@ section:where(.columns, .column) {
 .off-white {
   background: tokens.$c-gray-300;
 
-  &::before {
-    @include mixins.extendedBackground(tokens.$c-gray-300);
-  }
+  @include mixins.extendedBackground('before', tokens.$c-gray-300);
 }

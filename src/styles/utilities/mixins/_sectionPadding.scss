@@ -1,0 +1,11 @@
+@use 'tokens';
+
+@mixin sectionPadding($type: 'default', $size: 4vw) {
+  @if $type == 'default' {
+    padding: clamp(tokens.$p-l, $size, tokens.$p-4xl);
+  } @else if $type == 'block' {
+    padding-block: clamp(tokens.$p-l, $size, tokens.$p-4xl);
+  } @else if $type == 'inline' {
+    padding-inline: clamp(tokens.$p-l, $size, tokens.$p-4xl);
+  }
+}
