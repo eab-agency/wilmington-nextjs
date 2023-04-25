@@ -16,6 +16,10 @@
     overflow: hidden;
 
     @media (min-width: tokens.$mq-800) {
+      padding-left: clamp(2rem, 4vw, 14rem);
+    }
+
+    @media (min-width: tokens.$mq-1100) {
       padding-left: clamp(5rem, 14vw, 14rem);
     }
   }

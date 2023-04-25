@@ -10,9 +10,7 @@
   z-index: tokens.$layer-10;
   position: relative;
 
-  &::before {
-    @include mixins.extendedBackground(tokens.$c-darkGreen-700);
-  }
+  @include mixins.extendedBackground('before', tokens.$c-darkGreen-700);
 
   @media (min-width: tokens.$mq-800) {
     padding: 0;
