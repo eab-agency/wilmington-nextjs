@@ -1,5 +1,5 @@
-@use 'tokens';
 @use 'sass:color';
+@use 'tokens';
 
 .footer {
   @media (min-width: tokens.$mq-800) {
