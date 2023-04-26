@@ -1,11 +1,45 @@
+@use 'tokens';
+
 ul.breadcrumbs {
-  @apply mb-8 flex;
+  display: flex;
+  list-style: none;
 
-  & li {
-    @apply uppercase text-xs font-semibold p-0;
+  li {
+    display: flex;
+    align-items: center;
 
-    & .sep {
-      @apply px-2 opacity-50 font-normal;
+    a {
+      text-transform: uppercase;
+      text-decoration: none;
+      font-size: tokens.$fs-3xs;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .sep {
+      color: tokens.$c-gray-800;
+      font-size: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-inline: 0.25em;
+    }
+
+    &.homeLink {
+      a {
+        width: 1em;
+        position: relative;
+        text-indent: -999em;
+        font-size: 1.1em;
+
+        span {
+          position: absolute;
+          top: 0.1em;
+          left: 0;
+          text-indent: 0;
+        }
+      }
     }
   }
 }
