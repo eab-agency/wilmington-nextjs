@@ -1,5 +1,6 @@
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
+import Image from '@/components/atoms/Image'
 import RichText from '@/components/atoms/RichText'
 import Layout from '@/components/common/Layout'
 import Blocks from '@/components/molecules/Blocks'
@@ -67,6 +68,10 @@ export default function Page({
     )
   }
 
+  const sourceUrl = post?.featuredImage?.node?.sourceUrl
+  const altText = post?.featuredImage?.node?.altText
+  const mediaDetails = post?.featuredImage?.node?.mediaDetails
+
   return (
     <Layout className="thelayoutclass" seo={{ ...post?.seo }}>
       <Container>
@@ -75,6 +80,11 @@ export default function Page({
             <div>
               <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
               <RichText tag="h1">{post?.title}</RichText>
+              <Image
+                url={sourceUrl}
+                alt={altText}
+                imageMeta={{ mediaDetails }}
+              />
             </div>
           )}
           <Blocks blocks={post?.blocks} />
