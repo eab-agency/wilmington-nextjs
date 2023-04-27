@@ -1,10 +1,10 @@
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
-import Image from '@/components/atoms/Image'
 import RichText from '@/components/atoms/RichText'
 import Layout from '@/components/common/Layout'
 import Blocks from '@/components/molecules/Blocks'
 import Archive from '@/components/organisms/Archive'
+import PageHero from '@/components/organisms/PageHero/PageHero'
 import getPagePropTypes from '@/functions/getPagePropTypes'
 import useIsFrontPage from '@/functions/useIsFrontPage'
 import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
@@ -72,22 +72,27 @@ export default function Page({
   const altText = post?.featuredImage?.node?.altText
   const mediaDetails = post?.featuredImage?.node?.mediaDetails
 
+  // console.log(mediaDetails)
+
   return (
     <Layout className="thelayoutclass" seo={{ ...post?.seo }}>
       <Container>
         <article className="inner-wrap">
           {!isFrontPage && (
-            <div>
-              <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
-              <RichText tag="h1">{post?.title}</RichText>
-              <Image
-                url={sourceUrl}
+            <>
+              <PageHero
+                sourceUrl={sourceUrl}
                 alt={altText}
-                imageMeta={{ mediaDetails }}
+                imageMeta={mediaDetails}
+                text={post?.title}
               />
-            </div>
+            </>
           )}
-          <Blocks blocks={post?.blocks} />
+
+          <div className="page-content">
+            {!isFrontPage && <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />}
+            <Blocks blocks={post?.blocks} />
+          </div>
         </article>
       </Container>
     </Layout>
