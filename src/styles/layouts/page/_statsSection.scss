@@ -1,0 +1,27 @@
+@use 'tokens';
+@use 'utilities/mixins';
+
+.stats-section {
+  background: tokens.$c-gray-200;
+  @include mixins.sectionPadding(block);
+
+  @include mixins.extendedBackground('after', tokens.$c-lavender-500);
+  &::after {
+    border-right: 4em solid tokens.$c-gray-200;
+  }
+
+  & > div {
+    flex: 1 1 auto;
+  }
+
+  .wc-stat-card {
+    padding: 2em;
+
+    strong {
+      font-size: tokens.$fs-3xl;
+      color: tokens.$c-lavender-800;
+      font-family: tokens.$f-headlineFont;
+      font-weight: 900;
+    }
+  }
+}
