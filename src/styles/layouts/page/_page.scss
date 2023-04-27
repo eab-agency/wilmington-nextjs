@@ -1,0 +1,26 @@
+@use 'tokens';
+@use 'utilities/mixins';
+
+.page-content {
+  background: white;
+  padding-block: clamp(1rem, 2vw, 2rem);
+  position: relative;
+  z-index: tokens.$layer-3;
+
+  &::before {
+    content: '';
+    display: block;
+    background: tokens.$c-white;
+    width: calc(100% + clamp(0rem, 5vw, 4rem));
+    height: 50%;
+    position: absolute;
+    top: 0;
+    left: clamp(-4rem, -5vw, 4rem);
+    z-index: tokens.$layer-0;
+  }
+
+  & > * {
+    position: relative;
+    z-index: tokens.$layer-1;
+  }
+}
