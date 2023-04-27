@@ -1,3 +1,2 @@
 // eslint-disable-next-line prettier/prettier
-export { default } from './PageHero';
-
+export { default } from './PageHero'
