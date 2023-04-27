@@ -1,0 +1,18 @@
+@use 'tokens';
+
+.wc-program-intro {
+  background: none;
+
+  &::after {
+    display: none;
+  }
+
+  & > div[style*='66'] {
+    flex: 1 1 auto;
+    max-width: 100%;
+
+    @media (min-width: tokens.$mq-800) {
+      padding-right: 5rem;
+    }
+  }
+}
