@@ -81,6 +81,7 @@
   padding-top: 8rem;
   position: relative;
   flex-direction: column;
+  background: none;
 
   @media (min-width: tokens.$mq-1200) {
     @include tokens.grid-24();
@@ -140,13 +141,6 @@
 
       &::after {
         @include tokens.decoPlusSignCut;
-        // top: initial;
-        // right: 0;
-        // left: initial;
-        // bottom: 0;
-        // right: 0;
-        // z-index: tokens.$layer-2;
-        // transform: translateX(50%) translateY(15%);
       }
     }
 
