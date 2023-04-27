@@ -2,7 +2,7 @@
 // Typography
 // ================
 @use 'tokens';
-
+@use 'sass:color';
 // ================
 // Root
 
@@ -80,8 +80,12 @@ ol {
 }
 
 a {
+  color: tokens.$c-teal-800;
+
   &:hover,
   &:focus {
+    color: color.scale(tokens.$c-teal-800, $lightness: -50%);
+    text-decoration: none;
   }
 }
 

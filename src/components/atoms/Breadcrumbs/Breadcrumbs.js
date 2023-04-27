@@ -2,6 +2,7 @@ import cn from 'classnames'
 import parse from 'html-react-parser'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
+import { MdChevronRight, MdHome } from 'react-icons/md'
 import styles from './Breadcrumbs.module.scss'
 
 /**
@@ -18,12 +19,23 @@ export default function Breadcrumbs({ breadcrumbs }) {
       {!!breadcrumbs?.length && (
         <ul className={cn(styles.breadcrumbs, 'breadcrumbs')}>
           {breadcrumbs.map((breadcrumb, index) => (
-            <li key={index}>
+            <li
+              key={index}
+              className={breadcrumb.text === 'Home' ? styles.homeLink : null}
+            >
               <Link href={breadcrumb?.url}>
+                {breadcrumb.text === 'Home' ? (
+                  <span>
+                    <MdHome />
+                  </span>
+                ) : null}
                 {breadcrumb?.text ? parse(breadcrumb.text) : null}
               </Link>
               {index < breadcrumbs.length - 1 && (
-                <span className={styles.sep}> &raquo; </span>
+                <span className={styles.sep}>
+                  {' '}
+                  <MdChevronRight />{' '}
+                </span>
               )}
             </li>
           ))}
