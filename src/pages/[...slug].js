@@ -4,6 +4,7 @@ import RichText from '@/components/atoms/RichText'
 import Layout from '@/components/common/Layout'
 import Blocks from '@/components/molecules/Blocks'
 import Archive from '@/components/organisms/Archive'
+import PageHero from '@/components/organisms/PageHero/PageHero'
 import getPagePropTypes from '@/functions/getPagePropTypes'
 import useIsFrontPage from '@/functions/useIsFrontPage'
 import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
@@ -67,17 +68,31 @@ export default function Page({
     )
   }
 
+  const sourceUrl = post?.featuredImage?.node?.sourceUrl
+  const altText = post?.featuredImage?.node?.altText
+  const mediaDetails = post?.featuredImage?.node?.mediaDetails
+
+  // console.log(mediaDetails)
+
   return (
     <Layout className="thelayoutclass" seo={{ ...post?.seo }}>
       <Container>
         <article className="inner-wrap">
           {!isFrontPage && (
-            <div>
-              <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
-              <RichText tag="h1">{post?.title}</RichText>
-            </div>
+            <>
+              <PageHero
+                sourceUrl={sourceUrl}
+                alt={altText}
+                imageMeta={mediaDetails}
+                text={post?.title}
+              />
+            </>
           )}
-          <Blocks blocks={post?.blocks} />
+
+          <div className="page-content">
+            {!isFrontPage && <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />}
+            <Blocks blocks={post?.blocks} />
+          </div>
         </article>
       </Container>
     </Layout>

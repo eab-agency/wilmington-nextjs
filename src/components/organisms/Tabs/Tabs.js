@@ -1,7 +1,7 @@
-import React from 'react'
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
-import styles from './Tabs.module.scss'
 import Image from '@/components/atoms/Image'
+import React from 'react'
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs'
+import styles from './Tabs.module.scss'
 
 const TabComponent = ({ tabs }) => {
   return (
@@ -19,7 +19,10 @@ const TabComponent = ({ tabs }) => {
       {tabs.map((tab, index) => {
         return (
           <TabPanel className={styles.tabContent} key={index}>
-            <div dangerouslySetInnerHTML={{ __html: tab.content }} />
+            <div
+              className={styles.text}
+              dangerouslySetInnerHTML={{ __html: tab.content }}
+            />
             {tab.image && (
               <Image
                 url={tab.image.mediaItemUrl}

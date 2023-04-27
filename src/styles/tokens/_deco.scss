@@ -1,3 +1,4 @@
+@use 'layers';
 @use 'breakpoints';
 
 @mixin decoPlusSign {
@@ -28,9 +29,17 @@
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  // top: 0;
+  // left: 50%;
+  // transform: translateX(-50%) translateY(-50%);
+
+  top: initial;
+  right: 0;
+  left: initial;
+  bottom: 0;
+  right: 0;
+  z-index: layers.$layer-2;
+  transform: translateX(50%) translateY(15%);
 
   @media (min-width: breakpoints.$mq-800) {
     width: 20rem;
