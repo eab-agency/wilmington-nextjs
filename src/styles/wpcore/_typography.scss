@@ -1,0 +1,25 @@
+@use 'tokens';
+
+p {
+  strong {
+    font-weight: 900;
+  }
+}
+
+.x-large {
+  font-size: clamp(tokens.$fs-2xl, 5vw, calc(tokens.$fs-4xl * 1.5));
+  font-family: tokens.$f-headlineFont;
+}
+
+.large {
+  font-size: clamp(tokens.$fs-xl, 5vw, calc(tokens.$fs-2xl * 1.5));
+  font-family: tokens.$f-headlineFont;
+}
+
+.medium {
+  font-size: clamp(tokens.$fs-m, 5vw, tokens.$fs-l);
+}
+
+.small {
+  font-size: clamp(tokens.$fs-xs, 5vw, tokens.$fs-s);
+}
