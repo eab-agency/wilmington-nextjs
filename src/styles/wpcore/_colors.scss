@@ -1,0 +1,5 @@
+@use 'tokens';
+
+.dark-purple {
+  color: tokens.$c-lavender-800;
+}

@@ -1,8 +1,8 @@
+import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 import * as styles from './Groups.module.scss'
-import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
 
 /**
  * Render the Group component.

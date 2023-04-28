@@ -4,24 +4,44 @@
 .stats-section {
   background: tokens.$c-gray-200;
   @include mixins.sectionPadding(block);
+  // justify-content: center;
 
-  @include mixins.extendedBackground('after', tokens.$c-lavender-500);
+  @include mixins.extendedBackground('after', tokens.$c-lavender-800);
   &::after {
-    border-right: 4em solid tokens.$c-gray-200;
+    @media (min-width: tokens.$mq-800) {
+      border-right: 4em solid tokens.$c-gray-200;
+    }
   }
 
-  & > div {
+  & > div[class*='column'] {
     flex: 1 1 auto;
-  }
+    max-width: 28rem;
 
-  .wc-stat-card {
-    padding: 2em;
+    .wc-stat-card {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 0.5em;
+      padding: clamp(1em, 4vw, 4em);
+      border-bottom: 1px solid tokens.$c-gray-500;
 
-    strong {
-      font-size: tokens.$fs-3xl;
-      color: tokens.$c-lavender-800;
-      font-family: tokens.$f-headlineFont;
-      font-weight: 900;
+      @media (min-width: tokens.$mq-800) {
+        padding-block: 0;
+        padding-inline: clamp(1em, 4vw, 4em);
+        border-bottom: none;
+        border-right: 1px solid tokens.$c-gray-500;
+      }
+
+      p {
+        line-height: 1.2;
+        margin: 0;
+      }
+    }
+
+    &:last-child {
+      .wc-stat-card {
+        border: none;
+      }
     }
   }
 }

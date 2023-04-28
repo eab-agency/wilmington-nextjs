@@ -1,7 +1,8 @@
-import React from 'react'
+import RichText from '@/components/atoms/RichText'
 import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
 import cn from 'classnames'
-import RichText from '@/components/atoms/RichText'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 /**
  * Paragraph Block
@@ -28,14 +29,19 @@ export default function BlockParagraph({
     style
   })
 
+  const classes = {
+    [className]: true,
+    'text-center': align === 'center',
+    'text-left': !align || align === 'left',
+    'text-right': align === 'right',
+    [fontSize]: !!fontSize,
+    [textColor]: !!textColor,
+    [backgroundColor]: !!backgroundColor
+  }
+
   return (
     <RichText
-      className={cn(
-        className,
-        align === 'center' ? 'text-center' : null,
-        !align || align === 'left' ? 'text-left' : null,
-        align === 'right' ? 'text-right' : null
-      )}
+      className={cn(classes)}
       id={anchor}
       dropCap={dropCap}
       style={paragraphStyle}
@@ -44,4 +50,16 @@ export default function BlockParagraph({
       {content}
     </RichText>
   )
+}
+
+BlockParagraph.propTypes = {
+  align: PropTypes.oneOf(['left', 'center', 'right']),
+  anchor: PropTypes.string,
+  className: PropTypes.string,
+  content: PropTypes.string.isRequired,
+  dropCap: PropTypes.bool,
+  backgroundColor: PropTypes.string,
+  fontSize: PropTypes.string,
+  textColor: PropTypes.string,
+  style: PropTypes.string
 }
