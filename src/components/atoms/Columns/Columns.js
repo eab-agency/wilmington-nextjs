@@ -1,8 +1,8 @@
-import React from 'react'
-import cn from 'classnames'
-import * as styles from './Columns.module.scss'
-import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
 import Blocks from '@/components/molecules/Blocks'
+import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
+import cn from 'classnames'
+import React from 'react'
+import * as styles from './Columns.module.scss'
 
 /**
  * Render the Columns component.
@@ -58,8 +58,8 @@ export default function Columns({
         return (
           <div
             key={`column-${index}`}
-            id={attributes?.anchor}
-            className={attributes?.className}
+            id={attributes?.anchor || null}
+            className={`${styles.column} ${attributes?.className || ''}`}
             style={columnStyle}
           >
             {!!innerBlocks?.length && (
