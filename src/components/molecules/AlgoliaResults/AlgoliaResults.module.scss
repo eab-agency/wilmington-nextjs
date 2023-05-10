@@ -36,6 +36,17 @@
 
       & > ul {
         @apply grid gap-4 grid-cols-1 text-left;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          padding: 1rem;
+          border: 1px solid #ccc;
+        }
       }
 
       /* Hit */
