@@ -3,6 +3,7 @@ import WordPressProvider from '@/components/common/WordPressProvider'
 import { useWpApollo } from '@/lib/wordpress/connector'
 import '@/styles/styles.scss'
 import { ApolloProvider } from '@apollo/client'
+import { Analytics } from '@vercel/analytics/react'
 import { SessionProvider as NextAuthProvider } from 'next-auth/react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
@@ -75,6 +76,7 @@ export default function App({ Component, pageProps }) {
             <>
               <ExitPreview preview={preview} />
               <Component {...componentProps} />
+              <Analytics />
             </>
           )}
         </WordPressProvider>
