@@ -21,5 +21,5 @@ p {
 }
 
 .small {
-  font-size: clamp(tokens.$fs-xs, 5vw, tokens.$fs-s);
+  font-size: clamp(tokens.$fs-2xs, 1.5vw, tokens.$fs-xs);
 }

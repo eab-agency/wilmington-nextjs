@@ -1,0 +1,39 @@
+@use 'tokens';
+
+button {
+  &.is-style-arrow {
+    // default
+  }
+
+  &.is-style-arrow {
+    background-color: tokens.$c-darkGreen-700;
+    color: tokens.$c-white;
+
+    i {
+      background-color: tokens.$c-darkGreen-800;
+    }
+
+    &:hover {
+      background-color: tokens.$c-darkGreen-800;
+
+      i {
+        color: tokens.$c-white;
+      }
+    }
+  }
+
+  &.is-style-outline {
+    background-color: transparent;
+    border-color: tokens.$c-darkGreen-800;
+    color: tokens.$c-darkGreen-800;
+
+    i {
+      background-color: transparent;
+      color: tokens.$c-darkGreen-800;
+    }
+
+    &:hover {
+      background: tokens.$c-limeGreen-200;
+    }
+  }
+}

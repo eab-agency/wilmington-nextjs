@@ -53,8 +53,8 @@ section:where(.columns, .column) {
   }
 }
 
-.off-white {
-  background: tokens.$c-gray-300;
+.bgWhite {
+  background: tokens.$c-white;
 
-  @include mixins.extendedBackground('before', tokens.$c-gray-300);
+  @include mixins.extendedBackground('after', tokens.$c-white);
 }
