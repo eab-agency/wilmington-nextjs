@@ -4,7 +4,7 @@
 .stats-section {
   background: tokens.$c-gray-200;
   @include mixins.sectionPadding(block);
-  // justify-content: center;
+  position: relative;
 
   @include mixins.extendedBackground('after', tokens.$c-lavender-800);
   &::after {

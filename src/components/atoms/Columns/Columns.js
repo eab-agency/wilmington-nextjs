@@ -42,7 +42,7 @@ export default function Columns({
         className,
         verticalAlignment === 'center' ? styles.alignCenter : null,
         verticalAlignment === 'bottom' ? styles.alignBottom : null,
-        backgroundColor === 'off-white' ? styles.offWhite : null,
+        backgroundColor === 'white' ? styles.bgWhite : null,
         columnStyles?.background || columnStyles?.backgroundColor
           ? styles.hasBackground
           : null
@@ -52,14 +52,17 @@ export default function Columns({
       {columns.map(({ attributes, innerBlocks }, index) => {
         const columnStyle = getBlockStyles({
           style: attributes?.style,
-          width: attributes?.width
+          width: attributes?.width,
+          backgroundColor: attributes?.backgroundColor
         })
 
         return (
           <div
             key={`column-${index}`}
             id={attributes?.anchor || null}
-            className={`${styles.column} ${attributes?.className || ''}`}
+            className={`${styles.column} ${attributes?.className || ''} ${
+              attributes?.backgroundColor || ''
+            }`}
             style={columnStyle}
           >
             {!!innerBlocks?.length && (
