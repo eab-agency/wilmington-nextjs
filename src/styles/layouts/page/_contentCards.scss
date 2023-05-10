@@ -1,0 +1,6 @@
+@use 'tokens';
+
+.wc-content-card {
+  padding: clamp(tokens.$p-m, 2vw, tokens.$p-l);
+  flex: 1 0 15rem;
+}
