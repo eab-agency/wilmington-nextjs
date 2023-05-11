@@ -17,11 +17,11 @@
       gap: 2em;
       background: tokens.$c-darkGreen-800;
       padding: clamp(1em, 4vw, 4em);
-      padding-left: tokens.$leftOffset;
 
       @media (min-width: tokens.$mq-800) {
         flex-direction: row;
         justify-content: space-between;
+        padding-left: tokens.$leftOffset;
       }
 
       .schoolInfo {

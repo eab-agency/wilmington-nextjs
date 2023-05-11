@@ -28,22 +28,28 @@ section:where(.columns, .column) {
     }
   }
 
-  &.alignCenter {
-    & .column {
-      background: yellow;
-    }
+  &.columns-2 {
   }
 
-  &.alignBottom {
-    & .column {
-      background: green;
-    }
+  &.columns-3 {
   }
 
-  &.hasBackground {
-    padding: 8px;
-    border: 5px solid red;
-  }
+  // &.alignCenter {
+  //   & .column {
+  //     background: yellow;
+  //   }
+  // }
+
+  // &.alignBottom {
+  //   & .column {
+  //     background: green;
+  //   }
+  // }
+
+  // &.hasBackground {
+  //   padding: 8px;
+  //   border: 5px solid red;
+  // }
 
   & .column {
     &.hasBackground {
