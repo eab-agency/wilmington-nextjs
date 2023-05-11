@@ -1,5 +1,4 @@
 import cn from 'classnames'
-import PropTypes from 'prop-types'
 import React from 'react'
 import styles from './ButtonGroup.module.scss'
 
@@ -8,36 +7,29 @@ import styles from './ButtonGroup.module.scss'
  *
  * @param  {object}  props                      The component properties.
  * @param  {Element} props.children             The children props to render.
- * @param  {string}  props.contentJustification The justification of the buttons.
+ * @param  {string}  props.layout               The layout of the buttons.
  * @param  {string}  props.id                   The id of the block.
- * @param  {string}  props.orientation          The orientation of buttons.
  * @return {Element}                            The ButtonGroup component.
  */
-export default function ButtonGroup({
-  children,
-  contentJustification,
-  id,
-  orientation
-}) {
+export default function ButtonGroup({ children, id, layout }) {
+  // type = flex
+  // orientation = vertical, horizontal
+  // justifyContent = center, space-between, right, left
+  // flexWrap = nowrap, wrap
+  const { type, orientation, justifyContent, flexWrap } = layout
+
   return (
     <>
       <div
         id={id || null}
         className={cn(
           styles.buttonGroup,
-          styles[orientation],
-          styles[contentJustification]
+          styles[orientation]
+          // styles[contentJustification]
         )}
       >
         {children}
       </div>
     </>
   )
-}
-
-ButtonGroup.propTypes = {
-  // children: PropTypes.element,
-  contentJustification: PropTypes.string,
-  id: PropTypes.string,
-  orientation: PropTypes.string
 }
