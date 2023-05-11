@@ -1,0 +1,37 @@
+@use 'tokens';
+@use 'utilities/mixins';
+
+.wc-have-questions {
+  margin-block: 4rem;
+  border-radius: tokens.$br-m;
+  display: block;
+  // gap: 1em;
+  // display: flex;
+  // flex-direction: column;
+  // flex-flow: column wrap;
+
+  h2 {
+    position: relative;
+    z-index: tokens.$layer-3;
+    width: fit-content;
+
+    &::before {
+      @include tokens.decoCircle;
+      width: 150%;
+      height: 190%;
+    }
+  }
+
+  section {
+    h3 {
+      background: tokens.$c-darkGreen-800;
+      color: tokens.$c-white;
+      padding-block: 0.2em;
+      padding-right: 0.2em;
+      position: relative;
+      z-index: tokens.$layer-2;
+
+      @include mixins.extendedBackground('after', tokens.$c-darkGreen-800);
+    }
+  }
+}

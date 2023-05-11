@@ -1,4 +1,3 @@
-import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -22,25 +21,27 @@ export default function Groups({
   id,
   className,
   groupsCount = 3,
-  children,
-  style,
-  verticalAlignment,
-  isStackedOnMobile
+  children
+  // style,
+  // verticalAlignment,
+  // isStackedOnMobile
 }) {
-  const groupStyles = getBlockStyles({ style })
+  // const groupStyles = getBlockStyles({ style })
+
+  // console.log(verticalAlignment, isStackedOnMobile, style)
   return (
     <>
       <div
         id={id || null}
         className={cn(
           styles.groups,
-          isStackedOnMobile && styles.groupsStacked,
+          // isStackedOnMobile && styles.groupsStacked,
           groupsCount && styles[`columns-${groupsCount}`],
-          className,
-          verticalAlignment === 'center' ? styles.alignCenter : null,
-          verticalAlignment === 'bottom' ? styles.alignBottom : null
+          className
+          // verticalAlignment === 'center' ? styles.alignCenter : null,
+          // verticalAlignment === 'bottom' ? styles.alignBottom : null
         )}
-        style={groupStyles}
+        // style={groupStyles}
       >
         {children}
       </div>

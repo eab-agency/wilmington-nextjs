@@ -69,15 +69,15 @@
   }
 
   /* SIZES */
-  &.lg {
+  &.extra-large {
     font-size: tokens.$fs-xs;
   }
 
-  &.md {
+  &.medium {
     // @apply px-3 py-2;
   }
 
-  &.sm {
+  &.small {
     font-size: tokens.$fs-3xs;
   }
 
