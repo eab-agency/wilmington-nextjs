@@ -1,6 +1,6 @@
-import React from 'react'
 import Blocks from '@/components/molecules/Blocks'
 import ButtonGroup from '@/components/molecules/ButtonGroup'
+import React from 'react'
 
 /**
  * Buttons Block
@@ -14,6 +14,7 @@ export default function BlockButtons({
   contentJustification,
   innerBlocks,
   orientation,
+  layout,
   ...props
 }) {
   return (
@@ -21,6 +22,7 @@ export default function BlockButtons({
       id={anchor}
       orientation={orientation}
       contentJustification={contentJustification}
+      layout={layout}
     >
       {!!innerBlocks?.length && (
         <Blocks blocks={innerBlocks} where="BlockButtons" {...props} />
