@@ -19,6 +19,7 @@ export default function ButtonGroup({
   id,
   orientation
 }) {
+  console.log(contentJustification)
   return (
     <>
       <div
@@ -26,7 +27,8 @@ export default function ButtonGroup({
         className={cn(
           styles.buttonGroup,
           styles[orientation],
-          styles[contentJustification]
+          styles[contentJustification],
+          orientation
         )}
       >
         {children}
