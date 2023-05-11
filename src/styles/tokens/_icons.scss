@@ -526,12 +526,8 @@ $i-youtube: '\e732';
 .icon-heart-empty:before {
   content: '\e75d';
 }
-.icon-question:before {
-  content: '\e75f';
-}
-.icon-mail:before {
-  content: '\e760';
-}
+$i-question: '\e75f';
+$i-mail: '\e760';
 .icon-directions:before {
   content: '\e761';
 }

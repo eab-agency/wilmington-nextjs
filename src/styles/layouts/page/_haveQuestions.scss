@@ -1,28 +1,37 @@
 @use 'tokens';
+@use 'utilities/mixins';
 
 .wc-have-questions {
   margin-block: 4rem;
   border-radius: tokens.$br-m;
-  display: flex;
-  flex-flow: row wrap;
-  gap: 1em;
+  display: block;
+  // gap: 1em;
+  // display: flex;
+  // flex-direction: column;
+  // flex-flow: column wrap;
 
-  &.horizontal {
-    flex-flow: row wrap;
+  h2 {
+    position: relative;
+    z-index: tokens.$layer-3;
+    width: fit-content;
+
+    &::before {
+      @include tokens.decoCircle;
+      width: 150%;
+      height: 190%;
+    }
   }
 
-  &.vertical {
-    flex-direction: column;
-  }
+  section {
+    h3 {
+      background: tokens.$c-darkGreen-800;
+      color: tokens.$c-white;
+      padding-block: 0.2em;
+      padding-right: 0.2em;
+      position: relative;
+      z-index: tokens.$layer-2;
 
-  &.center {
-    justify-content: center;
+      @include mixins.extendedBackground('after', tokens.$c-darkGreen-800);
+    }
   }
-
-  &.right {
-    justify-content: flex-end;
-  }
-
-  // button {
-  // }
 }

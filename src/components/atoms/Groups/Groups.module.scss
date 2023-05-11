@@ -1,20 +1,20 @@
 @use 'tokens';
 
-// TODO: Andrei, these next 3 styles are being called in Groups.js but were not listed here
+// // TODO: Andrei, these next 3 styles are being called in Groups.js but were not listed here
 
-.groupsStacked {
-  display: block;
-}
+// .groupsStacked {
+//   display: block;
+// }
 
-.alignCenter {
-  display: flex;
-  justify-content: center;
-}
+// .alignCenter {
+//   display: flex;
+//   justify-content: center;
+// }
 
-.alignBottom {
-  display: flex;
-  justify-content: flex-end;
-}
+// .alignBottom {
+//   display: flex;
+//   justify-content: flex-end;
+// }
 
 .groups {
   section {
