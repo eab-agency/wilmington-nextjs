@@ -11,12 +11,12 @@
     padding: 0;
   }
 
-  :where(section[class*='columns']:nth-child(even)) {
-    background: tokens.$c-gray-300;
-    position: relative;
+  // :where(section[class*='columns']:nth-child(even)) {
+  //   background: tokens.$c-gray-300;
+  //   position: relative;
 
-    @include mixins.extendedBackground('after', tokens.$c-gray-300);
-  }
+  //   @include mixins.extendedBackground('after', tokens.$c-gray-300);
+  // }
 }
 
 section {

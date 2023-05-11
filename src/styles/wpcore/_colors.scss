@@ -1,201 +1,49 @@
 @use 'tokens';
+@use 'utilities/mixins';
 
-.bright-green {
-  color: tokens.$c-limeGreen-300;
+$lightColors: (
+  bright-green: tokens.$c-limeGreen-300,
+  light-green: tokens.$c-limeGreen-400,
+  medium-green: tokens.$c-limeGreen-500,
+  lime-green: tokens.$c-limeGreen-600,
+  bright-teal: tokens.$c-teal-300,
+  teal: tokens.$c-teal-500,
+  bright-lavender: tokens.$c-lavender-500,
+  gold: tokens.$c-yellow-500,
+  bright-orange: tokens.$c-orange-500,
+  sand: tokens.$c-gray-300,
+  off-white: tokens.$c-gray-200,
+  light-gray: tokens.$c-gray-400,
+  neutral-gray: tokens.$c-gray-500,
+  white: tokens.$c-white
+);
+
+$darkColors: (
+  dark-green: tokens.$c-darkGreen-700,
+  deep-green: tokens.$c-darkGreen-800,
+  dark-teal: tokens.$c-teal-800,
+  dark-purple: tokens.$c-lavender-800,
+  dark-gray: tokens.$c-gray-600,
+  black: tokens.$c-gray-800
+);
+
+@mixin colorLoop($colorMap, $colorContrast) {
+  @each $name, $theColor in $colorMap {
+    .#{$name} {
+      color: $theColor;
+    }
+
+    div.#{$name},
+    section.#{$name} {
+      background-color: $theColor;
+      color: $colorContrast;
+
+      &[class*='columns'] {
+        @include mixins.extendedBackground('after', $theColor);
+      }
+    }
+  }
 }
 
-div.bright-green,
-section.bright-green {
-  background-color: tokens.$c-limeGreen-300;
-  color: tokens.$c-gray-800;
-}
-
-.light-green {
-  color: tokens.$c-limeGreen-400;
-}
-
-div.light-green,
-section.light-green {
-  background-color: tokens.$c-limeGreen-400;
-  color: tokens.$c-gray-800;
-}
-
-.medium-green {
-  color: tokens.$c-limeGreen-500;
-}
-
-div.medium-green,
-section.medium-green {
-  background-color: tokens.$c-limeGreen-500;
-  color: tokens.$c-gray-800;
-}
-
-.lime-green {
-  color: tokens.$c-limeGreen-600;
-}
-
-div.lime-green,
-section.lime-green {
-  background-color: tokens.$c-limeGreen-600;
-  color: tokens.$c-gray-800;
-}
-
-.dark-green {
-  color: tokens.$c-darkGreen-700;
-}
-
-div.dark-green,
-section.dark-green {
-  background-color: tokens.$c-darkGreen-700;
-  color: tokens.$c-white;
-}
-
-.deep-green {
-  color: tokens.$c-darkGreen-800;
-}
-
-div.deep-green,
-section.deep-green {
-  background-color: tokens.$c-darkGreen-800;
-  color: tokens.$c-white;
-}
-
-.bright-teal {
-  color: tokens.$c-teal-300;
-}
-
-div.bright-teal,
-section.bright-teal {
-  background-color: tokens.$c-teal-300;
-  color: tokens.$c-gray-800;
-}
-
-.teal {
-  color: tokens.$c-teal-500;
-}
-
-div.teal,
-section.teal {
-  background-color: tokens.$c-teal-500;
-  color: tokens.$c-gray-800;
-}
-
-.dark-teal {
-  color: tokens.$c-teal-800;
-}
-
-div.dark-teal,
-section.dark-teal {
-  background-color: tokens.$c-teal-800;
-  color: tokens.$c-white;
-}
-
-.dark-purple {
-  color: tokens.$c-lavender-800;
-}
-
-div.dark-purple,
-section.dark-purple {
-  background-color: tokens.$c-lavender-800;
-  color: tokens.$c-white;
-}
-
-.bright-lavender {
-  color: tokens.$c-lavender-500;
-}
-
-div.bright-lavender,
-section.bright-lavender {
-  background-color: tokens.$c-lavender-500;
-  color: tokens.$c-gray-800;
-}
-
-.gold {
-  color: tokens.$c-yellow-500;
-}
-
-div.gold,
-section.gold {
-  background-color: tokens.$c-yellow-500;
-  color: tokens.$c-gray-800;
-}
-
-.bright-orange {
-  color: tokens.$c-orange-500;
-}
-
-div.bright-orange,
-section.bright-orange {
-  background-color: tokens.$c-orange-500;
-  color: tokens.$c-gray-800;
-}
-
-.sand {
-  color: tokens.$c-gray-300;
-}
-
-div.sand,
-section.sand {
-  background-color: tokens.$c-gray-300;
-  color: tokens.$c-gray-800;
-}
-
-.off-white {
-  color: tokens.$c-gray-200;
-}
-
-div.off-white,
-section.off-white {
-  background-color: tokens.$c-gray-200;
-  color: tokens.$c-gray-800;
-}
-
-.light-gray {
-  color: tokens.$c-gray-400;
-}
-
-div.light-gray,
-section.light-gray {
-  background-color: tokens.$c-gray-400;
-  color: tokens.$c-gray-800;
-}
-
-.neutral-gray {
-  color: tokens.$c-gray-500;
-}
-
-div.neutral-gray,
-section.neutral-gray {
-  background-color: tokens.$c-gray-500;
-  color: tokens.$c-gray-800;
-}
-
-.dark-gray {
-  color: tokens.$c-gray-600;
-}
-
-div.dark-gray,
-section.dark-gray {
-  background-color: tokens.$c-gray-600;
-  color: tokens.$c-white;
-}
-
-.black {
-  color: tokens.$c-gray-800;
-}
-
-div.black,
-section.black {
-  background-color: tokens.$c-gray-800;
-  color: tokens.$c-white;
-}
-
-.white {
-  color: tokens.$c-white;
-}
-
-div.white,
-section.white {
-  background-color: tokens.$c-white;
-  color: tokens.$c-gray-800;
-}
+@include colorLoop($lightColors, tokens.$c-gray-800);
+@include colorLoop($darkColors, tokens.$c-white);

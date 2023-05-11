@@ -1,0 +1,71 @@
+@use 'tokens';
+@use 'utilities/mixins';
+
+.wc-image-callout-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  @include mixins.sectionPadding();
+  margin-block: 4rem;
+  min-height: clamp(20em, 50vh, 30em);
+
+  @media (min-width: tokens.$mq-800) {
+    padding-right: clamp(10rem, 30vw, 30rem);
+  }
+
+  div[class*='image'] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: tokens.$layer-1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: tokens.$c-gray-800;
+      z-index: tokens.$layer-2;
+      opacity: 0.8;
+      mix-blend-mode: darken;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      @include tokens.decoPlusSignCut;
+    }
+  }
+
+  h2 {
+    position: relative;
+    z-index: tokens.$layer-2;
+    color: tokens.$c-white;
+  }
+
+  p {
+    position: relative;
+    z-index: tokens.$layer-2;
+    color: tokens.$c-white;
+  }
+  div[class*='buttonGroup'] {
+    position: relative;
+    z-index: tokens.$layer-2;
+  }
+}
