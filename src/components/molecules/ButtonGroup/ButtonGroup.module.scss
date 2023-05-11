@@ -22,6 +22,7 @@
     justify-content: flex-end;
   }
 
-  // button {
-  // }
+  &.nowrap {
+    flex-wrap: nowrap;
+  }
 }

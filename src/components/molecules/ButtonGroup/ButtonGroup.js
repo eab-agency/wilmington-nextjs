@@ -12,25 +12,21 @@ import styles from './ButtonGroup.module.scss'
  * @param  {string}  props.id                   The id of the block.
  * @return {Element}                            The ButtonGroup component.
  */
-export default function ButtonGroup({ children, id, layout }) {
-  // type = flex
-  // orientation = vertical, horizontal
-  // justifyContent = center, space-between, right, left
-  // flexWrap = nowrap, wrap
+export default function ButtonGroup({ children, id, layout = {} }) {
   const { type, orientation, justifyContent, flexWrap } = layout
 
   return (
-    <>
-      <div
-        id={id || null}
-        className={cn(
-          styles.buttonGroup,
-          styles[orientation]
-          // styles[contentJustification]
-        )}
-      >
-        {children}
-      </div>
-    </>
+    <div
+      id={id || null}
+      className={cn(
+        styles.buttonGroup,
+        styles[orientation],
+        styles[type],
+        styles[justifyContent],
+        styles[flexWrap]
+      )}
+    >
+      {children}
+    </div>
   )
 }
