@@ -1,0 +1,28 @@
+@use 'tokens';
+
+.wc-have-questions {
+  margin-block: 4rem;
+  border-radius: tokens.$br-m;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1em;
+
+  &.horizontal {
+    flex-flow: row wrap;
+  }
+
+  &.vertical {
+    flex-direction: column;
+  }
+
+  &.center {
+    justify-content: center;
+  }
+
+  &.right {
+    justify-content: flex-end;
+  }
+
+  // button {
+  // }
+}
