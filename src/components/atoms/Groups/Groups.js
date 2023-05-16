@@ -21,25 +21,24 @@ export default function Groups({
   id,
   className,
   groupsCount = 3,
-  children
+  children,
   // style,
-  // verticalAlignment,
-  // isStackedOnMobile
+  verticalAlignment,
+  isStackedOnMobile
 }) {
   // const groupStyles = getBlockStyles({ style })
 
-  // console.log(verticalAlignment, isStackedOnMobile, style)
   return (
     <>
       <div
         id={id || null}
         className={cn(
           styles.groups,
-          // isStackedOnMobile && styles.groupsStacked,
+          isStackedOnMobile && styles.groupsStacked,
           groupsCount && styles[`columns-${groupsCount}`],
-          className
-          // verticalAlignment === 'center' ? styles.alignCenter : null,
-          // verticalAlignment === 'bottom' ? styles.alignBottom : null
+          className,
+          verticalAlignment === 'center' ? styles.alignCenter : null,
+          verticalAlignment === 'bottom' ? styles.alignBottom : null
         )}
         // style={groupStyles}
       >
