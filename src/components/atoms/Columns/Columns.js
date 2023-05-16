@@ -23,7 +23,7 @@ export default function Columns({
   className,
   columnCount,
   style,
-  verticalAlignment,
+  // verticalAlignment,
   isStackedOnMobile,
   columns,
   pageContext,
@@ -40,12 +40,13 @@ export default function Columns({
         isStackedOnMobile && styles.columnStacked,
         columnCount && styles[`columns-${columnCount}`],
         className,
-        verticalAlignment === 'center' ? styles.alignCenter : null,
-        verticalAlignment === 'bottom' ? styles.alignBottom : null,
-        backgroundColor === 'white' ? styles.bgWhite : null,
-        columnStyles?.background || columnStyles?.backgroundColor
-          ? styles.hasBackground
-          : null
+        // verticalAlignment === 'center' ? styles.alignCenter : null,
+        // verticalAlignment === 'bottom' ? styles.alignBottom : null,
+        // backgroundColor === 'white' ? styles.bgWhite : null,
+        backgroundColor
+        // columnStyles?.background || columnStyles?.backgroundColor
+        //   ? styles.hasBackground
+        //   : null
       )}
       style={columnStyles}
     >
