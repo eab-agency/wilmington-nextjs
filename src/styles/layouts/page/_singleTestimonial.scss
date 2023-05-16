@@ -1,0 +1,43 @@
+@use 'tokens';
+
+.std-page {
+  .testimonials {
+    position: relative;
+  }
+
+  article[class*='singleQuote'] {
+    position: relative;
+
+    figcaption {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      padding-block: clamp(2em, 5vw, 4em);
+
+      p {
+        font-size: tokens.$fs-s;
+      }
+
+      &::before {
+        content: '"';
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 10rem;
+        line-height: 1;
+        color: tokens.$c-limeGreen-500;
+      }
+
+      &::after {
+        content: '"';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        font-size: 10rem;
+        line-height: 1;
+        color: tokens.$c-limeGreen-500;
+      }
+    }
+  }
+}
