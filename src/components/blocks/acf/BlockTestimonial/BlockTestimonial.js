@@ -4,7 +4,7 @@ import styles from './BlockTestimonial.module.scss'
 
 export default function BlockTestimonial({ featuredTestimonial, random }) {
   return (
-    <>
+    <div className="testimonials">
       <SectionTag text="Testimonials" className={styles.testimonialTag} />
       <Testimonial
         post={featuredTestimonial}
@@ -23,6 +23,6 @@ export default function BlockTestimonial({ featuredTestimonial, random }) {
             />
           ))}
       </div>
-    </>
+    </div>
   )
 }
