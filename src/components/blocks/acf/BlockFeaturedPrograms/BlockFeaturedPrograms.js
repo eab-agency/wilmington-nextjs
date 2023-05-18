@@ -35,8 +35,8 @@ const responsive = {
 export default function BlockFeaturedPrograms({ listingData }) {
   const featuredPrograms = listingData.flat().concat()
   return (
-    <section className={styles.featuredPrograms}>
-      <h2>Featured Programs</h2>
+    <div className={styles.featuredPrograms}>
+      {/* <h2>Featured Programs</h2> */}
       <Carousel
         containerClass={styles.carouselContainer}
         responsive={responsive}
@@ -55,6 +55,6 @@ export default function BlockFeaturedPrograms({ listingData }) {
       <div className={styles.viewAllCta}>
         <Button url="/programs" text="View All Programs" secondary />
       </div>
-    </section>
+    </div>
   )
 }
