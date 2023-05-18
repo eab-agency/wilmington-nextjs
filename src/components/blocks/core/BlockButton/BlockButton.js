@@ -1,6 +1,6 @@
-import React from 'react'
 import Button from '@/components/atoms/Buttons/Button'
 import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
+import React from 'react'
 
 /**
  * Button Block
@@ -19,7 +19,6 @@ import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
  * @param  {string}  props.text               The link label.
  * @param  {string}  props.textColorHex       The text color hex value.
  * @param  {string}  props.url                The link for the button.
- * @param  {boolean} props.urlExternal        Whether link is external.
  * @param  {number}  props.width              The width in percent.
  * @return {Element}                          The Button component.
  */
