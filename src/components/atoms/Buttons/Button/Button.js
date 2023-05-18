@@ -88,6 +88,7 @@ export default function Button({
         className={buttonClassNames}
         aria-label={text}
         style={style}
+        tabIndex={disabled ? -1 : 0}
         {...attributes}
       >
         <ButtonInner icon={icon} iconOnly={iconOnly} text={text} />
@@ -98,6 +99,7 @@ export default function Button({
           className={buttonClassNames}
           aria-label={text}
           style={style}
+          // tabIndex={disabled ? -1 : 0}
           {...attributes}
         >
           <ButtonInner icon={icon} iconOnly={iconOnly} text={text} />
@@ -115,7 +117,8 @@ export default function Button({
           onClick,
           ...attributes,
           disabled,
-          style
+          style,
+          tabIndex: disabled ? -1 : 0
         },
         <ButtonInner icon={icon} iconOnly={iconOnly} text={text} />
       )
