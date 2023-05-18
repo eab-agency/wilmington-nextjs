@@ -93,15 +93,14 @@ export default function Button({
         <ButtonInner icon={icon} iconOnly={iconOnly} text={text} />
       </a>
     ) : (
-      <Link href={url} legacyBehavior>
-        <a
-          className={buttonClassNames}
-          aria-label={text}
-          style={style}
-          {...attributes}
-        >
-          <ButtonInner icon={icon} iconOnly={iconOnly} text={text} />
-        </a>
+      <Link
+        href={url}
+        className={buttonClassNames}
+        aria-label={text}
+        style={style}
+        {...attributes}
+      >
+        <ButtonInner icon={icon} iconOnly={iconOnly} text={text} />
       </Link>
     )
   } else {
