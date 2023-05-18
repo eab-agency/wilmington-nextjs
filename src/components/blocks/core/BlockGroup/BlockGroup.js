@@ -37,6 +37,7 @@ export default function BlockGroup({
       style={style}
       verticalAlignment={verticalAlignment}
       isStackedOnMobile={isStackedOnMobile}
+      tagName={props.tagName}
     >
       {!!innerBlocks?.length && (
         <Blocks

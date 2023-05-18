@@ -22,15 +22,18 @@ export default function Groups({
   className,
   groupsCount = 3,
   children,
+  tagName,
   // style,
   verticalAlignment,
   isStackedOnMobile
 }) {
   // const groupStyles = getBlockStyles({ style })
 
+  const Tag = tagName || 'div'
+
   return (
     <>
-      <div
+      <Tag
         id={id || null}
         className={cn(
           styles.groups,
@@ -43,7 +46,7 @@ export default function Groups({
         // style={groupStyles}
       >
         {children}
-      </div>
+      </Tag>
     </>
   )
 }
