@@ -31,7 +31,9 @@ export default function Layout({ children, seo }) {
       <Meta seo={seo} />
       <Header menu={menus?.UTILITY_NAV} />
       <div
-        className={`${styles.mainContainer} ${isFrontPage ? 'front-page' : ''}`}
+        className={`${styles.mainContainer} ${
+          isFrontPage ? 'front-page' : 'std-page'
+        }`}
       >
         <MainNavigation menuItems={menus?.MAIN_NAV} enableDropdown={true} />
         <main>{children}</main>

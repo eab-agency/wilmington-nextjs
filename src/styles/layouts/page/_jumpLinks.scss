@@ -3,8 +3,13 @@
 .wc-jump-links {
   background: tokens.$c-darkGreen-700;
   max-width: tokens.$pageOffset;
-  padding: clamp(1rem, 2vw, 2rem);
+  padding: clamp(1.5rem, 2vw, 2rem);
   position: relative;
+  margin-block: 2em;
+
+  @media (min-width: tokens.$mq-1000) {
+    margin: 0;
+  }
 
   h3 {
     position: relative;
@@ -26,13 +31,14 @@
         top: 0;
         left: 0;
         transform: translateY(-15rem);
-        z-index: tokens.$layer-1;
+        z-index: -1;
       }
     }
 
     li {
       position: relative;
       z-index: tokens.$layer-2;
+      @include tokens.listItemCleanUp;
       margin-block: 1rem;
 
       a {
@@ -63,5 +69,14 @@
         }
       }
     }
+  }
+
+  & > div:first-of-type {
+    margin-top: 0;
+  }
+
+  & > div[class*='button']:first-of-type {
+    padding-bottom: 2em;
+    border-bottom: 1px solid rgba(tokens.$c-limeGreen-600, 0.4);
   }
 }
