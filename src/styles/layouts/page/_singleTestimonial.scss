@@ -3,6 +3,11 @@
 .std-page {
   .testimonials {
     position: relative;
+
+    & > div[class*='SectionTag'],
+    & > div[class*='randomTestimonials'] {
+      display: none;
+    }
   }
 
   article[class*='singleQuote'] {
@@ -13,7 +18,7 @@
       flex-direction: column;
       justify-content: center;
       position: relative;
-      padding-block: clamp(2em, 5vw, 4em);
+      padding-block: 4em;
 
       p {
         font-size: tokens.$fs-s;
@@ -23,20 +28,22 @@
         content: '"';
         position: absolute;
         top: 0;
-        left: 0;
+        left: 2rem;
+        height: 3rem;
         font-size: 10rem;
-        line-height: 1;
-        color: tokens.$c-limeGreen-500;
+        line-height: 0.8;
+        color: tokens.$c-sand-300;
       }
 
       &::after {
         content: '"';
         position: absolute;
         bottom: 0;
-        right: 0;
+        right: 2rem;
+        height: 3rem;
         font-size: 10rem;
-        line-height: 1;
-        color: tokens.$c-limeGreen-500;
+        line-height: 0.8;
+        color: tokens.$c-sand-300;
       }
     }
   }
