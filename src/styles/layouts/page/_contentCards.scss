@@ -1,6 +1,27 @@
 @use 'tokens';
+@use 'utilities/mixins';
 
-.wc-content-card {
-  padding: clamp(tokens.$p-m, 2vw, tokens.$p-l);
-  flex: 1 0 15rem;
+.wc-content-cards-section {
+  @include mixins.sectionPadding(block);
+  position: relative;
+
+  .wc-content-card {
+    flex: 1 0 15rem;
+
+    padding: clamp(1em, 4vw, 4em);
+    border-bottom: 1px solid tokens.$c-gray-500;
+
+    @media (min-width: tokens.$mq-800) {
+      padding-block: 0;
+      padding-inline: clamp(1em, 4vw, 4em);
+      border-bottom: none;
+      border-right: 1px solid tokens.$c-gray-500;
+    }
+  }
+
+  & > div[class*='column'] {
+    &:last-child {
+      border: none;
+    }
+  }
 }

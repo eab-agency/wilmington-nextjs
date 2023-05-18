@@ -331,9 +331,7 @@ $i-youtube: '\e732';
 .icon-exit:before {
   content: '\e6d2';
 }
-.icon-loop:before {
-  content: '\e6e9';
-}
+$i-loop: '\e6e9';
 .icon-checkbox-checked:before {
   content: '\e6ec';
 }
@@ -343,9 +341,7 @@ $i-youtube: '\e732';
 .icon-checkbox-partial:before {
   content: '\e6ee';
 }
-.icon-radio-select:before {
-  content: '\e6ef';
-}
+$i-radioSelect: '\e6ef';
 .icon-radio-deselect:before {
   content: '\e6f0';
 }

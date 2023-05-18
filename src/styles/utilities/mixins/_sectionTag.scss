@@ -16,6 +16,7 @@
   transform: rotate(180deg);
   position: absolute;
   left: 0;
+  z-index: tokens.$layer-2;
 
   &::before {
     content: '';

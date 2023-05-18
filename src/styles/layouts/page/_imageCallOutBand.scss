@@ -7,7 +7,7 @@
   justify-content: center;
   position: relative;
   @include mixins.sectionPadding();
-  margin-block: 4rem;
+  margin-block: clamp(2em, 5vw, 4em);
   min-height: clamp(20em, 50vh, 30em);
 
   @media (min-width: tokens.$mq-800) {

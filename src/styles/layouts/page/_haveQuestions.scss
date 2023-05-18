@@ -5,15 +5,12 @@
   margin-block: 4rem;
   border-radius: tokens.$br-m;
   display: block;
-  // gap: 1em;
-  // display: flex;
-  // flex-direction: column;
-  // flex-flow: column wrap;
 
   h2 {
     position: relative;
     z-index: tokens.$layer-3;
     width: fit-content;
+    max-width: 30rem;
 
     &::before {
       @include tokens.decoCircle;
@@ -22,7 +19,14 @@
     }
   }
 
+  p {
+    position: relative;
+    z-index: tokens.$layer-3;
+  }
+
   section {
+    gap: clamp(tokens.$p-m, 2vw, tokens.$p-xxl);
+
     h3 {
       background: tokens.$c-darkGreen-800;
       color: tokens.$c-white;
@@ -32,6 +36,10 @@
       z-index: tokens.$layer-2;
 
       @include mixins.extendedBackground('after', tokens.$c-darkGreen-800);
+    }
+
+    div[class*='column'] {
+      flex: 1 0 50%;
     }
   }
 }
