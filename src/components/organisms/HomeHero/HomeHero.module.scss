@@ -73,8 +73,9 @@
   }
 
   @media (min-width: tokens.$mq-1200) {
+    margin-block: clamp(tokens.$p-l, 10vw, tokens.$p-3xl);
     span h1 {
-      width: 160%;
+      // width: 160%;
       position: relative;
       z-index: tokens.$layer-2;
     }
@@ -82,6 +83,9 @@
 
   @media (min-width: tokens.$mq-1400) {
     padding-right: 0;
+    span h1 {
+      width: 160%;
+    }
   }
 }
 
@@ -92,6 +96,7 @@
   list-style: none;
   position: relative;
   padding-block: tokens.$p-l;
+  padding-inline: 0;
 
   @media (max-width: tokens.$mq-800) {
     justify-content: center;
