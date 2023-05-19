@@ -37,9 +37,19 @@ $darkColors: (
     section.#{$name} {
       background-color: $theColor;
       color: $colorContrast;
+      @include mixins.extendedBackground('after', $theColor);
 
-      &[class*='columns'] {
-        @include mixins.extendedBackground('after', $theColor);
+      & > [class*='_column'] {
+        &::after {
+          display: none;
+        }
+        // @include mixins.extendedBackground('after', $theColor);
+      }
+    }
+
+    div.#{$name}[class*='_column'] {
+      &::after {
+        display: none;
       }
     }
   }

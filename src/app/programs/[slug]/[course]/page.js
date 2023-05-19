@@ -1,5 +1,5 @@
+import Breadcrumbs from '@/components/atoms/Breadcrumbs/Breadcrumbs'
 import Container from '@/components/atoms/Container'
-import RichText from '@/components/atoms/RichText'
 import Blocks from '@/components/molecules/Blocks'
 import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
@@ -38,7 +38,7 @@ const programChildPage = async ({ params }) => {
     <div>
       <Container>
         <article className="innerWrap">
-          <RichText tag="h1">{post?.title}</RichText>
+          {/* <RichText tag="h1">{post?.title}</RichText> */}
 
           {/* Render jump links */}
           {jumpLinks.length > 0 && (
@@ -55,6 +55,8 @@ const programChildPage = async ({ params }) => {
               </ul>
             </>
           )}
+
+          <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
 
           <Blocks blocks={post?.blocks} />
         </article>

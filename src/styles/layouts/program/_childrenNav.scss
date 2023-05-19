@@ -1,0 +1,45 @@
+@use 'tokens';
+
+.childrenNav {
+  display: flex;
+  // background: white;
+  position: relative;
+  margin: 0;
+  margin-top: 3em;
+  padding: 0;
+  z-index: tokens.$layer-1;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 1px;
+    border-top: 1px solid tokens.$c-gray-400;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  li {
+    a {
+      display: block;
+      padding-block: clamp(0.5rem, 1.5vw, 1rem);
+      padding-inline: clamp(1rem, 2vw, 2rem);
+      background: tokens.$c-gray-300;
+      border-left: 1px solid tokens.$c-gray-500;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: tokens.$c-gray-800;
+
+      &:hover {
+        background: tokens.$c-white;
+      }
+    }
+
+    &:last-child {
+      a {
+        border-right: 1px solid tokens.$c-gray-500;
+      }
+    }
+  }
+}

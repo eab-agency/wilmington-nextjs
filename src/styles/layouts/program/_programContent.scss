@@ -1,0 +1,6 @@
+@use 'sass:color';
+@use 'tokens';
+
+.programContent {
+  padding-block: clamp(1rem, 5vw, 2rem);
+}
