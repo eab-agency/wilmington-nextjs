@@ -6,7 +6,7 @@
   @include mixins.sectionPadding(block);
   position: relative;
 
-  @include mixins.extendedBackground('after', tokens.$c-lavender-800);
+  @include mixins.extendedBackground('after', tokens.$c-lavender-800, 20);
   &::after {
     @media (min-width: tokens.$mq-800) {
       border-right: 4em solid tokens.$c-gray-200;

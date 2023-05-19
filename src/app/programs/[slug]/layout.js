@@ -1,5 +1,5 @@
-import FeaturedImage from '@/components/common/FeaturedImage'
 import WordPressProvider from '@/components/common/WordPressProvider'
+import PageHero from '@/components/organisms/PageHero/PageHero'
 import getProgramChildrenByID from '@/functions/wordpress/programs/getProgramChildrenById'
 import Link from 'next/link'
 
@@ -23,17 +23,23 @@ const programLayout = async ({ children, params }) => {
 
   return (
     <>
-      {/* TODO: AO featured image figure is set to object-fit cover. doesn't display but is on the page  */}
-      {featuredImage && <FeaturedImage image={featuredImage.node} />}
-      <ul>
+      <PageHero
+        text={title}
+        sourceUrl={featuredImage.node?.sourceUrl}
+        altText={featuredImage.node?.altText}
+        imageMeta={featuredImage.node?.mediaDetails}
+      />
+      <ul className="childrenNav">
         <li>
-          <Link href={uri}>{title}</Link>
+          <Link href={uri}>Overview</Link>
         </li>
         {childPages &&
           childPages.nodes.map((childPage) => {
             return (
               <li key={childPage.title}>
-                <Link href={childPage.uri}>{childPage?.title}</Link>
+                <Link href={childPage.uri} tabIndex="0">
+                  {childPage?.title}
+                </Link>
               </li>
             )
           })}

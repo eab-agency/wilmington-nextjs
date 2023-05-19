@@ -1,7 +1,7 @@
 @use 'tokens';
 @use 'utilities/mixins';
 
-.wc-have-questions {
+:where(.wc-have-questions) {
   margin-block: 4rem;
   border-radius: tokens.$br-m;
   display: block;
@@ -39,7 +39,7 @@
     }
 
     div[class*='column'] {
-      flex: 1 0 50%;
+      flex: 1 1 50%;
     }
   }
 }

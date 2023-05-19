@@ -27,7 +27,8 @@ export default function Groups({
   children,
   tagName,
   verticalAlignment,
-  isStackedOnMobile
+  isStackedOnMobile,
+  bgColor
 }) {
   const [drawerState, setDrawerState] = useState('closed')
   const [drawerBtn, setDrawerBtn] = useState('Read More')
@@ -52,6 +53,7 @@ export default function Groups({
       verticalAlignment === 'center' ? styles.alignCenter : null,
       verticalAlignment === 'bottom' ? styles.alignBottom : null,
       id === 'content-drawer' && styles.drawerContainer,
+      bgColor && bgColor,
       drawerState === 'open' && id === 'content-drawer' && 'drawerOpen'
     ]
 
