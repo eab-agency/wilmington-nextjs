@@ -33,10 +33,10 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <link
+      {/* <link
         href="https://fonts.googleapis.com/css2?&family=Roboto+Slab&display=swap"
         rel="stylesheet"
-      />
+      /> */}
       <body>
         <div className={`${cantarell.className}`}>
           <Header menu={utilityNavMenuItems} />

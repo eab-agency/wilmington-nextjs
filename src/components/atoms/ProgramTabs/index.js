@@ -1,2 +1,1 @@
-export { default } from './ProgramTabs';
-
+export { default } from './ProgramTabs'
