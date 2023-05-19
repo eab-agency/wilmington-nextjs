@@ -159,6 +159,7 @@ export default function displayBlock(block, index) {
       return <BlockTable {...attributes} key={index} />
     }
 
+    case 'core/pattern':
     case 'core/group': {
       const BlockGroup = dynamic(() =>
         import('@/components/blocks/core/BlockGroup')
@@ -176,7 +177,6 @@ export default function displayBlock(block, index) {
       return <BlockDefault content={attributes.content} key={index} />
     }
 
-    case 'core/pattern':
     case 'core/html': {
       const BlockHtml = dynamic(() => import('@/components/blocks/core/BlockHtml'))
       return <BlockHtml {...attributes} key={index} />

@@ -1,5 +1,5 @@
-import React from 'react'
 import createMarkup from '@/functions/createMarkup'
+import React from 'react'
 
 /**
  * Render the Heading component.
