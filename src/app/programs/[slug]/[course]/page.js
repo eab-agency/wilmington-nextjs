@@ -1,5 +1,6 @@
 import Breadcrumbs from '@/components/atoms/Breadcrumbs/Breadcrumbs'
 import Container from '@/components/atoms/Container'
+import RichText from '@/components/atoms/RichText/RichText'
 import Blocks from '@/components/molecules/Blocks'
 import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
@@ -35,33 +36,33 @@ const programChildPage = async ({ params }) => {
   )
 
   return (
-    <div>
-      <Container>
-        <article className="innerWrap">
-          {/* <RichText tag="h1">{post?.title}</RichText> */}
+    <Container>
+      <div className="programContent">
+        {/* <RichText tag="h1">{post?.title}</RichText> */}
 
-          {/* Render jump links */}
-          {jumpLinks.length > 0 && (
-            <>
-              <h2>On this page</h2>
-              <ul>
-                {jumpLinks.map((block, index) => (
-                  <li key={index}>
-                    <a href={`#${block.attributes.anchor}`}>
-                      {block.attributes.content}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
+        {/* Render jump links */}
+        {jumpLinks.length > 0 && (
+          <>
+            <h2>On this page</h2>
+            <ul>
+              {jumpLinks.map((block, index) => (
+                <li key={index}>
+                  <a href={`#${block.attributes.anchor}`}>
+                    {block.attributes.content}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
 
-          <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
+        <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
 
-          <Blocks blocks={post?.blocks} />
-        </article>
-      </Container>
-    </div>
+        <RichText tag="h2">{post?.title}</RichText>
+
+        <Blocks blocks={post?.blocks} />
+      </div>
+    </Container>
   )
 }
 
