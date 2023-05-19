@@ -22,32 +22,18 @@ const programLayout = async ({ children, params }) => {
   }
 
   return (
-    <>
-      <PageHero
-        text={title}
-        sourceUrl={featuredImage.node?.sourceUrl}
-        altText={featuredImage.node?.altText}
-        imageMeta={featuredImage.node?.mediaDetails}
-      />
-      <ProgramTabs childPages={childPages} uri={uri} />
-
-      {/* <ul className="childrenNav">
-        <li>
-          <Link href={uri}>Overview</Link>
-        </li>
-        {childPages &&
-          childPages.nodes.map((childPage) => {
-            return (
-              <li key={childPage.title}>
-                <Link href={childPage.uri} tabIndex="0">
-                  {childPage?.title}
-                </Link>
-              </li>
-            )
-          })}
-      </ul> */}
-      <WordPressProvider value={wpInitialState}>{children}</WordPressProvider>
-    </>
+    <div>
+      <article className="inner-wrap">
+        <PageHero
+          text={title}
+          sourceUrl={featuredImage.node?.sourceUrl}
+          altText={featuredImage.node?.altText}
+          imageMeta={featuredImage.node?.mediaDetails}
+        />
+        <ProgramTabs childPages={childPages} uri={uri} />
+        <WordPressProvider value={wpInitialState}>{children}</WordPressProvider>
+      </article>
+    </div>
   )
 }
 
