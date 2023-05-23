@@ -4,15 +4,6 @@ import ProgramCard from '@/components/molecules/ProgramCard'
 import Carousel from 'react-multi-carousel'
 import styles from './BlockFeaturedPrograms.module.scss'
 
-/**
- * Featured Programs Block
- *
- * The acf featured program block from colab.
- *
- * @param  {object}  props              featured component props.
- * @return {Element}                    The Card component.
- */
-
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 1200 },

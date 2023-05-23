@@ -1,5 +1,5 @@
-import Head from 'next/head'
 import parse from 'html-react-parser'
+import Head from 'next/head'
 import PropTypes from 'prop-types'
 
 /**
