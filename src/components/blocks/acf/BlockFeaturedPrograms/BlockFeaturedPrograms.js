@@ -33,6 +33,8 @@ const responsive = {
 }
 
 export default function BlockFeaturedPrograms({ listingData }) {
+  if (listingData.isError) return <div>{listingData.message}</div>
+
   const featuredPrograms = listingData.flat().concat()
   return (
     <section className={styles.featuredPrograms}>
