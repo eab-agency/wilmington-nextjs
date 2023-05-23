@@ -47,7 +47,6 @@ export function ButtonInner({ icon, iconOnly, text }) {
  * @param  {string}   props.text         Button text.
  * @param  {string}   props.type         Button type.
  * @param  {string}   props.url          Button link url.
- * @param  {boolean}  props.urlExternal  Whether the url on this button links to an external site.
  * @return {Element}                     The button component.
  */
 
@@ -66,8 +65,7 @@ export default function Button({
   tag = 'button',
   text,
   type,
-  url,
-  urlExternal
+  url
 }) {
   const buttonClassNames = cn(
     styles.button,
@@ -82,8 +80,8 @@ export default function Button({
   )
 
   if (url) {
-    return urlExternal ? (
-      <a
+    return (
+      <Link
         href={url}
         className={buttonClassNames}
         aria-label={text}
@@ -91,17 +89,6 @@ export default function Button({
         {...attributes}
       >
         <ButtonInner icon={icon} iconOnly={iconOnly} text={text} />
-      </a>
-    ) : (
-      <Link href={url} legacyBehavior>
-        <a
-          className={buttonClassNames}
-          aria-label={text}
-          style={style}
-          {...attributes}
-        >
-          <ButtonInner icon={icon} iconOnly={iconOnly} text={text} />
-        </a>
       </Link>
     )
   } else {
