@@ -55,7 +55,7 @@ export default function DisplayImage(props) {
    */
   function NextImage() {
     const imageProps = {
-      alt: props?.alt,
+      alt: props?.alt ?? 'No alt text provided.',
       id: props?.anchor,
       src: source,
       priority: props?.priority
