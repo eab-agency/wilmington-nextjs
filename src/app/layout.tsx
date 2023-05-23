@@ -4,7 +4,7 @@ import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
 import getMenuByLocation from '@/functions/wordpress/menus/getMenuByLocation'
-import { Cantarell } from '@next/font/google'
+import { Cantarell } from 'next/font/google'
 import React from 'react'
 
 const cantarell = Cantarell({
