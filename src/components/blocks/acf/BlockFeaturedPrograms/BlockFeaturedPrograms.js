@@ -33,7 +33,7 @@ const responsive = {
 }
 
 export default function BlockFeaturedPrograms({ listingData }) {
-  if (listingData.isError) return <div>{listingData.message}</div>
+  if (listingData.isError) return null
 
   const featuredPrograms = listingData.flat().concat()
   return (
