@@ -159,6 +159,7 @@ export default function displayBlock(block, index) {
       return <BlockTable {...attributes} key={index} />
     }
 
+    case 'core/pattern':
     case 'core/group': {
       const BlockGroup = dynamic(() =>
         import('@/components/blocks/core/BlockGroup')
@@ -176,15 +177,9 @@ export default function displayBlock(block, index) {
       return <BlockDefault content={attributes.content} key={index} />
     }
 
-    case 'core/pattern':
     case 'core/html': {
-      // const BlockHtml = dynamic(() => import('@/components/blocks/core/BlockHtml'))
-      // return <BlockHtml {...attributes} key={index} />
-      // WP does not store the HTML in the attributes, so we need to get it from the saveContent
-      // but we can't do that here, so we'll just return null for now
-      // I'm not sure if we want to allow raw HTML in the first place
-      // TODO: figure out if we want to allow raw HTML
-      return null
+      const BlockHtml = dynamic(() => import('@/components/blocks/core/BlockHtml'))
+      return <BlockHtml {...attributes} key={index} />
     }
 
     case 'core/more': {
