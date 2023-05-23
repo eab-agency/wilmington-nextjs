@@ -5,6 +5,7 @@
   background: tokens.$c-gray-200;
   @include mixins.sectionPadding(block);
   position: relative;
+  display: flex;
 
   @include mixins.extendedBackground('after', tokens.$c-lavender-800, 20);
   &::after {
@@ -14,8 +15,8 @@
   }
 
   & > div[class*='column'] {
-    flex: 1 1 auto;
-    max-width: 28rem;
+    // flex: 1 1 auto;
+    // max-width: 28rem;
 
     .wc-stat-card {
       display: flex;
