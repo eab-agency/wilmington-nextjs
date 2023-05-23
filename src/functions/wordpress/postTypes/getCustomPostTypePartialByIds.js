@@ -55,11 +55,12 @@ export default async function getCustomPostTypePartialById(
     posts.push(result ?? null)
   }
 
-  // Check if posts contains only null values
-  const allNulls = posts.every((post) => post === null)
-  if (allNulls) {
+  // Filter out null values from the posts array
+  const filteredPosts = posts.filter((post) => post !== null)
+
+  if (filteredPosts.length === 0) {
     return null
   }
 
-  return posts
+  return filteredPosts
 }
