@@ -4,9 +4,8 @@ import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
 import getMenuByLocation from '@/functions/wordpress/menus/getMenuByLocation'
+import { Cantarell } from '@next/font/google'
 import React from 'react'
-
-import { Cantarell } from 'next/font/google'
 
 const cantarell = Cantarell({
   weight: ['400', '700'],
@@ -33,10 +32,6 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <link
-        href="https://fonts.googleapis.com/css2?&family=Roboto+Slab&display=swap"
-        rel="stylesheet"
-      />
       <body>
         <div className={`${cantarell.className}`}>
           <Header menu={utilityNavMenuItems} />

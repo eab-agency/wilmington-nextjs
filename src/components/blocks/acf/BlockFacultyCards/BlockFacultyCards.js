@@ -19,7 +19,7 @@ export default function BlockFacultyCards({ facultyData }) {
 
   const facultyRestructured = facultyData.map((faculty) => {
     const { email, first, last, phone, position } =
-      faculty?.facultyFields?.faculty
+      faculty?.facultyFields?.faculty || {}
     return {
       email: email,
       first: first,
