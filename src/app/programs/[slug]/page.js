@@ -41,33 +41,31 @@ export default async function Page({ params }) {
 
   return (
     <Container>
-   
-        <article className="innerWrap">
-          <RichText tag="h1">{post?.title}</RichText>
+      <article className="innerWrap">
+        <RichText tag="h1">{post?.title}</RichText>
 
-          {/* Render jump links */}
-          {jumpLinks.length > 0 && (
-            <>
-              <h2>On this page</h2>
-              <ul>
-                {jumpLinks.map((block, index) => (
-                  <li key={index}>
-                    <a href={`#${block.attributes.anchor}`}>
-                      {block.attributes.content}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
+        {/* Render jump links */}
+        {jumpLinks.length > 0 && (
+          <>
+            <h2>On this page</h2>
+            <ul>
+              {jumpLinks.map((block, index) => (
+                <li key={index}>
+                  <a href={`#${block.attributes.anchor}`}>
+                    {block.attributes.content}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
 
-          <Blocks
-            blocks={post?.blocks}
-            departments={post?.departments?.nodes}
-            programOrgRelationship={post?.programOrgRelationship?.programorg}
-          />
-        </article>
-
+        <Blocks
+          blocks={post?.blocks}
+          departments={post?.departments?.nodes}
+          programOrgRelationship={post?.programOrgRelationship?.programorg}
+        />
+      </article>
     </Container>
   )
 }
