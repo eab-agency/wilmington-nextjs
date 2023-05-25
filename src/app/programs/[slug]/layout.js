@@ -11,10 +11,9 @@ const programLayout = async ({ children, params }) => {
     uri,
     title,
     departments,
-    programOrgRelationship
-  } = program
-
-  const { featuredImage = {} } = program || {}
+    programOrgRelationship,
+    featuredImage
+  } = program || {}
 
   const wpInitialState = {
     departments: departments?.nodes,
