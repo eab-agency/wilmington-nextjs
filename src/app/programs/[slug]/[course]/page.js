@@ -4,6 +4,7 @@ import RichText from '@/components/atoms/RichText/RichText'
 import Blocks from '@/components/molecules/Blocks'
 import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
+import { notFound } from 'next/navigation'
 
 const postType = 'program'
 
@@ -28,12 +29,16 @@ export async function generateStaticParams() {
 const programChildPage = async ({ params }) => {
   const id = `/programs/${params?.slug}/${params?.course}`
   const { props } = await getPostTypeStaticProps({ slug: id }, postType)
-  const { post } = props
+  const { post } = props || {}
 
   // Filter the blocks array for core/heading blocks with level attribute equal to 2
   const jumpLinks = post?.blocks?.filter(
     (block) => block.name === 'core/heading' && block.attributes.level === 2
   )
+
+  if (!post) {
+    notFound()
+  }
 
   return (
     <Container>
