@@ -186,6 +186,13 @@ export default function displayBlock(block, index) {
       return null
     }
 
+    case 'core/block': {
+      const Blocks = dynamic(() =>
+        import('@/components/molecules/Blocks')
+      )
+      return <Blocks blocks={innerBlocks} key={index} />
+    }
+
     case 'acf/home-hero': {
       const BlockHomeHero = dynamic(() =>
         import('@/components/blocks/acf/BlockHomeHero')
