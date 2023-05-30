@@ -1,9 +1,9 @@
-import { gql } from '@apollo/client'
 import defaultPageData from '@/lib/wordpress/_query-partials/defaultPageData'
-import globalPostFields from '@/lib/wordpress/_query-partials/globalPostFields'
-import featuredImagePostFields from '@/lib/wordpress/_query-partials/featuredImagePostFields'
 import facultyAcfFields from '@/lib/wordpress/_query-partials/facultyAcfFields'
+import featuredImagePostFields from '@/lib/wordpress/_query-partials/featuredImagePostFields'
+import globalPostFields from '@/lib/wordpress/_query-partials/globalPostFields'
 import seoPostFields from '@/lib/wordpress/_query-partials/seoPostFields'
+import { gql } from '@apollo/client'
 
 // Fragment: retrieve single page fields.
 export const singleFacultyFragment = gql`

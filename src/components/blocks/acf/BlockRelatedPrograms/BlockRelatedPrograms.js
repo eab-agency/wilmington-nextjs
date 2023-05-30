@@ -17,21 +17,27 @@ import ProgramCard from '@/components/molecules/ProgramCard'
 export default function BlockRelatedPrograms() {
   // flatten all the programs in the needToFlatten array
   const { departments } = useWordPressContext()
+
+  if (!departments) {
+    return null
+  }
+
   const flattenedPrograms = departments.reduce((acc, item) => {
     return [...acc, ...item.programs.nodes]
   }, [])
 
   return (
     <>
-      {flattenedPrograms.map((program, index) => (
-        <ProgramCard
-          key={index}
-          title={program.title}
-          excerpt={program.excerpt}
-          link={program.uri}
-          image={program.featuredImage?.node?.gatsbyImage}
-        />
-      ))}
+      {flattenedPrograms &&
+        flattenedPrograms.map((program, index) => (
+          <ProgramCard
+            key={index}
+            title={program.title}
+            excerpt={program.excerpt}
+            link={program.uri}
+            image={program.featuredImage?.node?.gatsbyImage}
+          />
+        ))}
       <div>
         <Link href="/programs">View All Programs</Link>
       </div>
