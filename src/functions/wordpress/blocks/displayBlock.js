@@ -245,6 +245,7 @@ export default function displayBlock(block, index) {
     }
 
     case 'acf/faculty-card': {
+      // extra data is being added to attributes.data.facultyData
       const BlockFacultyCard = dynamic(() =>
         import('@/components/blocks/acf/BlockFacultyCard')
       )
