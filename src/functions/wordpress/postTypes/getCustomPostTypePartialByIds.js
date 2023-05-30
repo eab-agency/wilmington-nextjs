@@ -32,6 +32,9 @@ export default async function getCustomPostTypePartialById(
 
   // Retrieve post type query.
   const query = postTypeQuery?.[postType] ?? null
+  if (!query) {
+    throw new Error(`No valid query found for postType: ${postType}`)
+  }
 
   // Loop over IDs and push results into array.
   const posts = []
