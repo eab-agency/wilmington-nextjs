@@ -4,7 +4,7 @@
 export default function DirectoryDropDown({ programDepartments }) {
   // const router = useRouter()
 
-  const handleDropdownChange = (e) => {
+  const handleDropdownChange = () => {
     //   const { value } = e.target
     //   router.push(value)
   }
