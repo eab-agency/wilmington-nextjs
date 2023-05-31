@@ -33,16 +33,16 @@ const DepartmentItem = ({ department }: { department: any }) => {
 }
 
 export default async function NotFound() {
-  const { posts }: { posts: any[] } = await getPostTypeArchive('department')
+  const { posts }: { posts?: any[] } = await getPostTypeArchive('department')
 
   return (
     <>
       <h1>Uh oh! This program could not be found</h1>
       <p>Here are some other programs you might be interested in:</p>
-      {posts.map((department, index) => (
-        <DepartmentItem department={department} key={index} />
-      ))}
-      {/* <DirectoryDropDown programDepartments={posts} /> */}
+      {posts &&
+        posts.map((department, index) => (
+          <DepartmentItem department={department} key={index} />
+        ))}
     </>
   )
 }
