@@ -32,7 +32,7 @@ export default async function getPostTypeStaticPaths(postType) {
   // Construct query based on post type.
   const query = gql`
     query GET_SLUGS {
-      ${pluralName}(first: 10) {
+      ${pluralName}(first: 1) {
         edges {
           node {
             ${pathField}
