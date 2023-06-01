@@ -27,27 +27,23 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }) {
-  console.log('🚀 ~ file: page.js:29 ~ Page ~ params:', params)
   const id = `/programs/${params?.slug}`
   const { props } = await getPostTypeStaticProps({ slug: id }, postType)
-  console.log('🚀 ~ file: page.js:31 ~ Page ~ props:', props)
+  console.log('🚀 ~ file: page.js:31 ~ Page ~ props?.post:', props?.post)
 
-  const { post } = props
-  console.log('🚀 ~ file: page.js:32 ~ Page ~ post:', post)
-
-  if (!post) {
+  if (!props?.post) {
     notFound()
   }
 
   // Filter the blocks array for core/heading blocks with level attribute equal to 2
-  const jumpLinks = post?.blocks?.filter(
+  const jumpLinks = props.post?.blocks?.filter(
     (block) => block.name === 'core/heading' && block.attributes.level === 2
   )
 
   return (
     <Container>
       <article className="innerWrap">
-        <RichText tag="h1">{post?.title}</RichText>
+        <RichText tag="h1">{props.post?.title}</RichText>
 
         {/* Render jump links */}
         {jumpLinks.length > 0 && (
@@ -66,9 +62,11 @@ export default async function Page({ params }) {
         )}
 
         <Blocks
-          blocks={post?.blocks}
-          departments={post?.departments?.nodes}
-          programOrgRelationship={post?.programOrgRelationship?.programorg}
+          blocks={props.post?.blocks}
+          departments={props.post?.departments?.nodes}
+          programOrgRelationship={
+            props.post?.programOrgRelationship?.programorg
+          }
         />
       </article>
     </Container>
