@@ -26,6 +26,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }) {
+  console.log('🚀 ~ file: page.js:29 ~ Page ~ params:', params)
   const id = `/programs/${params?.slug}`
   const { props } = await getPostTypeStaticProps({ slug: id }, postType)
   // eslint-disable-next-line no-console
