@@ -29,9 +29,9 @@ export async function generateStaticParams() {
 export default async function Page({ params }) {
   const id = `/programs/${params?.slug}`
   const { props } = await getPostTypeStaticProps({ slug: id }, postType)
-  console.log('🚀 ~ file: page.js:31 ~ Page ~ props?.post:', props?.post)
 
   if (!props?.post) {
+    console.log('🛑 no post.props for: ', id)
     notFound()
   }
 
