@@ -28,16 +28,20 @@ export async function generateStaticParams() {
 export default async function Page({ params }) {
   const id = `/programs/${params?.slug}`
   const { props } = await getPostTypeStaticProps({ slug: id }, postType)
-  const { post } = props || {}
+  // eslint-disable-next-line no-console
+  console.log('🚀 ~ file: page.js:31 ~ Page ~ props:', props)
+  const { post } = props
+  // eslint-disable-next-line no-console
+  console.log('🚀 ~ file: page.js:32 ~ Page ~ post:', post)
+
+  if (!post) {
+    notFound()
+  }
 
   // Filter the blocks array for core/heading blocks with level attribute equal to 2
   const jumpLinks = post?.blocks?.filter(
     (block) => block.name === 'core/heading' && block.attributes.level === 2
   )
-
-  if (!post) {
-    notFound()
-  }
 
   return (
     <Container>
