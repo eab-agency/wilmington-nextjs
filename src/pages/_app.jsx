@@ -4,7 +4,6 @@ import { useWpApollo } from '@/lib/wordpress/connector'
 import '@/styles/styles.scss'
 import { ApolloProvider } from '@apollo/client'
 import { Analytics } from '@vercel/analytics/react'
-import { SessionProvider as NextAuthProvider } from 'next-auth/react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import Custom500 from './500'
@@ -38,7 +37,6 @@ export default function App({ Component, pageProps }) {
     menus,
     algolia,
     preview,
-    session,
     ...passThruProps
   } = pageProps
 
@@ -67,21 +65,19 @@ export default function App({ Component, pageProps }) {
   })
 
   return (
-    <NextAuthProvider session={session}>
-      <ApolloProvider client={apolloClient}>
-        <WordPressProvider value={wp}>
-          {error ? (
-            <Custom500 errorMessage={errorMessage} post={componentProps.post} />
-          ) : (
-            <>
-              <ExitPreview preview={preview} />
-              <Component {...componentProps} />
-              <Analytics />
-            </>
-          )}
-        </WordPressProvider>
-      </ApolloProvider>
-    </NextAuthProvider>
+    <ApolloProvider client={apolloClient}>
+      <WordPressProvider value={wp}>
+        {error ? (
+          <Custom500 errorMessage={errorMessage} post={componentProps.post} />
+        ) : (
+          <>
+            <ExitPreview preview={preview} />
+            <Component {...componentProps} />
+            <Analytics />
+          </>
+        )}
+      </WordPressProvider>
+    </ApolloProvider>
   )
 }
 
