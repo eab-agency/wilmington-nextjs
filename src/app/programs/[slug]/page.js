@@ -2,29 +2,29 @@
 import Container from '@/components/atoms/Container'
 import RichText from '@/components/atoms/RichText'
 import Blocks from '@/components/molecules/Blocks'
-import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
+// import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
 import { notFound } from 'next/navigation'
 
 const postType = 'program'
 
-export async function generateStaticParams() {
-  const { paths } = await getPostTypeStaticPaths(postType)
+// export async function generateStaticParams() {
+//   const { paths } = await getPostTypeStaticPaths(postType)
 
-  const formattedPaths = paths.map((path) => {
-    const { slug } = path.params
-    const lastSlug = slug[slug.length - 1]
-    const secondLastSlug = slug[slug.length - 2]
+//   const formattedPaths = paths.map((path) => {
+//     const { slug } = path.params
+//     const lastSlug = slug[slug.length - 1]
+//     const secondLastSlug = slug[slug.length - 2]
 
-    if (slug.length === 2) {
-      return { slug: lastSlug }
-    } else {
-      return { slug: secondLastSlug, course: lastSlug }
-    }
-  })
+//     if (slug.length === 2) {
+//       return { slug: lastSlug }
+//     } else {
+//       return { slug: secondLastSlug, course: lastSlug }
+//     }
+//   })
 
-  return formattedPaths
-}
+//   return formattedPaths
+// }
 
 export default async function Page({ params }) {
   const id = `/programs/${params?.slug}`
