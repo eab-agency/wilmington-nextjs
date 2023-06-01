@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Container from '@/components/atoms/Container'
 import RichText from '@/components/atoms/RichText'
 import Blocks from '@/components/molecules/Blocks'
@@ -29,10 +30,9 @@ export default async function Page({ params }) {
   console.log('🚀 ~ file: page.js:29 ~ Page ~ params:', params)
   const id = `/programs/${params?.slug}`
   const { props } = await getPostTypeStaticProps({ slug: id }, postType)
-  // eslint-disable-next-line no-console
   console.log('🚀 ~ file: page.js:31 ~ Page ~ props:', props)
+
   const { post } = props
-  // eslint-disable-next-line no-console
   console.log('🚀 ~ file: page.js:32 ~ Page ~ post:', post)
 
   if (!post) {
