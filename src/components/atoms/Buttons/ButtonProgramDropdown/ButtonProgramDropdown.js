@@ -1,10 +1,12 @@
-import { navigate } from 'gatsby'
-import React from 'react'
+// 'use client'
+// import { useRouter } from 'next/router'
 
 export default function DirectoryDropDown({ programDepartments }) {
-  const handleDropdownChange = (e) => {
-    const { value } = e.target
-    navigate(value)
+  // const router = useRouter()
+
+  const handleDropdownChange = () => {
+    //   const { value } = e.target
+    //   router.push(value)
   }
 
   //   alphabetize the departments
