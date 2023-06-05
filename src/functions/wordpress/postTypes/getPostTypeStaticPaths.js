@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 import isHierarchicalPostType from '@/functions/wordpress/postTypes/isHierarchicalPostType'
 import isValidPostType from '@/functions/wordpress/postTypes/isValidPostType'
 import { postTypes } from '@/lib/wordpress/_config/postTypes'
@@ -14,6 +15,11 @@ export default async function getPostTypeStaticPaths(postType) {
     return null
   }
 
+  // return {
+  //   paths: ['/'],
+  //   fallback: 'blocking'
+  // }
+
   // Retrieve post type plural name.
   const pluralName = postTypes[postType].pluralName
 
@@ -26,7 +32,7 @@ export default async function getPostTypeStaticPaths(postType) {
   // Construct query based on post type.
   const query = gql`
     query GET_SLUGS {
-      ${pluralName}(first: 10000) {
+      ${pluralName}(first: 1000) {
         edges {
           node {
             ${pathField}

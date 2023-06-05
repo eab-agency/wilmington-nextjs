@@ -1,48 +1,49 @@
-import Breadcrumbs from '@/components/atoms/Breadcrumbs/Breadcrumbs'
+/* eslint-disable no-console */
 import Container from '@/components/atoms/Container'
 import Blocks from '@/components/molecules/Blocks'
-import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
+// import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
 import { notFound } from 'next/navigation'
 
 const postType = 'program'
 
-export async function generateStaticParams() {
-  const { paths } = await getPostTypeStaticPaths(postType)
+// export async function generateStaticParams() {
+//   const { paths } = await getPostTypeStaticPaths(postType)
 
-  const formattedPaths = paths.map((path) => {
-    const { slug } = path.params
-    const lastSlug = slug[slug.length - 1]
-    const secondLastSlug = slug[slug.length - 2]
+//   const formattedPaths = paths.map((path) => {
+//     const { slug } = path.params
+//     const lastSlug = slug[slug.length - 1]
+//     const secondLastSlug = slug[slug.length - 2]
 
-    if (slug.length === 2) {
-      return { slug: lastSlug }
-    } else {
-      return { slug: secondLastSlug, course: lastSlug }
-    }
-  })
+//     if (slug.length === 2) {
+//       return { slug: lastSlug }
+//     } else {
+//       return { slug: secondLastSlug, course: lastSlug }
+//     }
+//   })
 
-  return formattedPaths
-}
+//   return formattedPaths
+// }
 
 export default async function Page({ params }) {
   const id = `/programs/${params?.slug}`
   const { props } = await getPostTypeStaticProps({ slug: id }, postType)
-  const { post } = props || {}
 
-  // Filter the blocks array for core/heading blocks with level attribute equal to 2
-  const jumpLinks = post?.blocks?.filter(
-    (block) => block.name === 'core/heading' && block.attributes.level === 2
-  )
-
-  if (!post) {
+  if (!props?.post) {
+    console.log('🛑 no post.props for: ', id)
     notFound()
   }
 
+  // Filter the blocks array for core/heading blocks with level attribute equal to 2
+  const jumpLinks = props.post?.blocks?.filter(
+    (block) => block.name === 'core/heading' && block.attributes.level === 2
+  )
+
   return (
     <Container>
-      <div className="programContent">
-        {/* <RichText tag="h1">{post?.title}</RichText> */}
+      <article className="innerWrap">
+        <RichText tag="h1">{props.post?.title}</RichText>
+
         {/* Render jump links */}
         {jumpLinks.length > 0 && (
           <>
@@ -60,9 +61,11 @@ export default async function Page({ params }) {
         )}
         <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
         <Blocks
-          blocks={post?.blocks}
-          departments={post?.departments?.nodes}
-          programOrgRelationship={post?.programOrgRelationship?.programorg}
+          blocks={props.post?.blocks}
+          departments={props.post?.departments?.nodes}
+          programOrgRelationship={
+            props.post?.programOrgRelationship?.programorg
+          }
         />
       </div>
     </Container>
