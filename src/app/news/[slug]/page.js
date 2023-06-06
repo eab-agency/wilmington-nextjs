@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 import Container from '@/components/atoms/Container'
+import { RichText } from '@/components/atoms/RichText'
 import Blocks from '@/components/molecules/Blocks'
-// import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
 import { notFound } from 'next/navigation'
 
-const postType = 'program'
+const postType = 'news'
 
 // export async function generateStaticParams() {
 //   const { paths } = await getPostTypeStaticPaths(postType)
@@ -26,40 +26,26 @@ const postType = 'program'
 // }
 
 export default async function Page({ params }) {
-  const id = `/programs/${params?.slug}`
+  const id = `/news/${params?.slug}`
   const { props } = await getPostTypeStaticProps({ slug: id }, postType)
+  console.log('🚀 ~ file: page.js:31 ~ Page ~ props:', props)
 
   if (!props?.post) {
     console.log('🛑 no post.props for: ', id)
     notFound()
   }
 
-  // Filter the blocks array for core/heading blocks with level attribute equal to 2
-  const jumpLinks = props.post?.blocks?.filter(
-    (block) => block.name === 'core/heading' && block.attributes.level === 2
-  )
+  // // Filter the blocks array for core/heading blocks with level attribute equal to 2
+  // const jumpLinks = props.post?.blocks?.filter(
+  //   (block) => block.name === 'core/heading' && block.attributes.level === 2
+  // )
 
   return (
     <Container>
       <article className="innerWrap">
+        pum pum
         <RichText tag="h1">{props.post?.title}</RichText>
-
-        {/* Render jump links */}
-        {jumpLinks.length > 0 && (
-          <>
-            <h2>On this page</h2>
-            <ul>
-              {jumpLinks.map((block, index) => (
-                <li key={index}>
-                  <a href={`#${block.attributes.anchor}`}>
-                    {block.attributes.content}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-        <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
+        {/* <Breadcrumbs breadcrumbs={props.post.seo.breadcrumbs} /> */}
         <Blocks
           blocks={props.post?.blocks}
           departments={props.post?.departments?.nodes}

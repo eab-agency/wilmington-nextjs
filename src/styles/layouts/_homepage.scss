@@ -8,6 +8,7 @@
 // Intro Home
 
 .intro-home-page {
+  margin-top: clamp(-2rem, -2vw, -1rem);
   .intro-content {
     margin-top: -4rem;
     @include mixins.sectionPadding;
@@ -17,9 +18,9 @@
     position: relative;
   }
 
-  @media (min-width: tokens.$mq-800) {
-    margin-top: -4rem;
-  }
+  // @media (min-width: tokens.$mq-800) {
+  //   margin-top: clamp(-1rem, -2vw, 0rem);
+  // }
 
   @media (min-width: tokens.$mq-1200) {
     padding-right: 20rem;
