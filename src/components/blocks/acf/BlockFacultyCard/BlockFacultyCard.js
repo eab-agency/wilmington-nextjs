@@ -35,11 +35,11 @@ export default function BlockFaculty(props) {
         <FacultyCard
           key={index}
           title={fullTitle}
-          description={faculty.facultyFields.faculty.position}
+          description={faculty.facultyFields?.faculty?.position}
           image={faculty.featuredImage && faculty.featuredImage.node}
-          link={faculty.uri}
-          phone={faculty.facultyFields.faculty.phone}
-          email={faculty.facultyFields.faculty.email}
+          link={faculty?.uri}
+          phone={faculty?.facultyFields?.faculty?.phone}
+          email={faculty?.facultyFields?.faculty?.email}
         />
       )
     })
