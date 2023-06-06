@@ -4,7 +4,7 @@ import WordPressProvider from '@/components/common/WordPressProvider'
 import getProgramChildrenByID from '@/functions/wordpress/programs/getProgramChildrenById'
 
 const programLayout = async ({ children, params }) => {
-  const id = `/programs/${params?.slug}`
+  const id = `/program/${params?.slug}`
   const { program } = await getProgramChildrenByID(id)
   const {
     children: childPages,
