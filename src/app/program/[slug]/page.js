@@ -27,7 +27,7 @@ const postType = 'program'
 // }
 
 export default async function Page({ params }) {
-  const id = `/programs/${params?.slug}`
+  const id = `/program/${params?.slug}`
   const { props } = await getPostTypeStaticProps({ slug: id }, postType)
 
   if (!props?.post) {
