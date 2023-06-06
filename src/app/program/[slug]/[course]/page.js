@@ -26,7 +26,7 @@ const postType = 'program'
 // }
 
 const programChildPage = async ({ params }) => {
-  const id = `/programs/${params?.slug}/${params?.course}`
+  const id = `/program/${params?.slug}/${params?.course}`
   const { props } = await getPostTypeStaticProps({ slug: id }, postType)
   const { post } = props || {}
 

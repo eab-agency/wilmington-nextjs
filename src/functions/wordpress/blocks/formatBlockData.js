@@ -84,7 +84,7 @@ export default async function formatBlockData(blocks) {
         case 'acf/faculty-card': {
           // an await function to return the events posts that are in the attributes.data.events_listing array
           attributes.facultyData = await getCustomPostTypePartialByIds(
-            'facultyMember',
+            'faculty',
             attributes?.data?.faculty_member
           )
           break

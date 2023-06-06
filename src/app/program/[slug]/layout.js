@@ -4,7 +4,7 @@ import getProgramChildrenByID from '@/functions/wordpress/programs/getProgramChi
 import Link from 'next/link'
 
 const programLayout = async ({ children, params }) => {
-  const id = `/programs/${params?.slug}`
+  const id = `/program/${params?.slug}`
   const { program } = await getProgramChildrenByID(id)
   const {
     children: childPages,
