@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import Container from '@/components/atoms/Container'
+import RichText from '@/components/atoms/RichText/RichText'
 import Blocks from '@/components/molecules/Blocks'
-// import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
 import { notFound } from 'next/navigation'
 
@@ -25,24 +25,25 @@ const postType = 'program'
 //   return formattedPaths
 // }
 
-export default async function Page({ params }) {
-  const id = `/programs/${params?.slug}`
+const programChildPage = async ({ params }) => {
+  const id = `/program/${params?.slug}/${params?.course}`
   const { props } = await getPostTypeStaticProps({ slug: id }, postType)
-
-  if (!props?.post) {
-    console.log('🛑 no post.props for: ', id)
-    notFound()
-  }
+  const { post } = props || {}
 
   // Filter the blocks array for core/heading blocks with level attribute equal to 2
-  const jumpLinks = props.post?.blocks?.filter(
+  const jumpLinks = post?.blocks?.filter(
     (block) => block.name === 'core/heading' && block.attributes.level === 2
   )
 
+  if (!post) {
+    console.log('🛑 no post.props for child page: ', id)
+    notFound()
+  }
+
   return (
     <Container>
-      <article className="innerWrap">
-        <RichText tag="h1">{props.post?.title}</RichText>
+      <div className="programContent">
+        {/* <RichText tag="h1">{post?.title}</RichText> */}
 
         {/* Render jump links */}
         {jumpLinks.length > 0 && (
@@ -59,15 +60,15 @@ export default async function Page({ params }) {
             </ul>
           </>
         )}
+
         <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
-        <Blocks
-          blocks={props.post?.blocks}
-          departments={props.post?.departments?.nodes}
-          programOrgRelationship={
-            props.post?.programOrgRelationship?.programorg
-          }
-        />
-      </article>
+
+        <RichText tag="h2">{post?.title}</RichText>
+
+        <Blocks blocks={post?.blocks} />
+      </div>
     </Container>
   )
 }
+
+export default programChildPage

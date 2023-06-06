@@ -2,7 +2,11 @@
 import { useEffect, useState } from 'react'
 
 // only domains that you're allowed to load scripts from
-const WHITELISTED_DOMAINS = ['formstack.com', 'youvisit.com', 'wilmington.edu']
+const WHITELISTED_DOMAINS = [
+  'formstack.com',
+  'www.youvisit.com',
+  'wilmington.edu'
+]
 
 // function that creates a temporary iframe element, sets its srcdoc property to the HTML string, and waits for the load event to fire before modifying its contents. Once the load event fires, the function removes the iframe from the DOM, resolves with the modified HTML code as a string.
 function parseHtml(html) {

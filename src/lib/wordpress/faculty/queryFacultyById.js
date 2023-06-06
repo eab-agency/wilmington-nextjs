@@ -7,7 +7,7 @@ import { gql } from '@apollo/client'
 
 // Fragment: retrieve single page fields.
 export const singleFacultyFragment = gql`
-  fragment SingleFacultyFields on FacultyMember {
+  fragment SingleFacultyFields on Faculty {
      ${globalPostFields}
     blocksJSON
     excerpt
@@ -39,7 +39,7 @@ export const singleFacultyFragment = gql`
 `
 
 export const singleFacultyFragmentPartial = gql`
-  fragment SingleFacultyFieldsPartial on FacultyMember {
+  fragment SingleFacultyFieldsPartial on Faculty {
      ${globalPostFields}
     excerpt
     ${facultyAcfFields}
@@ -51,11 +51,11 @@ export const singleFacultyFragmentPartial = gql`
 const queryFacultyById = gql`
   query GET_FACULTY_BY_ID(
      $id: ID!
-    $idType: FacultyMemberIdType = SLUG
+    $idType: FacultyIdType = SLUG
     $imageSize: MediaItemSizeEnum = MEDIUM
   ) {
   ${defaultPageData}
-  facultyMember(id: $id, idType: $idType) {
+  faculty(id: $id, idType: $idType) {
     ...SingleFacultyFields
   }
 }
@@ -67,10 +67,10 @@ export default queryFacultyById
 export const queryFacultyPartialById = gql`
   query GET_FACULTY_PARTIAL_BY_ID(
     $id: ID!
-    $idType: FacultyMemberIdType = SLUG
+    $idType: FacultyIdType = SLUG
     $imageSize: MediaItemSizeEnum = MEDIUM
   ) {
-    facultyMember(id: $id, idType: $idType) {
+    faculty(id: $id, idType: $idType) {
       ...SingleFacultyFieldsPartial
     }
   }

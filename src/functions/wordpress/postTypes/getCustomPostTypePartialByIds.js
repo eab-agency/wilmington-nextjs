@@ -25,7 +25,7 @@ export default async function getCustomPostTypePartialById(
 
   // Define single post query based on post type.
   const postTypeQuery = {
-    facultyMember: queryFacultyPartialById,
+    faculty: queryFacultyPartialById,
     fAQ: queryFaqById,
     studentOrg: queryStudentOrgById
   }

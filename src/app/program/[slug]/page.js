@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import Container from '@/components/atoms/Container'
-import RichText from '@/components/atoms/RichText/RichText'
 import Blocks from '@/components/molecules/Blocks'
+// import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
 import { notFound } from 'next/navigation'
 
@@ -25,25 +25,24 @@ const postType = 'program'
 //   return formattedPaths
 // }
 
-const programChildPage = async ({ params }) => {
-  const id = `/programs/${params?.slug}/${params?.course}`
+export default async function Page({ params }) {
+  const id = `/program/${params?.slug}`
   const { props } = await getPostTypeStaticProps({ slug: id }, postType)
-  const { post } = props || {}
 
-  // Filter the blocks array for core/heading blocks with level attribute equal to 2
-  const jumpLinks = post?.blocks?.filter(
-    (block) => block.name === 'core/heading' && block.attributes.level === 2
-  )
-
-  if (!post) {
-    console.log('🛑 no post.props for child page: ', id)
+  if (!props?.post) {
+    console.log('🛑 no post.props for: ', id)
     notFound()
   }
 
+  // Filter the blocks array for core/heading blocks with level attribute equal to 2
+  const jumpLinks = props.post?.blocks?.filter(
+    (block) => block.name === 'core/heading' && block.attributes.level === 2
+  )
+
   return (
     <Container>
-      <div className="programContent">
-        {/* <RichText tag="h1">{post?.title}</RichText> */}
+      <article className="innerWrap">
+        <RichText tag="h1">{props.post?.title}</RichText>
 
         {/* Render jump links */}
         {jumpLinks.length > 0 && (
@@ -60,15 +59,15 @@ const programChildPage = async ({ params }) => {
             </ul>
           </>
         )}
-
         <Breadcrumbs breadcrumbs={post.seo.breadcrumbs} />
-
-        <RichText tag="h2">{post?.title}</RichText>
-
-        <Blocks blocks={post?.blocks} />
-      </div>
+        <Blocks
+          blocks={props.post?.blocks}
+          departments={props.post?.departments?.nodes}
+          programOrgRelationship={
+            props.post?.programOrgRelationship?.programorg
+          }
+        />
+      </article>
     </Container>
   )
 }
-
-export default programChildPage
