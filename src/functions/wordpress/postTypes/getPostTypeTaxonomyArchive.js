@@ -1,10 +1,10 @@
-import getMenus from '@/functions/wordpress/menus/getMenus'
 import formatDefaultSeoData from '@/functions/wordpress/seo/formatDefaultSeoData'
 import { postTypes } from '@/lib/wordpress/_config/postTypes'
 import { taxonomies } from '@/lib/wordpress/_config/taxonomies'
 import queryPostsByCategory from '@/lib/wordpress/categories/queryPostsByCategory'
 import { initializeWpApollo } from '@/lib/wordpress/connector'
 import queryPostsByTag from '@/lib/wordpress/tags/queryPostsByTag'
+import getAllMenus from '../menus/getMenus'
 
 /**
  * Retrieve post taxnomy archive.
@@ -71,14 +71,16 @@ export default async function getPostTypeTaxonomyArchive(
     order
   }
 
+  const menus = await getAllMenus()
+
   // Execute query.
   await apolloClient
     .query({ query, variables })
     .then((archive) => {
-      const { siteSeo, menus, ...archiveData } = archive.data
+      const { siteSeo, ...archiveData } = archive.data
 
       // Retrieve menus.
-      response.menus = getMenus(menus)
+      response.menus = menus
 
       // Retrieve default SEO data.
       response.defaultSeo = formatDefaultSeoData({ siteSeo })

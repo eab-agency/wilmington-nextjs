@@ -91,7 +91,7 @@ export default async function formatBlockData(blocks) {
         }
         case 'acf/faculty-spotlight': {
           attributes.facultyData = await getCustomPostTypePartialByIds(
-            'facultyMember',
+            'faculty',
             attributes?.data?.faculty_spotlight
           )
           break

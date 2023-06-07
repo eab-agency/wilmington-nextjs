@@ -53,12 +53,17 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  // const mainNavMenuItems = await getMenuByLocation('MAIN_NAV')
+  // const utilityNavMenuItems = await getMenuByLocation('UTILITY_NAV')
+  // const footerNavMenuItems = await getMenuByLocation('FOOTER_NAV')
+  // const resourceNavMenuItems = await getMenuByLocation('RESOURCE_NAV')
+
   // Initialize state for WordPress context provider.
   const [wp] = useState({
     algolia: {
       indexName: algolia?.indexName
     },
-    menus: menus,
+    menus,
     departments: passThruProps?.post?.departments?.nodes,
     studentOrganizations:
       passThruProps?.post?.programOrgRelationship?.programorg

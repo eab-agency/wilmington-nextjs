@@ -3,6 +3,7 @@ import formatDefaultSeoData from '@/functions/wordpress/seo/formatDefaultSeoData
 import archiveQuerySeo from '@/lib/wordpress/_config/archiveQuerySeo'
 import { postTypes } from '@/lib/wordpress/_config/postTypes'
 import { initializeWpApollo } from '@/lib/wordpress/connector'
+import getAllMenus from '../menus/getMenus'
 
 /**
  * Retrieve post archive.
@@ -57,6 +58,8 @@ export default async function getPostTypeArchive(
     order
   }
 
+  const menus = await getAllMenus()
+
   // Execute query.
   await apolloClient
     .query({ query, variables })
@@ -64,7 +67,7 @@ export default async function getPostTypeArchive(
       const { siteSeo, ...archiveData } = archive.data
 
       // Retrieve menus.
-      // response.menus = getMenus(menus)
+      response.menus = menus
 
       // Retrieve default SEO data.
       response.defaultSeo = formatDefaultSeoData({ siteSeo })
