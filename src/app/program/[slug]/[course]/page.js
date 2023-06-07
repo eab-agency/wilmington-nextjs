@@ -2,6 +2,7 @@
 import Container from '@/components/atoms/Container'
 import RichText from '@/components/atoms/RichText'
 import Blocks from '@/components/molecules/Blocks'
+import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
 import { notFound } from 'next/navigation'
 
