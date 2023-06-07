@@ -1,10 +1,10 @@
-import getMenuByLocation from '@/functions/wordpress/menus/getMenuByLocation'
 import formatDefaultSeoData from '@/functions/wordpress/seo/formatDefaultSeoData'
 import { postTypes } from '@/lib/wordpress/_config/postTypes'
 import { taxonomies } from '@/lib/wordpress/_config/taxonomies'
 import queryPostsByCategory from '@/lib/wordpress/categories/queryPostsByCategory'
 import { initializeWpApollo } from '@/lib/wordpress/connector'
 import queryPostsByTag from '@/lib/wordpress/tags/queryPostsByTag'
+import getAllMenus from '../menus/getMenus'
 
 /**
  * Retrieve post taxnomy archive.
@@ -71,10 +71,7 @@ export default async function getPostTypeTaxonomyArchive(
     order
   }
 
-  const mainNavMenuItems = await getMenuByLocation('MAIN_NAV')
-  const utilityNavMenuItems = await getMenuByLocation('UTILITY_NAV')
-  const footerNavMenuItems = await getMenuByLocation('FOOTER_NAV')
-  const resourceNavMenuItems = await getMenuByLocation('RESOURCE_NAV')
+  const menus = await getAllMenus()
 
   // Execute query.
   await apolloClient
@@ -83,12 +80,7 @@ export default async function getPostTypeTaxonomyArchive(
       const { siteSeo, ...archiveData } = archive.data
 
       // Retrieve menus.
-      response.menus = {
-        mainNav: mainNavMenuItems,
-        utilityNav: utilityNavMenuItems,
-        footerNav: footerNavMenuItems,
-        resourceNav: resourceNavMenuItems
-      }
+      response.menus = menus
 
       // Retrieve default SEO data.
       response.defaultSeo = formatDefaultSeoData({ siteSeo })
