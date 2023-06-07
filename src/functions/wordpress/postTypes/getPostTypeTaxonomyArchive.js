@@ -80,7 +80,7 @@ export default async function getPostTypeTaxonomyArchive(
   await apolloClient
     .query({ query, variables })
     .then((archive) => {
-      const { siteSeo, menus, ...archiveData } = archive.data
+      const { siteSeo, ...archiveData } = archive.data
 
       // Retrieve menus.
       response.menus = {
