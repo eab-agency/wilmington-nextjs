@@ -7,23 +7,23 @@ import { notFound } from 'next/navigation'
 
 const postType = 'program'
 
-// export async function generateStaticParams() {
-//   const { paths } = await getPostTypeStaticPaths(postType)
+export async function generateStaticParams() {
+  const { paths } = await getPostTypeStaticPaths(postType)
 
-//   const formattedPaths = paths.map((path) => {
-//     const { slug } = path.params
-//     const lastSlug = slug[slug.length - 1]
-//     const secondLastSlug = slug[slug.length - 2]
+  const formattedPaths = paths.map((path) => {
+    const { slug } = path.params
+    const lastSlug = slug[slug.length - 1]
+    const secondLastSlug = slug[slug.length - 2]
 
-//     if (slug.length === 2) {
-//       return { slug: lastSlug }
-//     } else {
-//       return { slug: secondLastSlug, course: lastSlug }
-//     }
-//   })
+    if (slug.length === 2) {
+      return { slug: lastSlug }
+    } else {
+      return { slug: secondLastSlug, course: lastSlug }
+    }
+  })
 
-//   return formattedPaths
-// }
+  return formattedPaths
+}
 
 const programChildPage = async ({ params }) => {
   const id = `/program/${params?.slug}/${params?.course}`
