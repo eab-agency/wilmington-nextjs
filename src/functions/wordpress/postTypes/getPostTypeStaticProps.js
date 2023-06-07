@@ -208,7 +208,6 @@ export default async function getPostTypeStaticProps(
       notFound: true
     }
   }
-
   // Merge in query results as Apollo state.
   return addApolloState(apolloClient, {
     props,

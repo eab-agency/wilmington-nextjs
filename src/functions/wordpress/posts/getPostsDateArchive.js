@@ -1,9 +1,9 @@
-import getMenus from '@/functions/wordpress/menus/getMenus'
 import formatDefaultSeoData from '@/functions/wordpress/seo/formatDefaultSeoData'
 import formatManualSeoMeta from '@/functions/wordpress/seo/formatManualSeoMeta'
 import { initializeWpApollo } from '@/lib/wordpress/connector'
 import queryPostsDateArchive from '@/lib/wordpress/posts/queryPostsDateArchive'
 import dayjs from 'dayjs'
+import getAllMenus from '../menus/getMenus'
 
 /**
  * Retrieve posts date-based archive.
@@ -61,15 +61,16 @@ export default async function getPostsDateArchive(
   if (exclude?.length) {
     variables.notIn = exclude
   }
+  const menus = await getAllMenus()
 
   // Execute query.
   await apolloClient
     .query({ query: queryPostsDateArchive, variables })
     .then((archive) => {
-      const { generalSettings, siteSeo, menus, ...archiveData } = archive.data
+      const { generalSettings, siteSeo, ...archiveData } = archive.data
 
       // Retrieve menus.
-      response.menus = getMenus(menus)
+      response.menus = menus
 
       // Retrieve default SEO data.
       response.defaultSeo = formatDefaultSeoData({
