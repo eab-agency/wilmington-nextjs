@@ -1,4 +1,4 @@
-import filterMenusByLocation from '@/functions/wordpress/menus/filterMenusByLocation'
+import { filterMenusByLocation } from '@/functions/wordpress/menus/filterMenusByLocation'
 import menuLocations from '@/lib/wordpress/_config/menuLocations'
 
 /**
