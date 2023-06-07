@@ -8,7 +8,8 @@
 
 html {
   line-height: tokens.$bodyLineHeight;
-  font-family: tokens.$f-bodyFont;
+  // font-family: tokens.$f-bodyFont;
+  // font-family: var(--font-roboto-slab);
 }
 
 // ================
@@ -67,6 +68,7 @@ h6 {
   margin: 0 0 1rem 0;
   font-style: normal;
   font-size: clamp(tokens.$fs-2xs, 1.5vw, tokens.$fs-xs);
+  font-family: tokens.$f-bodyFont;
 }
 
 :where(ul, ol) {
@@ -74,6 +76,7 @@ h6 {
   margin: 0 0 1rem 0;
   font-style: normal;
   font-size: clamp(tokens.$fs-2xs, 1.5vw, tokens.$fs-xs);
+  font-family: tokens.$f-bodyFont;
 
   &:not([class]) {
     margin-block: 2em;
@@ -121,4 +124,8 @@ small,
 .error,
 .val-header {
   color: tokens.$c-error;
+}
+
+.page-content {
+  font-family: tokens.$f-bodyFont;
 }
