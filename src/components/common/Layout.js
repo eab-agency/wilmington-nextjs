@@ -29,19 +29,19 @@ export default function Layout({ children, seo }) {
   return (
     <div className={`${cantarell.className}`}>
       <Meta seo={seo} />
-      <Header menu={menus?.UTILITY_NAV} />
+      <Header menu={menus?.utility_nav} />
       <div
         className={`${styles.mainContainer} ${
           isFrontPage ? 'front-page' : 'std-page'
         }`}
       >
-        <MainNavigation menuItems={menus?.MAIN_NAV} enableDropdown={true} />
+        <MainNavigation menuItems={menus?.main_nav} enableDropdown={true} />
         <main>{children}</main>
       </div>
       <Footer
         menus={{
-          FOOTER_NAV: menus?.FOOTER_NAV,
-          RESOURCE_NAV: menus?.RESOURCE_NAV
+          FOOTER_NAV: menus?.footer_nav,
+          RESOURCE_NAV: menus?.resource_nav
         }}
       />
     </div>

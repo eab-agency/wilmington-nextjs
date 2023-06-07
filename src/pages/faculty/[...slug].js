@@ -10,7 +10,7 @@ import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeS
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
 
 // Define route post type.
-const postType = 'facultyMember'
+const postType = 'faculty'
 
 // TODO: separate this out to its own component (maybe if using it more than once)
 function ProgramList({ programs }) {

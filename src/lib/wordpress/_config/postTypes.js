@@ -20,8 +20,8 @@ export const postTypes = {
     pluralName: 'faqs',
     route: 'faq'
   },
-  facultyMember: {
-    pluralName: 'faculty',
+  faculty: {
+    pluralName: 'facultyMember',
     route: 'faculty'
   },
   studentOrg: {

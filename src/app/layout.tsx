@@ -26,6 +26,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const mainNavMenuItems = await getMenuByLocation('MAIN_NAV')
+  // console.log('🚀 ~ file: layout.tsx:29 ~ mainNavMenuItems:', mainNavMenuItems)
   const utilityNavMenuItems = await getMenuByLocation('UTILITY_NAV')
   const footerNavMenuItems = await getMenuByLocation('FOOTER_NAV')
   const resourceNavMenuItems = await getMenuByLocation('RESOURCE_NAV')
