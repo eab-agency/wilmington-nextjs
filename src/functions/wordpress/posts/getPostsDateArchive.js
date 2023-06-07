@@ -1,4 +1,4 @@
-import getMenus from '@/functions/wordpress/menus/getMenus'
+import getMenuByLocation from '@/functions/wordpress/menus/getMenuByLocation'
 import formatDefaultSeoData from '@/functions/wordpress/seo/formatDefaultSeoData'
 import formatManualSeoMeta from '@/functions/wordpress/seo/formatManualSeoMeta'
 import { initializeWpApollo } from '@/lib/wordpress/connector'
@@ -61,15 +61,24 @@ export default async function getPostsDateArchive(
   if (exclude?.length) {
     variables.notIn = exclude
   }
+  const mainNavMenuItems = await getMenuByLocation('MAIN_NAV')
+  const utilityNavMenuItems = await getMenuByLocation('UTILITY_NAV')
+  const footerNavMenuItems = await getMenuByLocation('FOOTER_NAV')
+  const resourceNavMenuItems = await getMenuByLocation('RESOURCE_NAV')
 
   // Execute query.
   await apolloClient
     .query({ query: queryPostsDateArchive, variables })
     .then((archive) => {
-      const { generalSettings, siteSeo, menus, ...archiveData } = archive.data
+      const { generalSettings, siteSeo, ...archiveData } = archive.data
 
       // Retrieve menus.
-      response.menus = getMenus(menus)
+      response.menus = {
+        mainNav: mainNavMenuItems,
+        utilityNav: utilityNavMenuItems,
+        footerNav: footerNavMenuItems,
+        resourceNav: resourceNavMenuItems
+      }
 
       // Retrieve default SEO data.
       response.defaultSeo = formatDefaultSeoData({

@@ -8,6 +8,10 @@ import formatHeirarchialMenu from './formatHeirarchialMenu'
  * @return {object}           An object containing the requested locations as individual objects.
  */
 export default function filterMenusByLocation(menus, locations) {
+  // console.log(
+  //   '👯‍♂️👯‍♂️👯‍♂️👯‍♂️ ~ file: filterMenusByLocation.js:11 ~ filterMenusByLocation ~ menus:',
+  //   menus
+  // )
   const data = {}
 
   // Loop each menu location.

@@ -1,5 +1,5 @@
 import formatBlockData from '@/functions/wordpress/blocks/formatBlockData'
-import getMenus from '@/functions/wordpress/menus/getMenus'
+import getMenuByLocation from '@/functions/wordpress/menus/getMenuByLocation'
 import formatDefaultSeoData from '@/functions/wordpress/seo/formatDefaultSeoData'
 import {
   createWpApolloClient,
@@ -23,6 +23,7 @@ export default async function processPostTypeQuery(
   variables = {},
   preview = null
 ) {
+  // console.log('👩🏼‍💻👩🏼‍💻👩🏼‍💻👩🏼‍💻 ~ file: processPostTypeQuery.js:26 ~ query:', query)
   // Get/create Apollo instance.
   const apolloClient = preview
     ? createWpApolloClient(true)
@@ -44,14 +45,28 @@ export default async function processPostTypeQuery(
     }
   }
 
+  const mainNavMenuItems = await getMenuByLocation('MAIN_NAV')
+  const utilityNavMenuItems = await getMenuByLocation('UTILITY_NAV')
+  const footerNavMenuItems = await getMenuByLocation('FOOTER_NAV')
+  const resourceNavMenuItems = await getMenuByLocation('RESOURCE_NAV')
+
   // Execute query.
   response.post = await apolloClient
     .query({ query, variables })
     .then((res) => {
-      const { siteSeo, menus, ...postData } = res.data
+      // console.log(
+      //   '🚀 ~ file: processPostTypeQuery.js:52 ~ .then ~ res.data:',
+      //   res.data.menuItems
+      // )
+      const { siteSeo, ...postData } = res.data
 
       // Retrieve menus.
-      response.menus = getMenus(menus)
+      response.menus = {
+        mainNav: mainNavMenuItems,
+        utilityNav: utilityNavMenuItems,
+        footerNav: footerNavMenuItems,
+        resourceNav: resourceNavMenuItems
+      }
 
       // Retrieve default SEO data.
       response.defaultSeo = formatDefaultSeoData({ siteSeo })

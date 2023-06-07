@@ -1,3 +1,4 @@
+import getMenuByLocation from '@/functions/wordpress/menus/getMenuByLocation'
 import formatArchiveSeoData from '@/functions/wordpress/seo/formatArchiveSeoData'
 import formatDefaultSeoData from '@/functions/wordpress/seo/formatDefaultSeoData'
 import archiveQuerySeo from '@/lib/wordpress/_config/archiveQuerySeo'
@@ -57,6 +58,11 @@ export default async function getPostTypeArchive(
     order
   }
 
+  const mainNavMenuItems = await getMenuByLocation('MAIN_NAV')
+  const utilityNavMenuItems = await getMenuByLocation('UTILITY_NAV')
+  const footerNavMenuItems = await getMenuByLocation('FOOTER_NAV')
+  const resourceNavMenuItems = await getMenuByLocation('RESOURCE_NAV')
+
   // Execute query.
   await apolloClient
     .query({ query, variables })
@@ -64,7 +70,12 @@ export default async function getPostTypeArchive(
       const { siteSeo, ...archiveData } = archive.data
 
       // Retrieve menus.
-      // response.menus = getMenus(menus)
+      response.menus = {
+        mainNav: mainNavMenuItems,
+        utilityNav: utilityNavMenuItems,
+        footerNav: footerNavMenuItems,
+        resourceNav: resourceNavMenuItems
+      }
 
       // Retrieve default SEO data.
       response.defaultSeo = formatDefaultSeoData({ siteSeo })
