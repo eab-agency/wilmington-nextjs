@@ -29,6 +29,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+      </head>
       <body>
         <div
           className={`${cantarell.variable} ${robotoSlab.variable} page-content`}
