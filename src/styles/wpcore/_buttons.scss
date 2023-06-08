@@ -9,14 +9,16 @@ button {
     background-color: tokens.$c-darkGreen-700;
     color: tokens.$c-white;
 
-    i {
+    i,
+    &::after {
       background-color: tokens.$c-darkGreen-800;
     }
 
     &:hover {
       background-color: tokens.$c-darkGreen-800;
 
-      i {
+      i,
+      &::after {
         color: tokens.$c-white;
       }
     }
@@ -27,7 +29,8 @@ button {
     border-color: tokens.$c-darkGreen-800;
     color: tokens.$c-darkGreen-800;
 
-    i {
+    i,
+    &::after {
       background-color: transparent;
       color: tokens.$c-darkGreen-800;
     }
