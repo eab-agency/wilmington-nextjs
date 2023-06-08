@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
 import RichText from '@/components/atoms/RichText/RichText'
 import Blocks from '@/components/molecules/Blocks'

@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
-import RichText from '@/components/atoms/RichText'
 import Blocks from '@/components/molecules/Blocks'
 import getPostTypeStaticPaths from '@/functions/wordpress/postTypes/getPostTypeStaticPaths'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
@@ -43,8 +42,10 @@ export default async function Page({ params }) {
 
   return (
     <Container>
-      <article className="innerWrap">
-        <RichText tag="h1">{props.post?.title}</RichText>
+      <article className="innerWrap programContent">
+        <Breadcrumbs breadcrumbs={props.post.seo.breadcrumbs} />
+
+        {/* <RichText tag="h1">{props.post?.title}</RichText> */}
 
         {/* Render jump links */}
         {jumpLinks.length > 0 && (
@@ -61,7 +62,6 @@ export default async function Page({ params }) {
             </ul>
           </>
         )}
-        <Breadcrumbs breadcrumbs={props.post.seo.breadcrumbs} />
         <Blocks
           blocks={props.post?.blocks}
           departments={props.post?.departments?.nodes}
