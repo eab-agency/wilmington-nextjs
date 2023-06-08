@@ -3,7 +3,6 @@ import queryMenuItemsByLocation from '@/lib/wordpress/menus/queryMenuItemsByLoca
 import formatHeirarchialMenu from './formatHeirarchialMenu'
 
 /**
- * Retrieve data for Frontend-only route (i.e., page does not exist in WordPress).
  *
  * @param  {string} route Frontend route.
  * @return {object}       Object containing Apollo client instance and post data or error object.
