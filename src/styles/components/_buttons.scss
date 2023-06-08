@@ -1,0 +1,8 @@
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
+
+button[type='submit'],
+button[type='button'] {
+  @include mixins.button;
+}

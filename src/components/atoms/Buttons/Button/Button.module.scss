@@ -21,50 +21,10 @@
 }
 
 .button {
-  display: inline-flex;
-  position: relative;
-  align-items: center;
-  width: auto;
-  color: tokens.$c-copy;
-  background: tokens.$c-limeGreen-200;
-  text-decoration: none;
-  text-align: left;
-  text-transform: uppercase;
-  font-size: tokens.$fs-2xs;
-  cursor: pointer;
-  border: 1px solid color.adjust(tokens.$c-limeGreen-200, $lightness: -30%);
-  border-radius: tokens.$br-xs;
-  overflow: hidden;
-  box-shadow: 0 0.2em 0.3em rgba(tokens.$c-copy, 0.1);
-  transition: all 0.15s ease-in;
-  position: relative;
-  padding: calc(tokens.$p-s * 1.5) tokens.$p-m;
-  padding-right: 4em;
+  @include mixins.button;
 
   i {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: tokens.$c-limeGreen-700;
-    color: white;
-    position: absolute;
-    z-index: tokens.$layer-2;
-    right: 0;
-    top: 0;
-    width: 1.5em;
-    height: 100%;
-    font-size: 2em;
-    transition: all 0.15s ease-in;
-  }
-
-  &:hover {
-    background: tokens.$c-limeGreen-400;
-
-    i {
-      padding-left: 0.3em;
-      background: transparent;
-      color: tokens.$c-copy;
-    }
+    display: none;
   }
 
   &:focus {
@@ -88,21 +48,6 @@
     // @apply block w-full text-center;
   }
 
-  /* TYPES */
-
-  &.secondary {
-    background-color: tokens.$c-darkGreen-700;
-    color: tokens.$c-white;
-
-    i {
-      background-color: tokens.$c-darkGreen-800;
-    }
-
-    &.disabled {
-      // @apply opacity-50;
-    }
-  }
-
   &.regularlink {
     display: inline-flex;
     align-items: center;
@@ -114,8 +59,17 @@
     padding: 0;
     padding-right: 2em;
     border: none;
+    box-shadow: none;
+    transition: all 0.2s ease-in;
+
+    &::after {
+      display: none;
+    }
 
     i {
+      display: inline-flex;
+      align-items: flex-end;
+      justify-content: center;
       font-size: 1.3em;
       font-weight: 600;
       height: 1.2em;
@@ -125,15 +79,13 @@
         color: tokens.$c-teal-300;
       }
     }
-  }
 
-  &.disabled {
-    // @apply cursor-not-allowed;
+    &:hover {
+      text-decoration: none;
+      gap: 0.2em;
+      transition: all 0.2s ease-in;
+    }
   }
-
-  // &.text {
-  //   background-color: transparent;
-  // }
 
   /* STYLES */
   &.styleOutline {
