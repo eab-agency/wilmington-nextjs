@@ -69,6 +69,10 @@ h6 {
   font-style: normal;
   font-size: clamp(tokens.$fs-2xs, 1.5vw, tokens.$fs-xs);
   font-family: tokens.$f-bodyFont;
+
+  // strong {
+  //   font-weight: 700;
+  // }
 }
 
 :where(ul, ol) {
