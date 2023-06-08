@@ -30,6 +30,11 @@
       cursor: pointer;
       background: none;
       border: none;
+      box-shadow: none;
+
+      &::after {
+        display: none;
+      }
 
       i {
         display: flex;
