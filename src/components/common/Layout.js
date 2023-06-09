@@ -6,12 +6,7 @@ import Header from '@/components/organisms/Header'
 import useIsFrontPage from '@/functions/useIsFrontPage'
 import styles from './Layout.module.scss'
 
-import { Cantarell } from 'next/font/google'
-
-const cantarell = Cantarell({
-  weight: ['400', '700'],
-  subsets: ['latin']
-})
+import { cantarell, robotoSlab } from '@/app/fonts'
 
 /**
  * Render the Layout component.
@@ -27,7 +22,9 @@ export default function Layout({ children, seo }) {
   const isFrontPage = useIsFrontPage()
 
   return (
-    <div className={`${cantarell.className}`}>
+    <div
+      className={`${cantarell.variable} ${robotoSlab.variable} page-content`}
+    >
       <Meta seo={seo} />
       <Header menu={menus?.utility_nav} />
       <div

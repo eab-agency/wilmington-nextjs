@@ -56,6 +56,10 @@ section:where(.columns, .column) {
       padding: 8px;
       border: 5px solid blue;
     }
+
+    &[style*='100%'] {
+      max-width: 100%;
+    }
   }
 }
 

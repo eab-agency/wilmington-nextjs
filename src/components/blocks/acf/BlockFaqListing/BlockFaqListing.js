@@ -1,4 +1,3 @@
-import React from 'react'
 import Accordian from '@/components/molecules/Accordian'
 /**
  * FAQ Listing Block
@@ -12,7 +11,7 @@ import Accordian from '@/components/molecules/Accordian'
 export default function BlockFaqListing({ faqData }) {
   return (
     <>
-      <pre>FILE: BlockFaqListing.js</pre>
+      {/* <pre>FILE: BlockFaqListing.js</pre> */}
       {faqData.map(({ title, content, id }) => (
         <Accordian title={title} key={id}>
           <div dangerouslySetInnerHTML={{ __html: content }} />

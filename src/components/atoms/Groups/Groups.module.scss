@@ -17,6 +17,8 @@
 // }
 
 .groups {
+  position: relative;
+
   section {
     margin-bottom: 0;
     &:last-child {
@@ -49,3 +51,16 @@
     }
   }
 }
+
+// .drawerContainer {
+//   background: red;
+//   overflow: hidden;
+
+//   .wc-content-drawer-intro-g {
+//     background: blue;
+//   }
+
+//   &.drawerOpen {
+//     background: yellow;
+//   }
+// }
