@@ -1,7 +1,9 @@
 import ProgramTabs from '@/components/atoms/ProgramTabs'
+// import FeaturedImage from '@/components/common/FeaturedImage'
 import WordPressProvider from '@/components/common/WordPressProvider'
 import PageHero from '@/components/organisms/PageHero/PageHero'
 import getProgramChildrenByID from '@/functions/wordpress/programs/getProgramChildrenById'
+// import Link from 'next/link'
 
 const programLayout = async ({ children, params }) => {
   const id = `/program/${params?.slug}`
@@ -47,6 +49,7 @@ const programLayout = async ({ children, params }) => {
           imageMeta={featuredImage.node?.mediaDetails}
         />
         <ProgramTabs childPages={childPages} uri={uri} />
+
         <WordPressProvider value={wpInitialState}>{children}</WordPressProvider>
       </article>
     </div>
