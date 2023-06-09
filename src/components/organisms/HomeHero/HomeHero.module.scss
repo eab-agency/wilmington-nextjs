@@ -73,7 +73,7 @@
   }
 
   @media (min-width: tokens.$mq-1200) {
-    margin-block: clamp(tokens.$p-l, 10vw, tokens.$p-3xl);
+    margin-bottom: clamp(tokens.$p-l, 10vw, tokens.$p-3xl);
     span h1 {
       // width: 160%;
       position: relative;

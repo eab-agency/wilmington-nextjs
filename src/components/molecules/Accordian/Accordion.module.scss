@@ -1,23 +1,105 @@
-.accordionContent {
-  background-color: var(--color-bakcground);
-}
-
-.accordionButton {
-  background-color: transparent;
-  border-style: none;
-  color: var(--color-text);
-}
+@use 'sass:color';
+@use 'tokens';
 
 .accordionContainer {
-  border: 0.2rem solid var(--color-text);
-}
-.accordionTitle {
-  outline: none;
-  background-color: var(--color-bakcground);
+  border: 0px solid tokens.$c-gray-300;
+  border-top-width: 1px;
+  margin-bottom: 1em;
 }
 
-.accordionTitle > h2 {
-  margin: 0;
-  padding: 0;
-  outline: none;
+.accordionTitle {
+  & > h3 {
+    display: flex;
+    background: none;
+    color: tokens.$c-black;
+    margin: 0;
+    padding: clamp(tokens.$p-m, 5vw, tokens.$p-l);
+    font-size: clamp(tokens.$fs-xs, 1.5vw, tokens.$fs-s);
+    padding-right: 3em;
+
+    &::after {
+      display: none;
+    }
+
+    .accordionButton {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      background: none;
+      border: none;
+      box-shadow: none;
+
+      &::after {
+        display: none;
+      }
+
+      i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: tokens.$c-darkGreen-700;
+        font-size: 2.5em;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        border-left: 1px solid tokens.$c-gray-300;
+        transition: all 0.2s ease-in-out;
+
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          line-height: 1;
+          transform: rotate(90deg);
+        }
+      }
+
+      &:hover {
+        i {
+          background: tokens.$c-limeGreen-500;
+          color: tokens.$c-white;
+          // color: tokens.$c-limeGreen-700;
+          span {
+            top: 10%;
+          }
+        }
+
+        & + span {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &.open {
+    background: color.scale(tokens.$c-gray-300, $lightness: 60%);
+    border-top-color: tokens.$c-limeGreen-400;
+
+    & > h3 {
+      .accordionButton {
+        i {
+          span {
+            transform: rotate(-90deg);
+          }
+        }
+      }
+    }
+  }
 }
+
+.accordionContent {
+  padding-inline: clamp(tokens.$p-m, 5vw, tokens.$p-l);
+  padding-top: 1em;
+  padding-bottom: 2em;
+}
+
+// .accordionTitle > h2 {
+//   margin: 0;
+//   padding: 0;
+//   outline: none;
+// }

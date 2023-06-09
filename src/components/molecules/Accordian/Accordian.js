@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { MdOutlineChevronRight } from 'react-icons/md'
 import styles from './Accordion.module.scss'
 
 const Accordion = ({ title, children }) => {
@@ -9,20 +10,31 @@ const Accordion = ({ title, children }) => {
   const handleOpen = () => setIsOpen(!isOpen)
 
   return (
-    <section className={styles.accordionContainer}>
-      <div id="accordion-title" className={styles.accordionTitle}>
-        <h2>
+    <article className={styles.accordionContainer}>
+      <div
+        id="accordion-title"
+        className={`${styles.accordionTitle} ${
+          isOpen === true ? styles.open : ''
+        }`}
+      >
+        <h3>
           <button
             id="accordion-button"
             className={styles.accordionButton}
             aria-expanded={isOpen}
             onClick={handleOpen}
             aria-controls="accordion-content"
+            type="button"
+            tabIndex="0"
           >
-            <span>{isOpen ? '-' : '+'} </span>
-            {title}
+            <i>
+              <span>
+                <MdOutlineChevronRight />
+              </span>
+            </i>
           </button>
-        </h2>
+          <span>{title}</span>
+        </h3>
       </div>
       <div
         id="accordion-content"
@@ -33,7 +45,7 @@ const Accordion = ({ title, children }) => {
       >
         {children}
       </div>
-    </section>
+    </article>
   )
 }
 export default Accordion
