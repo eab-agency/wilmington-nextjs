@@ -45,8 +45,6 @@ export default async function Page({ params }) {
       <article className="innerWrap programContent">
         <Breadcrumbs breadcrumbs={props.post.seo.breadcrumbs} />
 
-        {/* <RichText tag="h1">{props.post?.title}</RichText> */}
-
         {/* Render jump links */}
         {jumpLinks.length > 0 && (
           <>

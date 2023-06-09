@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import Container from '@/components/atoms/Container'
-import { RichText } from '@/components/atoms/RichText'
+import RichText from '@/components/atoms/RichText'
 import Blocks from '@/components/molecules/Blocks'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
 import { notFound } from 'next/navigation'
