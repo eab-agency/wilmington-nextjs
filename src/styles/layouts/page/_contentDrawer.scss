@@ -1,17 +1,37 @@
 @use 'sass:color';
 @use 'tokens';
+@use 'mixins';
 
 .wc-content-drawer {
-  border-left: 1px solid tokens.$c-gray-400;
+  // border-left: 1px solid tokens.$c-gray-400;
   display: flex;
   flex-direction: column;
+  border-top: 1px solid tokens.$c-gray-300;
+  margin-bottom: clamp(tokens.$p-l, 4vw, tokens.$p-xxl);
+
+  @media (min-width: tokens.$mq-1000) {
+    padding-right: tokens.$pageOffset;
+  }
 
   .wc-content-drawer-intro-g {
-    padding: clamp(tokens.$p-m, 5vw, tokens.$p-l);
+    // padding-inline: clamp(tokens.$p-m, 5vw, tokens.$p-xxl);
+
+    &::after {
+      display: none;
+    }
 
     [class*='columns'] {
       gap: tokens.$p-xl;
       margin: 0;
+
+      &::after {
+        display: none;
+      }
+
+      & > [class*='column']:last-child {
+        @include mixins.sectionPadding(block);
+        padding-bottom: 0;
+      }
     }
   }
 
