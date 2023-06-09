@@ -5,6 +5,7 @@
   border: 0px solid tokens.$c-gray-300;
   border-top-width: 1px;
   margin-bottom: 1em;
+  // position: relative;
 }
 
 .accordionTitle {
@@ -16,6 +17,7 @@
     padding: clamp(tokens.$p-m, 5vw, tokens.$p-l);
     font-size: clamp(tokens.$fs-xs, 1.5vw, tokens.$fs-s);
     padding-right: 3em;
+    position: relative;
 
     &::after {
       display: none;
