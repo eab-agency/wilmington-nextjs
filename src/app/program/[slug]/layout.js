@@ -1,8 +1,8 @@
+import ProgramTabs from '@/components/atoms/ProgramTabs'
 import WordPressProvider from '@/components/common/WordPressProvider'
 import PageHero from '@/components/organisms/PageHero/PageHero'
 import getProgramChildrenByID from '@/functions/wordpress/programs/getProgramChildrenById'
 import Link from 'next/link'
-// import ProgramTabs from '@/components/atoms/ProgramTabs'
 
 const programLayout = async ({ children, params }) => {
   const id = `/program/${params?.slug}`
@@ -21,13 +21,15 @@ const programLayout = async ({ children, params }) => {
     studentOrganizations: programOrgRelationship?.programorg
   }
 
+  const altText = featuredImage.node?.altText || 'Image'
+
   return (
     <div>
       <article className="inner-wrap">
         <PageHero
           text={title}
           sourceUrl={featuredImage.node?.sourceUrl}
-          altText={featuredImage.node?.altText}
+          altText={altText}
           imageMeta={featuredImage.node?.mediaDetails}
         />
         {program && (
@@ -45,7 +47,7 @@ const programLayout = async ({ children, params }) => {
               })}
           </ul>
         )}
-        {/* <ProgramTabs childPages={childPages} uri={uri} /> */}
+        <ProgramTabs childPages={childPages} uri={uri} />
         <WordPressProvider value={wpInitialState}>{children}</WordPressProvider>
       </article>
     </div>
