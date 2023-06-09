@@ -34,7 +34,7 @@ export default async function RootLayout({
       </head>
       <body>
         <div
-          className={`${cantarell.variable} ${robotoSlab.variable} page-content`}
+          className={`${cantarell.variable} ${robotoSlab.variable} pageContainer`}
         >
           <Header menu={utilityNavMenuItems} />
           <div className={`${styles.mainContainer} std-page`}>
