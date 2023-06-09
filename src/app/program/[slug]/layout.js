@@ -37,24 +37,7 @@ const programLayout = async ({ children, params }) => {
             imageMeta={featuredImage.node?.mediaDetails}
           />
         )}
-        {program && (
-          <>
-            {/* <ul>
-              <li>
-                <Link href={uri}>{title}</Link>
-              </li>
-              {childPages &&
-                childPages.nodes.map((childPage) => {
-                  return (
-                    <li key={childPage.title}>
-                      <Link href={childPage.uri}>{childPage?.title}</Link>
-                    </li>
-                  )
-                })}
-            </ul> */}
-            <ProgramTabs childPages={childPages} uri={uri} />
-          </>
-        )}
+        {program && <ProgramTabs childPages={childPages} uri={uri} />}
         <WordPressProvider value={wpInitialState}>{children}</WordPressProvider>
       </article>
     </div>
