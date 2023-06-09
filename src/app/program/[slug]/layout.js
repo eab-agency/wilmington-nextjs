@@ -2,7 +2,7 @@ import ProgramTabs from '@/components/atoms/ProgramTabs'
 import WordPressProvider from '@/components/common/WordPressProvider'
 import PageHero from '@/components/organisms/PageHero/PageHero'
 import getProgramChildrenByID from '@/functions/wordpress/programs/getProgramChildrenById'
-import Link from 'next/link'
+// import Link from 'next/link'
 
 const programLayout = async ({ children, params }) => {
   const id = `/program/${params?.slug}`
@@ -21,33 +21,40 @@ const programLayout = async ({ children, params }) => {
     studentOrganizations: programOrgRelationship?.programorg
   }
 
-  const altText = featuredImage.node?.altText || 'Image'
+  let altText = 'Image'
+  if (featuredImage) {
+    altText = featuredImage.node?.altText || altText
+  }
 
   return (
     <div>
       <article className="inner-wrap">
-        <PageHero
-          text={title}
-          sourceUrl={featuredImage.node?.sourceUrl}
-          altText={altText}
-          imageMeta={featuredImage.node?.mediaDetails}
-        />
-        {program && (
-          <ul>
-            <li>
-              <Link href={uri}>{title}</Link>
-            </li>
-            {childPages &&
-              childPages.nodes.map((childPage) => {
-                return (
-                  <li key={childPage.title}>
-                    <Link href={childPage.uri}>{childPage?.title}</Link>
-                  </li>
-                )
-              })}
-          </ul>
+        {featuredImage && (
+          <PageHero
+            text={title}
+            sourceUrl={featuredImage.node?.sourceUrl}
+            altText={altText}
+            imageMeta={featuredImage.node?.mediaDetails}
+          />
         )}
-        <ProgramTabs childPages={childPages} uri={uri} />
+        {program && (
+          <>
+            {/* <ul>
+              <li>
+                <Link href={uri}>{title}</Link>
+              </li>
+              {childPages &&
+                childPages.nodes.map((childPage) => {
+                  return (
+                    <li key={childPage.title}>
+                      <Link href={childPage.uri}>{childPage?.title}</Link>
+                    </li>
+                  )
+                })}
+            </ul> */}
+            <ProgramTabs childPages={childPages} uri={uri} />
+          </>
+        )}
         <WordPressProvider value={wpInitialState}>{children}</WordPressProvider>
       </article>
     </div>
