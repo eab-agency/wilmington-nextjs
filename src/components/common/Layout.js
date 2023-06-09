@@ -23,7 +23,7 @@ export default function Layout({ children, seo }) {
 
   return (
     <div
-      className={`${cantarell.variable} ${robotoSlab.variable} page-content`}
+      className={`${cantarell.variable} ${robotoSlab.variable} pageContainer`}
     >
       <Meta seo={seo} />
       <Header menu={menus?.utility_nav} />
