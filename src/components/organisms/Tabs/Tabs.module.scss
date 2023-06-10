@@ -13,13 +13,14 @@
       justify-content: center;
       flex-direction: column;
       cursor: pointer;
-      width: 10em;
+      width: 11em;
       height: 7em;
       margin: 0 1rem 0;
       padding: 1em;
       border: 1px solid tokens.$c-gray-300;
       position: relative;
       font-size: tokens.$fs-3xs;
+      line-height: 1.1;
 
       &:last-child {
         margin: 0;
