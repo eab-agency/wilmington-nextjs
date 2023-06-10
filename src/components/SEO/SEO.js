@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Head from 'next/head'
 
 /**
  * Provide SEO related meta tags to a page.
@@ -13,7 +13,7 @@ import Head from 'next/head';
  */
 export default function SEO({ title, description, imageUrl, url }) {
   if (!title && !description && !imageUrl && !url) {
-    return null;
+    return null
   }
 
   return (
@@ -54,5 +54,5 @@ export default function SEO({ title, description, imageUrl, url }) {
         )}
       </Head>
     </>
-  );
+  )
 }

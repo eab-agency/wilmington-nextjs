@@ -16,7 +16,7 @@ export default function Component(props) {
   }
 
   const { title: siteTitle, description: siteDescription } =
-    props?.data?.generalSettings
+    props?.data?.generalSettings ?? {}
   const { title, content, featuredImage } = props?.data?.page ?? { title: '' }
 
   return (

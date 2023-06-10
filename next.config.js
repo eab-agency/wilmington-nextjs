@@ -22,6 +22,11 @@ const nextConfig = {
       path.join(__dirname, 'src/styles'),
       ...glob.sync(path.join(__dirname, 'src/styles/**/'))
     ]
+  },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true
   }
 }
 

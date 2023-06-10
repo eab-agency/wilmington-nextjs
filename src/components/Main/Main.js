@@ -1,8 +1,8 @@
-import classNames from 'classnames/bind';
-import * as SELECTORS from '../../constants/selectors';
-import styles from './Main.module.scss';
+import classNames from 'classnames/bind'
+import * as SELECTORS from '../../constants/selectors'
+import styles from './Main.module.scss'
 
-let cx = classNames.bind(styles);
+let cx = classNames.bind(styles)
 
 export default function Main({ children, className, ...props }) {
   return (
@@ -14,5 +14,5 @@ export default function Main({ children, className, ...props }) {
     >
       {children}
     </main>
-  );
+  )
 }
