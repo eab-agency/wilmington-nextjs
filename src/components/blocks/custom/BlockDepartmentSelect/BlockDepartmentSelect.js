@@ -1,12 +1,13 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
-import Link from '@/components/common/Link'
 import Image from '@/components/atoms/Image'
+import Link from '@/components/common/Link'
+import React, { useEffect, useState } from 'react'
 
 const DepartmentSingle = ({ department }) => {
   const {
     name,
+    uri,
     description,
     programs,
     departmentFields: { deptIcon, deptImage }
@@ -21,7 +22,9 @@ const DepartmentSingle = ({ department }) => {
           imageMeta={{ mediaDetails: deptImage.mediaDetails }}
         />
       )}
-      <h2>{name}</h2>
+      <h2>
+        <Link href={uri}>{name}</Link>
+      </h2>
       <p>{description}</p>
       {programs.length > 0 && (
         <>
@@ -70,9 +73,7 @@ const DepartmentSelector = ({
       defaultValue={'DEFAULT'}
       value={selectedDepartment}
     >
-      <option value="DEFAULT" disabled>
-        Chose a department
-      </option>
+      <option value="DEFAULT">Chose a department</option>
       <option value="ALL">Show All</option>
       {programDepartments.map((department) => (
         <option key={department.uri} value={department.name}>

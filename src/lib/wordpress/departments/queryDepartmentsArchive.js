@@ -34,7 +34,13 @@ export const archiveDepartmentFragment = gql`
 
 // Query partial: retrieve archive fields.
 export const archiveDepartments = `
-  departments(last: 1000) {
+  departments(
+    first: $first
+    last: $last
+    after: $after
+    before: $before
+    where: {orderby: {field: $orderBy, order: $order}}
+    ) {
     ${archivePageInfo}
     edges {
       node {

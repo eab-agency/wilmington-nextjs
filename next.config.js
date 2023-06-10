@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const fetchRedirects = require('./src/lib/wordpress/fetchRedirects')
+const { withFaust, getWpHostname } = require('@faustwp/core')
 
 const path = require('path')
 const glob = require('glob')
@@ -13,9 +14,7 @@ const nextConfig = {
   },
   reactStrictMode: true,
   images: {
-    domains: process.env.NEXT_PUBLIC_IMAGE_DOMAINS
-      ? process.env.NEXT_PUBLIC_IMAGE_DOMAINS.split(', ')
-      : '',
+    domains: [getWpHostname()],
     formats: ['image/avif', 'image/webp']
   },
   sassOptions: {
@@ -26,4 +25,4 @@ const nextConfig = {
   }
 }
 
-module.exports = nextConfig
+module.exports = withFaust(nextConfig)
