@@ -42,5 +42,11 @@ ul.breadcrumbs {
         }
       }
     }
+
+    &:last-child {
+      a {
+        font-weight: 800;
+      }
+    }
   }
 }
