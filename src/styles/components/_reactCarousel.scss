@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'tokens';
 @use 'tokens/config';
 
@@ -102,6 +103,29 @@
   transform-style: preserve-3d;
   backface-visibility: hidden;
   will-change: transform, transition;
+}
+
+button[type='submit'],
+button[type='button'] {
+  &.react-multiple-carousel__arrow {
+    position: absolute;
+    padding: 0.8rem 0.9rem;
+    background: color.adjust(tokens.$c-gray-500, $lightness: -20%);
+    border-color: transparent;
+    // border: none;
+
+    &::before {
+      border-color: white;
+    }
+
+    &::after {
+      display: none;
+    }
+
+    &:hover {
+      border-color: tokens.$c-limeGreen-600;
+    }
+  }
 }
 // .react-multiple-carousel__arrow {
 //   position: absolute;
@@ -247,6 +271,7 @@
 .rtl.react-multiple-carousel__arrow--right {
   right: auto;
   left: calc(4% + 1px);
+  position: absolute;
 }
 .rtl.react-multiple-carousel__arrow--right::before {
   content: '\e824';
