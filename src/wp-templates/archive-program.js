@@ -1,8 +1,8 @@
-import { gql } from "@apollo/client";
-import Link from "next/link";
+import { gql } from '@apollo/client'
+import Link from 'next/link'
 
 export default function ArchivePrograms(props) {
-  const { label, contentNodes } = props.data.nodeByUri;
+  const { label, contentNodes } = props.data.nodeByUri
 
   return (
     <>
@@ -16,12 +16,12 @@ export default function ArchivePrograms(props) {
         ))}
       </ul>
     </>
-  );
+  )
 }
 
 ArchivePrograms.variables = ({ uri }) => {
-  return { uri };
-};
+  return { uri }
+}
 
 ArchivePrograms.query = gql`
   query ProgramArchive($uri: String!) {
@@ -41,4 +41,4 @@ ArchivePrograms.query = gql`
       }
     }
   }
-`;
+`
