@@ -13,7 +13,7 @@
 
     @media (min-width: tokens.$mq-800) {
       padding-block: 0;
-      padding-inline: clamp(1em, 4vw, 4em);
+      padding-inline: clamp(1em, 3vw, 3em);
       border-bottom: none;
       border-right: 1px solid tokens.$c-gray-500;
     }
