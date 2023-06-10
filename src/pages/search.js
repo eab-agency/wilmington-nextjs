@@ -1,6 +1,6 @@
 import Container from '@/components/atoms/Container'
 import Layout from '@/components/common/Layout'
-import AlgoliaResults from '@/components/molecules/AlgoliaResults'
+// import AlgoliaResults from '@/components/molecules/AlgoliaResults'
 import getPagePropTypes from '@/functions/getPagePropTypes'
 import parseQuerystring from '@/functions/parseQuerystring'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
@@ -28,7 +28,7 @@ export default function Search({ post }) {
   return (
     <Layout seo={{ ...post?.seo }}>
       <Container>
-        <AlgoliaResults config={algoliaConfig} isSearch={true} />
+        {/* <AlgoliaResults config={algoliaConfig} isSearch={true} /> */}
       </Container>
     </Layout>
   )

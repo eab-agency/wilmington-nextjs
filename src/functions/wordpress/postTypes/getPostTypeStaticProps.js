@@ -23,7 +23,6 @@ export default async function getPostTypeStaticProps(
   preview = false,
   previewData = null
 ) {
-  console.log('🏴‍☠️🏴‍☠️🏴‍☠️ ~ file: getPostTypeStaticProps.js:26 ~ params:', params)
   // Set revalidate length (seconds).
   const revalidate = 60 * 0.5
 
@@ -60,11 +59,6 @@ export default async function getPostTypeStaticProps(
           revalidate
         }
   }
-
-  console.log(
-    '🚀 ~ file: getPostTypeStaticProps.js:65 ~ !Object.keys(params):',
-    Object.keys(params)
-  )
   /* -- Handle dynamic archive display. -- */
   if (!Object.keys(params).length) {
     const { apolloClient, ...archiveData } = await getPostTypeArchive(postType)
