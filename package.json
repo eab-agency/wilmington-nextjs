@@ -6,7 +6,6 @@
     "clean": "rimraf .next/",
     "dev": "npm run clean && next dev",
     "develop": "npm dev",
-    "build": "next build",
     "start": "next start",
     "format": "npx prettier  '**/*.{js,jsx,ts,tsx,md,html,css,scss,json,yml}' --write || true",
     "lint": "npm run format && npm run lint:js && npm run lint:css",
@@ -15,7 +14,7 @@
     "postbuild": "next-sitemap",
     "prepare": "husky install",
     "faust:dev": "faust dev",
-    "faust:build": "faust build",
+    "build": "faust build",
     "faust:generate": "faust generatePossibleTypes",
     "faust:start": "faust start"
   },
