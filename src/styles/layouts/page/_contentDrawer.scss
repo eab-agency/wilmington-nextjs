@@ -8,8 +8,9 @@
   flex-direction: column;
   border-top: 1px solid tokens.$c-gray-300;
   margin-bottom: clamp(tokens.$p-l, 4vw, tokens.$p-xxl);
+  padding-right: clamp(tokens.$p-l, 5vw, tokens.$p-xxl);
 
-  @media (min-width: tokens.$mq-1000) {
+  @media (min-width: tokens.$mq-1600) {
     padding-right: tokens.$pageOffset;
   }
 

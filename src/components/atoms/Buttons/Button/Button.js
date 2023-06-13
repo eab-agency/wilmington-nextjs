@@ -18,7 +18,12 @@ import styles from './Button.module.scss'
 export function ButtonInner({ icon, iconOnly, text }) {
   return (
     <>
-      {!iconOnly && <span className={styles.text}>{text}</span>}
+      {!iconOnly && (
+        <span
+          className={styles.text}
+          dangerouslySetInnerHTML={{ __html: text }}
+        />
+      )}
       {icon ? (
         <Icon icon={icon} title={text} ariaHidden={!!text} />
       ) : (
