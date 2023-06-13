@@ -19,16 +19,19 @@
 // export { default as BlockTable } from './core/BlockTable'
 
 import BlockButton from './core/BlockButton'
+import BlockButtons from './core/BlockButtons'
 import BlockGroup from './core/BlockGroup'
 import BlockParagraph from './core/BlockParagraph'
 
-export default {
+const blocks = {
   BlockButton,
-  BlockParagraph,
-  BlockGroup
+  BlockButtons,
+  BlockGroup,
+  BlockParagraph
 }
 
-// import('@/components/blocks/core/BlockButton')
+export default blocks
+
 // import('@/components/blocks/core/BlockButtons')
 // import('@/components/blocks/core/BlockCode')
 // import('@/components/blocks/core/BlockColumns')

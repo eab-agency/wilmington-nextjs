@@ -1,9 +1,7 @@
 import Groups from '@/components/atoms/Groups'
-import Blocks from '@/components/molecules/Blocks'
 import getStyles from '@/functions/wordpress/blocks/getStyles'
 import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
-import { flatListToHierarchical } from '@faustwp/core'
 
 /**
  * Groups Block
