@@ -1,6 +1,6 @@
-import Blocks from '@/components/molecules/Blocks'
 import ButtonGroup from '@/components/molecules/ButtonGroup'
-import React from 'react'
+import { gql } from '@apollo/client'
+import { WordPressBlocksViewer } from '@faustwp/blocks'
 
 /**
  * Buttons Block
@@ -9,24 +9,24 @@ import React from 'react'
  *
  */
 
-export default function BlockButtons({
-  anchor,
-  contentJustification,
-  innerBlocks,
-  orientation,
-  layout,
-  ...props
-}) {
+export default function BlockButtons(props) {
+  const attributes = props.attributes
+
   return (
-    <ButtonGroup
-      id={anchor}
-      orientation={orientation}
-      contentJustification={contentJustification}
-      layout={layout}
-    >
-      {!!innerBlocks?.length && (
-        <Blocks blocks={innerBlocks} where="BlockButtons" {...props} />
-      )}
+    <ButtonGroup id={attributes?.anchor} layout={attributes?.layout}>
+      <WordPressBlocksViewer blocks={props?.children ?? []} />
     </ButtonGroup>
   )
+}
+
+BlockButtons.fragments = {
+  entry: gql`
+    fragment CoreButtonsFragment on CoreButtons {
+      attributes {
+        anchor
+        layout
+      }
+    }
+  `,
+  key: `CoreButtonsFragment`
 }
