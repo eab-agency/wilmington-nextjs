@@ -1,52 +1,37 @@
-import { gql } from '@apollo/client'
-// import { Container, Footer, Header, Hero, Main, SEO } from '../components'
-import { ContentWrapper, Main, SEO } from '../components'
-// import * as MENUS from '../constants/menus'
 import Container from '@/components/atoms/Container'
 import Layout from '@/components/common/Layout'
-import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
+import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
+import { gql } from '@apollo/client'
+import { WordPressBlocksViewer } from '@faustwp/blocks'
+import { flatListToHierarchical } from '@faustwp/core'
+import { SEO } from '../components'
+import blocks from '../components/blocks'
 import FeaturedImage from '../components/common/FeaturedImage'
-import PageHero from '../components/organisms/PageHero/PageHero'
-import * as MENUS from '../constants/menus'
 import { BlogInfoFragment } from '../fragments/GeneralSettings'
+
 export default function Component(props) {
+  const { editorBlocks } = props.data.nodeByUri
+  const blocks = flatListToHierarchical(editorBlocks)
+
+  const { title: siteTitle, description: siteDescription } =
+    props?.data?.generalSettings ?? {}
+
   // Loading state for previews
   if (props.loading) {
     return <>Loading...</>
   }
 
-  const { title: siteTitle, description: siteDescription } =
-    props?.data?.generalSettings ?? {}
-  const { title, content, featuredImage } = props?.data?.page ?? { title: '' }
-
   return (
     <>
       <SEO title={siteTitle} description={siteDescription} />
-      {/* <Header
-        title={siteTitle}
-        description={siteDescription}
-        menuItems={primaryMenu}
-      /> */}
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
-            <Main>
-              <>
-                <PageHero
-                  sourceUrl={featuredImage?.node?.sourceUrl}
-                  alt={featuredImage?.node?.altText}
-                  imageMeta={featuredImage?.node?.mediaDetails}
-                  text={title}
-                />
-                <div className="page-content">
-                  <ContentWrapper content={content} />
-                </div>
-              </>
-            </Main>
+            <div className="page-content">
+              <WordPressBlocksViewer blocks={blocks} />
+            </div>
           </article>
         </Container>
-
-        {/* <Footer title={siteTitle} menuItems={footerMenu} /> */}
       </Layout>
     </>
   )
@@ -55,39 +40,36 @@ export default function Component(props) {
 Component.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
-  ${MainNavigation.fragments.entry}
-  query GetFrontPageData(
-    $databaseId: ID!
-    $asPreview: Boolean = false
-    $resourceLocation: MenuLocationEnum
-    $footerLocation: MenuLocationEnum
-  ) {
-    page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
-      title
-      content
+  ${getFragmentDataFromBlocks(blocks).entries}
+  query GetFrontPageData($uri: String!) {
+    nodeByUri(uri: $uri) {
+       ... on NodeWithTitle {
+        title
+      }
       ...FeaturedImageFragment
+       ... on NodeWithEditorBlocks {
+        # Get contentBlocks with flat=true and the nodeId and parentId
+        # so we can reconstruct them later using flatListToHierarchical()
+        editorBlocks {
+          cssClassNames
+          isDynamic
+          name
+          id: clientId
+          parentId: parentClientId
+          renderedHtml
+          # Get all block fragment keys and call them in the query
+          ${getFragmentDataFromBlocks(blocks).keys}
+        }
+      }
     }
     generalSettings {
       ...BlogInfoFragment
     }
-    footerMenuItems: menuItems(where: { location: $footerLocation }) {
-      nodes {
-        ...NavigationMenuItemFragment
-      }
-    }
-    resourceMenuItems: menuItems(where: { location: $resourceLocation }) {
-      nodes {
-        ...NavigationMenuItemFragment
-      }
-    }
   }
 `
 
-Component.variables = ({ databaseId }, ctx) => {
+Component.variables = ({ uri }, ctx) => {
   return {
-    databaseId,
-    resourceLocation: MENUS.RESOURCE_LOCATION,
-    footerLocation: MENUS.FOOTER_LOCATION,
-    asPreview: ctx?.asPreview
+    uri
   }
 }

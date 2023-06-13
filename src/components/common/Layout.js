@@ -1,5 +1,6 @@
 import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
 import Footer from '@/components/organisms/Footer'
+import Header from '@/components/organisms/Header'
 import useIsFrontPage from '@/functions/useIsFrontPage'
 import formatHeirarchialMenu from '@/functions/wordpress/menus/formatHeirarchialMenu'
 import { gql, useQuery } from '@apollo/client'
@@ -28,11 +29,12 @@ export default function Layout({ children }) {
   const isFrontPage = useIsFrontPage()
   const footerMenu = data?.footerMenuItems?.nodes ?? []
   const resourceMenu = data?.resourceMenuItems?.nodes ?? []
+  const utilityMenu = data?.utilityMenuItems?.nodes ?? []
   const mainMenu = formatHeirarchialMenu(data?.mainMenuItems?.nodes ?? [])
 
   return (
     <div className={`${cantarell.className}`}>
-      {/* <Header menu={menus?.utility_nav} /> */}
+      <Header menu={utilityMenu} />
       <div
         className={`${styles.mainContainer} ${
           isFrontPage ? 'front-page' : 'std-page'
@@ -57,6 +59,7 @@ Layout.query = gql`
     $resourceLocation: MenuLocationEnum
     $footerLocation: MenuLocationEnum
     $mainLocation: MenuLocationEnum
+    $utilityLocation: MenuLocationEnum
   ) {
     footerMenuItems: menuItems(where: { location: $footerLocation }) {
       nodes {
@@ -73,6 +76,14 @@ Layout.query = gql`
         ...NavigationMenuItemFragment
       }
     }
+    utilityMenuItems: menuItems(
+      where: { location: $utilityLocation }
+      first: 100
+    ) {
+      nodes {
+        ...NavigationMenuItemFragment
+      }
+    }
   }
 `
 
@@ -81,6 +92,7 @@ Layout.variables = (_, ctx) => {
     resourceLocation: MENUS.RESOURCE_LOCATION,
     footerLocation: MENUS.FOOTER_LOCATION,
     mainLocation: MENUS.PRIMARY_LOCATION,
+    utilityLocation: MENUS.UTILITY_LOCATION,
     asPreview: ctx?.asPreview
   }
 }

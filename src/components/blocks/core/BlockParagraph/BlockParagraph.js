@@ -1,8 +1,8 @@
 import RichText from '@/components/atoms/RichText'
 import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
+import getStyles from '@/functions/wordpress/blocks/getStyles'
+import { gql } from '@apollo/client'
 import cn from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
 
 /**
  * Paragraph Block
@@ -10,56 +10,68 @@ import React from 'react'
  * The core Paragraph block from Gutenberg.
  *
  */
-export default function BlockParagraph({
-  align,
-  anchor,
-  className,
-  content,
-  dropCap,
-  backgroundColor,
-  fontSize,
-  textColor,
-  style
-}) {
+export default function BlockParagraph(props) {
+  const attributes = props.attributes
+  const style = getStyles(attributes)
+
+  // const {
+  //     align,
+  //     anchor,
+  //     className,
+  //     content,
+  //     dropCap,
+  //     backgroundColor,
+  //     fontSize,
+  //     textColor,
+  //     style
+  //   } = attributes
+
   // convert style from string to object before passing to getBlockStyles, bc it comes in as a string
-  const paragraphStyle = getBlockStyles({
-    fontSize,
-    backgroundColor,
-    textColor,
-    style
-  })
+  // const paragraphStyle = getBlockStyles({
+  //   fontSize,
+  //   backgroundColor,
+  //   textColor,
+  //   style
+  // })
 
   const classes = {
-    [className]: true,
-    'text-center': align === 'center',
-    'text-left': !align || align === 'left',
-    'text-right': align === 'right',
-    [fontSize]: !!fontSize,
-    [textColor]: !!textColor,
-    [backgroundColor]: !!backgroundColor
+    [props.className]: true,
+    'text-center': props.align === 'center',
+    'text-left': !props.align || props.align === 'left',
+    'text-right': props.align === 'right',
+    [props.fontSize]: !!props.fontSize,
+    [props.textColor]: !!props.textColor,
+    [props.backgroundColor]: !!props.backgroundColor
   }
 
   return (
     <RichText
       className={cn(classes)}
-      id={anchor}
-      dropCap={dropCap}
-      style={paragraphStyle}
+      id={props.anchor}
+      dropCap={props.dropCap}
+      style={style}
       tag="p"
     >
-      {content}
+      {props.content}
     </RichText>
   )
 }
 
-BlockParagraph.propTypes = {
-  align: PropTypes.oneOf(['left', 'center', 'right']),
-  anchor: PropTypes.string,
-  className: PropTypes.string,
-  content: PropTypes.string.isRequired,
-  dropCap: PropTypes.bool,
-  backgroundColor: PropTypes.string,
-  fontSize: PropTypes.string,
-  textColor: PropTypes.string,
-  style: PropTypes.string
+BlockParagraph.fragments = {
+  entry: gql`
+    fragment CoreParagraphFragment on CoreParagraph {
+      attributes {
+        align
+        anchor
+        backgroundColor
+        className
+        content
+        dropCap
+        fontSize
+        style
+        textColor
+      }
+    }
+  `,
+  key: `CoreParagraphFragment`
 }
