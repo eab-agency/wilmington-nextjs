@@ -14,26 +14,6 @@ export default function BlockParagraph(props) {
   const attributes = props.attributes
   const style = getStyles(attributes)
 
-  // const {
-  //     align,
-  //     anchor,
-  //     className,
-  //     content,
-  //     dropCap,
-  //     backgroundColor,
-  //     fontSize,
-  //     textColor,
-  //     style
-  //   } = attributes
-
-  // convert style from string to object before passing to getBlockStyles, bc it comes in as a string
-  // const paragraphStyle = getBlockStyles({
-  //   fontSize,
-  //   backgroundColor,
-  //   textColor,
-  //   style
-  // })
-
   const classes = {
     [props.className]: true,
     'text-center': props.align === 'center',
