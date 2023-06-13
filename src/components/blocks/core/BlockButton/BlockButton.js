@@ -1,6 +1,7 @@
 import Button from '@/components/atoms/Buttons/Button'
 import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
-import React from 'react'
+import getStyles from '@/functions/wordpress/blocks/getStyles'
+import { gql } from '@apollo/client'
 
 /**
  * Button Block
@@ -22,50 +23,52 @@ import React from 'react'
  * @param  {number}  props.width              The width in percent.
  * @return {Element}                          The Button component.
  */
-export default function BlockButton({
-  backgroundColor,
-  textColor,
-  anchor,
-  borderRadius,
-  className,
-  linkTarget,
-  rel,
-  style,
-  text,
-  url,
-  width
-}) {
-  const buttonStyle = getBlockStyles({
-    width,
-    backgroundColor,
-    textColor,
-    style
-  })
-
-  // Add additional styles.
-  if (borderRadius) {
-    buttonStyle.borderRadius = `${borderRadius}px`
-  }
+export default function BlockButton(props) {
+  const attributes = props.attributes
+  const style = getStyles(attributes)
 
   // Extract button style.
-  const styleOutline = className && className.includes('is-style-outline')
+  const styleOutline =
+    attributes?.className && attributes?.className.includes('is-style-outline')
 
   // Remove styles from className.
-  className &&
-    className.replace('is-style-outline', '').replace('is-style-fill', '')
+  attributes?.className &&
+    attributes?.className
+      .replace('is-style-outline', '')
+      .replace('is-style-fill', '')
 
   return (
     <Button
       attributes={{
-        id: anchor || null,
-        target: linkTarget || null,
-        rel: rel || null
+        id: attributes?.anchor || null,
+        target: attributes?.linkTarget || null,
+        rel: attributes?.rel || null
       }}
-      className={className}
-      style={buttonStyle}
+      className={attributes?.className}
+      style={style}
       styleOutline={styleOutline}
-      text={text}
-      url={url}
+      text={attributes?.text}
+      url={attributes?.url}
     />
   )
+}
+
+BlockButton.fragments = {
+  entry: gql`
+    fragment CoreButtonFragment on CoreButton {
+      attributes {
+        backgroundColor
+        textColor
+        anchor
+        className
+        linkTarget
+        rel
+        style
+        text
+        url
+        width
+      }
+    }
+  `,
+  key: `CoreButtonFragment`
 }
