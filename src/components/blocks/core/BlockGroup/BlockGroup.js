@@ -40,9 +40,9 @@ export default function BlockGroup(props) {
 }
 
 BlockGroup.fragments = {
-  key: `CoreCodeGroupFragment`,
+  key: `CoreGroupFragment`,
   entry: gql`
-    fragment CoreCodeGroupFragment on CoreGroup {
+    fragment CoreGroupFragment on CoreGroup {
       attributes {
         align
         anchor

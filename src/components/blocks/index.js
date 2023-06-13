@@ -20,19 +20,20 @@
 
 import BlockButton from './core/BlockButton'
 import BlockButtons from './core/BlockButtons'
+import BlockCode from './core/BlockCode'
 import BlockGroup from './core/BlockGroup'
 import BlockParagraph from './core/BlockParagraph'
 
 const blocks = {
   BlockButton,
   BlockButtons,
+  BlockCode,
   BlockGroup,
   BlockParagraph
 }
 
 export default blocks
 
-// import('@/components/blocks/core/BlockButtons')
 // import('@/components/blocks/core/BlockCode')
 // import('@/components/blocks/core/BlockColumns')
 // import('@/components/blocks/core/BlockCover')
