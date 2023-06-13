@@ -1,6 +1,9 @@
 import Groups from '@/components/atoms/Groups'
 import Blocks from '@/components/molecules/Blocks'
-import PropTypes from 'prop-types'
+import getStyles from '@/functions/wordpress/blocks/getStyles'
+import { gql } from '@apollo/client'
+import { WordPressBlocksViewer } from '@faustwp/blocks'
+import { flatListToHierarchical } from '@faustwp/core'
 
 /**
  * Groups Block
@@ -19,49 +22,42 @@ import PropTypes from 'prop-types'
  * @param  {string}  props.verticalAlignment  Vertical alignment of groups.
  * @return {Element}                          The Groups component.
  */
-export default function BlockGroup({
-  anchor,
-  className,
-  innerBlocks,
-  style,
-  verticalAlignment,
-  isStackedOnMobile,
-  pageContext,
-  ...props
-}) {
+export default function BlockGroup(props) {
+  const attributes = props.attributes
+
+  const style = getStyles(props.attributes)
+
   return (
     <Groups
-      id={anchor}
-      className={className}
-      groupsCount={innerBlocks?.length}
+      id={attributes?.anchor}
+      className={attributes?.className}
+      groupsCount={props.children?.length}
       style={style}
-      verticalAlignment={verticalAlignment}
-      isStackedOnMobile={isStackedOnMobile}
+      verticalAlignment={attributes?.verticalAlignment}
+      isStackedOnMobile={attributes?.isStackedOnMobile}
     >
-      {!!innerBlocks?.length && (
-        <Blocks
-          blocks={innerBlocks}
-          where="BlockGroup"
-          pageContext={pageContext}
-          {...props}
-        />
-      )}
+      <WordPressBlocksViewer blocks={props?.children ?? []} />
     </Groups>
   )
 }
 
-BlockGroup.propTypes = {
-  anchor: PropTypes.string,
-  backgroundColorHex: PropTypes.string,
-  className: PropTypes.string,
-  gradientHex: PropTypes.string,
-  innerBlocks: PropTypes.arrayOf(
-    PropTypes.shape({
-      block: PropTypes.object,
-      index: PropTypes.number
-    })
-  ),
-  style: PropTypes.object,
-  textColorHex: PropTypes.string,
-  verticalAlignment: PropTypes.string
+BlockGroup.fragments = {
+  key: `CoreCodeGroupFragment`,
+  entry: gql`
+    fragment CoreCodeGroupFragment on CoreGroup {
+      attributes {
+        align
+        anchor
+        backgroundColor
+        borderColor
+        className
+        fontFamily
+        fontSize
+        gradient
+        style
+        tagName
+        textColor
+      }
+    }
+  `
 }
