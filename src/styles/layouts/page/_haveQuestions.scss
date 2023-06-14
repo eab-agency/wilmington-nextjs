@@ -14,8 +14,13 @@
 
     &::before {
       @include tokens.decoCircle;
+      content: '';
+      // background-image: url('/images/hand-drawn-circle.png');
+      // background-repeat: no-repeat;
+      // background-position: center;
       width: 150%;
-      height: 190%;
+      height: 250%;
+      z-index: -1;
     }
   }
 

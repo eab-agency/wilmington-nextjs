@@ -2,10 +2,6 @@
 
 button {
   &.is-style-arrow {
-    // default
-  }
-
-  &.is-style-arrow {
     background-color: tokens.$c-darkGreen-700;
     color: tokens.$c-white;
 

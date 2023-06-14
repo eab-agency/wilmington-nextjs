@@ -87,30 +87,6 @@ select {
   cursor: pointer;
 }
 
-// /* Target the arrow icon */
-// select::-ms-expand {
-//   display: none; /* Hide arrow icon in Microsoft Edge */
-// }
-// select::-webkit-contacts-auto-fill-button {
-//   display: none; /* Hide arrow icon in Safari */
-// }
-// select::-webkit-inner-spin-button {
-//   display: none; /* Hide arrow icon in Safari */
-// }
-// select::-webkit-outer-spin-button {
-//   display: none; /* Hide arrow icon in Safari */
-// }
-// select::after {
-//   content: "\25BC"; /* Add custom arrow icon */
-//   position: absolute;
-//   top: 50%;
-//   right: 10px;
-//   transform: translateY(-50%);
-//   color: tokens.$c-black; /* Change arrow color */
-//   pointer-events: none;
-//   font-size: 16px; /* Change arrow size */
-// }
-
 // Radio & Checkbox
 input[type='radio'],
 input[type='checkbox'] {
@@ -193,28 +169,26 @@ input[type='checkbox'] {
 
 // Wide Form Layout
 // These styles apply only when the "wide form" layout is in use
-// %wide-form,
-// .wide-form {
-//   @include tokens.wideFormFlex() {
-//     .question {
-//       margin: 0;
-//       padding: 1rem 0;
-//       border-top: 1px solid #ddd;
-//     }
+%wide-form,
+.wide-form {
+  .question {
+    margin: 0;
+    padding: 1rem 0;
+    border-top: 1px solid #ddd;
+  }
 
-//     .related-question {
-//       padding-top: 0;
-//       border-top: none;
-//     }
+  .related-question {
+    padding-top: 0;
+    border-top: none;
+  }
 
-//     .rte-q:first-of-type {
-//       .question {
-//         padding-top: 0;
-//         border-top: 0;
-//       }
-//     }
-//   }
-// }
+  .rte-q:first-of-type {
+    .question {
+      padding-top: 0;
+      border-top: 0;
+    }
+  }
+}
 
 // Checkbox & Radio Questions
 .type-multicheck,

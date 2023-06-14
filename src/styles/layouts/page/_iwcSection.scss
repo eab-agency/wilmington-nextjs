@@ -1,0 +1,10 @@
+@use 'tokens';
+@use 'mixins';
+
+.iwc-section {
+  & > div[class*='_column'] {
+    &:last-child {
+      @include mixins.sectionPadding;
+    }
+  }
+}
