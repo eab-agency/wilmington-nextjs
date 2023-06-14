@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const fetchRedirects = require('./src/lib/wordpress/fetchRedirects')
+const fetchRedirects = require('./lib/wordpress/fetchRedirects')
 const { withFaust, getWpHostname } = require('@faustwp/core')
 
 const path = require('path')
@@ -19,8 +19,8 @@ const nextConfig = {
   },
   sassOptions: {
     includePaths: [
-      path.join(__dirname, 'src/styles'),
-      ...glob.sync(path.join(__dirname, 'src/styles/**/'))
+      path.join(__dirname, 'styles'),
+      ...glob.sync(path.join(__dirname, 'styles/**/'))
     ]
   },
   eslint: {
