@@ -39,6 +39,10 @@
       }
     }
 
+    &:first-child .wc-stat-card {
+      padding-left: 0;
+    }
+
     &:last-child {
       .wc-stat-card {
         border: none;
