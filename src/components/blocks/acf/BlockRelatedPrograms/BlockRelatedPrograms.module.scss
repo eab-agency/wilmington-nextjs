@@ -13,18 +13,19 @@
     overflow: visible;
 
     ul {
+      width: 100%;
       padding-bottom: 2em;
+      padding-bottom: 6em;
 
       li {
-        filter: saturate(0);
         transition: all 0.3s ease-out;
-        padding: tokens.$p-l;
+        padding-inline: tokens.$p-m;
+        display: flex;
+        flex-direction: column;
       }
 
       &:hover {
         li {
-          filter: saturate(0);
-          transition: all 0.3s ease-out;
         }
       }
       li:hover {
