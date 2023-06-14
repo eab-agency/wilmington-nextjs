@@ -1,7 +1,7 @@
-import { gql } from "@apollo/client";
-import Image from "next/image";
-import getStyles from "../utils/getStyles.js";
-import getImageSizeProps from "../utils/getImageSizeProps";
+import { gql } from '@apollo/client'
+import Image from 'next/image'
+import getStyles from '../utils/getStyles.js'
+import getImageSizeProps from '../utils/getImageSizeProps'
 
 /**
  * See the CoreParagraph for details on how these blocks are structured.
@@ -9,9 +9,9 @@ import getImageSizeProps from "../utils/getImageSizeProps";
  * @see ./CoreParagraph.js
  */
 export default function CoreImage(props) {
-  const attributes = props.attributes;
-  const style = getStyles(attributes);
-  const imageSize = getImageSizeProps(attributes);
+  const attributes = props.attributes
+  const style = getStyles(attributes)
+  const imageSize = getImageSizeProps(attributes)
 
   return (
     <figure style={{ ...style }} className={attributes?.className}>
@@ -23,7 +23,7 @@ export default function CoreImage(props) {
       />
       {attributes?.caption && <figcaption>{attributes?.caption}</figcaption>}
     </figure>
-  );
+  )
 }
 
 CoreImage.fragments = {
@@ -41,5 +41,5 @@ CoreImage.fragments = {
       }
     }
   `,
-  key: `CoreImageFragment`,
-};
+  key: `CoreImageFragment`
+}

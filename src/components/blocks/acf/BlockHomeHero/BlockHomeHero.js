@@ -18,7 +18,6 @@ export default function BlockHomeHero({
   imageMeta
 }) {
   const { data } = other.attributes
-  console.log('🚀 ~ file: BlockHomeHero.js:22 ~ data:', data)
   const count = hero_primary_ctas
 
   const hero_ctas_array = []
