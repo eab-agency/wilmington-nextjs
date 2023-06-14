@@ -4,7 +4,7 @@
 import Button from '@/components/atoms/Buttons/Button'
 import MultiCarousel from '@/components/common/MultiCarousel'
 import { useWordPressContext } from '@/components/common/WordPressProvider'
-import ProgramCard from '@/components/molecules/ProgramCard'
+import RelatedProgramCard from '@/components/molecules/RelatedProgramCard'
 import styles from './BlockRelatedPrograms.module.scss'
 
 /**
@@ -31,35 +31,34 @@ export default function BlockRelatedPrograms() {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1200 },
-      items: 5
+      items: 4
     },
     desktop: {
-      breakpoint: { max: 1200, min: 1024 },
+      breakpoint: { max: 1200, min: 900 },
       items: 3
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      partialVisibilityGutter: 40
+      breakpoint: { max: 900, min: 464 },
+      items: 2
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1,
-      partialVisibilityGutter: 40
+      items: 1
     }
   }
 
   return (
     <section className={styles.relatedPrograms}>
       <div className={styles.programsContainer}>
+        <h2>Related Programs</h2>
         <MultiCarousel
           responsive={responsive}
-          showDots={true}
+          infinite
           containerClass={styles.programsCarousel}
         >
           {flattenedPrograms &&
             flattenedPrograms.map((program, index) => (
-              <ProgramCard
+              <RelatedProgramCard
                 key={index}
                 title={program.title}
                 excerpt={program.excerpt}
@@ -68,7 +67,13 @@ export default function BlockRelatedPrograms() {
               />
             ))}
         </MultiCarousel>
-        <Button url="/programs" text="View All Programs" />
+        <div className={styles.viewAllCta}>
+          <Button
+            url="/programs"
+            className="secondary"
+            text="View All Programs"
+          />
+        </div>
       </div>
     </section>
   )

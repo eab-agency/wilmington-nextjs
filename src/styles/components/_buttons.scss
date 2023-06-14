@@ -3,6 +3,16 @@
 @use 'utilities/mixins';
 
 button[type='submit'],
-button[type='button'] {
+button[type='button'],
+a.button {
   @include mixins.button;
+}
+
+a[class*='secondary'] {
+  background-color: tokens.$c-darkGreen-700;
+  color: tokens.$c-white;
+
+  &::after {
+    background: color.adjust(tokens.$c-darkGreen-700, $lightness: -10%);
+  }
 }
