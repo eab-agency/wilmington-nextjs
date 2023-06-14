@@ -4,6 +4,7 @@ import { FaustProvider } from '@faustwp/core'
 import '@faustwp/core/dist/css/toolbar.css'
 import { Analytics } from '@vercel/analytics/react'
 import { useRouter } from 'next/router'
+import React from 'react'
 import '../../faust.config'
 import blocks from '../components/blocks'
 

@@ -13,7 +13,7 @@
     "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && next lint",
     "postbuild": "next-sitemap",
     "prepare": "husky install",
-    "faust:dev": "faust dev",
+    "faust:dev": "npm run clean && faust dev",
     "build": "faust build",
     "faust:generate": "faust generatePossibleTypes",
     "faust:start": "faust start"

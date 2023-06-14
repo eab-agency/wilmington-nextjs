@@ -25,15 +25,18 @@ export default function BlockParagraph(props) {
   }
 
   return (
-    <RichText
-      className={cn(classes)}
-      id={props.anchor}
-      dropCap={props.dropCap}
-      style={style}
-      tag="p"
-    >
-      {props.content}
-    </RichText>
+    <>
+      <h3>paragraph</h3>
+      <RichText
+        className={cn(classes)}
+        id={props.anchor}
+        dropCap={props.dropCap}
+        style={style}
+        tag="p"
+      >
+        {props.content}
+      </RichText>
+    </>
   )
 }
 

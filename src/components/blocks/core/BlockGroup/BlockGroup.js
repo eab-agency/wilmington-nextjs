@@ -34,6 +34,7 @@ export default function BlockGroup(props) {
       verticalAlignment={attributes?.verticalAlignment}
       isStackedOnMobile={attributes?.isStackedOnMobile}
     >
+      <h2>groups for days</h2>
       <WordPressBlocksViewer blocks={props?.children ?? []} />
     </Groups>
   )

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 // Export the blocks.
 // export { default as BlockHomeHero } from './acf/BlockHomeHero'
 // export { default as BlockButton } from './core/BlockButton'
@@ -18,23 +19,27 @@
 // export { default as BlockSpacer } from './core/BlockSpacer'
 // export { default as BlockTable } from './core/BlockTable'
 
+// Core Blocks
 import BlockButton from './core/BlockButton'
 import BlockButtons from './core/BlockButtons'
 import BlockCode from './core/BlockCode'
+import BlockColumns from './core/BlockColumns'
 import BlockGroup from './core/BlockGroup'
 import BlockParagraph from './core/BlockParagraph'
 
-const blocks = {
+// ACF Blocks
+import ACFBlockHomeHero from './acf/BlockHomeHero'
+
+export default {
   BlockButton,
   BlockButtons,
   BlockCode,
+  BlockColumns,
   BlockGroup,
-  BlockParagraph
+  BlockParagraph,
+  ACFBlockHomeHero
 }
 
-export default blocks
-
-// import('@/components/blocks/core/BlockCode')
 // import('@/components/blocks/core/BlockColumns')
 // import('@/components/blocks/core/BlockCover')
 // import('@/components/blocks/core/BlockEmbed')
