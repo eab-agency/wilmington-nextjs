@@ -1,12 +1,12 @@
+import { SEO } from '@/components'
 import Container from '@/components/atoms/Container'
+import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
+import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
-import { SEO } from '../components'
-import FeaturedImage from '../components/common/FeaturedImage'
-import { BlogInfoFragment } from '../fragments/GeneralSettings'
 import blocks from '../wp-blocks'
 
 export default function Component(props) {

@@ -5,8 +5,8 @@ import '@faustwp/core/dist/css/toolbar.css'
 import { Analytics } from '@vercel/analytics/react'
 import { useRouter } from 'next/router'
 import React from 'react'
-import '../faust.config'
-import blocks from '../wp-blocks'
+import '../../faust.config'
+import blocks from '../../wp-blocks'
 
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter()

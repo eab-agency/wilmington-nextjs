@@ -1,14 +1,14 @@
 import { gql } from '@apollo/client'
 // import { Container, Footer, Header, Hero, Main, SEO } from '../components'
+import { Main, SEO } from '@/components'
 import Container from '@/components/atoms/Container'
+import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
+import PageHero from '@/components/organisms/PageHero/PageHero'
+import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
-import { Main, SEO } from '../components'
-import FeaturedImage from '../components/common/FeaturedImage'
-import PageHero from '../components/organisms/PageHero/PageHero'
-import { BlogInfoFragment } from '../fragments/GeneralSettings'
 import blocks from '../wp-blocks'
 
 export default function Component(props) {
@@ -18,7 +18,6 @@ export default function Component(props) {
   }
   const { editorBlocks, title, content, featuredImage } = props.data.page
   const blocks = flatListToHierarchical(editorBlocks)
-  console.log('🚀 ~ file: page.js:21 ~ Component ~ blocks:', blocks)
 
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings ?? {}
