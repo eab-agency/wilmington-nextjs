@@ -7,8 +7,8 @@ import { gql } from '@apollo/client'
 import { BlogInfoFragment } from '../fragments/GeneralSettings'
 
 export default function Component(props) {
-  const { title: siteTitle, description: siteDescription } =
-    props?.data?.generalSettings
+  const siteTitle = props?.data?.generalSettings?.title
+  const siteDescription = props?.data?.generalSettings?.description
   const primaryMenu = props?.data?.headerMenuItems?.nodes ?? []
   const footerMenu = props?.data?.footerMenuItems?.nodes ?? []
   const { name, posts } = props.data.nodeByUri

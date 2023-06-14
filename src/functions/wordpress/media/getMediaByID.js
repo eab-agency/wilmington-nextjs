@@ -8,7 +8,6 @@ import queryMediaAttributes from '@/lib/wordpress/media/queryMediaAttributes'
  * @return {object}    Object containing Apollo client instance and post data or error object.
  */
 export default async function getMediaByID(id) {
-  console.log('🚀 ~ file: getMediaByID.js:11 ~ getMediaByID ~ id:', id)
   // No ID? Bail...
   if (!id) {
     return {}

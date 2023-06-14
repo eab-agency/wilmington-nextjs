@@ -22,7 +22,6 @@ export default function Component(props) {
    * node hierarchy.
    */
   const blocks = flatListToHierarchical(editorBlocks)
-  console.log('🚀 ~ file: single.js:25 ~ Component ~ blocks:', blocks)
 
   return (
     <>
