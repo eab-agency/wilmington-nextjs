@@ -15,8 +15,8 @@
   }
 
   & > div[class*='column'] {
-    // flex: 1 1 auto;
-    // max-width: 28rem;
+    display: flex;
+    flex: 1 0 calc(clamp(1em, 4vw, 4em) - 33%);
 
     .wc-stat-card {
       display: flex;
@@ -37,6 +37,10 @@
         line-height: 1.2;
         margin: 0;
       }
+    }
+
+    &:first-child .wc-stat-card {
+      padding-left: 0;
     }
 
     &:last-child {

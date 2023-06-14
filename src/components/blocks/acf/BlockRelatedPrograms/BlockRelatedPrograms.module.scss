@@ -1,0 +1,60 @@
+@use 'tokens';
+@use 'utilities/mixins';
+
+.relatedPrograms {
+  position: relative;
+  @include mixins.sectionPadding('inline');
+
+  @media (min-width: tokens.$mq-800) {
+    padding: 0;
+  }
+
+  .programsContainer {
+    overflow: visible;
+
+    ul {
+      width: 100%;
+      padding-bottom: 2em;
+      padding-bottom: 6em;
+
+      li {
+        transition: all 0.3s ease-out;
+        padding-inline: tokens.$p-m;
+        display: flex;
+        flex-direction: column;
+      }
+
+      &:hover {
+        li {
+        }
+      }
+      li:hover {
+        filter: saturate(100%);
+      }
+    }
+  }
+}
+
+.viewAllCta {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  gap: 2rem;
+  width: calc(100% - 9rem);
+
+  a {
+    flex-shrink: 0;
+  }
+
+  @media (min-width: tokens.$mq-800) {
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      border-top: 1px solid tokens.$c-limeGreen-700;
+      flex-shrink: 1;
+      margin-right: 0;
+    }
+  }
+}
