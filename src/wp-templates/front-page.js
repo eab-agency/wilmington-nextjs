@@ -10,8 +10,12 @@ import FeaturedImage from '../components/common/FeaturedImage'
 import { BlogInfoFragment } from '../fragments/GeneralSettings'
 
 export default function Component(props) {
-  const { editorBlocks } = props.data.nodeByUri
-  const blocks = flatListToHierarchical(editorBlocks)
+  const { editorBlocks } = props.data.page
+  const blocks = flatListToHierarchical(editorBlocks, {
+    idKey: 'id',
+    parentKey: 'parentId',
+    childrenKey: 'innerBlocks'
+  })
 
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings ?? {}
@@ -37,29 +41,35 @@ export default function Component(props) {
   )
 }
 
+// console.log(
+//   '🚀 ~ file: front-page.js:62 keys:',
+//   getFragmentDataFromBlocks(blocks).entries,
+//   getFragmentDataFromBlocks(blocks).keys
+// )
 Component.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
-  query GetFrontPageData($uri: String!) {
-    nodeByUri(uri: $uri) {
+
+  query GetFrontPageData($databaseId: ID!
+    $asPreview: Boolean = false) {
+    page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
        ... on NodeWithTitle {
         title
       }
       ...FeaturedImageFragment
-       ... on NodeWithEditorBlocks {
-        # Get contentBlocks with flat=true and the nodeId and parentId
-        # so we can reconstruct them later using flatListToHierarchical()
+
         editorBlocks {
+          __typename
           cssClassNames
           isDynamic
           name
           id: clientId
           parentId: parentClientId
-          renderedHtml
+
+          # renderedHtml
           # Get all block fragment keys and call them in the query
           ${getFragmentDataFromBlocks(blocks).keys}
-        }
       }
     }
     generalSettings {
@@ -68,8 +78,9 @@ Component.query = gql`
   }
 `
 
-Component.variables = ({ uri }, ctx) => {
+Component.variables = ({ databaseId }, ctx) => {
   return {
-    uri
+    databaseId,
+    asPreview: ctx?.asPreview
   }
 }

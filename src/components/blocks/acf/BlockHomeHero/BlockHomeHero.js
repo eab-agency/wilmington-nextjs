@@ -1,4 +1,6 @@
 import Hero from '@/components/organisms/HomeHero'
+import { gql } from '@apollo/client'
+import { WordPressBlocksViewer } from '@faustwp/blocks'
 
 /**
  * Home Hero Block
@@ -15,6 +17,8 @@ export default function BlockHomeHero({
   data: { innerBlocks, hero_content, hero_primary_ctas, ...other },
   imageMeta
 }) {
+  const { data } = other.attributes
+  console.log('🚀 ~ file: BlockHomeHero.js:22 ~ data:', data)
   const count = hero_primary_ctas
 
   const hero_ctas_array = []
@@ -39,4 +43,15 @@ export default function BlockHomeHero({
       innerBlocks={innerBlocks}
     />
   )
+}
+
+BlockHomeHero.fragments = {
+  entry: gql`
+    fragment ACFHomeHeroFragment on AcfHomeHero {
+      attributes {
+        data
+      }
+    }
+  `,
+  key: `ACFHomeHeroFragment`
 }

@@ -26,6 +26,7 @@ export default function Groups({
   verticalAlignment,
   isStackedOnMobile
 }) {
+  console.log('🚀 ~ file: Groups.js:29 ~ children:', children)
   // const groupStyles = getBlockStyles({ style })
 
   return (
@@ -42,6 +43,7 @@ export default function Groups({
         )}
         // style={groupStyles}
       >
+        <h3>groups children</h3>
         {children}
       </div>
     </>
