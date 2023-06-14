@@ -42,8 +42,11 @@ Component.query = gql`
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
 
-  query GetFrontPageData($databaseId: ID!
-    $asPreview: Boolean = false) {
+  query GetFrontPageData(
+    $databaseId: ID!
+    $asPreview: Boolean = false
+    $imageSize: MediaItemSizeEnum = THUMBNAIL
+) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
        ... on NodeWithTitle {
         title

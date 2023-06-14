@@ -8,6 +8,14 @@ interface AcfEventsListingProps {
   }
 }
 
+type Event = {
+  id: string
+  title: string
+  date: string
+  link: string
+  uri: string
+}
+
 const AcfEventsListing = (props: AcfEventsListingProps) => {
   const attributes = props.attributes
   const { listing_title, listing_display, events_listing, event_category } =
@@ -23,11 +31,13 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   const posts: any[] = []
 
   if (idsData && idsData.events.nodes.length > 0) {
-    idsData.events.nodes.forEach((event) => {
+    idsData.events.nodes.forEach((event: Event) => {
       posts.push({
         id: event.id,
         title: event.title,
-        date: event.date
+        date: event.date,
+        link: event.link,
+        uri: event.uri
       })
     })
   }
@@ -39,11 +49,13 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   } = useQuery(GET_LATEST_EVENTS)
 
   if (latestData && latestData.events.length > 0) {
-    latestData.events.forEach((event) => {
+    latestData.events.forEach((event: Event) => {
       posts.push({
         id: event.id,
         title: event.title,
-        date: event.date
+        date: event.date,
+        link: event.link,
+        uri: event.uri
       })
     })
   }

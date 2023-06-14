@@ -17,21 +17,21 @@ export default function displayBlock(block, index) {
   // prettier-ignore
   switch (name) {
     /* -- CORE BLOCKS -- */
-    case 'core/button': {
-      const BlockButton = dynamic(() =>
-        import('@/components/blocks/core/BlockButton')
-      )
-      return <BlockButton {...attributes} key={index} />
-    }
+    // case 'core/button': {
+    //   const BlockButton = dynamic(() =>
+    //     import('@/components/blocks/core/BlockButton')
+    //   )
+    //   return <BlockButton {...attributes} key={index} />
+    // }
 
-    case 'core/buttons': {
-      const BlockButtons = dynamic(() =>
-        import('@/components/blocks/core/BlockButtons')
-      )
-      return (
-        <BlockButtons {...attributes} innerBlocks={innerBlocks} key={index} />
-      )
-    }
+    // case 'core/buttons': {
+    //   const BlockButtons = dynamic(() =>
+    //     import('@/components/blocks/core/BlockButtons')
+    //   )
+    //   return (
+    //     <BlockButtons {...attributes} innerBlocks={innerBlocks} key={index} />
+    //   )
+    // }
 
     case 'core/code':
     case 'core/preformatted': {
@@ -41,14 +41,14 @@ export default function displayBlock(block, index) {
       return <BlockCode {...attributes} key={index} />
     }
 
-    case 'core/columns': {
-      const BlockColumns = dynamic(() =>
-        import('@/components/blocks/core/BlockColumns')
-      )
-      return (
-        <BlockColumns {...attributes} innerBlocks={innerBlocks} key={index} />
-      )
-    }
+    // case 'core/columns': {
+    //   const BlockColumns = dynamic(() =>
+    //     import('@/components/blocks/core/BlockColumns')
+    //   )
+    //   return (
+    //     <BlockColumns {...attributes} innerBlocks={innerBlocks} key={index} />
+    //   )
+    // }
 
     case 'core/cover': {
       const BlockCover = dynamic(() =>
@@ -87,12 +87,12 @@ export default function displayBlock(block, index) {
       return <BlockImage {...attributes} key={index} />
     }
 
-    case 'core/list': {
-      const BlockList = dynamic(() =>
-        import('@/components/blocks/core/BlockList')
-      )
-      return <BlockList innerBlocks={innerBlocks} {...attributes} key={index} />
-    }
+    // case 'core/list': {
+    //   const BlockList = dynamic(() =>
+    //     import('@/components/blocks/core/BlockList')
+    //   )
+    //   return <BlockList innerBlocks={innerBlocks} {...attributes} key={index} />
+    // }
 
     case 'core/list-item': {
       const BlockListItem = dynamic(() =>
@@ -110,19 +110,13 @@ export default function displayBlock(block, index) {
       )
     }
 
-    case 'core/paragraph': {
-      const CoreParagraph = dynamic(() =>
-        import('@/components/blocks/core/CoreParagraph')
-      )
-      return <CoreParagraph {...attributes} key={index} />
-    }
 
-    case 'core/verse': {
-      const BlockVerse = dynamic(() =>
-        import('@/components/blocks/core/BlockVerse')
-      )
-      return <BlockVerse {...attributes} key={index} />
-    }
+    // case 'core/verse': {
+    //   const BlockVerse = dynamic(() =>
+    //     import('@/components/blocks/core/BlockVerse')
+    //   )
+    //   return <BlockVerse {...attributes} key={index} />
+    // }
 
     case 'core/pullquote': {
       const BlockPullQuote = dynamic(() =>
@@ -131,12 +125,12 @@ export default function displayBlock(block, index) {
       return <BlockPullQuote {...attributes} key={index} />
     }
 
-    case 'core/quote': {
-      const BlockQuote = dynamic(() =>
-        import('@/components/blocks/core/BlockQuote')
-      )
-      return <BlockQuote {...attributes} key={index} />
-    }
+    // case 'core/quote': {
+    //   const BlockQuote = dynamic(() =>
+    //     import('@/components/blocks/core/BlockQuote')
+    //   )
+    //   return <BlockQuote {...attributes} key={index} />
+    // }
 
     case 'core/separator': {
       const BlockSeparator = dynamic(() =>
@@ -159,15 +153,15 @@ export default function displayBlock(block, index) {
       return <BlockTable {...attributes} key={index} />
     }
 
-    case 'core/pattern':
-    case 'core/group': {
-      const BlockGroup = dynamic(() =>
-        import('@/components/blocks/core/BlockGroup')
-      )
-      return (
-        <BlockGroup {...attributes} innerBlocks={innerBlocks} key={index} />
-      )
-    }
+    // case 'core/pattern':
+    // case 'core/group': {
+    //   const BlockGroup = dynamic(() =>
+    //     import('@/components/blocks/core/BlockGroup')
+    //   )
+    //   return (
+    //     <BlockGroup {...attributes} innerBlocks={innerBlocks} key={index} />
+    //   )
+    // }
 
     // this takes care of the orginal default block
     case 'core/freeform': {
@@ -209,12 +203,12 @@ export default function displayBlock(block, index) {
       return <BlockNewsListing {...attributes} key={index} />
     }
 
-    case 'acf/events-listing': {
-      const BlockEventsListing = dynamic(() =>
-        import('@/components/blocks/acf/BlockEventsListing')
-      )
-      return <BlockEventsListing {...attributes} key={index} />
-    }
+    // case 'acf/events-listing': {
+    //   const BlockEventsListing = dynamic(() =>
+    //     import('@/components/blocks/acf/BlockEventsListing')
+    //   )
+    //   return <BlockEventsListing {...attributes} key={index} />
+    // }
 
     case 'acf/featured-dept': {
       const BlockFeaturedPrograms = dynamic(() =>
@@ -259,19 +253,19 @@ export default function displayBlock(block, index) {
       return <BlockFacultyCards {...attributes} key={index} />
     }
 
-    case 'acf/athlete-card': {
-      const BlockAthleteCard = dynamic(() =>
-        import('@/components/blocks/acf/BlockAthleteCard')
-      )
-      return <BlockAthleteCard {...attributes} key={index} />
-    }
+    // case 'acf/athlete-card': {
+    //   const BlockAthleteCard = dynamic(() =>
+    //     import('@/components/blocks/acf/BlockAthleteCard')
+    //   )
+    //   return <BlockAthleteCard {...attributes} key={index} />
+    // }
 
-    case 'acf/faq-listing': {
-      const BlockFaqListing = dynamic(() =>
-        import('@/components/blocks/acf/BlockFaqListing')
-      )
-      return <BlockFaqListing {...attributes} key={index} />
-    }
+    // case 'acf/faq-listing': {
+    //   const BlockFaqListing = dynamic(() =>
+    //     import('@/components/blocks/acf/BlockFaqListing')
+    //   )
+    //   return <BlockFaqListing {...attributes} key={index} />
+    // }
 
     case 'acf/student-orgs': {
       const BlockStudentOrgs = dynamic(() =>

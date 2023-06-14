@@ -13,7 +13,7 @@ import styles from './ButtonGroup.module.scss'
  * @return {Element}                            The ButtonGroup component.
  */
 export default function ButtonGroup({ children, id, layout = {} }) {
-  const { type, orientation, justifyContent, flexWrap } = layout
+  const { type, orientation, justifyContent, flexWrap } = layout || {}
 
   return (
     <div
