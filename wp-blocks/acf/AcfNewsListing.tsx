@@ -19,6 +19,7 @@ type News = {
 
 const AcfNewsListing = (props: AcfNewsListingProps) => {
   const attributes = props.attributes
+
   const { listing_title, listing_display, news_listing, news_category } =
     JSON.parse(attributes?.data)
   const {
@@ -54,8 +55,8 @@ const AcfNewsListing = (props: AcfNewsListingProps) => {
     data: latestData
   } = useQuery(GET_LATEST_EVENTS)
 
-  if (latestData && latestData.news.length > 0) {
-    latestData.news.forEach((article: News) => {
+  if (latestData && latestData.news.nodes.length > 0) {
+    latestData.news.nodes.forEach((article: News) => {
       posts.push({
         id: article.id,
         title: article.title,
