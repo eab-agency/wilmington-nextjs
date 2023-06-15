@@ -3,7 +3,6 @@
 import Button from '@/components/atoms/Buttons/Button'
 import DisplayImage from '@/components/atoms/Image'
 import cn from 'classnames'
-import PropTypes from 'prop-types'
 import React, { useEffect } from 'react'
 import * as styles from './MediaText.module.css'
 
@@ -101,34 +100,4 @@ export default function MediaText({
       </div>
     </section>
   )
-}
-
-MediaText.propTypes = {
-  body: PropTypes.string,
-  className: PropTypes.string,
-  children: PropTypes.element,
-  cta: PropTypes.shape({
-    text: PropTypes.string,
-    url: PropTypes.string,
-    icon: PropTypes.string
-  }),
-  focalPoint: PropTypes.shape({
-    x: PropTypes.string,
-    y: PropTypes.string
-  }),
-  id: PropTypes.string,
-  image: PropTypes.shape({
-    url: PropTypes.string,
-    alt: PropTypes.string
-  }),
-  imageFill: PropTypes.bool,
-  mediaLeft: PropTypes.bool,
-  isStackedOnMobile: PropTypes.bool,
-  style: PropTypes.shape({
-    background: PropTypes.string,
-    backgroundColor: PropTypes.string,
-    color: PropTypes.string
-  }),
-  title: PropTypes.string,
-  verticalAlignment: PropTypes.string
 }
