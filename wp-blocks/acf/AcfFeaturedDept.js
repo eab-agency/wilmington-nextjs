@@ -59,3 +59,5 @@ AcfFeaturedDept.query = gql`
     }
   }
 `
+
+AcfFeaturedDept.displayName = 'AcfFeaturedDept'

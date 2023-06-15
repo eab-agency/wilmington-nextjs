@@ -45,3 +45,5 @@ EabProgramDirectory.query = gql`
     }
   }
 `
+
+EabProgramDirectory.displayName = 'EabProgramDirectory'

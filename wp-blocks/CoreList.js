@@ -32,3 +32,5 @@ CoreList.fragments = {
   `,
   key: `CoreListFragment`
 }
+
+CoreList.displayName = 'CoreList'

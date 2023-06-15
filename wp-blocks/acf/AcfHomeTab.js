@@ -63,3 +63,5 @@ AcfHomeTab.fragments = {
   `,
   key: `AcfHomeTabFragment`
 }
+
+AcfHomeTab.displayName = 'AcfHomeTab'

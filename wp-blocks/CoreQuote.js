@@ -32,3 +32,5 @@ CoreQuote.fragments = {
   `,
   key: `CoreQuoteFragment`
 }
+
+CoreQuote.displayName = 'CoreQuote'

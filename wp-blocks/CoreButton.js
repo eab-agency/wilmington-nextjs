@@ -72,3 +72,5 @@ CoreButton.fragments = {
   `,
   key: `CoreButtonFragment`
 }
+
+CoreButton.displayName = 'CoreButton'

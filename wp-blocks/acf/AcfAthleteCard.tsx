@@ -65,3 +65,5 @@ AcfAthleteCard.fragments = {
   `,
   key: `AcfAthleteCardFragment`
 }
+
+AcfAthleteCard.displayName = 'AcfAthleteCard'

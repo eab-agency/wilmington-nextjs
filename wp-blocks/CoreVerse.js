@@ -38,3 +38,5 @@ CoreVerse.fragments = {
   `,
   key: `CoreVerseFragment`
 }
+
+CoreVerse.displayName = 'CoreVerse'

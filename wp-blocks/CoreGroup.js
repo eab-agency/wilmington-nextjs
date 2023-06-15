@@ -59,3 +59,5 @@ CoreGroup.fragments = {
     }
   `
 }
+
+CoreGroup.displayName = 'CoreGroup'

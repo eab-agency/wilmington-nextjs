@@ -141,3 +141,5 @@ const GET_LATEST_EVENTS = gql`
   }
   ${newsFragment}
 `
+
+AcfNewsListing.displayName = 'AcfNewsListing'

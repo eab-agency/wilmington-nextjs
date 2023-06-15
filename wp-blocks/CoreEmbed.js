@@ -74,3 +74,5 @@ CoreEmbed.fragments = {
   `,
   key: `CoreEmbedFragment`
 }
+
+CoreEmbed.displayName = 'CoreEmbed'
