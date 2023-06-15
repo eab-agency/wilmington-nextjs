@@ -146,12 +146,12 @@ export default function displayBlock(block, index) {
       return <BlockSpacer {...attributes} key={index} />
     }
 
-    case 'core/table': {
-      const BlockTable = dynamic(() =>
-        import('@/components/blocks/core/BlockTable')
-      )
-      return <BlockTable {...attributes} key={index} />
-    }
+    // case 'core/table': {
+    //   const BlockTable = dynamic(() =>
+    //     import('@/components/blocks/core/BlockTable')
+    //   )
+    //   return <BlockTable {...attributes} key={index} />
+    // }
 
     // case 'core/pattern':
     // case 'core/group': {
