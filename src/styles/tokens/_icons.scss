@@ -136,6 +136,10 @@ $i-instagram: '\e6fb';
 $i-twitter: '\e6fc';
 $i-youtube: '\e732';
 $i-star: '\e6b6';
+$i-info-line: '\e6c7';
+$i-info: '\e6c8';
+$i-blocked: '\e6c9';
+$i-cancel-circle: '\e6ca';
 
 .icon-cog:before {
   content: '\e687';
@@ -227,9 +231,7 @@ $i-star: '\e6b6';
 .icon-earth:before {
   content: '\e6aa';
 }
-.icon-link:before {
-  content: '\e6ab';
-}
+$i-link: '\e6ab';
 .icon-flag:before {
   content: '\e6ac';
 }
@@ -297,18 +299,7 @@ $i-star: '\e6b6';
 .icon-heart-half:before {
   content: '\e6c6';
 }
-.icon-info-line:before {
-  content: '\e6c7';
-}
-.icon-info:before {
-  content: '\e6c8';
-}
-.icon-blocked:before {
-  content: '\e6c9';
-}
-.icon-cancel-circle:before {
-  content: '\e6ca';
-}
+
 .icon-checkmark-circle:before {
   content: '\e6cb';
 }
