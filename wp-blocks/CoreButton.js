@@ -66,7 +66,6 @@ CoreButton.fragments = {
         style
         text
         url
-        width
       }
     }
   `,

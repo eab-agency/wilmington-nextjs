@@ -41,19 +41,16 @@ export default function Component(props) {
 
 Component.query = gql`
   ${BlogInfoFragment}
-  ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
 
   query GetFrontPageData(
     $databaseId: ID!
     $asPreview: Boolean = false
-    $imageSize: MediaItemSizeEnum = THUMBNAIL
 ) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
        ... on NodeWithTitle {
         title
       }
-      ...FeaturedImageFragment
 
         editorBlocks {
           __typename

@@ -27,8 +27,8 @@ export default function CoreImage(props) {
       )}
     >
       <Image
-        alt={attributes.alt}
-        src={attributes.src}
+        alt={attributes?.alt}
+        src={attributes?.src}
         width={imageSize.width}
         height={imageSize.height}
       />
