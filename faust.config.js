@@ -10,5 +10,6 @@ export default setConfig({
   templates,
   experimentalPlugins: [new CustomToolbar()],
   experimentalToolbar: true,
-  possibleTypes
+  possibleTypes,
+  useGETForQueries: false
 })
