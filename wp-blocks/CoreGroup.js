@@ -33,6 +33,8 @@ export default function CoreGroup(props) {
       style={style}
       verticalAlignment={attributes?.verticalAlignment}
       isStackedOnMobile={attributes?.isStackedOnMobile}
+      tagName={attributes?.tagName}
+      bgColor={attributes?.backgroundColor}
     >
       <WordPressBlocksViewer blocks={props?.children ?? []} />
     </Groups>

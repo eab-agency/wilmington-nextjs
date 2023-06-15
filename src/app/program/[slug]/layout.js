@@ -1,7 +1,8 @@
-import FeaturedImage from '@/components/common/FeaturedImage'
+import ProgramTabs from '@/components/atoms/ProgramTabs'
 import WordPressProvider from '@/components/common/WordPressProvider'
+import PageHero from '@/components/organisms/PageHero/PageHero'
 import getProgramChildrenByID from '@/functions/wordpress/programs/getProgramChildrenById'
-import Link from 'next/link'
+// import Link from 'next/link'
 
 const programLayout = async ({ children, params }) => {
   const id = `/program/${params?.slug}`
@@ -20,27 +21,26 @@ const programLayout = async ({ children, params }) => {
     studentOrganizations: programOrgRelationship?.programorg
   }
 
+  let altText = 'Image'
+  if (featuredImage) {
+    altText = featuredImage.node?.altText || altText
+  }
+
   return (
-    <>
-      {/* TODO: AO featured image figure is set to object-fit cover. doesn't display but is on the page  */}
-      {featuredImage && <FeaturedImage image={featuredImage.node} />}
-      {program && (
-        <ul>
-          <li>
-            <Link href={uri}>{title}</Link>
-          </li>
-          {childPages &&
-            childPages.nodes.map((childPage) => {
-              return (
-                <li key={childPage.title}>
-                  <Link href={childPage.uri}>{childPage?.title}</Link>
-                </li>
-              )
-            })}
-        </ul>
-      )}
-      <WordPressProvider value={wpInitialState}>{children}</WordPressProvider>
-    </>
+    <div>
+      <article className="inner-wrap">
+        {featuredImage && (
+          <PageHero
+            text={title}
+            sourceUrl={featuredImage.node?.sourceUrl}
+            altText={altText}
+            imageMeta={featuredImage.node?.mediaDetails}
+          />
+        )}
+        {program && <ProgramTabs childPages={childPages} uri={uri} />}
+        <WordPressProvider value={wpInitialState}>{children}</WordPressProvider>
+      </article>
+    </div>
   )
 }
 

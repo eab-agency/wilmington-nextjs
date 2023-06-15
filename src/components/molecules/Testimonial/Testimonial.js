@@ -16,7 +16,7 @@ const Citation = (fullName, desc) => {
 
 function Testimonial({ post, viewAllLink, imageOnly, featuredTestimonial }) {
   // if no post, return null
-  if (!post || Object.keys(post).length === 0) {
+  if (!post || Object.keys(post).length === 0 || !post.featuredImage?.node) {
     return null
   }
   // destructure first, last, desc from post.testimonialFields.testimonial, set default values

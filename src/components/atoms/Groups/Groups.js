@@ -1,6 +1,9 @@
+'use client'
+
 import cn from 'classnames'
 import PropTypes from 'prop-types'
-import React from 'react'
+import { useState } from 'react'
+import Button from '../Buttons/Button/Button'
 import * as styles from './Groups.module.scss'
 
 /**
@@ -22,29 +25,57 @@ export default function Groups({
   className,
   groupsCount = 3,
   children,
-  // style,
+  tagName,
   verticalAlignment,
-  isStackedOnMobile
+  isStackedOnMobile,
+  bgColor
 }) {
-  // const groupStyles = getBlockStyles({ style })
+  const [drawerState, setDrawerState] = useState('closed')
+  const [drawerBtn, setDrawerBtn] = useState('Read More')
+  const Tag = tagName || 'div'
+
+  const toggleDrawer = () => {
+    if (drawerState === 'closed') {
+      setDrawerState('open')
+      setDrawerBtn('Close')
+    } else {
+      setDrawerState('closed')
+      setDrawerBtn('Read More')
+    }
+  }
+
+  const getTagClassNames = () => {
+    const baseClassNames = [
+      styles.groups,
+      isStackedOnMobile && styles.groupsStacked,
+      groupsCount && styles[`columns-${groupsCount}`],
+      className,
+      verticalAlignment === 'center' ? styles.alignCenter : null,
+      verticalAlignment === 'bottom' ? styles.alignBottom : null,
+      id === 'content-drawer' && styles.drawerContainer,
+      bgColor && bgColor,
+      drawerState === 'open' && id === 'content-drawer' && 'drawerOpen'
+    ]
+
+    return cn(baseClassNames)
+  }
 
   return (
-    <>
-      <div
-        id={id || null}
-        className={cn(
-          styles.groups,
-          isStackedOnMobile && styles.groupsStacked,
-          groupsCount && styles[`columns-${groupsCount}`],
-          className,
-          verticalAlignment === 'center' ? styles.alignCenter : null,
-          verticalAlignment === 'bottom' ? styles.alignBottom : null
-        )}
-        // style={groupStyles}
-      >
-        {children}
-      </div>
-    </>
+    <Tag id={id || null} className={getTagClassNames()}>
+      {id === 'content-drawer' && (
+        <>
+          <div className="drawer">{children}</div>
+          <div className="drawerBtnContainer">
+            <Button
+              className="drawerButton"
+              onClick={toggleDrawer}
+              text={drawerBtn}
+            />
+          </div>
+        </>
+      )}
+      {id !== 'content-drawer' && children}
+    </Tag>
   )
 }
 
@@ -53,10 +84,5 @@ Groups.propTypes = {
   className: PropTypes.string,
   groupsCount: PropTypes.number,
   children: PropTypes.node,
-  // style: PropTypes.shape({
-  //   background: PropTypes.string,
-  //   backgroundColor: PropTypes.string,
-  //   color: PropTypes.string
-  // }),
   verticalAlignment: PropTypes.string
 }

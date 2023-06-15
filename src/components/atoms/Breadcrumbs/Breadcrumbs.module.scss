@@ -3,6 +3,7 @@
 ul.breadcrumbs {
   display: flex;
   list-style: none;
+  padding: 0;
 
   li {
     display: flex;
@@ -39,6 +40,12 @@ ul.breadcrumbs {
           left: 0;
           text-indent: 0;
         }
+      }
+    }
+
+    &:last-child {
+      a {
+        font-weight: 800;
       }
     }
   }

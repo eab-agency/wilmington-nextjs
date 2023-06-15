@@ -52,7 +52,9 @@ const MainNavigationItem = ({ item, depthLevel, index, enableDropdown }) => {
               {item.label}{' '}
             </button>
           ) : (
-            <Link href={item.path ?? '#'}>{item.label}</Link>
+            <Link href={item.path ?? '#'} tabIndex={0}>
+              {item.label}
+            </Link>
           )}
           {enableDropdown ? (
             <Dropdown
