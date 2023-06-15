@@ -1,5 +1,5 @@
-// import { compileCSS } from '@wordpress/style-engine'
-// import { cssToReactStyle } from './cssToReactStyle.js'
+import { cssToReactStyle } from '@/functions/cssToReactStyle.js'
+import { compileCSS } from '@wordpress/style-engine'
 import { colorsMap, fontSizesMap } from './styles/variables.js'
 
 /**
@@ -13,8 +13,8 @@ export default function getStyles(attributes) {
     backgroundColor: colorsMap[attributes?.backgroundColor],
     color: colorsMap[attributes?.textColor],
     fontSize: fontSizesMap[attributes?.fontSize],
-    borderColor: colorsMap[attributes?.borderColor]
-    // ...(attributes.style &&
-    //   cssToReactStyle(compileCSS(JSON.parse(attributes.style))))
+    borderColor: colorsMap[attributes?.borderColor],
+    ...(attributes.style &&
+      cssToReactStyle(compileCSS(JSON.parse(attributes.style))))
   }
 }
