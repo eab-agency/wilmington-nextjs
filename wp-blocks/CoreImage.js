@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 import Image from 'next/image'
-import getStyles from '../utils/getStyles.js'
-import getImageSizeProps from '../utils/getImageSizeProps'
+import getImageSizeProps from '../src/functions/wordpress/blocks/getImageSizeProps'
+import getStyles from '../src/functions/wordpress/blocks/getStyles'
 
 /**
  * See the CoreParagraph for details on how these blocks are structured.

@@ -28,13 +28,21 @@ export default function VideoEmbed({ className, url, type, caption }) {
 
     let videoUrl, videoId
 
-    videoId = url.indexOf('v=') !== -1 ? url.split('v=') : url.split('/')
-    videoId = videoId[videoId.length - 1]
+    // Extract video ID
+    videoId =
+      url.indexOf('v=') !== -1
+        ? url.split('v=')[1]
+        : url.split('/')[url.split('/').length - 1]
+
+    // Strip out anything after the "&" character
+    if (videoId.indexOf('&') !== -1) {
+      videoId = videoId.substring(0, videoId.indexOf('&'))
+    }
 
     // switch statement for url
     switch (type) {
       case 'youtube':
-        videoUrl = `//youtube.com/embed/${videoId}`
+        videoUrl = `https://youtube.com/embed/${videoId}`
         break
       case 'vimeo':
         videoUrl = `//player.vimeo.com/video/${videoId}`
@@ -57,13 +65,12 @@ export default function VideoEmbed({ className, url, type, caption }) {
         <iframe
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          frameBorder="0"
-          height="315"
-          loading="lazy"
+          height="405"
+          width="720"
           src={createVideoUrl(url)}
-          width="560"
           title={`Embedded content from ${type}`}
           className={className}
+          frameborder="0"
         ></iframe>
       </div>
       {!!caption && (
