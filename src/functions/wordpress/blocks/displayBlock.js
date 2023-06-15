@@ -210,12 +210,12 @@ export default function displayBlock(block, index) {
     //   return <BlockEventsListing {...attributes} key={index} />
     // }
 
-    case 'acf/featured-dept': {
-      const BlockFeaturedPrograms = dynamic(() =>
-        import('@/components/blocks/acf/BlockFeaturedPrograms')
-      )
-      return <BlockFeaturedPrograms {...attributes} key={index} />
-    }
+    // case 'acf/featured-dept': {
+    //   const BlockFeaturedPrograms = dynamic(() =>
+    //     import('@/components/blocks/acf/BlockFeaturedPrograms')
+    //   )
+    //   return <BlockFeaturedPrograms {...attributes} key={index} />
+    // }
 
     case 'acf/related-programs': {
       const BlockRelatedPrograms = dynamic(() =>
