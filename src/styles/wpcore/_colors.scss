@@ -37,6 +37,7 @@ $darkColors: (
     section.#{$name} {
       background-color: $theColor;
       color: $colorContrast;
+      margin-bottom: clamp(2rem, 4vw, 4rem);
       @include mixins.extendedBackground('after', $theColor);
 
       & > [class*='_column'] {
