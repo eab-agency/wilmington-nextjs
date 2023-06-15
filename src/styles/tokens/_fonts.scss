@@ -12,8 +12,23 @@
   src: url('../../assets/icomoon.woff');
 }
 
+@font-face {
+  font-family: 'Museo';
+  src: url('../../assets/Museo500-Regular.woff') format('woff'),
+    url('../../assets/Museo500-Regular.woff2') format('woff2');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Museo';
+  src: url('../../assets/Museo700-Regular.woff') format('woff'),
+    url('../../assets/Museo700-Regular.woff2') format('woff2');
+  font-weight: bold;
+}
+
 //* Font Stacks
-$f-headlineFont: var(--font-roboto-slab);
+// $f-headlineFont: var(--font-roboto-slab);
+$f-headlineFont: 'Museo', var(--font-roboto-slab);
 $f-bodyFont: var(--font-cantarell);
 $f-icons: 'icomoon';
 
