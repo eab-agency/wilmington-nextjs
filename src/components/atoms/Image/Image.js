@@ -32,7 +32,7 @@ export default function DisplayImage(props) {
   }
 
   // Set the image src.
-  const source = props?.imageMeta?.mediaItemUrl ?? props?.url
+  const source = props?.imageMeta?.mediaItemUrl ?? props?.url ?? props?.src
 
   // No image src? Bail.
   if (!source) {
