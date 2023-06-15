@@ -4,19 +4,17 @@
   "private": true,
   "scripts": {
     "clean": "rimraf .next/",
-    "dev": "npm run clean && next dev",
     "develop": "npm dev",
-    "start": "next start",
     "format": "npx prettier  '**/*.{js,jsx,ts,tsx,md,html,css,scss,json,yml}' --write || true",
     "lint": "npm run format && npm run lint:js && npm run lint:css",
     "lint:css": "npx stylelint '**/*.css' --fix || true",
     "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && next lint",
     "postbuild": "next-sitemap",
     "prepare": "husky install",
-    "faust:dev": "npm run clean && faust dev",
+    "dev": "npm run clean && faust dev",
     "build": "faust build",
-    "faust:generate": "faust generatePossibleTypes",
-    "faust:start": "faust start"
+    "generate": "faust generatePossibleTypes",
+    "start": "faust start"
   },
   "dependencies": {
     "@apollo/client": "^3.7.15",

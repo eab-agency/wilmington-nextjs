@@ -11,6 +11,7 @@ import CoreVerse from './CoreVerse'
 import AcfAthleteCard from './acf/AcfAthleteCard'
 import AcfEventsListing from './acf/AcfEventsListing'
 import AcfFaqListing from './acf/AcfFaqListing'
+import AcfFeaturedDept from './acf/AcfFeaturedDept'
 
 /**
  * This object acts as the registry of blocks in your React Gutenberg Bridge.
@@ -31,5 +32,6 @@ export default {
   CoreVerse,
   AcfAthleteCard,
   AcfEventsListing,
-  AcfFaqListing
+  AcfFaqListing,
+  AcfFeaturedDept
 }

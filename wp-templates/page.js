@@ -18,6 +18,8 @@ export default function Component(props) {
   }
   const { editorBlocks, title, content, featuredImage } = props.data.page
   const blocks = flatListToHierarchical(editorBlocks)
+  // eslint-disable-next-line no-console
+  console.log('🚀 ~ file: page.js:21 ~ Component ~ blocks:', blocks)
 
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings ?? {}
