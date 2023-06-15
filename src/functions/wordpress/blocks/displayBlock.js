@@ -118,12 +118,12 @@ export default function displayBlock(block, index) {
     //   return <BlockVerse {...attributes} key={index} />
     // }
 
-    case 'core/pullquote': {
-      const BlockPullQuote = dynamic(() =>
-        import('@/components/blocks/core/BlockPullQuote')
-      )
-      return <BlockPullQuote {...attributes} key={index} />
-    }
+    // case 'core/pullquote': {
+    //   const BlockPullQuote = dynamic(() =>
+    //     import('@/components/blocks/core/BlockPullQuote')
+    //   )
+    //   return <BlockPullQuote {...attributes} key={index} />
+    // }
 
     // case 'core/quote': {
     //   const BlockQuote = dynamic(() =>
@@ -132,19 +132,19 @@ export default function displayBlock(block, index) {
     //   return <BlockQuote {...attributes} key={index} />
     // }
 
-    case 'core/separator': {
-      const BlockSeparator = dynamic(() =>
-        import('@/components/blocks/core/BlockSeparator')
-      )
-      return <BlockSeparator {...attributes} key={index} />
-    }
+    // case 'core/separator': {
+    //   const BlockSeparator = dynamic(() =>
+    //     import('@/components/blocks/core/BlockSeparator')
+    //   )
+    //   return <BlockSeparator {...attributes} key={index} />
+    // }
 
-    case 'core/spacer': {
-      const BlockSpacer = dynamic(() =>
-        import('@/components/blocks/core/BlockSpacer')
-      )
-      return <BlockSpacer {...attributes} key={index} />
-    }
+    // case 'core/spacer': {
+    //   const BlockSpacer = dynamic(() =>
+    //     import('@/components/blocks/core/BlockSpacer')
+    //   )
+    //   return <BlockSpacer {...attributes} key={index} />
+    // }
 
     // case 'core/table': {
     //   const BlockTable = dynamic(() =>
