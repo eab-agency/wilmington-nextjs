@@ -30,16 +30,21 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
 
   const posts: any[] = []
 
-  if (idsData && idsData.events.nodes.length > 0) {
-    idsData.events.nodes.forEach((event: Event) => {
-      posts.push({
-        id: event.id,
-        title: event.title,
-        date: event.date,
-        link: event.link,
-        uri: event.uri
+  if (idsData) {
+    const nodes = idsData.events
+      ? idsData.events.nodes
+      : idsData.eventCategory.events.nodes
+    if (nodes.length > 0) {
+      nodes.forEach((event: Event) => {
+        posts.push({
+          id: event.id,
+          title: event.title,
+          date: event.date,
+          link: event.link,
+          uri: event.uri
+        })
       })
-    })
+    }
   }
 
   const {
