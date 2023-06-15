@@ -13,6 +13,7 @@ import AcfEventsListing from './acf/AcfEventsListing'
 import AcfFaqListing from './acf/AcfFaqListing'
 import AcfFeaturedDept from './acf/AcfFeaturedDept'
 import AcfNewsListing from './acf/AcfNewsListing'
+import AcfTestimonialBlock from './acf/AcfTestimonialBlock'
 
 /**
  * This object acts as the registry of blocks in your React Gutenberg Bridge.
@@ -35,5 +36,6 @@ export default {
   AcfEventsListing,
   AcfFaqListing,
   AcfFeaturedDept,
-  AcfNewsListing
+  AcfNewsListing,
+  AcfTestimonialBlock
 }

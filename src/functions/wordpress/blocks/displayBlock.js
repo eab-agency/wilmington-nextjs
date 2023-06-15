@@ -196,12 +196,12 @@ export default function displayBlock(block, index) {
       )
     }
 
-    case 'acf/news-listing': {
-      const BlockNewsListing = dynamic(() =>
-        import('@/components/blocks/acf/BlockNewsListing')
-      )
-      return <BlockNewsListing {...attributes} key={index} />
-    }
+    // case 'acf/news-listing': {
+    //   const BlockNewsListing = dynamic(() =>
+    //     import('@/components/blocks/acf/BlockNewsListing')
+    //   )
+    //   return <BlockNewsListing {...attributes} key={index} />
+    // }
 
     // case 'acf/events-listing': {
     //   const BlockEventsListing = dynamic(() =>
@@ -224,12 +224,12 @@ export default function displayBlock(block, index) {
       return <BlockRelatedPrograms {...attributes} key={index} />
     }
 
-    case 'acf/testimonial-block': {
-      const BlockTestimonial = dynamic(() =>
-        import('@/components/blocks/acf/BlockTestimonial')
-      )
-      return <BlockTestimonial {...attributes} key={index} />
-    }
+    // case 'acf/testimonial-block': {
+    //   const BlockTestimonial = dynamic(() =>
+    //     import('@/components/blocks/acf/BlockTestimonial')
+    //   )
+    //   return <BlockTestimonial {...attributes} key={index} />
+    // }
 
     case 'acf/home-tab': {
       const BlockHomeTabs = dynamic(() =>

@@ -6,7 +6,6 @@ interface AcfNewsListingProps {
   attributes: {
     data: string
   }
-  listingData: any
 }
 
 type News = {
@@ -32,9 +31,9 @@ const AcfNewsListing = (props: AcfNewsListingProps) => {
 
   const posts: any[] = []
 
-  if (idsData) {
+  if (idsData && (idsData.news || idsData.newsCategory)) {
     const nodes = idsData.news
-      ? idsData.news.nodes
+      ? idsData.news?.nodes
       : idsData.newsCategory.news.nodes
     if (nodes.length > 0) {
       nodes.forEach((article: News) => {
