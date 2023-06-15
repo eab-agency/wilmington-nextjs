@@ -59,12 +59,12 @@ export default function displayBlock(block, index) {
       )
     }
 
-    case 'core/embed': {
-      const BlockEmbed = dynamic(() =>
-        import('@/components/blocks/core/BlockEmbed')
-      )
-      return <BlockEmbed {...attributes} key={index} />
-    }
+    // case 'core/embed': {
+    //   const BlockEmbed = dynamic(() =>
+    //     import('@/components/blocks/core/BlockEmbed')
+    //   )
+    //   return <BlockEmbed {...attributes} key={index} />
+    // }
 
     // case 'core/gallery': {
     //   const BlockImageGallery = dynamic(() =>
