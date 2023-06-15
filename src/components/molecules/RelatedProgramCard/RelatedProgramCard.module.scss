@@ -11,6 +11,7 @@
     padding-bottom: 0.5em;
     font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-m);
     margin-bottom: 1em;
+    min-height: 3em;
   }
 
   p {
