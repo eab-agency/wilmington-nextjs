@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
-import Link from '@/components/common/Link'
 import Image from '@/components/atoms/Image'
+import Link from '@/components/common/Link'
+import React, { useEffect, useState } from 'react'
 
 const DepartmentSingle = ({ department }) => {
   const {
@@ -12,8 +12,10 @@ const DepartmentSingle = ({ department }) => {
     departmentFields: { deptIcon, deptImage }
   } = department
 
+  console.log(department)
+
   return (
-    <div key={name}>
+    <article key={name} className="department">
       {deptIcon && (
         <Image
           url={deptImage.sourceUrl}
@@ -21,21 +23,23 @@ const DepartmentSingle = ({ department }) => {
           imageMeta={{ mediaDetails: deptImage.mediaDetails }}
         />
       )}
-      <h2>{name}</h2>
-      <p>{description}</p>
-      {programs.length > 0 && (
-        <>
-          <h3>Programs</h3>
-          <ul>
-            {programs.map((program) => (
-              <li key={program.uri}>
-                <Link href={program.uri}>{program.title}</Link>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-    </div>
+      <div className="departmentInfo">
+        <h3>{name}</h3>
+        <p>{description}</p>
+        {programs.length > 0 && (
+          <>
+            <h4>Programs</h4>
+            <ul>
+              {programs.map((program) => (
+                <li key={program.uri}>
+                  <Link href={program.uri}>{program.title}</Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
+    </article>
   )
 }
 
@@ -70,9 +74,7 @@ const DepartmentSelector = ({
       defaultValue={'DEFAULT'}
       value={selectedDepartment}
     >
-      <option value="DEFAULT" disabled>
-        Chose a department
-      </option>
+      <option value="DEFAULT">Choose a department</option>
       <option value="ALL">Show All</option>
       {programDepartments.map((department) => (
         <option key={department.uri} value={department.name}>
@@ -104,13 +106,27 @@ export default function BlockDepartmentSelect({ programDepartments }) {
   }
 
   return (
-    <div>
-      <DepartmentSelector
-        programDepartments={programDepartments}
-        handleDepartmentChange={handleDepartmentChange}
-        selectedDepartment={selectedDepartment}
-      />
-      <DepartmentListing department={selectedDepartmentInfo} />
-    </div>
+    <section className="departmentSelectorSection">
+      <div className="group">
+        <div className="intro">
+          <h2>Choose Your Field of Interest</h2>
+          <p>
+            Discover the perfect academic program for your future success. Find
+            the program that aligns with your goals and aspirations with just a
+            few clicks. Start your educational journey today.
+          </p>
+        </div>
+        <div className="departmentSelector">
+          <DepartmentSelector
+            programDepartments={programDepartments}
+            handleDepartmentChange={handleDepartmentChange}
+            selectedDepartment={selectedDepartment}
+          />
+        </div>
+      </div>
+      <div className="departmentResults">
+        <DepartmentListing department={selectedDepartmentInfo} />
+      </div>
+    </section>
   )
 }
