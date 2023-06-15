@@ -1,5 +1,4 @@
 import RichText from '@/components/atoms/RichText'
-import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
 import getStyles from '@/functions/wordpress/blocks/getStyles'
 import { gql } from '@apollo/client'
 import cn from 'classnames'

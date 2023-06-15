@@ -7,6 +7,7 @@ import CoreFreeform from './CoreFreeform'
 import CoreGroup from './CoreGroup'
 import CoreList from './CoreList'
 import CoreParagraph from './CoreParagraph'
+import CorePullquote from './CorePullquote'
 import CoreQuote from './CoreQuote'
 import CoreSpacer from './CoreSpacer'
 import CoreVerse from './CoreVerse'
@@ -37,6 +38,7 @@ export default {
   CoreGroup,
   CoreList,
   CoreParagraph,
+  CorePullquote,
   CoreQuote,
   CoreSpacer,
   CoreVerse,
