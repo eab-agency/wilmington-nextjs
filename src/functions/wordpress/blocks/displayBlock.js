@@ -164,28 +164,28 @@ export default function displayBlock(block, index) {
     // }
 
     // this takes care of the orginal default block
-    case 'core/freeform': {
-      const BlockDefault = dynamic(() =>
-        import('@/components/blocks/core/BlockDefault')
-      )
-      return <BlockDefault content={attributes.content} key={index} />
-    }
+    // case 'core/freeform': {
+    //   const BlockDefault = dynamic(() =>
+    //     import('@/components/blocks/core/BlockDefault')
+    //   )
+    //   return <BlockDefault content={attributes.content} key={index} />
+    // }
 
     case 'core/html': {
       const BlockHtml = dynamic(() => import('@/components/blocks/core/BlockHtml'))
       return <BlockHtml {...attributes} key={index} />
     }
 
-    case 'core/more': {
-      return null
-    }
+    // case 'core/more': {
+    //   return null
+    // }
 
-    case 'core/block': {
-      const Blocks = dynamic(() =>
-        import('@/components/molecules/Blocks')
-      )
-      return <Blocks blocks={innerBlocks} key={index} />
-    }
+    // case 'core/block': {
+    //   const Blocks = dynamic(() =>
+    //     import('@/components/molecules/Blocks')
+    //   )
+    //   return <Blocks blocks={innerBlocks} key={index} />
+    // }
 
     // case 'acf/home-hero': {
     //   const BlockHomeHero = dynamic(() =>
