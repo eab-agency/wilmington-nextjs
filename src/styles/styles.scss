@@ -4,3 +4,5 @@
 @use 'layouts/global';
 @use 'layouts/homepage';
 @use 'layouts/page';
+// TODO: hey @andrei, added this to style wp core blocks (all the default classes)
+@use 'blocks';

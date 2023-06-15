@@ -2,7 +2,7 @@
 'use client'
 
 import VideoEmbed from '@/components/atoms/VideoEmbed'
-import PropTypes from 'prop-types'
+import { gql } from '@apollo/client'
 import { useEffect, useState } from 'react'
 
 // import Tweet from '@/components/atoms/TwitterEmbed'
@@ -20,23 +20,19 @@ import { useEffect, useState } from 'react'
  * @param  {string}  props.providerNameSlug The type of embed.
  * @return {Element}                        The component to embed.
  */
-export default function BlockEmbed({
-  className,
-  url,
-  caption,
-  providerNameSlug
-}) {
+export default function CoreEmbed(props) {
+  const attributes = props.attributes
   const [loadTweet, setLoadTweet] = useState(0)
   const supportedVideoTypes = ['youtube', 'vimeo', 'tiktok', 'vimeo']
   const supportedMusicTypes = ['spotify']
 
   useEffect(() => {
-    if (providerNameSlug === 'twitter') {
+    if (attributes?.providerNameSlug === 'twitter') {
       setLoadTweet(1)
     }
-  }, [providerNameSlug])
+  }, [attributes?.providerNameSlug])
 
-  if (!url) {
+  if (!attributes?.url) {
     return
   }
 
@@ -53,21 +49,28 @@ export default function BlockEmbed({
           type={providerNameSlug}
         />
       )} */}
-      {supportedVideoTypes.includes(providerNameSlug) && (
+      {supportedVideoTypes.includes(attributes?.providerNameSlug) && (
         <VideoEmbed
-          className={className}
-          url={url}
-          caption={caption}
-          type={providerNameSlug}
+          className={attributes?.className}
+          url={attributes?.url}
+          caption={attributes?.caption}
+          type={attributes?.providerNameSlug}
         />
       )}
     </>
   )
 }
 
-BlockEmbed.propTypes = {
-  className: PropTypes.string,
-  url: PropTypes.string,
-  caption: PropTypes.string,
-  providerNameSlug: PropTypes.string
+CoreEmbed.fragments = {
+  entry: gql`
+    fragment CoreEmbedFragment on CoreEmbed {
+      attributes {
+        className
+        url
+        caption
+        providerNameSlug
+      }
+    }
+  `,
+  key: `CoreEmbedFragment`
 }

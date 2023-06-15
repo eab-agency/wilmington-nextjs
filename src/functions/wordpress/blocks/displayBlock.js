@@ -66,26 +66,26 @@ export default function displayBlock(block, index) {
       return <BlockEmbed {...attributes} key={index} />
     }
 
-    case 'core/gallery': {
-      const BlockImageGallery = dynamic(() =>
-        import('@/components/blocks/core/BlockImageGallery')
-      )
-      return <BlockImageGallery {...attributes} key={index} />
-    }
+    // case 'core/gallery': {
+    //   const BlockImageGallery = dynamic(() =>
+    //     import('@/components/blocks/core/BlockImageGallery')
+    //   )
+    //   return <BlockImageGallery {...attributes} key={index} />
+    // }
 
-    case 'core/heading': {
-      const BlockHeadings = dynamic(() =>
-        import('@/components/blocks/core/BlockHeadings')
-      )
-      return <BlockHeadings {...attributes} key={index} />
-    }
+    // case 'core/heading': {
+    //   const BlockHeadings = dynamic(() =>
+    //     import('@/components/blocks/core/BlockHeadings')
+    //   )
+    //   return <BlockHeadings {...attributes} key={index} />
+    // }
 
-    case 'core/image': {
-      const BlockImage = dynamic(() =>
-        import('@/components/blocks/core/BlockImage')
-      )
-      return <BlockImage {...attributes} key={index} />
-    }
+    // case 'core/image': {
+    //   const BlockImage = dynamic(() =>
+    //     import('@/components/blocks/core/BlockImage')
+    //   )
+    //   return <BlockImage {...attributes} key={index} />
+    // }
 
     // case 'core/list': {
     //   const BlockList = dynamic(() =>
@@ -94,12 +94,12 @@ export default function displayBlock(block, index) {
     //   return <BlockList innerBlocks={innerBlocks} {...attributes} key={index} />
     // }
 
-    case 'core/list-item': {
-      const BlockListItem = dynamic(() =>
-        import('@/components/blocks/core/BlockListItem')
-      )
-      return <BlockListItem {...attributes} key={index} />
-    }
+    // case 'core/list-item': {
+    //   const BlockListItem = dynamic(() =>
+    //     import('@/components/blocks/core/BlockListItem')
+    //   )
+    //   return <BlockListItem {...attributes} key={index} />
+    // }
 
     // case 'core/media-text': {
     //   const BlockMediaText = dynamic(() =>

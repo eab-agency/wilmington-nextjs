@@ -3,8 +3,10 @@ import CoreButton from './CoreButton'
 import CoreButtons from './CoreButtons'
 import CoreColumn from './CoreColumn'
 import CoreColumns from './CoreColumns'
+import CoreEmbed from './CoreEmbed'
 import CoreFreeform from './CoreFreeform'
 import CoreGroup from './CoreGroup'
+import CoreImage from './CoreImage'
 import CoreList from './CoreList'
 import CoreMediaText from './CoreMediaText'
 import CoreParagraph from './CoreParagraph'
@@ -35,8 +37,10 @@ export default {
   CoreButtons,
   CoreColumn,
   CoreColumns,
+  CoreEmbed,
   CoreFreeform,
   CoreGroup,
+  // CoreImage,
   CoreList,
   CoreMediaText,
   CoreParagraph,
