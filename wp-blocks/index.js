@@ -12,6 +12,8 @@ import AcfAthleteCard from './acf/AcfAthleteCard'
 import AcfEventsListing from './acf/AcfEventsListing'
 import AcfFaqListing from './acf/AcfFaqListing'
 import AcfFeaturedDept from './acf/AcfFeaturedDept'
+import AcfHomeHero from './acf/AcfHomeHero'
+import AcfHomeTab from './acf/AcfHomeTab'
 import AcfNewsListing from './acf/AcfNewsListing'
 import AcfTestimonialBlock from './acf/AcfTestimonialBlock'
 
@@ -36,6 +38,8 @@ export default {
   AcfEventsListing,
   AcfFaqListing,
   AcfFeaturedDept,
+  AcfHomeHero,
+  AcfHomeTab,
   AcfNewsListing,
   AcfTestimonialBlock
 }
