@@ -74,7 +74,7 @@ export default function AcfTestimonialBlock(props) {
   return (
     <BlockTestimonial
       featuredTestimonial={featuredTestimonies.testimonial}
-      random={testimonial_group === 1 ? randomTestimonials : null}
+      random={testimonial_group === '1' ? randomTestimonials : null}
     />
   )
 }
@@ -98,7 +98,11 @@ const QUERY_TESTIMONIALS = gql`
     testimonials(first: 30) {
       nodes {
         ...FeaturedImageFragment
+        id
         databaseId
+        title
+        uri
+        content
         testimonialFields {
           testimonial {
             desc
@@ -117,7 +121,11 @@ const GET_TESTIMONIAL = gql`
   query getTestimonial($id: ID!, $imageSize: MediaItemSizeEnum = LARGE) {
     testimonial(id: $id, idType: DATABASE_ID) {
       ...FeaturedImageFragment
+      id
       databaseId
+      title
+      uri
+      content
       testimonialFields {
         testimonial {
           desc

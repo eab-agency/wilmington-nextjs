@@ -1,3 +1,4 @@
+import Columns from '@/components/atoms/Columns'
 import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 
@@ -9,9 +10,16 @@ import { WordPressBlocksViewer } from '@faustwp/blocks'
 export default function CoreColumns(props) {
   const attributes = props.attributes
   return (
-    <div className={attributes?.cssClassName}>
+    <Columns
+      id={attributes?.anchor}
+      className={attributes?.className}
+      columnCount={props?.children?.length}
+      style={attributes?.style}
+      verticalAlignment={attributes?.verticalAlignment}
+      isStackedOnMobile={attributes?.isStackedOnMobile}
+    >
       <WordPressBlocksViewer blocks={props?.children ?? []} />
-    </div>
+    </Columns>
   )
 }
 
@@ -19,7 +27,12 @@ CoreColumns.fragments = {
   entry: gql`
     fragment CoreColumnsFragment on CoreColumns {
       attributes {
+        anchor
+        className
         cssClassName
+        style
+        verticalAlignment
+        isStackedOnMobile
       }
     }
   `,

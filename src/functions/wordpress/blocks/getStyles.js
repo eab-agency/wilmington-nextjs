@@ -14,7 +14,7 @@ export default function getStyles(attributes) {
     color: colorsMap[attributes?.textColor],
     fontSize: fontSizesMap[attributes?.fontSize],
     borderColor: colorsMap[attributes?.borderColor],
-    ...(attributes.style &&
+    ...(attributes?.style &&
       cssToReactStyle(compileCSS(JSON.parse(attributes.style))))
   }
 }
