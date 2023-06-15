@@ -274,17 +274,17 @@ export default function displayBlock(block, index) {
       return <BlockStudentOrgs {...attributes} key={index} />
     }
 
-    case 'eab/program-directory': {
-      const BlockDepartmentSelect = dynamic(() =>
-        import('@/components/blocks/custom/BlockDepartmentSelect')
-      )
-      return (
-        <BlockDepartmentSelect
-          programDepartments={attributes?.departments}
-          key={index}
-        />
-      )
-    }
+    // case 'eab/program-directory': {
+    //   const BlockDepartmentSelect = dynamic(() =>
+    //     import('@/components/blocks/custom/BlockDepartmentSelect')
+    //   )
+    //   return (
+    //     <BlockDepartmentSelect
+    //       programDepartments={attributes?.departments}
+    //       key={index}
+    //     />
+    //   )
+    // }
 
     default:
       return <pre key={index}>{JSON.stringify(block, null, 2)}</pre>
