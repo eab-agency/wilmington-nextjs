@@ -101,14 +101,14 @@ export default function displayBlock(block, index) {
       return <BlockListItem {...attributes} key={index} />
     }
 
-    case 'core/media-text': {
-      const BlockMediaText = dynamic(() =>
-        import('@/components/blocks/core/BlockMediaText')
-      )
-      return (
-        <BlockMediaText {...attributes} innerBlocks={innerBlocks} key={index} />
-      )
-    }
+    // case 'core/media-text': {
+    //   const BlockMediaText = dynamic(() =>
+    //     import('@/components/blocks/core/BlockMediaText')
+    //   )
+    //   return (
+    //     <BlockMediaText {...attributes} innerBlocks={innerBlocks} key={index} />
+    //   )
+    // }
 
 
     // case 'core/verse': {

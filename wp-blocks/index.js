@@ -6,6 +6,7 @@ import CoreColumns from './CoreColumns'
 import CoreFreeform from './CoreFreeform'
 import CoreGroup from './CoreGroup'
 import CoreList from './CoreList'
+import CoreMediaText from './CoreMediaText'
 import CoreParagraph from './CoreParagraph'
 import CorePullquote from './CorePullquote'
 import CoreQuote from './CoreQuote'
@@ -37,6 +38,7 @@ export default {
   CoreFreeform,
   CoreGroup,
   CoreList,
+  CoreMediaText,
   CoreParagraph,
   CorePullquote,
   CoreQuote,
