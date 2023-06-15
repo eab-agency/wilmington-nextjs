@@ -187,14 +187,14 @@ export default function displayBlock(block, index) {
       return <Blocks blocks={innerBlocks} key={index} />
     }
 
-    case 'acf/home-hero': {
-      const BlockHomeHero = dynamic(() =>
-        import('@/components/blocks/acf/BlockHomeHero')
-      )
-      return (
-        <BlockHomeHero {...attributes} innerBlocks={innerBlocks} key={index} />
-      )
-    }
+    // case 'acf/home-hero': {
+    //   const BlockHomeHero = dynamic(() =>
+    //     import('@/components/blocks/acf/BlockHomeHero')
+    //   )
+    //   return (
+    //     <BlockHomeHero {...attributes} innerBlocks={innerBlocks} key={index} />
+    //   )
+    // }
 
     // case 'acf/news-listing': {
     //   const BlockNewsListing = dynamic(() =>

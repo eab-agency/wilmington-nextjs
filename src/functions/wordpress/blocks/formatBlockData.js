@@ -29,12 +29,12 @@ export default async function formatBlockData(blocks) {
         //   attributes.imageMeta = await getMediaByID(attributes?.id)
         //   break
         // }
-        case 'acf/home-hero': {
-          attributes.imageMeta = await getMediaByID(
-            attributes?.data?.hero_image
-          )
-          break
-        }
+        // case 'acf/home-hero': {
+        //   attributes.imageMeta = await getMediaByID(
+        //     attributes?.data?.hero_image
+        //   )
+        //   break
+        // }
         // case 'acf/news-listing': {
         //   // an await function to return the news posts that are in the attributes.data.news_listing array
         //   attributes.listingData = await getNewsListingData(

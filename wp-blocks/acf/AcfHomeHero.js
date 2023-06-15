@@ -1,6 +1,6 @@
+import Image from '@/components/atoms/Image'
 import Hero from '@/components/organisms/HomeHero'
-import { gql } from '@apollo/client'
-import { WordPressBlocksViewer } from '@faustwp/blocks'
+import { gql, useQuery } from '@apollo/client'
 
 /**
  * Home Hero Block
@@ -13,11 +13,26 @@ import { WordPressBlocksViewer } from '@faustwp/blocks'
  * @return {Element}                       The Cover component.
  */
 
-export default function BlockHomeHero({
-  data: { innerBlocks, hero_content, hero_primary_ctas, ...other },
-  imageMeta
-}) {
-  const { data } = other.attributes
+// {
+//   data: { innerBlocks, hero_content, hero_primary_ctas, ...other },
+//   imageMeta
+// }
+
+export default function AcfHomeHero(props) {
+  const attributes = props.attributes
+
+  const { hero_content, hero_primary_ctas, hero_image, ...other } = JSON.parse(
+    attributes?.data
+  )
+
+  // grap the athlete image
+  const { loading, error, data } = useQuery(Image.query, {
+    variables: { id: hero_image }
+  })
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error: {error.message}</p>
+
   const count = hero_primary_ctas
 
   const hero_ctas_array = []
@@ -36,15 +51,14 @@ export default function BlockHomeHero({
 
   return (
     <Hero
-      imageMeta={imageMeta}
+      imageMeta={data?.mediaItem}
       content={hero_content}
       ctas={hero_ctas_array}
-      innerBlocks={innerBlocks}
     />
   )
 }
 
-BlockHomeHero.fragments = {
+AcfHomeHero.fragments = {
   entry: gql`
     fragment ACFHomeHeroFragment on AcfHomeHero {
       attributes {
