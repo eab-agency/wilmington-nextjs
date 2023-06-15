@@ -26,13 +26,11 @@ export default function CoreImage(props) {
         attributes?.nextImageFill ? styles.hasImageFill : null
       )}
     >
-      <Image
-        alt={attributes?.alt}
-        src={attributes?.src}
+      <DisplayImage
         width={imageSize.width}
         height={imageSize.height}
+        {...attributes}
       />
-      {attributes?.caption && <figcaption>{attributes?.caption}</figcaption>}
     </div>
   )
 }
@@ -47,7 +45,8 @@ CoreImage.fragments = {
         caption
         className
         sizeSlug
-        width
+        widthFloat: width
+        widthString: width
         heightFloat: height
         heightString: height
         style

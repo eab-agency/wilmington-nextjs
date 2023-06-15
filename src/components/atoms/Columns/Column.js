@@ -8,7 +8,6 @@ const Column = (props) => {
     width: props.attributes?.width,
     backgroundColor: props.attributes?.backgroundColor
   })
-  console.log('🚀 ~ file: Column.js:4 ~ Column ~ attributes:', attributes)
   return (
     <div
       id={attributes?.anchor || null}
