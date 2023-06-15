@@ -1,0 +1,97 @@
+@use 'sass:color';
+@use 'tokens';
+@use 'mixins';
+
+.wc-content-drawer {
+  // border-left: 1px solid tokens.$c-gray-400;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid tokens.$c-gray-300;
+  margin-bottom: clamp(tokens.$p-l, 4vw, tokens.$p-xxl);
+  padding-right: clamp(tokens.$p-l, 5vw, tokens.$p-xxl);
+
+  @media (min-width: tokens.$mq-1600) {
+    padding-right: tokens.$pageOffset;
+  }
+
+  .wc-content-drawer-intro-g {
+    // padding-inline: clamp(tokens.$p-m, 5vw, tokens.$p-xxl);
+
+    &::after {
+      display: none;
+    }
+
+    [class*='columns'] {
+      gap: tokens.$p-xl;
+      margin: 0;
+
+      &::after {
+        display: none;
+      }
+
+      & > [class*='column']:last-child {
+        @include mixins.sectionPadding(block);
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .wc-content-drawer-main-content-g {
+    height: 0px;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .drawerBtnContainer {
+    padding: clamp(tokens.$p-m, 5vw, tokens.$p-l);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 100%;
+      border-top: 1px solid tokens.$c-gray-400;
+    }
+
+    .drawerButton {
+      align-self: flex-end;
+
+      i {
+        display: none;
+      }
+
+      &::after {
+        content: tokens.$i-plus-bold;
+        font-family: tokens.$f-icons;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2em;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 2em;
+        background: tokens.$c-limeGreen-500;
+        color: tokens.$c-white;
+      }
+    }
+  }
+
+  &.drawerOpen {
+    .wc-content-drawer-main-content-g {
+      height: 100%;
+      padding: clamp(tokens.$p-m, 5vw, tokens.$p-l);
+      opacity: 1;
+    }
+
+    .drawerButton {
+      &::after {
+        content: tokens.$i-minus-bold;
+      }
+    }
+  }
+}

@@ -1,0 +1,283 @@
+//* ================
+//* Form Elements
+//* ================
+
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
+
+// ================
+// Form Fields
+
+// Base Form Field Styles
+%form-field {
+  width: 100%;
+  padding: 0.8em 0.5em;
+  border: 1px solid tokens.$c-gray-400;
+  background: tokens.$c-gray-200;
+  font-size: 1rem;
+  line-height: 1.1;
+  box-sizing: border-box;
+  border-radius: 0.2em;
+
+  .type-telephone &,
+  .type-ssn &,
+  .type-date & {
+    width: auto;
+
+    // Min widths fix a sizing bug on iOS
+    &[size='2'] {
+      min-width: 3.25em;
+    }
+
+    &[size='3'] {
+      min-width: 4.25em;
+    }
+
+    &[size='4'] {
+      min-width: 5.25em;
+    }
+  }
+
+  .error &,
+  .val-flag & {
+    border-color: tokens.$c-error;
+  }
+
+  /* stylelint-disable */
+  &:focus,
+  &:hover {
+    outline: none;
+    border-color: tokens.$c-gray-500;
+    background: tokens.$c-white;
+  }
+  /* stylelint-enable */
+}
+
+// Text-like Inputs
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='tel'],
+input[type='text'],
+input[type='url'],
+.stripe-element {
+  @extend %form-field !optional;
+  line-height: 1.2;
+}
+
+// Textarea
+textarea {
+  @extend %form-field !optional;
+  overflow: auto !important;
+  min-height: 8em;
+  resize: vertical !important;
+  line-height: 1.4;
+}
+
+// Select (dropdown)
+select {
+  // -webkit-appearance: none; /* Remove default iOS styling */
+  // appearance: none;
+  @extend %form-field !optional;
+  overflow: hidden;
+  line-height: 1.2;
+  width: auto;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+// Radio & Checkbox
+input[type='radio'],
+input[type='checkbox'] {
+  float: left;
+  width: 0px;
+  height: 0px;
+  margin: 0.5em 0 0;
+  opacity: 0;
+
+  & ~ label,
+  & ~ .rte-q-label {
+    display: block;
+    padding: 0.3125em 0 0.3125em 2rem;
+    cursor: pointer;
+    font-size: 0.9444em;
+  }
+}
+
+input[type='checkbox'] {
+  & ~ label::before {
+    content: '';
+    display: block;
+    width: 1.5em;
+    height: 1.5em;
+    background: #f4f4f4;
+    border: 1px solid tokens.$c-black;
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+  }
+
+  &:checked {
+    & ~ label::after {
+      content: '\2713';
+      display: block;
+      color: tokens.$c-black;
+      font-size: 2em;
+      position: absolute;
+      top: -0.2em;
+      left: 0.05em;
+      font-weight: bold;
+    }
+  }
+}
+
+// ================
+// Question Layout
+
+// Basic Question
+.question {
+  margin: 1rem 0;
+
+  // Labels
+  & > label,
+  & > .rte-q-label,
+  & > .desc {
+    display: block;
+    padding: 0 0 0.125em;
+    line-height: 1.4;
+
+    .error &,
+    .val-flag & {
+      color: tokens.$c-error;
+    }
+  }
+
+  // Help Text
+  .help {
+    // @extend %small;
+  }
+
+  // "For Print" Styles
+  // Hides printable textarea content on screens
+  @media screen {
+    .forprint {
+      display: none !important;
+    }
+  }
+}
+
+// Wide Form Layout
+// These styles apply only when the "wide form" layout is in use
+%wide-form,
+.wide-form {
+  .question {
+    margin: 0;
+    padding: 1rem 0;
+    border-top: 1px solid #ddd;
+  }
+
+  .related-question {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .rte-q:first-of-type {
+    .question {
+      padding-top: 0;
+      border-top: 0;
+    }
+  }
+}
+
+// Checkbox & Radio Questions
+.type-multicheck,
+.type-radio,
+.type-ethnicity {
+  .choice {
+    span {
+      display: inline-block;
+      margin-right: 1em;
+      vertical-align: baseline;
+    }
+
+    input {
+      &[type='radio'],
+      &[type='checkbox'] {
+        & > label,
+        & > .rte-q-label {
+          width: auto;
+        }
+      }
+    }
+  }
+
+  // Stacked Answer Choices
+  &.answer-stacked .choice {
+    span {
+      display: block;
+    }
+  }
+}
+
+// Merged Fields
+.type-date,
+.type-ssn,
+.type-telephone {
+  [role='group'] {
+    display: flex;
+
+    & > * {
+      &:not(:first-child) {
+        margin-left: 0.25em;
+
+        .group-mode-view & {
+          margin-left: 0;
+        }
+      }
+
+      select {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Mautic Form
+
+.mauticform {
+  &-row {
+    position: relative;
+    display: block;
+    margin: 0.8em 0;
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      margin: 0;
+      font-family: tokens.$f-bodyFont;
+    }
+
+    input {
+      @extend %form-field;
+    }
+  }
+
+  &-has-error {
+    input,
+    select {
+      border-color: tokens.$c-error;
+    }
+  }
+
+  &-errormsg {
+    color: tokens.$c-error;
+  }
+}
+
+/* stylelint-disable */
+.FormHide {
+  display: none;
+  visibility: hidden;
+}
+/* stylelint-enable */

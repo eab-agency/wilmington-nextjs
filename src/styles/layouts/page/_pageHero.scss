@@ -12,14 +12,14 @@
   .page-hero {
     display: block;
     width: 100%;
-    height: clamp(20rem, 48vw, 48rem);
+    height: clamp(20rem, 40vw, 40em);
     position: relative;
     z-index: tokens.$layer-1;
     background: #efefef;
 
     & > div[class*='image'] {
       display: block;
-
+      width: 120%;
       height: 100%;
       position: absolute;
       right: 0;

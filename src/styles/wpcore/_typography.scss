@@ -2,7 +2,7 @@
 
 p {
   strong {
-    font-weight: 900;
+    font-weight: 700;
   }
 }
 
@@ -12,7 +12,7 @@ p {
 }
 
 .large {
-  font-size: clamp(tokens.$fs-xl, 5vw, tokens.$fs-2xl);
+  font-size: clamp(tokens.$fs-xl, 3vw, tokens.$fs-2xl);
   font-family: tokens.$f-headlineFont;
 }
 

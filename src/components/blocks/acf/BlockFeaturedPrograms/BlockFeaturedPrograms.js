@@ -24,8 +24,8 @@ const responsive = {
 
 const BlockFeaturedPrograms = ({ featuredPrograms }) => {
   return (
-    <section className={styles.featuredPrograms}>
-      <h2>Featured Programs</h2>
+    <div className={styles.featuredPrograms}>
+      {/* <h2>Featured Programs</h2> */}
       <Carousel
         containerClass={styles.carouselContainer}
         responsive={responsive}
@@ -44,7 +44,7 @@ const BlockFeaturedPrograms = ({ featuredPrograms }) => {
       <div className={styles.viewAllCta}>
         <Button url="/programs" text="View All Programs" secondary />
       </div>
-    </section>
+    </div>
   )
 }
 

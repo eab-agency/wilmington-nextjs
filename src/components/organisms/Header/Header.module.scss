@@ -77,6 +77,8 @@
 
 .pageHeader {
   display: flex;
+  position: relative;
+  z-index: 10;
 
   &Sticky {
     display: flex;

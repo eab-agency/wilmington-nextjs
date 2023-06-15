@@ -1,17 +1,14 @@
+import Meta from '@/components/common/Meta'
 import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
 import useIsFrontPage from '@/functions/useIsFrontPage'
 import formatHeirarchialMenu from '@/functions/wordpress/menus/formatHeirarchialMenu'
 import { gql, useQuery } from '@apollo/client'
-import { Cantarell } from 'next/font/google'
 import * as MENUS from '../../constants/menus'
 import styles from './Layout.module.scss'
 
-const cantarell = Cantarell({
-  weight: ['400', '700'],
-  subsets: ['latin']
-})
+import { cantarell, robotoSlab } from '@/app/fonts'
 
 /**
  * Render the Layout component.
@@ -33,7 +30,9 @@ export default function Layout({ children }) {
   const mainMenu = formatHeirarchialMenu(data?.mainMenuItems?.nodes ?? [])
 
   return (
-    <div className={`${cantarell.className}`}>
+    <div
+      className={`${cantarell.variable} ${robotoSlab.variable} pageContainer`}
+    >
       <Header menu={utilityMenu} />
       <div
         className={`${styles.mainContainer} ${

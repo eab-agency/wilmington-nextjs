@@ -35,14 +35,48 @@ const Footer = ({ menus }) => {
           <FooterMenu menuItems={menus?.RESOURCE_NAV} menuTitle="Resources" />
           <div className={styles.socialFooter}>
             <h3>Connect</h3>
-            <a
-              href="https://www.facebook.com/WilmingtonCollege"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialLink}
-            >
-              <span className="sr-only">Facebook</span>
-            </a>
+            <ul>
+              <li>
+                <a
+                  href="https://www.facebook.com/WilmingtonCollege"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialLink}
+                >
+                  <span className="sr-only">Facebook</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://twitter.com/WilmingtonColl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialLink}
+                >
+                  <span className="sr-only">Twitter</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/wilmingtoncollege/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialLink}
+                >
+                  <span className="sr-only">Instagram</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/user/WilmingtonCollege"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialLink}
+                >
+                  <span className="sr-only">YouTube</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
         <div className={styles.legal}>

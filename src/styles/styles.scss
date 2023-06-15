@@ -1,8 +1,12 @@
 @use 'base';
 @use 'components/reactCarousel';
+@use 'components/buttons';
 @use 'wpcore';
 @use 'layouts/global';
 @use 'layouts/homepage';
 @use 'layouts/page';
-// TODO: hey @andrei, added this to style wp core blocks (all the default classes)
+@use 'layouts/program';
+@use 'layouts/forms';
+// TODO: hey @andrei, added this to style wp core blocks (all the default classes). feel free to remove it if it doesn't make sense
+// also see _blocks.scss
 @use 'blocks';

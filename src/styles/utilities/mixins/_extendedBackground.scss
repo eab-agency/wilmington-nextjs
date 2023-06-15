@@ -1,6 +1,10 @@
 @use 'tokens';
 
-@mixin extendedBackground($pseudoElement, $bg: tokens.$c-white) {
+@mixin extendedBackground(
+  $pseudoElement,
+  $bg: tokens.$c-white,
+  $z: tokens.$layer-0
+) {
   &::#{$pseudoElement} {
     content: '';
     display: block;
@@ -10,6 +14,6 @@
     position: absolute;
     top: 0;
     right: 100%;
-    z-index: tokens.$layer-1;
+    z-index: $z;
   }
 }
