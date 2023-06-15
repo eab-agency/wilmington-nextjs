@@ -19,8 +19,6 @@ import { gql, useQuery } from '@apollo/client'
 // }
 
 export default function AcfHomeHero(props) {
-  // eslint-disable-next-line no-console
-  console.log('🚀 ~ file: AcfHomeHero.js:22 ~ AcfHomeHero ~ props:', props)
   const attributes = props.attributes
 
   const { hero_content, hero_primary_ctas, hero_image, ...other } = JSON.parse(
