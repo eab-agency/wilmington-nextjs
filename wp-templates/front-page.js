@@ -13,7 +13,7 @@ import blocks from '../wp-blocks'
 export default function Component(props) {
   const { editorBlocks } = props.data.page
   const blocks = flatListToHierarchical(editorBlocks)
-  console.log('🚀 ~ file: front-page.js:15 ~ Component ~ blocks:', blocks)
+  // console.log('🚀 ~ file: front-page.js:15 ~ Component ~ blocks:', blocks)
 
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings ?? {}

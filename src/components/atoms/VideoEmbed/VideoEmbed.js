@@ -70,7 +70,6 @@ export default function VideoEmbed({ className, url, type, caption }) {
           src={createVideoUrl(url)}
           title={`Embedded content from ${type}`}
           className={className}
-          frameborder="0"
         ></iframe>
       </div>
       {!!caption && (
