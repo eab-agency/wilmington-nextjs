@@ -7,15 +7,16 @@
  * @param  {string}  props.content     HTML that comes from the WordPress editor.
  * @return {Element}                          The  component.
  */
-export default function BlockDefault({ content }) {
+
+import { gql } from '@apollo/client'
+
+export default function CoreFreeform(props) {
+  const attributes = props.attributes
+
   // filter out links that are internal to the site but keep image paths
-  // const filteredContent = content.replace(
-  //   /(?<=href=["'])(?!(?:https?:\/\/(?:www\.)?wilmington\.edu\/wp-content))(?:https?:\/\/(?:www\.)?wilmington\.edu)(?=[^"']*(?:["']|$))/g,
-  //   ""
-  // );
   const filteredContent =
-    content &&
-    content.replace(
+    attributes?.content &&
+    attributes?.content.replace(
       /(href=["'])(?!(?:https?:\/\/(?:www\.)?wilmington\.edu\/wp-content))(?:https?:\/\/(?:www\.)?wilmington\.edu)(?=[^"']*(?:["']|$))/g,
       '$1'
     )
@@ -31,4 +32,15 @@ export default function BlockDefault({ content }) {
       )}
     </>
   )
+}
+
+CoreFreeform.fragments = {
+  entry: gql`
+    fragment CoreFreeformFragment on CoreFreeform {
+      attributes {
+        content
+      }
+    }
+  `,
+  key: `CoreFreeformFragment`
 }

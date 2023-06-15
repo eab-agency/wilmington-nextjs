@@ -3,6 +3,7 @@ import CoreButton from './CoreButton'
 import CoreButtons from './CoreButtons'
 import CoreColumn from './CoreColumn'
 import CoreColumns from './CoreColumns'
+import CoreFreeform from './CoreFreeform'
 import CoreGroup from './CoreGroup'
 import CoreList from './CoreList'
 import CoreParagraph from './CoreParagraph'
@@ -31,6 +32,7 @@ export default {
   CoreButtons,
   CoreColumn,
   CoreColumns,
+  CoreFreeform,
   CoreGroup,
   CoreList,
   CoreParagraph,
