@@ -56,3 +56,5 @@ CoreParagraph.fragments = {
   `,
   key: `CoreParagraphFragment`
 }
+
+CoreParagraph.displayName = 'CoreParagraph'

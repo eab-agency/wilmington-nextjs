@@ -44,3 +44,5 @@ CoreFreeform.fragments = {
   `,
   key: `CoreFreeformFragment`
 }
+
+CoreFreeform.displayName = 'CoreFreeform'

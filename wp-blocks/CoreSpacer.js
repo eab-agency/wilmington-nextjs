@@ -30,3 +30,5 @@ CoreSpacer.fragments = {
   `,
   key: `CoreSpacerFragment`
 }
+
+CoreSpacer.displayName = 'CoreSpacer'

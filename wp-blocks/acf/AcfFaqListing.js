@@ -55,3 +55,5 @@ AcfFaqListing.query = gql`
     }
   }
 `
+
+AcfFaqListing.displayName = 'AcfFaqListing'

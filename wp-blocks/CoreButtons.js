@@ -30,3 +30,5 @@ CoreButtons.fragments = {
   `,
   key: `CoreButtonsFragment`
 }
+
+CoreButtons.displayName = 'CoreButtons'

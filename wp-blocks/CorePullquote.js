@@ -35,3 +35,5 @@ CorePullquote.fragments = {
   `,
   key: `CorePullquoteFragment`
 }
+
+CorePullquote.displayName = 'CorePullquote'

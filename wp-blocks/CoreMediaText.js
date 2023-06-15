@@ -81,3 +81,5 @@ CoreMediaText.fragments = {
   `,
   key: `CoreMediaTextFragment`
 }
+
+CoreMediaText.displayName = 'CoreMediaText'

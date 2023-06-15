@@ -43,3 +43,5 @@ CoreImage.fragments = {
   `,
   key: `CoreImageFragment`
 }
+
+CoreImage.displayName = 'CoreImage'

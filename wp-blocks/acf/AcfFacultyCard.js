@@ -99,3 +99,5 @@ const FACULTY_QUERY = gql`
     }
   }
 `
+
+AcfFacultyCard.displayName = 'AcfFacultyCard'

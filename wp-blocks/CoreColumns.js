@@ -25,3 +25,5 @@ CoreColumns.fragments = {
   `,
   key: `CoreColumnsFragment`
 }
+
+CoreColumns.displayName = 'CoreColumns'

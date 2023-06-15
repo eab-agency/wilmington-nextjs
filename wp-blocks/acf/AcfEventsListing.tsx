@@ -141,3 +141,5 @@ const GET_LATEST_EVENTS = gql`
   }
   ${eventFragment}
 `
+
+AcfEventsListing.displayName = 'AcfEventsListing'

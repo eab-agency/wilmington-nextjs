@@ -128,3 +128,5 @@ const GET_TESTIMONIAL = gql`
     }
   }
 `
+
+AcfTestimonialBlock.displayName = 'AcfTestimonialBlock'
