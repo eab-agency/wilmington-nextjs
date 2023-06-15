@@ -110,11 +110,11 @@ export default async function formatBlockData(blocks) {
         //   )
         //   break
         // }
-        case 'eab/program-directory': {
-          const { posts } = await getPostTypeArchive('department')
-          attributes.departments = posts
-          break
-        }
+        // case 'eab/program-directory': {
+        //   const { posts } = await getPostTypeArchive('department')
+        //   attributes.departments = posts
+        //   break
+        // }
 
         case 'core/heading': {
           // need to add an anchor to the heading if it doesn't have one so that jump links work

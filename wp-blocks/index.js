@@ -17,6 +17,7 @@ import AcfHomeHero from './acf/AcfHomeHero'
 import AcfHomeTab from './acf/AcfHomeTab'
 import AcfNewsListing from './acf/AcfNewsListing'
 import AcfTestimonialBlock from './acf/AcfTestimonialBlock'
+import EabProgramDirectory from './custom/EabProgramDirectory'
 
 /**
  * This object acts as the registry of blocks in your React Gutenberg Bridge.
@@ -43,5 +44,6 @@ export default {
   AcfHomeHero,
   AcfHomeTab,
   AcfNewsListing,
-  AcfTestimonialBlock
+  AcfTestimonialBlock,
+  EabProgramDirectory
 }
