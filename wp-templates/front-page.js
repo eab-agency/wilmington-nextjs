@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { SEO } from '@/components'
 import Container from '@/components/atoms/Container'
 import FeaturedImage from '@/components/common/FeaturedImage'
