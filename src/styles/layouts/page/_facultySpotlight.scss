@@ -1,0 +1,27 @@
+@use 'tokens';
+@use 'utilities/mixins';
+
+.wc-faculty-spotlight {
+  @include mixins.sectionPadding(block);
+
+  [class*='columns'] {
+    gap: clamp(1rem, 4vw, 4rem);
+
+    [class*='column'] {
+      @media (min-width: tokens.$mq-800) {
+        flex: 1 1 20rem;
+      }
+
+      &:first-child {
+        @media (min-width: tokens.$mq-800) {
+          flex: 1 1 35rem;
+          padding-right: clamp(1rem, 5vw, 5rem);
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          max-width: 50%;
+        }
+      }
+    }
+  }
+}
