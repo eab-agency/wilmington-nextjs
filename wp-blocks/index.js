@@ -1,4 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
+import CoreBlock from './CoreBlock'
 import CoreButton from './CoreButton'
 import CoreButtons from './CoreButtons'
 import CoreColumn from './CoreColumn'
@@ -6,6 +7,7 @@ import CoreColumns from './CoreColumns'
 import CoreEmbed from './CoreEmbed'
 import CoreFreeform from './CoreFreeform'
 import CoreGroup from './CoreGroup'
+import CoreHeading from './CoreHeading'
 import CoreImage from './CoreImage'
 import CoreList from './CoreList'
 import CoreMediaText from './CoreMediaText'
@@ -33,6 +35,7 @@ import EabProgramDirectory from './custom/EabProgramDirectory'
  * @see https://faustjs.org/docs/gutenberg/getting-started
  */
 export default {
+  CoreBlock,
   CoreButton,
   CoreButtons,
   CoreColumn,
@@ -40,7 +43,8 @@ export default {
   CoreEmbed,
   CoreFreeform,
   CoreGroup,
-  // CoreImage,
+  CoreHeading,
+  CoreImage,
   CoreList,
   CoreMediaText,
   CoreParagraph,
