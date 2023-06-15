@@ -4,12 +4,6 @@ import RichText from '@/components/atoms/RichText'
 import styles from './HomeHero.module.scss'
 
 function Hero({ imageMeta, content, ctas }) {
-  console.log(
-    '🟢🟢🟢 ~ file: HomeHero.js:7 ~ Hero ~ imageMeta, content, ctas:',
-    imageMeta,
-    content,
-    ctas
-  )
   return (
     <div className={styles.homeHero}>
       {/* <pre>FILE: HomeHero.tsx</pre> */}
