@@ -21,7 +21,6 @@ import { WordPressBlocksViewer } from '@faustwp/blocks'
  * @return {Element}                          The Groups component.
  */
 export default function CoreGroup(props) {
-  console.log('🚀 ~ file: CoreGroup.js:24 ~ CoreGroup ~ props:', props)
   const attributes = props.attributes
 
   const style = getStyles(props.attributes)

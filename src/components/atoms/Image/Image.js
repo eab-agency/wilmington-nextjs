@@ -25,7 +25,6 @@ import styles from './Image.module.css'
  * @return {Element}                     The DisplayImage component.
  */
 export default function DisplayImage(props) {
-  console.log('🚀 ~ file: Image.js:28 ~ DisplayImage ~ props:', props)
   // Set the image size.
   const imageSize = {
     height: props?.imageMeta?.mediaDetails?.height ?? props?.height,
