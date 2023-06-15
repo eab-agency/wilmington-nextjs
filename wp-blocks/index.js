@@ -10,6 +10,7 @@ import CoreQuote from './CoreQuote'
 import CoreVerse from './CoreVerse'
 import AcfAthleteCard from './acf/AcfAthleteCard'
 import AcfEventsListing from './acf/AcfEventsListing'
+import AcfFacultyCard from './acf/AcfFacultyCard'
 import AcfFaqListing from './acf/AcfFaqListing'
 import AcfFeaturedDept from './acf/AcfFeaturedDept'
 import AcfHomeHero from './acf/AcfHomeHero'
@@ -36,6 +37,7 @@ export default {
   CoreVerse,
   AcfAthleteCard,
   AcfEventsListing,
+  AcfFacultyCard,
   AcfFaqListing,
   AcfFeaturedDept,
   AcfHomeHero,

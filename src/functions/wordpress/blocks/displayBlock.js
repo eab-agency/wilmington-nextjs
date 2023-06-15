@@ -231,20 +231,20 @@ export default function displayBlock(block, index) {
     //   return <BlockTestimonial {...attributes} key={index} />
     // }
 
-    case 'acf/home-tab': {
-      const BlockHomeTabs = dynamic(() =>
-        import('@/components/blocks/acf/BlockHomeTabs')
-      )
-      return <BlockHomeTabs {...attributes.data} key={index} />
-    }
+    // case 'acf/home-tab': {
+    //   const BlockHomeTabs = dynamic(() =>
+    //     import('@/components/blocks/acf/BlockHomeTabs')
+    //   )
+    //   return <BlockHomeTabs {...attributes.data} key={index} />
+    // }
 
-    case 'acf/faculty-card': {
-      // extra data is being added to attributes.data.facultyData
-      const BlockFacultyCard = dynamic(() =>
-        import('@/components/blocks/acf/BlockFacultyCard')
-      )
-      return <BlockFacultyCard {...attributes} key={index} />
-    }
+    // case 'acf/faculty-card': {
+    //   // extra data is being added to attributes.data.facultyData
+    //   const BlockFacultyCard = dynamic(() =>
+    //     import('@/components/blocks/acf/BlockFacultyCard')
+    //   )
+    //   return <BlockFacultyCard {...attributes} key={index} />
+    // }
 
     case 'acf/faculty-spotlight': {
       const BlockFacultyCards = dynamic(() =>
