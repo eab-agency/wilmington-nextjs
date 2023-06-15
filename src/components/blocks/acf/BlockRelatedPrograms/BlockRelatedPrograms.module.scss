@@ -13,15 +13,20 @@
     overflow: visible;
 
     ul {
-      width: 100%;
       padding-bottom: 2em;
       padding-bottom: 6em;
+
+      @media (min-width: tokens.$mq-1200) {
+        width: 100%;
+      }
 
       li {
         transition: all 0.3s ease-out;
         padding-inline: tokens.$p-m;
         display: flex;
         flex-direction: column;
+        // flex: 1 0 18rem;
+        // min-width: 18rem;
       }
 
       &:hover {
