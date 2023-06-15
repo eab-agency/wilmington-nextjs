@@ -1,6 +1,13 @@
 @use 'sass:color';
 @use 'tokens';
 
+$social-icons: (
+  'facebook': tokens.$i-facebook,
+  'twitter': tokens.$i-twitter,
+  'instagram': tokens.$i-instagram,
+  'youtube': tokens.$i-youtube
+);
+
 .footer {
   @media (min-width: tokens.$mq-800) {
     padding-right: tokens.$rightOffset;
@@ -91,6 +98,21 @@
       .socialFooter {
         // background: tokens.$c-darkGreen-800;
 
+        ul {
+          list-style: none;
+          display: flex;
+
+          li {
+            padding: 0;
+            margin: 0;
+
+            &::before,
+            &::after {
+              display: none;
+            }
+          }
+        }
+
         .socialLink {
           color: tokens.$c-white;
           position: relative;
@@ -100,18 +122,21 @@
           padding-inline: 0.5em;
           width: 2em;
           border-inline: 1px solid tokens.$c-darkGreen-700;
+          text-indent: -999em;
 
-          &[href*='facebook'] {
-            text-indent: -999em;
+          &::before {
+            content: tokens.$i-star;
+            font-family: tokens.$f-icons;
+            text-indent: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+          }
 
-            &::before {
-              content: tokens.$i-facebook;
-              font-family: tokens.$f-icons;
-              text-indent: 0;
-              position: absolute;
-              left: 0;
-              top: 0;
-              width: 100%;
+          @each $platform, $icon in $social-icons {
+            &[href*='#{$platform}']::before {
+              content: $icon;
             }
           }
 

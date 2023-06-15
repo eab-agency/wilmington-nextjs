@@ -52,9 +52,9 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  top: 25%;
+  left: 25%;
+  transform: translateX(-50%) translateY(-50%) rotate(-5deg);
 }
 
 @mixin listItemCleanUp {
