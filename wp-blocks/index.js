@@ -8,6 +8,7 @@ import CoreGroup from './CoreGroup'
 import CoreList from './CoreList'
 import CoreParagraph from './CoreParagraph'
 import CoreQuote from './CoreQuote'
+import CoreSpacer from './CoreSpacer'
 import CoreVerse from './CoreVerse'
 import AcfAthleteCard from './acf/AcfAthleteCard'
 import AcfEventsListing from './acf/AcfEventsListing'
@@ -37,6 +38,7 @@ export default {
   CoreList,
   CoreParagraph,
   CoreQuote,
+  CoreSpacer,
   CoreVerse,
   AcfAthleteCard,
   AcfEventsListing,
