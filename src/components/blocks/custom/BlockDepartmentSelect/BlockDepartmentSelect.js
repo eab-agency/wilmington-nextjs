@@ -12,7 +12,7 @@ const DepartmentSingle = ({ department }) => {
     departmentFields: { deptIcon, deptImage }
   } = department
 
-  console.log(department)
+  console.log(department.program)
 
   return (
     <article key={name} className="department">
