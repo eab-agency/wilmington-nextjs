@@ -1,6 +1,16 @@
 import Image from '@/components/atoms/Image'
+import { gql } from '@apollo/client'
 
-const FeaturedImage = ({ image, showCaption }) => {
+const FeaturedImage = ({
+  image,
+  showCaption,
+  width,
+  height,
+  className,
+  priority,
+  layout,
+  ...props
+}) => {
   // grab featuredImage from post.featuredImage, only if it exists
   const { altText, mediaDetails, sourceUrl, caption } = image
   // if featuredImage exists, destructure altText and caption from featuredImage
@@ -30,3 +40,22 @@ const FeaturedImage = ({ image, showCaption }) => {
 }
 
 export default FeaturedImage
+
+FeaturedImage.fragments = {
+  entry: gql`
+    fragment FeaturedImageFragment on NodeWithFeaturedImage {
+      featuredImage {
+        node {
+          id
+          altText
+          caption
+          sourceUrl(size: $imageSize)
+          mediaDetails {
+            width
+            height
+          }
+        }
+      }
+    }
+  `
+}

@@ -39,7 +39,12 @@ const FooterItemGraphic = ({ className, graphic }: FooterItemGraphicProps) => {
           height={300}
         />
       ) : (
-        <Image src="/img-prefooter.jpg" alt={graphic} width={300} />
+        <Image
+          src="/img-prefooter.jpg"
+          alt={graphic}
+          height={300}
+          width={300}
+        />
       )}
     </div>
   )

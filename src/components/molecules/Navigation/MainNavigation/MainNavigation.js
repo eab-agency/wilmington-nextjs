@@ -1,4 +1,5 @@
 'use client'
+import { gql } from '@apollo/client'
 
 // import React from 'react'
 import { useEffect, useState } from 'react'
@@ -40,10 +41,9 @@ const MainNavigation = ({ menuItems, enableDropdown }) => {
     setOpen((prev) => !prev)
   }
 
-  if (!menuItems || !menuItems?.length) {
+  if (!menuItems) {
     return null
   }
-
   const openCloseClasses = open ? styles.openMenu : styles.closedMenu
   const depthLevel = 0
   return (
@@ -73,3 +73,20 @@ const MainNavigation = ({ menuItems, enableDropdown }) => {
 }
 
 export default MainNavigation
+
+MainNavigation.fragments = {
+  entry: gql`
+    fragment NavigationMenuItemFragment on MenuItem {
+      id
+      path
+      label
+      parentId
+      cssClasses
+      menu {
+        node {
+          name
+        }
+      }
+    }
+  `
+}

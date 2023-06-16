@@ -1,5 +1,6 @@
-import React from 'react'
 import Columns from '@/components/atoms/Columns'
+import { gql } from '@apollo/client'
+import { WordPressBlocksViewer } from '@faustwp/blocks'
 
 /**
  * Columns Block
@@ -15,31 +16,37 @@ import Columns from '@/components/atoms/Columns'
  * @param  {string}  props.verticalAlignment  Vertical alignment of columns.
  * @return {Element}                          The Columns component.
  */
-export default function BlockColumns({
-  anchor,
-  className,
-  innerBlocks,
-  style,
-  verticalAlignment,
-  isStackedOnMobile,
-  pageContext,
-  ...other
-}) {
+export default function BlockColumns(props) {
+  const attributes = props.attributes
+  // const style = getStyles(attributes)
+
   return (
-    <>
-      {!!innerBlocks?.length && (
-        <Columns
-          id={anchor}
-          className={className}
-          columnCount={innerBlocks?.length}
-          style={style}
-          verticalAlignment={verticalAlignment}
-          isStackedOnMobile={isStackedOnMobile}
-          columns={innerBlocks}
-          pageContext={pageContext}
-          {...other}
-        />
-      )}
-    </>
+    <Columns
+      id={attributes?.anchor}
+      className={attributes?.className}
+      columnCount={props?.children?.length}
+      style={props?.style}
+      verticalAlignment={props?.verticalAlignment}
+      isStackedOnMobile={props?.isStackedOnMobile}
+      // columns={innerBlocks}
+    >
+      <WordPressBlocksViewer blocks={props?.children ?? []} />
+    </Columns>
   )
+}
+
+BlockColumns.fragments = {
+  entry: gql`
+    fragment CoreColumnsBlockFragment on CoreColumns {
+      attributes {
+        anchor
+        className
+        style
+        cssClassName
+        isStackedOnMobile
+        verticalAlignment
+      }
+    }
+  `,
+  key: `CoreColumnsBlockFragment`
 }

@@ -20,7 +20,11 @@ function Testimonial({ post, viewAllLink, imageOnly, featuredTestimonial }) {
     return null
   }
   // destructure first, last, desc from post.testimonialFields.testimonial, set default values
-  const { altText, mediaDetails, sourceUrl } = post?.featuredImage?.node
+  const {
+    altText = '',
+    mediaDetails,
+    sourceUrl
+  } = post?.featuredImage?.node || {}
   const { first, last, desc } = post?.testimonialFields?.testimonial ?? {}
   const fullName = `${first} ${last}`
 
