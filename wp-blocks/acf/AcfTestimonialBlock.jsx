@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable react-hooks/rules-of-hooks */
 import BlockTestimonial from '@/components/blocks/acf/BlockTestimonial'
 import FeaturedImage from '@/components/common/FeaturedImage'

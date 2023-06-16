@@ -89,7 +89,7 @@ SingleProgram.query = gql`
         uri
           children {
         nodes {
-          link
+          uri
           slug
           ... on Program {
             id
