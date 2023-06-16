@@ -29,10 +29,9 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   })
 
   const posts: any[] = []
-
-  if (idsData) {
+  if (idsData && (idsData.events || idsData.eventCategory)) {
     const nodes = idsData.events
-      ? idsData.events.nodes
+      ? idsData.events?.nodes
       : idsData.eventCategory.events.nodes
     if (nodes.length > 0) {
       nodes.forEach((event: Event) => {

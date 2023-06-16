@@ -14,7 +14,11 @@ import Image from 'next/image'
 export default function CoreImage(props) {
   const attributes = props.attributes
   const style = getStyles(attributes)
-  const imageSize = getImageSizeProps(attributes)
+  const imageSize = getImageSizeProps({
+    ...attributes,
+    width: attributes.widthString || attributes.width,
+    height: attributes.heightString || attributes.height
+  })
 
   return (
     <div
