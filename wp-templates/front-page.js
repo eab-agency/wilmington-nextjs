@@ -11,7 +11,7 @@ import { flatListToHierarchical } from '@faustwp/core'
 import blocks from '../wp-blocks'
 
 export default function Component(props) {
-  const { editorBlocks } = props.data.page
+  const { editorBlocks, seo } = props.data.page
   const blocks = flatListToHierarchical(editorBlocks)
   // console.log('🚀 ~ file: front-page.js:15 ~ Component ~ blocks:', blocks)
 
@@ -25,7 +25,11 @@ export default function Component(props) {
 
   return (
     <>
-      <SEO title={siteTitle} description={siteDescription} />
+      <SEO
+        title={siteTitle}
+        description={siteDescription}
+        fullHead={seo?.fullHead}
+      />
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
@@ -50,6 +54,9 @@ Component.query = gql`
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
        ... on NodeWithTitle {
         title
+      }
+      seo {
+        fullHead
       }
 
         editorBlocks {

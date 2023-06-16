@@ -1,3 +1,4 @@
+import parse from 'html-react-parser'
 import Head from 'next/head'
 
 /**
@@ -11,7 +12,15 @@ import Head from 'next/head'
  *
  * @returns {React.ReactElement} The SEO component
  */
-export default function SEO({ title, description, imageUrl, url }) {
+export default function SEO({
+  title,
+  description,
+  imageUrl,
+  url,
+  fullHead = ''
+}) {
+  const yoastFullHead = parse(fullHead)
+
   if (!title && !description && !imageUrl && !url) {
     return null
   }
@@ -19,6 +28,7 @@ export default function SEO({ title, description, imageUrl, url }) {
   return (
     <>
       <Head>
+        {yoastFullHead}
         <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
 

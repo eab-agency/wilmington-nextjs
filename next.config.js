@@ -9,9 +9,17 @@ const nextConfig = {
   experimental: {
     appDir: true
   },
-  // async redirects() {
-  //   return await fetchRedirects()
-  // },
+  async redirects() {
+    const redirects = await fetchRedirects()
+    return [
+      ...redirects,
+      {
+        source: '/programs',
+        destination: '/program-directory',
+        permanent: true
+      }
+    ]
+  },
   reactStrictMode: true,
   images: {
     domains: [getWpHostname()],
