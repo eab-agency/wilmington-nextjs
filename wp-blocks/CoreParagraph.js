@@ -1,4 +1,5 @@
 import RichText from '@/components/atoms/RichText'
+import getBlockStyles from '@/functions/wordpress/blocks/getBlockStyles'
 import getStyles from '@/functions/wordpress/blocks/getStyles'
 import { gql } from '@apollo/client'
 import cn from 'classnames'
@@ -11,16 +12,25 @@ import cn from 'classnames'
  */
 export default function CoreParagraph(props) {
   const attributes = props.attributes
-  const style = getStyles(attributes)
+  const getStylesStyle = getStyles(attributes)
+
+  const { fontSize, backgroundColor, textColor, style } = attributes
+
+  const paragraphStyle = getBlockStyles({
+    fontSize,
+    backgroundColor,
+    textColor,
+    style
+  })
 
   const classes = {
-    [props.className]: true,
-    'text-center': props.align === 'center',
-    'text-left': !props.align || props.align === 'left',
-    'text-right': props.align === 'right',
-    [props.fontSize]: !!props.fontSize,
-    [props.textColor]: !!props.textColor,
-    [props.backgroundColor]: !!props.backgroundColor
+    [attributes?.className]: true,
+    'text-center': attributes?.align === 'center',
+    'text-left': !attributes?.align || attributes?.align === 'left',
+    'text-right': attributes?.align === 'right',
+    [attributes?.fontSize]: !!attributes?.fontSize,
+    [attributes?.textColor]: !!attributes?.textColor,
+    [attributes?.backgroundColor]: !!attributes?.backgroundColor
   }
 
   return (
@@ -45,12 +55,12 @@ CoreParagraph.fragments = {
         align
         anchor
         backgroundColor
+        textColor
+        style
         className
         content
         dropCap
         fontSize
-        style
-        textColor
       }
     }
   `,

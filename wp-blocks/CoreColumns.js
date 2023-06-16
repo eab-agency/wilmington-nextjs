@@ -9,6 +9,7 @@ import { WordPressBlocksViewer } from '@faustwp/blocks'
  */
 export default function CoreColumns(props) {
   const attributes = props.attributes
+
   return (
     <Columns
       id={attributes?.anchor}
@@ -17,6 +18,7 @@ export default function CoreColumns(props) {
       style={attributes?.style}
       verticalAlignment={attributes?.verticalAlignment}
       isStackedOnMobile={attributes?.isStackedOnMobile}
+      backgroundColor={attributes?.backgroundColor}
     >
       <WordPressBlocksViewer blocks={props?.children ?? []} />
     </Columns>
@@ -33,6 +35,7 @@ CoreColumns.fragments = {
         style
         verticalAlignment
         isStackedOnMobile
+        backgroundColor
       }
     }
   `,
