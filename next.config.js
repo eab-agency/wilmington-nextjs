@@ -17,6 +17,11 @@ const nextConfig = {
         source: '/programs',
         destination: '/program-directory',
         permanent: true
+      },
+      {
+        source: '/program',
+        destination: '/program-directory',
+        permanent: true
       }
     ]
   },
