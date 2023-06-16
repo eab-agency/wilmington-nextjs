@@ -1,8 +1,15 @@
-import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import { gql } from '@apollo/client'
+// import { Container, Footer, Header, Hero, Main, SEO } from '../components'
+import { SEO } from '@/components'
+import Breadcrumbs from '@/components/atoms/Breadcrumbs'
+import Container from '@/components/atoms/Container'
+import FeaturedImage from '@/components/common/FeaturedImage'
+import Layout from '@/components/common/Layout'
+import PageHero from '@/components/organisms/PageHero/PageHero'
+import { BlogInfoFragment } from '@/fragments/GeneralSettings'
+import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
-import Head from 'next/head'
 import blocks from '../wp-blocks'
 
 /**
@@ -14,31 +21,30 @@ import blocks from '../wp-blocks'
  * @see https://faustjs.org/docs/templates
  */
 export default function Component(props) {
-  const { title, editorBlocks } = props.data.nodeByUri
-
-  /**
-   * Get contentBlocks from props.data and pass them through
-   * flatListToHierarchical() to re-assemble them into a proper
-   * node hierarchy.
-   */
+  const { title, editorBlocks, seo, featuredImage } = props.data.nodeByUri
   const blocks = flatListToHierarchical(editorBlocks)
+
+  const { title: siteTitle, description: siteDescription } =
+    props?.data?.generalSettings ?? {}
 
   return (
     <>
-      <main className="container">
-        {/**
-         * This component accepts contentBlocks data from WPGraphQL
-         * and resolves the block data with blocks that exist in
-         * your wp-blocks directory.
-         *
-         * If a block is found in the contentBlocks data but not in
-         * wp-blocks directory, WordPressBlocksViewer will fallback
-         * to renderedHtml for that block.
-         *
-         * @see https://faustjs.org/docs/reference/WordPressBlocksViewer
-         */}
-        <WordPressBlocksViewer blocks={blocks} />
-      </main>
+      <SEO title={siteTitle} description={siteDescription} />
+      <Layout className="thelayoutclass">
+        <Container>
+          <article className="inner-wrap">
+            <PageHero
+              sourceUrl={featuredImage?.node?.sourceUrl}
+              alt={featuredImage?.node?.altText}
+              imageMeta={featuredImage?.node?.mediaDetails}
+              text={title}
+            />
+            <div className="page-content">
+              <WordPressBlocksViewer blocks={blocks} />
+            </div>
+          </article>
+        </Container>
+      </Layout>
     </>
   )
 }
@@ -53,15 +59,20 @@ Component.variables = ({ uri }, ctx) => {
  * Compose the GraphQL query for our page's data.
  */
 Component.query = gql`
-  # Header component fragment
+  ${BlogInfoFragment}
+  ${FeaturedImage.fragments.entry}
+  ${getFragmentDataFromBlocks(blocks).entries}
 
   # Get all block fragments and add them to the query
   ${getFragmentDataFromBlocks(blocks).entries}
 
-  query GetSingular($uri: String!) {
+  query GetSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
     nodeByUri(uri: $uri) {
       ... on NodeWithTitle {
         title
+      }
+      ... on NodeWithFeaturedImage {
+        ...FeaturedImageFragment
       }
       ... on NodeWithEditorBlocks {
         # Get contentBlocks with flat=true and the nodeId and parentId
@@ -78,6 +89,9 @@ Component.query = gql`
           ${getFragmentDataFromBlocks(blocks).keys}
         }
       }
+    }
+     generalSettings {
+      ...BlogInfoFragment
     }
   }
 `
