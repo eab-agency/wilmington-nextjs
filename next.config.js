@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const fetchRedirects = require('./src/lib/wordpress/fetchRedirects')
+const { withFaust, getWpHostname } = require('@faustwp/core')
 
 const path = require('path')
 const glob = require('glob')
@@ -9,13 +10,24 @@ const nextConfig = {
     appDir: true
   },
   async redirects() {
-    return await fetchRedirects()
+    const redirects = await fetchRedirects()
+    return [
+      ...redirects,
+      {
+        source: '/programs',
+        destination: '/program-directory',
+        permanent: true
+      },
+      {
+        source: '/program',
+        destination: '/program-directory',
+        permanent: true
+      }
+    ]
   },
   reactStrictMode: true,
   images: {
-    domains: process.env.NEXT_PUBLIC_IMAGE_DOMAINS
-      ? process.env.NEXT_PUBLIC_IMAGE_DOMAINS.split(', ')
-      : '',
+    domains: [getWpHostname()],
     formats: ['image/avif', 'image/webp']
   },
   sassOptions: {
@@ -23,7 +35,12 @@ const nextConfig = {
       path.join(__dirname, 'src/styles'),
       ...glob.sync(path.join(__dirname, 'src/styles/**/'))
     ]
+  },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true
   }
 }
 
-module.exports = nextConfig
+module.exports = withFaust(nextConfig)

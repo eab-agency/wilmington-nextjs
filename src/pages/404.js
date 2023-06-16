@@ -2,7 +2,7 @@ import Container from '@/components/atoms/Container'
 import Layout from '@/components/common/Layout'
 import getPagePropTypes from '@/functions/getPagePropTypes'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
-import Page from './[...slug]'
+import Page from './[...wordpressNode]'
 
 // Define route post type.
 const postType = 'page'

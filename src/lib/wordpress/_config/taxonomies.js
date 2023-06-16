@@ -13,6 +13,6 @@ export const taxonomies = {
   department: {
     label: 'Department',
     pluralName: 'departments',
-    route: 'departments'
+    route: 'department'
   }
 }

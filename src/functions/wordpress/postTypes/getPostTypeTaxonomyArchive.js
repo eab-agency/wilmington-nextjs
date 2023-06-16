@@ -3,6 +3,7 @@ import { postTypes } from '@/lib/wordpress/_config/postTypes'
 import { taxonomies } from '@/lib/wordpress/_config/taxonomies'
 import queryPostsByCategory from '@/lib/wordpress/categories/queryPostsByCategory'
 import { initializeWpApollo } from '@/lib/wordpress/connector'
+import queryPostsByDepartment from '@/lib/wordpress/departments/queryPostsByDepartment'
 import queryPostsByTag from '@/lib/wordpress/tags/queryPostsByTag'
 import getAllMenus from '../menus/getMenus'
 
@@ -33,7 +34,7 @@ export default async function getPostTypeTaxonomyArchive(
   const postTypeQuery = {
     category: queryPostsByCategory,
     tag: queryPostsByTag,
-    department: queryPostsByTag
+    department: queryPostsByDepartment
   }
 
   // Retrieve taxonomy query.

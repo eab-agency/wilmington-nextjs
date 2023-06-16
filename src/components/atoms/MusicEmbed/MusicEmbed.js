@@ -1,7 +1,7 @@
-import React from 'react'
 import RichText from '@/components/atoms/RichText'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
+import React from 'react'
 import * as styles from './MusicEmbed.module.css'
 
 /**
@@ -54,7 +54,6 @@ export default function MusicEmbed({ className, url, type, caption }) {
           src={createMusicUrl(url)}
           width="100%"
           height="352"
-          frameBorder="0"
           allowfullscreen=""
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"

@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react'
 const DepartmentSingle = ({ department }) => {
   const {
     name,
+    uri,
     description,
     programs,
     departmentFields: { deptIcon, deptImage }
@@ -21,22 +22,22 @@ const DepartmentSingle = ({ department }) => {
           imageMeta={{ mediaDetails: deptImage.mediaDetails }}
         />
       )}
-      <div className="departmentInfo">
-        <h3>{name}</h3>
-        <p>{description}</p>
-        {programs.length > 0 && (
-          <>
-            <h4>Programs</h4>
-            <ul>
-              {programs.map((program) => (
-                <li key={program.uri}>
-                  <Link href={program.uri}>{program.title}</Link>
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-      </div>
+      <h2>
+        <Link href={uri}>{name}</Link>
+      </h2>
+      <p>{description}</p>
+      {programs.length > 0 && (
+        <>
+          <h3>Programs</h3>
+          <ul>
+            {programs.map((program) => (
+              <li key={program.uri}>
+                <Link href={program.uri}>{program.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </article>
   )
 }
@@ -72,7 +73,7 @@ const DepartmentSelector = ({
       defaultValue={'DEFAULT'}
       value={selectedDepartment}
     >
-      <option value="DEFAULT">Choose a department</option>
+      <option value="DEFAULT">Chose a department</option>
       <option value="ALL">Show All</option>
       {programDepartments.map((department) => (
         <option key={department.uri} value={department.name}>

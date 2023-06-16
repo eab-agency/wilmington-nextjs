@@ -21,17 +21,20 @@ const TabComponent = ({ tabs }) => {
         </TabList>
 
         {tabs.map((tab, index) => {
+          const image = tab.image.mediaItem
           return (
             <TabPanel className={styles.tabContent} key={index}>
               <div
                 className={styles.text}
                 dangerouslySetInnerHTML={{ __html: tab.content }}
               />
-              {tab.image && (
+              {image && (
                 <Image
-                  url={tab.image.mediaItemUrl}
-                  alt={tab.image.altText}
-                  imageMeta={{ mediaDetails: tab.image.mediaDetails }}
+                  url={image.mediaItemUrl}
+                  alt={image.altText}
+                  imageMeta={{
+                    mediaDetails: image.mediaDetails
+                  }}
                 />
               )}
             </TabPanel>
