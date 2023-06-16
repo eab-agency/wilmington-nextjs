@@ -38,7 +38,7 @@ const DepartmentSingle = ({ department }) => {
           </ul>
         </>
       )}
-    </div>
+    </article>
   )
 }
 
