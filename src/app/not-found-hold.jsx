@@ -2,9 +2,9 @@ import Link from 'next/link'
 
 const NotFound = () => {
   return (
-    <div>
+    <div className="not-found">
       <h1>
-        The link you clicked may be broken or the page may have been removed
+        The link you clicked may be broken or the page may have been removed.
       </h1>
       <p>
         Visit the <Link href="/">home page</Link> or{' '}

@@ -44,12 +44,7 @@ const MainNavigationItem = ({ item, depthLevel, index, enableDropdown }) => {
               aria-haspopup="menu"
               onClick={handleButtonClick}
             >
-              {depthLevel > 0 ? (
-                <span>&raquo;</span>
-              ) : (
-                <span className="arrow" />
-              )}
-              {item.label}{' '}
+              {item.label}
             </button>
           ) : (
             <Link href={item.path ?? '#'} tabIndex={0}>

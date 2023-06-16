@@ -1,0 +1,63 @@
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
+
+.departmentSelectorSection {
+  gap: 2em;
+  margin-bottom: clamp(2rem, 4vw, 4rem);
+  @include mixins.sectionPadding(block);
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 1px;
+    background: tokens.$c-gray-400;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+  }
+
+  .group {
+    display: flex;
+    border-top: 1px solid tokens.$c-gray-300;
+    border-bottom: 1px solid tokens.$c-gray-300;
+    @include mixins.sectionPadding;
+    background: tokens.$c-gray-200;
+    position: relative;
+    @include mixins.extendedBackground('after', tokens.$c-gray-200);
+
+    .intro {
+      flex: 1 1 40rem;
+      h2 {
+      }
+      p {
+      }
+    }
+    .departmentSelector {
+      flex: 1;
+      max-width: 35rem;
+    }
+  }
+
+  .departmentResults {
+    @include mixins.sectionPadding;
+    display: flex;
+    flex-flow: row wrap;
+    gap: clamp(1rem, 4vw, 4rem);
+
+    article {
+      flex: 1 0 20rem;
+      max-width: 25rem;
+      background: color.adjust(tokens.$c-gray-200, $lightness: 3%);
+
+      .departmentInfo {
+        padding: clamp(1rem, 2vw, 2rem);
+        // padding-right: 0;
+        border-left: 1px solid tokens.$c-gray-400;
+      }
+    }
+  }
+}

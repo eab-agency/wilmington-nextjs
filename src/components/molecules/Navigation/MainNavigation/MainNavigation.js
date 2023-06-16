@@ -48,10 +48,13 @@ const MainNavigation = ({ menuItems, enableDropdown }) => {
   const depthLevel = 0
   return (
     <>
-      <nav aria-label="Main" className={styles.navContainer}>
+      <nav
+        aria-label="Main"
+        className={`${styles.navContainer} ${openCloseClasses}`}
+      >
         <div className={styles.navWrapper}>
           <Burger open={open} setOpen={handleToggle} />
-          <ul className={openCloseClasses}>
+          <ul>
             {items &&
               items.map((navItem, index) => (
                 <MainNavigationItem

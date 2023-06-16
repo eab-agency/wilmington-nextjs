@@ -24,3 +24,16 @@
     z-index: tokens.$layer-1;
   }
 }
+
+.not-found {
+  @include mixins.sectionPadding;
+  max-width: tokens.$mq-800;
+
+  &::before {
+    content: tokens.$i-blocked;
+    display: block;
+    font-size: tokens.$fs-4xl;
+    color: tokens.$c-orange-800;
+    font-family: tokens.$f-icons;
+  }
+}
