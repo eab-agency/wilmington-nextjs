@@ -9,7 +9,9 @@
 }
 
 .closedMenu {
-  display: none;
+  ul {
+    display: none;
+  }
 }
 
 .openedSubMenu {
@@ -43,7 +45,7 @@
   .navWrapper {
     position: sticky;
     top: 4.45rem;
-    // border-top: tokens.$bw-xs solid tokens.$c-gray-400;
+    z-index: tokens.$layer-2;
 
     .hamburger {
       background: none;
@@ -53,7 +55,6 @@
       padding-block: tokens.$p-s;
       cursor: pointer;
       position: relative;
-      height: 2.3em;
 
       span {
         display: none;
@@ -84,7 +85,6 @@
         left: 0;
         background: tokens.$c-gray-200;
         z-index: tokens.$layer-1;
-        // border-right: 1px solid tokens.$c-gray-400;
         transition: all 0.2s ease-in-out;
       }
 
@@ -109,88 +109,76 @@
       margin: 0;
       padding: 0;
       height: 100vh;
-      // overflow-y: auto;
 
       @media (min-width: tokens.$mq-800) {
         left: 3.2rem;
         top: 0;
-        width: calc(tokens.$leftOffset - 4rem);
+        width: tokens.$leftOffset;
         min-width: 15rem;
       }
 
-      &.openMenu {
-        display: block;
-
-        &::after {
-          content: '';
-          display: block;
-          width: 100vw;
-          height: 100vh;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: rgba(tokens.$c-gray-200, 0.9);
-          // backdrop-filter: blur(3px);
-          z-index: tokens.$layer-1;
-        }
-      }
-
       li {
-        border-top: tokens.$bw-xs solid tokens.$c-gray-400;
-        position: relative;
+        border-top: 1px solid tokens.$c-gray-400;
+        position: initial;
         z-index: tokens.$layer-2;
+        margin: 0;
+        // padding: clamp(0.5em, 1vw, 1em);
 
-        a {
-          display: block;
-          color: tokens.$c-gray-600;
-          padding: 0.5em 0.8em;
+        a,
+        button {
+          display: flex;
+          color: tokens.$c-gray-700;
+          border: none;
+          width: 100%;
+          padding: 1em 2em 1em 0.8em;
+          font-family: tokens.$f-bodyFont;
+          background: none;
+          border: none;
+          border-radius: 0;
+          font-size: tokens.$fs-2xs;
+          cursor: pointer;
+          box-shadow: none;
+          text-transform: uppercase;
           text-decoration: none;
-          font-size: tokens.$fs-xs;
 
           &:hover {
-            background: tokens.$c-gray-200;
-            color: tokens.$c-darkGreen-700;
+            background: tokens.$c-lavender-800;
+            color: tokens.$c-white;
+            text-decoration: underline;
           }
         }
 
         button {
-          display: flex;
-          color: tokens.$c-gray-600;
-          border-top: tokens.$bw-xs solid tokens.$c-gray-400;
-          width: 100%;
-          padding: 0.5em 0.8em;
-          background: none;
-          border: none;
-          font-size: tokens.$fs-xs;
-          cursor: pointer;
+          &::after {
+            content: tokens.$i-plus;
+            background: none;
+            font-size: 1em;
+            color: tokens.$c-gray-700;
+            right: 0.5em;
+          }
 
           &:hover {
-            background: tokens.$c-gray-200;
-            color: tokens.$c-darkGreen-700;
+            &::after {
+              right: 0;
+              color: tokens.$c-white;
+            }
           }
 
           &[aria-expanded='true'] {
-            background: tokens.$c-lavender-800;
-            color: white;
+            background: tokens.$c-limeGreen-300;
+            color: tokens.$c-gray-800;
+            font-weight: bold;
 
             &::after {
               content: tokens.$i-chevron-right;
-              font-family: tokens.$f-icons;
-              font-size: 1em;
-              margin-inline: auto 0;
+              color: tokens.$c-gray-800;
             }
           }
         }
 
-        &:last-child {
-          a {
-            border-bottom: tokens.$bw-xs solid tokens.$c-gray-400;
-          }
-        }
-
         ul {
-          background: tokens.$c-gray-300;
-          height: 100vh;
+          background: color.adjust(tokens.$c-darkGreen-800, $lightness: -5%);
+          height: 100%;
           width: 100%;
           margin: 0;
           list-style: none;
@@ -199,22 +187,39 @@
             position: absolute;
             left: 100%;
             top: 0;
+            width: 25rem;
+            height: 100vh;
+          }
+
+          button,
+          a {
+            color: tokens.$c-white;
+
+            &::after {
+              color: tokens.$c-white;
+            }
           }
 
           li {
+            border-color: rgba(tokens.$c-gray-300, 0.2);
+
             ul {
-              background: tokens.$c-gray-400;
+              background: color.adjust(
+                tokens.$c-darkGreen-800,
+                $lightness: -8%
+              );
             }
-            a {
-              // background: yellow;
-            }
+
             button {
               &[aria-expanded='true'] {
-                background: color.scale(
-                  tokens.$c-lavender-800,
-                  $lightness: -10%
-                );
-                color: white;
+                background: tokens.$c-limeGreen-300;
+                color: tokens.$c-gray-800;
+                font-weight: bold;
+
+                &::after {
+                  content: tokens.$i-chevron-right;
+                  color: tokens.$c-gray-800;
+                }
               }
             }
           }
@@ -223,8 +228,45 @@
     }
   }
 
-  button {
-    text-align: left;
+  &.openMenu {
+    background: tokens.$c-gray-200;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(tokens.$c-black, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: tokens.$layer-1;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      background: tokens.$c-white;
+      z-index: tokens.$layer-1;
+    }
+
+    ul {
+      list-style: none;
+      z-index: tokens.$layer-2;
+
+      li {
+        padding: 0;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
   }
 }
 

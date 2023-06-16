@@ -1,7 +1,7 @@
 'use client'
 
-import Image from '@/components/atoms/Image'
-import Link from '@/components/common/Link'
+import { default as Image, default as Image } from '@/components/atoms/Image'
+import { default as Link, default as Link } from '@/components/common/Link'
 import React, { useEffect, useState } from 'react'
 
 const DepartmentSingle = ({ department }) => {
@@ -14,7 +14,7 @@ const DepartmentSingle = ({ department }) => {
   } = department
 
   return (
-    <div key={name}>
+    <article key={name} className="department">
       {deptIcon && (
         <Image
           url={deptImage.sourceUrl}
@@ -105,13 +105,27 @@ export default function BlockDepartmentSelect({ programDepartments }) {
   }
 
   return (
-    <div>
-      <DepartmentSelector
-        programDepartments={programDepartments}
-        handleDepartmentChange={handleDepartmentChange}
-        selectedDepartment={selectedDepartment}
-      />
-      <DepartmentListing department={selectedDepartmentInfo} />
-    </div>
+    <section className="departmentSelectorSection">
+      <div className="group">
+        <div className="intro">
+          <h2>Choose Your Field of Interest</h2>
+          <p>
+            Discover the perfect academic program for your future success. Find
+            the program that aligns with your goals and aspirations with just a
+            few clicks. Start your educational journey today.
+          </p>
+        </div>
+        <div className="departmentSelector">
+          <DepartmentSelector
+            programDepartments={programDepartments}
+            handleDepartmentChange={handleDepartmentChange}
+            selectedDepartment={selectedDepartment}
+          />
+        </div>
+      </div>
+      <div className="departmentResults">
+        <DepartmentListing department={selectedDepartmentInfo} />
+      </div>
+    </section>
   )
 }
