@@ -3,7 +3,6 @@ import RichText from '@/components/atoms/RichText'
 import { gql } from '@apollo/client'
 import cn from 'classnames'
 import Image from 'next/image'
-import { PropTypes } from 'prop-types'
 import styles from './Image.module.css'
 
 /**
@@ -173,32 +172,6 @@ export default function DisplayImage(props) {
       {!!props?.caption && <Caption />}
     </>
   )
-}
-
-DisplayImage.propTypes = {
-  alt: PropTypes.string,
-  anchor: PropTypes.string,
-  caption: PropTypes.string,
-  children: PropTypes.any,
-  className: PropTypes.string,
-  height: PropTypes.string,
-  href: PropTypes.string,
-  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  imageMeta: PropTypes.shape({
-    altText: PropTypes.string,
-    mediaItemUrl: PropTypes.string,
-    mediaDetails: PropTypes.shape({
-      height: PropTypes.number,
-      sizes: PropTypes.array,
-      width: PropTypes.number
-    })
-  }),
-  linkClass: PropTypes.string,
-  linkTarget: PropTypes.string,
-  nextImageFill: PropTypes.bool,
-  rel: PropTypes.string,
-  url: PropTypes.string,
-  width: PropTypes.string
 }
 
 DisplayImage.query = gql`

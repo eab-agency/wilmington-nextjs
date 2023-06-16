@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client'
 // import { Container, Footer, Header, Hero, Main, SEO } from '../components'
 import { Main, SEO } from '@/components'
+import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
@@ -16,10 +17,8 @@ export default function Component(props) {
   if (props.loading) {
     return <>Loading...</>
   }
-  const { editorBlocks, title, content, featuredImage } = props.data.page
+  const { editorBlocks, title, featuredImage, seo } = props.data.page
   const blocks = flatListToHierarchical(editorBlocks)
-  // eslint-disable-next-line no-console
-  // console.log('🚀 ~ file: page.js:21 ~ Component ~ blocks:', blocks)
 
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings ?? {}
@@ -27,22 +26,19 @@ export default function Component(props) {
   return (
     <>
       <SEO title={siteTitle} description={siteDescription} />
-      {/* <Header
-        title={siteTitle}
-        description={siteDescription}
-        menuItems={primaryMenu}
-      /> */}
-
-      <PageHero
-        sourceUrl={featuredImage?.node?.sourceUrl}
-        alt={featuredImage?.node?.altText}
-        imageMeta={featuredImage?.node?.mediaDetails}
-        text={title}
-      />
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
+            <PageHero
+              sourceUrl={featuredImage?.node?.sourceUrl}
+              alt={featuredImage?.node?.altText}
+              imageMeta={featuredImage?.node?.mediaDetails}
+              text={title}
+            />
             <div className="page-content">
+              {!!seo?.breadcrumbs && (
+                <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+              )}
               <WordPressBlocksViewer blocks={blocks} />
             </div>
           </article>
@@ -60,6 +56,16 @@ Component.query = gql`
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
       content
+         seo {
+    breadcrumbs {
+      text
+      url
+    }
+    fullHead
+    metaRobotsNofollow
+    metaRobotsNoindex
+    title
+  }
       ...FeaturedImageFragment
         ... on NodeWithEditorBlocks {
         # Get contentBlocks with flat=true and the nodeId and parentId
@@ -75,10 +81,12 @@ Component.query = gql`
           ${getFragmentDataFromBlocks(blocks).keys}
         }
       }
+
     }
     generalSettings {
       ...BlogInfoFragment
     }
+
   }
 `
 

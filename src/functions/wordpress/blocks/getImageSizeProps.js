@@ -26,6 +26,7 @@ const imageSizeToWidth = {
   thumbnail: 150,
   medium: 200,
   large: 683,
+  full: 1024,
   'full-size': 1707
 }
 
@@ -33,5 +34,6 @@ const imageSizeToHeight = {
   thumbnail: 150,
   medium: 300,
   large: 1024,
+  full: 768,
   'full-size': 2560
 }
