@@ -1,7 +1,7 @@
 'use client'
 
-import { default as Image, default as Image } from '@/components/atoms/Image'
-import { default as Link, default as Link } from '@/components/common/Link'
+import Image from '@/components/atoms/Image'
+import Link from '@/components/common/Link'
 import React, { useEffect, useState } from 'react'
 
 const DepartmentSingle = ({ department }) => {
