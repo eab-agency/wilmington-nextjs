@@ -1,0 +1,21 @@
+@use 'tokens';
+@use 'utilities/mixins';
+
+.news-and-events {
+  @include mixins.sectionPadding(block);
+
+  .newsGroup {
+    .group {
+      display: flex;
+      flex-flow: row wrap;
+      gap: clamp(1rem, 2vw, 2rem);
+
+      article {
+        flex: 1 1 18rem;
+        padding: clamp(1rem, 2vw, 2rem);
+        background: tokens.$c-gray-700;
+        max-width: 18rem;
+      }
+    }
+  }
+}
