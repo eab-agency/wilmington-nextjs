@@ -4,9 +4,11 @@ import Container from '@/components/atoms/Container'
 import ProgramTabs from '@/components/atoms/ProgramTabs/ProgramTabs'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
+import JumpLink from '@/components/molecules/JumpLink/JumpLink'
 import PageHero from '@/components/organisms/PageHero/PageHero'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
+import getJumpLinks from '@/functions/wordpress/blocks/getJumpLinks'
 import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
@@ -44,6 +46,8 @@ export default function SingleProgram(props) {
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings ?? {}
 
+  const jumpLinks = getJumpLinks(blocks)
+
   return (
     <>
       <SEO title={siteTitle} description={siteDescription} />
@@ -59,6 +63,8 @@ export default function SingleProgram(props) {
           <Container>
             <article className="innerWrap programContent">
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+              {/* Render jump links */}
+              <JumpLink jumpLinks={jumpLinks} heading={title} />
               <WordPressBlocksViewer blocks={blocks} />
             </article>
           </Container>
