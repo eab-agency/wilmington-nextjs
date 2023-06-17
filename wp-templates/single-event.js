@@ -34,16 +34,17 @@ const SEO_QUERY = gql`
  * @see https://faustjs.org/docs/templates
  */
 export default function SingleEvent(props) {
-  const { title, editorBlocks, seo, featuredImage, eventsFields, uri } =
+  const { title, editorBlocks, seo, featuredImage, eventsFields, uri, terms } =
     props.data.nodeByUri
 
   const blocks = flatListToHierarchical(editorBlocks)
 
-  console.log('result: ', props)
+  // console.log('result: ', props.data.nodeByUri.terms.nodes[0].name)
+  // console.log('result: ', terms)
 
-  // const { event } = eventsFields
-
-  // const event = eventsFields ? eventsFields.event : null
+  const { event } = eventsFields
+  // const { name } = terms.nodes[0]
+  const termsArray = terms.nodes
 
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings ?? {}
@@ -66,8 +67,19 @@ export default function SingleEvent(props) {
             <div className="page-content">
               <WordPressBlocksViewer blocks={blocks} />
             </div>
-            {/* {eventsFields.endDate} */}
-            {/* <p>The event fields: {eventsFields}</p> */}
+            <p>The end-date: {event.endDate}</p>
+            <p>The end-time: {event.endTime}</p>
+            <p>The field group name: {event.fieldGroupName}</p>
+            <p>The location address: {event.locationAddress}</p>
+            <p>The location name: {event.locationName}</p>
+            <p>The start-date: {event.startDate}</p>
+            <p>The start-time: {event.startTime}</p>
+            <p>
+              The terms:
+              {termsArray.map((term) => (
+                <span key={term.name}>{term.name}</span>
+              ))}
+            </p>
           </article>
         </Container>
       </Layout>
@@ -106,6 +118,13 @@ SingleEvent.query = gql`
             locationName
             startDate
             startTime
+          }
+        }
+        terms {
+          nodes {
+            ... on Department {
+              name
+            }
           }
         }
          seo {
