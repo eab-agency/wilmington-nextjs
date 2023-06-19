@@ -58,38 +58,46 @@
 
       &.hero-w-image {
         display: flex;
-        flex-direction: row-reverse;
+        flex-direction: column;
         padding: 0;
-        // align-items: flex-end;
+
+        @media (min-width: tokens.$mq-900) {
+          flex-direction: row-reverse;
+        }
 
         .page-hero {
-          width: 50%;
           position: relative;
           height: clamp(20rem, 40vw, 30rem);
 
-          & > div[class*='image'] {
+          & > figure[class*='image'] {
             position: relative;
             width: 100%;
+          }
+
+          @media (min-width: tokens.$mq-900) {
+            width: 50%;
           }
         }
 
         .page-head {
-          width: 50%;
-          position: relative;
           background-color: transparent;
-          bottom: initial;
+
           @include mixins.sectionPadding(block);
           padding-left: 0;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          margin-top: clamp(2rem, 5vw, 4rem);
           background: tokens.$c-limeGreen-700;
 
           &::before {
             background: tokens.$c-limeGreen-700;
+          }
 
-            // display: none;
+          @media (min-width: tokens.$mq-900) {
+            width: 50%;
+            justify-content: center;
+            margin-top: clamp(2rem, 5vw, 4rem);
+            position: relative;
+            bottom: initial;
           }
         }
       }
@@ -112,6 +120,38 @@
 
     p {
       font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-m);
+    }
+
+    div[class*='image-'] {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin-block: clamp(2rem, 5vw, 4rem);
+
+      // @media (min-width: tokens.$mq-900) {
+      //   align-items: flex-end;
+      // }
+
+      figure[class*='image'] {
+        // width: calc(100vw - tokens.$pageOffset);
+
+        // img {
+        //   width: 100%;
+        //   max-height: 40rem;
+        //   height: auto;
+        //   object-fit: cover;
+        // }
+
+        div[class*='_caption'] {
+          width: 100%;
+          max-width: calc(tokens.$mq-900 - clamp(1.5rem, 4vw, 4rem));
+          margin: 0 0 0 auto;
+
+          span {
+            font-size: tokens.$fs-2xs;
+          }
+        }
+      }
     }
   }
 }
