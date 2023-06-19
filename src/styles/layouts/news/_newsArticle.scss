@@ -1,0 +1,117 @@
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
+
+.news-article {
+  .inner-wrap {
+    header {
+      position: relative;
+      padding-left: 0;
+
+      h1 {
+        position: relative;
+        padding-left: clamp(1rem, 5vw, 3rem);
+
+        &::after {
+          content: '';
+          display: block;
+          height: 100%;
+          width: 0.25em;
+          background-color: tokens.$c-limeGreen-400;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+
+      .news-category {
+        display: inline-flex;
+        font-size: clamp(tokens.$fs-3xs, 1.5vw, tokens.$fs-2xs);
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        margin-bottom: 1rem;
+        padding: 0.5em;
+        position: relative;
+        color: tokens.$c-white;
+        margin-left: clamp(1rem, 5vw, 3rem);
+        margin-top: 1em;
+        width: fit-content;
+
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: color.adjust(tokens.$c-limeGreen-700, $lightness: -5%);
+          mix-blend-mode: multiply;
+          z-index: 1;
+        }
+        span {
+          position: relative;
+          z-index: 2;
+        }
+      }
+
+      &.hero-w-image {
+        display: flex;
+        flex-direction: row-reverse;
+        padding: 0;
+        // align-items: flex-end;
+
+        .page-hero {
+          width: 50%;
+          position: relative;
+          height: clamp(20rem, 40vw, 30rem);
+
+          & > div[class*='image'] {
+            position: relative;
+            width: 100%;
+          }
+        }
+
+        .page-head {
+          width: 50%;
+          position: relative;
+          background-color: transparent;
+          bottom: initial;
+          @include mixins.sectionPadding(block);
+          padding-left: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          margin-top: clamp(2rem, 5vw, 4rem);
+          background: tokens.$c-limeGreen-700;
+
+          &::before {
+            background: tokens.$c-limeGreen-700;
+
+            // display: none;
+          }
+        }
+      }
+
+      &.no-img-hero {
+        background: tokens.$c-gray-200;
+
+        &::before {
+          background: tokens.$c-gray-200;
+        }
+      }
+    }
+  }
+
+  .page-content {
+    max-width: tokens.$mq-900;
+    margin: 0 auto;
+    @include mixins.sectionPadding;
+    padding-left: 0;
+
+    p {
+      font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-m);
+    }
+  }
+}

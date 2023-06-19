@@ -1,13 +1,12 @@
-import { gql } from '@apollo/client'
-// import { Container, Footer, Header, Hero, Main, SEO } from '../components'
 import { SEO } from '@/components'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
-import PageHero from '@/components/organisms/PageHero/PageHero'
+import PageHero from '@/components/organisms/PageHero'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
+import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
 import blocks from '../wp-blocks'
@@ -21,7 +20,7 @@ import blocks from '../wp-blocks'
  * @see https://faustjs.org/docs/templates
  */
 export default function SingleNews(props) {
-  const { title, editorBlocks, seo, featuredImage } = props.data.nodeByUri
+  const { title, editorBlocks, seo, featuredImage, uri } = props.data.nodeByUri
   const blocks = flatListToHierarchical(editorBlocks)
 
   const { title: siteTitle, description: siteDescription } =
@@ -31,20 +30,21 @@ export default function SingleNews(props) {
     <>
       <SEO title={siteTitle} description={siteDescription} />
       <Layout className="thelayoutclass">
-        <Container>
+        <div className=" news-article">
           <article className="inner-wrap">
             <PageHero
               sourceUrl={featuredImage?.node?.sourceUrl}
               alt={featuredImage?.node?.altText}
               imageMeta={featuredImage?.node?.mediaDetails}
               text={title}
+              pageType="news"
             />
+            {/* <Breadcrumbs breadcroumbs={seo.breadcrumbs} /> */}
             <div className="page-content">
-              <h3>SUPER SINGLE NEWS ARTICLE PAGE</h3>
               <WordPressBlocksViewer blocks={blocks} />
             </div>
           </article>
-        </Container>
+        </div>
       </Layout>
     </>
   )
@@ -64,10 +64,7 @@ SingleNews.query = gql`
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
 
-  # Get all block fragments and add them to the query
-  ${getFragmentDataFromBlocks(blocks).entries}
-
-  query GetSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
+  query GetNewsSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
     nodeByUri(uri: $uri) {
       ... on NodeWithTitle {
         title
