@@ -56,16 +56,16 @@ Component.query = gql`
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
       content
-         seo {
-    breadcrumbs {
-      text
-      url
-    }
-    fullHead
-    metaRobotsNofollow
-    metaRobotsNoindex
-    title
-  }
+      seo {
+          breadcrumbs {
+          text
+          url
+        }
+        fullHead
+        metaRobotsNofollow
+        metaRobotsNoindex
+        title
+      }
       ...FeaturedImageFragment
         ... on NodeWithEditorBlocks {
         # Get contentBlocks with flat=true and the nodeId and parentId
