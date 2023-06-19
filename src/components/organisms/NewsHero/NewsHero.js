@@ -1,6 +1,5 @@
 import Image from '@/components/atoms/Image/Image'
 import RichText from '@/components/atoms/RichText/RichText'
-import { className } from 'classnames/bind'
 
 /**
  * @param {string} tagText - Text to be displayed in the tag
@@ -10,22 +9,7 @@ import { className } from 'classnames/bind'
  * @param {object} mediaDetails - Optional image meta data
  */
 
-// interface PageHeroProps {
-//   text: string
-//   className?: string
-//   sourceUrl?: string
-//   altText?: string
-//   mediaDetails?: any
-// }
-
-export default function PageHero({
-  text,
-  sourceUrl,
-  altText,
-  mediaDetails,
-  pageType,
-  newsCategory
-}) {
+export default function NewsHero({ text, sourceUrl, altText, mediaDetails }) {
   return (
     <>
       <header className={sourceUrl ? 'hero-w-image' : 'no-img-hero'}>
@@ -41,13 +25,6 @@ export default function PageHero({
 
         <div className="page-head">
           <RichText tag="h1">{text}</RichText>
-          {pageType === 'news' && newsCategory ? (
-            <div className="news-category">
-              <span>{newsCategory}</span>
-            </div>
-          ) : (
-            ''
-          )}
         </div>
       </header>
     </>
