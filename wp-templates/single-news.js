@@ -11,6 +11,19 @@ import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
 import blocks from '../wp-blocks'
 
+const SEO_QUERY = gql`
+  fragment SeoFragment on PostTypeSEO {
+    breadcrumbs {
+      text
+      url
+    }
+    fullHead
+    metaRobotsNofollow
+    metaRobotsNoindex
+    title
+  }
+`
+
 /**
  * This is a Faust Template for resolving singular templates (posts, pages).
  *
@@ -20,7 +33,8 @@ import blocks from '../wp-blocks'
  * @see https://faustjs.org/docs/templates
  */
 export default function SingleNews(props) {
-  const { title, editorBlocks, seo, featuredImage, uri } = props.data.nodeByUri
+  const { title, editorBlocks, seo, featuredImage, uri, date, newsCategories } =
+    props.data.nodeByUri
   const blocks = flatListToHierarchical(editorBlocks)
 
   const { title: siteTitle, description: siteDescription } =
@@ -38,9 +52,18 @@ export default function SingleNews(props) {
               imageMeta={featuredImage?.node?.mediaDetails}
               text={title}
               pageType="news"
+              newsCategories={newsCategories}
             />
-            {/* <Breadcrumbs breadcroumbs={seo.breadcrumbs} /> */}
             <div className="page-content">
+              <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+              {/* the date, show just day, month, year */}
+              <div className="news-date">
+                {new Date(date).toLocaleDateString('en-US', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric'
+                })}
+              </div>
               <WordPressBlocksViewer blocks={blocks} />
             </div>
           </article>
@@ -63,12 +86,27 @@ SingleNews.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
-
+  ${SEO_QUERY}
   query GetNewsSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
     nodeByUri(uri: $uri) {
+      __typename
+
       ... on NodeWithTitle {
         title
       }
+
+      ... on Article{
+        date
+        newsCategories{
+          nodes{
+            name
+          }
+        }
+        seo {
+          ...SeoFragment
+        }
+      }
+
       ... on NodeWithFeaturedImage {
         ...FeaturedImageFragment
       }

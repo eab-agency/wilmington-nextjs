@@ -24,35 +24,42 @@
         }
       }
 
-      .news-category {
-        display: inline-flex;
-        font-size: clamp(tokens.$fs-3xs, 1.5vw, tokens.$fs-2xs);
-        text-transform: uppercase;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        margin-bottom: 1rem;
-        padding: 0.5em;
-        position: relative;
-        color: tokens.$c-white;
+      .newsCategories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+
         margin-left: clamp(1rem, 5vw, 3rem);
         margin-top: 1em;
-        width: fit-content;
 
-        &::before {
-          content: '';
-          display: block;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: color.adjust(tokens.$c-limeGreen-700, $lightness: -5%);
-          mix-blend-mode: multiply;
-          z-index: 1;
-        }
-        span {
+        .news-category {
+          display: inline-flex;
+          font-size: clamp(tokens.$fs-3xs, 1.5vw, tokens.$fs-2xs);
+          text-transform: uppercase;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          margin-bottom: 1rem;
+          padding: 0.5em;
           position: relative;
-          z-index: 2;
+          color: tokens.$c-white;
+          width: fit-content;
+
+          &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: color.adjust(tokens.$c-limeGreen-700, $lightness: -5%);
+            mix-blend-mode: multiply;
+            z-index: 1;
+          }
+          span {
+            position: relative;
+            z-index: 2;
+          }
         }
       }
 
@@ -67,7 +74,7 @@
 
         .page-hero {
           position: relative;
-          height: clamp(20rem, 40vw, 30rem);
+          min-height: 70vh;
 
           & > figure[class*='image'] {
             position: relative;
@@ -76,6 +83,7 @@
 
           @media (min-width: tokens.$mq-900) {
             width: 50%;
+            min-height: initial;
           }
         }
 
@@ -98,14 +106,25 @@
             margin-top: clamp(2rem, 5vw, 4rem);
             position: relative;
             bottom: initial;
+            padding-right: clamp(2rem, 5vw, 4rem);
+            padding-bottom: clamp(2rem, 6vw, 6rem);
           }
         }
       }
 
       &.no-img-hero {
+        @include mixins.sectionPadding(block);
         background: tokens.$c-gray-200;
+        width: 80vw;
 
         &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 100%;
+          width: 100%;
+          height: 100%;
           background: tokens.$c-gray-200;
         }
       }
@@ -117,6 +136,18 @@
     margin: 0 auto;
     @include mixins.sectionPadding;
     padding-left: 0;
+
+    .news-date {
+      font-size: tokens.$fs-2xs;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: color.adjust(tokens.$c-limeGreen-700, $lightness: -10%);
+      margin-top: clamp(2rem, 5vw, 4rem);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid tokens.$c-gray-300;
+    }
 
     p {
       font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-m);

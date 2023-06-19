@@ -24,7 +24,7 @@ export default function PageHero({
   altText,
   mediaDetails,
   pageType,
-  newsCategory
+  newsCategories
 }) {
   return (
     <>
@@ -41,9 +41,14 @@ export default function PageHero({
 
         <div className="page-head">
           <RichText tag="h1">{text}</RichText>
-          {pageType === 'news' && newsCategory ? (
-            <div className="news-category">
-              <span>{newsCategory}</span>
+
+          {pageType === 'news' && newsCategories ? (
+            <div className="newsCategories">
+              {newsCategories.nodes.map((category) => (
+                <div key={category.name} className="news-category">
+                  <span>{category.name}</span>
+                </div>
+              ))}
             </div>
           ) : (
             ''
