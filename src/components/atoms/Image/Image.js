@@ -136,7 +136,7 @@ export default function DisplayImage(props) {
    */
   if (domains.includes(sourceDomain?.host)) {
     return (
-      <div
+      <figure
         id={props?.anchor}
         className={cn(
           styles.image,
@@ -153,7 +153,7 @@ export default function DisplayImage(props) {
           <NextImage />
         )}
         {!!props?.caption && <Caption />}
-      </div>
+      </figure>
     )
   }
 

@@ -17,7 +17,7 @@
     z-index: tokens.$layer-1;
     background: #efefef;
 
-    & > div[class*='image'] {
+    & > figure[class*='image'] {
       display: block;
       width: 120%;
       height: 100%;
