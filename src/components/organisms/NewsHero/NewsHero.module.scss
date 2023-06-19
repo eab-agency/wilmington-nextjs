@@ -1,9 +1,0 @@
-@use 'tokens';
-@use 'utilities/mixins';
-
-.newsHero {
-  display: block;
-  position: relative;
-  z-index: tokens.$layer-10;
-  background-color: tokens.$c-gray-200;
-}
