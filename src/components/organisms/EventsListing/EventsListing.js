@@ -28,7 +28,9 @@ function EventsListing({ listing_title, posts, showImage, listing_display }) {
       {/* <pre>FILE: EventsListing.tsx</pre> */}
       <div className={styles.sectionHead}>
         <div className={styles.sectionTag}>Events</div>
-        <Heading tag="h2">{listing_title}</Heading>
+        <Heading tag="h2" id="jump-news-listing">
+          {listing_title}
+        </Heading>
       </div>
       <ul className={styles.eventsList}>
         {posts.map((item, index) => (

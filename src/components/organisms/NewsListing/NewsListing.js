@@ -36,7 +36,7 @@ function NewsListing({ listing_title, posts, showImage, listing_display }) {
     <section className={styles.newsSection}>
       <div className={styles.sectionHead}>
         <div className={styles.sectionTag}>News</div>
-        <h2>{listing_title}</h2>
+        <h2 id="jump-news-listing">{listing_title}</h2>
       </div>
       <div className={styles.newsContainer}>
         <MultiCarousel
