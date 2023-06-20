@@ -2,8 +2,12 @@
 @use 'tokens';
 
 .wp-block-table {
+  // margin: clamp(2rem, 5vw, 4rem);
+
   @media (max-width: tokens.$mq-800) {
     overflow-x: auto;
+    // margin: 2rem 0;
+    border-right: 5px solid lightgray;
 
     table {
       min-width: 35rem;
