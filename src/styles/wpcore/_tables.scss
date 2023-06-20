@@ -42,17 +42,17 @@
     tfoot {
       border-top: 3px solid tokens.$c-darkGreen-700;
     }
+  }
 
-    &.alignleft,
-    &.aligncenter,
-    &.alignright {
-      display: table;
-      width: auto;
+  &.alignleft,
+  &.aligncenter,
+  &.alignright {
+    display: table;
+    width: auto;
 
-      td,
-      th {
-        word-break: break-word;
-      }
+    td,
+    th {
+      word-break: break-word;
     }
   }
 
