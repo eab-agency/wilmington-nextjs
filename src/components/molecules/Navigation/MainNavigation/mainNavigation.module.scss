@@ -206,7 +206,7 @@
             ul {
               background: color.adjust(
                 tokens.$c-darkGreen-800,
-                $lightness: -8%
+                $lightness: -7%
               );
             }
 
@@ -236,7 +236,7 @@
       display: block;
       width: 100vw;
       height: 100vh;
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       background: rgba(tokens.$c-black, 0.7);
@@ -247,9 +247,9 @@
     &::after {
       content: '';
       display: block;
-      width: 100%;
+      width: 4rem;
       height: 100vh;
-      position: absolute;
+      position: fixed;
       top: 0;
       background: tokens.$c-white;
       z-index: tokens.$layer-1;
