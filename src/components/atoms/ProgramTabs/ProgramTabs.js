@@ -23,25 +23,27 @@ const ProgramTabs = ({ childPages, uri }) => {
 
   return (
     <ul className="childrenNav">
-      <li className={currentPath === uri && 'active'}>
+      <li className={currentPath === uri ? 'active' : undefined}>
         <Link href={uri} onClick={handleOverviewClick}>
           Overview
         </Link>
       </li>
       {childPages &&
-        childPages.nodes.map((childPage) => (
-          <li
-            key={childPage.title}
-            className={currentPath === childPage.uri && 'active'}
-          >
-            <Link
-              href={childPage.uri}
-              onClick={() => handleLinkClick(childPage.uri)}
+        childPages.nodes.map((childPage) => {
+          return (
+            <li
+              key={childPage.title}
+              className={currentPath === childPage.uri ? 'active' : undefined}
             >
-              {childPage?.title}
-            </Link>
-          </li>
-        ))}
+              <Link
+                href={childPage.uri}
+                onClick={() => handleLinkClick(childPage.uri)}
+              >
+                {childPage?.title}
+              </Link>
+            </li>
+          )
+        })}
     </ul>
   )
 }
