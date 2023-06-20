@@ -17,7 +17,6 @@ const NewsAndEventsPage = async () => {
         <h2>News</h2>
         <div className="group">
           <NewsPost post={firstNewsItem} ctx={undefined} showImage={true} />
-          {/* <h2>rest of the news</h2> */}
           {restOfNews &&
             restOfNews.length > 0 &&
             restOfNews.map((item, index) => (

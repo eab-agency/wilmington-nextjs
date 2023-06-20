@@ -56,7 +56,6 @@ export default function SingleNews(props) {
             />
             <div className="page-content">
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
-              {/* the date, show just day, month, year */}
               <div className="news-date">
                 {new Date(date).toLocaleDateString('en-US', {
                   day: 'numeric',
