@@ -10,7 +10,6 @@ import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
-import Head from 'next/head'
 import blocks from '../wp-blocks'
 
 export default function Component(props) {
