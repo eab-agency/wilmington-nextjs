@@ -2,7 +2,6 @@
 import NewsPost from '@/components/archive/NewsPost'
 import Button from '@/components/atoms/Buttons/Button'
 import Heading from '@/components/atoms/Heading'
-import * as styles from './EventsListing.module.scss'
 
 function EventsListing({ listing_title, posts, showImage, listing_display }) {
   if (posts === null || Object.keys(posts).length === 0) {
@@ -24,15 +23,15 @@ function EventsListing({ listing_title, posts, showImage, listing_display }) {
 
   return (
     // <div className={listing_display === '1' ? 'grid' : ''}>
-    <section className={styles.eventsSection}>
+    <section className="eventsSection">
       {/* <pre>FILE: EventsListing.tsx</pre> */}
-      <div className={styles.sectionHead}>
-        <div className={styles.sectionTag}>Events</div>
+      <div className="sectionHead">
+        <div className="sectionTag">Events</div>
         <Heading tag="h2" id="jump-news-listing">
           {listing_title}
         </Heading>
       </div>
-      <ul className={styles.eventsList}>
+      <ul className="eventsList">
         {posts.map((item, index) => (
           <li key={index}>
             <NewsPost post={item} ctx={undefined} showImage={showImage} />
