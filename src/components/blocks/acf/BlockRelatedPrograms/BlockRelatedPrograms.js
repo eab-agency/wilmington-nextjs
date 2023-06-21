@@ -13,6 +13,8 @@ import styles from './BlockRelatedPrograms.module.scss'
  */
 
 export default function BlockRelatedPrograms({ departments }) {
+  // TODO: This component stays bc wp-blocks component points to it
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1200 },
