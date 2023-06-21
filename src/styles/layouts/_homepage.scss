@@ -31,7 +31,7 @@
 // News Section Home
 
 .front-page {
-  section[class*='newsSection'] {
+  .newsSection {
     @media (min-width: tokens.$mq-1200) {
       flex-direction: column;
       gap: tokens.$m-xl;
@@ -69,6 +69,17 @@
         li {
           min-width: 100%;
           padding: 0;
+        }
+      }
+    }
+  }
+
+  .eventsSection {
+    .sectionHead {
+      @media (min-width: tokens.$mq-1200) {
+        padding-left: clamp(2rem, 5vw, 4rem);
+        .sectionTag {
+          position: absolute;
         }
       }
     }
