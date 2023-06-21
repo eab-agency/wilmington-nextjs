@@ -12,13 +12,11 @@ interface RelatedProgramCardProps {
 const RelatedProgramCard = ({
   title,
   excerpt,
-  link,
-  department
+  link
 }: RelatedProgramCardProps) => {
   return (
     <div className={styles.relatedProgramCard}>
       <h3>{title}</h3>
-      {department}
       <ParsedContent content={excerpt} />
       <Link href={link} className="button">
         View Program
