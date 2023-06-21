@@ -1,9 +1,5 @@
-'use client'
-
-/* eslint-disable camelcase */
 import Button from '@/components/atoms/Buttons/Button'
 import MultiCarousel from '@/components/common/MultiCarousel'
-import { useWordPressContext } from '@/components/common/WordPressProvider'
 import RelatedProgramCard from '@/components/molecules/RelatedProgramCard'
 import styles from './BlockRelatedPrograms.module.scss'
 
@@ -16,18 +12,7 @@ import styles from './BlockRelatedPrograms.module.scss'
  * @return {Element}                    The Card component.
  */
 
-export default function BlockRelatedPrograms() {
-  // flatten all the programs in the needToFlatten array
-  const { departments } = useWordPressContext()
-
-  if (!departments) {
-    return null
-  }
-
-  const flattenedPrograms = departments.reduce((acc, item) => {
-    return [...acc, ...item.programs.nodes]
-  }, [])
-
+export default function BlockRelatedPrograms({ departments }) {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1200 },
@@ -56,14 +41,13 @@ export default function BlockRelatedPrograms() {
           infinite
           containerClass={styles.programsCarousel}
         >
-          {flattenedPrograms &&
-            flattenedPrograms.map((program, index) => (
+          {departments &&
+            departments.map((program, index) => (
               <RelatedProgramCard
                 key={index}
                 title={program.title}
                 excerpt={program.excerpt}
                 link={program.uri}
-                image={program.featuredImage?.node?.gatsbyImage}
               />
             ))}
         </MultiCarousel>

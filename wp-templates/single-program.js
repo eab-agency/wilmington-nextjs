@@ -4,6 +4,7 @@ import Container from '@/components/atoms/Container'
 import ProgramTabs from '@/components/atoms/ProgramTabs/ProgramTabs'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
+import WordPressProvider from '@/components/common/WordPressProvider'
 import JumpLink from '@/components/molecules/JumpLink/JumpLink'
 import PageHero from '@/components/organisms/PageHero/PageHero'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
@@ -38,7 +39,8 @@ export default function SingleProgram(props) {
     featuredImage,
     seo,
     children: childPages,
-    uri
+    uri,
+    departments
   } = props.data.nodeByUri
 
   const blocks = flatListToHierarchical(editorBlocks)
@@ -48,6 +50,10 @@ export default function SingleProgram(props) {
 
   const jumpLinks = getJumpLinks(blocks)
 
+  const programPageState = {
+    departments: departments?.nodes
+    // studentOrganizations: programOrgRelationship?.programorg
+  }
   return (
     <>
       <SEO title={siteTitle} description={siteDescription} />
@@ -65,7 +71,9 @@ export default function SingleProgram(props) {
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
               {/* Render jump links */}
               <JumpLink jumpLinks={jumpLinks} heading={title} />
-              <WordPressBlocksViewer blocks={blocks} />
+              <WordPressProvider value={programPageState}>
+                <WordPressBlocksViewer blocks={blocks} />
+              </WordPressProvider>
             </article>
           </Container>
         </article>
@@ -92,6 +100,29 @@ SingleProgram.query = gql`
         title
       }
        ... on Program {
+         departments {
+        nodes {
+          id
+          programs {
+            nodes {
+              title
+              excerpt
+              uri
+              featuredImage {
+                node {
+                  altText
+                  caption
+                  mediaDetails {
+                    height
+                    height
+                  }
+                  sourceUrl
+                }
+              }
+            }
+          }
+        }
+      }
         uri
           children {
         nodes {
