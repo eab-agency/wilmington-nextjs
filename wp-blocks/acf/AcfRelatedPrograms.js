@@ -1,5 +1,6 @@
 import BlockRelatedPrograms from '@/components/blocks/acf/BlockRelatedPrograms/BlockRelatedPrograms'
 import { useWordPressContext } from '@/components/common/WordPressProvider'
+import { gql } from '@apollo/client'
 
 /**
  * Athlete Block
@@ -24,5 +25,22 @@ export default function AcfRelatedPrograms() {
 
   return <BlockRelatedPrograms departments={flattenedPrograms} />
 }
+
+export const RelatedProgramsFragment = gql`
+  fragment RelatedProgramsFragment on Program {
+    departments {
+      nodes {
+        id
+        programs {
+          nodes {
+            title
+            excerpt
+            uri
+          }
+        }
+      }
+    }
+  }
+`
 
 AcfRelatedPrograms.displayName = 'AcfRelatedPrograms'

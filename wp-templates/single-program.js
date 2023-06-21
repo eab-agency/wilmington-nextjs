@@ -14,6 +14,7 @@ import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
 import blocks from '../wp-blocks'
+import { RelatedProgramsFragment } from '../wp-blocks/acf/AcfRelatedPrograms'
 
 const SEO_QUERY = gql`
   fragment SeoFragment on PostTypeSEO {
@@ -94,35 +95,14 @@ SingleProgram.query = gql`
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
   ${SEO_QUERY}
+  ${RelatedProgramsFragment}
   query GetProgramData($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
     nodeByUri(uri: $uri) {
        ... on NodeWithTitle {
         title
       }
+      ...RelatedProgramsFragment
        ... on Program {
-         departments {
-        nodes {
-          id
-          programs {
-            nodes {
-              title
-              excerpt
-              uri
-              featuredImage {
-                node {
-                  altText
-                  caption
-                  mediaDetails {
-                    height
-                    height
-                  }
-                  sourceUrl
-                }
-              }
-            }
-          }
-        }
-      }
         uri
           children {
         nodes {
