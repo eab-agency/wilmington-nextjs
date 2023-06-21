@@ -51,10 +51,11 @@
       background: none;
       border: none;
       font-size: tokens.$fs-m;
-      padding-inline: tokens.$p-m;
+      padding-inline: 0.85rem;
       padding-block: tokens.$p-s;
       cursor: pointer;
       position: relative;
+      border-right: 1px solid tokens.$c-gray-400;
 
       span {
         display: none;

@@ -2,7 +2,7 @@
 @use 'tokens';
 
 .wp-block-table {
-  // margin: clamp(2rem, 5vw, 4rem);
+  margin-bottom: clamp(2rem, 5vw, 4rem);
 
   @media (max-width: tokens.$mq-800) {
     overflow-x: auto;
@@ -76,7 +76,7 @@
     background-color: transparent;
 
     tbody tr:nth-child(odd) {
-      background-color: color.adjust(tokens.$c-gray-200, $lightness: 10%);
+      background-color: color.adjust(tokens.$c-gray-200, $lightness: 1%);
     }
 
     &.has-subtle-light-gray-background-color {
@@ -112,6 +112,11 @@
     td {
       border-color: inherit;
     }
+  }
+
+  .wp-element-caption {
+    margin-top: 1.5em;
+    font-size: tokens.$fs-2xs;
   }
 }
 

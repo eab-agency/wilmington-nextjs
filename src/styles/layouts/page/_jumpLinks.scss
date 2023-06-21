@@ -33,21 +33,6 @@
   ul {
     list-style: none;
 
-    // @media (min-width: tokens.$mq-1000) {
-    //   // &::before {
-    //   //   content: '';
-    //   //   display: block;
-    //   //   background: tokens.$c-darkGreen-700;
-    //   //   width: 100%;
-    //   //   height: 100%;
-    //   //   position: absolute;
-    //   //   top: 0;
-    //   //   left: 0;
-    //   //   transform: translateY(-15rem);
-    //   //   z-index: -1;
-    //   // }
-    // }
-
     li {
       position: relative;
       z-index: tokens.$layer-2;
