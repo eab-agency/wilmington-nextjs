@@ -44,9 +44,9 @@ export default function Department({ pagination, post, posts, term }) {
 
  * @return {object} Object consisting of array of paths and fallback setting.
  */
-export async function getStaticPaths() {
-  return await getTaxonomyStaticPaths(taxonomyType)
-}
+// export async function getStaticPaths() {
+//   return await getTaxonomyStaticPaths(taxonomyType)
+// }
 
 /**
  * Get post static props.
@@ -56,9 +56,9 @@ export async function getStaticPaths() {
  * @param  {object} context.params Route parameters for current post.
  * @return {object}                Post props.
  */
-export async function getStaticProps({ params }) {
-  return await getTaxonomyStaticProps(params, taxonomyType, 'department')
-}
+// export async function getStaticProps({ params }) {
+//   return await getTaxonomyStaticProps(params, taxonomyType, 'department')
+// }
 
 Department.propTypes = {
   ...getPagePropTypes(taxonomyType),
