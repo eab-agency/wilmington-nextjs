@@ -16,15 +16,15 @@ const NewsPost = ({
 
   const { title, date, featuredImage, uri } = post
 
-  const { node: { mediaItemUrl, altText, mediaDetails } = {} } =
+  const { node: { sourceUrl, altText, mediaDetails } = {} } =
     featuredImage || {}
 
   // console.log('mediaDetails', )
 
   return (
     <article className={className} {...props}>
-      {mediaItemUrl && (
-        <Image url={mediaItemUrl} alt={altText} imageMeta={{ mediaDetails }} />
+      {sourceUrl && (
+        <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
       )}
       <TheDate date={date} />
       <h3 className="articleTitle">{title}</h3>

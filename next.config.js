@@ -22,6 +22,16 @@ const nextConfig = {
         source: '/program',
         destination: '/program-directory',
         permanent: true
+      },
+      {
+        source: '/news',
+        destination: '/news-and-events',
+        permanent: true
+      },
+      {
+        source: '/events',
+        destination: '/news-and-events',
+        permanent: true
       }
     ]
   },

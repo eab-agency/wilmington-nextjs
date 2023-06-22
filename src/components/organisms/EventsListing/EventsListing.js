@@ -16,11 +16,6 @@ function EventsListing({ listing_title, posts, showImage, listing_display }) {
     return <div>{posts.message}</div>
   }
 
-  // // if no posts, return null
-  // if (!posts || posts.length === 0) {
-  //   return null
-  // }
-
   return (
     // <div className={listing_display === '1' ? 'grid' : ''}>
     <section className="eventsSection">

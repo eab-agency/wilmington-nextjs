@@ -1,4 +1,5 @@
 'use client'
+import { gql } from '@apollo/client'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
@@ -49,3 +50,20 @@ const ProgramTabs = ({ childPages, uri }) => {
 }
 
 export default ProgramTabs
+
+export const ProgramTabsFragment = gql`
+  fragment ProgramTabsFragment on Program {
+    uri
+    children {
+      nodes {
+        uri
+        slug
+        ... on Program {
+          id
+          title
+          uri
+        }
+      }
+    }
+  }
+`

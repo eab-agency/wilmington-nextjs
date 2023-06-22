@@ -15,6 +15,7 @@ type News = {
   title: string
   databaseId: string
   id: string
+  featuredImage: any
 }
 
 const AcfNewsListing = (props: AcfNewsListingProps) => {
@@ -43,7 +44,8 @@ const AcfNewsListing = (props: AcfNewsListingProps) => {
           title: article.title,
           date: article.date,
           link: article.link,
-          uri: article.uri
+          uri: article.uri,
+          featuredImage: article.featuredImage
         })
       })
     }
@@ -53,7 +55,7 @@ const AcfNewsListing = (props: AcfNewsListingProps) => {
     loading: latestLoading,
     error: latestError,
     data: latestData
-  } = useQuery(GET_LATEST_EVENTS)
+  } = useQuery(GET_LATEST_NEWS)
 
   if (latestData && latestData.news.nodes.length > 0) {
     latestData.news.nodes.forEach((article: News) => {
@@ -62,7 +64,8 @@ const AcfNewsListing = (props: AcfNewsListingProps) => {
         title: article.title,
         date: article.date,
         link: article.link,
-        uri: article.uri
+        uri: article.uri,
+        featuredImage: article.featuredImage
       })
     })
   }
@@ -104,13 +107,21 @@ const newsFragment = gql`
     title
     databaseId
     id
+    featuredImage {
+      node {
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
   }
 `
 
 // query to get the events from the block
 const GET_NEWS_BY_IDS = gql`
-  query GetNewsByIds {
-    news(where: { in: ["6431", "4518"] }) {
+  query GetNewsByIds($ids: [ID!]) {
+    news(where: { in: $ids }) {
       nodes {
         ...NewsFields
       }
@@ -132,8 +143,8 @@ const GET_NEWS_BY_CATEGORY = gql`
   ${newsFragment}
 `
 
-const GET_LATEST_EVENTS = gql`
-  query GetLatestEvents {
+const GET_LATEST_NEWS = gql`
+  query GetLatestNews {
     news(first: 4, where: { orderby: { field: DATE, order: DESC } }) {
       nodes {
         ...NewsFields
