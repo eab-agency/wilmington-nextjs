@@ -1,0 +1,38 @@
+@use 'tokens';
+
+.wc-news-events-section {
+  gap: 4rem;
+
+  & > [class*='_column'] {
+    &:first-child {
+      flex: 1 1 auto;
+    }
+    &:last-child {
+      display: block;
+      flex: 1 1 auto;
+      max-width: 20rem;
+
+      .eventsSection {
+        margin: 0;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        background: tokens.$c-gray-700;
+        padding: 2em;
+        overflow-y: auto;
+        max-height: 100%;
+        gap: 2em;
+
+        li {
+          color: white;
+
+          h3 {
+            font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-s);
+          }
+        }
+      }
+    }
+  }
+}

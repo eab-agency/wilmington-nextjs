@@ -2,7 +2,6 @@
 import NewsPost from '@/components/archive/NewsPost'
 import Button from '@/components/atoms/Buttons/Button'
 import MultiCarousel from '@/components/common/MultiCarousel'
-import styles from './NewsListing.module.scss'
 
 function NewsListing({ listing_title, posts, showImage, listing_display }) {
   // const isFrontPage = UseIsFrontPage()
@@ -33,16 +32,16 @@ function NewsListing({ listing_title, posts, showImage, listing_display }) {
   }
 
   return (
-    <section className={styles.newsSection}>
-      <div className={styles.sectionHead}>
-        <div className={styles.sectionTag}>News</div>
+    <section className="newsSection">
+      <div className="sectionHead">
+        <div className="sectionTag">News</div>
         <h2 id="jump-news-listing">{listing_title}</h2>
       </div>
-      <div className={styles.newsContainer}>
+      <div className="newsContainer">
         <MultiCarousel
           responsive={responsive}
           showDots={true}
-          containerClass={styles.newsCarousel}
+          containerClass="newsCarousel"
         >
           {posts.map((item, index) => (
             <NewsPost
