@@ -5,10 +5,6 @@ import { gql } from '@apollo/client'
 
 const AcfStudentOrgs = () => {
   const { studentOrganizations } = useWordPressContext()
-  console.log(
-    '🚀 ~ file: AcfStudentOrgs.js:8 ~ AcfStudentOrgs ~ studentOrganizations:',
-    studentOrganizations
-  )
 
   return (
     <>

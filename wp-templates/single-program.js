@@ -1,11 +1,13 @@
 import { SEO } from '@/components'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
-import ProgramTabs from '@/components/atoms/ProgramTabs/ProgramTabs'
+import ProgramTabs, {
+  ProgramTabsFragment
+} from '@/components/atoms/ProgramTabs/ProgramTabs'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import WordPressProvider from '@/components/common/WordPressProvider'
-import JumpLink from '@/components/molecules/JumpLink/JumpLink'
+import JumpLink from '@/components/molecules/JumpLink'
 import PageHero from '@/components/organisms/PageHero/PageHero'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
@@ -98,6 +100,7 @@ SingleProgram.query = gql`
   ${SEO_QUERY}
   ${RelatedProgramsFragment}
   ${StudentOrgFragment}
+  ${ProgramTabsFragment}
   query GetProgramData($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
     nodeByUri(uri: $uri) {
        ... on NodeWithTitle {
@@ -105,19 +108,8 @@ SingleProgram.query = gql`
       }
       ...RelatedProgramsFragment
       ...StudentOrgFragment
+      ...ProgramTabsFragment
        ... on Program {
-        uri
-          children {
-        nodes {
-          uri
-          slug
-          ... on Program {
-            id
-            title
-            uri
-          }
-        }
-      }
          seo {
     ...SeoFragment
   }
