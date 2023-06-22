@@ -2,7 +2,6 @@
 import Button from '@/components/atoms/Buttons/Button'
 import Image from '@/components/atoms/Image'
 import TheDate from '@/components/atoms/TheDate'
-import * as styles from './NewsPost.module.scss'
 
 const NewsPost = ({
   isFirst = false,
@@ -20,17 +19,19 @@ const NewsPost = ({
   const { node: { mediaItemUrl, altText, mediaDetails } = {} } =
     featuredImage || {}
 
+  // console.log('mediaDetails', )
+
   return (
     <article className={className} {...props}>
       {mediaItemUrl && (
         <Image url={mediaItemUrl} alt={altText} imageMeta={{ mediaDetails }} />
       )}
       <TheDate date={date} />
-      <h3 className={styles.articleTitle}>{title}</h3>
+      <h3 className="articleTitle">{title}</h3>
       {/* <PostEntryTitle post={post} location="news" /> */}
       {/* <PostEntryContent post={post} location="news" /> */}
       <Button
-        className={styles.articleLink}
+        className="articleLink"
         url={uri}
         type="regularlink"
         text="Read More"
