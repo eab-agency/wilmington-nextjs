@@ -15,6 +15,7 @@ import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
 import blocks from '../wp-blocks'
 import { RelatedProgramsFragment } from '../wp-blocks/acf/AcfRelatedPrograms'
+import { StudentOrgFragment } from '../wp-blocks/acf/AcfStudentOrgs'
 
 const SEO_QUERY = gql`
   fragment SeoFragment on PostTypeSEO {
@@ -41,7 +42,8 @@ export default function SingleProgram(props) {
     seo,
     children: childPages,
     uri,
-    departments
+    departments,
+    programOrgRelationship
   } = props.data.nodeByUri
 
   const blocks = flatListToHierarchical(editorBlocks)
@@ -52,8 +54,8 @@ export default function SingleProgram(props) {
   const jumpLinks = getJumpLinks(blocks)
 
   const programPageState = {
-    departments: departments?.nodes
-    // studentOrganizations: programOrgRelationship?.programorg
+    departments: departments?.nodes,
+    studentOrganizations: programOrgRelationship?.programorg
   }
   return (
     <>
@@ -70,7 +72,6 @@ export default function SingleProgram(props) {
           <Container>
             <article className="innerWrap programContent">
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
-              {/* Render jump links */}
               <JumpLink jumpLinks={jumpLinks} heading={title} />
               <WordPressProvider value={programPageState}>
                 <WordPressBlocksViewer blocks={blocks} />
@@ -96,12 +97,14 @@ SingleProgram.query = gql`
   ${getFragmentDataFromBlocks(blocks).entries}
   ${SEO_QUERY}
   ${RelatedProgramsFragment}
+  ${StudentOrgFragment}
   query GetProgramData($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
     nodeByUri(uri: $uri) {
        ... on NodeWithTitle {
         title
       }
       ...RelatedProgramsFragment
+      ...StudentOrgFragment
        ... on Program {
         uri
           children {

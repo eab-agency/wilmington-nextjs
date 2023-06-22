@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 
+import FeaturedImage from '@/components/common/FeaturedImage'
 import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard'
 import { gql, useQuery } from '@apollo/client'
-import FeaturedImage from '../../src/components/common/FeaturedImage'
 /**
  * Athlete Block
  *

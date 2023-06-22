@@ -1,42 +1,42 @@
-/* eslint-disable no-unsafe-optional-chaining */
-/* eslint-disable camelcase */
-import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard'
+// /* eslint-disable no-unsafe-optional-chaining */
+// /* eslint-disable camelcase */
+// import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard'
 
-/**
- * Faculty Block
- *
- * The acf Faculty Block from colab.
- *
- * @param  {object}  props              Faculty component props.
- * @return {Element}                    The Card component.
- */
+// /**
+//  * Faculty Block
+//  *
+//  * The acf Faculty Block from colab.
+//  *
+//  * @param  {object}  props              Faculty component props.
+//  * @return {Element}                    The Card component.
+//  */
 
-export default function BlockFacultyCards({ facultyData }) {
-  // if facultyData is null or undefined, return null
-  if (!facultyData) {
-    return null
-  }
+// export default function BlockFacultyCards({ facultyData }) {
+//   // if facultyData is null or undefined, return null
+//   if (!facultyData) {
+//     return null
+//   }
 
-  const facultyRestructured = facultyData.map((faculty) => {
-    const { email, first, last, phone, position } =
-      faculty?.facultyFields?.faculty || {}
-    return {
-      email: email,
-      first: first,
-      last: last,
-      phone: phone,
-      title: `${first} ${last}`,
-      link: faculty.uri,
-      image: faculty.featuredImage?.node,
-      description: position
-    }
-  })
+//   const facultyRestructured = facultyData.map((faculty) => {
+//     const { email, first, last, phone, position } =
+//       faculty?.facultyFields?.faculty || {}
+//     return {
+//       email: email,
+//       first: first,
+//       last: last,
+//       phone: phone,
+//       title: `${first} ${last}`,
+//       link: faculty.uri,
+//       image: faculty.featuredImage?.node,
+//       description: position
+//     }
+//   })
 
-  return (
-    <>
-      {facultyRestructured.map((faculty, index) => {
-        return <FacultyCard {...faculty} key={index} />
-      })}
-    </>
-  )
-}
+//   return (
+//     <>
+//       {facultyRestructured.map((faculty, index) => {
+//         return <FacultyCard {...faculty} key={index} />
+//       })}
+//     </>
+//   )
+// }
