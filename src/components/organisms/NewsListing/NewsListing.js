@@ -41,7 +41,7 @@ function NewsListing({ listing_title, posts, showImage, listing_display }) {
         <MultiCarousel
           responsive={responsive}
           showDots={true}
-          containerClasection-header
+          containerClass="newsCarousel"
         >
           {posts.map((item, index) => (
             <NewsPost

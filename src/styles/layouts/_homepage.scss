@@ -18,74 +18,13 @@
     position: relative;
   }
 
-  // @media (min-width: tokens.$mq-800) {
-  //   margin-top: clamp(-1rem, -2vw, 0rem);
-  // }
-
   @media (min-width: tokens.$mq-1200) {
     padding-right: 20rem;
   }
 }
 
-// =======================
-// News Section Home
-
 .front-page {
-  .newsSection {
-    @media (min-width: tokens.$mq-1200) {
-      flex-direction: column;
-      gap: tokens.$m-xl;
-      align-items: flex-start;
-      width: 20rem;
-      position: absolute;
-      top: 10em;
-      right: 0;
-    }
-
-    ul.react-multi-carousel-track {
-      li {
-        &::after {
-          @media (min-width: tokens.$mq-1200) {
-            width: 100%;
-            height: 4px;
-            background: url(../../assets/divider-draw-line-horizontal.svg)
-              no-repeat center;
-            background-size: auto 100%;
-            position: absolute;
-            top: initial;
-            right: initial;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-          }
-        }
-      }
-
-      @media (min-width: tokens.$mq-1200) {
-        flex: 1 1 auto;
-        flex-direction: column;
-        gap: tokens.$m-xl;
-
-        li {
-          min-width: 100%;
-          padding: 0;
-        }
-      }
-    }
-  }
-
-  .eventsSection {
-    .sectionHead {
-      @media (min-width: tokens.$mq-1200) {
-        padding-left: clamp(2rem, 5vw, 4rem);
-        .sectionTag {
-          position: absolute;
-        }
-      }
-    }
-  }
 }
-
 // =======================
 // Testimonials Section Home
 
