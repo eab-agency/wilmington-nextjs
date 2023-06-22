@@ -217,12 +217,12 @@ export default function displayBlock(block, index) {
     //   return <BlockFeaturedPrograms {...attributes} key={index} />
     // }
 
-    case 'acf/related-programs': {
-      const BlockRelatedPrograms = dynamic(() =>
-        import('@/components/blocks/acf/BlockRelatedPrograms')
-      )
-      return <BlockRelatedPrograms {...attributes} key={index} />
-    }
+    // case 'acf/related-programs': {
+    //   const BlockRelatedPrograms = dynamic(() =>
+    //     import('@/components/blocks/acf/BlockRelatedPrograms')
+    //   )
+    //   return <BlockRelatedPrograms {...attributes} key={index} />
+    // }
 
     // case 'acf/testimonial-block': {
     //   const BlockTestimonial = dynamic(() =>
@@ -246,12 +246,12 @@ export default function displayBlock(block, index) {
     //   return <BlockFacultyCard {...attributes} key={index} />
     // }
 
-    case 'acf/faculty-spotlight': {
-      const BlockFacultyCards = dynamic(() =>
-        import('@/components/blocks/acf/BlockFacultyCards')
-      )
-      return <BlockFacultyCards {...attributes} key={index} />
-    }
+    // case 'acf/faculty-spotlight': {
+    //   const BlockFacultyCards = dynamic(() =>
+    //     import('@/components/blocks/acf/BlockFacultyCards')
+    //   )
+    //   return <BlockFacultyCards {...attributes} key={index} />
+    // }
 
     // case 'acf/athlete-card': {
     //   const BlockAthleteCard = dynamic(() =>
@@ -267,12 +267,12 @@ export default function displayBlock(block, index) {
     //   return <BlockFaqListing {...attributes} key={index} />
     // }
 
-    case 'acf/student-orgs': {
-      const BlockStudentOrgs = dynamic(() =>
-        import('@/components/blocks/acf/BlockStudentOrgs')
-      )
-      return <BlockStudentOrgs {...attributes} key={index} />
-    }
+    // case 'acf/student-orgs': {
+    //   const BlockStudentOrgs = dynamic(() =>
+    //     import('@/components/blocks/acf/BlockStudentOrgs')
+    //   )
+    //   return <BlockStudentOrgs {...attributes} key={index} />
+    // }
 
     // case 'eab/program-directory': {
     //   const BlockDepartmentSelect = dynamic(() =>

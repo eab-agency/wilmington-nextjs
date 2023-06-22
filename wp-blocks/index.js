@@ -25,6 +25,7 @@ import AcfHomeHero from './acf/AcfHomeHero'
 import AcfHomeTab from './acf/AcfHomeTab'
 import AcfNewsListing from './acf/AcfNewsListing'
 import AcfRelatedPrograms from './acf/AcfRelatedPrograms'
+import AcfStudentOrgs from './acf/AcfStudentOrgs'
 import AcfTestimonialBlock from './acf/AcfTestimonialBlock'
 import EabProgramDirectory from './custom/EabProgramDirectory'
 
@@ -62,6 +63,7 @@ export default {
   AcfHomeTab,
   AcfNewsListing,
   AcfRelatedPrograms,
+  AcfStudentOrgs,
   AcfTestimonialBlock,
   EabProgramDirectory
 }
