@@ -1,8 +1,12 @@
 @use 'tokens';
 
-.wc-news-events-section {
-  gap: 4rem;
+// Whats Happening Block
 
+.wc-news-events-section {
+  gap: clamp(2rem, 5vw, 4rem);
+  // @media (max-width: tokens.$mq-1000) {
+  //   flex-direction: column;
+  // }
   & > [class*='_column'] {
     &:first-child {
       flex: 1 1 auto;
@@ -13,7 +17,24 @@
       max-width: 18rem;
 
       .eventsSection {
-        margin: 0;
+        @media (min-width: tokens.$mq-800) {
+          max-height: 31.5rem;
+        }
+
+        @media (min-width: tokens.$mq-1200) {
+          margin: 0;
+          padding-top: 3.5em;
+        }
+
+        .sectionHead {
+          padding: 0;
+
+          .sectionTag {
+            position: relative;
+            transform: initial;
+            writing-mode: initial;
+          }
+        }
       }
 
       ul {
@@ -33,6 +54,10 @@
           }
         }
       }
+    }
+
+    @media (max-width: tokens.$mq-1000) {
+      max-width: 100%;
     }
   }
 }
