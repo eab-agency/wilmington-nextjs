@@ -10,7 +10,7 @@
     &:last-child {
       display: block;
       flex: 1 1 auto;
-      max-width: 20rem;
+      max-width: 18rem;
 
       .eventsSection {
         margin: 0;
@@ -29,7 +29,7 @@
           color: white;
 
           h3 {
-            font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-s);
+            font-size: tokens.$fs-xs;
           }
         }
       }

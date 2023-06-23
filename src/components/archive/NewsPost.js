@@ -2,6 +2,7 @@
 import Button from '@/components/atoms/Buttons/Button'
 import Image from '@/components/atoms/Image'
 import TheDate from '@/components/atoms/TheDate'
+import { className } from 'classnames/bind'
 
 const NewsPost = ({
   isFirst = false,
@@ -25,14 +26,16 @@ const NewsPost = ({
       {!isFrontPage && sourceUrl ? (
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
       ) : null}
-      <TheDate date={date} />
-      <h3 className="articleTitle">{title}</h3>
-      <Button
-        className="articleLink"
-        url={uri}
-        type="regularlink"
-        text="Read More"
-      />
+      <div className="newsContentContainer">
+        <TheDate date={date} />
+        <h3 className="articleTitle">{title}</h3>
+        <Button
+          className="articleLink"
+          url={uri}
+          type="regularlink"
+          text="Read More"
+        />
+      </div>
     </article>
   )
 }
