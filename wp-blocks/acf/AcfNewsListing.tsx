@@ -109,6 +109,8 @@ const newsFragment = gql`
     id
     featuredImage {
       node {
+        altText
+        sourceUrl
         mediaDetails {
           height
           width
