@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'tokens';
 @use 'utilities/mixins';
 
@@ -49,37 +50,6 @@
 
       &::before {
         display: none;
-      }
-    }
-
-    ul.react-multi-carousel-track {
-      li {
-        &::after {
-          @media (min-width: tokens.$mq-1200) {
-            width: 100%;
-            height: 4px;
-            background: url(../../../assets/divider-draw-line-horizontal.svg)
-              no-repeat center;
-            background-size: auto 100%;
-            position: absolute;
-            top: initial;
-            right: initial;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-          }
-        }
-      }
-
-      @media (min-width: tokens.$mq-1200) {
-        flex: 1 1 auto;
-        flex-direction: column;
-        gap: tokens.$m-xl;
-
-        li {
-          min-width: 100%;
-          padding: 0;
-        }
       }
     }
 
@@ -141,11 +111,42 @@
           transform: translateY(-50%);
         }
       }
+
+      ul.react-multi-carousel-track {
+        li {
+          &::after {
+            @media (min-width: tokens.$mq-1200) {
+              width: 100%;
+              height: 4px;
+              background: url(../../../assets/divider-draw-line-horizontal.svg)
+                no-repeat center;
+              background-size: auto 100%;
+              position: absolute;
+              top: initial;
+              right: initial;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+          }
+        }
+
+        @media (min-width: tokens.$mq-1200) {
+          flex: 1 1 auto;
+          flex-direction: column;
+          gap: tokens.$m-xl;
+
+          li {
+            min-width: 100%;
+            padding: 0;
+          }
+        }
+      }
     }
   }
 }
 
-$colors: tokens.$c-limeGreen-600, tokens.$c-white, tokens.$c-gray-200;
+$colors: tokens.$c-limeGreen-300, tokens.$c-white, tokens.$c-gray-200;
 
 @function random-color() {
   @return nth($colors, random(length($colors)));
@@ -153,6 +154,8 @@ $colors: tokens.$c-limeGreen-600, tokens.$c-white, tokens.$c-gray-200;
 
 .std-page {
   .newsSection {
+    margin: 0;
+
     .sectionHead {
       .sectionTag {
         @include mixins.sectionTag();
@@ -229,6 +232,14 @@ $colors: tokens.$c-limeGreen-600, tokens.$c-white, tokens.$c-gray-200;
             }
           }
         }
+      }
+
+      [class*='button']:not(.articleLink) {
+        margin-left: clamp(2rem, 5vw, 4rem);
+      }
+
+      .articleLink {
+        color: color.adjust(tokens.$c-teal-800, $lightness: -10%);
       }
     }
   }
