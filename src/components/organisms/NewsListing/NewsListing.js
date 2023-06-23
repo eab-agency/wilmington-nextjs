@@ -3,7 +3,6 @@ import NewsPost from '@/components/archive/NewsPost'
 import Button from '@/components/atoms/Buttons/Button'
 import MultiCarousel from '@/components/common/MultiCarousel'
 import useIsFrontPage from '@/functions/useIsFrontPage'
-import { gql } from '@apollo/client'
 
 function NewsListing({ listing_title, posts, showImage, listing_display }) {
   const isFrontPage = useIsFrontPage()
