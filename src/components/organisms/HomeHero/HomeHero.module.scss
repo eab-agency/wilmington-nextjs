@@ -40,7 +40,7 @@
 .heroImage {
   position: relative;
   z-index: tokens.$layer-1;
-  height: clamp(12rem, 35vw, 35rem);
+  height: clamp(20rem, 35vw, 35rem);
   overflow-y: clip;
 
   img {
