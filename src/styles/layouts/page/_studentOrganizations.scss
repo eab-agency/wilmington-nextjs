@@ -1,0 +1,97 @@
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
+
+.wc-student-organizations {
+  padding-left: 0;
+  margin-block: 4rem;
+  max-width: tokens.$mq-1100;
+  padding-right: tokens.$rightOffset;
+
+  section[class*='Columns_'] {
+    margin: 0;
+
+    div[class*='Columns_column'] {
+      width: 100%;
+    }
+
+    .organizationsContent {
+      h2 {
+      }
+
+      .organizationsList {
+        position: relative;
+        border-left: 1px solid tokens.$c-gray-400;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        &::before,
+        &::after {
+          content: '';
+          display: block;
+          width: 100vw;
+          height: 1px;
+          background: tokens.$c-gray-400;
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+
+        &::after {
+          top: auto;
+          bottom: 0;
+        }
+
+        article.studentOrg {
+          display: flex;
+          padding: 2.5rem 1.5rem 2.5rem 4rem;
+          align-items: flex-start;
+          gap: 4rem;
+          align-self: stretch;
+          border-bottom: 1px solid #e4e4da;
+
+          .studentOrgContent {
+            flex: 1 1 auto;
+
+            .studentOrgAccordion {
+              display: block;
+              border-top: 1px dashed tokens.$c-gray-500;
+              padding-block: 1em;
+
+              .quickFactsBtn {
+                background: none;
+                border: none;
+                padding: 0;
+                margin: 0;
+                box-shadow: none;
+                color: tokens.$c-teal-800;
+                display: flex;
+                align-items: center;
+                gap: 0.2em;
+                text-decoration: underline;
+
+                i {
+                  line-height: 1;
+                }
+
+                &::after {
+                  display: none;
+                }
+
+                &:hover {
+                  text-decoration: none;
+                  color: color.scale(tokens.$c-teal-800, $lightness: -50%);
+                }
+              }
+            }
+          }
+
+          a[class*='Button'] {
+            flex-shrink: 0;
+          }
+        }
+      }
+    }
+  }
+}
