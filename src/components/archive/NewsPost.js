@@ -2,6 +2,7 @@
 import Button from '@/components/atoms/Buttons/Button'
 import Image from '@/components/atoms/Image'
 import TheDate from '@/components/atoms/TheDate'
+import { className } from 'classnames/bind'
 
 const NewsPost = ({
   isFirst = false,
@@ -9,6 +10,7 @@ const NewsPost = ({
   className = null,
   ctx,
   showImage = true,
+  isFrontPage = false,
   ...props
 }) => {
   // if post is null or undefined, return null
@@ -19,23 +21,21 @@ const NewsPost = ({
   const { node: { sourceUrl, altText, mediaDetails } = {} } =
     featuredImage || {}
 
-  // console.log('mediaDetails', )
-
   return (
     <article className={className} {...props}>
-      {sourceUrl && (
+      {!isFrontPage && sourceUrl ? (
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
-      )}
-      <TheDate date={date} />
-      <h3 className="articleTitle">{title}</h3>
-      {/* <PostEntryTitle post={post} location="news" /> */}
-      {/* <PostEntryContent post={post} location="news" /> */}
-      <Button
-        className="articleLink"
-        url={uri}
-        type="regularlink"
-        text="Read More"
-      />
+      ) : null}
+      <div className="newsContentContainer">
+        <TheDate date={date} />
+        <h3 className="articleTitle">{title}</h3>
+        <Button
+          className="articleLink"
+          url={uri}
+          type="regularlink"
+          text="Read More"
+        />
+      </div>
     </article>
   )
 }

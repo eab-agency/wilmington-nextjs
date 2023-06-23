@@ -173,10 +173,18 @@ $colors: tokens.$c-limeGreen-600, tokens.$c-white, tokens.$c-gray-200;
           margin-left: 4rem;
 
           li {
-            padding: 1em;
+            // padding: 1em;
             min-width: 15rem;
 
             article {
+              .newsContentContainer {
+                padding: 1em;
+
+                h3 {
+                  font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-s);
+                }
+              }
+
               time {
                 display: block;
                 width: fit-content;
@@ -185,11 +193,38 @@ $colors: tokens.$c-limeGreen-600, tokens.$c-white, tokens.$c-gray-200;
                 padding: 0.1em 0.2em;
                 margin-bottom: 1rem;
               }
+
+              figure {
+                display: none;
+              }
             }
 
             @for $i from 1 through 4 {
               &:nth-child(#{$i}) {
                 background-color: random-color();
+              }
+            }
+
+            &:nth-child(3n + 1) {
+              min-width: 28rem;
+              max-width: 35rem;
+
+              article {
+                display: flex;
+
+                .newsContentContainer {
+                  width: 50%;
+                }
+
+                figure {
+                  display: block;
+                  flex: 1 1 15rem;
+
+                  img {
+                    height: 100%;
+                    object-fit: cover;
+                  }
+                }
               }
             }
           }
