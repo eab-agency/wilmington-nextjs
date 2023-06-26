@@ -21,12 +21,12 @@
     }
 
     background: tokens.$c-darkGreen-700;
-    @include mixins.sectionPadding;
     margin-bottom: 0;
     display: flex;
     flex-direction: column;
     z-index: tokens.$layer-10;
     position: relative;
+    @include mixins.sectionPadding;
 
     @include mixins.extendedBackground('before', tokens.$c-darkGreen-700);
 
@@ -157,27 +157,37 @@ $colors: tokens.$c-limeGreen-300, tokens.$c-white, tokens.$c-gray-200;
     margin: 0;
 
     .sectionHead {
+      h2 {
+        margin-top: 2em;
+      }
+
       .sectionTag {
         @include mixins.sectionTag();
         color: tokens.$c-gray-700;
-        position: absolute;
-        top: 13em;
-        left: 0;
+        position: relative;
+
+        @media (min-width: tokens.$mq-1200) {
+          position: absolute;
+          top: 13em;
+          left: 0;
+        }
       }
     }
 
     .newsContainer {
+      position: relative;
+
       .newsCarousel {
-        margin-bottom: 3rem;
+        padding-bottom: clamp(4rem, 5vw, 6rem);
 
-        ul {
-          flex-flow: row wrap;
-          gap: 2em;
-          margin-left: 4rem;
+        @media (min-width: tokens.$mq-1200) {
+          margin-bottom: 3rem;
+        }
 
+        ul.react-multi-carousel-track {
           li {
-            // padding: 1em;
             min-width: 15rem;
+            border-right: 1em solid white;
 
             article {
               .newsContentContainer {
@@ -207,35 +217,51 @@ $colors: tokens.$c-limeGreen-300, tokens.$c-white, tokens.$c-gray-200;
                 background-color: random-color();
               }
             }
+            @media (min-width: tokens.$mq-1200) {
+              border: none;
 
-            &:nth-child(3n + 1) {
-              min-width: 28rem;
-              max-width: 35rem;
+              &:nth-child(3n + 1) {
+                min-width: 28rem;
+                max-width: 35rem;
 
-              article {
-                display: flex;
+                article {
+                  display: flex;
 
-                .newsContentContainer {
-                  width: 50%;
-                }
+                  .newsContentContainer {
+                    width: 50%;
+                  }
 
-                figure {
-                  display: block;
-                  flex: 1 1 15rem;
+                  figure {
+                    display: block;
+                    flex: 1 1 15rem;
 
-                  img {
-                    height: 100%;
-                    object-fit: cover;
+                    img {
+                      height: 100%;
+                      object-fit: cover;
+                    }
                   }
                 }
               }
             }
           }
+
+          @media (min-width: tokens.$mq-1200) {
+            flex-flow: row wrap;
+            gap: 2em;
+            margin-left: 4rem;
+          }
         }
       }
 
       [class*='button']:not(.articleLink) {
-        margin-left: clamp(2rem, 5vw, 4rem);
+        position: absolute;
+        bottom: 0;
+
+        @media (min-width: tokens.$mq-1200) {
+          margin-left: clamp(2rem, 5vw, 4rem);
+          position: relative;
+          bottom: initial;
+        }
       }
 
       .articleLink {

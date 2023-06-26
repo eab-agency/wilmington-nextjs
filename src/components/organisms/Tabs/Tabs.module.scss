@@ -7,6 +7,14 @@
     display: flex;
     justify-content: center;
 
+    @media (max-width: tokens.$mq-700) {
+      padding-left: 4em;
+      padding-right: 1em;
+      padding-bottom: 1.5em;
+      overflow-x: auto;
+      border-right: 2px solid tokens.$c-gray-300;
+    }
+
     li {
       display: flex;
       align-items: center;

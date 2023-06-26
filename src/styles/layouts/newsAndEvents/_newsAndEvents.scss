@@ -1,6 +1,8 @@
 @use 'tokens';
 @use 'utilities/mixins';
 
+// News and Events Landing Page
+
 .news-and-events {
   @include mixins.sectionPadding(block);
 

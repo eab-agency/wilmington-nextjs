@@ -4,10 +4,21 @@
 }
 
 .footerMenu {
+  padding: 0;
   list-style: none;
+  columns: 2;
 
-  @media (min-width: tokens.$mq-800) {
-    columns: 2;
+  @media (max-width: tokens.$mq-800) {
+    columns: initial;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1em;
+    position: relative;
+
+    li {
+      margin: 0;
+      width: calc(50% - 1em);
+    }
   }
 
   li {
