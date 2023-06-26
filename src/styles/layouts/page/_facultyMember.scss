@@ -1,0 +1,13 @@
+@use 'tokens';
+
+.facultyContent {
+  width: 100%;
+  max-width: tokens.$mq-800;
+
+  .facultyData {
+  }
+
+  .facultyDescription {
+    margin-block: 2rem;
+  }
+}
