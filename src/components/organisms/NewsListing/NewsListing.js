@@ -39,7 +39,9 @@ function NewsListing({ listing_title, posts, showImage, listing_display }) {
         <div className="sectionTag">News</div>
         <h2 id="jump-news-listing">{listing_title}</h2>
       </div>
-      <div className="newsContainer">
+      <div
+        className={`newsContainer ${listing_display == '1' ? 'list' : 'grid'}`}
+      >
         <MultiCarousel
           responsive={responsive}
           showDots={true}
@@ -55,7 +57,11 @@ function NewsListing({ listing_title, posts, showImage, listing_display }) {
             />
           ))}
         </MultiCarousel>
-        <Button className="secondary" url="/news" text="View All News" />
+        <Button
+          className={!isFrontPage && 'secondary'}
+          url="/news"
+          text="View All News"
+        />
       </div>
     </section>
   )
