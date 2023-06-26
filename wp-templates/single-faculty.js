@@ -6,11 +6,12 @@ import Container from '@/components/atoms/Container'
 import Image from '@/components/atoms/Image'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
-import PageHero from '@/components/organisms/PageHero/PageHero'
+import PageHero from '@/components/organisms/PageHero'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
+import { className } from 'classnames/bind'
 import blocks from '../wp-blocks'
 
 /**
@@ -37,6 +38,13 @@ export default function Component(props) {
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
+            <PageHero
+              sourceUrl={featuredImage?.node?.sourceUrl}
+              alt={featuredImage?.node?.altText}
+              imageMeta={featuredImage?.node?.mediaDetails}
+              text={title}
+              pageType="faculty"
+            />
             {featuredImage && (
               <Image
                 id="featured-img"
@@ -47,32 +55,39 @@ export default function Component(props) {
               />
             )}
             <div className="page-content">
-              <div className="sidebar">
-                First: {faculty.first}
-                <br />
-                Last: {faculty.last}
-                <br />
-                Email: {faculty.email}
-                <br />
-                Facebook: {faculty.facebook}
-                <br />
-                Instagram: {faculty.instagram}
-                <br />
-                Linkedin: {faculty.linkedin}
-                <br />
-                Location: {faculty.location}
-                <br />
-                Phone: {faculty.phone}
-                <br />
-                Position: {faculty.position}
-                <br />
-                Tiktok: {faculty.tiktok}
-                <br />
-                Twitter: {faculty.twitter}
-                <br />
-                Youtube: {faculty.youtube}
+              <div className="facultyContent">
+                <section className="div">
+                  {faculty.first ? <div>First: {faculty.first}</div> : null}
+                  {faculty.last ? <div>Last: {faculty.last}</div> : null}
+                  {faculty.email ? <div>Email: {faculty.email}</div> : null}
+                  {faculty.facebook ? (
+                    <div>Facebook: {faculty.facebook}</div>
+                  ) : null}
+                  {faculty.instagram ? (
+                    <div>Instagram: {faculty.instagram}</div>
+                  ) : null}
+                  {faculty.linkedin ? (
+                    <div>Linkedin: {faculty.linkedin}</div>
+                  ) : null}
+                  {faculty.location ? (
+                    <div>Location: {faculty.location}</div>
+                  ) : null}
+                  {faculty.phone ? <div>Phone: {faculty.phone}</div> : null}
+                  {faculty.position ? (
+                    <div>Position: {faculty.position}</div>
+                  ) : null}
+                  {faculty.tiktok ? <div>Tiktok: {faculty.tiktok}</div> : null}
+                  {faculty.twitter ? (
+                    <div>Twitter: {faculty.twitter}</div>
+                  ) : null}
+                  {faculty.youtube ? (
+                    <div>Youtube: {faculty.youtube}</div>
+                  ) : null}
+                </section>
+                <div className="facultyDescription">
+                  <WordPressBlocksViewer blocks={blocks} />
+                </div>
               </div>
-              <WordPressBlocksViewer blocks={blocks} />
             </div>
           </article>
         </Container>

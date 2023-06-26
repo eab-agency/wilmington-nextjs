@@ -30,9 +30,9 @@
       font-size: tokens.$fs-3xs;
       line-height: 1.1;
 
-      &:last-child {
-        margin: 0;
-      }
+      // &:last-child {
+      //   margin: 0;
+      // }
 
       span {
         display: flex;
@@ -133,4 +133,9 @@
     &.tabContent {
     }
   }
+}
+
+.ctaContainer {
+  padding-left: clamp(2rem, 4vw, 4rem);
+  padding-bottom: clamp(2rem, 4vw, 4rem);
 }
