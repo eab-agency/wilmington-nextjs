@@ -55,7 +55,7 @@ function NewsListing({ listing_title, posts, showImage, listing_display }) {
             />
           ))}
         </MultiCarousel>
-        <Button url="/news" text="View All News" />
+        <Button className="secondary" url="/news" text="View All News" />
       </div>
     </section>
   )

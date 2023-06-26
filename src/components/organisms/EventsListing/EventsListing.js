@@ -33,7 +33,7 @@ function EventsListing({ listing_title, posts, showImage, listing_display }) {
           </li>
         ))}
       </ul>
-      <Button url="/events" text="View All Events" />
+      <Button className="secondary" url="/events" text="View All Events" />
     </section>
   )
 }

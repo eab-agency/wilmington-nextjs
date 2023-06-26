@@ -15,4 +15,9 @@ a[class*='secondary'] {
   &::after {
     background: color.adjust(tokens.$c-darkGreen-700, $lightness: -10%);
   }
+
+  &:hover {
+    // background-color: tokens.$c-darkGreen-600;
+    color: tokens.$c-black;
+  }
 }

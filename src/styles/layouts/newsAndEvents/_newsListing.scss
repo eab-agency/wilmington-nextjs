@@ -175,6 +175,8 @@ $colors: tokens.$c-limeGreen-300, tokens.$c-white, tokens.$c-gray-200;
     }
 
     .newsContainer {
+      position: relative;
+
       .newsCarousel {
         padding-bottom: clamp(4rem, 5vw, 6rem);
 
