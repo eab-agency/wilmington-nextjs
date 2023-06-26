@@ -12,7 +12,7 @@ const FooterMenuItem = ({ item }) => {
   return (
     <li ref={ref}>
       <Link
-        href={item.url ?? '#'}
+        href={item.path ?? '#'}
         className={styles.link}
         rel="noopener noreferrer"
       >

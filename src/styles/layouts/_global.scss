@@ -47,3 +47,9 @@ section {
 //     background: tokens.$c-cincinnati-700;
 //   }
 // }
+
+#virtualtour_content {
+  iframe {
+    height: 100%;
+  }
+}

@@ -24,10 +24,20 @@ const TabComponent = ({ tabs }) => {
           const image = tab.image.mediaItem
           return (
             <TabPanel className={styles.tabContent} key={index}>
-              <div
-                className={styles.text}
-                dangerouslySetInnerHTML={{ __html: tab.content }}
-              />
+              <div className={styles.tabMainContent}>
+                <div
+                  className={styles.text}
+                  dangerouslySetInnerHTML={{ __html: tab.content }}
+                />
+                {tab.cta.url && (
+                  <div className={styles.ctaContainer}>
+                    <a className="button" href={tab.cta.url}>
+                      {tab.cta.title}
+                    </a>
+                  </div>
+                )}{' '}
+              </div>
+
               {image && (
                 <Image
                   url={image.mediaItemUrl}
