@@ -36,7 +36,7 @@ export default function Component(props) {
     <>
       <SEO title={siteTitle} description={siteDescription} />
       <Layout className="thelayoutclass">
-        <Container>
+        <Container calssName="single-faculty">
           <article className="inner-wrap">
             <PageHero
               sourceUrl={featuredImage?.node?.sourceUrl}
