@@ -7,11 +7,9 @@ import ProgramTabs, {
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import WordPressProvider from '@/components/common/WordPressProvider'
-import JumpLink from '@/components/molecules/JumpLink'
 import PageHero from '@/components/organisms/PageHero/PageHero'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
-import getJumpLinks from '@/functions/wordpress/blocks/getJumpLinks'
 import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
@@ -53,8 +51,6 @@ export default function SingleProgram(props) {
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings ?? {}
 
-  const jumpLinks = getJumpLinks(blocks)
-
   const programPageState = {
     departments: departments?.nodes,
     studentOrganizations: programOrgRelationship?.programorg
@@ -74,7 +70,6 @@ export default function SingleProgram(props) {
           <Container>
             <article className="innerWrap programContent">
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
-              <JumpLink jumpLinks={jumpLinks} heading={title} />
               <WordPressProvider value={programPageState}>
                 <WordPressBlocksViewer blocks={blocks} />
               </WordPressProvider>
