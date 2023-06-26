@@ -60,11 +60,12 @@ html {
 
 img,
 embed,
-iframe,
+// iframe,
 object,
-audio,
-video {
-  // height: auto;
+audio
+// video
+{
+  height: auto;
   max-width: 100%;
 }
 
