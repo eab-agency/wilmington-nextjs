@@ -9,7 +9,6 @@ const AcfStudentOrgs = () => {
 
   return (
     <div className="organizationsContent">
-      <h2 id="jump-student-organizations">Student Organizations</h2>
       <div className="organizationsList">
         {studentOrganizations &&
           studentOrganizations.map((org, index) => (
