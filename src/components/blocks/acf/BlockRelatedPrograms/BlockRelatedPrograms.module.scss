@@ -25,6 +25,7 @@
         padding-inline: tokens.$p-m;
         display: flex;
         flex-direction: column;
+        max-width: 25rem;
       }
 
       &:hover {
