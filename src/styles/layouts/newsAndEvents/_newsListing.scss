@@ -157,8 +157,14 @@ $colors: tokens.$c-limeGreen-300, tokens.$c-white, tokens.$c-gray-200;
     margin: 0;
 
     .sectionHead {
+      position: relative;
+
       h2 {
-        margin-top: 2em;
+        margin-top: 0.5rem;
+
+        @media (min-width: tokens.$mq-1200) {
+          margin-top: 2em;
+        }
       }
 
       .sectionTag {
@@ -168,7 +174,7 @@ $colors: tokens.$c-limeGreen-300, tokens.$c-white, tokens.$c-gray-200;
 
         @media (min-width: tokens.$mq-1200) {
           position: absolute;
-          top: 13em;
+          top: calc(100% + 1rem);
           left: 0;
         }
       }
