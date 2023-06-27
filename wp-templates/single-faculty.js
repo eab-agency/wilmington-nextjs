@@ -36,29 +36,20 @@ export default function Component(props) {
     <>
       <SEO title={siteTitle} description={siteDescription} />
       <Layout className="thelayoutclass">
-        <Container calssName="single-faculty">
+        <div className="single-faculty">
           <article className="inner-wrap">
-            <PageHero
-              sourceUrl={featuredImage?.node?.sourceUrl}
-              alt={featuredImage?.node?.altText}
-              imageMeta={featuredImage?.node?.mediaDetails}
-              text={title}
-              pageType="faculty"
-            />
             {featuredImage && (
-              <Image
-                id="featured-img"
-                url={featuredImage.node.sourceUrl}
-                alt={featuredImage.node.altText}
-                width="300"
-                height="200"
+              <PageHero
+                sourceUrl={featuredImage?.node?.sourceUrl}
+                alt={featuredImage?.node?.altText}
+                imageMeta={featuredImage?.node?.mediaDetails}
+                text={title}
+                pageType="faculty"
               />
             )}
             <div className="page-content">
               <div className="facultyContent">
-                <section className="div">
-                  {faculty.first ? <div>First: {faculty.first}</div> : null}
-                  {faculty.last ? <div>Last: {faculty.last}</div> : null}
+                <div className="facultyData">
                   {faculty.email ? <div>Email: {faculty.email}</div> : null}
                   {faculty.facebook ? (
                     <div>Facebook: {faculty.facebook}</div>
@@ -83,14 +74,14 @@ export default function Component(props) {
                   {faculty.youtube ? (
                     <div>Youtube: {faculty.youtube}</div>
                   ) : null}
-                </section>
+                </div>
                 <div className="facultyDescription">
                   <WordPressBlocksViewer blocks={blocks} />
                 </div>
               </div>
             </div>
           </article>
-        </Container>
+        </div>
       </Layout>
     </>
   )
