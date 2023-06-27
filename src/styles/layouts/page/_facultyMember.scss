@@ -1,7 +1,26 @@
 @use 'tokens';
 
 .single-faculty {
-  background: red;
+  .page-content {
+    padding: 0;
+  }
+}
+
+.hero-w-image {
+  .page-hero {
+    position: relative;
+    min-height: 50vh;
+    height: clamp(20rem, 40vw, 30em);
+
+    & > figure[class*='image'] {
+      position: relative;
+      width: 100%;
+    }
+  }
+  .page-head {
+    bottom: 4em;
+    padding-block: clamp(0.7rem, 2vw, 1rem);
+  }
 }
 
 .facultyContent {
@@ -9,6 +28,35 @@
   max-width: tokens.$mq-800;
 
   .facultyData {
+    padding: clamp(1rem, 2vw, 2rem);
+    background: tokens.$c-gray-300;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding-left: clamp(2rem, 5vw, 4rem);
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: calc(100% - 2rem);
+      right: 0;
+      width: 30%;
+      border-top-right-radius: 1rem;
+      border-bottom: 4em solid tokens.$c-gray-300;
+      border-left: 2em solid transparent;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      width: clamp(1em, 2vw, 2em);
+      height: 100%;
+      background: #66a409;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 
   .facultyDescription {
