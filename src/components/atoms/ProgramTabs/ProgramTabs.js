@@ -1,18 +1,43 @@
 'use client'
 import { gql } from '@apollo/client'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-const ProgramTabs = ({ childPages, uri }) => {
+const childPageSampleData = [
+  {
+    title: 'Concentrations',
+    uri: '/programs/agriculture/concentrations/'
+  },
+  {
+    title: 'Admissions',
+    uri: '/programs/agriculture/admissions/'
+  }
+]
+
+const parentPageSampleData = {
+  id: '1234',
+  slug: 'agriculture',
+  uri: '/programs/agriculture/',
+  title: 'Agriculture',
+  node: {
+    children: {
+      nodes: childPageSampleData
+    }
+  }
+}
+
+const ProgramTabs = ({ childPages, uri, parent }) => {
+  const router = useRouter()
+
   const [currentPath, setCurrentPath] = useState('')
 
   useEffect(() => {
-    const pageUri = window.location.pathname
-    const newPath = pageUri.endsWith('/')
-      ? pageUri
-      : `${window.location.pathname}/`
+    const newPath = router.asPath.endsWith('/')
+      ? router.asPath
+      : `${router.asPath}/`
     setCurrentPath(newPath)
-  }, [])
+  }, [router.asPath])
 
   const handleLinkClick = (childPageUri) => {
     setCurrentPath(childPageUri)
@@ -22,38 +47,42 @@ const ProgramTabs = ({ childPages, uri }) => {
     setCurrentPath(uri)
   }
 
+  const nodes = parent?.node?.children?.nodes ?? childPages?.nodes
+
   return (
     <ul className="childrenNav">
-      <li className={currentPath === uri ? 'active' : undefined}>
-        <Link href={uri} onClick={handleOverviewClick}>
+      <li
+        className={
+          currentPath === parent?.node?.uri || (!parent && currentPath === uri)
+            ? 'active'
+            : undefined
+        }
+      >
+        <Link href={parent?.node?.uri ?? uri} onClick={handleOverviewClick}>
           Overview
         </Link>
       </li>
-      {childPages &&
-        childPages.nodes.map((childPage) => {
-          return (
-            <li
-              key={childPage.title}
-              className={currentPath === childPage.uri ? 'active' : undefined}
+      {nodes &&
+        nodes.map((childPage) => (
+          <li
+            key={childPage.uri}
+            className={currentPath === childPage.uri ? 'active' : undefined}
+          >
+            <Link
+              href={childPage.uri}
+              onClick={() => handleLinkClick(childPage.uri)}
             >
-              <Link
-                href={childPage.uri}
-                onClick={() => handleLinkClick(childPage.uri)}
-              >
-                {childPage?.title}
-              </Link>
-            </li>
-          )
-        })}
+              {childPage?.title}
+            </Link>
+          </li>
+        ))}
     </ul>
   )
 }
 
 export default ProgramTabs
 
-export const ProgramTabsFragment = gql`
-  fragment ProgramTabsFragment on Program {
-    uri
+const CHILDFRAGMENT = `
     children {
       nodes {
         uri
@@ -65,5 +94,23 @@ export const ProgramTabsFragment = gql`
         }
       }
     }
+`
+
+export const ProgramTabsFragment = gql`
+  fragment ProgramTabsFragment on Program {
+    uri
+    parent {
+      node {
+        uri
+        slug
+        ... on Program {
+          id
+          title
+          uri
+             ${CHILDFRAGMENT}
+        }
+      }
+    }
+    ${CHILDFRAGMENT}
   }
 `
