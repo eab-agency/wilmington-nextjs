@@ -243,6 +243,10 @@ input[type='checkbox'] {
   }
 }
 
+form {
+  @include mixins.sectionPadding;
+}
+
 // Mautic Form
 
 .mauticform {
