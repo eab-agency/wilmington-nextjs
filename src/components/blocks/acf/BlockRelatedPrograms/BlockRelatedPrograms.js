@@ -37,7 +37,7 @@ export default function BlockRelatedPrograms({ departments }) {
   return (
     <section className={styles.relatedPrograms}>
       <div className={styles.programsContainer}>
-        <h2>Related Programs</h2>
+        <h2 id="jump-related-programs">Related Programs</h2>
         <MultiCarousel
           responsive={responsive}
           infinite
