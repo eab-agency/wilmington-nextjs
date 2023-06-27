@@ -187,6 +187,7 @@ $colors: tokens.$c-limeGreen-300, tokens.$c-white, tokens.$c-gray-200;
         padding-bottom: clamp(4rem, 5vw, 6rem);
 
         @media (min-width: tokens.$mq-1200) {
+          padding-bottom: 0;
           margin-bottom: 3rem;
         }
 
@@ -201,6 +202,7 @@ $colors: tokens.$c-limeGreen-300, tokens.$c-white, tokens.$c-gray-200;
 
                 h3 {
                   font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-s);
+                  color: tokens.$c-darkGreen-800;
                 }
               }
 
