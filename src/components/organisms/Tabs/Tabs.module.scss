@@ -7,9 +7,8 @@
     display: flex;
     justify-content: center;
 
-    @media (max-width: tokens.$mq-700) {
-      padding-left: 4em;
-      padding-right: 1em;
+    @media (max-width: tokens.$mq-900) {
+      justify-content: flex-start;
       padding-bottom: 1.5em;
       overflow-x: auto;
       border-right: 2px solid tokens.$c-gray-300;
@@ -29,6 +28,7 @@
       position: relative;
       font-size: tokens.$fs-3xs;
       line-height: 1.1;
+      flex-shrink: 0;
 
       // &:last-child {
       //   margin: 0;
@@ -122,15 +122,53 @@
     .text {
       position: relative;
       padding: clamp(2rem, 4vw, 4rem);
+    }
 
-      @media (min-width: tokens.$mq-800) {
-        &::before {
-          @include tokens.decoPlusSignCut;
+    &.tabContent {
+      figure {
+        position: relative;
+
+        @media (min-width: tokens.$mq-800) {
+          &::before {
+            @include tokens.decoPlusSignCut;
+            left: 0;
+            right: initial;
+            transform: translate(-44%, 5%);
+          }
+        }
+      }
+    }
+  }
+
+  .tabContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: tokens.$mq-1000) {
+      flex-direction: row;
+      align-items: normal;
+
+      figure {
+        flex: 1 0 50%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       }
     }
 
-    &.tabContent {
+    .tabMainContent {
+      order: 1;
+      width: 100%;
+      max-width: 20em;
+
+      @media (min-width: tokens.$mq-1000) {
+        order: 0;
+        max-width: 100%;
+      }
     }
   }
 }
