@@ -29,25 +29,6 @@ section {
   @include mixins.center();
 }
 
-// Note: AO - Confirm if cincinnati theme is still needed
-// a[href*="cincinnati"] {
-//   background: tokens.$c-cincinnati-600 !important;
-//   border-color: tokens.$c-cincinnati-700;
-
-//   i {
-//     background: tokens.$c-cincinnati-700;
-//   }
-
-//   &::after {
-//     background-color: tokens.$c-cincinnati-700;
-//   }
-
-//   &:hover,
-//   &:focus {
-//     background: tokens.$c-cincinnati-700;
-//   }
-// }
-
 #virtualtour_content {
   iframe {
     height: 100%;

@@ -2,8 +2,11 @@
 import NewsPost from '@/components/archive/NewsPost'
 import Button from '@/components/atoms/Buttons/Button'
 import Heading from '@/components/atoms/Heading'
+import useIsFrontPage from '@/functions/useIsFrontPage'
 
 function EventsListing({ listing_title, posts, showImage, listing_display }) {
+  const isFrontPage = useIsFrontPage()
+
   if (posts === null || Object.keys(posts).length === 0) {
     return null
   }
@@ -33,7 +36,11 @@ function EventsListing({ listing_title, posts, showImage, listing_display }) {
           </li>
         ))}
       </ul>
-      <Button className="secondary" url="/events" text="View All Events" />
+      <Button
+        className={!isFrontPage && 'secondary'}
+        url="/events"
+        text="View All Events"
+      />
     </section>
   )
 }

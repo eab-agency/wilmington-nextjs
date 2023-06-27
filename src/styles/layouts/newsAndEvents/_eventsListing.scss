@@ -63,6 +63,10 @@
           padding-block: tokens.$p-l;
           padding-inline: tokens.$p-l;
           width: 100%;
+
+          h3 {
+            color: tokens.$c-white;
+          }
         }
 
         &::after {
