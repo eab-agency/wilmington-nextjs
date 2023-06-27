@@ -24,8 +24,6 @@ export default function NavIcon(item) {
       ) : lowerCaseItemIcon.includes('give') ? (
         <MdCardGiftcard />
       ) : lowerCaseItemIcon.includes('athletics') ? (
-        <BiUserCircle />
-      ) : lowerCaseItemIcon.includes('portal') ? (
         <svg
           width="10"
           height="16"
@@ -42,6 +40,8 @@ export default function NavIcon(item) {
             fill="#6D6F64"
           />
         </svg>
+      ) : lowerCaseItemIcon.includes('portal') ? (
+        <BiUserCircle />
       ) : (
         <MdStarRate />
       )}

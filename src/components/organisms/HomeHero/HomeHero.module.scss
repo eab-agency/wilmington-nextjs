@@ -35,6 +35,10 @@
   @media (min-width: tokens.$mq-1400) {
     flex-direction: row;
   }
+
+  h1 {
+    color: tokens.$c-darkGreen-800;
+  }
 }
 
 .heroImage {
