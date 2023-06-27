@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'tokens';
 @use 'utilities/mixins';
 
@@ -101,17 +102,26 @@
   .eventsSection {
     .sectionHead {
       position: relative;
-      padding-block: 2em;
 
       .sectionTag {
         @include mixins.sectionTag();
         color: tokens.$c-gray-700;
-        transform: rotate(-90deg);
+        transform: rotate(0);
+        top: -1em;
+        writing-mode: initial;
       }
     }
   }
 
+  .eventsList {
+    padding: 0;
+  }
+
   a[class*='Button_'] {
     width: fit-content;
+
+    &.articleLink {
+      color: color.adjust(tokens.$c-teal-500, $lightness: -20%);
+    }
   }
 }

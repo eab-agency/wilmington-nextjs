@@ -36,61 +36,78 @@ export default function Component(props) {
     <>
       <SEO title={siteTitle} description={siteDescription} />
       <Layout className="thelayoutclass">
-        <Container calssName="single-faculty">
+        <div className="single-faculty">
           <article className="inner-wrap">
-            <PageHero
-              sourceUrl={featuredImage?.node?.sourceUrl}
-              alt={featuredImage?.node?.altText}
-              imageMeta={featuredImage?.node?.mediaDetails}
-              text={title}
-              pageType="faculty"
-            />
             {featuredImage && (
-              <Image
-                id="featured-img"
-                url={featuredImage.node.sourceUrl}
-                alt={featuredImage.node.altText}
-                width="300"
-                height="200"
+              <PageHero
+                sourceUrl={featuredImage?.node?.sourceUrl}
+                alt={featuredImage?.node?.altText}
+                imageMeta={featuredImage?.node?.mediaDetails}
+                text={title}
+                pageType="faculty"
               />
             )}
             <div className="page-content">
               <div className="facultyContent">
-                <section className="div">
-                  {faculty.first ? <div>First: {faculty.first}</div> : null}
-                  {faculty.last ? <div>Last: {faculty.last}</div> : null}
-                  {faculty.email ? <div>Email: {faculty.email}</div> : null}
-                  {faculty.facebook ? (
-                    <div>Facebook: {faculty.facebook}</div>
-                  ) : null}
-                  {faculty.instagram ? (
-                    <div>Instagram: {faculty.instagram}</div>
-                  ) : null}
-                  {faculty.linkedin ? (
-                    <div>Linkedin: {faculty.linkedin}</div>
+                <div className="facultyData">
+                  {faculty.email ? (
+                    <div className="facultyDataLine email">
+                      Email: {faculty.email}
+                    </div>
                   ) : null}
                   {faculty.location ? (
-                    <div>Location: {faculty.location}</div>
+                    <div className="facultyDataLine location">
+                      Location: {faculty.location}
+                    </div>
                   ) : null}
-                  {faculty.phone ? <div>Phone: {faculty.phone}</div> : null}
+                  {faculty.phone ? (
+                    <div className="facultyDataLine phone">
+                      Phone: {faculty.phone}
+                    </div>
+                  ) : null}
                   {faculty.position ? (
-                    <div>Position: {faculty.position}</div>
+                    <div className="facultyDataLine position">
+                      Position: {faculty.position}
+                    </div>
                   ) : null}
-                  {faculty.tiktok ? <div>Tiktok: {faculty.tiktok}</div> : null}
+                  {faculty.facebook ? (
+                    <div className="facultyDataLine facebook">
+                      Facebook: {faculty.facebook}
+                    </div>
+                  ) : null}
+                  {faculty.instagram ? (
+                    <div className="facultyDataLine instagram">
+                      Instagram: {faculty.instagram}
+                    </div>
+                  ) : null}
+                  {faculty.linkedin ? (
+                    <div className="facultyDataLine linkedin">
+                      Linkedin: {faculty.linkedin}
+                    </div>
+                  ) : null}
+                  {faculty.tiktok ? (
+                    <div className="facultyDataLine tiktok">
+                      Tiktok: {faculty.tiktok}
+                    </div>
+                  ) : null}
                   {faculty.twitter ? (
-                    <div>Twitter: {faculty.twitter}</div>
+                    <div className="facultyDataLine twitter">
+                      Twitter: {faculty.twitter}
+                    </div>
                   ) : null}
                   {faculty.youtube ? (
-                    <div>Youtube: {faculty.youtube}</div>
+                    <div className="facultyDataLine youtube">
+                      Youtube: {faculty.youtube}
+                    </div>
                   ) : null}
-                </section>
+                </div>
                 <div className="facultyDescription">
                   <WordPressBlocksViewer blocks={blocks} />
                 </div>
               </div>
             </div>
           </article>
-        </Container>
+        </div>
       </Layout>
     </>
   )
