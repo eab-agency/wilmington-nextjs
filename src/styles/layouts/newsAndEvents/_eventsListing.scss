@@ -90,6 +90,10 @@
         }
       }
     }
+
+    a[class*='Button_'] {
+      width: fit-content;
+    }
   }
 }
 
@@ -105,5 +109,9 @@
         transform: rotate(-90deg);
       }
     }
+  }
+
+  a[class*='Button_'] {
+    width: fit-content;
   }
 }
