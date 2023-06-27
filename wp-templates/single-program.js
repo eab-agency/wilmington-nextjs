@@ -41,6 +41,7 @@ export default function SingleProgram(props) {
     featuredImage,
     seo,
     children: childPages,
+    parent,
     uri,
     departments,
     programOrgRelationship
@@ -66,7 +67,7 @@ export default function SingleProgram(props) {
             imageMeta={featuredImage?.node?.mediaDetails}
             text={title}
           />{' '}
-          <ProgramTabs childPages={childPages} uri={uri} />
+          <ProgramTabs childPages={childPages} uri={uri} parent={parent} />
           <Container>
             <article className="innerWrap programContent">
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
