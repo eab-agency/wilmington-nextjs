@@ -50,29 +50,55 @@ export default function Component(props) {
             <div className="page-content">
               <div className="facultyContent">
                 <div className="facultyData">
-                  {faculty.email ? <div>Email: {faculty.email}</div> : null}
-                  {faculty.facebook ? (
-                    <div>Facebook: {faculty.facebook}</div>
-                  ) : null}
-                  {faculty.instagram ? (
-                    <div>Instagram: {faculty.instagram}</div>
-                  ) : null}
-                  {faculty.linkedin ? (
-                    <div>Linkedin: {faculty.linkedin}</div>
+                  {faculty.email ? (
+                    <div className="facultyDataLine email">
+                      Email: {faculty.email}
+                    </div>
                   ) : null}
                   {faculty.location ? (
-                    <div>Location: {faculty.location}</div>
+                    <div className="facultyDataLine location">
+                      Location: {faculty.location}
+                    </div>
                   ) : null}
-                  {faculty.phone ? <div>Phone: {faculty.phone}</div> : null}
+                  {faculty.phone ? (
+                    <div className="facultyDataLine phone">
+                      Phone: {faculty.phone}
+                    </div>
+                  ) : null}
                   {faculty.position ? (
-                    <div>Position: {faculty.position}</div>
+                    <div className="facultyDataLine position">
+                      Position: {faculty.position}
+                    </div>
                   ) : null}
-                  {faculty.tiktok ? <div>Tiktok: {faculty.tiktok}</div> : null}
+                  {faculty.facebook ? (
+                    <div className="facultyDataLine facebook">
+                      Facebook: {faculty.facebook}
+                    </div>
+                  ) : null}
+                  {faculty.instagram ? (
+                    <div className="facultyDataLine instagram">
+                      Instagram: {faculty.instagram}
+                    </div>
+                  ) : null}
+                  {faculty.linkedin ? (
+                    <div className="facultyDataLine linkedin">
+                      Linkedin: {faculty.linkedin}
+                    </div>
+                  ) : null}
+                  {faculty.tiktok ? (
+                    <div className="facultyDataLine tiktok">
+                      Tiktok: {faculty.tiktok}
+                    </div>
+                  ) : null}
                   {faculty.twitter ? (
-                    <div>Twitter: {faculty.twitter}</div>
+                    <div className="facultyDataLine twitter">
+                      Twitter: {faculty.twitter}
+                    </div>
                   ) : null}
                   {faculty.youtube ? (
-                    <div>Youtube: {faculty.youtube}</div>
+                    <div className="facultyDataLine youtube">
+                      Youtube: {faculty.youtube}
+                    </div>
                   ) : null}
                 </div>
                 <div className="facultyDescription">
