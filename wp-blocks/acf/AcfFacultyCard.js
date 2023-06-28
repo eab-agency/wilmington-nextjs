@@ -75,6 +75,7 @@ const FACULTY_QUERY = gql`
     facultyMember(where: { in: $ids }) {
       nodes {
         id
+        uri
         ...FeaturedImageFragment
         facultyFields {
           faculty {
