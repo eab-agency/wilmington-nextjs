@@ -24,7 +24,7 @@ export default function DirectoryDropDown({ programDepartments }) {
   return (
     <select onChange={handleDropdownChange} defaultValue={'DEFAULT'}>
       <option value="DEFAULT" disabled>
-        Chose a department
+        Choose an area of study
       </option>
       {alphaPrograms.map((department) => (
         <option key={department.uri} value={department.uri}>
