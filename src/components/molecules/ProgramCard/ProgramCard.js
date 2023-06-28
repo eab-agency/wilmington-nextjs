@@ -11,7 +11,8 @@ const ProgramCard = ({ title, excerpt, link, image }) => {
           <Image
             url={image.sourceUrl}
             alt={image.altText}
-            imageMeta={{ mediaDetails: image.mediaDetails }}
+            width={253}
+            height={287}
             className={styles.image}
           />
         )}

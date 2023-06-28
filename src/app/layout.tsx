@@ -6,7 +6,7 @@ import Header from '@/components/organisms/Header'
 import getMenuByLocation from '@/functions/wordpress/menus/getMenuByLocation'
 import React from 'react'
 
-import { cantarell, robotoSlab } from './fonts'
+import { cantarell, museo, robotoSlab } from './fonts'
 
 import '@/styles/styles.scss'
 
@@ -34,7 +34,7 @@ export default async function RootLayout({
       </head>
       <body>
         <div
-          className={`${cantarell.variable} ${robotoSlab.variable} pageContainer`}
+          className={`${cantarell.variable} ${robotoSlab.variable} ${museo.variable} pageContainer`}
         >
           <Header menu={utilityNavMenuItems} />
           <div className={`${styles.mainContainer} std-page`}>

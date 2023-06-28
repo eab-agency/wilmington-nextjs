@@ -30,9 +30,6 @@ export default function AcfHomeHero(props) {
     variables: { id: hero_image }
   })
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error.message}</p>
-
   const count = hero_primary_ctas
 
   const hero_ctas_array = []

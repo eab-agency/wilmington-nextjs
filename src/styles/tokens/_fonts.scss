@@ -7,30 +7,30 @@
 // @import url("https://fontfamily.example.com");
 
 //* Fonts
-@font-face {
-  font-family: 'icomoon';
-  src: url('../../assets/icomoon.woff');
-}
+// @font-face {
+//   font-family: 'icomoon';
+//   src: url('../../assets/icomoon.woff');
+// }
 
-@font-face {
-  font-family: 'Museo';
-  src: url('../../assets/Museo500-Regular.woff') format('woff'),
-    url('../../assets/Museo500-Regular.woff2') format('woff2');
-  font-weight: normal;
-}
+// @font-face {
+//   font-family: 'Museo';
+//   src: url('../../assets/Museo500-Regular.woff') format('woff'),
+//     url('../../assets/Museo500-Regular.woff2') format('woff2');
+//   font-weight: normal;
+// }
 
-@font-face {
-  font-family: 'Museo';
-  src: url('../../assets/Museo700-Regular.woff') format('woff'),
-    url('../../assets/Museo700-Regular.woff2') format('woff2');
-  font-weight: bold;
-}
+// @font-face {
+//   font-family: 'Museo';
+//   src: url('../../assets/Museo700-Regular.woff') format('woff'),
+//     url('../../assets/Museo700-Regular.woff2') format('woff2');
+//   font-weight: bold;
+// }
 
 //* Font Stacks
 // $f-headlineFont: var(--font-roboto-slab);
-$f-headlineFont: 'Museo', var(--font-roboto-slab);
+$f-headlineFont: var(--font-museo), var(--font-roboto-slab);
 $f-bodyFont: var(--font-cantarell);
-$f-icons: 'icomoon';
+$f-icons: var(--font-icomoon);
 
 //* Font Sizes = If you're using a base unit, you can use the calc() function to calculate the font size. Otherwise, you can just use the font size you want. If $baseUnit is 16px, then $fontSize-xxxl is 72px
 

@@ -8,7 +8,7 @@ import { gql, useQuery } from '@apollo/client'
 import * as MENUS from '../../constants/menus'
 import styles from './Layout.module.scss'
 
-import { cantarell, robotoSlab } from '@/app/fonts'
+import { cantarell, icomoon, museo, robotoSlab } from '@/app/fonts'
 
 /**
  * Render the Layout component.
@@ -31,8 +31,13 @@ export default function Layout({ children }) {
 
   return (
     <div
-      className={`${cantarell.variable} ${robotoSlab.variable} pageContainer`}
+      className={`${cantarell.variable} ${robotoSlab.variable} ${museo.variable} ${icomoon.variable} pageContainer`}
     >
+      <style jsx global>{`
+        :root {
+          --font-museo: ${museo.style.fontFamily};
+        }
+      `}</style>
       <Header menu={utilityMenu} />
       <div
         className={`${styles.mainContainer} ${
