@@ -20,11 +20,7 @@ function Testimonial({ post, viewAllLink, imageOnly, featuredTestimonial }) {
     return null
   }
   // destructure first, last, desc from post.testimonialFields.testimonial, set default values
-  const {
-    altText = '',
-    mediaDetails,
-    sourceUrl
-  } = post?.featuredImage?.node || {}
+  const mediaDetails = post?.featuredImage?.node || {}
   const { first, last, desc } = post?.testimonialFields?.testimonial ?? {}
   const fullName = `${first} ${last}`
 
@@ -36,7 +32,12 @@ function Testimonial({ post, viewAllLink, imageOnly, featuredTestimonial }) {
       )}
     >
       <div className={styles.blockQuote}>
-        <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
+        <Image
+          url={mediaDetails?.sourceUrl}
+          alt={mediaDetails?.altText}
+          width={320}
+          height={320}
+        />
       </div>
       {!imageOnly && (
         <>
