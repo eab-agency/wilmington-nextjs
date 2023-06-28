@@ -23,7 +23,7 @@ const DepartmentSingle = ({ department }) => {
           imageMeta={{ mediaDetails: deptImage.mediaDetails }}
         />
       )}
-      <div className="departmentCardContent">
+      <div className="departmentInfo">
         <h2>
           <Link href={uri}>{name}</Link>
         </h2>
