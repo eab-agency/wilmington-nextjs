@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { SEO } from '@/components'
 import Container from '@/components/atoms/Container'
-import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
@@ -67,7 +66,7 @@ Component.query = gql`
           id: clientId
           parentId: parentClientId
 
-          renderedHtml
+          # renderedHtml
           # Get all block fragment keys and call them in the query
           ${getFragmentDataFromBlocks(blocks).keys}
       }

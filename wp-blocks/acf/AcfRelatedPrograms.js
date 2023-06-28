@@ -12,8 +12,14 @@ import { gql } from '@apollo/client'
  */
 
 export default function AcfRelatedPrograms() {
+  const wordpressContext = useWordPressContext()
+
+  if (!wordpressContext || !wordpressContext.departments) {
+    return null
+  }
+
   // flatten all the programs in the needToFlatten array
-  const { departments } = useWordPressContext()
+  const { departments } = wordpressContext
 
   if (!departments) {
     return null
