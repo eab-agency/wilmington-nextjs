@@ -26,9 +26,10 @@ import styles from './Image.module.css'
 export default function DisplayImage(props) {
   // Set the image size.
   const imageSize = {
-    height: props?.imageMeta?.mediaDetails?.height ?? props?.height,
-    width: props?.imageMeta?.mediaDetails?.width ?? props?.width
+    height: props?.height ?? props?.imageMeta?.mediaDetails?.height,
+    width: props?.width ?? props?.imageMeta?.mediaDetails?.width
   }
+  console.log('🚀 ~ file: Image.js:32 ~ DisplayImage ~ imageSize:', imageSize)
 
   // Set the image src.
   const source = props?.imageMeta?.mediaItemUrl ?? props?.url ?? props?.src
