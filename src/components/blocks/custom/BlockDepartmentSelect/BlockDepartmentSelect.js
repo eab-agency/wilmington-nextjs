@@ -2,6 +2,7 @@
 
 import Image from '@/components/atoms/Image'
 import Link from '@/components/common/Link'
+import { className } from 'classnames/bind'
 import React, { useEffect, useState } from 'react'
 
 const DepartmentSingle = ({ department }) => {
@@ -22,10 +23,12 @@ const DepartmentSingle = ({ department }) => {
           imageMeta={{ mediaDetails: deptImage.mediaDetails }}
         />
       )}
-      <h2>
-        <Link href={uri}>{name}</Link>
-      </h2>
-      <p>{description}</p>
+      <div className="departmentCardContent">
+        <h2>
+          <Link href={uri}>{name}</Link>
+        </h2>
+        <p>{description}</p>
+      </div>
       {programs.length > 0 && (
         <>
           <h3>Programs</h3>
@@ -73,7 +76,7 @@ const DepartmentSelector = ({
       defaultValue={'DEFAULT'}
       value={selectedDepartment}
     >
-      <option value="DEFAULT">Chose a department</option>
+      <option value="DEFAULT">Choose an area of study</option>
       <option value="ALL">Show All</option>
       {programDepartments.map((department) => (
         <option key={department.uri} value={department.name}>
