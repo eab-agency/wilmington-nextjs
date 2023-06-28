@@ -95,7 +95,7 @@ AcfTestimonialBlock.fragments = {
 // get the first 30 testimonials for the random selection
 const QUERY_TESTIMONIALS = gql`
   ${FeaturedImage.fragments.entry}
-  query getTestimonials($imageSize: MediaItemSizeEnum = LARGE) {
+  query getTestimonials($imageSize: MediaItemSizeEnum = MEDIUM) {
     testimonials(first: 30) {
       nodes {
         ...FeaturedImageFragment
@@ -119,7 +119,7 @@ const QUERY_TESTIMONIALS = gql`
 // get the featured testimonial
 const GET_TESTIMONIAL = gql`
   ${FeaturedImage.fragments.entry}
-  query getTestimonial($id: ID!, $imageSize: MediaItemSizeEnum = LARGE) {
+  query getTestimonial($id: ID!, $imageSize: MediaItemSizeEnum = MEDIUM) {
     testimonial(id: $id, idType: DATABASE_ID) {
       ...FeaturedImageFragment
       id
