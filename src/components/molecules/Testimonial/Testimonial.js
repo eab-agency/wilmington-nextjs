@@ -35,7 +35,8 @@ function Testimonial({ post, viewAllLink, imageOnly, featuredTestimonial }) {
         <Image
           url={mediaDetails?.sourceUrl}
           alt={mediaDetails?.altText}
-          imageMeta={mediaDetails}
+          width={320}
+          height={320}
         />
       </div>
       {!imageOnly && (
