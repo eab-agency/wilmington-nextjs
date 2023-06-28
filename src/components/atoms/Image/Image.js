@@ -32,6 +32,8 @@ export default function DisplayImage(props) {
 
   // Set the image src.
   const source = props?.imageMeta?.mediaItemUrl ?? props?.url ?? props?.src
+  const blurUrl =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkiHCvBwACHwEgR4z1GgAAAABJRU5ErkJggg=='
 
   // No image src? Bail.
   if (!source) {
@@ -58,7 +60,9 @@ export default function DisplayImage(props) {
       alt: props?.alt ?? 'No alt text provided.',
       id: props?.anchor,
       src: source,
-      priority: props?.priority
+      priority: props?.priority,
+      placeholder: blurUrl ? 'blur' : 'empty',
+      blurDataURL: blurUrl
     }
 
     // Add extra props depending on whether image needs to be set to "fill".
