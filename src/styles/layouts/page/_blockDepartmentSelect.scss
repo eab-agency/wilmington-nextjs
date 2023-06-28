@@ -52,11 +52,11 @@
       flex: 1 0 20rem;
       max-width: 25rem;
       background: color.adjust(tokens.$c-gray-200, $lightness: 3%);
+      border-left: 1px solid tokens.$c-gray-400;
 
       .departmentInfo {
         padding: clamp(1rem, 2vw, 2rem);
         // padding-right: 0;
-        border-left: 1px solid tokens.$c-gray-400;
       }
     }
   }
