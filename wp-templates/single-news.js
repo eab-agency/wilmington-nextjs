@@ -118,7 +118,7 @@ SingleNews.query = gql`
           name
           id: clientId
           parentId: parentClientId
-          # renderedHtml
+          renderedHtml
 
           # Get all block fragment keys and call them in the query
           ${getFragmentDataFromBlocks(blocks).keys}
