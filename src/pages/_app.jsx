@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import '@/styles/styles.scss'
 import { WordPressBlocksProvider } from '@faustwp/blocks'
 import { FaustProvider } from '@faustwp/core'
