@@ -16,19 +16,7 @@ import { flatListToHierarchical } from '@faustwp/core'
 import blocks from '../wp-blocks'
 import { RelatedProgramsFragment } from '../wp-blocks/acf/AcfRelatedPrograms'
 import { StudentOrgFragment } from '../wp-blocks/acf/AcfStudentOrgs'
-
-const SEO_QUERY = gql`
-  fragment SeoFragment on PostTypeSEO {
-    breadcrumbs {
-      text
-      url
-    }
-    fullHead
-    metaRobotsNofollow
-    metaRobotsNoindex
-    title
-  }
-`
+import { seoPostFields } from '@/fragments'
 
 export default function SingleProgram(props) {
   // Loading state for previews
@@ -50,9 +38,6 @@ export default function SingleProgram(props) {
 
   const blocks = flatListToHierarchical(editorBlocks)
 
-  const { title: siteTitle, description: siteDescription } =
-    props?.data?.generalSettings ?? {}
-
   const programPageState = {
     departments: departments?.nodes,
     currentProgramId,
@@ -60,7 +45,7 @@ export default function SingleProgram(props) {
   }
   return (
     <>
-      <SEO title={siteTitle} description={siteDescription} />
+      <SEO seo={seo} />
       <Layout className="thelayoutclass">
         <article className="inner-wrap">
           <PageHero
@@ -92,10 +77,8 @@ SingleProgram.variables = ({ uri }, ctx) => {
 }
 
 SingleProgram.query = gql`
-  ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
-  ${SEO_QUERY}
   ${RelatedProgramsFragment}
   ${StudentOrgFragment}
   ${ProgramTabsFragment}
@@ -108,9 +91,8 @@ SingleProgram.query = gql`
       ...StudentOrgFragment
       ...ProgramTabsFragment
        ... on Program {
-         seo {
-    ...SeoFragment
-  }
+                 ${seoPostFields}
+
   }
    ...FeaturedImageFragment
         ... on NodeWithEditorBlocks {
@@ -127,9 +109,6 @@ SingleProgram.query = gql`
           ${getFragmentDataFromBlocks(blocks).keys}
         }
       }
-    }
-     generalSettings {
-      ...BlogInfoFragment
     }
   }
 

@@ -17,7 +17,7 @@ function ProgramList({ programs }) {
         <>
           <h4>{title}</h4>
           {programs[programType].map((program, index) => (
-            <>
+            <div key={index}>
               {/* TODO: Andrei, there were two different types of program cards. so i hooked both of them up */}
               {/* <RelatedProgramCard
                 key={index}
@@ -26,13 +26,12 @@ function ProgramList({ programs }) {
                 excerpt={program.excerpt}
               /> */}
               <ProgramCard
-                key={index}
                 title={program.title}
                 excerpt={program.excerpt}
                 link={program.link}
                 image={program.featuredImage?.node}
               />
-            </>
+            </div>
           ))}
         </>
       )
@@ -96,11 +95,7 @@ export default function TaxonomyDepartment(props) {
 
   return (
     <>
-      <SEO
-        title={seo.title}
-        description={seo.metaDesc}
-        fullHead={seo.fullHead}
-      />
+      <SEO seo={seo} />
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
