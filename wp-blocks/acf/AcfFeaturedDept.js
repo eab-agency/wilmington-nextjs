@@ -20,7 +20,13 @@ export default function AcfFeaturedDept(props) {
   const featuredPrograms = data.departments.nodes.flatMap(
     (department) => department.programs.nodes
   )
-  return <BlockFeaturedPrograms featuredPrograms={featuredPrograms} />
+
+  // don't show programs that are a child program page
+  const filteredPrograms = featuredPrograms.filter(
+    (program) => program.ancestors === null
+  )
+
+  return <BlockFeaturedPrograms featuredPrograms={filteredPrograms} />
 }
 
 // fragment to get the data from the block
@@ -52,6 +58,11 @@ AcfFeaturedDept.query = gql`
             title
             uri
             id
+            ancestors {
+              nodes {
+                id
+              }
+            }
             ...FeaturedImageFragment
           }
         }
