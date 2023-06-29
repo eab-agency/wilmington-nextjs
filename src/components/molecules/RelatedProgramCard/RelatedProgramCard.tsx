@@ -1,23 +1,27 @@
+import QuickFact from '@/components/atoms/QuickFact'
 import Link from '@/components/common/Link'
 import ParsedContent from '@/functions/parsedContent'
 import styles from './RelatedProgramCard.module.scss'
 
-interface RelatedProgramCardProps {
+type RelatedProgramCardProps = {
   title: string
   excerpt: string
   link: string
-  department: string
+  department?: string
+  quickFact?: string
 }
 
 const RelatedProgramCard = ({
   title,
   excerpt,
-  link
+  link,
+  quickFact
 }: RelatedProgramCardProps) => {
   return (
     <div className={styles.relatedProgramCard}>
       <h3>{title}</h3>
-      <ParsedContent content={excerpt} />
+      {excerpt && <ParsedContent content={excerpt} />}
+      {quickFact && <QuickFact fact={quickFact} />}
       <Link href={link} className="button">
         View Program
       </Link>
