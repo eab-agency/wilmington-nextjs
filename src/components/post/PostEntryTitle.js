@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from '@/components/common/Link'
 
 export const PostEntryTitle = ({ post, location, ...props }) => {
   const { title, uri } = post
@@ -13,7 +13,7 @@ export const PostEntryTitle = ({ post, location, ...props }) => {
         />
       ) : (
         <h2 {...props}>
-          <Link href={`${uri}`} dangerouslySetInnerHTML={{ __html: title }} />
+          <Link href={uri} dangerouslySetInnerHTML={{ __html: title }} />
         </h2>
       )}
     </>

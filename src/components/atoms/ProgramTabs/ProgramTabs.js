@@ -1,31 +1,8 @@
 'use client'
+import Link from '@/components/common/Link'
 import { gql } from '@apollo/client'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-
-const childPageSampleData = [
-  {
-    title: 'Concentrations',
-    uri: '/programs/agriculture/concentrations/'
-  },
-  {
-    title: 'Admissions',
-    uri: '/programs/agriculture/admissions/'
-  }
-]
-
-const parentPageSampleData = {
-  id: '1234',
-  slug: 'agriculture',
-  uri: '/programs/agriculture/',
-  title: 'Agriculture',
-  node: {
-    children: {
-      nodes: childPageSampleData
-    }
-  }
-}
 
 const ProgramTabs = ({ childPages, uri, parent }) => {
   const router = useRouter()

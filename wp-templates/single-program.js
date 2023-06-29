@@ -8,6 +8,7 @@ import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import WordPressProvider from '@/components/common/WordPressProvider'
 import PageHero from '@/components/organisms/PageHero/PageHero'
+import { seoPostFields } from '@/fragments'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import { gql } from '@apollo/client'
@@ -16,7 +17,6 @@ import { flatListToHierarchical } from '@faustwp/core'
 import blocks from '../wp-blocks'
 import { RelatedProgramsFragment } from '../wp-blocks/acf/AcfRelatedPrograms'
 import { StudentOrgFragment } from '../wp-blocks/acf/AcfStudentOrgs'
-import { seoPostFields } from '@/fragments'
 
 export default function SingleProgram(props) {
   // Loading state for previews
