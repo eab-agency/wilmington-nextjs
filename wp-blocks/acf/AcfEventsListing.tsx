@@ -14,6 +14,11 @@ type Event = {
   date: string
   link: string
   uri: string
+  eventsFields: {
+    event: {
+      startDate: string
+    }
+  }
 }
 
 const AcfEventsListing = (props: AcfEventsListingProps) => {
@@ -38,7 +43,7 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
         posts.push({
           id: event.id,
           title: event.title,
-          date: event.date,
+          date: event.eventsFields.event.startDate,
           link: event.link,
           uri: event.uri
         })
@@ -57,12 +62,22 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
       posts.push({
         id: event.id,
         title: event.title,
-        date: event.date,
+        date: event.eventsFields.event.startDate,
         link: event.link,
         uri: event.uri
       })
     })
   }
+  console.log(
+    '🚀 ~ file: AcfEventsListing.tsx:32 ~ AcfEventsListing ~ posts:',
+    posts
+  )
+  const currentDate = new Date()
+
+  const filteredPosts = posts.filter((post) => {
+    const postDate = new Date(post.date)
+    return postDate >= currentDate
+  })
 
   if (idsLoading || latestLoading) return <p>Loading...</p>
   if (idsError || latestError) return <p>Error :(</p>
@@ -102,6 +117,11 @@ const eventFragment = gql`
     uri
     date
     title
+    eventsFields {
+      event {
+        startDate
+      }
+    }
   }
 `
 
