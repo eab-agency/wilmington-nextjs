@@ -24,6 +24,7 @@
     "UserRole",
     "FAQ",
     "FaqCategory",
+    "GraphqlDocument",
     "Menu",
     "MenuItem",
     "Testimonial",
@@ -44,6 +45,7 @@
     "Page",
     "Post",
     "FAQ",
+    "GraphqlDocument",
     "Testimonial",
     "ReusableBlock"
   ],
@@ -67,6 +69,7 @@
     "Tag",
     "FAQ",
     "FaqCategory",
+    "GraphqlDocument",
     "Testimonial",
     "TestimonialCategory",
     "ReusableBlock"
@@ -103,6 +106,7 @@
     "FaqCategoryToParentFaqCategoryConnectionEdge",
     "FaqCategoryToTaxonomyConnectionEdge",
     "FAQToPreviewConnectionEdge",
+    "GraphqlDocumentToPreviewConnectionEdge",
     "MenuItemToMenuItemLinkableConnectionEdge",
     "TestimonialToPreviewConnectionEdge",
     "TestimonialCategoryToParentTestimonialCategoryConnectionEdge",
@@ -226,6 +230,8 @@
     "RootQueryToFAQConnectionEdge",
     "RootQueryToFacultyConnectionEdge",
     "RootQueryToFaqCategoryConnectionEdge",
+    "GraphqlDocumentToPreviewConnectionEdge",
+    "RootQueryToGraphqlDocumentConnectionEdge",
     "RootQueryToMediaItemConnectionEdge",
     "MenuItemToMenuItemConnectionEdge",
     "MenuItemToMenuItemLinkableConnectionEdge",
@@ -359,6 +365,7 @@
     "RootQueryToFAQConnection",
     "RootQueryToFacultyConnection",
     "RootQueryToFaqCategoryConnection",
+    "RootQueryToGraphqlDocumentConnection",
     "RootQueryToMediaItemConnection",
     "MenuToMenuItemConnection",
     "MenuItemToMenuItemConnection",
@@ -476,6 +483,7 @@
     "RootQueryToFAQConnectionPageInfo",
     "RootQueryToFacultyConnectionPageInfo",
     "RootQueryToFaqCategoryConnectionPageInfo",
+    "RootQueryToGraphqlDocumentConnectionPageInfo",
     "RootQueryToMediaItemConnectionPageInfo",
     "MenuItemToMenuItemConnectionPageInfo",
     "TestimonialToTermNodeConnectionPageInfo",
@@ -613,6 +621,7 @@
     "RootQueryToFAQConnectionPageInfo",
     "RootQueryToFacultyConnectionPageInfo",
     "RootQueryToFaqCategoryConnectionPageInfo",
+    "RootQueryToGraphqlDocumentConnectionPageInfo",
     "RootQueryToMediaItemConnectionPageInfo",
     "MenuItemToMenuItemConnectionPageInfo",
     "TestimonialToTermNodeConnectionPageInfo",
@@ -728,6 +737,7 @@
     "Tag",
     "FAQ",
     "FaqCategory",
+    "GraphqlDocument",
     "Menu",
     "MenuItem",
     "Testimonial",
@@ -755,6 +765,7 @@
     "Page",
     "Post",
     "FAQ",
+    "GraphqlDocument",
     "Testimonial",
     "ReusableBlock"
   ],
@@ -770,6 +781,7 @@
     "Page",
     "Post",
     "FAQ",
+    "GraphqlDocument",
     "Testimonial",
     "ReusableBlock"
   ],
@@ -867,6 +879,7 @@
     "Page",
     "Post",
     "FAQ",
+    "GraphqlDocument",
     "Testimonial",
     "ReusableBlock"
   ],
@@ -984,6 +997,7 @@
     "CoreVerse",
     "CoreVideo",
     "EabProgramDirectory",
+    "EabProgramJumplinks",
     "SafeSvgSvgIcon",
     "YoastFaqBlock",
     "YoastHowToBlock",
@@ -992,6 +1006,7 @@
   ],
   "Block": [
     "EabProgramDirectoryBlock",
+    "EabProgramJumplinksBlock",
     "SafeSvgSvgIconBlock",
     "YoastSeoBreadcrumbsBlock",
     "AcfEventsListingBlock",
@@ -1293,6 +1308,7 @@
     "CoreVerse",
     "CoreVideo",
     "EabProgramDirectory",
+    "EabProgramJumplinks",
     "SafeSvgSvgIcon",
     "YoastFaqBlock",
     "YoastHowToBlock",
@@ -1475,6 +1491,7 @@
     "CoreVerse",
     "CoreVideo",
     "EabProgramDirectory",
+    "EabProgramJumplinks",
     "SafeSvgSvgIcon",
     "YoastFaqBlock",
     "YoastHowToBlock",
@@ -1659,6 +1676,7 @@
     "CoreVerse",
     "CoreVideo",
     "EabProgramDirectory",
+    "EabProgramJumplinks",
     "SafeSvgSvgIcon",
     "YoastFaqBlock",
     "YoastHowToBlock",
@@ -1846,6 +1864,7 @@
     "CoreVerse",
     "CoreVideo",
     "EabProgramDirectory",
+    "EabProgramJumplinks",
     "SafeSvgSvgIcon",
     "YoastFaqBlock",
     "YoastHowToBlock",
@@ -1979,6 +1998,7 @@
     "CoreVerse",
     "CoreVideo",
     "EabProgramDirectory",
+    "EabProgramJumplinks",
     "SafeSvgSvgIcon",
     "YoastFaqBlock",
     "YoastHowToBlock",
@@ -2076,6 +2096,14 @@
   "FAQConnectionPageInfo": [
     "FaqCategoryToFAQConnectionPageInfo",
     "RootQueryToFAQConnectionPageInfo"
+  ],
+  "GraphqlDocumentConnectionEdge": [
+    "GraphqlDocumentToPreviewConnectionEdge",
+    "RootQueryToGraphqlDocumentConnectionEdge"
+  ],
+  "GraphqlDocumentConnection": ["RootQueryToGraphqlDocumentConnection"],
+  "GraphqlDocumentConnectionPageInfo": [
+    "RootQueryToGraphqlDocumentConnectionPageInfo"
   ],
   "PageUnion": ["Page"],
   "MenuItemConnection": [

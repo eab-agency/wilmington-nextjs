@@ -39,6 +39,7 @@ EabProgramDirectory.query = gql`
             slug
             uri
             title
+            excerpt
           }
         }
       }

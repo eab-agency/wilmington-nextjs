@@ -1,7 +1,6 @@
 import cn from 'classnames'
 import parse from 'html-react-parser'
 import Link from 'next/link'
-import PropTypes from 'prop-types'
 import { MdChevronRight, MdHome } from 'react-icons/md'
 import styles from './Breadcrumbs.module.scss'
 
@@ -43,8 +42,4 @@ export default function Breadcrumbs({ breadcrumbs }) {
       )}
     </>
   )
-}
-
-Breadcrumbs.propTypes = {
-  breadcrumbs: PropTypes.array.isRequired
 }

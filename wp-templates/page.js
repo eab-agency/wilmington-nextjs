@@ -1,18 +1,18 @@
 import { gql } from '@apollo/client'
 // import { Container, Footer, Header, Hero, Main, SEO } from '../components'
-import { Main, SEO } from '@/components'
+import { SEO } from '@/components'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero/PageHero'
-import { BlogInfoFragment } from '@/fragments/GeneralSettings'
+import { BlogInfoFragment, seoPostFields } from '@/fragments'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
 import blocks from '../wp-blocks'
 
-export default function Component(props) {
+export default function Page(props) {
   // Loading state for previews
   if (props.loading) {
     return <>Loading...</>
@@ -48,7 +48,7 @@ export default function Component(props) {
   )
 }
 
-Component.query = gql`
+Page.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
@@ -57,16 +57,7 @@ Component.query = gql`
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
       content
-      seo {
-          breadcrumbs {
-          text
-          url
-        }
-        fullHead
-        metaRobotsNofollow
-        metaRobotsNoindex
-        title
-      }
+      ${seoPostFields}
       ...FeaturedImageFragment
         ... on NodeWithEditorBlocks {
         # Get contentBlocks with flat=true and the nodeId and parentId
@@ -91,7 +82,7 @@ Component.query = gql`
   }
 `
 
-Component.variables = ({ databaseId }, ctx) => {
+Page.variables = ({ databaseId }, ctx) => {
   return {
     databaseId,
     asPreview: ctx?.asPreview
