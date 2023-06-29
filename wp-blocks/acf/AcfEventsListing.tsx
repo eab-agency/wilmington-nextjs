@@ -68,13 +68,10 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
       })
     })
   }
-  console.log(
-    '🚀 ~ file: AcfEventsListing.tsx:32 ~ AcfEventsListing ~ posts:',
-    posts
-  )
+
   const currentDate = new Date()
 
-  const filteredPosts = posts.filter((post) => {
+  const futureEvents = posts.filter((post) => {
     const postDate = new Date(post.date)
     return postDate >= currentDate
   })
@@ -87,7 +84,7 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   return (
     <>
       <EventsListing
-        posts={posts}
+        posts={futureEvents}
         listing_title={listing_title}
         listing_display={listing_display}
         showImage={false}
