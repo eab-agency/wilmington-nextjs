@@ -1,14 +1,5 @@
-'use client'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-// only domains that you're allowed to load scripts from
-const WHITELISTED_DOMAINS = [
-  'formstack.com',
-  'www.youvisit.com',
-  'wilmington.edu'
-]
-
-// function that creates a temporary iframe element, sets its srcdoc property to the HTML string, and waits for the load event to fire before modifying its contents. Once the load event fires, the function removes the iframe from the DOM, resolves with the modified HTML code as a string.
 function parseHtml(html) {
   return new Promise((resolve) => {
     const iframe = document.createElement('iframe')
@@ -21,17 +12,7 @@ function parseHtml(html) {
       const scriptTags =
         iframe.contentWindow.document.querySelectorAll('script')
       scriptTags.forEach((scriptTag) => {
-        const src = scriptTag.getAttribute('src')
-        if (
-          src &&
-          !WHITELISTED_DOMAINS.some((domain) =>
-            src.startsWith(`https://${domain}`)
-          )
-        ) {
-          scriptTag.remove()
-        } else if (!src) {
-          scriptTag.remove()
-        }
+        scriptTag.removeAttribute('src')
       })
       const parsedHtml = iframe.contentWindow.document.documentElement.innerHTML
       document.body.removeChild(iframe)
@@ -40,7 +21,7 @@ function parseHtml(html) {
   })
 }
 
-export default function BlockHtml({ content }) {
+export default function RenderHtmlWithoutWhitelist({ content }) {
   const [parsedHtml, setParsedHtml] = useState(null)
 
   useEffect(() => {
