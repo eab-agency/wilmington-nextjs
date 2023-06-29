@@ -15,8 +15,8 @@ const DepartmentSingle = ({ department }) => {
   } = department
 
   return (
-    <div>
-      <article key={name} className="department">
+    <article key={name} className="department">
+      <header className="departmentHead">
         {deptImage && (
           <Image
             url={deptImage.sourceUrl}
@@ -27,25 +27,25 @@ const DepartmentSingle = ({ department }) => {
         <h2>
           <Link href={uri}>{name}</Link>
         </h2>
-        <p>{description}</p>
-        {programs.nodes.length > 0 && (
-          <>
-            <h3>Programs</h3>
-            <ul>
-              {programs.nodes.map((program) => (
-                <li key={program.uri}>
-                  <RelatedProgramCard
-                    title={program.title}
-                    link={program.uri}
-                    excerpt={program.excerpt}
-                  />
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-      </article>
-    </div>
+      </header>
+      <p>{description}</p>
+      {programs.nodes.length > 0 && (
+        <>
+          <h3>Programs</h3>
+          <ul>
+            {programs.nodes.map((program) => (
+              <li key={program.uri}>
+                <RelatedProgramCard
+                  title={program.title}
+                  link={program.uri}
+                  excerpt={program.excerpt}
+                />
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </article>
   )
 }
 
