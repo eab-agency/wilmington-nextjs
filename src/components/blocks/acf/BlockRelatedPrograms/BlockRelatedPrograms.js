@@ -54,7 +54,7 @@ export default function BlockRelatedPrograms({ departments }) {
         </MultiCarousel>
         <div className={styles.viewAllCta}>
           <Button
-            url="/programs"
+            url="/academics/program-directory"
             className="secondary"
             text="View All Programs"
           />
