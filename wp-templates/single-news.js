@@ -1,37 +1,15 @@
 import { SEO } from '@/components'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
-import Container from '@/components/atoms/Container'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero'
-import { BlogInfoFragment } from '@/fragments/GeneralSettings'
+import { seoPostFields } from '@/fragments'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
 import blocks from '../wp-blocks'
 
-const SEO_QUERY = gql`
-  fragment SeoFragment on PostTypeSEO {
-    breadcrumbs {
-      text
-      url
-    }
-    fullHead
-    metaRobotsNofollow
-    metaRobotsNoindex
-    title
-  }
-`
-
-/**
- * This is a Faust Template for resolving singular templates (posts, pages).
- *
- * If you are unfamiliar with Faust Templates, they resolve much like the
- * WordPress Template Hierarchy.
- *
- * @see https://faustjs.org/docs/templates
- */
 export default function SingleNews(props) {
   const { title, editorBlocks, seo, featuredImage, uri, date, newsCategories } =
     props.data.nodeByUri
@@ -42,7 +20,7 @@ export default function SingleNews(props) {
 
   return (
     <>
-      <SEO title={siteTitle} description={siteDescription} />
+      <SEO seo={seo} />
       <Layout className="thelayoutclass">
         <div className=" news-article">
           <article className="inner-wrap">
@@ -82,10 +60,8 @@ SingleNews.variables = ({ uri }, ctx) => {
  * Compose the GraphQL query for our page's data.
  */
 SingleNews.query = gql`
-  ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
-  ${SEO_QUERY}
   query GetNewsSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
     nodeByUri(uri: $uri) {
       __typename
@@ -101,9 +77,7 @@ SingleNews.query = gql`
             name
           }
         }
-        seo {
-          ...SeoFragment
-        }
+        ${seoPostFields}
       }
 
       ... on NodeWithFeaturedImage {

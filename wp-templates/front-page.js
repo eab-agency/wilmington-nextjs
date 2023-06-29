@@ -2,7 +2,7 @@
 import { SEO } from '@/components'
 import Container from '@/components/atoms/Container'
 import Layout from '@/components/common/Layout'
-import { BlogInfoFragment } from '@/fragments/GeneralSettings'
+import { BlogInfoFragment, seoPostFields } from '@/fragments'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
@@ -12,7 +12,6 @@ import blocks from '../wp-blocks'
 export default function Component(props) {
   const { editorBlocks, seo } = props.data.page
   const blocks = flatListToHierarchical(editorBlocks)
-  // console.log('🚀 ~ file: front-page.js:15 ~ Component ~ blocks:', blocks)
 
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings ?? {}
@@ -24,11 +23,7 @@ export default function Component(props) {
 
   return (
     <>
-      <SEO
-        title={siteTitle}
-        description={siteDescription}
-        fullHead={seo?.fullHead}
-      />
+      <SEO seo={seo} />
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
@@ -54,9 +49,8 @@ Component.query = gql`
        ... on NodeWithTitle {
         title
       }
-      seo {
-        fullHead
-      }
+           ${seoPostFields}
+
 
         editorBlocks {
           __typename

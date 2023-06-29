@@ -16,10 +16,9 @@ export default function ArchivePrograms(props) {
 
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings ?? {}
-
   return (
     <>
-      <SEO title={siteTitle} description={siteDescription} />
+      <SEO seo={{ title: siteTitle, description: siteDescription }} />
       <Layout className="thelayoutclass">
         <article className="inner-wrap">
           <RichText tag="h1">{label}</RichText>

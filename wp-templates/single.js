@@ -12,14 +12,6 @@ import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
 import blocks from '../wp-blocks'
 
-/**
- * This is a Faust Template for resolving singular templates (posts, pages).
- *
- * If you are unfamiliar with Faust Templates, they resolve much like the
- * WordPress Template Hierarchy.
- *
- * @see https://faustjs.org/docs/templates
- */
 export default function Component(props) {
   const { title, editorBlocks, seo, featuredImage } = props.data.nodeByUri
   const blocks = flatListToHierarchical(editorBlocks)

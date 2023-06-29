@@ -6,7 +6,7 @@ import Container from '@/components/atoms/Container'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero/PageHero'
-import { BlogInfoFragment, seoPostFields } from '@/fragments'
+import { seoPostFields } from '@/fragments'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
@@ -20,12 +20,9 @@ export default function Page(props) {
   const { editorBlocks, title, featuredImage, seo } = props.data.page
   const blocks = flatListToHierarchical(editorBlocks)
 
-  const { title: siteTitle, description: siteDescription } =
-    props?.data?.generalSettings ?? {}
-
   return (
     <>
-      <SEO title={siteTitle} description={siteDescription} />
+      <SEO seo={seo} />
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
@@ -49,7 +46,6 @@ export default function Page(props) {
 }
 
 Page.query = gql`
-  ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
 
@@ -74,9 +70,6 @@ Page.query = gql`
         }
       }
 
-    }
-    generalSettings {
-      ...BlogInfoFragment
     }
 
   }

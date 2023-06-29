@@ -8,6 +8,7 @@ import CoreEmbed from './CoreEmbed'
 import CoreFreeform from './CoreFreeform'
 import CoreGroup from './CoreGroup'
 import CoreHeading from './CoreHeading'
+import CoreHtml from './CoreHtml'
 import CoreImage from './CoreImage'
 import CoreList from './CoreList'
 import CoreMediaText from './CoreMediaText'
@@ -46,6 +47,7 @@ export default {
   CoreFreeform,
   CoreGroup,
   CoreHeading,
+  CoreHtml,
   CoreImage,
   CoreList,
   CoreMediaText,
