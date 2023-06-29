@@ -7,7 +7,6 @@ type RelatedProgramCardProps = {
   title: string
   excerpt: string
   link: string
-  department?: string
   quickFact?: string
 }
 
