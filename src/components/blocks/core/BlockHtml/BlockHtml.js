@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+'use client'
+import { useEffect, useState } from 'react'
 
 function parseHtml(html) {
   return new Promise((resolve) => {
