@@ -8,14 +8,13 @@ import { gql } from '@apollo/client'
 export default function Archive(props) {
   const { label, description, contentNodes } = props.data.nodeByUri
 
-  const { title: siteTitle, description: siteDescription } =
-    props?.data?.generalSettings ?? {}
+  const { description: siteDescription } = props?.data?.generalSettings ?? {}
 
-  const archiveTitle = `${siteTitle} ${label}`
+  const archiveTitle = `Wilmington College ${label}`
 
   return (
     <>
-      <SEO title={archiveTitle} description={siteDescription} />
+      <SEO seo={{ title: archiveTitle, description: siteDescription }} />
       <Layout className="thelayoutclass">
         <article className="inner-wrap">
           <RichText tag="h1">{label}</RichText>
