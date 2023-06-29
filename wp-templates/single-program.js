@@ -44,7 +44,8 @@ export default function SingleProgram(props) {
     parent,
     uri,
     departments,
-    programOrgRelationship
+    programOrgRelationship,
+    currentProgramId
   } = props.data.nodeByUri
 
   const blocks = flatListToHierarchical(editorBlocks)
@@ -54,6 +55,7 @@ export default function SingleProgram(props) {
 
   const programPageState = {
     departments: departments?.nodes,
+    currentProgramId,
     studentOrganizations: programOrgRelationship?.programorg
   }
   return (

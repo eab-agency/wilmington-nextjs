@@ -19,26 +19,34 @@ export default function AcfRelatedPrograms() {
   }
 
   // flatten all the programs in the needToFlatten array
-  const { departments } = wordpressContext
+  const { departments, currentProgramId } = wordpressContext
 
   if (!departments) {
     return null
   }
 
+  // flatten all the programs out of their departments
   const flattenedPrograms = departments.reduce((acc, item) => {
     return [...acc, ...item.programs.nodes]
   }, [])
 
-  return <BlockRelatedPrograms departments={flattenedPrograms} />
+  // filter out the current program from the flattened programs
+  const filteredPrograms = flattenedPrograms.filter(
+    (program) => program.id !== currentProgramId
+  )
+
+  return <BlockRelatedPrograms departments={filteredPrograms} />
 }
 
 export const RelatedProgramsFragment = gql`
   fragment RelatedProgramsFragment on Program {
+    currentProgramId: id
     departments {
       nodes {
         id
         programs {
           nodes {
+            id
             title
             excerpt
             uri
