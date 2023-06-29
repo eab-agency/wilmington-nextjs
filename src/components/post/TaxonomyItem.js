@@ -1,10 +1,9 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from '@/components/common/Link'
 
 export const TaxonomyItem = ({ taxName, item, ...props }) => (
   <Link
     className="block mb-3"
-    href={`${item.uri}`}
+    href={item.uri}
     aria-label={`visit ${taxName} ${item.name} page`}
     {...props}
   >

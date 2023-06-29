@@ -14,6 +14,11 @@ const DepartmentSingle = ({ department }) => {
     departmentFields: { deptIcon, deptImage }
   } = department
 
+  // don't show programs that are a child program page
+  const filteredPrograms = programs.nodes.filter(
+    (program) => program.ancestors === null
+  )
+
   return (
     <div>
       <article key={name} className="department">
@@ -28,11 +33,11 @@ const DepartmentSingle = ({ department }) => {
           <Link href={uri}>{name}</Link>
         </h2>
         <p>{description}</p>
-        {programs.nodes.length > 0 && (
+        {filteredPrograms.length > 0 && (
           <>
             <h3>Programs</h3>
             <ul>
-              {programs.nodes.map((program) => (
+              {filteredPrograms.map((program) => (
                 <li key={program.uri}>
                   <RelatedProgramCard
                     title={program.title}
@@ -75,11 +80,7 @@ const DepartmentSelector = ({
   }
 
   return (
-    <select
-      onChange={handleDropdownChange}
-      defaultValue={'DEFAULT'}
-      value={selectedDepartment}
-    >
+    <select onChange={handleDropdownChange} value={selectedDepartment}>
       <option value="DEFAULT">Choose an area of study</option>
       <option value="ALL">Show All</option>
       {programDepartments.map((department) => (
