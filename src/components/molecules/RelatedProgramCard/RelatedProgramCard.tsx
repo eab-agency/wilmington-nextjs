@@ -2,7 +2,7 @@ import Link from '@/components/common/Link'
 import ParsedContent from '@/functions/parsedContent'
 import styles from './RelatedProgramCard.module.scss'
 
-interface RelatedProgramCardProps {
+type RelatedProgramCardProps = {
   title: string
   excerpt: string
   link: string
@@ -17,7 +17,7 @@ const RelatedProgramCard = ({
   return (
     <div className={styles.relatedProgramCard}>
       <h3>{title}</h3>
-      <ParsedContent content={excerpt} />
+      {excerpt && <ParsedContent content={excerpt} />}
       <Link href={link} className="button">
         View Program
       </Link>
