@@ -26,6 +26,7 @@ function ProgramList({ programs }) {
                 excerpt={program.excerpt}
               /> */}
               <ProgramCard
+                key={index}
                 title={program.title}
                 excerpt={program.excerpt}
                 link={program.link}
