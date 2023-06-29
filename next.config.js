@@ -14,13 +14,18 @@ const nextConfig = {
     return [
       ...redirects,
       {
+        source: '/program-directory',
+        destination: '/academics/program-directory',
+        permanent: true
+      },
+      {
         source: '/programs',
-        destination: '/program-directory',
+        destination: '/academics/program-directory',
         permanent: true
       },
       {
         source: '/program',
-        destination: '/program-directory',
+        destination: '/academics/program-directory',
         permanent: true
       },
       {

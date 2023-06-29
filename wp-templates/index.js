@@ -6,6 +6,7 @@ import SingleEvent from './single-event'
 import SingleFaculty from './single-faculty'
 import SingleNews from './single-news'
 import SingleProgram from './single-program'
+import TaxonomyDepartment from './taxonomy-department'
 
 const templates = {
   'front-page': frontPage,
@@ -15,7 +16,8 @@ const templates = {
   'archive-program': ArchiveProgram,
   'single-faculty': SingleFaculty,
   'single-event': SingleEvent,
-  'single-news': SingleNews
+  'single-news': SingleNews,
+  'taxonomy-department': TaxonomyDepartment
 }
 
 export default templates
