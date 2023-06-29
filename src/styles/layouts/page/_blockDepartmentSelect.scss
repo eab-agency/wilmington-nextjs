@@ -45,14 +45,23 @@
   .departmentResults {
     @include mixins.sectionPadding;
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: column;
+    // flex-flow: row wrap;
     gap: clamp(1rem, 4vw, 4rem);
 
     article {
       flex: 1 0 20rem;
-      max-width: 25rem;
+      // max-width: 25rem;
       background: color.adjust(tokens.$c-gray-200, $lightness: 3%);
       border-left: 1px solid tokens.$c-gray-400;
+
+      .departmentHead {
+        display: flex;
+
+        figure {
+          max-width: 50%;
+        }
+      }
 
       .departmentInfo {
         padding: clamp(1rem, 2vw, 2rem);
