@@ -10,12 +10,21 @@ const CommonLink = ({ children, href, ...others }) => {
       </Link>
     )
   }
-  const regex2 = /(https?:\/\/(.+?\.)?vercel\.app|wilmington\.edu)/g
+  // const regex2 = /(https?:\/\/(.+?\.)?vercel\.app|wilmington\.edu)/g
+  const regex =
+    /https?:\/\/(www\.)?wilmington-nexjs\.vercel\.app|https?:\/\/(www\.)?wilmington\.edu/
   // const isLocalLink = /^http:\/\/wilmingtonlocal\.local(\/)?/.test(to);
-  const isLocalLink = regex2.test(href)
+  const isLocalLink = regex.test(href)
+  // console.log(
+  //   '🚀 ~ file: Link.js:16 ~ CommonLink ~ isLocalLink:',
+  //   isLocalLink,
+  //   href
+  // )
   // https://eab-wilmington-college.pantheonsite.io/2022/11/html-elements/
   if (isLocalLink) {
-    const url = href.replace(/^https:\/\/wilmington-nexjs\.vercel\.app/, '')
+    const url = href.replace(regex, '')
+    // console.log('🚀 ~ file: Link.js:25 ~ CommonLink ~ url:', url)
+
     return (
       <Link href={url} {...others}>
         {children}
