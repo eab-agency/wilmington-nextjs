@@ -19,7 +19,6 @@ export default function Page(props) {
   }
   const { editorBlocks, title, featuredImage, seo } = props.data.page
   const blocks = flatListToHierarchical(editorBlocks)
-  console.log('🚀 ~ file: page.js:22 ~ Page ~ blocks:', blocks)
 
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings ?? {}
