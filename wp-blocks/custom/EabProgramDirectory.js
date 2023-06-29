@@ -40,6 +40,11 @@ EabProgramDirectory.query = gql`
             uri
             title
             excerpt
+            ancestors {
+              nodes {
+                id
+              }
+            }
           }
         }
       }
