@@ -80,7 +80,7 @@ const DepartmentSelector = ({
       defaultValue={'DEFAULT'}
       value={selectedDepartment}
     >
-      <option value="DEFAULT">Chose a department</option>
+      <option value="DEFAULT">Choose an area of study</option>
       <option value="ALL">Show All</option>
       {programDepartments.map((department) => (
         <option key={department.uri} value={department.name}>
