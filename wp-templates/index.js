@@ -15,7 +15,7 @@ const templates = {
   singular,
   archive,
   'single-program': SingleProgram,
-  'archive-program': ArchiveProgram,
+  // 'archive-program': ArchiveProgram,
   'single-faculty': SingleFaculty,
   'single-event': SingleEvent,
   'single-news': SingleNews,

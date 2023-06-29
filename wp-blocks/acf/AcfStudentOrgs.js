@@ -5,7 +5,12 @@ import { gql } from '@apollo/client'
 import { className } from 'classnames/bind'
 
 const AcfStudentOrgs = () => {
-  const { studentOrganizations } = useWordPressContext()
+  const wordpressContext = useWordPressContext()
+
+  if (!wordpressContext || !wordpressContext.studentOrganizations) {
+    return null
+  }
+  const { studentOrganizations } = wordpressContext
 
   return (
     <div className="organizationsContent">

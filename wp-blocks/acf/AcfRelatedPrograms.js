@@ -26,13 +26,14 @@ export default function AcfRelatedPrograms() {
   }
 
   // flatten all the programs out of their departments
-  const flattenedPrograms = departments.reduce((acc, item) => {
-    return [...acc, ...item.programs.nodes]
-  }, [])
+  // const flattenedPrograms = departments.reduce((acc, item) => {
+  //   return [...acc, ...item.programs.nodes]
+  // }, [])
+  const flattenedPrograms = departments.flatMap((item) => item.programs.nodes)
 
-  // filter out the current program from the flattened programs
+  // filter out the current program and programs that are child pages
   const filteredPrograms = flattenedPrograms.filter(
-    (program) => program.id !== currentProgramId
+    (program) => program.id !== currentProgramId && program.ancestors !== null
   )
 
   return <BlockRelatedPrograms departments={filteredPrograms} />
@@ -50,6 +51,11 @@ export const RelatedProgramsFragment = gql`
             title
             excerpt
             uri
+            ancestors {
+              nodes {
+                id
+              }
+            }
           }
         }
       }

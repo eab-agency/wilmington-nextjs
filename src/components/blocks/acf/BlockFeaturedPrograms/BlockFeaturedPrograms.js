@@ -42,7 +42,11 @@ const BlockFeaturedPrograms = ({ featuredPrograms }) => {
         ))}
       </Carousel>
       <div className={styles.viewAllCta}>
-        <Button url="/programs" text="View All Programs" secondary />
+        <Button
+          url="/academics/program-directory"
+          text="View All Programs"
+          secondary
+        />
       </div>
     </div>
   )

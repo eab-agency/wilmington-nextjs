@@ -1,6 +1,7 @@
 import cn from 'classnames'
 import parse from 'html-react-parser'
-import Link from 'next/link'
+
+import Link from '@/components/common/Link'
 import { MdChevronRight, MdHome } from 'react-icons/md'
 import styles from './Breadcrumbs.module.scss'
 
