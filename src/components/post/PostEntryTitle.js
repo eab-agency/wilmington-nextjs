@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import Link from 'next/link'
 
 export const PostEntryTitle = ({ post, location, ...props }) => {
   const { title, uri } = post
@@ -14,11 +13,7 @@ export const PostEntryTitle = ({ post, location, ...props }) => {
         />
       ) : (
         <h2 {...props}>
-          <Link
-            to={`${uri}`}
-            dangerouslySetInnerHTML={{ __html: title }}
-            className="uppercase hover:text-secondary dark:hover:text-primary"
-          />
+          <Link href={`${uri}`} dangerouslySetInnerHTML={{ __html: title }} />
         </h2>
       )}
     </>

@@ -1,3 +1,4 @@
+import archive from './archive'
 import ArchiveProgram from './archive-program'
 import frontPage from './front-page'
 import page from './page'
@@ -12,6 +13,7 @@ const templates = {
   'front-page': frontPage,
   page,
   singular,
+  archive,
   'single-program': SingleProgram,
   'archive-program': ArchiveProgram,
   'single-faculty': SingleFaculty,
