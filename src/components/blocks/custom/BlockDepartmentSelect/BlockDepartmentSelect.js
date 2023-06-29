@@ -2,6 +2,7 @@
 
 import Image from '@/components/atoms/Image'
 import Link from '@/components/common/Link'
+import RelatedProgramCard from '@/components/molecules/RelatedProgramCard'
 import React, { useEffect, useState } from 'react'
 
 const DepartmentSingle = ({ department }) => {
@@ -14,31 +15,37 @@ const DepartmentSingle = ({ department }) => {
   } = department
 
   return (
-    <article key={name} className="department">
-      {deptIcon && (
-        <Image
-          url={deptImage.sourceUrl}
-          alt={deptImage.altText}
-          imageMeta={{ mediaDetails: deptImage.mediaDetails }}
-        />
-      )}
-      <h2>
-        <Link href={uri}>{name}</Link>
-      </h2>
-      <p>{description}</p>
-      {programs.length > 0 && (
-        <>
-          <h3>Programs</h3>
-          <ul>
-            {programs.map((program) => (
-              <li key={program.uri}>
-                <Link href={program.uri}>{program.title}</Link>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-    </article>
+    <div>
+      <article key={name} className="department">
+        {deptImage && (
+          <Image
+            url={deptImage.sourceUrl}
+            alt={deptImage.altText}
+            imageMeta={{ mediaDetails: deptImage.mediaDetails }}
+          />
+        )}
+        <h2>
+          <Link href={uri}>{name}</Link>
+        </h2>
+        <p>{description}</p>
+        {programs.nodes.length > 0 && (
+          <>
+            <h3>Programs</h3>
+            <ul>
+              {programs.nodes.map((program) => (
+                <li key={program.uri}>
+                  <RelatedProgramCard
+                    title={program.title}
+                    link={program.uri}
+                    excerpt={program.excerpt}
+                  />
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </article>
+    </div>
   )
 }
 
