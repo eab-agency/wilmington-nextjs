@@ -1,3 +1,4 @@
+import EventsPostCard from '@/components/archive/EventsPostCard'
 import NewsPostCard from '@/components/archive/NewsPostCard'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import getEventsListingData from '@/functions/wordpress/events/getEventsListingData'
@@ -37,9 +38,11 @@ const NewsAndEventsPage = async () => {
         </div>
       </section>
       <section className="eventsGroup">
-        <h2>Events</h2>
+        <header className="eventsSectionHead">
+          <h2>Events</h2>
+        </header>
         <div className="group">
-          <NewsPostCard
+          <EventsPostCard
             post={firstEventItem}
             ctx={undefined}
             showImage={true}
@@ -47,7 +50,7 @@ const NewsAndEventsPage = async () => {
           {restOfEvents &&
             restOfEvents.length > 0 &&
             restOfEvents.map((item, index) => (
-              <NewsPostCard key={index} post={item} showImage={true} />
+              <EventsPostCard key={index} post={item} showImage={true} />
             ))}
         </div>
       </section>

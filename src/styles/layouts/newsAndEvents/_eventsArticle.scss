@@ -1,0 +1,48 @@
+@use 'tokens';
+@use 'utilities/mixins';
+
+.events-article {
+  .inner-wrap {
+    header {
+      position: relative;
+      padding-left: 0;
+
+      h1 {
+        position: relative;
+        padding-left: clamp(1rem, 5vw, 3rem);
+
+        &::after {
+          content: '';
+          display: block;
+          height: 100%;
+          width: 0.25em;
+          background-color: tokens.$c-limeGreen-400;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+    }
+    .eventDetails {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      background: tokens.$c-gray-200;
+      padding: 2em;
+      padding: clamp(1rem, 2vw, 2rem);
+      border-bottom-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: calc(100% - 2rem);
+        right: 0;
+        width: 30%;
+        border-top-right-radius: 1rem;
+        border-bottom: 4em solid tokens.$c-gray-200;
+        border-left: 2em solid transparent;
+      }
+    }
+  }
+}

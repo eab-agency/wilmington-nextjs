@@ -16,6 +16,8 @@
   // News Section
 
   .newsGroup {
+    margin-bottom: 4rem;
+
     .newsSectionHead {
       border-bottom: 2px solid tokens.$c-darkGreen-800;
       margin-bottom: 2rem;
@@ -38,6 +40,17 @@
         flex: 1 1 18rem;
         padding: clamp(1rem, 2vw, 2rem);
         background: tokens.$c-gray-300;
+
+        figure {
+          height: clamp(6rem, 10vw, 10rem);
+          margin-bottom: 1rem;
+
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
         // max-width: 18rem;
 
         // highlightedpost is a featured post that is larger than the rest and spans all columns in the grid
@@ -47,7 +60,8 @@
           display: flex;
           flex-direction: column;
           gap: clamp(2rem, 5vw, 4rem);
-          padding: 0;
+          padding-inline: 0;
+          border-bottom: 1px solid tokens.$c-gray-400;
 
           @media (min-width: tokens.$mq-800) {
             flex-direction: row;
@@ -55,10 +69,15 @@
             figure {
               flex: 1 1 50%;
               margin: 0;
+              height: auto;
             }
 
-            h3 {
-              font-size: clamp(tokens.$fs-l, 4vw, tokens.$fs-xl);
+            .newsContentContainer {
+              flex: 1 1 50%;
+
+              h3 {
+                font-size: clamp(tokens.$fs-l, 4vw, tokens.$fs-xl);
+              }
             }
           }
         }
@@ -70,6 +89,15 @@
   // Events Section
 
   .eventsGroup {
+    .eventsSectionHead {
+      border-bottom: 2px solid tokens.$c-darkGreen-800;
+      margin-bottom: 2rem;
+
+      h2 {
+        margin-bottom: 0.1em;
+      }
+    }
+
     .group {
       display: flex;
       flex-flow: row wrap;
@@ -79,7 +107,14 @@
         flex: 1 1 18rem;
         padding: clamp(1rem, 2vw, 2rem);
         background: tokens.$c-gray-700;
-        // max-width: 18rem;
+
+        h3 {
+          color: tokens.$c-white;
+        }
+
+        a {
+          color: tokens.$c-teal-300;
+        }
       }
     }
   }
