@@ -5,12 +5,12 @@ export const museo = localFont({
   variable: '--font-museo',
   src: [
     {
-      path: '../assets/Museo500-Regular.woff',
+      path: 'assets/Museo500-Regular.woff',
       weight: '500',
       style: 'normal'
     },
     {
-      path: '../assets/Museo700-Regular.woff',
+      path: 'assets/Museo700-Regular.woff',
       weight: '700',
       style: 'bold'
     }
@@ -21,7 +21,7 @@ export const icomoon = localFont({
   variable: '--font-icomoon',
   src: [
     {
-      path: '../assets/icomoon.woff',
+      path: 'assets/icomoon.woff',
       weight: 'normal'
     }
   ]

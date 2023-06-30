@@ -17,12 +17,12 @@ const postType = '500'
  * @param  {object}  props.post         Post data from WordPress.
  * @return {Element}                    The Custom500 component.
  */
-export default function Custom500({ errorMessage, post }) {
-  const { seo = {} } = post
-
+export default function Custom500({ errorMessage }) {
   // Update robots SEO meta.
-  seo.metaRobotsNofollow = 'noindex'
-  seo.metaRobotsNoindex = 'nofollow'
+  const seo = {
+    metaRobotsNofollow: 'noindex',
+    metaRobotsNoindex: 'nofollow'
+  }
 
   return (
     <Layout seo={{ ...seo }}>
