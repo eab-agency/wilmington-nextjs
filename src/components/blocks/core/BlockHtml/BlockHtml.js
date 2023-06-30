@@ -13,7 +13,9 @@ function parseHtml(html) {
       const scriptTags =
         iframe.contentWindow.document.querySelectorAll('script')
       scriptTags.forEach((scriptTag) => {
-        scriptTag.removeAttribute('src')
+        const newScriptTag = document.createElement('script')
+        newScriptTag.src = scriptTag.src
+        document.body.appendChild(newScriptTag)
       })
       const parsedHtml = iframe.contentWindow.document.documentElement.innerHTML
       document.body.removeChild(iframe)
