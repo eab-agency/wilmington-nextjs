@@ -10,10 +10,11 @@ import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentD
 import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
+import { className } from 'classnames/bind'
 import blocks from '../wp-blocks'
 
 export default function SingleEvent(props) {
-  const { editorBlocks, seo, featuredImage, eventsFields, terms } =
+  const { editorBlocks, seo, featuredImage, eventsFields, terms, title } =
     props.data.nodeByUri
 
   const blocks = flatListToHierarchical(editorBlocks)
@@ -25,35 +26,43 @@ export default function SingleEvent(props) {
     <>
       <SEO seo={seo} />
       <Layout className="thelayoutclass">
-        <Container>
+        <div className="events-article">
           <article className="inner-wrap">
-            {featuredImage && (
-              <Image
-                id="featured-img"
-                url={featuredImage.node.sourceUrl}
-                alt={featuredImage.node.altText}
-                width="300"
-                height="200"
-              />
-            )}
+            <PageHero
+              sourceUrl={featuredImage?.node?.sourceUrl}
+              alt={featuredImage?.node?.altText}
+              imageMeta={featuredImage?.node?.mediaDetails}
+              text={title}
+              pageType="news"
+              newsCategories={event.newsCategories}
+            />
             <div className="page-content">
+              <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+              <section className="eventDetails">
+                <div className="eventStartDate">
+                  <div>The start-date: {event.startDate}</div>
+                  <div>The start-time: {event.startTime}</div>
+                </div>
+                <div classname="eventEndDate">
+                  <div>The end-date: {event.endDate}</div>
+                  <div>The end-time: {event.endTime}</div>
+                </div>
+                <div className="eventLocations">
+                  <div>The location name: {event.locationName}</div>
+                  <div>The location address: {event.locationAddress}</div>
+                </div>
+                {/* <div>The field group name: {event.fieldGroupName}</div> */}
+                <div>
+                  The terms:
+                  {termsArray.map((term, index) => (
+                    <span key={index}>{term.name}</span>
+                  ))}
+                </div>
+              </section>
               <WordPressBlocksViewer blocks={blocks} />
             </div>
-            <p>The end-date: {event.endDate}</p>
-            <p>The end-time: {event.endTime}</p>
-            <p>The field group name: {event.fieldGroupName}</p>
-            <p>The location address: {event.locationAddress}</p>
-            <p>The location name: {event.locationName}</p>
-            <p>The start-date: {event.startDate}</p>
-            <p>The start-time: {event.startTime}</p>
-            <p>
-              The terms:
-              {termsArray.map((term, index) => (
-                <span key={index}>{term.name}</span>
-              ))}
-            </p>
           </article>
-        </Container>
+        </div>
       </Layout>
     </>
   )
