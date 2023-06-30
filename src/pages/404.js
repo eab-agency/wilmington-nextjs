@@ -2,6 +2,7 @@ import Container from '@/components/atoms/Container'
 import Layout from '@/components/common/Layout'
 import getPagePropTypes from '@/functions/getPagePropTypes'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
+import { className } from 'classnames/bind'
 import Page from './[...wordpressNode]'
 
 // Define route post type.
@@ -30,7 +31,7 @@ export default function Custom404({ post }) {
   return (
     <Layout seo={{ ...seo }}>
       <Container>
-        <article>
+        <article className="not-found">
           <h1>404 Not Found</h1>
           <p>That page could not be found!</p>
         </article>
