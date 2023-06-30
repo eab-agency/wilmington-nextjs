@@ -12,8 +12,6 @@ const NewsAndEventsPage = async () => {
 
   const [firstEventItem, ...restOfEvents] = events // Destructure the first item from the array
 
-  console.log('The news: ', news)
-
   return (
     <div className="news-and-events">
       <header className="newsPageHead">
