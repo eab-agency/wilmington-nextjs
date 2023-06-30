@@ -122,6 +122,7 @@
 
     &.articleLink {
       color: color.adjust(tokens.$c-teal-500, $lightness: -20%);
+      font-weight: bold;
     }
   }
 }
