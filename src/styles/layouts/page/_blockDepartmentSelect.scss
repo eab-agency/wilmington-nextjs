@@ -22,11 +22,13 @@
 
   .group {
     display: flex;
+    align-items: center;
     border-top: 1px solid tokens.$c-gray-300;
     border-bottom: 1px solid tokens.$c-gray-300;
     @include mixins.sectionPadding;
     background: tokens.$c-gray-200;
     position: relative;
+    gap: 2rem;
     @include mixins.extendedBackground('after', tokens.$c-gray-200);
 
     .intro {
@@ -34,38 +36,102 @@
       h2 {
       }
       p {
+        margin: 0;
       }
     }
     .departmentSelector {
       flex: 1;
       max-width: 35rem;
+
+      select {
+        background: tokens.$c-white;
+      }
     }
   }
 
   .departmentResults {
-    @include mixins.sectionPadding;
-    display: flex;
-    flex-direction: column;
-    // flex-flow: row wrap;
-    gap: clamp(1rem, 4vw, 4rem);
+    .departmentsContainer {
+      @include mixins.sectionPadding;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(1rem, 4vw, 4rem);
 
-    article {
-      flex: 1 0 20rem;
-      // max-width: 25rem;
-      background: color.adjust(tokens.$c-gray-200, $lightness: 3%);
-      border-left: 1px solid tokens.$c-gray-400;
+      section.department {
+        border-left: 1px solid tokens.$c-gray-400;
 
-      .departmentHead {
-        display: flex;
+        .departmentHead {
+          display: flex;
 
-        figure {
-          max-width: 50%;
+          figure {
+            max-width: 50%;
+          }
         }
-      }
 
-      .departmentInfo {
-        padding: clamp(1rem, 2vw, 2rem);
-        // padding-right: 0;
+        .departmentInfo {
+          padding: clamp(1rem, 2vw, 2rem);
+        }
+
+        .programsSubtitle {
+          display: flex;
+          gap: 1rem;
+          align-items: center;
+          padding: 2rem 2rem 0 2rem;
+          margin-bottom: 0;
+
+          &::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: tokens.$c-gray-400;
+          }
+        }
+
+        .programsList {
+          display: flex;
+          flex-direction: column;
+          margin: 0;
+          padding: 2rem;
+          gap: 1rem;
+
+          li {
+            .resultProgramCard {
+              border: 3px solid tokens.$c-gray-300;
+              padding: 1rem;
+              flex: 1;
+              display: flex;
+              align-items: flex-start;
+              gap: 2rem;
+
+              .programContent {
+                h3 {
+                  border-bottom: 1px solid tokens.$c-gray-400;
+                  padding-bottom: 0.5em;
+                  font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-m);
+                  margin-bottom: 1em;
+                  // min-height: 3em;
+                }
+
+                p {
+                  display: -webkit-box;
+                  overflow: hidden;
+                  -webkit-line-clamp: 6;
+                  -webkit-box-orient: vertical;
+                  color: tokens.$c-copy;
+                  font-size: tokens.$fs-xs;
+                }
+              }
+
+              .button {
+                flex-shrink: 0;
+
+                @media (min-width: tokens.$mq-800) {
+                  margin-top: 1em;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
