@@ -8,9 +8,7 @@ export const PostEntryContent = ({ post, location, ...props }) => {
 
   return (
     <div {...props}>
-      <Link to={post.uri}>
-        <ParsedContent content={content} />
-      </Link>
+      <ParsedContent content={content} />
     </div>
   )
 }

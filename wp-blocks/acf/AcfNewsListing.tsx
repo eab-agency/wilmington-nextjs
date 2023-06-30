@@ -15,6 +15,7 @@ type News = {
   title: string
   databaseId: string
   id: string
+  excerpt: string
   featuredImage: any
 }
 
@@ -45,6 +46,7 @@ const AcfNewsListing = (props: AcfNewsListingProps) => {
           date: article.date,
           link: article.link,
           uri: article.uri,
+          excerpt: article.excerpt,
           featuredImage: article.featuredImage
         })
       })
@@ -65,6 +67,7 @@ const AcfNewsListing = (props: AcfNewsListingProps) => {
         date: article.date,
         link: article.link,
         uri: article.uri,
+        excerpt: article.excerpt,
         featuredImage: article.featuredImage
       })
     })
@@ -107,6 +110,7 @@ const newsFragment = gql`
     title
     databaseId
     id
+    excerpt
     featuredImage {
       node {
         altText

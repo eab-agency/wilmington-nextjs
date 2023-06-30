@@ -1,6 +1,8 @@
-import NewsPost from '@/components/archive/NewsPost'
+import NewsPostCard from '@/components/archive/NewsPostCard'
+import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import getEventsListingData from '@/functions/wordpress/events/getEventsListingData'
 import getNewsListingData from '@/functions/wordpress/news/getNewsListingData'
+import { className } from 'classnames/bind'
 
 const NewsAndEventsPage = async () => {
   const news = await getNewsListingData()
@@ -12,27 +14,40 @@ const NewsAndEventsPage = async () => {
 
   return (
     <div className="news-and-events">
-      <h1>News and Events</h1>
+      <header className="newsPageHead">
+        <h1>News and Events</h1>
+        {/* <Breadcrumbs breadcrumbs={props.post.seo.breadcrumbs} /> */}
+      </header>
       <section className="newsGroup">
-        <h2>News</h2>
+        <header className="newsSectionHead">
+          <h2>News</h2>
+        </header>
         <div className="group">
-          <NewsPost post={firstNewsItem} ctx={undefined} showImage={true} />
+          <NewsPostCard
+            className="highlightedPost"
+            post={firstNewsItem}
+            ctx={undefined}
+            showImage={true}
+          />
           {restOfNews &&
             restOfNews.length > 0 &&
             restOfNews.map((item, index) => (
-              <NewsPost key={index} post={item} showImage={true} />
+              <NewsPostCard key={index} post={item} showImage={true} />
             ))}
         </div>
       </section>
       <section className="eventsGroup">
         <h2>Events</h2>
         <div className="group">
-          <NewsPost post={firstEventItem} ctx={undefined} showImage={true} />
-          {/* <h2>rest of the events</h2> */}
+          <NewsPostCard
+            post={firstEventItem}
+            ctx={undefined}
+            showImage={true}
+          />
           {restOfEvents &&
             restOfEvents.length > 0 &&
             restOfEvents.map((item, index) => (
-              <NewsPost key={index} post={item} showImage={true} />
+              <NewsPostCard key={index} post={item} showImage={true} />
             ))}
         </div>
       </section>
