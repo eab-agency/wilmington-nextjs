@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react'
 
 function parseHtml(html) {
-  console.log('🚀 ~ file: BlockHtml.js:5 ~ parseHtml ~ html:', html)
   return new Promise((resolve) => {
     const iframe = document.createElement('iframe')
     iframe.style.display = 'none'
