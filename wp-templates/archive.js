@@ -16,11 +16,13 @@ export default function Archive(props) {
     <>
       <SEO seo={{ title: archiveTitle, description: siteDescription }} />
       <Layout className="thelayoutclass">
-        <article className="inner-wrap">
-          <RichText tag="h1">{label}</RichText>
+        <div className="inner-wrap archive">
+          <RichText className="archiveTitle" tag="h1">
+            {label}
+          </RichText>
           {description && <RichText>{description}</RichText>}
-          <PostsList posts={contentNodes.nodes} />
-        </article>
+          <PostsList className="archiveList" posts={contentNodes.nodes} />
+        </div>
       </Layout>
     </>
   )
@@ -41,6 +43,7 @@ Archive.query = gql`
         __typename
         uri
         description
+
         contentNodes {
           nodes {
             id
@@ -57,6 +60,16 @@ Archive.query = gql`
             ... on StudentOrg {
               orgFields {
                 quickFacts
+              }
+              featuredImage {
+                node {
+                  sourceUrl(size: THUMBNAIL)
+                  altText
+                  mediaDetails {
+                    width
+                    height
+                  }
+                }
               }
             }
           }
