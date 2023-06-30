@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 
 function parseHtml(html) {
+  console.log('🚀 ~ file: BlockHtml.js:5 ~ parseHtml ~ html:', html)
   return new Promise((resolve) => {
     const iframe = document.createElement('iframe')
     iframe.style.display = 'none'
@@ -13,7 +14,9 @@ function parseHtml(html) {
       const scriptTags =
         iframe.contentWindow.document.querySelectorAll('script')
       scriptTags.forEach((scriptTag) => {
-        scriptTag.removeAttribute('src')
+        const newScriptTag = document.createElement('script')
+        newScriptTag.src = scriptTag.src
+        document.body.appendChild(newScriptTag)
       })
       const parsedHtml = iframe.contentWindow.document.documentElement.innerHTML
       document.body.removeChild(iframe)
