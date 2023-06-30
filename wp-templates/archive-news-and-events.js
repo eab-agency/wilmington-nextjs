@@ -153,6 +153,7 @@ NewsArchive.query = gql`
     news(first: 5) {
       nodes {
         ...FeaturedImageFragment
+        excerpt
         date
         title
         uri
@@ -161,6 +162,7 @@ NewsArchive.query = gql`
     events(first: 5) {
       nodes {
         ...FeaturedImageFragment
+        excerpt
         date
         title
         uri
