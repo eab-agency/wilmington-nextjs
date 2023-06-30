@@ -8,7 +8,7 @@ import { gql, useQuery } from '@apollo/client'
 import * as MENUS from '../../constants/menus'
 import styles from './Layout.module.scss'
 
-import { cantarell, icomoon, museo, robotoSlab } from '@/app/fonts'
+import { cantarell, icomoon, museo, robotoSlab } from '@/fonts'
 
 /**
  * Render the Layout component.
