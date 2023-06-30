@@ -29,12 +29,12 @@ const NewsPost = ({
       <div className="newsContentContainer">
         <TheDate date={date} />
         <h3 className="articleTitle">{title}</h3>
-        <p>
+        {/* <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum vero
           non rerum tenetur dolorem vel sunt inventore, neque natus omnis,
           perspiciatis corrupti dicta delectus nihil iure, voluptatibus pariatur
           id obcaecati.
-        </p>
+        </p> */}
         <Button
           className="articleLink"
           url={uri}
