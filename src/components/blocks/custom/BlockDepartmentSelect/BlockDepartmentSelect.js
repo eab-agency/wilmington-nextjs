@@ -2,7 +2,8 @@
 
 import Image from '@/components/atoms/Image'
 import Link from '@/components/common/Link'
-import RelatedProgramCard from '@/components/molecules/RelatedProgramCard'
+import ResultProgramCard from '@/components/molecules/ResultProgramCard'
+import { className } from 'classnames/bind'
 import React, { useEffect, useState } from 'react'
 
 const DepartmentSingle = ({ department }) => {
@@ -20,7 +21,7 @@ const DepartmentSingle = ({ department }) => {
   )
 
   return (
-    <article key={name} className="department">
+    <section key={name} className="department">
       <header className="departmentHead">
         {deptImage && (
           <Image
@@ -29,28 +30,30 @@ const DepartmentSingle = ({ department }) => {
             imageMeta={{ mediaDetails: deptImage.mediaDetails }}
           />
         )}
-        <h2>
-          <Link href={uri}>{name}</Link>
-        </h2>
-        <p>{description}</p>
-        {filteredPrograms.length > 0 && (
-          <>
-            <h3>Programs</h3>
-            <ul>
-              {filteredPrograms.map((program) => (
-                <li key={program.uri}>
-                  <RelatedProgramCard
-                    title={program.title}
-                    link={program.uri}
-                    excerpt={program.excerpt}
-                  />
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-      </article>
-    </div>
+        <div className="departmentInfo">
+          <h2>
+            <Link href={uri}>{name}</Link>
+          </h2>
+          <p>{description}</p>
+        </div>
+      </header>
+      {filteredPrograms.length > 0 && (
+        <>
+          <h3 className="programsSubtitle">Programs</h3>
+          <ul className="programsList">
+            {filteredPrograms.map((program) => (
+              <li key={program.uri}>
+                <ResultProgramCard
+                  title={program.title}
+                  link={program.uri}
+                  excerpt={program.excerpt}
+                />
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </section>
   )
 }
 
@@ -132,7 +135,9 @@ export default function BlockDepartmentSelect({ programDepartments }) {
         </div>
       </div>
       <div className="departmentResults">
-        <DepartmentListing department={selectedDepartmentInfo} />
+        <div className="departmentsContainer">
+          <DepartmentListing department={selectedDepartmentInfo} />
+        </div>
       </div>
     </section>
   )
