@@ -31,10 +31,8 @@ const DepartmentSingle = ({ department }) => {
           />
         )}
         <div className="departmentInfo">
-          <h2>
-            <Link href={uri}>{name}</Link>
-          </h2>
-          <p>{description}</p>
+          <h2>{name}</h2>
+          <div dangerouslySetInnerHTML={{ __html: description }} />
         </div>
       </header>
       {filteredPrograms.length > 0 && (
