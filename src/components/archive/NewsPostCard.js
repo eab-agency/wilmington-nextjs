@@ -29,7 +29,7 @@ const NewsPost = ({
       <div className="newsContentContainer">
         <TheDate date={date} />
         <h3 className="articleTitle">{title}</h3>
-        <p dangerouslySetInnerHTML={{ __html: excerpt }}></p>
+        <p dangerouslySetInnerHTML={{ __html: excerpt }} />
         <Button
           className="articleLink"
           url={uri}
