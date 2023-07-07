@@ -63,7 +63,7 @@
     "postcss-nested": "^6.0.1",
     "prettier": "^2.8.7",
     "sharp": "^0.32.0",
-    "stylelint": "^15.3.0",
+    "stylelint": "^15.10.1",
     "stylelint-config-standard": "^31.0.0",
     "stylelint-scss": "^4.6.0"
   }
