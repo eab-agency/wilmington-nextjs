@@ -16,7 +16,6 @@ const Citation = (fullName, desc) => {
 }
 
 function Testimonial({ post, viewAllLink, imageOnly, featuredTestimonial }) {
-  console.log('🚀 ~ file: Testimonial.js:18 ~ Testimonial ~ post:', post)
   // if no post, return null
   if (!post || Object.keys(post).length === 0 || !post.featuredImage?.node) {
     return null
