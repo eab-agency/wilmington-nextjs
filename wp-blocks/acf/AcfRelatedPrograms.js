@@ -33,7 +33,7 @@ export default function AcfRelatedPrograms() {
 
   // filter out the current program and programs that are child pages
   const filteredPrograms = flattenedPrograms.filter(
-    (program) => program.id !== currentProgramId && program.ancestors !== null
+    (program) => program.id !== currentProgramId && program.ancestors === null
   )
 
   return <BlockRelatedPrograms departments={filteredPrograms} />
