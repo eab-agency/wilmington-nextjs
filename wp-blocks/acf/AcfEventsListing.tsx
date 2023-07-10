@@ -40,10 +40,16 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
       : idsData.eventCategory.events.nodes
     if (nodes.length > 0) {
       nodes.forEach((event: Event) => {
+        const [year, month, day] = event.eventsFields.event.startDate.split('-')
+        const startDate = new Date(
+          parseInt(year),
+          parseInt(month) - 1,
+          parseInt(day)
+        )
         posts.push({
           id: event.id,
           title: event.title,
-          date: event.eventsFields.event.startDate,
+          date: startDate,
           link: event.link,
           uri: event.uri
         })
@@ -59,10 +65,17 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
 
   if (latestData && latestData.events.length > 0) {
     latestData.events.forEach((event: Event) => {
+      const [year, month, day] = event.eventsFields.event.startDate.split('-')
+      const startDate = new Date(
+        parseInt(year),
+        parseInt(month) - 1,
+        parseInt(day)
+      )
+
       posts.push({
         id: event.id,
         title: event.title,
-        date: event.eventsFields.event.startDate,
+        date: startDate,
         link: event.link,
         uri: event.uri
       })
@@ -72,8 +85,11 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   const currentDate = new Date()
 
   const futureEvents = posts.filter((post) => {
-    const postDate = new Date(post.date)
-    return postDate >= currentDate
+    return post.date >= currentDate
+  })
+
+  const sortedFutureEvents = futureEvents.sort((post1, post2) => {
+    return post1.date - post2.date
   })
 
   if (idsLoading || latestLoading) return <p>Loading...</p>
@@ -84,7 +100,7 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   return (
     <>
       <EventsListing
-        posts={futureEvents}
+        posts={sortedFutureEvents}
         listing_title={listing_title}
         listing_display={listing_display}
         showImage={false}
