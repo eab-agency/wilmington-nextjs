@@ -1,27 +1,26 @@
 import { gql } from '@apollo/client'
 // import { Container, Footer, Header, Hero, Main, SEO } from '../components'
 import { SEO } from '@/components'
-import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero/PageHero'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
-import { WordPressBlocksViewer } from '@faustwp/blocks'
-import { flatListToHierarchical } from '@faustwp/core'
 import blocks from '../wp-blocks'
 
 export default function Component(props) {
-  const { title, editorBlocks, seo, featuredImage } = props.data.nodeByUri
-  const blocks = flatListToHierarchical(editorBlocks)
+  const { content, featuredImage, testimonialFields } = props.data.nodeByUri
 
-  const { title: siteTitle, description: siteDescription } =
-    props?.data?.generalSettings ?? {}
+  const { testimonial } = testimonialFields
+  const title = `${testimonial?.first} ${testimonial?.last}`
+  const { description: siteDescription } = props?.data?.generalSettings ?? {}
 
   return (
     <>
-      <SEO title={siteTitle} description={siteDescription} />
+      <SEO
+        seo={{ title: `Testimony of ${title}`, description: siteDescription }}
+      />
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
@@ -32,7 +31,7 @@ export default function Component(props) {
               text={title}
             />
             <div className="page-content">
-              <WordPressBlocksViewer blocks={blocks} />
+              <div dangerouslySetInnerHTML={{ __html: content }} />
             </div>
           </article>
         </Container>
@@ -54,34 +53,23 @@ Component.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
 
-  # Get all block fragments and add them to the query
-  ${getFragmentDataFromBlocks(blocks).entries}
-
   query GetSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
     nodeByUri(uri: $uri) {
-      ... on NodeWithTitle {
-        title
+      ... on Testimonial {
+        content
+        testimonialFields {
+          testimonial {
+            desc
+            first
+            last
+          }
+        }
       }
       ... on NodeWithFeaturedImage {
         ...FeaturedImageFragment
       }
-      ... on NodeWithEditorBlocks {
-        # Get contentBlocks with flat=true and the nodeId and parentId
-        # so we can reconstruct them later using flatListToHierarchical()
-        editorBlocks {
-          cssClassNames
-          isDynamic
-          name
-          id: clientId
-          parentId: parentClientId
-          renderedHtml
-
-          # Get all block fragment keys and call them in the query
-          ${getFragmentDataFromBlocks(blocks).keys}
-        }
-      }
     }
-     generalSettings {
+    generalSettings {
       ...BlogInfoFragment
     }
   }
