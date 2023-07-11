@@ -47,11 +47,11 @@ export default function Component(props) {
                       Email: {faculty.email}
                     </div>
                   ) : null}
-                  {faculty.location ? (
+                  {/* {faculty.location ? (
                     <div className="facultyDataLine location">
                       Location: {faculty.location}
                     </div>
-                  ) : null}
+                  ) : null} */}
                   {faculty.phone ? (
                     <div className="facultyDataLine phone">
                       Phone: {faculty.phone}

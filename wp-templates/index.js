@@ -8,6 +8,7 @@ import SingleEvent from './single-event'
 import SingleFaculty from './single-faculty'
 import SingleNews from './single-news'
 import SingleProgram from './single-program'
+import SingleTestimonial from './single-testimonial'
 import TaxonomyDepartment from './taxonomy-department'
 
 const templates = {
@@ -22,6 +23,7 @@ const templates = {
   'single-faculty': SingleFaculty,
   'single-event': SingleEvent,
   'single-news': SingleNews,
+  'single-testimonial': SingleTestimonial,
   'taxonomy-department': TaxonomyDepartment
 }
 
