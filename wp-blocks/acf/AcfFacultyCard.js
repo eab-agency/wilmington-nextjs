@@ -68,7 +68,7 @@ AcfFacultyCard.fragments = {
 
 const FACULTY_QUERY = gql`
   ${FeaturedImage.fragments.entry}
-  query GetFacultyData($ids: [ID!]!, $imageSize: MediaItemSizeEnum = MEDIUM) {
+  query GetFacultyData($ids: [ID!]!, $imageSize: MediaItemSizeEnum = LARGE) {
     facultyMember(where: { in: $ids }) {
       nodes {
         id

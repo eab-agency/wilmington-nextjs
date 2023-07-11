@@ -2,6 +2,7 @@
 import Button from '@/components/atoms/Buttons/Button'
 import Image from '@/components/atoms/Image'
 import Quote from '@/components/atoms/Quote'
+import Link from '@/components/common/Link'
 import cn from 'classnames'
 import styles from './Testimonial.module.scss'
 
@@ -43,6 +44,7 @@ function Testimonial({ post, viewAllLink, imageOnly, featuredTestimonial }) {
         <>
           <Quote
             citation={Citation(fullName, desc)}
+            link={post?.uri}
             className={styles.quoteText}
           >
             <span
