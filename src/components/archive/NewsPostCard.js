@@ -2,7 +2,6 @@
 import Button from '@/components/atoms/Buttons/Button'
 import Image from '@/components/atoms/Image'
 import TheDate from '@/components/atoms/TheDate'
-import { className } from 'classnames/bind'
 
 const NewsPost = ({
   isFirst = false,
@@ -23,7 +22,7 @@ const NewsPost = ({
 
   return (
     <article className={className} {...props}>
-      {!isFrontPage && sourceUrl ? (
+      {!isFrontPage && sourceUrl && showImage ? (
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
       ) : null}
       <div className="newsContentContainer">

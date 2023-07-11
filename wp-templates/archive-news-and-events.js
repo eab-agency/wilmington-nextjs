@@ -15,7 +15,9 @@ export default function NewsArchive(props) {
 
   const archiveTitle = `Wilmington College News & Events`
 
-  const [firstNewsItem, ...restOfNews] = news.nodes // Destructure the first item from the array
+  const firstNewsItem = news.nodes[0]
+  const restOfNews = news.nodes.slice(1, -5) // Destructure the rest of the items
+  const [...lastFiveNews] = news.nodes.slice(-5) // Destructure the five items
 
   const [firstEventItem, ...restOfEvents] = events.nodes // Destructure the first item from the array
 
@@ -64,9 +66,21 @@ export default function NewsArchive(props) {
                         <NewsPostCard
                           key={index}
                           post={item}
-                          showImage={true}
+                          showImage={false}
                         />
                       ))}
+                    <div>
+                      <h3>Latest News</h3>
+                      {lastFiveNews &&
+                        lastFiveNews.length > 0 &&
+                        lastFiveNews.map((item, index) => (
+                          <NewsPostCard
+                            key={index}
+                            post={item}
+                            showImage={false}
+                          />
+                        ))}
+                    </div>
                   </div>
                 </section>
                 <section className="eventsGroup">
@@ -150,7 +164,7 @@ NewsArchive.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
   query getNewsAndEvents($imageSize: MediaItemSizeEnum = MEDIUM) {
-    news(first: 5) {
+    news(first: 10) {
       nodes {
         ...FeaturedImageFragment
         excerpt
