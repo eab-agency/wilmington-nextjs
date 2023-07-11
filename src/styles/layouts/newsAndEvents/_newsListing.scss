@@ -134,7 +134,7 @@
         @media (min-width: tokens.$mq-1200) {
           flex: 1 1 auto;
           flex-direction: column;
-          gap: tokens.$m-xl;
+          // gap: tokens.$m-xl;
 
           li {
             min-width: 100%;
