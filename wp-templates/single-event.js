@@ -43,7 +43,7 @@ export default function SingleEvent(props) {
                   <div>The start-date: {event.startDate}</div>
                   <div>The start-time: {event.startTime}</div>
                 </div>
-                <div classname="eventEndDate">
+                <div className="eventEndDate">
                   <div>The end-date: {event.endDate}</div>
                   <div>The end-time: {event.endTime}</div>
                 </div>
