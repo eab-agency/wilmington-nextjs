@@ -54,7 +54,8 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
             title: event.title,
             date: startDate,
             link: event.link,
-            uri: event.uri
+            uri: event.uri,
+            eventsFields: event.eventsFields
           })
         }
       })
@@ -82,7 +83,8 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
           title: event.title,
           date: startDate,
           link: event.link,
-          uri: event.uri
+          uri: event.uri,
+          eventsFields: event.eventsFields
         })
       }
     })

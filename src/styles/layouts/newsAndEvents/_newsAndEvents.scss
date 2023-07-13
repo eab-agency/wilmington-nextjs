@@ -33,7 +33,7 @@
       gap: clamp(1rem, 2vw, 2rem);
 
       article {
-        flex: 1 1 18rem;
+        // flex: 1 1 18rem;
         padding: clamp(1rem, 2vw, 2rem);
         background: tokens.$c-gray-200;
 
@@ -138,12 +138,15 @@
     }
 
     .group {
-      display: flex;
-      flex-flow: row wrap;
+      // display: flex;
+      // flex-flow: row wrap;
+      // gap: clamp(1rem, 2vw, 2rem);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
       gap: clamp(1rem, 2vw, 2rem);
 
       article {
-        flex: 1 1 18rem;
+        // flex: 1 1 18rem;
         padding: clamp(1rem, 2vw, 2rem);
         background: tokens.$c-gray-700;
 
@@ -162,10 +165,6 @@
 
         a {
           color: tokens.$c-teal-300;
-        }
-
-        &:last-child {
-          flex-grow: 0;
         }
       }
     }
