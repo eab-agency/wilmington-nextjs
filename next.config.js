@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const fetchRedirects = require('./src/lib/wordpress/fetchRedirects')
+// const fetchRedirects = require('./src/lib/wordpress/fetchRedirects')
 const { withFaust, getWpHostname } = require('@faustwp/core')
 
 const path = require('path')
@@ -10,9 +10,9 @@ const nextConfig = {
     appDir: true
   },
   async redirects() {
-    const redirects = await fetchRedirects()
+    // const redirects = await fetchRedirects()
     return [
-      ...redirects,
+      // ...redirects,
       {
         source: '/programs',
         destination: '/academics/program-directory',
