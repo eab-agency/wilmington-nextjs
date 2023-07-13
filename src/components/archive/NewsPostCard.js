@@ -29,7 +29,8 @@ const NewsPost = ({
       <div className="newsContentContainer">
         <TheDate date={date} />
         <h3 className="articleTitle">{title}</h3>
-        <p dangerouslySetInnerHTML={{ __html: excerpt }}></p>
+        {/* the below cannot be set to a paragraph because excerpt could have a <p> tag and that is not allowed so react throws an error */}
+        <div dangerouslySetInnerHTML={{ __html: excerpt }}></div>
         <Button
           className="articleLink"
           url={uri}

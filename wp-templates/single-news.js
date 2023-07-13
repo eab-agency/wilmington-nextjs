@@ -15,9 +15,6 @@ export default function SingleNews(props) {
     props.data.nodeByUri
   const blocks = flatListToHierarchical(editorBlocks)
 
-  const { title: siteTitle, description: siteDescription } =
-    props?.data?.generalSettings ?? {}
-
   return (
     <>
       <SEO seo={seo} />
@@ -98,9 +95,6 @@ SingleNews.query = gql`
           ${getFragmentDataFromBlocks(blocks).keys}
         }
       }
-    }
-     generalSettings {
-      ...BlogInfoFragment
     }
   }
 `
