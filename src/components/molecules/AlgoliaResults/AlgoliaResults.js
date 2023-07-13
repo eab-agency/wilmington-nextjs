@@ -1,12 +1,11 @@
-import React from 'react'
 import { useWordPressContext } from '@/components/common/WordPressProvider'
 import { searchResultsClient } from '@/lib/algolia/connector'
+import React from 'react'
 import { Configure, InstantSearch } from 'react-instantsearch-dom'
+import Search from '../AlgoliaSearch/components/Search'
 import * as styles from './AlgoliaResults.module.scss'
 import NoResults from './templates/NoResults'
 import SearchResults from './templates/SearchResults'
-
-// TODO: Create Storybook for this component.
 
 /**
  * Render the AlgoliaResults component.
@@ -34,6 +33,7 @@ export default function AlgoliaResults({
           searchClient={config.query !== '' ? searchResultsClient : ''}
           indexName={algolia?.indexName}
         >
+          <Search indexName={algolia?.indexName} query={config.query} />
           <Configure {...config} />
           <SearchResults indexName={algolia?.indexName} />
         </InstantSearch>
