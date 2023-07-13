@@ -115,6 +115,10 @@
         a {
           color: tokens.$c-teal-300;
         }
+
+        &:last-child {
+          flex-grow: 0;
+        }
       }
     }
   }
