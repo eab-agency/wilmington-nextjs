@@ -1,7 +1,6 @@
 import { SEO } from '@/components'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
-import Image from '@/components/atoms/Image'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero/PageHero'
@@ -10,10 +9,11 @@ import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentD
 import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
+import RichText from '../src/components/atoms/RichText/RichText'
 import blocks from '../wp-blocks'
 
 export default function SingleEvent(props) {
-  const { editorBlocks, seo, featuredImage, eventsFields, terms } =
+  const { editorBlocks, seo, featuredImage, eventsFields, terms, title } =
     props.data.nodeByUri
 
   const blocks = flatListToHierarchical(editorBlocks)
@@ -26,16 +26,20 @@ export default function SingleEvent(props) {
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
+            <RichText className="archiveTitle" tag="h1">
+              {title}
+            </RichText>
             {featuredImage && (
-              <Image
-                id="featured-img"
-                url={featuredImage.node.sourceUrl}
-                alt={featuredImage.node.altText}
-                width="300"
-                height="200"
+              <PageHero
+                sourceUrl={featuredImage?.node?.sourceUrl}
+                alt={featuredImage?.node?.altText}
+                imageMeta={featuredImage?.node?.mediaDetails}
+                text={title}
+                pageType="event"
               />
             )}
             <div className="page-content">
+              <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
               <WordPressBlocksViewer blocks={blocks} />
             </div>
             <p>The location address: {event.locationAddress}</p>
