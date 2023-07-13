@@ -2,9 +2,8 @@
 import Button from '@/components/atoms/Buttons/Button'
 import Image from '@/components/atoms/Image'
 import TheDate from '@/components/atoms/TheDate'
-import Link from 'next/link'
 
-const NewsPost = ({
+const NewsListCard = ({
   isFirst = false,
   post,
   className = null,
@@ -23,27 +22,19 @@ const NewsPost = ({
 
   return (
     <article
-      className={`${className !== null ? className : ''} newsPostCard`}
+      className={`${className !== null ? className : ''} newsListCard`}
       {...props}
     >
-      {!isFrontPage && sourceUrl && showImage ? (
-        <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
-      ) : null}
       <div className="newsContentContainer">
-        <TheDate date={date} />
-        <Link href={uri} className="articleTitle">
-          <h3>{title}</h3>
-        </Link>
-        <p dangerouslySetInnerHTML={{ __html: excerpt }} />
         <Button
-          className="articleLink"
+          className="articleTitle"
           url={uri}
           type="regularlink"
-          text="Read More"
+          text={title}
         />
       </div>
     </article>
   )
 }
 
-export default NewsPost
+export default NewsListCard

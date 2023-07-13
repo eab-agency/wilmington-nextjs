@@ -68,6 +68,15 @@
           h3 {
             color: tokens.$c-white;
           }
+
+          .articleTitle {
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+              color: tokens.$c-white;
+            }
+          }
         }
 
         &::after {

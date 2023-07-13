@@ -1,8 +1,10 @@
 @use 'tokens';
 
 .theTime {
+  display: block;
   color: tokens.$c-limeGreen-400;
-  font-size: tokens.$fs-3xs;
+  font-size: tokens.$fs-xs;
   font-weight: tokens.$fw-bold;
   text-transform: uppercase;
+  margin-bottom: 1em;
 }

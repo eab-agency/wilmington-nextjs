@@ -1,5 +1,6 @@
 import { SEO } from '@/components'
 import EventsPostCard from '@/components/archive/EventsPostCard'
+import NewsListCard from '@/components/archive/NewsListCard'
 import NewsPostCard from '@/components/archive/NewsPostCard'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import RichText from '@/components/atoms/RichText'
@@ -7,6 +8,7 @@ import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import { gql } from '@apollo/client'
+import { className } from 'classnames/bind'
 
 export default function NewsArchive(props) {
   const { news, events } = props.data
@@ -70,12 +72,12 @@ export default function NewsArchive(props) {
                           showImage={false}
                         />
                       ))}
-                    <div>
-                      <h3>Latest News</h3>
+                    <div className="moreNews">
+                      <h3>More News</h3>
                       {lastFiveNews &&
                         lastFiveNews.length > 0 &&
                         lastFiveNews.map((item, index) => (
-                          <NewsPostCard
+                          <NewsListCard
                             key={index}
                             post={item}
                             showImage={false}
