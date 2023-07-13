@@ -1,21 +1,12 @@
 'use client'
 
+import { useWordPressContext } from '@/components/common/WordPressProvider'
 import parseQuerystring from '@/functions/parseQuerystring'
 import cn from 'classnames'
 import { useEffect, useRef, useState } from 'react'
 import * as styles from './AlgoliaSearch.module.scss'
 import Search from './components/Search'
 import SearchPlaceholder from './components/SearchPlaceholder'
-
-// /**
-//  * This always throws an error: Component definition is missing display name.
-//  * Error also appears when using the NextJS example.
-//  *
-//  * @see https://nextjs.org/docs/advanced-features/dynamic-import#with-custom-loading-component
-//  */
-// const Search = dynamic(() => import('./components/Search'), {
-//   loading: () => <SearchPlaceholder /> // eslint-disable-line
-// })
 
 /**
  * Render the AlgoliaSearch component.
@@ -31,10 +22,8 @@ function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
   const query = path.includes('q=') ? parseQuerystring(path, 'q') : '' // Parse the querystring.
   const [loadAlgolia, setLoadAlgolia] = useState(false)
   const searchRef = useRef()
-  // const { algolia } = useWordPressContext()
-  const algolia = {
-    indexName: 'wp_searchable_posts'
-  }
+
+  const { algolia } = useWordPressContext()
 
   /**
    * Add a class to the body when the Algolia search is open.
