@@ -9,6 +9,7 @@ import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentD
 import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
+import Head from 'next/head'
 import RichText from '../src/components/atoms/RichText/RichText'
 import blocks from '../wp-blocks'
 
@@ -23,6 +24,37 @@ export default function SingleEvent(props) {
   return (
     <>
       <SEO seo={seo} />
+      <Head>
+        {/* add json-ld for this event */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Event',
+              name: title,
+              startDate: event.startDate,
+              endDate: event.endDate,
+              eventAttendanceMode:
+                'https://schema.org/OnlineEventAttendanceMode',
+              eventStatus: 'https://schema.org/EventScheduled',
+              location: {
+                '@type': 'Place',
+                name: event.locationName,
+                address: {
+                  '@type': 'PostalAddress',
+                  addressLocality: event.locationName,
+                  addressRegion: 'OH',
+                  postalCode: '45177',
+                  streetAddress: event.locationAddress
+                }
+              },
+              image: featuredImage?.node?.sourceUrl,
+              description: seo.metaDesc
+            })
+          }}
+        />
+      </Head>
       <Layout className="thelayoutclass">
         <div className="events-article">
           <article className="inner-wrap">
