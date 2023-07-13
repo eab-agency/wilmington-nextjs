@@ -1,6 +1,22 @@
 import Link from 'next/link'
 
 const CommonLink = ({ children, href, ...others }) => {
+  // check if the link linking to a file and then use the wp url
+  if (href.includes('/wp-content/')) {
+    const strippedHref = href.substring(href.indexOf('/wp-content/'))
+    const modifiedHref = `https://wordpress.wilmington.edu${strippedHref}`
+    return (
+      <a
+        href={modifiedHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...others}
+      >
+        {children}
+      </a>
+    )
+  }
+
   // check if the link is an internal link and then use GatsbyLink
   const isInternalLink = /^\/(?!\/)/.test(href)
   if (isInternalLink) {
@@ -16,28 +32,11 @@ const CommonLink = ({ children, href, ...others }) => {
   // const isLocalLink = /^http:\/\/wilmingtonlocal\.local(\/)?/.test(to);
   const isLocalLink = regex.test(href)
   if (isLocalLink) {
-    let url = href
-
-    if (
-      href.includes('wilmington.vercel.app/wp-content/') ||
-      href.includes('wilmington.edu/wp-content/')
-    ) {
-      url = href.replace(
-        /wilmington\.(vercel\.app|edu)\/wp-content\//,
-        'wordpress.wilmington.edu/wp-content/'
-      )
-      return (
-        <a href={url} target="_blank" rel="noopener noreferrer" {...others}>
-          {children}
-        </a>
-      )
-    }
-
-    const localurl = href.replace(regex, '')
+    const url = href.replace(regex, '')
     // console.log('🚀 ~ file: Link.js:25 ~ CommonLink ~ url:', url)
 
     return (
-      <Link href={localurl} {...others}>
+      <Link href={url} {...others}>
         {children}
       </Link>
     )
