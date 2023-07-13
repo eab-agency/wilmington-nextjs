@@ -1,7 +1,5 @@
 import { SEO } from '@/components'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
-import Container from '@/components/atoms/Container'
-import Image from '@/components/atoms/Image'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero/PageHero'
@@ -10,7 +8,6 @@ import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentD
 import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
-import { className } from 'classnames/bind'
 import blocks from '../wp-blocks'
 
 export default function SingleEvent(props) {
@@ -50,13 +47,6 @@ export default function SingleEvent(props) {
                   <div>The location name: {event.locationName}</div>
                   <div>The location address: {event.locationAddress}</div>
                 </div>
-                {/* <div>The field group name: {event.fieldGroupName}</div> */}
-                {/* <div>
-                  The terms:
-                  {termsArray.map((term, index) => (
-                    <span key={index}>{term.name}</span>
-                  ))}
-                </div> */}
               </section>
               <WordPressBlocksViewer blocks={blocks} />
             </div>
