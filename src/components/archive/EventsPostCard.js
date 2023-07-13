@@ -2,7 +2,7 @@
 import Button from '@/components/atoms/Buttons/Button'
 import Image from '@/components/atoms/Image'
 import TheDate from '@/components/atoms/TheDate'
-// import { className } from 'classnames/bind'
+// import { className, className } from 'classnames/bind'
 import EventIcon from '../atoms/EventIcon'
 
 const EventsPost = ({
@@ -40,47 +40,48 @@ const EventsPost = ({
       {!isFrontPage && sourceUrl && showImage ? (
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
       ) : null}
-      <div className="newsContentContainer">
+      <div className="eventContentContainer">
         <TheDate date={startDate} />
         <h3 className="articleTitle">{title}</h3>
-        {startTime && !endTime ? (
-          <p>
-            <EventIcon icon="time" />
-            {startTime}
-          </p>
-        ) : (
-          <p>
-            <EventIcon icon="time" />
-            {startTime} - {endTime}
-          </p>
-        )}
-        {endDate && (
-          <p>
-            Ends:
-            <EventIcon icon="calendar" />
-            {endDate}
-          </p>
-        )}
-        {endTime && (
-          <p>
-            <EventIcon icon="location" />
-            {endTime}
-          </p>
-        )}
-        {locationAddress && (
-          <address>
-            <EventIcon icon="location" />
-            <div>
-              {locationName && (
-                <>
-                  <strong>{locationName}</strong>
-                  <br />
-                </>
-              )}
-              <div>{locationAddress}</div>
+        <div className="eventDetails">
+          {startTime && !endTime ? (
+            <div className="eventTime">
+              <EventIcon icon="time" />
+              {startTime}
             </div>
-          </address>
-        )}
+          ) : (
+            <div className="eventTime">
+              <EventIcon icon="time" />
+              {startTime} - {endTime}
+            </div>
+          )}
+          {endDate && (
+            <div className="eventEndDate">
+              <EventIcon icon="calendar" />
+              Ends on {endDate}
+            </div>
+          )}
+          {endTime && (
+            <div className="eventLocation">
+              <EventIcon icon="location" />
+              {endTime}
+            </div>
+          )}
+          {locationAddress && (
+            <address>
+              <EventIcon icon="location" />
+              <div>
+                {locationName && (
+                  <>
+                    <strong>{locationName}</strong>
+                    <br />
+                  </>
+                )}
+                <div>{locationAddress}</div>
+              </div>
+            </address>
+          )}
+        </div>
         {featured && <p>{featured}</p>}
         <Button
           className="articleLink"

@@ -15,10 +15,18 @@ export default function EventIcon(props) {
       </i>
     )
   } else if (icon === 'location') {
-    return <MdLocationPin />
+    return (
+      <i>
+        <MdLocationPin />
+      </i>
+    )
   } else if (icon === 'time') {
-    return <MdAccessTime />
+    return (
+      <i>
+        <MdAccessTime />
+      </i>
+    )
   } else {
-    return <div>the icon</div>
+    return null
   }
 }
