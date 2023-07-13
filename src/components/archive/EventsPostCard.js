@@ -2,7 +2,7 @@
 import Button from '@/components/atoms/Buttons/Button'
 import Image from '@/components/atoms/Image'
 import TheDate from '@/components/atoms/TheDate'
-// import { className, className } from 'classnames/bind'
+import Link from 'next/link'
 import EventIcon from '../atoms/EventIcon'
 
 const EventsPost = ({
@@ -42,7 +42,9 @@ const EventsPost = ({
       ) : null}
       <div className="eventContentContainer">
         <TheDate date={startDate} />
-        <h3 className="articleTitle">{title}</h3>
+        <Link href={uri} className="articleTitle">
+          <h3>{title}</h3>
+        </Link>
         <div className="eventDetails">
           {startTime && !endTime ? (
             <div className="eventTime">
