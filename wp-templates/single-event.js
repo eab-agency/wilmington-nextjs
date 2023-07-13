@@ -38,6 +38,7 @@ export default function SingleEvent(props) {
                 pageType="event"
               />
             )}
+            {!featuredImage && <RichText tag="h1">{title}</RichText>}
             <div className="page-content">
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
               <WordPressBlocksViewer blocks={blocks} />

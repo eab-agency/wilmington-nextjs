@@ -12,6 +12,7 @@ import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentD
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
 import { className } from 'classnames/bind'
+import RichText from '../src/components/atoms/RichText/RichText'
 import blocks from '../wp-blocks'
 
 export default function Component(props) {
@@ -39,6 +40,8 @@ export default function Component(props) {
                 pageType="faculty"
               />
             )}
+            {!featuredImage && <RichText tag="h1">{title}</RichText>}
+
             <div className="page-content">
               <div className="facultyContent">
                 <div className="facultyData">
