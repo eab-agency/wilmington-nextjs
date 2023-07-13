@@ -51,12 +51,12 @@ export default function SingleEvent(props) {
                   <div>The location address: {event.locationAddress}</div>
                 </div>
                 {/* <div>The field group name: {event.fieldGroupName}</div> */}
-                <div>
+                {/* <div>
                   The terms:
                   {termsArray.map((term, index) => (
                     <span key={index}>{term.name}</span>
                   ))}
-                </div>
+                </div> */}
               </section>
               <WordPressBlocksViewer blocks={blocks} />
             </div>
