@@ -134,7 +134,7 @@
         @media (min-width: tokens.$mq-1200) {
           flex: 1 1 auto;
           flex-direction: column;
-          gap: tokens.$m-xl;
+          // gap: tokens.$m-xl;
 
           li {
             min-width: 100%;
@@ -275,6 +275,16 @@ $colors: tokens.$c-limeGreen-300, tokens.$c-white, tokens.$c-gray-200;
       .articleLink {
         color: color.adjust(tokens.$c-teal-800, $lightness: -10%);
       }
+    }
+  }
+}
+
+.newsListCard {
+  background: none;
+  .newsContentContainer {
+    .articleTitle {
+    }
+    .articleLink {
     }
   }
 }

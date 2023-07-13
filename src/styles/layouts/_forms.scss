@@ -94,7 +94,7 @@ input[type='checkbox'] {
   width: 0px;
   height: 0px;
   margin: 0.5em 0 0;
-  opacity: 0;
+  // opacity: 0;
 
   & ~ label,
   & ~ .rte-q-label {
@@ -136,8 +136,27 @@ input[type='checkbox'] {
 // Question Layout
 
 // Basic Question
-.question {
-  margin: 1rem 0;
+.question,
+.fsRow {
+  // margin: 1rem 0;
+  padding-block: 1rem;
+
+  // .fsRowBody {
+  //   display: flex;
+
+  //   & > label {
+  //     display: block;
+  //     padding: 0 0 0.125em;
+  //     line-height: 1.4;
+  //     font-family: tokens.$f-bodyFont;
+  //     flex: 1 1 15rem;
+
+  //     .error &,
+  //     .val-flag & {
+  //       color: tokens.$c-error;
+  //     }
+  //   }
+  // }
 
   // Labels
   & > label,
@@ -146,6 +165,7 @@ input[type='checkbox'] {
     display: block;
     padding: 0 0 0.125em;
     line-height: 1.4;
+    font-family: tokens.$f-bodyFont;
 
     .error &,
     .val-flag & {
@@ -170,8 +190,10 @@ input[type='checkbox'] {
 // Wide Form Layout
 // These styles apply only when the "wide form" layout is in use
 %wide-form,
-.wide-form {
-  .question {
+.wide-form,
+.fsSection {
+  .question,
+  .fsRow {
     margin: 0;
     padding: 1rem 0;
     border-top: 1px solid #ddd;
@@ -285,3 +307,10 @@ form {
   visibility: hidden;
 }
 /* stylelint-enable */
+
+form,
+label,
+input,
+select {
+  font-family: tokens.$f-bodyFont !important;
+}
