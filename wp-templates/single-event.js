@@ -19,7 +19,6 @@ export default function SingleEvent(props) {
   const blocks = flatListToHierarchical(editorBlocks)
 
   const { event } = eventsFields
-  const termsArray = terms.nodes
 
   return (
     <>
@@ -39,19 +38,12 @@ export default function SingleEvent(props) {
             <div className="page-content">
               <WordPressBlocksViewer blocks={blocks} />
             </div>
-            <p>The end-date: {event.endDate}</p>
-            <p>The end-time: {event.endTime}</p>
-            <p>The field group name: {event.fieldGroupName}</p>
             <p>The location address: {event.locationAddress}</p>
             <p>The location name: {event.locationName}</p>
             <p>The start-date: {event.startDate}</p>
+            <p>The end-date: {event.endDate}</p>
             <p>The start-time: {event.startTime}</p>
-            <p>
-              The terms:
-              {termsArray.map((term, index) => (
-                <span key={index}>{term.name}</span>
-              ))}
-            </p>
+            <p>The end-time: {event.endTime}</p>
           </article>
         </Container>
       </Layout>
@@ -84,18 +76,10 @@ SingleEvent.query = gql`
           event {
             endDate
             endTime
-            fieldGroupName
             locationAddress
             locationName
             startDate
             startTime
-          }
-        }
-        terms {
-          nodes {
-            ... on Department {
-              name
-            }
           }
         }
   }
