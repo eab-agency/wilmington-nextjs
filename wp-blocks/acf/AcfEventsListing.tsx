@@ -139,6 +139,12 @@ const eventFragment = gql`
     eventsFields {
       event {
         startDate
+        startTime
+        endDate
+        endTime
+        locationName
+        locationAddress
+        featured
       }
     }
   }

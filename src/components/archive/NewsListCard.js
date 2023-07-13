@@ -17,9 +17,6 @@ const NewsListCard = ({
 
   const { title, date, featuredImage, uri, excerpt } = post
 
-  const { node: { sourceUrl, altText, mediaDetails } = {} } =
-    featuredImage || {}
-
   return (
     <article
       className={`${className !== null ? className : ''} newsListCard`}
