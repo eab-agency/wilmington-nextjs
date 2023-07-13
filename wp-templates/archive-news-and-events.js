@@ -1,4 +1,6 @@
 import { SEO } from '@/components'
+import EventsPostCard from '@/components/archive/EventsPostCard'
+import NewsListCard from '@/components/archive/NewsListCard'
 import NewsPostCard from '@/components/archive/NewsPostCard'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import RichText from '@/components/atoms/RichText'
@@ -15,7 +17,9 @@ export default function NewsArchive(props) {
 
   const archiveTitle = `Wilmington College News & Events`
 
-  const [firstNewsItem, ...restOfNews] = news.nodes // Destructure the first item from the array
+  const firstNewsItem = news.nodes[0]
+  const restOfNews = news.nodes.slice(1, -5) // Destructure the rest of the items
+  const [...lastFiveNews] = news.nodes.slice(-5) // Destructure the five items
 
   const [firstEventItem, ...restOfEvents] = events.nodes // Destructure the first item from the array
 
@@ -64,26 +68,38 @@ export default function NewsArchive(props) {
                         <NewsPostCard
                           key={index}
                           post={item}
-                          showImage={true}
+                          showImage={false}
                         />
                       ))}
+                    <div className="moreNews">
+                      <h3>More News</h3>
+                      {lastFiveNews &&
+                        lastFiveNews.length > 0 &&
+                        lastFiveNews.map((item, index) => (
+                          <NewsListCard
+                            key={index}
+                            post={item}
+                            showImage={false}
+                          />
+                        ))}
+                    </div>
                   </div>
                 </section>
                 <section className="eventsGroup">
                   <h2>Events</h2>
                   <div className="group">
-                    <NewsPostCard
+                    <EventsPostCard
                       post={firstEventItem}
                       ctx={undefined}
-                      showImage={true}
+                      showImage={false}
                     />
                     {restOfEvents &&
                       restOfEvents.length > 0 &&
                       restOfEvents.map((item, index) => (
-                        <NewsPostCard
+                        <EventsPostCard
                           key={index}
                           post={item}
-                          showImage={true}
+                          showImage={false}
                         />
                       ))}
                   </div>
@@ -94,19 +110,19 @@ export default function NewsArchive(props) {
                 <section className="eventsGroup">
                   <h2>Events</h2>
                   <div className="group">
-                    <NewsPostCard
+                    <EventsPostCard
                       className="highlightedPost"
                       post={firstEventItem}
                       ctx={undefined}
-                      showImage={true}
+                      showImage={false}
                     />
                     {restOfEvents &&
                       restOfEvents.length > 0 &&
                       restOfEvents.map((item, index) => (
-                        <NewsPostCard
+                        <EventsPostCard
                           key={index}
                           post={item}
-                          showImage={true}
+                          showImage={false}
                         />
                       ))}
                   </div>
@@ -150,7 +166,7 @@ NewsArchive.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
   query getNewsAndEvents($imageSize: MediaItemSizeEnum = MEDIUM) {
-    news(first: 5) {
+    news(first: 9) {
       nodes {
         ...FeaturedImageFragment
         excerpt
@@ -166,6 +182,17 @@ NewsArchive.query = gql`
         date
         title
         uri
+        eventsFields {
+          event {
+            endDate
+            endTime
+            featured
+            locationAddress
+            locationName
+            startDate
+            startTime
+          }
+        }
       }
     }
     generalSettings {

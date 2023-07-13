@@ -56,33 +56,36 @@ export default function SingleEvent(props) {
         />
       </Head>
       <Layout className="thelayoutclass">
-        <Container>
+        <div className="events-article">
           <article className="inner-wrap">
-            <RichText className="archiveTitle" tag="h1">
-              {title}
-            </RichText>
-            {featuredImage && (
-              <PageHero
-                sourceUrl={featuredImage?.node?.sourceUrl}
-                alt={featuredImage?.node?.altText}
-                imageMeta={featuredImage?.node?.mediaDetails}
-                text={title}
-                pageType="event"
-              />
-            )}
-            {!featuredImage && <RichText tag="h1">{title}</RichText>}
+            <PageHero
+              sourceUrl={featuredImage?.node?.sourceUrl}
+              alt={featuredImage?.node?.altText}
+              imageMeta={featuredImage?.node?.mediaDetails}
+              text={title}
+              pageType="news"
+              newsCategories={event.newsCategories}
+            />
             <div className="page-content">
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+              <section className="eventDetails">
+                <div className="eventStartDate">
+                  <div>The start-date: {event.startDate}</div>
+                  <div>The start-time: {event.startTime}</div>
+                </div>
+                <div className="eventEndDate">
+                  <div>The end-date: {event.endDate}</div>
+                  <div>The end-time: {event.endTime}</div>
+                </div>
+                <div className="eventLocations">
+                  <div>The location name: {event.locationName}</div>
+                  <div>The location address: {event.locationAddress}</div>
+                </div>
+              </section>
               <WordPressBlocksViewer blocks={blocks} />
             </div>
-            <p>The location address: {event.locationAddress}</p>
-            <p>The location name: {event.locationName}</p>
-            <p>The start-date: {event.startDate}</p>
-            <p>The end-date: {event.endDate}</p>
-            <p>The start-time: {event.startTime}</p>
-            <p>The end-time: {event.endTime}</p>
           </article>
-        </Container>
+        </div>
       </Layout>
     </>
   )

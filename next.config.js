@@ -13,6 +13,7 @@ const nextConfig = {
   },
   async redirects() {
     const redirects = await fetchRedirects()
+
     return [
       ...redirects,
       {

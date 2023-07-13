@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import NewsPost from '@/components/archive/NewsPost'
+import EventsPostCard from '@/components/archive/EventsPostCard'
 import Button from '@/components/atoms/Buttons/Button'
 import Heading from '@/components/atoms/Heading'
 import useIsFrontPage from '@/functions/useIsFrontPage'
@@ -32,7 +32,7 @@ function EventsListing({ listing_title, posts, showImage, listing_display }) {
       <ul className="eventsList">
         {posts.map((item, index) => (
           <li key={index}>
-            <NewsPost post={item} ctx={undefined} showImage={showImage} />
+            <EventsPostCard post={item} ctx={undefined} showImage={showImage} />
           </li>
         ))}
       </ul>
