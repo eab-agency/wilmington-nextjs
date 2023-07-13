@@ -13,7 +13,6 @@ const AthleteCard = ({ title, image, description, link }) => {
 
   return (
     <>
-      <pre>FILE: BlockAthleteCard.js</pre>
       <Link href={link}>
         <div onMouseEnter={toggleDescription} onMouseLeave={toggleDescription}>
           <h3>{title}</h3>

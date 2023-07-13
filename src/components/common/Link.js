@@ -12,21 +12,32 @@ const CommonLink = ({ children, href, ...others }) => {
   }
   // const regex2 = /(https?:\/\/(.+?\.)?vercel\.app|wilmington\.edu)/g
   const regex =
-    /https?:\/\/(www\.)?wilmington-nexjs\.vercel\.app|https?:\/\/(www\.)?wilmington\.edu/
+    /https?:\/\/(www\.)?wilmington\.vercel\.app|https?:\/\/(www\.)?wilmington\.edu/
   // const isLocalLink = /^http:\/\/wilmingtonlocal\.local(\/)?/.test(to);
   const isLocalLink = regex.test(href)
-  // console.log(
-  //   '🚀 ~ file: Link.js:16 ~ CommonLink ~ isLocalLink:',
-  //   isLocalLink,
-  //   href
-  // )
-  // https://eab-wilmington-college.pantheonsite.io/2022/11/html-elements/
   if (isLocalLink) {
-    const url = href.replace(regex, '')
+    let url = href
+
+    if (
+      href.includes('wilmington.vercel.app/wp-content/') ||
+      href.includes('wilmington.edu/wp-content/')
+    ) {
+      url = href.replace(
+        /wilmington\.(vercel\.app|edu)\/wp-content\//,
+        'wordpress.wilmington.edu/wp-content/'
+      )
+      return (
+        <a href={url} target="_blank" rel="noopener noreferrer" {...others}>
+          {children}
+        </a>
+      )
+    }
+
+    const localurl = href.replace(regex, '')
     // console.log('🚀 ~ file: Link.js:25 ~ CommonLink ~ url:', url)
 
     return (
-      <Link href={url} {...others}>
+      <Link href={localurl} {...others}>
         {children}
       </Link>
     )

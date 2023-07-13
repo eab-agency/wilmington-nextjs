@@ -20,7 +20,6 @@ export default function SingleEvent(props) {
   const blocks = flatListToHierarchical(editorBlocks)
 
   const { event } = eventsFields
-  const termsArray = terms.nodes
 
   return (
     <>
@@ -93,18 +92,10 @@ SingleEvent.query = gql`
           event {
             endDate
             endTime
-            fieldGroupName
             locationAddress
             locationName
             startDate
             startTime
-          }
-        }
-        terms {
-          nodes {
-            ... on Department {
-              name
-            }
           }
         }
   }

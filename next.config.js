@@ -4,6 +4,8 @@ const { withFaust, getWpHostname } = require('@faustwp/core')
 
 const path = require('path')
 const glob = require('glob')
+const envImageDomains = process.env.NEXT_PUBLIC_IMAGE_DOMAINS
+const imageDomains = envImageDomains ? envImageDomains.split(', ') : []
 
 const nextConfig = {
   experimental: {
@@ -13,6 +15,11 @@ const nextConfig = {
     // const redirects = await fetchRedirects()
     return [
       // ...redirects,
+      {
+        source: '/wp-content/uploads/:slug*',
+        destination: `${getWpHostname()}/wp-content/uploads/:slug*`,
+        permanent: true
+      },
       {
         source: '/programs',
         destination: '/academics/program-directory',
@@ -32,7 +39,7 @@ const nextConfig = {
   },
   reactStrictMode: true,
   images: {
-    domains: [getWpHostname()],
+    domains: [getWpHostname(), ...imageDomains],
     formats: ['image/avif', 'image/webp']
   },
   sassOptions: {
