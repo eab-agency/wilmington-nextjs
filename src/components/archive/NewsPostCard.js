@@ -34,7 +34,7 @@ const NewsPost = ({
         <Link href={uri} className="articleTitle">
           <h3>{title}</h3>
         </Link>
-        <div dangerouslySetInnerHTML={{ __html: excerpt }}></div>
+        {/* <div dangerouslySetInnerHTML={{ __html: excerpt }}></div> */}
         <Button
           className="articleLink"
           url={uri}

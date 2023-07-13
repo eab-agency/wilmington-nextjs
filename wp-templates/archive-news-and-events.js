@@ -8,7 +8,6 @@ import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import { gql } from '@apollo/client'
-import { className } from 'classnames/bind'
 
 export default function NewsArchive(props) {
   const { news, events } = props.data
