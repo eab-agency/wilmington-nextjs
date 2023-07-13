@@ -126,3 +126,25 @@
     }
   }
 }
+
+.eventContentContainer {
+  .eventDetails {
+    color: tokens.$c-gray-400;
+    display: flex;
+    flex-direction: column;
+    // gap: clamp(tokens.$m-s, 1vw, tokens.$m-m);
+
+    i {
+      color: tokens.$c-teal-500;
+      margin-top: 0.1em;
+    }
+
+    & > div,
+    address {
+      display: flex;
+      gap: tokens.$p-xs;
+      border-top: 1px solid rgba(tokens.$c-gray-400, 0.1);
+      padding-block: 0.5em;
+    }
+  }
+}
