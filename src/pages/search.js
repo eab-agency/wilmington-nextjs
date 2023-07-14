@@ -1,6 +1,6 @@
 import Container from '@/components/atoms/Container'
 import Layout from '@/components/common/Layout'
-// import AlgoliaResults from '@/components/molecules/AlgoliaResults'
+import AlgoliaResults from '@/components/molecules/AlgoliaResults'
 import getPagePropTypes from '@/functions/getPagePropTypes'
 import parseQuerystring from '@/functions/parseQuerystring'
 import getPostTypeStaticProps from '@/functions/wordpress/postTypes/getPostTypeStaticProps'
@@ -16,7 +16,7 @@ const postType = 'page'
  * @param  {object}  props.post Post data from WordPress.
  * @return {Element}            The Search component.
  */
-export default function Search({ post }) {
+export default function Search() {
   const router = useRouter()
   const path = router?.asPath // URL from router.
   const query = path.includes('q=') ? parseQuerystring(path, 'q') : '' // Parse the querystring.
@@ -26,9 +26,9 @@ export default function Search({ post }) {
   }
 
   return (
-    <Layout seo={{ ...post?.seo }}>
+    <Layout>
       <Container>
-        {/* <AlgoliaResults config={algoliaConfig} isSearch={true} /> */}
+        <AlgoliaResults config={algoliaConfig} isSearch={true} />
       </Container>
     </Layout>
   )

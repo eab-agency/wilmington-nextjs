@@ -34,22 +34,6 @@ export default function SearchPlaceholder({ toggleAlgolia }) {
             <MdOutlineSearch />
           </span>
         </button>
-
-        {/* Note:  The following seems to be unused*/}
-        {/* <label htmlFor="search" className="sr-only">
-          Enter search term
-        </label>
-        <input
-          id="search"
-          placeholder="Enter search term"
-          readOnly
-          tabIndex="-1"
-          type="search"
-          value={query}
-        />
-        <button aria-label="click to search" disabled tabIndex="-1">
-          <SearchIcon />
-        </button> */}
       </div>
     </div>
   )
