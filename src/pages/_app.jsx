@@ -22,9 +22,7 @@ export default function WilmingtonApp({ Component, pageProps }) {
     'You have what it takes. Apply now!\nhttps://www.wilmington.edu/admission/apply/'
   )
   const router = useRouter()
-  const algolia = {
-    indexName: 'wp_searchable_posts'
-  }
+
   useEffect(() => {
     TagManager.initialize({ gtmId })
   }, [])
