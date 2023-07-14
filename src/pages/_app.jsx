@@ -5,9 +5,12 @@ import { FaustProvider } from '@faustwp/core'
 import '@faustwp/core/dist/css/toolbar.css'
 import { Analytics } from '@vercel/analytics/react'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
+import TagManager from 'react-gtm-module'
 import '../../faust.config'
 import blocks from '../../wp-blocks'
+
+const gtmId = 'GTM-P3X3WCQ'
 
 export default function WilmingtonApp({ Component, pageProps }) {
   console.log(
@@ -18,6 +21,10 @@ export default function WilmingtonApp({ Component, pageProps }) {
     'You have what it takes. Apply now!\nhttps://www.wilmington.edu/admission/apply/'
   )
   const router = useRouter()
+
+  useEffect(() => {
+    TagManager.initialize({ gtmId })
+  }, [])
 
   return (
     <FaustProvider pageProps={pageProps}>
