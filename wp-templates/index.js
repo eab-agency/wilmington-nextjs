@@ -19,7 +19,7 @@ const templates = {
   'archive-news': ArchiveNewsAndEvents,
   'archive-event': ArchiveNewsAndEvents,
   'single-program': SingleProgram,
-  // 'archive-program': ArchiveProgram,
+  'archive-program': ArchiveProgram,
   'single-faculty': SingleFaculty,
   'single-event': SingleEvent,
   'single-news': SingleNews,
