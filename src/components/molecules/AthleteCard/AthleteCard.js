@@ -2,20 +2,13 @@
 
 import Image from '@/components/atoms/Image'
 import Link from '@/components/common/Link'
-import React, { useState } from 'react'
+import React from 'react'
 
 const AthleteCard = ({ title, image, description, link }) => {
-  const [showDescription, setShowDescription] = useState(false)
-
-  const toggleDescription = () => {
-    setShowDescription(!showDescription)
-  }
-
   return (
     <>
-      <Link href={link}>
-        <div onMouseEnter={toggleDescription} onMouseLeave={toggleDescription}>
-          <h3>{title}</h3>
+      <Link href={link} className="athleteCard">
+        <div className="container">
           {image && (
             <Image
               url={image.mediaItemUrl}
@@ -23,7 +16,10 @@ const AthleteCard = ({ title, image, description, link }) => {
               imageMeta={{ mediaDetails: image.mediaDetails }}
             />
           )}
-          {showDescription && <p>{description}</p>}
+          <div className="athleteInfo">
+            <h3>{title}</h3>
+            {description && <p>{description}</p>}
+          </div>
         </div>
       </Link>
     </>
