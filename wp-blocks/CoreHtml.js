@@ -4,6 +4,8 @@ import { gql } from '@apollo/client'
 export default function CoreHtml(props) {
   const attributes = props.attributes
 
+  if (!attributes.content) return null
+
   return <BlockHtml {...attributes} />
 }
 
