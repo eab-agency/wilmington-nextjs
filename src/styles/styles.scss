@@ -9,6 +9,4 @@
 @use 'layouts/forms';
 @use 'layouts/newsAndEvents';
 @use 'layouts/archive';
-// TODO: hey @andrei, added this to style wp core blocks (all the default classes). feel free to remove it if it doesn't make sense
-// also see _blocks.scss
-// @use 'blocks';
+@use 'layouts/athletes/athleteCard';

@@ -2,6 +2,7 @@ import Logo from '@/components/atoms/Logo/Logo'
 import FooterMenu from '@/components/molecules/Navigation/FooterMenu'
 import PreFooter from '@/components/molecules/PreFooter'
 import * as styles from './Footer.module.scss'
+const currentYear = new Date().getFullYear()
 
 const Footer = ({ menus }) => {
   return (
@@ -87,7 +88,7 @@ const Footer = ({ menus }) => {
             policies, financial aid, employment or any other College program or
             activity. Disclosures.{' '}
             <span className={styles.copyright}>
-              ©2020 Wilmington College. All rights reserved
+              ©{currentYear} Wilmington College. All rights reserved
             </span>
           </small>
         </div>
