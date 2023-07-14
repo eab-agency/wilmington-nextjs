@@ -1,4 +1,4 @@
-import Image from '@/components/atoms/Image/Image'
+import Image from '@/components/atoms/Image'
 import RichText from '@/components/atoms/RichText/RichText'
 import { className } from 'classnames/bind'
 
@@ -36,6 +36,7 @@ export default function PageHero({
             imageMeta={{ mediaDetails }}
             width="900"
             height="300"
+            priority={true}
           />
         </div>
 
