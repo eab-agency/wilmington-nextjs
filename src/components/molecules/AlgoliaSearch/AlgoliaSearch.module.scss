@@ -134,7 +134,7 @@
         top: 50%;
         right: 0.7em;
         transform: translateY(-50%);
-        font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-m);
+        font-size: clamp(1rem, 1.5vw, tokens.$fs-m);
         width: 2em;
         height: 2em;
         & svg {
