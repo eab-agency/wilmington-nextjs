@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import RichText from '@/components/atoms/RichText'
+import remotePatterns from '@/config/imageConfig'
 import { gql } from '@apollo/client'
 import cn from 'classnames'
 import Image from 'next/image'
@@ -40,14 +41,13 @@ export default function DisplayImage(props) {
     return null
   }
 
-  // Get the src domain from url.
-  const sourceDomain = new URL(source)
+  // Get the src domain from URL and remove the subdomain.
+  const sourceDomain = new URL(source).hostname.split('.').slice(-2).join('.')
 
   // Get all domains registered in next.config.js.
-  let domains = process.env.NEXT_PUBLIC_IMAGE_DOMAINS
-
-  // Split domains string into individual domains.
-  domains = !domains || !domains.length ? [] : domains.split(', ')
+  let domains = remotePatterns.map((pattern) =>
+    pattern.hostname.replace('**.', '')
+  )
 
   /**
    * Next.js <Image /> component.
@@ -138,7 +138,8 @@ export default function DisplayImage(props) {
    *
    * @see https://nextjs.org/docs/basic-features/image-optimization#configuration
    */
-  if (domains.includes(sourceDomain?.host)) {
+
+  if (domains.includes(sourceDomain)) {
     return (
       <figure
         id={props?.anchor}
