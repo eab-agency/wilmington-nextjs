@@ -6,9 +6,12 @@ import { FaustProvider } from '@faustwp/core'
 import '@faustwp/core/dist/css/toolbar.css'
 import { Analytics } from '@vercel/analytics/react'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import TagManager from 'react-gtm-module'
 import '../../faust.config'
 import blocks from '../../wp-blocks'
+
+const gtmId = 'GTM-P3X3WCQ'
 
 export default function WilmingtonApp({ Component, pageProps }) {
   console.log(
@@ -19,9 +22,10 @@ export default function WilmingtonApp({ Component, pageProps }) {
     'You have what it takes. Apply now!\nhttps://www.wilmington.edu/admission/apply/'
   )
   const router = useRouter()
-  const algolia = {
-    indexName: 'wp_searchable_posts'
-  }
+
+  useEffect(() => {
+    TagManager.initialize({ gtmId })
+  }, [])
 
   // Initialize state for WordPress context provider.
   const [wp] = useState({
@@ -29,6 +33,7 @@ export default function WilmingtonApp({ Component, pageProps }) {
       indexName: 'wp_searchable_posts'
     }
   })
+
   return (
     <FaustProvider pageProps={pageProps}>
       <WordPressProvider value={wp}>

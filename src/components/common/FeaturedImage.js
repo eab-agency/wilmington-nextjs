@@ -27,6 +27,7 @@ const FeaturedImage = ({
           alt={altText}
           imageMeta={{ mediaDetails }}
           nextImageFill={true}
+          priority={true}
         />
         {/* if showCaption and captionText is not null then show <figcaption> */}
         {showCaption && captionText && (
