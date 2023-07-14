@@ -9,8 +9,6 @@ import Results from './Results'
 // import SearchIcon from './SearchIcon'
 import { MdOutlineSearch } from 'react-icons/md'
 
-// TODO: Create Storybook for this component.
-
 /**
  * Render the Search component.
  *

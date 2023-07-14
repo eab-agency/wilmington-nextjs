@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
+import WordPressProvider from '@/components/common/WordPressProvider'
 import '@/styles/styles.scss'
 import { WordPressBlocksProvider } from '@faustwp/blocks'
 import { FaustProvider } from '@faustwp/core'
 import '@faustwp/core/dist/css/toolbar.css'
 import { Analytics } from '@vercel/analytics/react'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import TagManager from 'react-gtm-module'
 import '../../faust.config'
 import blocks from '../../wp-blocks'
@@ -21,20 +22,31 @@ export default function WilmingtonApp({ Component, pageProps }) {
     'You have what it takes. Apply now!\nhttps://www.wilmington.edu/admission/apply/'
   )
   const router = useRouter()
-
+  const algolia = {
+    indexName: 'wp_searchable_posts'
+  }
   useEffect(() => {
     TagManager.initialize({ gtmId })
   }, [])
 
+  // Initialize state for WordPress context provider.
+  const [wp] = useState({
+    algolia: {
+      indexName: 'wp_searchable_posts'
+    }
+  })
+
   return (
     <FaustProvider pageProps={pageProps}>
-      <WordPressBlocksProvider
-        config={{
-          blocks
-        }}
-      >
-        <Component {...pageProps} key={router.asPath} />
-      </WordPressBlocksProvider>
+      <WordPressProvider value={wp}>
+        <WordPressBlocksProvider
+          config={{
+            blocks
+          }}
+        >
+          <Component {...pageProps} key={router.asPath} />
+        </WordPressBlocksProvider>
+      </WordPressProvider>
       <Analytics />
     </FaustProvider>
   )
