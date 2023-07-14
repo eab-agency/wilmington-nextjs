@@ -109,6 +109,7 @@ export default function TaxonomyDepartment(props) {
                 imageMeta={departmentFields?.deptImage}
                 alt={departmentFields?.deptImage?.altText}
                 src={departmentFields?.deptImage?.sourceUrl}
+                priority={true}
               />
               <div className="relatedPrograms">
                 <ProgramList programs={updatedPrograms} />
