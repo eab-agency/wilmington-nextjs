@@ -186,6 +186,7 @@
     width: 100%;
     width: 100%;
     max-width: tokens.$mq-1000;
+    padding: 0;
   }
 
   /* Show dropmenu on Focus */
@@ -252,6 +253,27 @@
 
   /* History Menu */
   & .history {
+    & ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin: 0;
+        padding: 0;
+
+        &:before {
+          display: none;
+        }
+
+        button {
+          box-shadow: none;
+        }
+
+        &[class*='clear'] {
+          padding-inline: clamp(2rem, 4vw, 4rem);
+        }
+      }
+    }
     & button {
       display: flex;
       justify-content: space-between;
@@ -281,6 +303,7 @@
         font-size: 0.75rem;
         text-transform: uppercase;
         position: relative;
+        padding-left: 2em;
 
         &::before {
           content: '-';
@@ -288,6 +311,7 @@
           justify-content: center;
           align-items: center;
           font-size: 2em;
+          position: absolute;
         }
 
         &::after {
@@ -304,6 +328,7 @@
           position: absolute;
           left: 0.375em;
           top: 0.725em;
+          background: transparent;
         }
 
         &:hover,
@@ -324,3 +349,13 @@
 .searchOpen {
   overflow: hidden;
 }
+
+// div[class*='AlgoliaSearch_history'] {
+//   ul {
+//     padding: 0;
+//     list-style: none;
+
+//     li {
+//     }
+//   }
+// }
