@@ -11,14 +11,6 @@ const nextConfig = {
   experimental: {
     appDir: true
   },
-  async rewrites() {
-    return [
-      {
-        source: '/wp-content/:path*',
-        destination: 'https://wordpress.wilmington.edu/wp-content/:path*'
-      }
-    ]
-  },
   async redirects() {
     const redirects = await fetchRedirects()
 
