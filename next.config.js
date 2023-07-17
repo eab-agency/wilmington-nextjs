@@ -16,11 +16,6 @@ const nextConfig = {
     return [
       ...redirects,
       {
-        source: '/wp-content/uploads/:slug*',
-        destination: `${getWpHostname()}/wp-content/uploads/:slug*`,
-        permanent: true
-      },
-      {
         source: '/programs',
         destination: '/academics/program-directory',
         permanent: true
