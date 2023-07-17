@@ -64,11 +64,7 @@ function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
   return (
     <div>
       {!!algolia?.indexName && (
-        <div
-          className={cn(styles.algoliaSearch, className)}
-          ref={searchRef}
-          // style={setMinHeight()}
-        >
+        <div className={cn(styles.algoliaSearch, className)} ref={searchRef}>
           <SearchPlaceholder query={query} toggleAlgolia={toggleAlgolia} />
           {!!loadAlgolia || !usePlaceholder ? (
             <>
