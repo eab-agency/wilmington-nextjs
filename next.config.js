@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
 const fetchRedirects = require('./src/lib/wordpress/fetchRedirects')
 const { withFaust, getWpHostname } = require('@faustwp/core')
+const remotePatterns = require('./src/config/imageConfig')
 
 const path = require('path')
 const glob = require('glob')
-const envImageDomains = process.env.NEXT_PUBLIC_IMAGE_DOMAINS
-const imageDomains = envImageDomains ? envImageDomains.split(', ') : []
 
 const nextConfig = {
   experimental: {
@@ -16,11 +15,6 @@ const nextConfig = {
 
     return [
       ...redirects,
-      {
-        source: '/wp-content/uploads/:slug*',
-        destination: `${getWpHostname()}/wp-content/uploads/:slug*`,
-        permanent: true
-      },
       {
         source: '/programs',
         destination: '/academics/program-directory',
@@ -40,7 +34,7 @@ const nextConfig = {
   },
   reactStrictMode: true,
   images: {
-    domains: [getWpHostname(), ...imageDomains],
+    remotePatterns,
     formats: ['image/avif', 'image/webp']
   },
   sassOptions: {
