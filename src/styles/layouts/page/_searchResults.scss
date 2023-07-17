@@ -1,0 +1,195 @@
+@use 'tokens';
+@use 'utilities/mixins';
+
+div[class*='_algoliaResults'] {
+  .ais-SearchBox {
+    @include mixins.sectionPadding;
+    position: relative;
+    width: 100%;
+    max-width: tokens.$mq-1000;
+    display: flex;
+    margin: 0 auto;
+
+    form {
+      width: 100%;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    & input {
+      width: 100%;
+      padding: 1rem 1rem;
+      padding-right: 3.5rem;
+      border: 3px solid tokens.$c-gray-400;
+      border-radius: 0.3em;
+      background: white;
+      font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-l);
+      // box-shadow: 0 8px 22px 0 rgba(37, 44, 97, 0.15),
+      // 0 4px 6px 0 rgba(93, 100, 148, 0.2);
+      font-family: '__Cantarell_da86bb', '__Cantarell_Fallback_da86bb',
+        sans-serif;
+
+      &::-webkit-search-decoration,
+      &::-webkit-search-cancel-button,
+      &::-webkit-search-results-button,
+      &::-webkit-search-results-decoration {
+        appearance: none;
+      }
+    }
+
+    /* Buttons (Submit, Reset) */
+    & button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: clamp(tokens.$fs-xs, 1.5vw, tokens.$fs-s);
+      background: white;
+      border: none;
+      font-weight: 300;
+      color: tokens.$c-gray-600;
+      box-shadow: none;
+
+      & svg {
+        width: 80%;
+        height: 80%;
+      }
+
+      &[type='submit'] {
+        background: tokens.$c-limeGreen-700;
+        // position: absolute;
+        padding: 0;
+        box-shadow: none;
+        top: 50%;
+        // right: 0.7em;
+        transform: translateY(-50%);
+        font-size: clamp(1rem, 1.5vw, tokens.$fs-m);
+        width: 3em;
+        height: 3em;
+        border: 1px solid tokens.$c-limeGreen-400;
+        box-shadow: 0 0.2em 0.3em rgba(0, 22, 19, 0.1);
+
+        & svg {
+          width: 50%;
+          height: 50%;
+          fill: tokens.$c-white;
+        }
+
+        &::after {
+          display: none;
+        }
+      }
+
+      /* Reset Button */
+      &[type='reset'] {
+        position: absolute;
+        top: 50%;
+        right: clamp(4.7em, 10vw, 7.5em);
+        cursor: pointer;
+        width: 2.5em;
+        height: 2em;
+        transform: translateY(-50%);
+
+        & svg {
+          width: 70%;
+          height: 70%;
+          fill: tokens.$c-gray-600;
+        }
+
+        &[hidden] {
+          display: none;
+          visibility: hidden;
+        }
+
+        &:hover,
+        &:focus {
+          & svg {
+            fill: tokens.$c-orange-800;
+          }
+        }
+      }
+    }
+  }
+}
+
+// .algoliaResults {
+//   .ais-SearchBox {
+//     background: red;
+//   }
+
+//   /* Results Header */
+//   & .resultsHeader {
+//     position: relative;
+//     background: tokens.$c-gray-200;
+//     @include mixins.sectionPadding();
+//     @include mixins.extendedBackground('before', tokens.$c-gray-200);
+
+//     & .total {
+//       & span {
+//         font-weight: bold;
+//       }
+//     }
+//   }
+
+//   /* Results Listing */
+//   & .results {
+//     // @apply grid grid-cols-12 gap-24;
+
+//     & > aside.sidebar {
+//       // @apply col-span-3;
+
+//       & .filterPanel {
+//         // @apply mb-16;
+
+//         & h3 {
+//           // @apply font-bold mb-8;
+//         }
+//       }
+//     }
+
+//     & > .content {
+//       // @apply col-span-9;
+//     }
+
+//     /* Hits/Results */
+//     & .aisHits {
+//       // @apply text-center;
+
+//       & > ul {
+//         // @apply grid gap-4 grid-cols-1 text-left;
+//         display: grid;
+//         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+//         gap: 1rem;
+//         list-style: none;
+//         margin: 0;
+//         padding: 0;
+
+//         li {
+//           padding: 1rem;
+//           border: 1px solid #ccc;
+//         }
+//       }
+
+//       /* Hit */
+//       & .hit {
+//         // @apply p-8 border;
+
+//         & .date {
+//           // @apply italic mb-4;
+//         }
+//       }
+
+//       & > button {
+//         // @apply inline-block m-auto mt-8 border rounded p-4 transition-colors duration-200 ease-in-out;
+
+//         &[disabled] {
+//           // @apply opacity-25 cursor-not-allowed;
+//         }
+//       }
+//     }
+//   }
+
+//   /* No results */
+//   & .empty {
+//     // @apply py-20;
+//   }
+// }
