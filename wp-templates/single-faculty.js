@@ -24,6 +24,10 @@ export default function Component(props) {
 
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings ?? {}
+  console.log(
+    '🚀 ~ file: single-faculty.js:27 ~ Component ~ props?.data?.generalSettings:',
+    props?.data?.generalSettings
+  )
 
   return (
     <>
