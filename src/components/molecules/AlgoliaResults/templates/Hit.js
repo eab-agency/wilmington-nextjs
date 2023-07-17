@@ -14,7 +14,7 @@ export default function Hit({ hit }) {
     <div className={styles.hit}>
       <h3>{hit.post_title}</h3>
       <p className={styles.date}>{hit.post_date_formatted}</p>
-      <Link href={hit.permalink}>Learn More {hit.permalink}</Link>
+      <Link href={hit.permalink}>Learn More</Link>
     </div>
   )
 }
