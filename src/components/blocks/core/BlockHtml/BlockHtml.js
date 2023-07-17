@@ -24,23 +24,20 @@ function parseHtml(html) {
   })
 }
 
-export default function RenderHtmlWithoutWhitelist({ content }) {
+export default function BlockHtml({ content, renderedHtml }) {
+  const theHtml = content || renderedHtml
   const [parsedHtml, setParsedHtml] = useState(null)
 
   useEffect(() => {
-    parseHtml(content).then((parsedHtml) => {
+    parseHtml(theHtml).then((parsedHtml) => {
       setParsedHtml(parsedHtml)
     })
-  }, [content])
-
-  if (!parsedHtml) {
-    return null
-  }
+  }, [theHtml])
 
   return (
     <div
       className="block-html"
-      dangerouslySetInnerHTML={{ __html: parsedHtml }}
+      dangerouslySetInnerHTML={{ __html: parsedHtml || renderedHtml }}
     />
   )
 }

@@ -3,10 +3,11 @@ import { gql } from '@apollo/client'
 
 export default function CoreHtml(props) {
   const attributes = props.attributes
+  const renderedHtml = props.renderedHtml
 
-  if (!attributes.content) return null
+  if (!attributes.content && !renderedHtml) return null
 
-  return <BlockHtml {...attributes} />
+  return <BlockHtml renderedHtml={renderedHtml} {...attributes} />
 }
 
 CoreHtml.fragments = {
@@ -15,6 +16,7 @@ CoreHtml.fragments = {
       attributes {
         content
       }
+      renderedHtml
     }
   `,
   key: `CoreHtmlFragment`
