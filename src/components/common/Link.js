@@ -29,9 +29,9 @@ const CommonLink = ({ children, href, ...others }) => {
   }
   // const regex2 = /(https?:\/\/(.+?\.)?vercel\.app|wilmington\.edu)/g
   const regex =
-    /https?:\/\/(www\.)?wilmington\.vercel\.app|https?:\/\/(www\.)?wilmington\.edu/
-  // const isLocalLink = /^http:\/\/wilmingtonlocal\.local(\/)?/.test(to);
+    /https?:\/\/(www\.)?(qa-web\.wilmington\.edu|wilmington\.vercel\.app|wilmington\.edu)/
   const isLocalLink = regex.test(href)
+
   if (isLocalLink) {
     const url = href.replace(regex, '')
     // console.log('🚀 ~ file: Link.js:25 ~ CommonLink ~ url:', url)

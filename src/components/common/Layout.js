@@ -70,7 +70,10 @@ Layout.query = gql`
         ...NavigationMenuItemFragment
       }
     }
-    resourceMenuItems: menuItems(where: { location: $resourceLocation }) {
+    resourceMenuItems: menuItems(
+      where: { location: $resourceLocation }
+      first: 20
+    ) {
       nodes {
         ...NavigationMenuItemFragment
       }

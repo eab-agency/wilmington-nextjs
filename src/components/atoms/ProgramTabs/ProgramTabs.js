@@ -40,19 +40,31 @@ const ProgramTabs = ({ childPages, uri, parent }) => {
         </Link>
       </li>
       {nodes &&
-        nodes.map((childPage) => (
-          <li
-            key={childPage.uri}
-            className={currentPath === childPage.uri ? 'active' : undefined}
-          >
-            <Link
-              href={childPage.uri}
-              onClick={() => handleLinkClick(childPage.uri)}
+        nodes
+          .filter((childPage) => childPage.menuOrder !== null) // Exclude null values
+          .sort((a, b) => {
+            if (a.menuOrder === b.menuOrder) {
+              // Secondary sorting based on ID if menuOrder is the same
+              return a.id - b.id
+            } else {
+              return a.menuOrder - b.menuOrder
+            }
+          })
+          // Sort in ascending order
+          .concat(nodes.filter((childPage) => childPage.menuOrder === null)) // Add back null values at the end
+          .map((childPage) => (
+            <li
+              key={childPage.uri}
+              className={currentPath === childPage.uri ? 'active' : undefined}
             >
-              {childPage?.title}
-            </Link>
-          </li>
-        ))}
+              <Link
+                href={childPage.uri}
+                onClick={() => handleLinkClick(childPage.uri)}
+              >
+                {childPage?.title}
+              </Link>
+            </li>
+          ))}
     </ul>
   )
 }
@@ -68,6 +80,7 @@ const CHILDFRAGMENT = `
           id
           title
           uri
+          menuOrder
         }
       }
     }
@@ -84,6 +97,7 @@ export const ProgramTabsFragment = gql`
           id
           title
           uri
+          menuOrder
              ${CHILDFRAGMENT}
         }
       }
