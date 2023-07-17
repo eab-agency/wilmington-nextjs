@@ -15,7 +15,7 @@ const nextConfig = {
     return [
       {
         source: '/wp-content/:path*',
-        destination: 'https://wordpress.headless.edu/wp-content/:path*'
+        destination: 'https://wordpress.wilmington.edu/wp-content/:path*'
       }
     ]
   },
