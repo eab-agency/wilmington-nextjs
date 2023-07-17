@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 const CommonLink = ({ children, href, ...others }) => {
+  // eslint-disable-next-line no-console
   console.log('🚀 ~ file: Link.js:4 ~ CommonLink ~ href:', href)
   // check if the link linking to a file and then use the wp url
   // if (href.includes('/wp-content/')) {
