@@ -11,16 +11,19 @@ const nextConfig = {
   experimental: {
     appDir: true
   },
+  async rewrites() {
+    return [
+      {
+        source: '/wp-content/:path*',
+        destination: 'https://wordpress.headless.edu/wp-content/:path*'
+      }
+    ]
+  },
   async redirects() {
     const redirects = await fetchRedirects()
 
     return [
       ...redirects,
-      // {
-      //   source: '/wp-content/uploads/:slug*',
-      //   destination: `${getWpHostname()}/wp-content/uploads/:slug*`,
-      //   permanent: true
-      // },
       {
         source: '/programs',
         destination: '/academics/program-directory',

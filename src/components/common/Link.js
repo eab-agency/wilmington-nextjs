@@ -3,20 +3,20 @@ import Link from 'next/link'
 const CommonLink = ({ children, href, ...others }) => {
   // console.log('🚀 ~ file: Link.js:4 ~ CommonLink ~ href:', href)
   // check if the link linking to a file and then use the wp url
-  if (href.includes('/wp-content/')) {
-    const strippedHref = href.substring(href.indexOf('/wp-content/'))
-    const modifiedHref = `https://wordpress.wilmington.edu${strippedHref}`
-    return (
-      <a
-        href={modifiedHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        {...others}
-      >
-        {children}
-      </a>
-    )
-  }
+  // if (href.includes('/wp-content/')) {
+  //   const strippedHref = href.substring(href.indexOf('/wp-content/'))
+  //   const modifiedHref = `https://wordpress.wilmington.edu${strippedHref}`
+  //   return (
+  //     <a
+  //       href={modifiedHref}
+  //       target="_blank"
+  //       rel="noopener noreferrer"
+  //       {...others}
+  //     >
+  //       {children}
+  //     </a>
+  //   )
+  // }
 
   // check if the link is an internal link and then use GatsbyLink
   const isInternalLink = /^\/(?!\/)/.test(href)
