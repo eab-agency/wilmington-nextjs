@@ -12,24 +12,7 @@ const nextConfig = {
   },
   async redirects() {
     const redirects = await fetchRedirects()
-    return [
-      ...redirects,
-      {
-        source: '/programs',
-        destination: '/academics/program-directory',
-        permanent: true
-      },
-      {
-        source: '/program-directory',
-        destination: '/academics/program-directory',
-        permanent: true
-      },
-      {
-        source: '/program',
-        destination: '/academics/program-directory',
-        permanent: true
-      }
-    ]
+    return [...redirects]
   },
   reactStrictMode: true,
   images: {
