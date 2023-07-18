@@ -33,7 +33,7 @@ export default function AcfFacultyCard(props) {
 
   return (
     // map over facultyData only  if facultyData is not null
-    facultyData.facultyMember.nodes.map((faculty, index) => {
+    facultyData.faculty.nodes.map((faculty, index) => {
       let fullTitle = ''
 
       if (faculty && faculty.facultyFields && faculty.facultyFields.faculty) {
@@ -69,7 +69,7 @@ AcfFacultyCard.fragments = {
 const FACULTY_QUERY = gql`
   ${FeaturedImage.fragments.entry}
   query GetFacultyData($ids: [ID!]!, $imageSize: MediaItemSizeEnum = LARGE) {
-    facultyMember(where: { in: $ids }) {
+    faculty(where: { in: $ids }) {
       nodes {
         id
         uri
