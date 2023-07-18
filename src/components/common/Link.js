@@ -2,8 +2,12 @@ import Link from 'next/link'
 
 const regexList = [
   {
-    regex: /^\/(?!\/)/,
+    regex: /^\/(?!\/|$)/,
     replace: ''
+  },
+  {
+    regex: /^\/$/,
+    replace: '/'
   },
   {
     regex: /https?:\/\/(www\.)?wilmington\.edu/,
