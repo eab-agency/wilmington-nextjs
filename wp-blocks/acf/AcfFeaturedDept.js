@@ -46,13 +46,14 @@ AcfFeaturedDept.query = gql`
   query getFeaturedDepartmens(
     $ids: [ID!]!
     $imageSize: MediaItemSizeEnum = MEDIUM
+    $programLimit: Int = 2
   ) {
     departments(where: { include: $ids }) {
       nodes {
         id
         link
         uri
-        programs {
+        programs(first: $programLimit) {
           nodes {
             excerpt
             title
