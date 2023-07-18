@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const fetchRedirects = require('./src/lib/wordpress/fetchRedirects')
-const { withFaust, getWpHostname } = require('@faustwp/core')
+const { withFaust } = require('@faustwp/core')
 const remotePatterns = require('./src/config/imageConfig')
 
 const path = require('path')
@@ -12,7 +12,6 @@ const nextConfig = {
   },
   async redirects() {
     const redirects = await fetchRedirects()
-
     return [
       ...redirects,
       {
