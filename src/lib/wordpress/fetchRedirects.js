@@ -1,13 +1,25 @@
-const fetchRedirects = () => {
-  const url = process.env.SITE_URL
-    ? `${process.env.SITE_URL}api/wordpress/redirects`
-    : 'https://wilmington.vercel.app/api/wordpress/redirects'
+const wpAppUser = process.env.WORDPRESS_APPLICATION_USERNAME
+const wpAppPass = process.env.WORDPRESS_APPLICATION_PASSWORD
+const auth = Buffer.from(`${wpAppUser}:${wpAppPass}`).toString('base64')
+const url = 'https://wordpress.wilmington.edu/wp-json/redirection/v1/redirect'
 
-  return fetch(url)
+const fetchRedirects = () => {
+  const options = {
+    method: 'GET',
+    headers: {
+      Authorization: `Basic ${auth}`
+    }
+  }
+
+  return fetch(url, options)
     .then((response) => response.json())
-    .catch((error) => {
-      console.error('Error fetching redirects:', error)
-      throw error
+    .then((data) => {
+      const redirects = data.items.map((item) => ({
+        source: item.url,
+        destination: item.action_data.url,
+        permanent: item.action_code === 301
+      }))
+      return redirects
     })
 }
 
