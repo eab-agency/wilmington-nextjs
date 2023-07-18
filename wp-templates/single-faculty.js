@@ -9,9 +9,9 @@ import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
+import facultyAcfFields from '@/lib/wordpress/_query-partials/facultyAcfFields'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
-import { className } from 'classnames/bind'
 import RichText from '../src/components/atoms/RichText/RichText'
 import blocks from '../wp-blocks'
 
@@ -22,17 +22,13 @@ export default function Component(props) {
 
   const { faculty } = facultyFields
 
-  const { title: siteTitle, description: siteDescription } =
-    props?.data?.generalSettings ?? {}
-  // eslint-disable-next-line no-console
-  console.log(
-    '🚀 ~ file: single-faculty.js:27 ~ Component ~ props?.data?.generalSettings:',
-    props?.data?.generalSettings
-  )
+  const { description: siteDescription } = props?.data?.generalSettings ?? {}
+
+  const seoTitle = `${faculty.position}, ${title}`
 
   return (
     <>
-      <SEO title={siteTitle} description={siteDescription} />
+      <SEO title={seoTitle} description={siteDescription} />
       <Layout className="thelayoutclass">
         <div className="single-faculty">
           <article className="inner-wrap">
@@ -136,26 +132,8 @@ Component.query = gql`
       ... on NodeWithFeaturedImage {
         ...FeaturedImageFragment
       }
-      ... on Faculty {
-        facultyFields {
-          faculty {
-            email
-            facebook
-            first
-            instagram
-            last
-            linkedin
-            location
-            phone
-            position
-            tiktok
-            twitter
-            youtube
-            cv {
-              mediaItemUrl
-            }
-          }
-      }
+      ... on FacultyMember {
+        ${facultyAcfFields}
       }
        ... on NodeWithEditorBlocks {
         # Get contentBlocks with flat=true and the nodeId and parentId
