@@ -4,7 +4,6 @@ import '@/styles/styles.scss'
 import { WordPressBlocksProvider } from '@faustwp/blocks'
 import { FaustProvider } from '@faustwp/core'
 import '@faustwp/core/dist/css/toolbar.css'
-import { Analytics } from '@vercel/analytics/react'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import TagManager from 'react-gtm-module'
@@ -45,7 +44,6 @@ export default function WilmingtonApp({ Component, pageProps }) {
           <Component {...pageProps} key={router.asPath} />
         </WordPressBlocksProvider>
       </WordPressProvider>
-      <Analytics />
     </FaustProvider>
   )
 }

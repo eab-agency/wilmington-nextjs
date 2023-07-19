@@ -40,6 +40,7 @@ const NewsPost = ({
           url={uri}
           type="regularlink"
           text="Read More"
+          ariaLabel={`Read more about ${title}`}
         />
       </div>
     </article>

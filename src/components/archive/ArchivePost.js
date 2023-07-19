@@ -8,7 +8,6 @@ import { PostEntryContent } from '../post/PostEntryContent'
 import { PostEntryMeta } from '../post/PostEntryMeta'
 // import { PostEntryTitle } from '../post/PostEntryTitle'
 import Button from '@/components/atoms/Buttons/Button'
-import { className } from 'classnames/bind'
 
 const ArchivePost = ({
   isFirst = false,
@@ -39,6 +38,7 @@ const ArchivePost = ({
             url={post.uri}
             type="regularlink"
             text="Read More"
+            ariaLabel={`Read more about ${post?.title}`}
           />
         </div>
       </div>
