@@ -2,7 +2,6 @@
 import Button from '@/components/atoms/Buttons/Button'
 import Image from '@/components/atoms/Image'
 import TheDate from '@/components/atoms/TheDate'
-import { className } from 'classnames/bind'
 
 const NewsPost = ({
   isFirst = false,
@@ -36,6 +35,7 @@ const NewsPost = ({
           url={uri}
           type="regularlink"
           text="Read More"
+          ariaLabel={`Read more about ${title}`}
         />
       </div>
     </article>
