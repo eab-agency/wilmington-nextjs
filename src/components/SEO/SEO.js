@@ -18,77 +18,40 @@ export default function SEO({ seo }) {
     ...(seo?.metaRobotsNofollow ? [seo.metaRobotsNofollow] : []),
     ...(seo?.metaRobotsNoindex ? [seo.metaRobotsNoindex] : [])
   ]
+  const fullHead = parse(seo.fullHead)
 
   return (
     <>
       <Head>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-          <meta name="robots" content={robots.join(', ')} />
-          {seo?.fullHead ? parse(seo.fullHead) : null}
-          <meta name="msapplication-TileColor" content="#fffff" />
-          <meta
-            name="msapplication-config"
-            content="/favicon/browserconfig.xml"
-          />
-          <meta name="theme-color" content="#fff" />
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/favicon/apple-icon.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon/favicon-16x16.png"
-          />
-          <link rel="manifest" href="/favicon/site.webmanifest" />
-          <link rel="shortcut icon" href="/favicon/favicon.ico" />
-        </Head>
-        <meta property="og:type" content="website" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        {seo?.title && (
-          <>
-            <title>{seo?.title}</title>
-            <meta name="title" content={seo?.title} />
-            <meta property="og:title" content={seo?.title} />
-            <meta property="twitter:title" content={seo?.title} />
-          </>
-        )}
-
-        {seo?.description && (
-          <>
-            <meta name="description" content={seo?.description} />
-            <meta property="og:description" content={seo?.description} />
-            <meta property="twitter:description" content={seo?.description} />
-          </>
-        )}
-
-        {seo?.imageUrl && (
-          <>
-            <meta property="og:image" content={seo?.imageUrl} />
-            <meta property="twitter:image" content={seo?.imageUrl} />
-          </>
-        )}
-
-        {seo?.url && (
-          <>
-            <meta property="og:url" content={seo?.url} />
-            <meta property="twitter:url" content={seo?.url} />
-          </>
-        )}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+        <meta name="robots" content={robots.join(', ')} />
+        {fullHead}
+        <meta name="msapplication-TileColor" content="#fffff" />
+        <meta
+          name="msapplication-config"
+          content="/favicon/browserconfig.xml"
+        />
+        <meta name="theme-color" content="#fff" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/favicon/apple-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <link rel="shortcut icon" href="/favicon/favicon.ico" />
       </Head>
     </>
   )
