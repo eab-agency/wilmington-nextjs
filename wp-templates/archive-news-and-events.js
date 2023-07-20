@@ -27,13 +27,13 @@ export default function NewsArchive(props) {
   const breadcrumbs = [
     {
       text: 'Home',
-      url: 'https://wilmington-nexjs.vercel.app/'
+      url: 'https://www.wilmington.edu/'
     },
     {
       text: displayNewsFirst ? 'News & Events' : 'Events & News',
       url: displayNewsFirst
-        ? 'https://wilmington-nexjs.vercel.app/news/'
-        : 'https://wilmington-nexjs.vercel.app/events/'
+        ? 'https://www.wilmington.edu/news/'
+        : 'https://www.wilmington.edu/events/'
     }
   ]
 
