@@ -18,12 +18,11 @@ export default function SEO({ seo }) {
     ...(seo?.metaRobotsNofollow ? [seo.metaRobotsNofollow] : []),
     ...(seo?.metaRobotsNoindex ? [seo.metaRobotsNoindex] : [])
   ]
-  const fullHead = parse(seo.fullHead)
 
   return (
     <Head>
       <title>{seo?.title}</title>
-      {fullHead}
+      {seo?.fullHead && parse(seo.fullHead)}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />
       <meta name="robots" content={robots.join(', ')} />
