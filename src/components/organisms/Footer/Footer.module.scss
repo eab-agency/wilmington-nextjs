@@ -196,5 +196,9 @@ $social-icons: (
       font-weight: 600;
       font-style: normal;
     }
+
+    a {
+      color: tokens.$c-teal-300;
+    }
   }
 }
