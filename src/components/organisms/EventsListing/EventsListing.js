@@ -22,7 +22,6 @@ function EventsListing({ listing_title, posts, showImage, listing_display }) {
   return (
     // <div className={listing_display === '1' ? 'grid' : ''}>
     <section className="eventsSection">
-      {/* <pre>FILE: EventsListing.tsx</pre> */}
       <div className="sectionHead">
         <div className="sectionTag">Events</div>
         <Heading tag="h2" id="jump-news-listing">
