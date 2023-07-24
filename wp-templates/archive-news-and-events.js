@@ -179,7 +179,6 @@ NewsArchive.query = gql`
       nodes {
         ...FeaturedImageFragment
         excerpt
-        date
         title
         uri
         eventsFields {
