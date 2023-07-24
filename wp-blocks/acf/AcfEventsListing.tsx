@@ -17,6 +17,7 @@ type Event = {
   eventsFields: {
     event: {
       startDate: string
+      endDate: string
     }
   }
 }
@@ -49,13 +50,24 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
             parseInt(month) - 1,
             parseInt(day)
           )
+
+          const [endYear, endMonth, endDay] =
+            event.eventsFields.event.endDate.split('-')
+          const endDate = new Date(
+            parseInt(endYear),
+            parseInt(endMonth) - 1,
+            parseInt(endDay)
+          )
+
           posts.push({
             id: event.id,
             title: event.title,
             date: startDate,
+            endDate: endDate,
             link: event.link,
             uri: event.uri,
-            eventsFields: event.eventsFields
+            eventsFields: event.eventsFields,
+            multiDay: startDate.getTime() !== endDate.getTime()
           })
         }
       })
@@ -78,22 +90,37 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
           parseInt(day)
         )
 
+        const [endYear, endMonth, endDay] =
+          event.eventsFields.event.endDate.split('-')
+        const endDate = new Date(
+          parseInt(endYear),
+          parseInt(endMonth) - 1,
+          parseInt(endDay)
+        )
+
         posts.push({
           id: event.id,
           title: event.title,
           date: startDate,
+          endDate: endDate,
           link: event.link,
           uri: event.uri,
-          eventsFields: event.eventsFields
+          eventsFields: event.eventsFields,
+          multiDay: startDate.getTime() !== endDate.getTime()
         })
       }
     })
   }
 
-  const currentDate = new Date()
-
   const futureEvents = posts.filter((post) => {
-    return post.date >= currentDate
+    const currentDate = new Date()
+    const postDate = new Date(post.date)
+    const postEndDate = new Date(post.endDate)
+
+    return (
+      postDate >= currentDate ||
+      (postDate < currentDate && postEndDate >= currentDate)
+    )
   })
 
   const sortedFutureEvents = futureEvents.sort((post1, post2) => {
