@@ -41,11 +41,11 @@
     background: tokens.$c-white;
     z-index: tokens.$layer-2;
     border-bottom: 1px solid tokens.$c-gray-500;
+    width: 100%;
+    padding-block: clamp(1rem, 2vw, 2rem);
     // position: absolute;
     // bottom: 6em;
-    width: 100%;
     // max-width: 80%;
-    padding-block: clamp(1rem, 2vw, 2rem);
 
     // @media (min-width: tokens.$mq-1000) {
     //   max-width: calc(80% - tokens.$pageOffset);
