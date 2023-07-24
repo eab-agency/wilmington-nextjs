@@ -16,9 +16,9 @@ const DepartmentSingle = ({ department }) => {
   } = department
 
   // don't show programs that are a child program page
-  const filteredPrograms = programs.nodes.filter(
-    (program) => program.ancestors === null
-  )
+  const filteredPrograms = programs.nodes
+    .filter((program) => program.ancestors === null)
+    .sort((a, b) => a.title.localeCompare(b.title)) // Sort programs alphabetically by name
 
   return (
     <section key={name} className="department">
