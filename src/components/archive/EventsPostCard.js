@@ -63,12 +63,6 @@ const EventsPost = ({
               Ends on {endDate}
             </div>
           )}
-          {endTime && (
-            <div className="eventLocation">
-              <EventIcon icon="location" />
-              {endTime}
-            </div>
-          )}
           {locationAddress && (
             <address>
               <EventIcon icon="location" />
