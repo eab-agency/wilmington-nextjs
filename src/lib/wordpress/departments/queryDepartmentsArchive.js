@@ -11,7 +11,6 @@ export const archiveDepartmentFragment = gql`
     name
     description
     departmentFields {
-      deptIcon
       deptImage {
         altText
         caption

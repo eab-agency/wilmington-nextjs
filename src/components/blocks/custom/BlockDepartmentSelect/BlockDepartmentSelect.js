@@ -12,7 +12,7 @@ const DepartmentSingle = ({ department }) => {
     uri,
     description,
     programs,
-    departmentFields: { deptIcon, deptImage }
+    departmentFields: { deptImage }
   } = department
 
   // don't show programs that are a child program page

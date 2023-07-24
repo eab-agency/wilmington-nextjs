@@ -23,7 +23,6 @@ EabProgramDirectory.query = gql`
         name
         description
         departmentFields {
-          deptIcon
           deptImage {
             altText
             caption
