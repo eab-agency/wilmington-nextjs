@@ -1,5 +1,5 @@
 import { SEO } from '@/components'
-import { PostsList } from '@/components/archive/PostsList'
+import { FacultyList } from '@/components/archive/FacultyList'
 import RichText from '@/components/atoms/RichText'
 import Layout from '@/components/common/Layout'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
@@ -21,7 +21,7 @@ export default function ArchiveFaculty(props) {
             {label}
           </RichText>
           {description && <RichText>{description}</RichText>}
-          <PostsList className="archiveList" posts={contentNodes.nodes} />
+          <FacultyList className="FacultyList" posts={contentNodes.nodes} />
         </div>
       </Layout>
     </>
