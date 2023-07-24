@@ -37,7 +37,7 @@ const SearchResults = connectStateResults(({ searchResults, indexName }) => {
                 <span>{searchResults.nbHits} Results</span> for{' '}
                 {searchResults.query}
               </p>
-              <Sort index={indexName} />
+              {/* <Sort index={indexName} /> */}
             </div>
           </div>
           <aside className={styles.results}>
