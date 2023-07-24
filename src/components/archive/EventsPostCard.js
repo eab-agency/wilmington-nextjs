@@ -17,7 +17,9 @@ const EventsPost = ({
   // if post is null or undefined, return null
   if (!post) return null
 
-  const { title, date, featuredImage, uri, excerpt, eventsFields } = post
+  const { title, featuredImage, uri, eventsFields, multiDay } = post
+
+  // TODO: Andrei, i've added a 'multiDay' field to the post object if you want to display dates differently for multi-day events
 
   const { node: { sourceUrl, altText, mediaDetails } = {} } =
     featuredImage || {}
