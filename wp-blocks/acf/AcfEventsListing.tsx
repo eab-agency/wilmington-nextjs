@@ -34,6 +34,25 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
     variables: { ids: events_listing, category_id: event_category }
   })
 
+  function extractDate(dateString: string) {
+    const [year, month, day] = dateString.split('-')
+    return new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
+  }
+
+  const extractEventData = (event: Event) => {
+    const { startDate, endDate } = event.eventsFields.event
+    return {
+      id: event.id,
+      title: event.title,
+      date: extractDate(startDate),
+      endDate: endDate ? extractDate(endDate) : null,
+      link: event.link,
+      uri: event.uri,
+      eventsFields: event.eventsFields,
+      multiDay: startDate !== endDate
+    }
+  }
+
   const posts: any[] = []
   if (idsData && (idsData.events || idsData.eventCategory)) {
     const nodes = idsData.events
@@ -42,33 +61,7 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
     if (nodes.length > 0) {
       nodes.forEach((event: Event) => {
         if (event.eventsFields.event.startDate) {
-          // Check if startDate is not null
-          const [year, month, day] =
-            event.eventsFields.event.startDate.split('-')
-          const startDate = new Date(
-            parseInt(year),
-            parseInt(month) - 1,
-            parseInt(day)
-          )
-
-          const [endYear, endMonth, endDay] =
-            event.eventsFields.event.endDate.split('-')
-          const endDate = new Date(
-            parseInt(endYear),
-            parseInt(endMonth) - 1,
-            parseInt(endDay)
-          )
-
-          posts.push({
-            id: event.id,
-            title: event.title,
-            date: startDate,
-            endDate: endDate,
-            link: event.link,
-            uri: event.uri,
-            eventsFields: event.eventsFields,
-            multiDay: startDate.getTime() !== endDate.getTime()
-          })
+          posts.push(extractEventData(event))
         }
       })
     }
@@ -83,31 +76,7 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   if (latestData && latestData.events.length > 0) {
     latestData.events.forEach((event: Event) => {
       if (event.eventsFields.event.startDate) {
-        const [year, month, day] = event.eventsFields.event.startDate.split('-')
-        const startDate = new Date(
-          parseInt(year),
-          parseInt(month) - 1,
-          parseInt(day)
-        )
-
-        const [endYear, endMonth, endDay] =
-          event.eventsFields.event.endDate.split('-')
-        const endDate = new Date(
-          parseInt(endYear),
-          parseInt(endMonth) - 1,
-          parseInt(endDay)
-        )
-
-        posts.push({
-          id: event.id,
-          title: event.title,
-          date: startDate,
-          endDate: endDate,
-          link: event.link,
-          uri: event.uri,
-          eventsFields: event.eventsFields,
-          multiDay: startDate.getTime() !== endDate.getTime()
-        })
+        posts.push(extractEventData(event))
       }
     })
   }
@@ -133,14 +102,12 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   if (posts.length === 0) return null
 
   return (
-    <>
-      <EventsListing
-        posts={sortedFutureEvents}
-        listing_title={listing_title}
-        listing_display={listing_display}
-        showImage={false}
-      />
-    </>
+    <EventsListing
+      posts={sortedFutureEvents}
+      listing_title={listing_title}
+      listing_display={listing_display}
+      showImage={false}
+    />
   )
 }
 
