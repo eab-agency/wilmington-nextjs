@@ -6,7 +6,14 @@ import styles from './HomeHero.module.scss'
 function Hero({ imageMeta, content, ctas }) {
   return (
     <div className={styles.homeHero}>
-      {/* <pre>FILE: HomeHero.tsx</pre> */}
+      {imageMeta && (
+        <Image
+          className={styles.heroImage}
+          alt={imageMeta.altText}
+          priority={true}
+          imageMeta={imageMeta}
+        />
+      )}
       <div className={styles.heroIntroContent}>
         <div className={styles.introCopy}>
           <RichText tag="span">{content}</RichText>
@@ -24,14 +31,6 @@ function Hero({ imageMeta, content, ctas }) {
           ))}
         </ul>
       </div>
-      {imageMeta && (
-        <Image
-          className={styles.heroImage}
-          alt={imageMeta.altText}
-          priority={true}
-          imageMeta={imageMeta}
-        />
-      )}
     </div>
   )
 }
