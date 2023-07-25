@@ -1,7 +1,6 @@
 import { gql } from '@apollo/client'
 // import { Container, Footer, Header, Hero, Main, SEO } from '../components'
 import { SEO } from '@/components'
-import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
@@ -16,10 +15,11 @@ import blocks from '../wp-blocks'
 export default function Component(props) {
   const { title, editorBlocks, seo, featuredImage } = props.data.nodeByUri
   const blocks = flatListToHierarchical(editorBlocks)
+  const { description: siteDescription } = props?.data?.generalSettings ?? {}
 
   return (
     <>
-      <SEO seo={seo} />
+      <SEO seo={seo} description={siteDescription} />
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
@@ -50,7 +50,7 @@ Component.variables = ({ uri }, ctx) => {
  */
 Component.query = gql`
   ${FeaturedImage.fragments.entry}
-
+  ${BlogInfoFragment}
   # Get all block fragments and add them to the query
   ${getFragmentDataFromBlocks(blocks).entries}
 
@@ -61,6 +61,9 @@ Component.query = gql`
       }
       ... on NodeWithFeaturedImage {
         ...FeaturedImageFragment
+      }
+      ... on ContentNode {
+        ${seoPostFields}
       }
       ... on NodeWithEditorBlocks {
         # Get contentBlocks with flat=true and the nodeId and parentId
@@ -77,6 +80,9 @@ Component.query = gql`
           ${getFragmentDataFromBlocks(blocks).keys}
         }
       }
+    }
+    generalSettings {
+      ...BlogInfoFragment
     }
   }
 `
