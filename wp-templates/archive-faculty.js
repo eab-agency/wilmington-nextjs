@@ -21,7 +21,7 @@ export default function ArchiveFaculty(props) {
             {label}
           </RichText>
           {description && <RichText>{description}</RichText>}
-          <FacultyList className="FacultyList" posts={contentNodes.nodes} />
+          <FacultyList className="facultyList" posts={contentNodes.nodes} />
         </div>
       </Layout>
     </>
@@ -57,13 +57,17 @@ ArchiveFaculty.query = gql`
             ... on NodeWithTitle {
               title
             }
-            ... on StudentOrg {
-              orgFields {
-                quickFacts
+            ... on FacultyMember {
+              facultyFields {
+                faculty {
+                  email
+                  phone
+                  position
+                }
               }
               featuredImage {
                 node {
-                  sourceUrl(size: THUMBNAIL)
+                  sourceUrl(size: MEDIUM)
                   altText
                   mediaDetails {
                     width

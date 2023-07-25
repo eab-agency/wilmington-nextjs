@@ -1,13 +1,32 @@
 import FacultyCard from '@/components/molecules/FacultyCard'
 import React from 'react'
-import ArchivePost from './ArchivePost'
 
 export const FacultyList = ({ posts, ...props }) => {
   return (
     <div {...props}>
-      {posts?.map((post, index) => {
-        return <FacultyCard key={post.id} post={post} isFirst={index === 0} />
-      })}
+      {posts?.map(
+        ({
+          id,
+          title,
+          facultyFields: { faculty },
+          email,
+          phone,
+          uri,
+          featuredImage: { node: image }
+        }) => {
+          return (
+            <FacultyCard
+              key={id}
+              title={title}
+              description={faculty.position}
+              email={email}
+              phone={phone}
+              link={uri}
+              image={image}
+            />
+          )
+        }
+      )}
     </div>
   )
 }
