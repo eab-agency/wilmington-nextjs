@@ -7,12 +7,11 @@ import Head from 'next/head'
  * @param {Props} props The props object.
  * @param {string} props.title Used for the page title, og:title, twitter:title, etc.
  * @param {string} props.description Used for the meta description, og:description, twitter:description, etc.
- * @param {string} props.imageUrl Used for the og:image and twitter:image. NOTE: Must be an absolute url.
- * @param {string} props.url Used for the og:url and twitter:url.
+ * @param {string} props.seo The SEO data from WordPress.
  *
  * @returns {React.ReactElement} The SEO component
  */
-export default function SEO({ seo }) {
+export default function SEO({ seo, title, description }) {
   // Combine robots data.
   const robots = [
     ...(seo?.metaRobotsNofollow ? [seo.metaRobotsNofollow] : []),
@@ -21,7 +20,8 @@ export default function SEO({ seo }) {
 
   return (
     <Head>
-      <title>{seo?.title}</title>
+      <title>{title ?? seo?.title}</title>
+      <meta name="description" content={description ?? seo?.metaDesc} />
       {seo?.fullHead && parse(seo.fullHead)}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />
