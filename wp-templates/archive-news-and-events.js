@@ -6,7 +6,6 @@ import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import RichText from '@/components/atoms/RichText'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
-import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import { gql } from '@apollo/client'
 
 export default function NewsArchive(props) {
@@ -39,7 +38,7 @@ export default function NewsArchive(props) {
 
   return (
     <>
-      <SEO seo={{ title: archiveTitle, description: siteDescription }} />
+      <SEO title={archiveTitle} description={siteDescription} />
       <Layout className="thelayoutclass">
         <div className="inner-wrap archive">
           <div className="news-and-events">
@@ -163,7 +162,6 @@ NewsArchive.variables = ({ uri }) => {
 }
 
 NewsArchive.query = gql`
-  ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
   query getNewsAndEvents($imageSize: MediaItemSizeEnum = MEDIUM) {
     news(first: 9) {
@@ -194,9 +192,6 @@ NewsArchive.query = gql`
           }
         }
       }
-    }
-    generalSettings {
-      ...BlogInfoFragment
     }
   }
 `
