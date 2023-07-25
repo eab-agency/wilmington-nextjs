@@ -131,9 +131,11 @@ SingleFaculty.query = gql`
       ... on NodeWithFeaturedImage {
         ...FeaturedImageFragment
       }
+      ... on ContentNode {
+        ${seoPostFields}
+      }
       ... on FacultyMember {
         ${facultyAcfFields}
-        ${seoPostFields}
       }
        ... on NodeWithEditorBlocks {
         # Get contentBlocks with flat=true and the nodeId and parentId

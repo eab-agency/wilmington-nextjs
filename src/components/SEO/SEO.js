@@ -21,7 +21,7 @@ export default function SEO({ seo, title, description }) {
   return (
     <Head>
       <title>{title ?? seo?.title}</title>
-      <meta name="description" content={description ?? seo?.metaDesc} />
+      <meta name="description" content={seo?.metaDesc ?? description} />
       {seo?.fullHead && parse(seo.fullHead)}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />
