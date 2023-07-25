@@ -23,6 +23,10 @@ export default function Component(props) {
 
   const seoTitle = `${faculty.position}, ${title}`
 
+  console.log(
+    '🚀 ~ file: single-faculty.js:26 ~ Component ~ seoTitle:',
+    seoTitle
+  )
   return (
     <>
       <SEO title={seoTitle} description={siteDescription} />
