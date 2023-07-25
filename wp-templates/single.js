@@ -6,6 +6,7 @@ import Container from '@/components/atoms/Container'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero/PageHero'
+import { seoPostFields } from '@/fragments'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
@@ -16,12 +17,9 @@ export default function Component(props) {
   const { title, editorBlocks, seo, featuredImage } = props.data.nodeByUri
   const blocks = flatListToHierarchical(editorBlocks)
 
-  const { title: siteTitle, description: siteDescription } =
-    props?.data?.generalSettings ?? {}
-
   return (
     <>
-      <SEO title={siteTitle} description={siteDescription} />
+      <SEO seo={seo} />
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
@@ -51,7 +49,6 @@ Component.variables = ({ uri }, ctx) => {
  * Compose the GraphQL query for our page's data.
  */
 Component.query = gql`
-  ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
 
   # Get all block fragments and add them to the query
@@ -80,9 +77,6 @@ Component.query = gql`
           ${getFragmentDataFromBlocks(blocks).keys}
         }
       }
-    }
-     generalSettings {
-      ...BlogInfoFragment
     }
   }
 `
