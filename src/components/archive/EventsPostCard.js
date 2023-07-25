@@ -17,7 +17,7 @@ const EventsPost = ({
   // if post is null or undefined, return null
   if (!post) return null
 
-  const { title, date, featuredImage, uri, excerpt, eventsFields } = post
+  const { title, featuredImage, uri, excerpt, eventsFields } = post
 
   const { node: { sourceUrl, altText, mediaDetails } = {} } =
     featuredImage || {}
