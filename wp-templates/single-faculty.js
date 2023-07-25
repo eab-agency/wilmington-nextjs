@@ -23,6 +23,7 @@ export default function Component(props) {
 
   const seoTitle = `${faculty.position}, ${title}`
 
+  // eslint-disable-next-line no-console
   console.log(
     '🚀 ~ file: single-faculty.js:26 ~ Component ~ seoTitle:',
     seoTitle
