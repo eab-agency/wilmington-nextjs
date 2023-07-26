@@ -45,7 +45,7 @@ AcfFeaturedDept.query = gql`
   ${FeaturedImage.fragments.entry}
   query getFeaturedDepartmens(
     $ids: [ID!]!
-    $imageSize: MediaItemSizeEnum = MEDIUM
+    $imageSize: MediaItemSizeEnum = DEPT_CARD
     $programLimit: Int = 2
   ) {
     departments(where: { include: $ids }) {
