@@ -1,11 +1,11 @@
 import { gql } from '@apollo/client'
 // import { Container, Footer, Header, Hero, Main, SEO } from '../components'
 import { SEO } from '@/components'
-import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero/PageHero'
+import { seoPostFields } from '@/fragments'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
@@ -15,13 +15,11 @@ import blocks from '../wp-blocks'
 export default function Component(props) {
   const { title, editorBlocks, seo, featuredImage } = props.data.nodeByUri
   const blocks = flatListToHierarchical(editorBlocks)
-
-  const { title: siteTitle, description: siteDescription } =
-    props?.data?.generalSettings ?? {}
+  const { description: siteDescription } = props?.data?.generalSettings ?? {}
 
   return (
     <>
-      <SEO title={siteTitle} description={siteDescription} />
+      <SEO seo={seo} description={siteDescription} />
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
@@ -51,9 +49,8 @@ Component.variables = ({ uri }, ctx) => {
  * Compose the GraphQL query for our page's data.
  */
 Component.query = gql`
-  ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
-
+  ${BlogInfoFragment}
   # Get all block fragments and add them to the query
   ${getFragmentDataFromBlocks(blocks).entries}
 
@@ -64,6 +61,9 @@ Component.query = gql`
       }
       ... on NodeWithFeaturedImage {
         ...FeaturedImageFragment
+      }
+      ... on ContentNode {
+        ${seoPostFields}
       }
       ... on NodeWithEditorBlocks {
         # Get contentBlocks with flat=true and the nodeId and parentId
@@ -81,7 +81,7 @@ Component.query = gql`
         }
       }
     }
-     generalSettings {
+    generalSettings {
       ...BlogInfoFragment
     }
   }

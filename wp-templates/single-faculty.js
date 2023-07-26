@@ -4,6 +4,7 @@ import { SEO } from '@/components'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero'
+import { seoPostFields } from '@/fragments'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
 import facultyAcfFields from '@/lib/wordpress/_query-partials/facultyAcfFields'
@@ -12,20 +13,21 @@ import { flatListToHierarchical } from '@faustwp/core'
 import RichText from '../src/components/atoms/RichText/RichText'
 import blocks from '../wp-blocks'
 
-export default function Component(props) {
+export default function SingleFaculty(props) {
   const { title, editorBlocks, seo, featuredImage, facultyFields } =
     props.data.nodeByUri
+
   const blocks = flatListToHierarchical(editorBlocks)
 
   const { faculty } = facultyFields
 
-  const { description: siteDescription } = props?.data?.generalSettings ?? {}
+  const { title: siteTitle } = props?.data?.generalSettings ?? {}
 
-  const seoTitle = `${faculty.position}, ${title}`
+  const seoTitle = `${faculty.position}, ${title} - ${siteTitle}`
 
   return (
     <>
-      <SEO title={seoTitle} description={siteDescription} />
+      <SEO seo={seo} title={seoTitle} />
       <Layout className="thelayoutclass">
         <div className="single-faculty">
           <article className="inner-wrap">
@@ -106,7 +108,7 @@ export default function Component(props) {
   )
 }
 
-Component.variables = ({ uri }, ctx) => {
+SingleFaculty.variables = ({ uri }, ctx) => {
   return {
     uri
   }
@@ -115,19 +117,22 @@ Component.variables = ({ uri }, ctx) => {
 /**
  * Compose the GraphQL query for our page's data.
  */
-Component.query = gql`
+SingleFaculty.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
   # Get all block fragments and add them to the query
   ${getFragmentDataFromBlocks(blocks).entries}
 
-  query GetSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
+  query GetSingularFaculty($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
     nodeByUri(uri: $uri) {
       ... on NodeWithTitle {
         title
       }
       ... on NodeWithFeaturedImage {
         ...FeaturedImageFragment
+      }
+      ... on ContentNode {
+        ${seoPostFields}
       }
       ... on FacultyMember {
         ${facultyAcfFields}
