@@ -24,6 +24,15 @@ export default function SingleEvent(props) {
 
   const { event } = eventsFields
 
+  // if no event, return null
+  if (!event)
+    return (
+      <div>
+        Whoops, it looks like this event is not configured correctly. Please
+        contact the school.
+      </div>
+    )
+
   return (
     <>
       <SEO seo={seo} />
