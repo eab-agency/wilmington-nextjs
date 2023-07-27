@@ -49,6 +49,9 @@ ArchiveFaculty.query = gql`
           nodes {
             id
             uri
+            ... on NodeWithTitle {
+              title
+            }
             ... on FacultyMember {
               facultyFields {
                 faculty {
