@@ -150,6 +150,12 @@
         padding: clamp(1rem, 2vw, 2rem);
         background: tokens.$c-gray-700;
 
+        .eventContentContainer {
+          &::after {
+            display: none;
+          }
+        }
+
         .articleTitle {
           text-decoration: none;
 
@@ -161,6 +167,13 @@
 
         h3 {
           color: tokens.$c-white;
+        }
+
+        .eventDetails {
+          & > div,
+          & > address {
+            color: tokens.$c-white;
+          }
         }
 
         a {
