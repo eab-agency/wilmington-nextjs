@@ -12,8 +12,9 @@ export const FacultyList = ({ posts, ...props }) => {
           email,
           phone,
           uri,
-          featuredImage: { node: image }
+          featuredImage
         }) => {
+          const image = featuredImage?.node
           return (
             <FacultyCard
               key={id}

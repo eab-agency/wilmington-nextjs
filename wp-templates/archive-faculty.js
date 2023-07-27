@@ -1,6 +1,7 @@
 import { SEO } from '@/components'
 import { FacultyList } from '@/components/archive/FacultyList'
 import RichText from '@/components/atoms/RichText'
+import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import { gql } from '@apollo/client'
@@ -34,7 +35,8 @@ ArchiveFaculty.variables = ({ uri }) => {
 
 ArchiveFaculty.query = gql`
   ${BlogInfoFragment}
-  query Archive($uri: String!) {
+  ${FeaturedImage.fragments.entry}
+  query Archive($uri: String!, $imageSize: MediaItemSizeEnum = MEDIUM) {
     nodeByUri(uri: $uri) {
       __typename
       uri
@@ -44,7 +46,10 @@ ArchiveFaculty.query = gql`
         uri
         description
 
-        contentNodes {
+        contentNodes(
+          first: 100
+          where: { orderby: { field: TITLE, order: ASC } }
+        ) {
           nodes {
             id
             uri
@@ -65,16 +70,7 @@ ArchiveFaculty.query = gql`
                   position
                 }
               }
-              featuredImage {
-                node {
-                  sourceUrl(size: MEDIUM)
-                  altText
-                  mediaDetails {
-                    width
-                    height
-                  }
-                }
-              }
+              ...FeaturedImageFragment
             }
           }
         }
