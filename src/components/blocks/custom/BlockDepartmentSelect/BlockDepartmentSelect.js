@@ -12,7 +12,7 @@ const DepartmentSingle = ({ department }) => {
     uri,
     description,
     programs,
-    departmentFields: { deptIcon, deptImage }
+    departmentFields: { deptImage }
   } = department
 
   // don't show programs that are a child program page
@@ -82,7 +82,6 @@ const DepartmentSelector = ({
 
   return (
     <select onChange={handleDropdownChange} value={selectedDepartment}>
-      <option value="DEFAULT">Choose an area of study</option>
       <option value="ALL">Show All</option>
       {programDepartments.map((department) => (
         <option key={department.uri} value={department.name}>
@@ -95,7 +94,8 @@ const DepartmentSelector = ({
 
 export default function BlockDepartmentSelect({ programDepartments }) {
   const [selectedDepartment, setSelectedDepartment] = React.useState('')
-  const [selectedDepartmentInfo, setSelectedDepartmentInfo] = useState({})
+  const [selectedDepartmentInfo, setSelectedDepartmentInfo] =
+    useState(programDepartments)
 
   // use useEffect to set the selectedDepartmentInfo, selectedDepartment values can be null, undefined, ALL, or a department name
   useEffect(() => {
