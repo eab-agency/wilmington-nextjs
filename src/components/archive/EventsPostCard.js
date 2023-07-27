@@ -17,7 +17,10 @@ const EventsPost = ({
   // if post is null or undefined, return null
   if (!post) return null
 
-  const { title, featuredImage, uri, excerpt, eventsFields } = post
+  const { title, featuredImage, uri, eventsFields, multiDay } = post
+  // eslint-disable-next-line no-console
+  if (multiDay) console.log('multiDay: ', multiDay)
+  // TODO: Andrei, i've added a 'multiDay' field to the post object if you want to display dates differently for multi-day events
 
   const { node: { sourceUrl, altText, mediaDetails } = {} } =
     featuredImage || {}
