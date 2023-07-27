@@ -38,14 +38,10 @@ ArchiveFaculty.query = gql`
   ${FeaturedImage.fragments.entry}
   query Archive($uri: String!, $imageSize: MediaItemSizeEnum = MEDIUM) {
     nodeByUri(uri: $uri) {
-      __typename
-      uri
       ... on ContentType {
         label
         __typename
         uri
-        description
-
         contentNodes(
           first: 100
           where: { orderby: { field: TITLE, order: ASC } }
@@ -53,15 +49,6 @@ ArchiveFaculty.query = gql`
           nodes {
             id
             uri
-            ... on NodeWithExcerpt {
-              excerpt
-            }
-            ... on NodeWithContentEditor {
-              content
-            }
-            ... on NodeWithTitle {
-              title
-            }
             ... on FacultyMember {
               facultyFields {
                 faculty {
