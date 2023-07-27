@@ -9,6 +9,7 @@
 
   @media (min-width: tokens.$mq-1000) {
     margin: 0;
+    top: clamp(-12rem, -20vw, -10rem);
 
     &::before {
       content: '';

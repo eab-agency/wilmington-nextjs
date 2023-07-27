@@ -1,4 +1,5 @@
 import archive from './archive'
+import ArchiveFaculty from './archive-faculty'
 import ArchiveNewsAndEvents from './archive-news-and-events'
 import ArchiveProgram from './archive-program'
 import frontPage from './front-page'
@@ -20,6 +21,7 @@ const templates = {
   'archive-event': ArchiveNewsAndEvents,
   'single-program': SingleProgram,
   'archive-program': ArchiveProgram,
+  'archive-faculty': ArchiveFaculty,
   'single-faculty': SingleFaculty,
   'single-event': SingleEvent,
   'single-news': SingleNews,

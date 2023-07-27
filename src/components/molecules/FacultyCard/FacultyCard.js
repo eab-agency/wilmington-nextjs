@@ -20,9 +20,11 @@ const FacultyCard = ({ title, description, email, phone, link, image }) => {
           <p>{description}</p>
         </div>
         <div className={styles.contactDetails}>
-          <a className={styles.email} href={`mailto:${email}`}>
-            Send Email
-          </a>
+          {email ? (
+            <a className={styles.email} href={`mailto:${email}`}>
+              Send Email
+            </a>
+          ) : null}
           {phone ? (
             <a className={styles.phone} href={`tel:${phone}`}>
               {phone}
