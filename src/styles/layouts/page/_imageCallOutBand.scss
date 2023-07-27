@@ -63,6 +63,10 @@
     position: relative;
     z-index: tokens.$layer-2;
     color: tokens.$c-white;
+
+    a {
+      color: tokens.$c-teal-300;
+    }
   }
   div[class*='buttonGroup'] {
     position: relative;

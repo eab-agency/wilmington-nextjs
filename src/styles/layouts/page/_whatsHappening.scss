@@ -51,9 +51,34 @@
           li {
             color: white;
 
-            h3 {
-              font-size: tokens.$fs-xs;
+            time[class*='theTime'] {
+              background: initial;
+              color: tokens.$c-limeGreen-400;
+              padding: 0;
+            }
+
+            .articleTitle {
               color: tokens.$c-white;
+              h3 {
+                font-size: tokens.$fs-xs;
+                color: tokens.$c-white;
+              }
+            }
+
+            .eventContentContainer {
+              .eventDetails {
+                i {
+                  color: tokens.$c-teal-500;
+                }
+
+                & > div,
+                address {
+                  color: tokens.$c-white;
+                }
+              }
+              a[class*='articleLink'] {
+                color: tokens.$c-teal-300;
+              }
             }
           }
         }

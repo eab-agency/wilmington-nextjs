@@ -1,12 +1,32 @@
 import styles from './theDate.module.scss'
 
-const TheDate = (prop: { date: number }): any => {
-  const theDate = new Date(prop.date)
-  const formattedDate = theDate.toLocaleDateString('en-US', {
+const formatDate = (dateString: string): string => {
+  let formattedDate
+  const options: Intl.DateTimeFormatOptions = {
     month: 'short',
-    day: '2-digit',
+    day: 'numeric',
     year: 'numeric'
-  })
+  }
+
+  // Check if the date string has the "T" separator
+  if (dateString.includes('T')) {
+    const date = new Date(dateString)
+    formattedDate = date.toLocaleDateString('en-US', options)
+  } else {
+    const [year, month, day] = dateString.split('-')
+    const formattedMonth = new Date(
+      parseInt(year, 10),
+      parseInt(month, 10) - 1,
+      parseInt(day, 10)
+    ).toLocaleDateString('en-US', options)
+    formattedDate = formattedMonth
+  }
+
+  return formattedDate
+}
+
+const TheDate = ({ date }: { date: string }): any => {
+  const formattedDate = formatDate(date)
   return <time className={styles.theTime}>{formattedDate}</time>
 }
 
