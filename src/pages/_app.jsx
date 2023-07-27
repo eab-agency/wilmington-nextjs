@@ -23,7 +23,9 @@ export default function WilmingtonApp({ Component, pageProps }) {
   const router = useRouter()
 
   useEffect(() => {
-    TagManager.initialize({ gtmId })
+    if (process.env.NODE_ENV !== 'development') {
+      TagManager.initialize({ gtmId })
+    }
   }, [])
 
   // Initialize state for WordPress context provider.
