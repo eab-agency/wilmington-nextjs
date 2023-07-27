@@ -14,10 +14,10 @@ import Head from 'next/head'
 // import RichText from '../src/components/atoms/RichText/RichText'
 import { className } from 'classnames/bind'
 import { MdForward } from 'react-icons/md'
-import blocks from '../wp-blocks'
+import blockEntries from '../wp-blocks'
 
 export default function SingleEvent(props) {
-  const { editorBlocks, seo, featuredImage, eventsFields, terms, title } =
+  const { editorBlocks, seo, featuredImage, eventsFields, title } =
     props.data.nodeByUri
 
   const blocks = flatListToHierarchical(editorBlocks)
@@ -139,7 +139,7 @@ SingleEvent.variables = ({ uri }, ctx) => {
  */
 SingleEvent.query = gql`
   ${FeaturedImage.fragments.entry}
-  ${getFragmentDataFromBlocks(blocks).entries}
+  ${getFragmentDataFromBlocks(blockEntries).entries}
   query GetEventData($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
     nodeByUri(uri: $uri) {
        ... on NodeWithTitle {
@@ -171,7 +171,7 @@ SingleEvent.query = gql`
           parentId: parentClientId
           renderedHtml
           # Get all block fragment keys and call them in the query
-          ${getFragmentDataFromBlocks(blocks).keys}
+          ${getFragmentDataFromBlocks(blockEntries).keys}
         }
       }
     }
