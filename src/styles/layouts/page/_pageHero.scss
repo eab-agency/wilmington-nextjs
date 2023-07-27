@@ -3,7 +3,8 @@
 
 .hero-w-image {
   position: relative;
-  margin-bottom: -3rem;
+  // margin-bottom: -3rem;
+  // margin-bottom: -3rem;
 
   @media (min-width: tokens.$mq-1000) {
     padding-right: tokens.$pageOffset;
@@ -40,15 +41,19 @@
     display: block;
     background: tokens.$c-white;
     z-index: tokens.$layer-2;
-    position: absolute;
-    bottom: 6em;
+    border-bottom: 1px solid tokens.$c-gray-500;
     width: 100%;
-    max-width: 80%;
     padding-block: clamp(1rem, 2vw, 2rem);
+    // position: absolute;
+    // bottom: 6em;
+    // max-width: 80%;
 
-    @media (min-width: tokens.$mq-1000) {
-      max-width: calc(80% - tokens.$pageOffset);
-    }
+    // @media (min-width: tokens.$mq-1000) {
+    //   max-width: calc(80% - tokens.$pageOffset);
+    // }
+    // @media (min-width: tokens.$mq-1000) {
+    //   max-width: calc(80% - tokens.$pageOffset);
+    // }
 
     h1 {
       margin: 0;
