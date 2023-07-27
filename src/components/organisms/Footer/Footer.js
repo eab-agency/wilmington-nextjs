@@ -86,7 +86,13 @@ const Footer = ({ menus }) => {
             color, religion, national or ethnic origin, sexual orientation or
             disability in the administration of educational policies, admission
             policies, financial aid, employment or any other College program or
-            activity. Disclosures.{' '}
+            activity.{' '}
+            <a
+              href="https://www.wilmington.edu/about/disclosures/"
+              target="_blank"
+            >
+              Disclosures
+            </a>{' '}
             <span className={styles.copyright}>
               ©{currentYear} Wilmington College. All rights reserved
             </span>

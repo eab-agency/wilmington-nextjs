@@ -145,6 +145,7 @@ $social-icons: (
           width: 2em;
           border-inline: 1px solid tokens.$c-darkGreen-700;
           text-indent: -999em;
+          font-size: clamp(1.5rem, 2vw, 2rem);
 
           &::before {
             content: tokens.$i-star;
@@ -194,6 +195,10 @@ $social-icons: (
     .copyright {
       font-weight: 600;
       font-style: normal;
+    }
+
+    a {
+      color: tokens.$c-teal-300;
     }
   }
 }
