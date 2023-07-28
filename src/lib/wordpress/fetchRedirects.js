@@ -15,7 +15,9 @@ const fetchRedirects = () => {
 
   // Recursive function to fetch all pages
   const fetchPage = (page = 0) => {
-    const pageUrl = `${url}?page=${page}`
+    const perPage = 100
+    const pageUrl = `${url}?page=${page}&per_page=${perPage}`
+
     return fetch(pageUrl, options)
       .then((response) => response.json())
       .then((data) => {
@@ -27,13 +29,13 @@ const fetchRedirects = () => {
 
         allRedirects.push(...redirects) // Add the fetched items to the array
 
-        if (data.items.length === 0) {
-          // Stop fetching if there are no more items on the current page
-          return allRedirects
+        if (data.total > (page + 1) * perPage) {
+          // Fetch the next page if there are more items to fetch
+          return fetchPage(page + 1)
         }
 
-        // Fetch the next page
-        return fetchPage(page + 1)
+        // Return the fetched items if there are no more items to fetch
+        return allRedirects
       })
   }
 
