@@ -15,7 +15,7 @@ export default EabProgramDirectory
 // query to get the faq data
 EabProgramDirectory.query = gql`
   query getAllDepartments {
-    departments {
+    departments(where: { order: ASC }) {
       nodes {
         databaseId
         slug
@@ -23,7 +23,6 @@ EabProgramDirectory.query = gql`
         name
         description
         departmentFields {
-          deptIcon
           deptImage {
             altText
             caption
@@ -34,7 +33,7 @@ EabProgramDirectory.query = gql`
             }
           }
         }
-        programs {
+        programs(where: { orderby: { field: TITLE, order: ASC } }) {
           nodes {
             slug
             uri
