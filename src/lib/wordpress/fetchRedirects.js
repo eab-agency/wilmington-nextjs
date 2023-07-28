@@ -11,16 +11,33 @@ const fetchRedirects = () => {
     }
   }
 
-  return fetch(url, options)
-    .then((response) => response.json())
-    .then((data) => {
-      const redirects = data.items.map((item) => ({
-        source: item.url,
-        destination: item.action_data.url,
-        permanent: item.action_code === 301
-      }))
-      return redirects
-    })
+  const allRedirects = [] // Array to store all the fetched items
+
+  // Recursive function to fetch all pages
+  const fetchPage = (page = 0) => {
+    const pageUrl = `${url}?page=${page}`
+    return fetch(pageUrl, options)
+      .then((response) => response.json())
+      .then((data) => {
+        const redirects = data.items.map((item) => ({
+          source: item.url,
+          destination: item.action_data.url,
+          permanent: item.action_code === 301
+        }))
+
+        allRedirects.push(...redirects) // Add the fetched items to the array
+
+        if (data.items.length === 0) {
+          // Stop fetching if there are no more items on the current page
+          return allRedirects
+        }
+
+        // Fetch the next page
+        return fetchPage(page + 1)
+      })
+  }
+
+  return fetchPage()
 }
 
 module.exports = fetchRedirects
