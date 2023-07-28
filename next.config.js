@@ -12,6 +12,10 @@ const nextConfig = {
   },
   async redirects() {
     const redirects = await fetchRedirects()
+    console.log(
+      '🚀 ~ file: next.config.js:15 ~ redirects ~ redirects:',
+      redirects
+    )
     return [...redirects]
   },
   reactStrictMode: true,
