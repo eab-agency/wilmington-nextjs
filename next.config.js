@@ -16,8 +16,9 @@ const nextConfig = {
     return [
       ...redirects,
       {
-        source: '/wp-content/:slug*',
-        destination: 'https://wordpress.wilmington.edu/wp-content/:slug',
+        source: '/wp-content/uploads/:slug*',
+        destination:
+          'https://wordpress.wilmington.edu/wp-content/uploads/:slug',
         permanent: true
       }
     ]
