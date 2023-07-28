@@ -36,7 +36,7 @@ ArchiveFaculty.variables = ({ uri }) => {
 ArchiveFaculty.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
-  query Archive($uri: String!, $imageSize: MediaItemSizeEnum = MEDIUM) {
+  query Archive($uri: String!, $imageSize: MediaItemSizeEnum = DEPT_CARD) {
     nodeByUri(uri: $uri) {
       ... on ContentType {
         label
