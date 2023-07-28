@@ -20,10 +20,6 @@ const regexList = [
   {
     regex: /https?:\/\/wilmington\.vercel\.app/,
     replace: ''
-  },
-  {
-    regex: /https?:\/\/(www\.)?wordpress\.wilmington\.edu(?!\/wp-content\/)/,
-    replace: ''
   }
 ]
 
