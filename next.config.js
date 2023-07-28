@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /** @type {import('next').NextConfig} */
 const fetchRedirects = require('./src/lib/wordpress/fetchRedirects')
 const { withFaust } = require('@faustwp/core')
@@ -12,7 +13,15 @@ const nextConfig = {
   },
   async redirects() {
     const redirects = await fetchRedirects()
-    return [...redirects]
+    return [
+      {
+        source: '/wp-content/uploads/:slug*',
+        destination:
+          'https://wordpress.wilmington.edu/wp-content/uploads/:slug',
+        permanent: true
+      },
+      ...redirects
+    ]
   },
   reactStrictMode: true,
   images: {

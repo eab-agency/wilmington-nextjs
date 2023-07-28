@@ -25,7 +25,7 @@
       max-width: 28rem;
       padding-block: clamp(0.5em, 1vw, 1em);
       padding-inline: clamp(0.5em, 2vw, 2em);
-      padding-left: 3em;
+      padding-left: clamp(2rem, 3vw, 3rem);
       background: tokens.$c-gray-300;
       position: relative;
 
@@ -44,16 +44,24 @@
         content: '';
         display: block;
         position: absolute;
-        bottom: calc(100% - 1rem);
+        bottom: 100%;
         right: 0;
-        width: 30%;
-        border-top-right-radius: 1rem;
-        border-bottom: 2.5em solid tokens.$c-gray-300;
+        width: 50%;
+        border-top-right-radius: 0.5rem;
+        border-bottom: 1em solid tokens.$c-gray-300;
         border-left: 2em solid transparent;
+
+        @media (min-width: tokens.$mq-800) {
+          bottom: calc(100% - 1rem);
+          width: 30%;
+          border-top-right-radius: 1rem;
+          border-bottom: 2.5em solid tokens.$c-gray-300;
+        }
       }
 
       h4 {
         color: tokens.$c-darkGreen-800;
+        margin-bottom: clamp(0.5em, 1vw, 1em);
       }
 
       p {
@@ -66,7 +74,7 @@
       display: flex;
       flex-direction: column;
       gap: 1em;
-      padding: 2em;
+      padding: clamp(1rem, 2vw, 2rem);
       background: tokens.$c-white;
 
       a {

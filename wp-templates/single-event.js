@@ -1,6 +1,7 @@
 import { SEO } from '@/components'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
-import Container from '@/components/atoms/Container'
+// import Container from '@/components/atoms/Container'
+import EventIcon from '@/components/atoms/EventIcon'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero/PageHero'
@@ -10,16 +11,27 @@ import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
 import Head from 'next/head'
-import RichText from '../src/components/atoms/RichText/RichText'
-import blocks from '../wp-blocks'
+// import RichText from '../src/components/atoms/RichText/RichText'
+import { className } from 'classnames/bind'
+import { MdForward } from 'react-icons/md'
+import blockEntries from '../wp-blocks'
 
 export default function SingleEvent(props) {
-  const { editorBlocks, seo, featuredImage, eventsFields, terms, title } =
+  const { editorBlocks, seo, featuredImage, eventsFields, title } =
     props.data.nodeByUri
 
   const blocks = flatListToHierarchical(editorBlocks)
 
   const { event } = eventsFields
+
+  // if no event, return null
+  if (!event)
+    return (
+      <div>
+        Whoops, it looks like this event is not configured correctly. Please
+        contact the school.
+      </div>
+    )
 
   return (
     <>
@@ -69,17 +81,41 @@ export default function SingleEvent(props) {
             <div className="page-content">
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
               <section className="eventDetails">
-                <div className="eventStartDate">
-                  <div>The start-date: {event.startDate}</div>
-                  <div>The start-time: {event.startTime}</div>
-                </div>
-                <div className="eventEndDate">
-                  <div>The end-date: {event.endDate}</div>
-                  <div>The end-time: {event.endTime}</div>
+                <div className="eventDateTime">
+                  <div className="eventDate">
+                    <EventIcon icon="calendar" />
+                    {event.startDate}{' '}
+                    {event.endDate && (
+                      <>
+                        <span className="separatorUpTo">
+                          <MdForward />
+                        </span>{' '}
+                        {event.endDate}
+                      </>
+                    )}
+                  </div>
+                  <div className="eventTime">
+                    <EventIcon icon="time" /> {event.startTime}{' '}
+                    {event.endTime && (
+                      <>
+                        <span className="separatorUpTo">
+                          <MdForward />
+                        </span>{' '}
+                        {event.endTime}
+                      </>
+                    )}
+                  </div>
                 </div>
                 <div className="eventLocations">
-                  <div>The location name: {event.locationName}</div>
-                  <div>The location address: {event.locationAddress}</div>
+                  <EventIcon icon="location" />
+                  <address>
+                    <div className="eventLocationName">
+                      <strong>{event.locationName}</strong>
+                    </div>
+                    <div className="eventLocationAddress">
+                      {event.locationAddress}
+                    </div>
+                  </address>
                 </div>
               </section>
               <WordPressBlocksViewer blocks={blocks} />
@@ -103,7 +139,7 @@ SingleEvent.variables = ({ uri }, ctx) => {
  */
 SingleEvent.query = gql`
   ${FeaturedImage.fragments.entry}
-  ${getFragmentDataFromBlocks(blocks).entries}
+  ${getFragmentDataFromBlocks(blockEntries).entries}
   query GetEventData($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
     nodeByUri(uri: $uri) {
        ... on NodeWithTitle {
@@ -135,7 +171,7 @@ SingleEvent.query = gql`
           parentId: parentClientId
           renderedHtml
           # Get all block fragment keys and call them in the query
-          ${getFragmentDataFromBlocks(blocks).keys}
+          ${getFragmentDataFromBlocks(blockEntries).keys}
         }
       }
     }
