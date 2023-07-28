@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /** @type {import('next').NextConfig} */
 const fetchRedirects = require('./src/lib/wordpress/fetchRedirects')
 const { withFaust } = require('@faustwp/core')
@@ -12,6 +13,10 @@ const nextConfig = {
   },
   async redirects() {
     const redirects = await fetchRedirects()
+    console.log(
+      '🚀 ~ file: next.config.js:15 ~ redirects ~ redirects:',
+      redirects.length
+    )
     return [...redirects]
   },
   reactStrictMode: true,
