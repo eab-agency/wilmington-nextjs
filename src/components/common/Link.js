@@ -2,6 +2,10 @@ import Link from 'next/link'
 
 const regexList = [
   {
+    regex: /https?:\/\/(www\.)?wilmington\.edu\/wp-content\/uploads/,
+    replace: 'https://wordpress.wilmington.edu/wp-content/uploads'
+  },
+  {
     regex: /^\/(?!\/|$)/,
     replace: ''
   },

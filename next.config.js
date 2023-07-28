@@ -14,13 +14,13 @@ const nextConfig = {
   async redirects() {
     const redirects = await fetchRedirects()
     return [
-      ...redirects,
       {
         source: '/wp-content/uploads/:slug*',
         destination:
           'https://wordpress.wilmington.edu/wp-content/uploads/:slug',
         permanent: true
-      }
+      },
+      ...redirects
     ]
   },
   reactStrictMode: true,
