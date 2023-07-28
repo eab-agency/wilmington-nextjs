@@ -13,11 +13,14 @@ const nextConfig = {
   },
   async redirects() {
     const redirects = await fetchRedirects()
-    console.log(
-      '🚀 ~ file: next.config.js:15 ~ redirects ~ redirects:',
-      redirects.length
-    )
-    return [...redirects]
+    return [
+      ...redirects,
+      {
+        source: '/wp-content/:slug*',
+        destination: 'https://wordpress.wilmington.edu/wp-content/:slug',
+        permanent: true
+      }
+    ]
   },
   reactStrictMode: true,
   images: {
