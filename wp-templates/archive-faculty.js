@@ -19,7 +19,8 @@ export default function ArchiveFaculty(props) {
       <Layout className="thelayoutclass">
         <div className="inner-wrap archive">
           <RichText className="archiveTitle" tag="h1">
-            {label}
+            {/* {label} */}
+            Faculty and Staff
           </RichText>
           {description && <RichText>{description}</RichText>}
           <FacultyList className="facultyList" posts={contentNodes.nodes} />
