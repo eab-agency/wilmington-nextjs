@@ -69,7 +69,7 @@ const Footer = ({ menus }) => {
               </li>
               <li>
                 <a
-                  href="https://www.youtube.com/user/WilmingtonCollege"
+                  href="https://www.youtube.com/@wilmingtoncollege1870"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialLink}

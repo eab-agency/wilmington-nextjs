@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'tokens';
 
 .algoliaSearch {
@@ -270,7 +271,7 @@
         }
 
         &[class*='clear'] {
-          padding-inline: clamp(2rem, 4vw, 4rem);
+          // padding-inline: clamp(2rem, 4vw, 4rem);
         }
       }
     }
@@ -292,9 +293,10 @@
     }
 
     & .clear {
-      margin-top: 1.5rem;
-      max-width: 7em;
-      // border-top: 1px solid #ccc;
+      // margin-top: 1.5rem;
+      // max-width: 7em;
+      // padding-inline: 1rem;
+      border-top: 1px dotted #ccc;
 
       & button {
         display: flex;
@@ -302,39 +304,30 @@
         font-weight: normal;
         font-size: 0.75rem;
         text-transform: uppercase;
+        text-decoration: underline;
         position: relative;
-        padding-left: 2em;
+        padding: 1rem;
+        padding-left: 3em;
+        width: 10rem;
+        color: tokens.$c-gray-600;
+        border-radius: 0;
 
         &::before {
-          content: '-';
+          content: tokens.$i-trash;
+          font-family: tokens.$f-icons;
           display: flex;
           justify-content: center;
           align-items: center;
-          font-size: 2em;
+          font-size: 1.5em;
           position: absolute;
-        }
-
-        &::after {
-          content: '';
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 2em;
-          width: 0.7em;
-          height: 0.7em;
-          line-height: 0;
-          border: 1px solid tokens.$c-gray-700;
-          border-radius: 50%;
-          position: absolute;
-          left: 0.375em;
-          top: 0.725em;
-          background: transparent;
+          left: 1rem;
+          color: tokens.$c-orange-500;
         }
 
         &:hover,
         &:focus {
-          background: tokens.$c-gray-600;
-          color: white;
+          background: color.adjust(tokens.$c-gray-500, $lightness: 20%);
+          // color: white;
           text-decoration: none;
 
           &::after {
