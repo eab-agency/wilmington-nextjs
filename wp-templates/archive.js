@@ -44,7 +44,10 @@ Archive.query = gql`
         uri
         description
 
-        contentNodes {
+        contentNodes(
+          first: 100
+          where: { orderby: { field: TITLE, order: ASC } }
+        ) {
           nodes {
             id
             uri
