@@ -14,6 +14,10 @@ import RichText from '../src/components/atoms/RichText/RichText'
 import blocks from '../wp-blocks'
 
 export default function SingleFaculty(props) {
+  if (props.loading) {
+    return <>Loading...</>
+  }
+
   const { title, editorBlocks, seo, featuredImage, facultyFields } =
     props.data.facultyMember
 
@@ -126,6 +130,7 @@ SingleFaculty.query = gql`
 
   query GetSingularFaculty($databaseId: ID!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
     facultyMember(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      id
       ... on NodeWithTitle {
         title
       }

@@ -8,6 +8,9 @@ import PageHero from '@/components/organisms/PageHero/PageHero'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 
 export default function Component(props) {
+  if (props.loading) {
+    return <>Loading...</>
+  }
   const { content, featuredImage, testimonialFields } = props.data.testimonial
 
   const { testimonial } = testimonialFields
