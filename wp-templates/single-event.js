@@ -126,9 +126,8 @@ export default function SingleEvent(props) {
   )
 }
 
-SingleEvent.variables = ({ uri, databaseId }, ctx) => {
+SingleEvent.variables = ({ databaseId }, ctx) => {
   return {
-    uri,
     databaseId,
     asPreview: ctx?.asPreview
   }
