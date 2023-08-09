@@ -8,7 +8,7 @@ import PageHero from '@/components/organisms/PageHero/PageHero'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 
 export default function Component(props) {
-  const { content, featuredImage, testimonialFields } = props.data.nodeByUri
+  const { content, featuredImage, testimonialFields } = props.data.testimonial
 
   const { testimonial } = testimonialFields
   const title = `${testimonial?.first} ${testimonial?.last}`
@@ -38,9 +38,9 @@ export default function Component(props) {
   )
 }
 
-Component.variables = ({ uri }, ctx) => {
+Component.variables = ({ databaseId }, ctx) => {
   return {
-    uri,
+    databaseId,
     asPreview: ctx?.asPreview
   }
 }
@@ -53,11 +53,11 @@ Component.query = gql`
   ${FeaturedImage.fragments.entry}
 
   query GetSingular(
-    $uri: String!
+    $databaseId: ID!
     $imageSize: MediaItemSizeEnum = LARGE
     $asPreview: Boolean = false
   ) {
-    nodeByUri(uri: $uri, asPreview: $asPreview) {
+    testimonial(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       ... on Testimonial {
         content
         testimonialFields {
