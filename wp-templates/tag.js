@@ -8,7 +8,6 @@ import { gql } from '@apollo/client'
 //   Post,
 //   SEO
 // } from '../components'
-import * as MENUS from '../constants/menus'
 import { BlogInfoFragment } from '../fragments/GeneralSettings'
 
 export default function Component(props) {
@@ -51,8 +50,8 @@ export default function Component(props) {
 Component.query = gql`
   ${BlogInfoFragment}
 
-  query GetTagPage($uri: String!) {
-    nodeByUri(uri: $uri) {
+  query GetTagPage($uri: String!, $asPreview: Boolean = false) {
+    nodeByUri(uri: $uri, asPreview: $asPreview) {
       ... on Tag {
         name
         posts {
@@ -80,10 +79,9 @@ Component.query = gql`
   }
 `
 
-Component.variables = ({ uri }) => {
+Component.variables = ({ uri }, ctx) => {
   return {
     uri,
-    headerLocation: MENUS.PRIMARY_LOCATION,
-    footerLocation: MENUS.FOOTER_LOCATION
+    asPreview: ctx?.asPreview
   }
 }

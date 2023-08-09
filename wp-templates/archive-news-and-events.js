@@ -157,14 +157,17 @@ export default function NewsArchive(props) {
   )
 }
 
-NewsArchive.variables = ({ uri }) => {
-  return { uri }
+NewsArchive.variables = ({ uri }, ctx) => {
+  return { uri, asPreview: ctx?.asPreview }
 }
 
 NewsArchive.query = gql`
   ${FeaturedImage.fragments.entry}
-  query getNewsAndEvents($imageSize: MediaItemSizeEnum = MEDIUM) {
-    news(first: 9) {
+  query getNewsAndEvents(
+    $imageSize: MediaItemSizeEnum = MEDIUM
+    $asPreview: Boolean = false
+  ) {
+    news(first: 9, asPreview: $asPreview) {
       nodes {
         ...FeaturedImageFragment
         excerpt
@@ -173,7 +176,7 @@ NewsArchive.query = gql`
         uri
       }
     }
-    events(first: 5) {
+    events(first: 5, asPreview: $asPreview) {
       nodes {
         ...FeaturedImageFragment
         excerpt

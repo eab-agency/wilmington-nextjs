@@ -28,14 +28,14 @@ export default function Archive(props) {
   )
 }
 
-Archive.variables = ({ uri }) => {
-  return { uri }
+Archive.variables = ({ uri }, ctx) => {
+  return { uri, asPreview: ctx?.asPreview }
 }
 
 Archive.query = gql`
   ${BlogInfoFragment}
-  query Archive($uri: String!) {
-    nodeByUri(uri: $uri) {
+  query Archive($uri: String!, $asPreview: Boolean = false) {
+    nodeByUri(uri: $uri, asPreview: $asPreview) {
       __typename
       uri
       ... on ContentType {

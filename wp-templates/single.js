@@ -13,7 +13,11 @@ import { flatListToHierarchical } from '@faustwp/core'
 import blocks from '../wp-blocks'
 
 export default function Component(props) {
-  const { title, editorBlocks, seo, featuredImage } = props.data.nodeByUri
+  // Loading state for previews
+  if (props.loading) {
+    return <>Loading...</>
+  }
+  const { title, editorBlocks, seo, featuredImage } = props.data.post
   const blocks = flatListToHierarchical(editorBlocks)
   const { description: siteDescription } = props?.data?.generalSettings ?? {}
 
@@ -39,9 +43,10 @@ export default function Component(props) {
   )
 }
 
-Component.variables = ({ uri }, ctx) => {
+Component.variables = ({ databaseId }, ctx) => {
   return {
-    uri
+    databaseId,
+    asPreview: ctx?.asPreview
   }
 }
 
@@ -54,18 +59,11 @@ Component.query = gql`
   # Get all block fragments and add them to the query
   ${getFragmentDataFromBlocks(blocks).entries}
 
-  query GetSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
-    nodeByUri(uri: $uri) {
-      ... on NodeWithTitle {
+  query GetSingular($databaseId: ID!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
+    post(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
         title
-      }
-      ... on NodeWithFeaturedImage {
         ...FeaturedImageFragment
-      }
-      ... on ContentNode {
         ${seoPostFields}
-      }
-      ... on NodeWithEditorBlocks {
         # Get contentBlocks with flat=true and the nodeId and parentId
         # so we can reconstruct them later using flatListToHierarchical()
         editorBlocks {
@@ -79,7 +77,6 @@ Component.query = gql`
           # Get all block fragment keys and call them in the query
           ${getFragmentDataFromBlocks(blocks).keys}
         }
-      }
     }
     generalSettings {
       ...BlogInfoFragment
