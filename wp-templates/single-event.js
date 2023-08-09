@@ -12,7 +12,6 @@ import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
 import Head from 'next/head'
 // import RichText from '../src/components/atoms/RichText/RichText'
-import { className } from 'classnames/bind'
 import { MdForward } from 'react-icons/md'
 import blockEntries from '../wp-blocks'
 
@@ -140,8 +139,9 @@ SingleEvent.variables = ({ uri }, ctx) => {
 SingleEvent.query = gql`
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blockEntries).entries}
-  query GetEventData($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
-    nodeByUri(uri: $uri) {
+  query GetEventData($uri: String!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false
+) {
+    nodeByUri(uri: $uri, asPreview: $asPreview) {
        ... on NodeWithTitle {
         title
       }

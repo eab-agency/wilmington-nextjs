@@ -21,7 +21,7 @@ const templates = {
   'archive-event': ArchiveNewsAndEvents,
   'single-program': SingleProgram,
   'archive-program': ArchiveProgram,
-  'archive-faculty': ArchiveFaculty,
+  // 'archive-faculty': ArchiveFaculty,
   'single-faculty': SingleFaculty,
   'single-event': SingleEvent,
   'single-news': SingleNews,

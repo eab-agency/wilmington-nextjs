@@ -29,21 +29,28 @@ export default function ArchiveFaculty(props) {
   )
 }
 
-ArchiveFaculty.variables = ({ uri }) => {
-  return { uri }
+ArchiveFaculty.variables = ({ uri }, ctx) => {
+  return { uri, asPreview: ctx?.asPreview }
 }
 
 ArchiveFaculty.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
-  query Archive($uri: String!, $imageSize: MediaItemSizeEnum = MEDIUM) {
-    nodeByUri(uri: $uri) {
+  query AllFaculty(
+    $uri: String!
+    $imageSize: MediaItemSizeEnum = MEDIUM
+    $first: Int = 3
+    $after: String
+    $asPreview: Boolean = false
+  ) {
+    nodeByUri(uri: $uri, asPreview: $asPreview) {
       ... on ContentType {
         label
         __typename
         uri
         contentNodes(
-          first: 100
+          first: $first
+          after: $after
           where: { orderby: { field: TITLE, order: ASC } }
         ) {
           nodes {

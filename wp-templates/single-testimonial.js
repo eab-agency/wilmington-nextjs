@@ -6,8 +6,6 @@ import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero/PageHero'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
-import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
-import blocks from '../wp-blocks'
 
 export default function Component(props) {
   const { content, featuredImage, testimonialFields } = props.data.nodeByUri
@@ -42,7 +40,8 @@ export default function Component(props) {
 
 Component.variables = ({ uri }, ctx) => {
   return {
-    uri
+    uri,
+    asPreview: ctx?.asPreview
   }
 }
 
@@ -53,8 +52,12 @@ Component.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
 
-  query GetSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
-    nodeByUri(uri: $uri) {
+  query GetSingular(
+    $uri: String!
+    $imageSize: MediaItemSizeEnum = LARGE
+    $asPreview: Boolean = false
+  ) {
+    nodeByUri(uri: $uri, asPreview: $asPreview) {
       ... on Testimonial {
         content
         testimonialFields {
