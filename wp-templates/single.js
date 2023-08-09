@@ -17,7 +17,8 @@ export default function Component(props) {
   if (props.loading) {
     return <>Loading...</>
   }
-  const { title, editorBlocks, seo, featuredImage } = props.data.post
+  const { title, editorBlocks, seo, featuredImage } =
+    props.data.post || props.data.studentOrg
   const blocks = flatListToHierarchical(editorBlocks)
   const { description: siteDescription } = props?.data?.generalSettings ?? {}
 
@@ -62,6 +63,24 @@ Component.query = gql`
   query GetSingular($databaseId: ID!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
     post(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
         title
+        ...FeaturedImageFragment
+        ${seoPostFields}
+        # Get contentBlocks with flat=true and the nodeId and parentId
+        # so we can reconstruct them later using flatListToHierarchical()
+        editorBlocks {
+          cssClassNames
+          isDynamic
+          name
+          id: clientId
+          parentId: parentClientId
+          renderedHtml
+
+          # Get all block fragment keys and call them in the query
+          ${getFragmentDataFromBlocks(blocks).keys}
+        }
+    }
+    studentOrg(id: $databaseId, idType: DATABASE_ID) {
+       title
         ...FeaturedImageFragment
         ${seoPostFields}
         # Get contentBlocks with flat=true and the nodeId and parentId
