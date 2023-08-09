@@ -16,8 +16,11 @@ import { MdForward } from 'react-icons/md'
 import blockEntries from '../wp-blocks'
 
 export default function SingleEvent(props) {
+  if (props.loading) {
+    return <>Loading...</>
+  }
   const { editorBlocks, seo, featuredImage, eventsFields, title } =
-    props.data.nodeByUri
+    props.data.event
 
   const blocks = flatListToHierarchical(editorBlocks)
 
@@ -126,9 +129,9 @@ export default function SingleEvent(props) {
   )
 }
 
-SingleEvent.variables = ({ uri }, ctx) => {
+SingleEvent.variables = ({ databaseId }, ctx) => {
   return {
-    uri,
+    databaseId,
     asPreview: ctx?.asPreview
   }
 }
@@ -139,9 +142,9 @@ SingleEvent.variables = ({ uri }, ctx) => {
 SingleEvent.query = gql`
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blockEntries).entries}
-  query GetEventData($uri: String!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false
+  query GetEventData($databaseId: ID!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false
 ) {
-    nodeByUri(uri: $uri, asPreview: $asPreview) {
+    event(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
        ... on NodeWithTitle {
         title
       }
