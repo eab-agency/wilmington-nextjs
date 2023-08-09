@@ -48,8 +48,8 @@ export default function Component(props) {
 
 Component.query = gql`
   ${BlogInfoFragment}
-  query GetCategoryPage($uri: String!) {
-    nodeByUri(uri: $uri) {
+  query GetCategoryPage($uri: String!, $asPreview: Boolean = false) {
+    nodeByUri(uri: $uri, asPreview: $asPreview) {
       ... on Category {
         name
         posts {
@@ -77,9 +77,10 @@ Component.query = gql`
   }
 `
 
-Component.variables = ({ uri }) => {
+Component.variables = ({ uri }, ctx) => {
   return {
-    uri
+    uri,
+    asPreview: ctx?.asPreview
     // headerLocation: MENUS.PRIMARY_LOCATION,
     // footerLocation: MENUS.FOOTER_LOCATION
   }

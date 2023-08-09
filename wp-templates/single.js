@@ -41,7 +41,8 @@ export default function Component(props) {
 
 Component.variables = ({ uri }, ctx) => {
   return {
-    uri
+    uri,
+    asPreview: ctx?.asPreview
   }
 }
 
@@ -54,8 +55,8 @@ Component.query = gql`
   # Get all block fragments and add them to the query
   ${getFragmentDataFromBlocks(blocks).entries}
 
-  query GetSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
-    nodeByUri(uri: $uri) {
+  query GetSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
+    nodeByUri(uri: $uri, asPreview: $asPreview) {
       ... on NodeWithTitle {
         title
       }

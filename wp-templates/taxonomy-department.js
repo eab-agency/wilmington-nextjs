@@ -6,7 +6,6 @@ import RichText from '@/components/atoms/RichText'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import ProgramCard from '@/components/molecules/ProgramCard'
-import RelatedProgramCard from '@/components/molecules/RelatedProgramCard'
 import { seoPostFields } from '@/fragments'
 import { gql } from '@apollo/client'
 
@@ -122,8 +121,8 @@ export default function TaxonomyDepartment(props) {
   )
 }
 
-TaxonomyDepartment.variables = ({ uri }) => {
-  return { uri }
+TaxonomyDepartment.variables = ({ uri }, ctx) => {
+  return { uri, asPreview: ctx?.asPreview }
 }
 
 TaxonomyDepartment.query = gql`
@@ -131,9 +130,10 @@ TaxonomyDepartment.query = gql`
 
   query TaxonomyDepartment(
     $uri: String!
-    $imageSize: MediaItemSizeEnum = MEDIUM
+    $imageSize: MediaItemSizeEnum = MEDIUM,
+    $asPreview: Boolean = false
   ) {
-    nodeByUri(uri: $uri) {
+    nodeByUri(uri: $uri, asPreview: $asPreview) {
       ... on Department {
         ${seoPostFields}
         id
