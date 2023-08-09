@@ -116,6 +116,7 @@
         @include mixins.sectionPadding(block);
         background: tokens.$c-gray-200;
         width: 80vw;
+        max-width: 100%;
 
         &::before {
           content: '';
