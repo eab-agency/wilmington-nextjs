@@ -43,9 +43,8 @@ export default function Component(props) {
   )
 }
 
-Component.variables = ({ uri, databaseId }, ctx) => {
+Component.variables = ({ databaseId }, ctx) => {
   return {
-    uri,
     databaseId,
     asPreview: ctx?.asPreview
   }
