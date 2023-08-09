@@ -14,8 +14,12 @@ import RichText from '../src/components/atoms/RichText/RichText'
 import blocks from '../wp-blocks'
 
 export default function SingleFaculty(props) {
+  if (props.loading) {
+    return <>Loading...</>
+  }
+
   const { title, editorBlocks, seo, featuredImage, facultyFields } =
-    props.data.nodeByUri
+    props.data.facultyMember
 
   const blocks = flatListToHierarchical(editorBlocks)
 
@@ -108,9 +112,9 @@ export default function SingleFaculty(props) {
   )
 }
 
-SingleFaculty.variables = ({ uri }, ctx) => {
+SingleFaculty.variables = ({ databaseId }, ctx) => {
   return {
-    uri,
+    databaseId,
     asPreview: ctx?.asPreview
   }
 }
@@ -124,8 +128,9 @@ SingleFaculty.query = gql`
   # Get all block fragments and add them to the query
   ${getFragmentDataFromBlocks(blocks).entries}
 
-  query GetSingularFaculty($uri: String!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
-    nodeByUri(uri: $uri, asPreview: $asPreview) {
+  query GetSingularFaculty($databaseId: ID!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
+    facultyMember(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      id
       ... on NodeWithTitle {
         title
       }

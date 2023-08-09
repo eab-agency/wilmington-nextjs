@@ -33,7 +33,7 @@ export default function SingleProgram(props) {
     departments,
     programOrgRelationship,
     currentProgramId
-  } = props.data.nodeByUri
+  } = props.data.program
 
   const blocks = flatListToHierarchical(editorBlocks)
 
@@ -68,9 +68,9 @@ export default function SingleProgram(props) {
   )
 }
 
-SingleProgram.variables = ({ uri }, ctx) => {
+SingleProgram.variables = ({ databaseId }, ctx) => {
   return {
-    uri,
+    databaseId,
     asPreview: ctx?.asPreview
   }
 }
@@ -81,8 +81,8 @@ SingleProgram.query = gql`
   ${RelatedProgramsFragment}
   ${StudentOrgFragment}
   ${ProgramTabsFragment}
-  query GetProgramData($uri: String!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
-    nodeByUri(uri: $uri, asPreview: $asPreview) {
+  query GetProgramData($databaseId: ID!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
+    program(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
        ... on NodeWithTitle {
         title
       }
