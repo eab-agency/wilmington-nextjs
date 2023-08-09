@@ -12,7 +12,7 @@ import blocks from '../wp-blocks'
 
 export default function SingleNews(props) {
   const { title, editorBlocks, seo, featuredImage, uri, date, newsCategories } =
-    props.data.nodeByUri
+    props.data.article
   const blocks = flatListToHierarchical(editorBlocks)
 
   return (
@@ -47,9 +47,9 @@ export default function SingleNews(props) {
   )
 }
 
-SingleNews.variables = ({ uri }, ctx) => {
+SingleNews.variables = ({ databaseId }, ctx) => {
   return {
-    uri,
+    databaseId,
     asPreview: ctx?.asPreview
   }
 }
@@ -60,8 +60,8 @@ SingleNews.variables = ({ uri }, ctx) => {
 SingleNews.query = gql`
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
-  query GetNewsSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
-    nodeByUri(uri: $uri, asPreview: $asPreview) {
+  query GetNewsSingular($databaseId: ID!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
+    article(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       __typename
 
       ... on NodeWithTitle {
