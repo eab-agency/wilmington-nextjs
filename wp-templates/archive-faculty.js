@@ -30,8 +30,8 @@ export default function ArchiveFaculty(props) {
   )
 }
 
-ArchiveFaculty.variables = ({ uri }, ctx) => {
-  return { uri, asPreview: ctx?.asPreview }
+ArchiveFaculty.variables = ({ uri }) => {
+  return { uri }
 }
 
 ArchiveFaculty.query = gql`
@@ -42,9 +42,8 @@ ArchiveFaculty.query = gql`
     $imageSize: MediaItemSizeEnum = MEDIUM
     $first: Int = 3
     $after: String
-    $asPreview: Boolean = false
   ) {
-    nodeByUri(uri: $uri, asPreview: $asPreview) {
+    nodeByUri(uri: $uri) {
       ... on ContentType {
         label
         __typename
