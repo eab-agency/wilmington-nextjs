@@ -11,6 +11,9 @@ import { flatListToHierarchical } from '@faustwp/core'
 import blocks from '../wp-blocks'
 
 export default function SingleNews(props) {
+  if (props.loading) {
+    return <>Loading...</>
+  }
   const { title, editorBlocks, seo, featuredImage, uri, date, newsCategories } =
     props.data.article
   const blocks = flatListToHierarchical(editorBlocks)

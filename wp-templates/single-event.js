@@ -16,6 +16,9 @@ import { MdForward } from 'react-icons/md'
 import blockEntries from '../wp-blocks'
 
 export default function SingleEvent(props) {
+  if (props.loading) {
+    return <>Loading...</>
+  }
   const { editorBlocks, seo, featuredImage, eventsFields, title } =
     props.data.event
 
