@@ -121,8 +121,8 @@ export default function TaxonomyDepartment(props) {
   )
 }
 
-TaxonomyDepartment.variables = ({ uri }, ctx) => {
-  return { uri, asPreview: ctx?.asPreview }
+TaxonomyDepartment.variables = ({ uri }) => {
+  return { uri }
 }
 
 TaxonomyDepartment.query = gql`
@@ -131,9 +131,8 @@ TaxonomyDepartment.query = gql`
   query TaxonomyDepartment(
     $uri: String!
     $imageSize: MediaItemSizeEnum = MEDIUM,
-    $asPreview: Boolean = false
   ) {
-    nodeByUri(uri: $uri, asPreview: $asPreview) {
+    nodeByUri(uri: $uri) {
       ... on Department {
         ${seoPostFields}
         id

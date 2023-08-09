@@ -50,8 +50,8 @@ export default function Component(props) {
 Component.query = gql`
   ${BlogInfoFragment}
 
-  query GetTagPage($uri: String!, $asPreview: Boolean = false) {
-    nodeByUri(uri: $uri, asPreview: $asPreview) {
+  query GetTagPage($uri: String!) {
+    nodeByUri(uri: $uri) {
       ... on Tag {
         name
         posts {
@@ -79,9 +79,8 @@ Component.query = gql`
   }
 `
 
-Component.variables = ({ uri }, ctx) => {
+Component.variables = ({ uri }) => {
   return {
-    uri,
-    asPreview: ctx?.asPreview
+    uri
   }
 }
