@@ -81,8 +81,8 @@ SingleProgram.query = gql`
   ${RelatedProgramsFragment}
   ${StudentOrgFragment}
   ${ProgramTabsFragment}
-  query GetProgramData($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
-    nodeByUri(uri: $uri) {
+  query GetProgramData($uri: String!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
+    nodeByUri(uri: $uri, asPreview: $asPreview) {
        ... on NodeWithTitle {
         title
       }

@@ -49,7 +49,8 @@ export default function SingleNews(props) {
 
 SingleNews.variables = ({ uri }, ctx) => {
   return {
-    uri
+    uri,
+    asPreview: ctx?.asPreview
   }
 }
 
@@ -59,8 +60,8 @@ SingleNews.variables = ({ uri }, ctx) => {
 SingleNews.query = gql`
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
-  query GetNewsSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
-    nodeByUri(uri: $uri) {
+  query GetNewsSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
+    nodeByUri(uri: $uri, asPreview: $asPreview) {
       __typename
 
       ... on NodeWithTitle {

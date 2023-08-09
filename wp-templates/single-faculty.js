@@ -110,7 +110,8 @@ export default function SingleFaculty(props) {
 
 SingleFaculty.variables = ({ uri }, ctx) => {
   return {
-    uri
+    uri,
+    asPreview: ctx?.asPreview
   }
 }
 
@@ -123,8 +124,8 @@ SingleFaculty.query = gql`
   # Get all block fragments and add them to the query
   ${getFragmentDataFromBlocks(blocks).entries}
 
-  query GetSingularFaculty($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
-    nodeByUri(uri: $uri) {
+  query GetSingularFaculty($uri: String!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
+    nodeByUri(uri: $uri, asPreview: $asPreview) {
       ... on NodeWithTitle {
         title
       }
