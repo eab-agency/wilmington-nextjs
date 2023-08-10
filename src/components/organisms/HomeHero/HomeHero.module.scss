@@ -19,12 +19,21 @@
   &::before {
     content: '';
     display: block;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     position: absolute;
     top: 0;
-    right: 100%;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: tokens.$c-limeGreen-500;
+    z-index: tokens.$layer-1;
+
+    @media (min-width: tokens.$mq-800) {
+      left: initial;
+      width: 100%;
+      right: 100%;
+      transform: translateX(0);
+    }
   }
 
   @media (min-width: tokens.$mq-800) {
@@ -39,6 +48,12 @@
 
   h1 {
     color: tokens.$c-darkGreen-800;
+  }
+
+  & > div,
+  & > ul {
+    position: relative;
+    z-index: tokens.$layer-2;
   }
 }
 
