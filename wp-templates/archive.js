@@ -28,7 +28,7 @@ export default function Archive(props) {
   )
 }
 
-Archive.variables = ({ uri }) => {
+Archive.variables = ({ uri }, ctx) => {
   return { uri }
 }
 
