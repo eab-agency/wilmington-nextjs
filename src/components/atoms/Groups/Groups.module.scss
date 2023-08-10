@@ -1,26 +1,13 @@
 @use 'tokens';
 
-// // TODO: Andrei, these next 3 styles are being called in Groups.js but were not listed here
-
-// .groupsStacked {
-//   display: block;
-// }
-
-// .alignCenter {
-//   display: flex;
-//   justify-content: center;
-// }
-
-// .alignBottom {
-//   display: flex;
-//   justify-content: flex-end;
-// }
-
 .groups {
   position: relative;
 
   section {
     margin-bottom: 0;
+    position: relative;
+    z-index: tokens.$layer-2;
+
     &:last-child {
       margin-block: 0 4rem;
     }

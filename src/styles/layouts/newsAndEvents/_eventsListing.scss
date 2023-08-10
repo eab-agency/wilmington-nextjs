@@ -43,7 +43,8 @@
       display: flex;
       flex-direction: column;
       margin-bottom: tokens.$m-xl;
-
+      position: relative;
+      z-index: tokens.$layer-2;
       flex-direction: row;
       overflow-x: auto;
 
