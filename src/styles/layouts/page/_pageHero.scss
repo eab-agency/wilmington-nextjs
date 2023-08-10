@@ -23,9 +23,13 @@
       width: 120%;
       height: 100%;
       position: absolute;
-      right: 0;
+      left: 50%;
+      transform: translateX(-50%);
 
       @media (min-width: tokens.$mq-1000) {
+        right: 0;
+        left: initial;
+        transform: translateX(0);
         width: calc(100vw - tokens.$pageOffset);
       }
 

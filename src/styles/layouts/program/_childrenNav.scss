@@ -9,7 +9,7 @@
   padding: 0;
   z-index: tokens.$layer-1;
 
-  @media (min-width: tokens.$mq-800) {
+  @media (min-width: tokens.$mq-1000) {
     padding-right: tokens.$pageOffset;
   }
 

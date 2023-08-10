@@ -14,10 +14,10 @@
     z-index: tokens.$layer-1;
     width: 100%;
     overflow: hidden;
-    padding-right: clamp(2rem, 4vw, 4rem);
 
     @media (min-width: tokens.$mq-800) {
       padding-left: clamp(2rem, 4vw, 14rem);
+      padding-right: clamp(2rem, 4vw, 4rem);
     }
 
     @media (min-width: tokens.$mq-1100) {
