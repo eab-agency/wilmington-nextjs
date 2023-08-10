@@ -19,12 +19,21 @@
   &::before {
     content: '';
     display: block;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     position: absolute;
     top: 0;
-    right: 100%;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: tokens.$c-limeGreen-500;
+    z-index: tokens.$layer-1;
+
+    @media (min-width: tokens.$mq-800) {
+      left: initial;
+      width: 100%;
+      right: 100%;
+      transform: translateX(0);
+    }
   }
 
   @media (min-width: tokens.$mq-800) {
@@ -40,6 +49,12 @@
   h1 {
     color: tokens.$c-darkGreen-800;
   }
+
+  & > div,
+  & > ul {
+    position: relative;
+    z-index: tokens.$layer-2;
+  }
 }
 
 .heroImage {
@@ -47,6 +62,12 @@
   z-index: tokens.$layer-1;
   height: clamp(20rem, 45vw, 35rem);
   overflow-y: clip;
+
+  @media (max-width: tokens.$mq-1000) {
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
   img {
     position: absolute;

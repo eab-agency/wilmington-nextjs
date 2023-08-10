@@ -8,12 +8,13 @@
   &::#{$pseudoElement} {
     content: '';
     display: block;
-    width: 100vw;
+    width: 120vw;
     height: 100%;
     background: $bg;
     position: absolute;
     top: 0;
-    right: 100%;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: $z;
   }
 }
