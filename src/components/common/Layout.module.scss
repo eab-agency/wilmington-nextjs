@@ -4,9 +4,9 @@
   display: flex;
   // max-width: tokens.$maxWidth;
 
-  @media (min-width: tokens.$mq-800) {
-    padding-right: tokens.$rightOffset;
-  }
+  // @media (min-width: tokens.$mq-800) {
+  //   padding-right: tokens.$rightOffset;
+  // }
 
   main {
     display: flex;
@@ -14,6 +14,7 @@
     z-index: tokens.$layer-1;
     width: 100%;
     overflow: hidden;
+    padding-right: clamp(2rem, 4vw, 4rem);
 
     @media (min-width: tokens.$mq-800) {
       padding-left: clamp(2rem, 4vw, 14rem);

@@ -9,10 +9,6 @@ $social-icons: (
 );
 
 .footer {
-  @media (min-width: tokens.$mq-800) {
-    padding-right: tokens.$rightOffset;
-  }
-
   .footerContent {
     background: color.adjust(tokens.$c-darkGreen-800, $lightness: -3%);
     color: tokens.$c-white;
