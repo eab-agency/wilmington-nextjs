@@ -48,6 +48,12 @@
   height: clamp(20rem, 45vw, 35rem);
   overflow-y: clip;
 
+  @media (max-width: tokens.$mq-1000) {
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   img {
     position: absolute;
     width: 100vw;
