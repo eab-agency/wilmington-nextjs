@@ -9,6 +9,8 @@
       flex-direction: column;
       gap: tokens.$m-xl;
       align-items: flex-start;
+      position: relative;
+      z-index: tokens.$layer-2;
 
       .sectionTag {
         @include mixins.sectionTag();
@@ -67,6 +69,8 @@
   .newsContainer {
     display: block;
     width: 100%;
+    position: relative;
+    z-index: tokens.$layer-2;
 
     .newsCarousel {
       margin-bottom: 3rem;

@@ -6,11 +6,12 @@ import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero/PageHero'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
-import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
-import blocks from '../wp-blocks'
 
 export default function Component(props) {
-  const { content, featuredImage, testimonialFields } = props.data.nodeByUri
+  if (props.loading) {
+    return <>Loading...</>
+  }
+  const { content, featuredImage, testimonialFields } = props.data.testimonial
 
   const { testimonial } = testimonialFields
   const title = `${testimonial?.first} ${testimonial?.last}`
@@ -40,9 +41,10 @@ export default function Component(props) {
   )
 }
 
-Component.variables = ({ uri }, ctx) => {
+Component.variables = ({ databaseId }, ctx) => {
   return {
-    uri
+    databaseId,
+    asPreview: ctx?.asPreview
   }
 }
 
@@ -53,8 +55,12 @@ Component.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
 
-  query GetSingular($uri: String!, $imageSize: MediaItemSizeEnum = LARGE) {
-    nodeByUri(uri: $uri) {
+  query GetSingular(
+    $databaseId: ID!
+    $imageSize: MediaItemSizeEnum = LARGE
+    $asPreview: Boolean = false
+  ) {
+    testimonial(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       ... on Testimonial {
         content
         testimonialFields {

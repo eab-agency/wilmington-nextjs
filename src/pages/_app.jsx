@@ -1,14 +1,17 @@
 /* eslint-disable no-console */
-import WordPressProvider from '@/components/common/WordPressProvider'
-import '@/styles/styles.scss'
 import { WordPressBlocksProvider } from '@faustwp/blocks'
 import { FaustProvider } from '@faustwp/core'
-import '@faustwp/core/dist/css/toolbar.css'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import TagManager from 'react-gtm-module'
 import '../../faust.config'
+
+import WordPressProvider from '@/components/common/WordPressProvider'
+
 import blocks from '../../wp-blocks'
+
+import '@/styles/styles.scss'
+import '@faustwp/core/dist/css/toolbar.css'
 
 const gtmId = 'GTM-P3X3WCQ'
 
