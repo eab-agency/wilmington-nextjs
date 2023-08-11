@@ -1,6 +1,12 @@
 ## Getting Started
 
-First, run the development server (no need to create environment variables if using `vercel`):
+First, pull the environment varaibles with:
+
+```bash
+vercel pull
+```
+
+Then, run the development server:
 
 ```bash
 vercel dev
