@@ -21,11 +21,16 @@ const fetchRedirects = () => {
     return fetch(pageUrl, options)
       .then((response) => response.json())
       .then((data) => {
-        const redirects = data.items.map((item) => ({
-          source: item.url,
-          destination: item.action_data.url,
-          permanent: item.action_code === 301
-        }))
+        const redirects = data.items
+          .filter(
+            (item) =>
+              item.url && item.action_data.url && item.action_code === 301
+          )
+          .map((item) => ({
+            source: item.url,
+            destination: item.action_data.url,
+            permanent: true
+          }))
 
         allRedirects.push(...redirects) // Add the fetched items to the array
 
@@ -33,7 +38,6 @@ const fetchRedirects = () => {
           // Fetch the next page if there are more items to fetch
           return fetchPage(page + 1)
         }
-
         // Return the fetched items if there are no more items to fetch
         return allRedirects
       })
