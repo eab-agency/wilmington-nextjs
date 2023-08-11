@@ -74,6 +74,10 @@
   z-index: tokens.$layer-9999;
   background: tokens.$c-white;
 
+  @media (max-width: tokens.$mq-800) {
+    padding-right: 3.4em;
+  }
+
   &Sticky {
     display: flex;
     margin-bottom: clamp(0rem, 2vw, 2rem);
@@ -120,6 +124,10 @@
     .headerWrapperSticky {
       background: tokens.$c-white;
       border-bottom: tokens.$bw-xs solid tokens.$c-gray-400;
+
+      @media (max-width: tokens.$mq-800) {
+        padding-right: 3.4em;
+      }
     }
   }
 }
