@@ -37,14 +37,20 @@ ArchiveFaculty.variables = ({ uri }) => {
 ArchiveFaculty.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
-  query Archive($uri: String!, $imageSize: MediaItemSizeEnum = DEPT_CARD) {
+  query AllFaculty(
+    $uri: String!
+    $imageSize: MediaItemSizeEnum = MEDIUM
+    $first: Int = 3
+    $after: String
+  ) {
     nodeByUri(uri: $uri) {
       ... on ContentType {
         label
         __typename
         uri
         contentNodes(
-          first: 100
+          first: $first
+          after: $after
           where: { orderby: { field: TITLE, order: ASC } }
         ) {
           nodes {

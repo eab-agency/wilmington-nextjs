@@ -24,7 +24,7 @@
       position: relative;
       align-items: center;
       flex-direction: column;
-      padding-inline: tokens.$p-l;
+      padding-inline: clamp(tokens.$p-m, 1vw, tokens.$p-l);
       padding-block: tokens.$p-m;
       color: tokens.$c-gray-600;
       text-decoration: none;

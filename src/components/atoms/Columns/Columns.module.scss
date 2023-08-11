@@ -59,6 +59,8 @@ section:where(.columns, .column) {
 
     &[style*='100%'] {
       max-width: 100%;
+      position: relative;
+      z-index: tokens.$layer-2;
     }
   }
 }
