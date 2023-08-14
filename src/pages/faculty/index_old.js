@@ -7,23 +7,34 @@ import Layout from '@/components/common/Layout'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import { gql, useQuery } from '@apollo/client'
 import { getNextStaticProps } from '@faustwp/core'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
-export default function ArchiveFaculty() {
-  const { data, loading, fetchMore } = useQuery(ArchiveFaculty.query, {
+export default function ArchiveFaculty({ data }) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const pageSize = 1
+
+  const onPageChange = (page) => {
+    setCurrentPage(page)
+  }
+  const {
+    data: archiveData,
+    loading,
+    fetchMore
+  } = useQuery(ArchiveFaculty.query, {
     variables: ArchiveFaculty.variables()
   })
-  const { faculty } = data
-
-  const { description } = data?.generalSettings ?? {}
-
-  const archiveTitle = `Wilmington College Faculty`
 
   const [posts, setPosts] = useState([])
 
-  if (loading && !posts.length) {
+  if (loading) {
     return <></>
   }
+
+  const { faculty } = archiveData
+
+  const { description } = archiveData?.generalSettings ?? {}
+
+  const archiveTitle = `Wilmington College Faculty`
 
   return (
     <>
@@ -84,7 +95,7 @@ ArchiveFaculty.query = gql`
 
 ArchiveFaculty.variables = () => {
   return {
-    first: 2,
+    first: 10,
     after: ''
   }
 }
