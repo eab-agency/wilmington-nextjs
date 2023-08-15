@@ -33,10 +33,6 @@
         position: relative;
         z-index: tokens.$layer-1;
       }
-
-      &::after {
-        @include tokens.decoPlusSignCut;
-      }
     }
 
     &.right-column {
