@@ -20,7 +20,14 @@ export default function Archive(props) {
 
   const postList = data.nodeByUri?.contentNodes?.edges.map((el) => el.node)
 
-  const archiveTitle = `Wilmington College ${name}`
+  let archiveTitle
+
+  if (name === 'faculty') {
+    archiveTitle = 'Faculty and Staff'
+  } else {
+    archiveTitle = name
+  }
+
   return (
     <>
       <SEO seo={{ title: archiveTitle, description: siteDescription }} />
@@ -48,7 +55,6 @@ export default function Archive(props) {
     </>
   )
 }
-
 
 Archive.query = gql`
   ${BlogInfoFragment}
