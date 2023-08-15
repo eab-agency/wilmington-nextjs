@@ -86,7 +86,6 @@ ArchiveFaculty.query = gql`
                     phone
                     position
                   }
-
                 }
                 ...FeaturedImageFragment
               }
