@@ -5,7 +5,7 @@ const appConfig = {
   /**
    * The number of posts to fetch per 'page'.
    */
-  postsPerPage: 12,
+  postsPerPage: 24,
 
   /**
    * The number of projects to fetch per 'page'.
