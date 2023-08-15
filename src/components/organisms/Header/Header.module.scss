@@ -40,7 +40,7 @@
   }
 
   @media (min-width: tokens.$mq-800) {
-    padding: 1rem 0 0 0;
+    padding: 1rem 0;
   }
 }
 
@@ -59,13 +59,12 @@
 
 .container {
   width: 100%;
-  max-width: 1680px;
+  // max-width: 1680px;
   display: grid;
   grid-template-columns: calc(tokens.$leftOffset - 2rem) 1fr;
-  padding-right: 3.5em;
 
   @media (min-width: tokens.$mq-800) {
-    padding-right: tokens.$rightOffset;
+    padding-right: clamp(2rem, 4vw, 4rem);
   }
 }
 
@@ -74,6 +73,10 @@
   position: relative;
   z-index: tokens.$layer-9999;
   background: tokens.$c-white;
+
+  @media (max-width: tokens.$mq-800) {
+    padding-right: 3.4em;
+  }
 
   &Sticky {
     display: flex;
@@ -121,6 +124,10 @@
     .headerWrapperSticky {
       background: tokens.$c-white;
       border-bottom: tokens.$bw-xs solid tokens.$c-gray-400;
+
+      @media (max-width: tokens.$mq-800) {
+        padding-right: 3.4em;
+      }
     }
   }
 }

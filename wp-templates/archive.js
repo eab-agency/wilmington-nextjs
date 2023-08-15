@@ -49,6 +49,7 @@ export default function Archive(props) {
   )
 }
 
+
 Archive.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}

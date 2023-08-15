@@ -7,6 +7,10 @@
   position: relative;
   z-index: tokens.$layer-3;
 
+  @media (min-width: tokens.$mq-800) {
+    padding-right: clamp(2rem, 4vw, 4rem);
+  }
+
   &::before {
     content: '';
     display: block;

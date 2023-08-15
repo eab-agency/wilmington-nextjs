@@ -15,6 +15,7 @@
       display: block;
       position: relative;
       width: 100%;
+      overflow: hidden;
 
       &::before {
         content: '';
@@ -52,6 +53,7 @@
         height: clamp(14em, 18vw, 18em);
         object-fit: cover;
         object-position: center;
+        transition: all 0.2s tokens.$anim-bounce;
       }
     }
 
@@ -65,6 +67,13 @@
         }
         &::after {
           bottom: 1.5em;
+        }
+      }
+
+      figure {
+        overflow: hidden;
+        img {
+          transform: scale(1.1);
         }
       }
     }

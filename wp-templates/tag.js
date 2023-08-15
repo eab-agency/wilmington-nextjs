@@ -8,7 +8,6 @@ import { gql } from '@apollo/client'
 //   Post,
 //   SEO
 // } from '../components'
-import * as MENUS from '../constants/menus'
 import { BlogInfoFragment } from '../fragments/GeneralSettings'
 
 export default function Component(props) {
@@ -82,8 +81,6 @@ Component.query = gql`
 
 Component.variables = ({ uri }) => {
   return {
-    uri,
-    headerLocation: MENUS.PRIMARY_LOCATION,
-    footerLocation: MENUS.FOOTER_LOCATION
+    uri
   }
 }

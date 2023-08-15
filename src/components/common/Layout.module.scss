@@ -2,22 +2,22 @@
 
 .mainContainer {
   display: flex;
-  max-width: tokens.$maxWidth;
+  // max-width: tokens.$maxWidth;
 
-  @media (min-width: tokens.$mq-800) {
-    padding-right: tokens.$rightOffset;
-  }
+  // @media (min-width: tokens.$mq-800) {
+  //   padding-right: tokens.$rightOffset;
+  // }
 
   main {
     display: flex;
     flex-direction: column;
     z-index: tokens.$layer-1;
     width: 100%;
-    // padding-left: clamp(2rem, 4vw, 14rem);
     overflow: hidden;
 
     @media (min-width: tokens.$mq-800) {
       padding-left: clamp(2rem, 4vw, 14rem);
+      padding-right: clamp(2rem, 4vw, 4rem);
     }
 
     @media (min-width: tokens.$mq-1100) {

@@ -31,6 +31,11 @@
     gap: 2rem;
     @include mixins.extendedBackground('after', tokens.$c-gray-200);
 
+    & > div {
+      position: relative;
+      z-index: tokens.$layer-2;
+    }
+
     .intro {
       flex: 1 1 40rem;
       h2 {

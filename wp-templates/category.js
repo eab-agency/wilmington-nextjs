@@ -80,7 +80,5 @@ Component.query = gql`
 Component.variables = ({ uri }) => {
   return {
     uri
-    // headerLocation: MENUS.PRIMARY_LOCATION,
-    // footerLocation: MENUS.FOOTER_LOCATION
   }
 }
