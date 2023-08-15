@@ -28,7 +28,7 @@
   &::after {
     content: '';
     display: block;
-    background: rgba(black, 0.5);
+    background: rgba(#001411, 0.6);
     width: 100%;
     height: 100%;
     position: absolute;
@@ -40,11 +40,11 @@
 .heroIntroContent {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 15vw;
   width: 100%;
   position: absolute;
   z-index: tokens.$layer-2;
-  top: 50%;
+  top: 60%;
   left: 0;
   transform: translateY(-50%);
 
@@ -54,20 +54,32 @@
 
   h1 {
     color: tokens.$c-white;
+    font-weight: 700;
+    font-size: clamp(tokens.$fs-2xl, 5vw, tokens.$fs-4xl);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+
+    strong {
+      font-weight: 100;
+      font-size: 0.6em;
+    }
   }
 
-  & > div,
-  & > ul {
-    position: relative;
-    z-index: tokens.$layer-2;
+  p {
+    display: block;
+    background: rgba(tokens.$c-darkGreen-800, 0.9);
+    color: tokens.$c-white;
+    padding: tokens.$p-m;
+    border-left: 0.5em solid tokens.$c-limeGreen-500;
+    font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-s);
   }
 }
 
 .ctasRow {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  width: 18rem;
+  gap: 1.5rem;
+  flex: 1 0 18rem;
+  // width: 18rem;
   margin: 0;
   list-style: none;
   position: relative;
