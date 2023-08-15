@@ -26,10 +26,6 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   const attributes = props.attributes
   const { listing_title, listing_display, events_listing, event_category } =
     JSON.parse(attributes?.data)
-  console.log(
-    '🚀 ~ file: AcfEventsListing.tsx:29 ~ attributes?.data',
-    JSON.parse(attributes?.data)
-  )
   const {
     loading: idsLoading,
     error: idsError,
