@@ -33,7 +33,7 @@ function Hero({ mediaItems, content, ctas }) {
       })}
       <div className={styles.heroIntroContent}>
         <div className={styles.introCopy}>
-          <RichText tag="span">{content}</RichText>
+          <RichText tag="div">{content}</RichText>
         </div>
         <ul className={styles.ctasRow}>
           {ctas.map((cta, index) => (
