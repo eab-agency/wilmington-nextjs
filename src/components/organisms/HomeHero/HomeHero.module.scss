@@ -4,6 +4,7 @@
 .homeHero {
   position: relative;
   z-index: tokens.$layer-1;
+  min-height: 40rem;
 }
 
 .heroImage {
