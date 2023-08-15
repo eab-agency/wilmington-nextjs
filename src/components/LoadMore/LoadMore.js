@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import styles from './LoadMore.module.scss'
 /**
@@ -17,26 +17,64 @@ export default function LoadMore({
   endCursor,
   isLoading,
   fetchMore,
-  className
+  className,
+  useInfiniteScroll = false
 }) {
+  const loadMoreButtonRef = useRef()
+
+  useEffect(() => {
+    if (useInfiniteScroll && hasNextPage && endCursor) {
+      const options = {
+        root: null, // Use the viewport as the root
+        rootMargin: '500px',
+        threshold: 0 // Trigger when 0% of the button is visible
+      }
+
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting && !isLoading) {
+          fetchMore({
+            variables: {
+              after: endCursor
+            }
+          })
+        }
+      }, options)
+
+      observer.observe(loadMoreButtonRef.current)
+
+      // Clean up the observer when the component is unmounted
+      return () => observer.disconnect()
+    }
+  }, [hasNextPage, endCursor, isLoading, fetchMore, useInfiniteScroll])
+
   if (hasNextPage && endCursor) {
-    return (
-      <section className={className}>
-        <button
-          className={styles.button}
-          disabled={isLoading}
-          onClick={() => {
-            fetchMore({
-              variables: {
-                after: endCursor
-              }
-            })
-          }}
-        >
-          Load More
-        </button>
-      </section>
-    )
+    if (useInfiniteScroll) {
+      return (
+        <section className={className}>
+          <span ref={loadMoreButtonRef} className={styles.button}>
+            {isLoading ? 'Loading...' : ''}
+          </span>
+        </section>
+      )
+    } else {
+      return (
+        <section className={className}>
+          <button
+            disabled={isLoading}
+            onClick={() => {
+              fetchMore({
+                variables: {
+                  after: endCursor
+                }
+              })
+            }}
+          >
+            {isLoading ? 'Loading...' : 'Load More'}
+          </button>
+        </section>
+      )
+    }
   }
+
   return null
 }
