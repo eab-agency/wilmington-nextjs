@@ -19,6 +19,7 @@ export default function LoadMore({
   fetchMore,
   className
 }) {
+  console.log('🚀 ~ file: LoadMore.js:22 ~ isLoading:', isLoading)
   if (hasNextPage && endCursor) {
     return (
       <section className={className}>
@@ -33,7 +34,7 @@ export default function LoadMore({
             })
           }}
         >
-          Load More
+          {isLoading ? 'Loading...' : 'Load More'}
         </button>
       </section>
     )

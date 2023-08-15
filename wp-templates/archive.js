@@ -13,6 +13,7 @@ export default function Archive(props) {
   const { data, loading, fetchMore } = useQuery(Archive.query, {
     variables: Archive.variables({ uri })
   })
+  console.log('🚀 ~ file: archive.js:14 ~ Archive ~ loading:', loading)
 
   if (loading) {
     return <></>
