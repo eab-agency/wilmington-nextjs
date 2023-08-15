@@ -11,13 +11,9 @@ import appConfig from 'app.config'
 export default function Archive(props) {
   const { uri, name, __typename } = props.data.nodeByUri
   const { data, loading, fetchMore } = useQuery(Archive.query, {
-    variables: Archive.variables({ uri })
+    variables: Archive.variables({ uri }),
+    notifyOnNetworkStatusChange: true
   })
-  console.log('🚀 ~ file: archive.js:14 ~ Archive ~ loading:', loading)
-
-  if (loading) {
-    return <></>
-  }
 
   const { title: siteTitle, description: siteDescription } =
     data && data.generalSettings
@@ -45,6 +41,7 @@ export default function Archive(props) {
             endCursor={data.nodeByUri?.contentNodes?.pageInfo.endCursor}
             isLoading={loading}
             fetchMore={fetchMore}
+            useInfiniteScroll={true}
           />
         </div>
       </Layout>
