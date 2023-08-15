@@ -29,7 +29,7 @@ export default function ArchiveFaculty(props) {
       <Layout className="thelayoutclass">
         <div className="inner-wrap archive">
           <RichText className="archiveTitle" tag="h1">
-            {data.label}
+            Faculty and Staff
           </RichText>
           {data.description && <RichText>{data.description}</RichText>}
           <FacultyList className="facultyList" posts={postList} />
@@ -57,7 +57,6 @@ ArchiveFaculty.variables = ({ uri }) => {
 ArchiveFaculty.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
-
   query Archive(
     $uri: String!
     $first: Int!
@@ -87,6 +86,7 @@ ArchiveFaculty.query = gql`
                     phone
                     position
                   }
+
                 }
                 ...FeaturedImageFragment
               }

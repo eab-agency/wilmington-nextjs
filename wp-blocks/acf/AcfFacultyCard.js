@@ -23,7 +23,8 @@ export default function AcfFacultyCard(props) {
     error,
     data: facultyData
   } = useQuery(FACULTY_QUERY, {
-    variables: { ids: faculty_member }
+    variables: { ids: faculty_member },
+    fetchPolicy: 'no-cache'
   })
 
   if (!faculty_member) return null

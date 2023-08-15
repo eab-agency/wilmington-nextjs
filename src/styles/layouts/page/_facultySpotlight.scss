@@ -12,16 +12,16 @@
         flex: 1 1 20rem;
       }
 
-      &:first-child {
-        @media (min-width: tokens.$mq-800) {
-          flex: 1 1 35rem;
-          padding-right: clamp(1rem, 5vw, 5rem);
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          max-width: 50%;
-        }
-      }
+      // &:first-child {
+      //   @media (min-width: tokens.$mq-800) {
+      //     flex: 1 1 35rem;
+      //     padding-right: clamp(1rem, 5vw, 5rem);
+      //     display: flex;
+      //     flex-direction: column;
+      //     justify-content: flex-end;
+      //     max-width: 50%;
+      //   }
+      // }
     }
   }
 }

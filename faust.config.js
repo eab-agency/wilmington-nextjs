@@ -1,4 +1,5 @@
 import { setConfig } from '@faustwp/core'
+
 import { CustomToolbar } from './plugins/CustomToolbar'
 import { RelayStylePaginationPlugin } from './plugins/RelayStylePaginationPlugin'
 import possibleTypes from './possibleTypes.json'

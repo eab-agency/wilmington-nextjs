@@ -6,7 +6,6 @@ import RichText from '@/components/atoms/RichText'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import ProgramCard from '@/components/molecules/ProgramCard'
-import RelatedProgramCard from '@/components/molecules/RelatedProgramCard'
 import { seoPostFields } from '@/fragments'
 import { gql } from '@apollo/client'
 
@@ -131,7 +130,7 @@ TaxonomyDepartment.query = gql`
 
   query TaxonomyDepartment(
     $uri: String!
-    $imageSize: MediaItemSizeEnum = MEDIUM
+    $imageSize: MediaItemSizeEnum = MEDIUM,
   ) {
     nodeByUri(uri: $uri) {
       ... on Department {
