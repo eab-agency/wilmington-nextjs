@@ -11,17 +11,13 @@
     height: 20rem;
   }
 
-  &::after {
-    @include tokens.decoPlusSign;
-  }
-
   article {
     width: 50%;
   }
 
   article:last-child {
     figure {
-      border-bottom: 3rem solid tokens.$c-white;
+      // border-bottom: 3rem solid tokens.$c-white;
     }
   }
 }
