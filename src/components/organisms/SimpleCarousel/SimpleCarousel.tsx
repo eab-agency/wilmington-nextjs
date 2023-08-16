@@ -1,5 +1,6 @@
-import Image from '@/components/atoms/Image'
+// import Image from '@/components/atoms/Image'
 import VideoPlayer from '@/components/atoms/VideoPlayer'
+import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import styles from './SimpleCarousel.module.scss'
 
@@ -15,18 +16,21 @@ interface SimpleCarouselProps {
   }[]
 }
 
-const SimpleCarousel: React.FC<SimpleCarouselProps> = ({
-  mediaItems,
-  children
-}) => {
+const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
+  // const [mediaType, setMediaType] = useState('image')
+  const types = mediaItems.map((item) => item.type).join(', ')
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((currentSlide) => (currentSlide + 1) % 3)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
+    if (mediaItems.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentSlide(
+          (currentSlide) => (currentSlide + 1) % mediaItems.length
+        )
+      }, 5000)
+      return () => clearInterval(interval)
+    }
+  }, [mediaItems.length])
 
   return (
     <>
@@ -34,16 +38,19 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({
         {mediaItems.map((item, index) => {
           if (item.type === 'image') {
             return (
-              <Image
+              <figure
                 key={index}
-                src={item.mediaItem.mediaItemUrl}
-                alt={item.mediaItem.altText}
-                priority={true}
-                imageMeta={item.mediaItem}
                 className={`${styles.carouselItem} ${styles.heroImage} ${
                   index === currentSlide ? styles.active : ''
                 }`}
-              />
+              >
+                <Image
+                  src={item.mediaItem.mediaItemUrl}
+                  alt={item.mediaItem.altText}
+                  width={1080}
+                  height={720}
+                />
+              </figure>
             )
           } else if (item.type === 'internal') {
             return (
