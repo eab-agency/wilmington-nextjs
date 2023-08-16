@@ -2,12 +2,14 @@ import MainCta from '@/components/atoms/Buttons/MainCta'
 import Image from '@/components/atoms/Image'
 import RichText from '@/components/atoms/RichText'
 import VideoPlayer from '@/components/atoms/VideoPlayer'
+import SimpleCarousel from '@/components/organisms/SimpleCarousel'
 import styles from './HomeHero.module.scss'
 
 function Hero({ mediaItems, content, ctas }) {
   return (
     <div className={styles.homeHero}>
-      {mediaItems.map((item, index) => {
+      <SimpleCarousel mediaItems={mediaItems} />
+      {/* {mediaItems.map((item, index) => {
         if (item.type === 'image') {
           return (
             <Image
@@ -30,7 +32,7 @@ function Hero({ mediaItems, content, ctas }) {
         } else {
           return null
         }
-      })}
+      })} */}
       <div className={styles.heroIntroContent}>
         <div className={styles.introCopy}>
           <RichText tag="div">{content}</RichText>
