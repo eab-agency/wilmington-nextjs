@@ -27,7 +27,7 @@
     color: tokens.$c-white;
     font-weight: 700;
     font-size: clamp(tokens.$fs-2xl, 5vw, tokens.$fs-4xl);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 
     strong {
       font-weight: 100;
