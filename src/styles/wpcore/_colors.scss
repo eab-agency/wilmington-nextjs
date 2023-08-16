@@ -41,6 +41,9 @@ $darkColors: (
       @include mixins.extendedBackground('after', $theColor);
 
       & > [class*='_column'] {
+        position: relative;
+        z-index: tokens.$layer-2;
+
         &::after {
           display: none;
         }
