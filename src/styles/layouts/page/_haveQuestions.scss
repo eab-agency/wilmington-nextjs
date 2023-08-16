@@ -11,17 +11,6 @@
     z-index: tokens.$layer-3;
     width: fit-content;
     max-width: 30rem;
-
-    &::before {
-      @include tokens.decoCircle;
-      content: '';
-      // background-image: url('/images/hand-drawn-circle.png');
-      // background-repeat: no-repeat;
-      // background-position: center;
-      width: 150%;
-      height: 150%;
-      z-index: -1;
-    }
   }
 
   p {
@@ -37,10 +26,17 @@
       color: tokens.$c-white;
       padding-block: 0.2em;
       padding-right: 0.2em;
+      margin-bottom: 2em;
+      width: fit-content;
       position: relative;
-      z-index: tokens.$layer-2;
 
       @include mixins.extendedBackground('after', tokens.$c-darkGreen-800);
+
+      &::after {
+        left: initial;
+        right: 100%;
+        transform: initial;
+      }
     }
 
     div[class*='column'] {

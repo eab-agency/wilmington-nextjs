@@ -10,9 +10,8 @@
 .intro-home-page {
   margin-top: clamp(-2rem, -2vw, -1rem);
   .intro-content {
-    margin-top: clamp(-4rem, -4vw, -2rem);
+    // margin-top: clamp(-4rem, -4vw, -2rem);
     @include mixins.sectionPadding;
-
     background: tokens.$c-white;
     z-index: tokens.$layer-10;
     position: relative;

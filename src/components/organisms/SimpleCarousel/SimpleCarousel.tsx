@@ -21,7 +21,7 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
   const [browserWidth, setBrowserWidth] = useState(0)
 
   useEffect(() => {
-    if (mediaItems.length > 1 && browserWidth > 768) {
+    if (mediaItems.length > 1 && browserWidth > 920) {
       const interval = setInterval(() => {
         setCurrentSlide(
           (currentSlide) => (currentSlide + 1) % mediaItems.length
@@ -63,7 +63,7 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
                 />
               </figure>
             )
-          } else if (item.type === 'internal' && browserWidth > 768) {
+          } else if (item.type === 'internal' && browserWidth > 920) {
             return (
               <VideoPlayer
                 key={index}
