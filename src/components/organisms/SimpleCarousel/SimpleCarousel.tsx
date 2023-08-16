@@ -19,8 +19,6 @@ interface SimpleCarouselProps {
 const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [browserWidth, setBrowserWidth] = useState(0)
-  // const [itemsLength, setItemsLength] = useState(mediaItems.length)
-  // const types = mediaItems.map((item) => item.type).join(', ')
 
   useEffect(() => {
     if (mediaItems.length > 1 && browserWidth > 768) {
