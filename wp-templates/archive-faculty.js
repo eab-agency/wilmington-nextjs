@@ -1,27 +1,28 @@
 import { SEO } from '@/components'
 import LoadMore from '@/components/LoadMore'
-import { FacultyList } from '@/components/archive/FacultyList'
+import { PostsList } from '@/components/archive/PostsList'
 import RichText from '@/components/atoms/RichText'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import { gql, useQuery } from '@apollo/client'
+import appConfig from 'app.config'
 
-export default function ArchiveFaculty(props) {
+export default function Archive(props) {
   const { uri, name, __typename } = props.data.nodeByUri
-  const { data, loading, fetchMore } = useQuery(ArchiveFaculty.query, {
-    variables: ArchiveFaculty.variables({ uri })
+  const { data, loading, fetchMore } = useQuery(Archive.query, {
+    variables: Archive.variables({ uri }),
+    notifyOnNetworkStatusChange: true
   })
 
-  if (loading) {
-    return <></>
-  }
-  const { description: siteDescription } = props?.data?.generalSettings ?? {}
-  const postList = props.data.nodeByUri?.contentNodes?.edges.map(
-    (el) => el.node
-  )
+  if (!data) return null
 
-  const archiveTitle = `Wilmington College ${data.label}`
+  const { title: siteTitle, description: siteDescription } =
+    data && data.generalSettings
+
+  const postList = data.nodeByUri?.contentNodes?.edges.map((el) => el.node)
+
+  const archiveTitle = 'Faculty and Staff'
 
   return (
     <>
@@ -29,16 +30,21 @@ export default function ArchiveFaculty(props) {
       <Layout className="thelayoutclass">
         <div className="inner-wrap archive">
           <RichText className="archiveTitle" tag="h1">
-            Faculty and Staff
+            {archiveTitle}
           </RichText>
           {data.description && <RichText>{data.description}</RichText>}
-          <FacultyList className="facultyList" posts={postList} />
+          <PostsList
+            posts={postList}
+            type={name}
+            className={name === 'faculty' ? 'facultyList' : undefined}
+          />
           <LoadMore
             className="text-center"
             hasNextPage={data.nodeByUri?.contentNodes?.pageInfo.hasNextPage}
             endCursor={data.nodeByUri?.contentNodes?.pageInfo.endCursor}
             isLoading={loading}
             fetchMore={fetchMore}
+            useInfiniteScroll={true}
           />
         </div>
       </Layout>
@@ -46,18 +52,10 @@ export default function ArchiveFaculty(props) {
   )
 }
 
-ArchiveFaculty.variables = ({ uri }) => {
-  return {
-    uri,
-    first: 10,
-    after: ''
-  }
-}
-
-ArchiveFaculty.query = gql`
+Archive.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
-  query Archive(
+  query GetFacultyPage(
     $uri: String!
     $first: Int!
     $after: String!
@@ -71,13 +69,30 @@ ArchiveFaculty.query = gql`
         name
         description
         label
-        contentNodes(first: $first, after: $after) {
+        contentNodes(
+          first: $first
+          after: $after
+          where: { orderby: { field: TITLE, order: ASC } }
+        ) {
           edges {
             node {
               id
-              uri
+              contentTypeName
               ... on NodeWithTitle {
                 title
+              }
+              ... on NodeWithContentEditor {
+                content
+              }
+              date
+              uri
+              ...FeaturedImageFragment
+              ... on NodeWithAuthor {
+                author {
+                  node {
+                    name
+                  }
+                }
               }
               ... on FacultyMember {
                 facultyFields {
@@ -87,7 +102,6 @@ ArchiveFaculty.query = gql`
                     position
                   }
                 }
-                ...FeaturedImageFragment
               }
             }
           }
@@ -105,3 +119,11 @@ ArchiveFaculty.query = gql`
     }
   }
 `
+
+Archive.variables = ({ uri }) => {
+  return {
+    uri,
+    first: appConfig.postsPerPage,
+    after: ''
+  }
+}
