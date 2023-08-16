@@ -18,19 +18,32 @@ interface SimpleCarouselProps {
 
 const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
-  // const [mediaType, setMediaType] = useState('image')
-  const types = mediaItems.map((item) => item.type).join(', ')
+  const [browserWidth, setBrowserWidth] = useState(0)
+  // const [itemsLength, setItemsLength] = useState(mediaItems.length)
+  // const types = mediaItems.map((item) => item.type).join(', ')
 
   useEffect(() => {
-    if (mediaItems.length > 1) {
+    if (mediaItems.length > 1 && browserWidth > 768) {
       const interval = setInterval(() => {
         setCurrentSlide(
           (currentSlide) => (currentSlide + 1) % mediaItems.length
         )
       }, 5000)
       return () => clearInterval(interval)
+    } else {
+      setCurrentSlide(0)
     }
-  }, [mediaItems.length])
+  }, [mediaItems.length, browserWidth])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setBrowserWidth(window.innerWidth)
+    }
+    window.addEventListener('resize', handleResize)
+    // call listener function at initial page load
+    handleResize()
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   return (
     <>
@@ -52,7 +65,7 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
                 />
               </figure>
             )
-          } else if (item.type === 'internal') {
+          } else if (item.type === 'internal' && browserWidth > 768) {
             return (
               <VideoPlayer
                 key={index}
