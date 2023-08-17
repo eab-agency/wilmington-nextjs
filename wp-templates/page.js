@@ -3,6 +3,7 @@ import { gql } from '@apollo/client'
 import { SEO } from '@/components'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
+import Preloader from '@/components/atoms/Preloader'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero/PageHero'
@@ -15,7 +16,7 @@ import blocks from '../wp-blocks'
 export default function Page(props) {
   // Loading state for previews
   if (props.loading) {
-    return <>Loading...</>
+    return <Preloader />
   }
   const { editorBlocks, title, featuredImage, seo } = props.data.page
   const blocks = flatListToHierarchical(editorBlocks)
