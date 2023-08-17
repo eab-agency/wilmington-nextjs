@@ -47,6 +47,8 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
     <>
       <div className={styles.carouselContainer}>
         {mediaItems.map((item, index) => {
+          const mediaItem = item.mediaItem || ''
+
           if (item.type === 'image') {
             return (
               <figure
@@ -63,7 +65,13 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
                 />
               </figure>
             )
-          } else if (item.type === 'internal' && browserWidth > 920) {
+          } else if (
+            item.type === 'internal' &&
+            browserWidth > 920 &&
+            item.mediaItem &&
+            mediaItem
+          ) {
+            console.log('internal')
             return (
               <VideoPlayer
                 key={index}
