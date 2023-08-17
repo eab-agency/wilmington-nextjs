@@ -9,7 +9,7 @@ export default function Preloader() {
         <div></div>
         <div></div>
       </div>
-      <p>Loading ...</p>
+      <p>Loading</p>
     </div>
   )
 }

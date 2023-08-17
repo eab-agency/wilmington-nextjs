@@ -80,12 +80,15 @@ const AcfNewsListing = (props: AcfNewsListingProps) => {
   if (posts.length === 0) return null
 
   return (
-    <NewsListing
-      posts={posts}
-      listing_title={listing_title}
-      listing_display={listing_display}
-      showImage={false}
-    />
+    <>
+      <Preloader />
+      <NewsListing
+        posts={posts}
+        listing_title={listing_title}
+        listing_display={listing_display}
+        showImage={false}
+      />
+    </>
   )
 }
 
