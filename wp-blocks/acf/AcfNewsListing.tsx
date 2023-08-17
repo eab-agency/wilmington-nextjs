@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import Preloader from '@/components/atoms/Preloader'
 import NewsListing from '@/components/organisms/NewsListing'
 import { gql, useQuery } from '@apollo/client'
 
@@ -73,7 +74,7 @@ const AcfNewsListing = (props: AcfNewsListingProps) => {
     })
   }
 
-  if (idsLoading || latestLoading) return <p>Loading...</p>
+  if (idsLoading || latestLoading) return <Preloader />
   if (idsError || latestError) return <p>Error :(</p>
 
   if (posts.length === 0) return null
