@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import Preloader from '@/components/atoms/Preloader'
 import EventsListing from '@/components/organisms/EventsListing'
 import { gql, useQuery } from '@apollo/client'
 
@@ -96,7 +97,7 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
     return post1.date - post2.date
   })
 
-  if (idsLoading || latestLoading) return <p>Loading...</p>
+  if (idsLoading || latestLoading) return <Preloader />
   if (idsError || latestError) return <p>Error :(</p>
 
   if (posts.length === 0) return null
