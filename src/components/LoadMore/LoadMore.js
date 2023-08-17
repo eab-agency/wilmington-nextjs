@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Preloader from '@/components/atoms/Preloader'
+import { className } from 'classnames/bind'
 import styles from './LoadMore.module.scss'
 /**
  * LoadMore shows a Button that can be clicked to load more results in a paginated post list.
@@ -22,6 +24,7 @@ export default function LoadMore({
   if (hasNextPage && endCursor) {
     return (
       <section className={className}>
+        <Preloader />
         <button
           className={styles.button}
           disabled={isLoading}
