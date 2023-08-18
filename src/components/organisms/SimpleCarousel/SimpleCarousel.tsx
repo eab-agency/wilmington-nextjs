@@ -1,8 +1,10 @@
-// import Image from '@/components/atoms/Image'
 import VideoPlayer from '@/components/atoms/VideoPlayer'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import styles from './SimpleCarousel.module.scss'
+
+const MOBILE_BREAKPOINT = 920
+const SLIDE_INTERVAL = 5000
 
 interface SimpleCarouselProps {
   children: React.ReactNode
@@ -19,76 +21,94 @@ interface SimpleCarouselProps {
 const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [browserWidth, setBrowserWidth] = useState(0)
+  const [numSlides, setNumSlides] = useState(0)
 
-  useEffect(() => {
-    if (mediaItems.length > 1 && browserWidth > 920) {
-      const interval = setInterval(() => {
-        setCurrentSlide(
-          (currentSlide) => (currentSlide + 1) % mediaItems.length
-        )
-      }, 5000)
-      return () => clearInterval(interval)
-    } else {
-      setCurrentSlide(0)
-    }
-  }, [mediaItems.length, browserWidth])
+  const mediaTypes = mediaItems.map((item) => item.type)
+
+  const mediaItemCount = mediaItems.length
 
   useEffect(() => {
     const handleResize = () => {
       setBrowserWidth(window.innerWidth)
     }
     window.addEventListener('resize', handleResize)
-    // call listener function at initial page load
+
     handleResize()
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  return (
-    <>
-      <div className={styles.carouselContainer}>
-        {mediaItems.map((item, index) => {
-          const mediaItem = item.mediaItem || ''
+  useEffect(() => {
+    // const mediaItemCount = mediaItems.length
+    const isInternalMedia = mediaTypes.includes('internal')
 
-          if (item.type === 'image') {
-            return (
-              <figure
-                key={index}
-                className={`${styles.carouselItem} ${styles.heroImage} ${
-                  index === currentSlide ? styles.active : ''
-                }`}
-              >
-                <Image
-                  src={item.mediaItem.mediaItemUrl}
-                  alt={item.mediaItem.altText}
-                  width={1080}
-                  height={720}
-                />
-              </figure>
-            )
-          } else if (
-            item.type === 'internal' &&
-            browserWidth > 920 &&
-            item.mediaItem &&
-            mediaItem
-          ) {
-            console.log('internal')
-            return (
-              <VideoPlayer
-                key={index}
-                className={`${styles.carouselItem} ${styles.heroVideo} ${
-                  index === currentSlide ? styles.active : ''
-                }`}
-                src={item.mediaItem.mediaItemUrl}
-                autoPlay={true}
-                caption={item.mediaItem.altText}
+    if (
+      mediaItemCount > 1 &&
+      browserWidth > MOBILE_BREAKPOINT &&
+      !isInternalMedia
+    ) {
+      setNumSlides(isInternalMedia ? mediaItemCount - 1 : mediaItemCount)
+      const interval = setInterval(() => {
+        setCurrentSlide((currentSlide) => (currentSlide + 1) % numSlides)
+      }, SLIDE_INTERVAL)
+      return () => clearInterval(interval)
+    } else if (
+      mediaItemCount > 1 &&
+      browserWidth < MOBILE_BREAKPOINT &&
+      isInternalMedia
+    ) {
+      setCurrentSlide(1)
+    } else {
+      setCurrentSlide(0)
+    }
+  }, [mediaItems.length, browserWidth, mediaTypes, numSlides, mediaItemCount])
+
+  const generateItemClassName = (index: number, type: string) => {
+    const baseClass = `${styles.carouselItem} ${
+      index === currentSlide ? styles.active : ''
+    }`
+    return type === 'image'
+      ? `${baseClass} ${styles.heroImage}`
+      : `${baseClass} ${styles.heroVideo}`
+  }
+
+  return (
+    <div className={styles.carouselContainer}>
+      {mediaItems.map((item, index) => {
+        const { type, mediaItem } = item
+        const isImageType = type === 'image'
+
+        if (
+          mediaItem &&
+          ((isImageType && browserWidth < MOBILE_BREAKPOINT) ||
+            (isImageType &&
+              browserWidth > MOBILE_BREAKPOINT &&
+              mediaItems.length > 1) ||
+            (type === 'internal' && browserWidth > MOBILE_BREAKPOINT))
+        ) {
+          const classNames = generateItemClassName(index, type)
+          return isImageType ? (
+            <figure key={index} className={classNames}>
+              <Image
+                src={mediaItem.mediaItemUrl}
+                alt={mediaItem.altText}
+                width={1080}
+                height={720}
               />
-            )
-          } else {
-            return null
-          }
-        })}
-      </div>
-    </>
+            </figure>
+          ) : (
+            <VideoPlayer
+              key={index}
+              className={classNames}
+              src={mediaItem.mediaItemUrl}
+              autoPlay={true}
+              caption={mediaItem.altText}
+            />
+          )
+        }
+
+        return null
+      })}
+    </div>
   )
 }
 
