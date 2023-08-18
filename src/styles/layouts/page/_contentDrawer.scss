@@ -3,7 +3,6 @@
 @use 'mixins';
 
 .wc-content-drawer {
-  // border-left: 1px solid tokens.$c-gray-400;
   display: flex;
   flex-direction: column;
   border-top: 1px solid tokens.$c-gray-300;
@@ -14,9 +13,13 @@
     padding-right: tokens.$pageOffset;
   }
 
+  & > * {
+    position: relative;
+    z-index: tokens.$layer-2;
+  }
+
   .wc-content-drawer-intro-g {
     margin: 0;
-    // padding-inline: clamp(tokens.$p-m, 5vw, tokens.$p-xxl);
 
     &::after {
       display: none;
@@ -43,6 +46,11 @@
     opacity: 0;
     margin: 0;
     border-left: 1px solid tokens.$c-gray-400;
+
+    & > * {
+      position: relative;
+      z-index: tokens.$layer-2;
+    }
   }
 
   .drawerBtnContainer {
