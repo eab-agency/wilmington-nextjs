@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactHtmlParser from 'react-html-parser' // Import the library
 import { Highlight } from 'react-instantsearch-dom'
 import searchClick from '../functions/searchClick'
 
@@ -11,6 +12,8 @@ import searchClick from '../functions/searchClick'
  * @return {Element}           The Hit component.
  */
 export default function Hit({ hit }) {
+  const sanitizedTitle = ReactHtmlParser(hit.post_title)
+
   return (
     <button
       type="button"
@@ -18,7 +21,19 @@ export default function Hit({ hit }) {
       data-title={hit?.post_title}
       onClick={(e) => searchClick(e)}
     >
-      <Highlight attribute="post_title" hit={hit} />
+      <Highlight
+        attribute="post_title"
+        hit={{
+          ...hit,
+          _highlightResult: {
+            ...hit._highlightResult,
+            post_title: {
+              value: sanitizedTitle.join(''),
+              matchLevel: 'full'
+            }
+          }
+        }}
+      />
     </button>
   )
 }

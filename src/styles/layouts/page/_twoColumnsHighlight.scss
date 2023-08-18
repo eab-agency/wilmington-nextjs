@@ -9,7 +9,7 @@
   padding-block: 0;
   // overflow-y: hidden;
 
-  & > div {
+  & > * {
     position: relative;
     z-index: tokens.$layer-2;
   }
@@ -32,10 +32,6 @@
         object-fit: cover;
         position: relative;
         z-index: tokens.$layer-1;
-      }
-
-      &::after {
-        @include tokens.decoPlusSignCut;
       }
     }
 

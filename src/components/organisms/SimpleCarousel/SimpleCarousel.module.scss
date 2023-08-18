@@ -1,0 +1,83 @@
+@use 'tokens';
+@use 'utilities/mixins';
+
+.carouselContainer {
+  height: clamp(30rem, 45vw, 45rem);
+  width: 100%;
+  position: relative;
+
+  @media (min-width: tokens.$mq-800) {
+    height: 80vh;
+  }
+
+  .carouselItem {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    z-index: tokens.$layer-1;
+    opacity: 0;
+    transition: opacity 0.5s;
+
+    &.active {
+      opacity: 1;
+    }
+
+    &.heroImage {
+      position: absolute;
+      z-index: tokens.$layer-1;
+      height: clamp(30rem, 45vw, 45rem);
+      width: 105vw;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+
+      @media (min-width: tokens.$mq-800) {
+        height: 80vh;
+      }
+
+      img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &.heroVideo {
+      position: absolute;
+      z-index: tokens.$layer-1;
+      height: clamp(30rem, 45vw, 45rem);
+      width: 103vw;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+
+      @media (min-width: tokens.$mq-800) {
+        height: 80vh;
+      }
+
+      video {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    background: rgba(#001411, 0.45);
+    // background: rgba(#001411, 0.4) url('./../../../assets/bg-texture.png');
+    width: 105vw;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: tokens.$layer-2;
+  }
+}

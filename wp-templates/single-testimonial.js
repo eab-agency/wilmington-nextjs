@@ -2,6 +2,7 @@ import { gql } from '@apollo/client'
 // import { Container, Footer, Header, Hero, Main, SEO } from '../components'
 import { SEO } from '@/components'
 import Container from '@/components/atoms/Container'
+import Preloader from '@/components/atoms/Preloader'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero/PageHero'
@@ -9,7 +10,7 @@ import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 
 export default function Component(props) {
   if (props.loading) {
-    return <>Loading...</>
+    return <Preloader />
   }
   const { content, featuredImage, testimonialFields } = props.data.testimonial
 

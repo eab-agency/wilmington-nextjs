@@ -30,10 +30,6 @@
       line-height: 1.1;
       flex-shrink: 0;
 
-      // &:last-child {
-      //   margin: 0;
-      // }
-
       span {
         display: flex;
         flex-direction: column;
@@ -127,15 +123,6 @@
     &.tabContent {
       figure {
         position: relative;
-
-        @media (min-width: tokens.$mq-800) {
-          &::before {
-            @include tokens.decoPlusSignCut;
-            left: 0;
-            right: initial;
-            transform: translate(-44%, 5%);
-          }
-        }
       }
     }
   }

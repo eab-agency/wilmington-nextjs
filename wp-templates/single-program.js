@@ -1,6 +1,7 @@
 import { SEO } from '@/components'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
+import Preloader from '@/components/atoms/Preloader'
 import ProgramTabs, {
   ProgramTabsFragment
 } from '@/components/atoms/ProgramTabs/ProgramTabs'
@@ -20,7 +21,7 @@ import { StudentOrgFragment } from '../wp-blocks/acf/AcfStudentOrgs'
 export default function SingleProgram(props) {
   // Loading state for previews
   if (props.loading) {
-    return <>Loading...</>
+    return <Preloader />
   }
   const {
     editorBlocks,
