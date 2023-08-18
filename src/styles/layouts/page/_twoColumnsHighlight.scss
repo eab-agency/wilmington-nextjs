@@ -9,7 +9,7 @@
   padding-block: 0;
   // overflow-y: hidden;
 
-  & > div {
+  & > * {
     position: relative;
     z-index: tokens.$layer-2;
   }
