@@ -2,6 +2,7 @@ import { gql } from '@apollo/client'
 // import { Container, Footer, Header, Hero, Main, SEO } from '../components'
 import { SEO } from '@/components'
 import Container from '@/components/atoms/Container'
+import Preloader from '@/components/atoms/Preloader'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero/PageHero'
@@ -15,7 +16,7 @@ import blocks from '../wp-blocks'
 export default function Component(props) {
   // Loading state for previews
   if (props.loading) {
-    return <>Loading...</>
+    return <Preloader />
   }
   const { title, editorBlocks, seo, featuredImage } =
     props.data.post || props.data.studentOrg

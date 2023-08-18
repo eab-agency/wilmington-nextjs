@@ -8,6 +8,8 @@
 
   @include mixins.extendedBackground('after', tokens.$c-limeGreen-300);
 
-  button {
+  & > div {
+    position: relative;
+    z-index: tokens.$layer-2;
   }
 }

@@ -12,12 +12,13 @@ import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
 import Head from 'next/head'
 // import RichText from '../src/components/atoms/RichText/RichText'
+import Preloader from '@/components/atoms/Preloader'
 import { MdForward } from 'react-icons/md'
 import blockEntries from '../wp-blocks'
 
 export default function SingleEvent(props) {
   if (props.loading) {
-    return <>Loading...</>
+    return <Preloader />
   }
   const { editorBlocks, seo, featuredImage, eventsFields, title } =
     props.data.event

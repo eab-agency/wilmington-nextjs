@@ -4,206 +4,112 @@
 .homeHero {
   position: relative;
   z-index: tokens.$layer-1;
+  min-height: 40rem;
 }
 
 .heroIntroContent {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background: tokens.$c-limeGreen-500;
-  padding-block: clamp(tokens.$p-xl, 10vw, tokens.$p-3xl);
-  @include mixins.sectionPadding(inline);
+  width: 100%;
   position: relative;
   z-index: tokens.$layer-2;
-
-  &::before {
-    content: '';
-    display: block;
-    width: 100vw;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: tokens.$c-limeGreen-500;
-    z-index: tokens.$layer-1;
-
-    @media (min-width: tokens.$mq-800) {
-      left: initial;
-      width: 100%;
-      right: 100%;
-      transform: translateX(0);
-    }
-  }
+  margin-top: -15rem;
 
   @media (min-width: tokens.$mq-800) {
-    @include mixins.sectionPadding(block);
-    padding-inline: 0;
-    padding-bottom: 6rem;
-  }
-
-  @media (min-width: tokens.$mq-1400) {
     flex-direction: row;
-  }
-
-  h1 {
-    color: tokens.$c-darkGreen-800;
-  }
-
-  & > div,
-  & > ul {
-    position: relative;
-    z-index: tokens.$layer-2;
-  }
-}
-
-.heroImage {
-  position: relative;
-  z-index: tokens.$layer-1;
-  height: clamp(20rem, 45vw, 35rem);
-  overflow-y: clip;
-
-  @media (max-width: tokens.$mq-1000) {
-    width: 100vw;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  img {
+    gap: 15vw;
+    align-items: flex-end;
     position: absolute;
-    width: 100vw;
-    height: 100%;
-    max-height: 40rem;
-    object-fit: cover;
+    top: 60%;
+    left: 0;
+    margin-top: 0;
+    transform: translateY(-50%);
+  }
 
-    @media (min-width: tokens.$mq-800) {
-      width: 93vw;
-      max-width: calc(tokens.$maxWidth - 7rem);
-      left: auto;
-      right: 0;
+  .introCopy {
+    h1 {
+      color: tokens.$c-white;
+      font-weight: 700;
+      font-size: clamp(tokens.$fs-2xl, 5vw, tokens.$fs-4xl);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+
+      strong {
+        font-weight: 100;
+        font-size: 0.6em;
+      }
     }
-  }
 
-  &::after {
-    @include tokens.decoPlusSign;
-    left: initial;
-    top: initial;
-    bottom: 0;
-    right: 0;
-    transform: translateX(45%) translateY(45%);
-  }
-}
+    p {
+      display: block;
+      background: tokens.$c-darkGreen-800;
+      color: tokens.$c-white;
+      padding: tokens.$p-l tokens.$p-m;
+      border-left: 0.5em solid tokens.$c-limeGreen-500;
+      font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-s);
 
-.introCopy {
-  @media (min-width: tokens.$mq-800) {
-    padding-right: clamp(tokens.$p-l, 10vw, tokens.$p-3xl);
-  }
-
-  @media (min-width: tokens.$mq-1200) {
-    margin-bottom: clamp(tokens.$p-l, 10vw, tokens.$p-3xl);
-    span h1 {
-      // width: 160%;
-      position: relative;
-      z-index: tokens.$layer-2;
-    }
-  }
-
-  @media (min-width: tokens.$mq-1400) {
-    padding-right: 0;
-    span h1 {
-      width: 160%;
+      @media (min-width: tokens.$mq-800) {
+        background: rgba(tokens.$c-darkGreen-800, 0.9);
+      }
     }
   }
 }
 
 .ctasRow {
   display: flex;
-  width: 100%;
-  margin: 0;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: center;
+  gap: 1.2rem;
+  flex: 1 0 16rem;
+  margin: 0 auto;
   list-style: none;
   position: relative;
   padding-block: tokens.$p-l;
   padding-inline: 0;
-
-  @media (max-width: tokens.$mq-800) {
-    justify-content: center;
-  }
-
-  &::before {
-    content: '';
-    display: block;
-    width: clamp(15rem, 70vw, 40rem);
-    height: 3rem;
-    position: absolute;
-    bottom: -30%;
-    left: 0;
-    background: url(../../../assets/hand-drawn-highlight.svg) no-repeat;
-    background-size: 100% auto;
-    pointer-events: none;
-  }
-
-  @media (min-width: tokens.$mq-1400) {
-    align-self: flex-end;
-    padding-right: 2rem;
-    max-width: 28rem;
-    flex-shrink: 0;
-    padding-block: initial;
-
-    &::before {
-      width: 28rem;
-      height: 16rem;
-      top: -100%;
-      bottom: auto;
-      left: -3%;
-      background: url(../../../assets/hand-drawn-circle.svg) no-repeat;
-      background-size: 100% auto;
-    }
-  }
+  min-width: 16rem;
 
   li {
-    border-left: 1px solid tokens.$c-limeGreen-300;
+    width: 100%;
+    a {
+      display: flex;
+      text-align: center;
+      align-items: center;
+      line-height: 1;
+      gap: tokens.$p-m;
+      background: tokens.$c-limeGreen-200;
+      font-size: clamp(tokens.$fs-2xs, 1.5vw, tokens.$fs-xs);
+      color: tokens.$c-copy;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-decoration: none;
+      width: 100%;
+      border-radius: 0.3em;
+      overflow: hidden;
+      border: 1px solid tokens.$c-limeGreen-600;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 
-    &:last-child {
-      border-right: 1px solid tokens.$c-limeGreen-300;
-    }
+      figure {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        height: 3.5rem;
+        padding: 0.5em;
+        background: tokens.$c-limeGreen-600;
 
-    @media (min-width: tokens.$mq-1400) {
-      border-right: 1px solid tokens.$c-limeGreen-300;
-
-      &:first-child {
-        border-left: none;
+        svg {
+          color: tokens.$c-white;
+          font-size: clamp(tokens.$fs-xs, 7vw, tokens.$fs-xl);
+        }
       }
-      &:last-child {
-        border-right: none;
+
+      &:hover,
+      &:focus {
+        background: tokens.$c-limeGreen-600;
+        color: tokens.$c-white;
+        border-color: tokens.$c-limeGreen-600;
       }
     }
-  }
-
-  a {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    line-height: 1;
-    gap: tokens.$p-s;
-    font-size: clamp(tokens.$fs-2xs, 1.5vw, tokens.$fs-xs);
-    color: tokens.$c-copy;
-    text-transform: uppercase;
-    font-weight: 600;
-    text-decoration: none;
-    padding-inline: clamp(tokens.$p-m, 3vw, tokens.$p-xl);
-
-    @media (min-width: tokens.$mq-1400) {
-      padding-inline: clamp(tokens.$p-xs, 1vw, tokens.$p-s);
-    }
-  }
-
-  svg {
-    color: tokens.$c-white;
-    font-size: clamp(tokens.$fs-xs, 7vw, tokens.$fs-xl);
-
-    // @media(min-width: tokens.$mq-800){
-    //   font-size: tokens.$fs-xl;
-    // }
   }
 }

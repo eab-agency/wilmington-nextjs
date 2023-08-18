@@ -1,3 +1,4 @@
+import Preloader from '@/components/atoms/Preloader'
 import Accordian from '@/components/molecules/Accordian'
 import { gql, useQuery } from '@apollo/client'
 
@@ -8,7 +9,7 @@ function Faq({ id }) {
   })
   const { title, content } = data?.fAQ ?? {}
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <Preloader />
   if (error) return <p>Error: {error.message}</p>
 
   return (

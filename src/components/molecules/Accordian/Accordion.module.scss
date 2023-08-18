@@ -62,6 +62,7 @@
       }
 
       &:hover {
+        background: none;
         i {
           background: tokens.$c-limeGreen-500;
           color: tokens.$c-white;
