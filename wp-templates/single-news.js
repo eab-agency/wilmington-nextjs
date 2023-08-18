@@ -1,5 +1,6 @@
 import { SEO } from '@/components'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
+import Preloader from '@/components/atoms/Preloader'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero'
@@ -12,7 +13,7 @@ import blocks from '../wp-blocks'
 
 export default function SingleNews(props) {
   if (props.loading) {
-    return <>Loading...</>
+    return <Preloader />
   }
   const { title, editorBlocks, seo, featuredImage, uri, date, newsCategories } =
     props.data.article

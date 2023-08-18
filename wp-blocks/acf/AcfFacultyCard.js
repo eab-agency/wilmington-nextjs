@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-
+import Preloader from '@/components/atoms/Preloader'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import FacultyCard from '@/components/molecules/FacultyCard/FacultyCard'
 import { gql, useQuery } from '@apollo/client'
@@ -29,7 +29,7 @@ export default function AcfFacultyCard(props) {
 
   if (!faculty_member) return null
 
-  if (loading) return 'Loading...'
+  if (loading) return <Preloader />
   if (error) return `Error! ${error.message}`
 
   return (

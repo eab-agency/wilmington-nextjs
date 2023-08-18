@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { SEO } from '@/components'
 import Container from '@/components/atoms/Container'
+import Preloader from '@/components/atoms/Preloader'
 import Layout from '@/components/common/Layout'
 import { BlogInfoFragment, seoPostFields } from '@/fragments'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
@@ -18,7 +19,7 @@ export default function Component(props) {
 
   // Loading state for previews
   if (props.loading) {
-    return <>Loading...</>
+    return <Preloader />
   }
 
   return (

@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 // import { useImageItem } from '@hooks/useImageQuery'
 import Image from '@/components/atoms/Image/Image'
+import Preloader from '@/components/atoms/Preloader'
 import AthleteCard from '@/components/molecules/AthleteCard'
 import { gql, useQuery } from '@apollo/client'
 
@@ -40,7 +41,7 @@ export default function AcfAthleteCard(props: Props) {
     variables: { id: athlete_image }
   })
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <Preloader />
   if (error) return <p>Error: {error.message}</p>
 
   return (

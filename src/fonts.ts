@@ -35,6 +35,7 @@ export const cantarell = Cantarell({
 })
 
 export const robotoSlab = Roboto_Slab({
+  weight: ['200', '300', '400', '900'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-roboto-slab'

@@ -1,0 +1,11 @@
+/* stylelint-disable block-no-empty */
+.videoEmbed {
+  & .wrapper {
+  }
+
+  & iframe {
+  }
+
+  & .caption {
+  }
+}

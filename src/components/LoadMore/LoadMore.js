@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 
+import Preloader from '@/components/atoms/Preloader'
+import { className } from 'classnames/bind'
 import styles from './LoadMore.module.scss'
 /**
  * LoadMore shows a Button that can be clicked to load more results in a paginated post list.
@@ -48,11 +50,12 @@ export default function LoadMore({
   }, [hasNextPage, endCursor, isLoading, fetchMore, useInfiniteScroll])
 
   if (hasNextPage && endCursor) {
+
     if (useInfiniteScroll) {
       return (
         <section className={className}>
           <span ref={loadMoreButtonRef} className={styles.button}>
-            {isLoading ? 'Loading...' : ''}
+            {isLoading ? <Preloader /> : ''}
           </span>
         </section>
       )
@@ -69,7 +72,7 @@ export default function LoadMore({
               })
             }}
           >
-            {isLoading ? 'Loading...' : 'Load More'}
+            {isLoading ? <Preloader /> : 'Load More'}
           </button>
         </section>
       )

@@ -1,22 +1,15 @@
 import MainCta from '@/components/atoms/Buttons/MainCta'
-import Image from '@/components/atoms/Image'
 import RichText from '@/components/atoms/RichText'
+import SimpleCarousel from '@/components/organisms/SimpleCarousel'
 import styles from './HomeHero.module.scss'
 
-function Hero({ imageMeta, content, ctas }) {
+function Hero({ mediaItems, content, ctas }) {
   return (
     <div className={styles.homeHero}>
-      {imageMeta && (
-        <Image
-          className={styles.heroImage}
-          alt={imageMeta.altText}
-          priority={true}
-          imageMeta={imageMeta}
-        />
-      )}
+      <SimpleCarousel mediaItems={mediaItems} />
       <div className={styles.heroIntroContent}>
         <div className={styles.introCopy}>
-          <RichText tag="span">{content}</RichText>
+          <RichText tag="div">{content}</RichText>
         </div>
         <ul className={styles.ctasRow}>
           {ctas.map((cta, index) => (

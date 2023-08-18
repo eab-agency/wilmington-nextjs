@@ -1,5 +1,6 @@
 'use client'
 /* eslint-disable react-hooks/rules-of-hooks */
+import Preloader from '@/components/atoms/Preloader'
 import BlockTestimonial from '@/components/blocks/acf/BlockTestimonial'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import { gql, useQuery } from '@apollo/client'
@@ -68,7 +69,7 @@ export default function AcfTestimonialBlock(props) {
     }
   }, [randomTestimonies, testimonial_post])
 
-  if (randomLoading || featuredLoading) return 'Loading...'
+  if (randomLoading || featuredLoading) return <Preloader />
   if (randomError || featuredError)
     return `Error! ${featuredError.message || randomError.message}`
 

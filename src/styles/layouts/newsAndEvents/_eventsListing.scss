@@ -28,12 +28,12 @@
         color: tokens.$c-white;
       }
 
-      @media (min-width: tokens.$mq-1200) {
-        padding-left: clamp(2rem, 5vw, 4rem);
-        .sectionTag {
-          position: absolute;
-        }
-      }
+      // @media (min-width: tokens.$mq-1200) {
+      //   padding-left: clamp(2rem, 5vw, 4rem);
+      //   .sectionTag {
+      //     position: absolute;
+      //   }
+      // }
     }
 
     .eventsList {
@@ -48,9 +48,9 @@
       flex-direction: row;
       overflow-x: auto;
 
-      @media (min-width: tokens.$mq-1200) {
-        width: calc(100% - 24rem);
-      }
+      // @media (min-width: tokens.$mq-1200) {
+      //   width: calc(100% - 24rem);
+      // }
 
       li {
         min-width: 15rem;
@@ -83,15 +83,13 @@
         &::after {
           content: '';
           display: block;
-          width: 4px;
-          height: 70%;
+          width: 1px;
+          height: 90%;
           position: absolute;
           top: 50%;
           right: 0;
           transform: translateY(-50%);
-          background: url('../../../assets/divider-draw-line-vertical.svg')
-            no-repeat center;
-          background-size: 100% auto;
+          background-color: tokens.$c-limeGreen-300;
         }
 
         &:last-child {
