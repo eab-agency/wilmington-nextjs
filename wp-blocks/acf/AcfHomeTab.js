@@ -1,4 +1,5 @@
 import Image from '@/components/atoms/Image/Image'
+import Preloader from '@/components/atoms/Preloader'
 import BlockHomeTabs from '@/components/blocks/acf/BlockHomeTabs'
 import { gql, useQuery } from '@apollo/client'
 
@@ -8,7 +9,7 @@ function getImageData(id) {
     variables: { id }
   })
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <Preloader />
   if (error) return <p>Error: {error.message}</p>
 
   return data

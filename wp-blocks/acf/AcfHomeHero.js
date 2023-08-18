@@ -1,54 +1,85 @@
-import Image from '@/components/atoms/Image'
 import Hero from '@/components/organisms/HomeHero'
+import {
+  createCTAArray,
+  createMediaObject
+} from '@/functions/createMediaObject'
 import { gql, useQuery } from '@apollo/client'
-
 /**
  * Home Hero Block
  *
- * The core Columns block from Gutenberg.
- *
- * @param  {object}  props                 The component properties.
- * @param  {string}  props.hero_title      Hero title (html)
- * @param  {number}  props.hero_primary_ctas   number of primary CTA buttons
- * @return {Element}                       The Cover component.
+ * The ACF Home Hero block from Gutenberg.
  */
 
-// {
-//   data: { innerBlocks, hero_content, hero_primary_ctas, ...other },
-//   imageMeta
-// }
+const IMAGE_QUERY = gql`
+  query GET_MEDIA($ids: [ID]!) {
+    mediaItems(where: { in: $ids }) {
+      edges {
+        node {
+          altText
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+            sizes {
+              height
+              name
+              sourceUrl
+              width
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 export default function AcfHomeHero(props) {
   const attributes = props.attributes
 
-  const { hero_content, hero_primary_ctas, hero_image, ...other } = JSON.parse(
-    attributes?.data
-  )
+  const {
+    hero_content,
+    hero_primary_ctas: cta_count,
+    hero_media_slider: hero_media_slider_count,
+    ...other
+  } = JSON.parse(attributes?.data)
 
-  // grap the athlete image
-  const { loading, error, data } = useQuery(Image.query, {
-    variables: { id: hero_image }
+  const hero_ctas_array = createCTAArray(other, cta_count)
+
+  const hero_media_slider_array = []
+
+  for (let i = 0; i < hero_media_slider_count; i++) {
+    const media = createMediaObject(other, i)
+    hero_media_slider_array.push(media)
+  }
+
+  const allTheImageIds = hero_media_slider_array.map((item) => item.imageId)
+
+  // Pass the imageIds to the useQuery hook
+  const { loading, error, data } = useQuery(IMAGE_QUERY, {
+    variables: { ids: allTheImageIds }
   })
 
-  const count = hero_primary_ctas
+  if (loading) return null
 
-  const hero_ctas_array = []
-  // loop through the number of tabs
-  for (let i = 0; i < count; i++) {
-    // create an object for each tab
-    const cta = {
-      title: other[`hero_primary_ctas_${i}_link`].title,
-      url: other[`hero_primary_ctas_${i}_link`].url,
-      target: other[`hero_primary_ctas_${i}_link`].target,
-      icon: other[`hero_primary_ctas_${i}_icon`]
-    }
-    // push the object to the array
-    hero_ctas_array.push(cta)
+  const { mediaItems } = data
+
+  let mediaArray = []
+
+  // Check if the data has been fetched successfully
+  if (!loading && !error) {
+    const nodes = mediaItems.edges.map((edge) => edge.node)
+
+    // Iterate over the hero_media_slider_array and append data.mediaItem to each object
+    mediaArray = hero_media_slider_array.map((item, index) => ({
+      ...item,
+      mediaItem: nodes[index]
+    }))
   }
 
   return (
     <Hero
-      imageMeta={data?.mediaItem}
+      mediaItems={mediaArray}
+      media={hero_media_slider_array}
       content={hero_content}
       ctas={hero_ctas_array}
     />

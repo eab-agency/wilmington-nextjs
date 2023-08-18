@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client'
 // import { Container, Footer, Header, Hero, Main, SEO } from '../components'
 import { SEO } from '@/components'
+import Preloader from '@/components/atoms/Preloader'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import PageHero from '@/components/organisms/PageHero'
@@ -15,7 +16,7 @@ import blocks from '../wp-blocks'
 
 export default function SingleFaculty(props) {
   if (props.loading) {
-    return <>Loading...</>
+    return <Preloader />
   }
 
   const { title, editorBlocks, seo, featuredImage, facultyFields } =

@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 
+import Preloader from '@/components/atoms/Preloader'
 import BlockFeaturedPrograms from '@/components/blocks/acf/BlockFeaturedPrograms/BlockFeaturedPrograms'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import { gql, useQuery } from '@apollo/client'
@@ -14,7 +15,7 @@ export default function AcfFeaturedDept(props) {
     variables: { ids: featured_depts }
   })
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <Preloader />
   if (error) return <p>Error: {error.message}</p>
 
   const featuredPrograms = data.departments.nodes.flatMap(

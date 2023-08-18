@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import Preloader from '@/components/atoms/Preloader'
 import EventsListing from '@/components/organisms/EventsListing'
 import { gql, useQuery } from '@apollo/client'
 
@@ -92,11 +93,11 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
     )
   })
 
-  const sortedFutureEvents = futureEvents.sort((post1, post2) => {
-    return post1.date - post2.date
-  })
+  const sortedFutureEvents = futureEvents
+    .sort((post1, post2) => post1.date - post2.date)
+    .slice(0, 4)
 
-  if (idsLoading || latestLoading) return <p>Loading...</p>
+  if (idsLoading || latestLoading) return <Preloader />
   if (idsError || latestError) return <p>Error :(</p>
 
   if (posts.length === 0) return null
@@ -161,7 +162,7 @@ const GET_EVENTS_BY_IDS = gql`
 const GET_EVENTS_BY_CATEGORY = gql`
   query GetEventsByCateogry($category_id: ID!) {
     eventCategory(id: $category_id, idType: DATABASE_ID) {
-      events(first: 4, where: { orderby: { field: DATE, order: DESC } }) {
+      events(first: 10, where: { orderby: { field: DATE, order: DESC } }) {
         nodes {
           ...EventFields
         }

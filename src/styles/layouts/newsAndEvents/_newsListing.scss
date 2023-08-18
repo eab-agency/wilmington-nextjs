@@ -4,6 +4,10 @@
 
 .front-page {
   .newsSection {
+    background: tokens.$c-darkGreen-700;
+    @include mixins.extendedBackground('before', tokens.$c-darkGreen-700);
+    @include mixins.sectionPadding(block);
+
     .sectionHead {
       display: flex;
       flex-direction: column;
@@ -21,50 +25,51 @@
         color: tokens.$c-white;
       }
     }
-
-    background: tokens.$c-darkGreen-700;
-    margin-bottom: 0;
-    display: flex;
-    flex-direction: column;
-    z-index: tokens.$layer-10;
-    position: relative;
-    @include mixins.sectionPadding;
-
-    @include mixins.extendedBackground('before', tokens.$c-darkGreen-700);
-
-    @media (min-width: tokens.$mq-800) {
-      padding: 0;
-      padding-right: clamp(1rem, 2vw, 2rem);
-      @include mixins.sectionPadding(block);
-    }
-
-    @media (min-width: tokens.$mq-1200) {
-      flex-direction: row;
-      @include mixins.sectionPadding($size: 3vw);
-
-      flex-direction: column;
-      gap: tokens.$m-xl;
-      align-items: flex-start;
-      width: 20rem;
-      position: absolute;
-      top: 10em;
-      right: 0;
-
-      &::before {
-        display: none;
-      }
-    }
-
-    .articleTitle {
-      color: tokens.$c-white;
-      font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-s);
-      font-weight: 300;
-    }
-
-    a.articleLink {
-      color: tokens.$c-teal-300;
-    }
   }
+
+  //   background: tokens.$c-darkGreen-700;
+  //   margin-bottom: 0;
+  //   display: flex;
+  //   flex-direction: column;
+  //   z-index: tokens.$layer-10;
+  //   position: relative;
+  //   @include mixins.sectionPadding;
+
+  //   @include mixins.extendedBackground('before', tokens.$c-darkGreen-700);
+
+  //   @media (min-width: tokens.$mq-800) {
+  //     padding: 0;
+  //     padding-right: clamp(1rem, 2vw, 2rem);
+  //     @include mixins.sectionPadding(block);
+  //   }
+
+  //   @media (min-width: tokens.$mq-1200) {
+  //     flex-direction: row;
+  //     @include mixins.sectionPadding($size: 3vw);
+
+  //     flex-direction: column;
+  //     gap: tokens.$m-xl;
+  //     align-items: flex-start;
+  //     width: 20rem;
+  //     position: absolute;
+  //     top: 10em;
+  //     right: 0;
+
+  //     &::before {
+  //       display: none;
+  //     }
+  //   }
+
+  //   .articleTitle {
+  //     color: tokens.$c-white;
+  //     font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-s);
+  //     font-weight: 300;
+  //   }
+
+  //   a.articleLink {
+  //     color: tokens.$c-teal-300;
+  //   }
+  // }
 
   .newsContainer {
     display: block;
@@ -73,81 +78,105 @@
     z-index: tokens.$layer-2;
 
     .newsCarousel {
-      margin-bottom: 3rem;
-      padding-bottom: 4em;
+      ul {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 1em;
 
-      @media (min-width: tokens.$mq-700) {
-        margin-bottom: -2.5rem;
-        padding-bottom: 6em;
-      }
-
-      li[class*='item'] {
-        position: relative;
-
-        article {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          position: relative;
-          padding-block: tokens.$p-l;
-          padding-inline: tokens.$p-l;
-          transition: all 0.2s ease-in;
-
-          @media (min-width: tokens.$mq-1200) {
-            padding-block: tokens.$p-xl;
-            padding-inline: 0;
-          }
-        }
-
-        &::after {
-          content: '';
-          display: block;
-          position: absolute;
-          width: 4px;
-          height: 70%;
-          background: url(../../../assets/divider-draw-line-vertical.svg)
-            no-repeat center;
-          background-size: 100% auto;
-          right: 0;
-          top: 50%;
-          left: initial;
-          bottom: initial;
-          transform: translateY(-50%);
-        }
-      }
-
-      ul.react-multi-carousel-track {
         li {
-          &::after {
-            @media (min-width: tokens.$mq-1200) {
-              width: 100%;
-              height: 4px;
-              background: url(../../../assets/divider-draw-line-horizontal.svg)
-                no-repeat center;
-              background-size: auto 100%;
-              position: absolute;
-              top: initial;
-              right: initial;
-              bottom: 0;
-              left: 50%;
-              transform: translateX(-50%);
-            }
-          }
-        }
-
-        @media (min-width: tokens.$mq-1200) {
           flex: 1 1 auto;
-          flex-direction: column;
-          // gap: tokens.$m-xl;
 
-          li {
-            min-width: 100%;
-            padding: 0;
+          article {
+            .articleTitle {
+              color: tokens.$c-white;
+              font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-s);
+              font-weight: 300;
+            }
+
+            a.articleLink {
+              color: tokens.$c-teal-300;
+            }
           }
         }
       }
     }
   }
+  //     margin-bottom: 3rem;
+  //     padding-bottom: 4em;
+
+  //     @media (min-width: tokens.$mq-700) {
+  //       margin-bottom: -2.5rem;
+  //       padding-bottom: 6em;
+  //     }
+
+  //     li[class*='item'] {
+  //       position: relative;
+
+  //       article {
+  //         display: flex;
+  //         flex-direction: column;
+  //         align-items: flex-start;
+  //         position: relative;
+  //         padding-block: tokens.$p-l;
+  //         padding-inline: tokens.$p-l;
+  //         transition: all 0.2s ease-in;
+
+  //         @media (min-width: tokens.$mq-1200) {
+  //           padding-block: tokens.$p-xl;
+  //           padding-inline: 0;
+  //         }
+  //       }
+
+  //       &::after {
+  //         content: '';
+  //         display: block;
+  //         position: absolute;
+  //         width: 4px;
+  //         height: 70%;
+  //         background: url(../../../assets/divider-draw-line-vertical.svg)
+  //           no-repeat center;
+  //         background-size: 100% auto;
+  //         right: 0;
+  //         top: 50%;
+  //         left: initial;
+  //         bottom: initial;
+  //         transform: translateY(-50%);
+  //       }
+  //     }
+
+  //     ul.react-multi-carousel-track {
+  //       li {
+  //         &::after {
+  //           @media (min-width: tokens.$mq-1200) {
+  //             width: 100%;
+  //             height: 4px;
+  //             background: url(../../../assets/divider-draw-line-horizontal.svg)
+  //               no-repeat center;
+  //             background-size: auto 100%;
+  //             position: absolute;
+  //             top: initial;
+  //             right: initial;
+  //             bottom: 0;
+  //             left: 50%;
+  //             transform: translateX(-50%);
+  //           }
+  //         }
+  //       }
+
+  //       @media (min-width: tokens.$mq-1200) {
+  //         flex: 1 1 auto;
+  //         flex-direction: column;
+  //         // gap: tokens.$m-xl;
+
+  //         li {
+  //           min-width: 100%;
+  //           padding: 0;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 $colors: tokens.$c-limeGreen-300, tokens.$c-white, tokens.$c-gray-200;
