@@ -93,9 +93,9 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
     )
   })
 
-  const sortedFutureEvents = futureEvents.sort((post1, post2) => {
-    return post1.date - post2.date
-  })
+  const sortedFutureEvents = futureEvents
+    .sort((post1, post2) => post1.date - post2.date)
+    .slice(0, 4)
 
   if (idsLoading || latestLoading) return <Preloader />
   if (idsError || latestError) return <p>Error :(</p>
@@ -162,7 +162,7 @@ const GET_EVENTS_BY_IDS = gql`
 const GET_EVENTS_BY_CATEGORY = gql`
   query GetEventsByCateogry($category_id: ID!) {
     eventCategory(id: $category_id, idType: DATABASE_ID) {
-      events(first: 4, where: { orderby: { field: DATE, order: DESC } }) {
+      events(first: 10, where: { orderby: { field: DATE, order: DESC } }) {
         nodes {
           ...EventFields
         }

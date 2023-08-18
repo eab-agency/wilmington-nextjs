@@ -1,17 +1,28 @@
 import { SEO } from '@/components'
-import { FacultyList } from '@/components/archive/FacultyList'
+import LoadMore from '@/components/LoadMore'
+import { PostsList } from '@/components/archive/PostsList'
 import RichText from '@/components/atoms/RichText'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
-import { gql } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
+import appConfig from 'app.config'
 
-export default function ArchiveFaculty(props) {
-  const { label, description, contentNodes } = props.data.nodeByUri
+export default function Archive(props) {
+  const { uri, name, __typename } = props.data.nodeByUri
+  const { data, loading, fetchMore } = useQuery(Archive.query, {
+    variables: Archive.variables({ uri }),
+    notifyOnNetworkStatusChange: true
+  })
 
-  const { description: siteDescription } = props?.data?.generalSettings ?? {}
+  if (!data) return null
 
-  const archiveTitle = `Wilmington College ${label}`
+  const { title: siteTitle, description: siteDescription } =
+    data && data.generalSettings
+
+  const postList = data.nodeByUri?.contentNodes?.edges.map((el) => el.node)
+
+  const archiveTitle = 'Faculty and Staff'
 
   return (
     <>
@@ -19,56 +30,86 @@ export default function ArchiveFaculty(props) {
       <Layout className="thelayoutclass">
         <div className="inner-wrap archive">
           <RichText className="archiveTitle" tag="h1">
-            {/* {label} */}
-            Faculty and Staff
+            {archiveTitle}
           </RichText>
-          {description && <RichText>{description}</RichText>}
-          <FacultyList className="facultyList" posts={contentNodes.nodes} />
+          {data.description && <RichText>{data.description}</RichText>}
+          <PostsList
+            posts={postList}
+            type={name}
+            className={name === 'faculty' ? 'facultyList' : undefined}
+          />
+          <LoadMore
+            className="text-center"
+            hasNextPage={data.nodeByUri?.contentNodes?.pageInfo.hasNextPage}
+            endCursor={data.nodeByUri?.contentNodes?.pageInfo.endCursor}
+            isLoading={loading}
+            fetchMore={fetchMore}
+            useInfiniteScroll={true}
+          />
         </div>
       </Layout>
     </>
   )
 }
 
-ArchiveFaculty.variables = ({ uri }) => {
-  return { uri }
-}
-
-ArchiveFaculty.query = gql`
+Archive.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
-  query AllFaculty(
+  query GetFacultyPage(
     $uri: String!
+    $first: Int!
+    $after: String!
     $imageSize: MediaItemSizeEnum = MEDIUM
-    $first: Int = 3
-    $after: String
   ) {
     nodeByUri(uri: $uri) {
+      __typename
+      id
+      uri
       ... on ContentType {
+        name
+        description
         label
-        __typename
-        uri
         contentNodes(
           first: $first
           after: $after
           where: { orderby: { field: TITLE, order: ASC } }
         ) {
-          nodes {
-            id
-            uri
-            ... on NodeWithTitle {
-              title
-            }
-            ... on FacultyMember {
-              facultyFields {
-                faculty {
-                  email
-                  phone
-                  position
+          edges {
+            node {
+              id
+              contentTypeName
+              ... on NodeWithTitle {
+                title
+              }
+              ... on NodeWithContentEditor {
+                content
+              }
+              date
+              uri
+              ...FeaturedImageFragment
+              ... on NodeWithAuthor {
+                author {
+                  node {
+                    name
+                  }
                 }
               }
-              ...FeaturedImageFragment
+              ... on FacultyMember {
+                facultyFields {
+                  faculty {
+                    email
+                    phone
+                    position
+                  }
+                }
+              }
             }
+          }
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
           }
         }
       }
@@ -78,3 +119,11 @@ ArchiveFaculty.query = gql`
     }
   }
 `
+
+Archive.variables = ({ uri }) => {
+  return {
+    uri,
+    first: appConfig.postsPerPage,
+    after: ''
+  }
+}
