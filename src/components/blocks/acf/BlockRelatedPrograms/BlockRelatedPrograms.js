@@ -39,7 +39,6 @@ export default function BlockRelatedPrograms({ departments }) {
       <div className={styles.programsContainer}>
         <MultiCarousel
           responsive={responsive}
-          infinite
           containerClass={styles.programsCarousel}
         >
           {departments &&
