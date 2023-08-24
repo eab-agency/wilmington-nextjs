@@ -17,7 +17,7 @@ const templates = {
   page,
   singular,
   archive,
-  'archive-news': ArchiveNewsAndEvents,
+  // 'archive-news': ArchiveNewsAndEvents,
   'archive-event': ArchiveNewsAndEvents,
   'single-program': SingleProgram,
   'archive-program': ArchiveProgram,
