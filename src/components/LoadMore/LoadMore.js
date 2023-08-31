@@ -50,7 +50,6 @@ export default function LoadMore({
   }, [hasNextPage, endCursor, isLoading, fetchMore, useInfiniteScroll])
 
   if (hasNextPage && endCursor) {
-
     if (useInfiniteScroll) {
       return (
         <section className={className}>
