@@ -1,4 +1,4 @@
-import BlockRelatedPrograms from '@/components/blocks/acf/BlockRelatedPrograms/BlockRelatedPrograms'
+import BlockRelatedPrograms from '@/components/blocks/acf/BlockRelatedPrograms'
 import { useWordPressContext } from '@/components/common/WordPressProvider'
 import { gql } from '@apollo/client'
 
