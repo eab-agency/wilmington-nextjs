@@ -7,7 +7,7 @@
   border-top: 0.2em solid color.adjust($color, $lightness: -10%);
   border-bottom: 0.2em solid color.adjust($color, $lightness: -10%);
 
-  @media (min-width: tokens.$mq-900) {
+  @media (min-width: tokens.$mq-800) {
     padding-left: 15vw;
 
     &::before {
@@ -33,7 +33,7 @@
     top: 0;
     left: 0;
 
-    @media (min-width: tokens.$mq-900) {
+    @media (min-width: tokens.$mq-800) {
       width: 100vh;
       height: 3vw;
       top: 50%;
@@ -53,14 +53,10 @@
     gap: 2em;
     padding: clamp(0.8em, 1.2vw, 1.2em);
 
-    @media (min-width: tokens.$mq-900) {
+    @media (min-width: tokens.$mq-800) {
       padding-inline: 6vw;
       gap: clamp(2em, 3vw, 3em);
     }
-
-    // available icons:
-    // $i-warning2,
-    // $i-location,
 
     &::before {
       content: tokens.$i-warning;
@@ -72,7 +68,7 @@
       color: color.adjust($color, $lightness: -10%);
       animation: scaleAnimation 0.5s infinite;
 
-      @media (min-width: tokens.$mq-900) {
+      @media (min-width: tokens.$mq-800) {
         font-size: clamp(2em, 3vw, 3em);
       }
     }
@@ -93,9 +89,7 @@
     flex-direction: column;
     gap: clamp(0.5em, 1.2vw, 1.2em);
     border-left: 1px solid color.adjust($color, $lightness: -10%);
-    // border-right: 1px solid color.adjust($color, $lightness: -10%);
     padding-inline: clamp(1em, 3vw, 3em);
-    // max-width: tokens.$mq-1000;
 
     p {
       font-size: clamp(1rem, 1.2vw, 1.2rem);
@@ -131,9 +125,14 @@
       font-family: tokens.$f-icons;
       position: relative;
       text-indent: 0;
+      transition: all 0.2s ease-in-out;
     }
 
     &:hover {
+      &::after {
+        transform: rotate(90deg);
+        color: color.adjust($color, $lightness: -25%);
+      }
     }
   }
 
@@ -152,20 +151,24 @@
   width: 100%;
   padding-left: 1em;
   opacity: 0;
-  transition: all 0.5s ease-in-out;
+  transform: translateY(-110%);
+  transition: opacity 0.5s ease-in-out;
 
   &.info {
     opacity: 1;
+    transform: translateY(0);
     @include alertBar(tokens.$c-limeGreen-500);
   }
 
   &.warning {
-    @include alertBar(red);
     opacity: 1;
+    transform: translateY(0);
+    @include alertBar(red);
   }
 
   &.alert {
-    @include alertBar(tokens.$c-orange-800);
     opacity: 1;
+    transform: translateY(0);
+    @include alertBar(tokens.$c-orange-800);
   }
 }
