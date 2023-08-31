@@ -1,7 +1,5 @@
-// alert bar component that takes in an alert object and a clear function
-
 import CustomSettingsContext from '@/functions/contextProviders/CustomSettingsProvider'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import styles from './AlertBar.module.scss'
 
 const AlertBar = () => {
@@ -9,14 +7,15 @@ const AlertBar = () => {
   const { alert, clear, showAlert } = customSettingsContext
 
   const [alertTypeClassName, setAlertTypeClassName] = useState(styles.info)
+  const lowercaseContentRef = useRef('')
 
   useEffect(() => {
     if (alert) {
-      const lowercaseContent = alert.content.toLowerCase()
+      lowercaseContentRef.current = alert.content.toLowerCase()
 
-      if (lowercaseContent.includes('warning')) {
+      if (lowercaseContentRef.current.includes('warning')) {
         setAlertTypeClassName(styles.warning)
-      } else if (lowercaseContent.includes('alert')) {
+      } else if (lowercaseContentRef.current.includes('alert')) {
         setAlertTypeClassName(styles.alert)
       } else {
         setAlertTypeClassName(styles.info)
