@@ -38,7 +38,6 @@ export default function Layout({ children }) {
           --font-museo: ${museo.style.fontFamily};
         }
       `}</style>
-      <AlertBar />
       <Header menu={utilityMenu} />
       <div
         className={`${styles.mainContainer} ${
@@ -46,7 +45,10 @@ export default function Layout({ children }) {
         }`}
       >
         <MainNavigation menuItems={mainMenu} enableDropdown={true} />
-        <main>{children}</main>
+        <main>
+          <AlertBar />
+          {children}
+        </main>
       </div>
       <Footer
         menus={{
