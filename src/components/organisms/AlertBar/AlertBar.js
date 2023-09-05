@@ -6,7 +6,7 @@ const AlertBar = () => {
   const customSettingsContext = useContext(CustomSettingsContext)
   const { alert, clear, showAlert } = customSettingsContext
 
-  const [alertTypeClassName, setAlertTypeClassName] = useState(styles.info)
+  const [alertTypeClassName, setAlertTypeClassName] = useState()
   const lowercaseContentRef = useRef('')
 
   useEffect(() => {
