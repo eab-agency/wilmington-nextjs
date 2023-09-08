@@ -6,7 +6,7 @@ async function fetchCustomSettingsJSON() {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'cache-control': 'no-store' // Add this line
+      'cache-control': 'no-store'
     },
     body: JSON.stringify({
       query: customSettingsFields
