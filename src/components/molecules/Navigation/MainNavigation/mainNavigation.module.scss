@@ -28,7 +28,7 @@
 
 .navContainer {
   position: absolute;
-  top: 0.5em;
+  top: 0.4em;
   right: 0;
   z-index: tokens.$layer-9999;
 
@@ -56,6 +56,10 @@
       cursor: pointer;
       position: relative;
       border-right: 1px solid tokens.$c-gray-400;
+
+      @media (max-width: tokens.$mq-800) {
+        top: 0.4em;
+      }
 
       span {
         display: none;
@@ -263,6 +267,11 @@
     ul {
       list-style: none;
       z-index: tokens.$layer-2;
+
+      @media (max-width: tokens.$mq-800) {
+        height: calc(100vh - 4.45rem);
+        padding-bottom: 4em;
+      }
 
       li {
         padding: 0;

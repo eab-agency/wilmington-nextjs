@@ -1,4 +1,3 @@
-import Meta from '@/components/common/Meta'
 import MainNavigation from '@/components/molecules/Navigation/MainNavigation'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
@@ -8,6 +7,7 @@ import { gql, useQuery } from '@apollo/client'
 import * as MENUS from '../../constants/menus'
 import styles from './Layout.module.scss'
 
+import AlertBar from '@/components/organisms/AlertBar'
 import { cantarell, icomoon, museo, robotoSlab } from '@/fonts'
 
 /**
@@ -45,7 +45,10 @@ export default function Layout({ children }) {
         }`}
       >
         <MainNavigation menuItems={mainMenu} enableDropdown={true} />
-        <main>{children}</main>
+        <main>
+          <AlertBar />
+          {children}
+        </main>
       </div>
       <Footer
         menus={{
