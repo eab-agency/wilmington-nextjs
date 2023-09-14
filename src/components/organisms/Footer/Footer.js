@@ -1,7 +1,7 @@
 import Logo from '@/components/atoms/Logo/Logo'
 import FooterMenu from '@/components/molecules/Navigation/FooterMenu'
 import PreFooter from '@/components/molecules/PreFooter'
-import CustomSettingsContext from '@/functions/contextProviders/CustomSettingsProvider'
+import { CustomSettingsContext } from '@/functions/contextProviders/'
 import { useContext } from 'react'
 import * as styles from './Footer.module.scss'
 

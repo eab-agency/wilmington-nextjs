@@ -1,6 +1,9 @@
 /* eslint-disable no-console */
 import WordPressProvider from '@/components/common/WordPressProvider'
-import { CustomSettingsProvider } from '@/functions/contextProviders/CustomSettingsProvider'
+import {
+  CustomSettingsProvider,
+  LayoutProvider
+} from '@/functions/contextProviders/'
 import fetchCustomSettings from '@/functions/fetchCustomSettings'
 import { WordPressBlocksProvider } from '@faustwp/blocks'
 import { FaustProvider } from '@faustwp/core'
@@ -46,15 +49,17 @@ export default function WilmingtonApp({
   return (
     <CustomSettingsProvider data={customSettings}>
       <FaustProvider pageProps={pageProps}>
-        <WordPressProvider value={wp}>
-          <WordPressBlocksProvider
-            config={{
-              blocks
-            }}
-          >
-            <Component {...pageProps} key={router.asPath} />
-          </WordPressBlocksProvider>
-        </WordPressProvider>
+        <LayoutProvider>
+          <WordPressProvider value={wp}>
+            <WordPressBlocksProvider
+              config={{
+                blocks
+              }}
+            >
+              <Component {...pageProps} key={router.asPath} />
+            </WordPressBlocksProvider>
+          </WordPressProvider>
+        </LayoutProvider>
       </FaustProvider>
     </CustomSettingsProvider>
   )

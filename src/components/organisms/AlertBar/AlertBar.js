@@ -1,10 +1,9 @@
-import CustomSettingsContext from '@/functions/contextProviders/CustomSettingsProvider'
+import { CustomSettingsContext } from '@/functions/contextProviders/'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import styles from './AlertBar.module.scss'
 
 const AlertBar = () => {
-  const customSettingsContext = useContext(CustomSettingsContext)
-  const { alert, clear, showAlert } = customSettingsContext
+  const { alert, clear, showAlert } = useContext(CustomSettingsContext)
 
   const [alertTypeClassName, setAlertTypeClassName] = useState()
   const lowercaseContentRef = useRef('')

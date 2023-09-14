@@ -10,7 +10,7 @@ import styles from './Layout.module.scss'
 import Preloader from '@/components/atoms/Preloader'
 import AlertBar from '@/components/organisms/AlertBar'
 import { cantarell, icomoon, museo, robotoSlab } from '@/fonts'
-
+import { useLayoutData } from '@/functions/contextProviders/'
 /**
  * Render the Layout component.
  *
@@ -19,13 +19,12 @@ import { cantarell, icomoon, museo, robotoSlab } from '@/fonts'
  * @param  {object}  props.seo      Yoast SEO data from WordPress.
  * @return {Element}                The Layout component.
  */
+
 export default function Layout({ children }) {
-  const { loading, error, data } = useQuery(Layout.query, {
-    variables: Layout.variables()
-  })
+  const { data, loading, error } = useLayoutData()
+
   const isFrontPage = useIsFrontPage()
 
-  if (loading) return <Preloader />
   if (error) {
     console.error(error)
     return null
