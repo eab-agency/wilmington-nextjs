@@ -1,5 +1,5 @@
 const GRAPHQL_ENDPOINT = `${process.env.NEXT_PUBLIC_WORDPRESS_URL}graphql`
-import customSettingsFields from '@/lib/wordpress/_query-partials/customSettingsFields'
+import customSettingsAndLatestAlertsFields from '@/lib/wordpress/_query-partials/customSettingsAndLatestAlertsFields.js'
 
 async function fetchCustomSettingsJSON() {
   const response = await fetch(GRAPHQL_ENDPOINT, {
@@ -9,11 +9,15 @@ async function fetchCustomSettingsJSON() {
       'cache-control': 'no-store'
     },
     body: JSON.stringify({
-      query: customSettingsFields
+      query: customSettingsAndLatestAlertsFields
     })
   })
-  const customSettings = await response.json()
-  return customSettings
+  console.log(
+    '🚀 ~ file: fetchCustomSettings.js:16 ~ fetchCustomSettingsJSON ~ response:',
+    response
+  )
+  const customSettingsAndAlerts = await response.json()
+  return customSettingsAndAlerts
 }
 
 export default fetchCustomSettingsJSON
