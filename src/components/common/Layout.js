@@ -7,6 +7,7 @@ import { gql, useQuery } from '@apollo/client'
 import * as MENUS from '../../constants/menus'
 import styles from './Layout.module.scss'
 
+import Preloader from '@/components/atoms/Preloader'
 import AlertBar from '@/components/organisms/AlertBar'
 import { cantarell, icomoon, museo, robotoSlab } from '@/fonts'
 
@@ -19,11 +20,17 @@ import { cantarell, icomoon, museo, robotoSlab } from '@/fonts'
  * @return {Element}                The Layout component.
  */
 export default function Layout({ children }) {
-  const { data } = useQuery(Layout.query, {
+  const { loading, error, data } = useQuery(Layout.query, {
     variables: Layout.variables()
   })
-
   const isFrontPage = useIsFrontPage()
+
+  if (loading) return <Preloader />
+  if (error) {
+    console.error(error)
+    return null
+  }
+
   const footerMenu = data?.footerMenuItems?.nodes ?? []
   const resourceMenu = data?.resourceMenuItems?.nodes ?? []
   const utilityMenu = data?.utilityMenuItems?.nodes ?? []

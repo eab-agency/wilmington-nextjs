@@ -1,3 +1,4 @@
+import Preloader from '@/components/atoms/Preloader'
 import Hero from '@/components/organisms/HomeHero'
 import {
   createCTAArray,
@@ -59,7 +60,11 @@ export default function AcfHomeHero(props) {
     variables: { ids: allTheImageIds }
   })
 
-  if (loading) return null
+  if (loading) return <Preloader />
+  if (error) {
+    console.error(error)
+    return null
+  }
 
   const { mediaItems } = data
 
