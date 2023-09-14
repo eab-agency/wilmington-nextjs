@@ -2,10 +2,11 @@
 import { gql } from '@apollo/client'
 
 // import React from 'react'
+import { useLayoutData } from '@/functions/contextProviders/'
+import formatHeirarchialMenu from '@/functions/wordpress/menus/formatHeirarchialMenu'
 import { useEffect, useState } from 'react'
 import { MdClose, MdMenu } from 'react-icons/md'
 import MainNavigationItem from './MainNavigationItem'
-
 import styles from './mainNavigation.module.scss'
 
 const Burger = ({ open, setOpen }) => {
@@ -34,14 +35,16 @@ const Burger = ({ open, setOpen }) => {
   )
 }
 
-const MainNavigation = ({ menuItems, enableDropdown }) => {
-  const items = menuItems
+const MainNavigation = ({ enableDropdown }) => {
+  const { data: menu } = useLayoutData()
+  const mainMenu = formatHeirarchialMenu(menu?.mainMenuItems?.nodes ?? [])
+
   const [open, setOpen] = useState(false)
   const handleToggle = () => {
     setOpen((prev) => !prev)
   }
 
-  if (!menuItems) {
+  if (!mainMenu) {
     return null
   }
   const openCloseClasses = open ? styles.openMenu : styles.closedMenu
@@ -55,8 +58,8 @@ const MainNavigation = ({ menuItems, enableDropdown }) => {
         <div className={styles.navWrapper}>
           <Burger open={open} setOpen={handleToggle} />
           <ul>
-            {items &&
-              items.map((navItem, index) => (
+            {mainMenu &&
+              mainMenu.map((navItem, index) => (
                 <MainNavigationItem
                   item={navItem}
                   key={index}
