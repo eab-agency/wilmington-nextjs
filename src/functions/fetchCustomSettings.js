@@ -5,7 +5,8 @@ async function fetchCustomSettingsJSON() {
   const response = await fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'cache-control': 'no-store'
     },
     body: JSON.stringify({
       query: customSettingsFields

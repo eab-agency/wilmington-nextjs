@@ -6,7 +6,11 @@ const EabProgramDirectory = () => {
   const { loading, error, data } = useQuery(EabProgramDirectory.query)
 
   if (loading) return <Preloader />
-  if (error) return <p>Error: {error.message}</p>
+  if (error) {
+    // eslint-disable-next-line no-console
+    console.log(error)
+    return <p>Error: {error.message}</p>
+  }
 
   return <BlockDepartmentSelect programDepartments={data?.departments.nodes} />
 }

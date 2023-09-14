@@ -27,5 +27,4 @@ const CustomSettingsProvider = ({ children, data }) => {
   )
 }
 
-export { CustomSettingsProvider }
-export default CustomSettingsContext
+export { CustomSettingsProvider, CustomSettingsContext }
