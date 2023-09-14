@@ -1,6 +1,7 @@
 import { SEO } from '@/components'
 import LoadMore from '@/components/LoadMore'
 import { PostsList } from '@/components/archive/PostsList'
+import Preloader from '@/components/atoms/Preloader'
 import RichText from '@/components/atoms/RichText'
 import Layout from '@/components/common/Layout'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
@@ -8,13 +9,12 @@ import { gql, useQuery } from '@apollo/client'
 import { getNextStaticProps } from '@faustwp/core'
 
 export default function Page() {
-  const { data, loading, fetchMore } = useQuery(Page.query, {
+  const { data, loading, error, fetchMore } = useQuery(Page.query, {
     variables: Page.variables()
   })
 
-  if (loading) {
-    return <></>
-  }
+  if (loading) return <Preloader />
+  if (error) return <p>Error: {error.message}</p>
   const { title: siteTitle } = data?.generalSettings ?? {}
   const postList = data.posts.edges.map((el) => el.node)
 
