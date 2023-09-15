@@ -1,6 +1,9 @@
 /* eslint-disable no-console */
 import WordPressProvider from '@/components/common/WordPressProvider'
-import { CustomSettingsProvider } from '@/functions/contextProviders/CustomSettingsProvider'
+import {
+  CustomSettingsProvider,
+  LayoutProvider
+} from '@/functions/contextProviders/'
 import fetchCustomSettings from '@/functions/fetchCustomSettings'
 import { WordPressBlocksProvider } from '@faustwp/blocks'
 import { FaustProvider } from '@faustwp/core'
@@ -19,7 +22,8 @@ const gtmId = 'GTM-P3X3WCQ'
 export default function WilmingtonApp({
   Component,
   pageProps,
-  customSettings
+  customSettings,
+  alert
 }) {
   console.log(
     '%cWilmington College',
@@ -44,17 +48,19 @@ export default function WilmingtonApp({
   })
 
   return (
-    <CustomSettingsProvider data={customSettings}>
+    <CustomSettingsProvider customSettings={customSettings} alert={alert}>
       <FaustProvider pageProps={pageProps}>
-        <WordPressProvider value={wp}>
-          <WordPressBlocksProvider
-            config={{
-              blocks
-            }}
-          >
-            <Component {...pageProps} key={router.asPath} />
-          </WordPressBlocksProvider>
-        </WordPressProvider>
+        <LayoutProvider>
+          <WordPressProvider value={wp}>
+            <WordPressBlocksProvider
+              config={{
+                blocks
+              }}
+            >
+              <Component {...pageProps} key={router.asPath} />
+            </WordPressBlocksProvider>
+          </WordPressProvider>
+        </LayoutProvider>
       </FaustProvider>
     </CustomSettingsProvider>
   )
@@ -64,6 +70,7 @@ WilmingtonApp.getInitialProps = async () => {
   const { data } = await fetchCustomSettings()
 
   return {
-    customSettings: data?.customSettings
+    customSettings: data?.customSettings,
+    alert: data?.alerts.edges[0]?.node
   }
 }
