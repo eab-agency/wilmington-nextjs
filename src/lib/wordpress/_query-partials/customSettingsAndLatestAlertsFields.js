@@ -11,7 +11,7 @@ query GetLatestAlertAndCustomSettings {
       tollfreenumber
     }
   }
-  alerts(last: 1) {
+  alerts(first: 1) {
     edges {
       node {
         alertButtonLabel
