@@ -22,8 +22,7 @@ const gtmId = 'GTM-P3X3WCQ'
 export default function WilmingtonApp({
   Component,
   pageProps,
-  customSettings,
-  alert
+  customSettings
 }) {
   console.log(
     '%cWilmington College',
@@ -47,8 +46,19 @@ export default function WilmingtonApp({
     }
   })
 
+  const [alertData, setAlertData] = useState(null)
+
+  useEffect(() => {
+    const fetchAlertData = async () => {
+      const { data } = await fetchCustomSettings()
+      setAlertData(data?.alerts.edges[0]?.node)
+    }
+
+    fetchAlertData()
+  }, [])
+
   return (
-    <CustomSettingsProvider customSettings={customSettings} alert={alert}>
+    <CustomSettingsProvider customSettings={customSettings} alert={alertData}>
       <FaustProvider pageProps={pageProps}>
         <LayoutProvider>
           <WordPressProvider value={wp}>
@@ -70,7 +80,6 @@ WilmingtonApp.getInitialProps = async () => {
   const { data } = await fetchCustomSettings()
 
   return {
-    customSettings: data?.customSettings,
-    alert: data?.alerts.edges[0]?.node
+    customSettings: data?.customSettings
   }
 }
