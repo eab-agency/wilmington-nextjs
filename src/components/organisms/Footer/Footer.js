@@ -1,14 +1,20 @@
 import Logo from '@/components/atoms/Logo/Logo'
 import FooterMenu from '@/components/molecules/Navigation/FooterMenu'
 import PreFooter from '@/components/molecules/PreFooter'
-import CustomSettingsContext from '@/functions/contextProviders/CustomSettingsProvider'
+import {
+  CustomSettingsContext,
+  useLayoutData
+} from '@/functions/contextProviders/'
 import { useContext } from 'react'
 import * as styles from './Footer.module.scss'
 
 const currentYear = new Date().getFullYear()
 
-const Footer = ({ menus }) => {
+const Footer = () => {
   const { customOptions } = useContext(CustomSettingsContext) || {}
+  const { data: menus } = useLayoutData()
+  const footerMenu = menus?.footerMenuItems?.nodes ?? []
+  const resourceMenu = menus?.resourceMenuItems?.nodes ?? []
 
   const {
     addresslocality,
@@ -23,7 +29,7 @@ const Footer = ({ menus }) => {
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <PreFooter
-          menuItems={menus?.FOOTER_NAV}
+          menuItems={footerMenu}
           location="FOOTER_NAV"
           styles={styles.footerMenux}
         />
@@ -47,7 +53,7 @@ const Footer = ({ menus }) => {
               </li>
             </ul>
           </div>
-          <FooterMenu menuItems={menus?.RESOURCE_NAV} menuTitle="Resources" />
+          <FooterMenu menuItems={resourceMenu} menuTitle="Resources" />
           <div className={styles.socialFooter}>
             <h3>Connect</h3>
             <ul>
