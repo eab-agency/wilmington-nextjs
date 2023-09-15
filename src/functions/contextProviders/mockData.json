@@ -1,0 +1,97 @@
+{
+  "utilityMenuItems": {
+    "__typename": "RootQueryToMenuItemConnection",
+    "nodes": [
+      {
+        "__typename": "MenuItem",
+        "id": "cG9zdDoxMDYxMw==",
+        "path": "/admission/apply/",
+        "label": "Apply",
+        "parentId": null,
+        "cssClasses": [],
+        "menu": {
+          "__typename": "MenuItemToMenuConnectionEdge",
+          "node": {
+            "__typename": "Menu",
+            "name": "Utility Navigation"
+          }
+        }
+      },
+      {
+        "__typename": "MenuItem",
+        "id": "cG9zdDoxNDcyOQ==",
+        "path": "/admission/visit-campus/",
+        "label": "Visit",
+        "parentId": null,
+        "cssClasses": [],
+        "menu": {
+          "__typename": "MenuItemToMenuConnectionEdge",
+          "node": {
+            "__typename": "Menu",
+            "name": "Utility Navigation"
+          }
+        }
+      },
+      {
+        "__typename": "MenuItem",
+        "id": "cG9zdDoxMzc2OA==",
+        "path": "/request-information/",
+        "label": "Request Info",
+        "parentId": null,
+        "cssClasses": [],
+        "menu": {
+          "__typename": "MenuItemToMenuConnectionEdge",
+          "node": {
+            "__typename": "Menu",
+            "name": "Utility Navigation"
+          }
+        }
+      },
+      {
+        "__typename": "MenuItem",
+        "id": "cG9zdDoxNzYyMg==",
+        "path": "/alumni-and-friends-of-wilmington-college/",
+        "label": "Give",
+        "parentId": null,
+        "cssClasses": [],
+        "menu": {
+          "__typename": "MenuItemToMenuConnectionEdge",
+          "node": {
+            "__typename": "Menu",
+            "name": "Utility Navigation"
+          }
+        }
+      },
+      {
+        "__typename": "MenuItem",
+        "id": "cG9zdDoxMzc3MQ==",
+        "path": "https://wilmingtonquakers.com",
+        "label": "Athletics",
+        "parentId": null,
+        "cssClasses": [],
+        "menu": {
+          "__typename": "MenuItemToMenuConnectionEdge",
+          "node": {
+            "__typename": "Menu",
+            "name": "Utility Navigation"
+          }
+        }
+      },
+      {
+        "__typename": "MenuItem",
+        "id": "cG9zdDoxMzc3MA==",
+        "path": "https://wcportal.wilmington.edu/ics",
+        "label": "WC Portal",
+        "parentId": null,
+        "cssClasses": [],
+        "menu": {
+          "__typename": "MenuItemToMenuConnectionEdge",
+          "node": {
+            "__typename": "Menu",
+            "name": "Utility Navigation"
+          }
+        }
+      }
+    ]
+  }
+}

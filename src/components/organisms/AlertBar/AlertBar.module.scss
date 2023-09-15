@@ -78,6 +78,7 @@
       100% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.2);
       }
@@ -96,6 +97,7 @@
       line-height: 1.4;
       margin: 0;
     }
+
     a {
       flex-shrink: 0;
       font-size: clamp(1rem, 1.2vw, 1.2rem);
@@ -135,12 +137,7 @@
       }
     }
   }
-
-  .srOnly {
-  }
 }
-
-// ==========================
 
 .alertBar {
   display: flex;
@@ -150,25 +147,23 @@
   z-index: tokens.$layer-10;
   width: 100%;
   padding-left: 1em;
-  opacity: 0;
-  transform: translateY(-110%);
   transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+  transform: translateY(0);
 
-  &.info {
-    opacity: 1;
-    transform: translateY(0);
-    @include alertBar(tokens.$c-limeGreen-500);
-  }
+  @include alertBar(tokens.$c-limeGreen-500);
 
   &.warning {
     opacity: 1;
     transform: translateY(0);
+
     @include alertBar(red);
   }
 
   &.alert {
     opacity: 1;
     transform: translateY(0);
+
     @include alertBar(tokens.$c-orange-800);
   }
 }

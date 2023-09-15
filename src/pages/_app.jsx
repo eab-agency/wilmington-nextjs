@@ -1,6 +1,9 @@
 /* eslint-disable no-console */
 import WordPressProvider from '@/components/common/WordPressProvider'
-import { CustomSettingsProvider } from '@/functions/contextProviders/CustomSettingsProvider'
+import {
+  CustomSettingsProvider,
+  LayoutProvider
+} from '@/functions/contextProviders/'
 import fetchCustomSettings from '@/functions/fetchCustomSettings'
 import { WordPressBlocksProvider } from '@faustwp/blocks'
 import { FaustProvider } from '@faustwp/core'
@@ -22,11 +25,6 @@ export default function WilmingtonApp({
   customSettings,
   alert
 }) {
-  console.log(
-    '🚀 ~ file: _app.jsx:25 ~ customSettings, alert:',
-    customSettings,
-    alert
-  )
   console.log(
     '%cWilmington College',
     'color: rgb(142, 198, 64);font-size: 30px;font-weight: bold;text-shadow: 1px 1px 5px rgb(0, 0, 0);filter: dropshadow(color=rgb(0, 198, 0), offx=1, offy=1);'
@@ -52,15 +50,17 @@ export default function WilmingtonApp({
   return (
     <CustomSettingsProvider customSettings={customSettings} alert={alert}>
       <FaustProvider pageProps={pageProps}>
-        <WordPressProvider value={wp}>
-          <WordPressBlocksProvider
-            config={{
-              blocks
-            }}
-          >
-            <Component {...pageProps} key={router.asPath} />
-          </WordPressBlocksProvider>
-        </WordPressProvider>
+        <LayoutProvider>
+          <WordPressProvider value={wp}>
+            <WordPressBlocksProvider
+              config={{
+                blocks
+              }}
+            >
+              <Component {...pageProps} key={router.asPath} />
+            </WordPressBlocksProvider>
+          </WordPressProvider>
+        </LayoutProvider>
       </FaustProvider>
     </CustomSettingsProvider>
   )

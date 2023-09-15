@@ -12,10 +12,6 @@ async function fetchCustomSettingsJSON() {
       query: customSettingsAndLatestAlertsFields
     })
   })
-  console.log(
-    '🚀 ~ file: fetchCustomSettings.js:16 ~ fetchCustomSettingsJSON ~ response:',
-    response
-  )
   const customSettingsAndAlerts = await response.json()
   return customSettingsAndAlerts
 }
