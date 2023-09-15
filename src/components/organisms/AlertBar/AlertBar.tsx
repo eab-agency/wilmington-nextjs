@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import CustomSettingsContext from '@/functions/contextProviders/CustomSettingsProvider'
 import React, { useContext, useEffect, useState } from 'react'
 import styles from './AlertBar.module.scss'
