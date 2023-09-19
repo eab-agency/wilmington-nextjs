@@ -55,12 +55,3 @@ export default function WilmingtonApp({ Component, pageProps }) {
     </FaustProvider>
   )
 }
-
-// WilmingtonApp.getInitialProps = async () => {
-//   // const { data } = await fetchCustomSettings()
-//   const data = null
-//   return {
-//     customSettings: data?.customSettings,
-//     alert: data?.alerts.edges[0]?.node
-//   }
-// }
