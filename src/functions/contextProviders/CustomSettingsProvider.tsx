@@ -1,4 +1,11 @@
-import React, { ReactNode, createContext, useState } from 'react'
+import { ApolloError, gql, useQuery } from '@apollo/client'
+import React, {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 
 interface CustomOptions {
   addresscountry: string
@@ -8,6 +15,10 @@ interface CustomOptions {
   streetaddress: string
   telephone: string
   tollfreenumber: string
+}
+
+interface CustomSettings {
+  customOptions?: CustomOptions
 }
 
 interface Alert {
@@ -41,20 +52,55 @@ interface CustomSettingsProviderProps {
   alert?: Alert
 }
 
-const CustomSettingsProvider = ({
-  children,
-  customSettings,
-  alert
-}: CustomSettingsProviderProps) => {
-  const [alertState, setAlertState] = useState<Alert | null>(alert || null)
-  const [closed, setClosed] = useState(false)
+export function useCustomData() {
+  return useContext(CustomSettingsContext)
+}
 
-  const showAlert = alert ? true : false
+export const CustomSettingsProvider = ({
+  children
+}: CustomSettingsProviderProps) => {
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<ApolloError | null>(null)
+  const [customSettingsData, setCustomSettingsData] =
+    useState<CustomSettings | null>(null)
+
+  const [alertState, setAlertState] = useState<Alert | null>(null)
+  const [closed, setClosed] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
 
   const handleClearAlert = () => {
     setAlertState(null)
     setClosed(true)
   }
+
+  const {
+    loading: queryLoading,
+    error: queryError,
+    data: queryData
+  } = useQuery<any>(alertAndSettingsQuery, {
+    pollInterval: 5 * 60 * 1000
+  })
+
+  useEffect(() => {
+    if (queryLoading) {
+      setLoading(true)
+    }
+    if (queryError) {
+      console.error(queryError)
+      setError(queryError)
+    }
+    if (queryData) {
+      setShowAlert(queryData?.alerts?.edges[0]?.node ? true : false)
+      setCustomSettingsData(queryData?.customSettings)
+      setLoading(false)
+      setAlertState(queryData?.alerts?.edges[0]?.node)
+    }
+  }, [queryLoading, queryError, queryData])
+
+  useEffect(() => {
+    // Reset error state if it changes to allow subsequent fetch attempts
+    setError(null)
+  }, [queryError])
 
   return (
     <CustomSettingsContext.Provider
@@ -63,7 +109,7 @@ const CustomSettingsProvider = ({
         closed: closed,
         showAlert: showAlert,
         clear: handleClearAlert,
-        customOptions: customSettings?.customOptions || null
+        customOptions: customSettingsData?.customOptions || null
       }}
     >
       {children}
@@ -71,5 +117,37 @@ const CustomSettingsProvider = ({
   )
 }
 
-export { CustomSettingsProvider }
 export default CustomSettingsContext
+
+const alertAndSettingsQuery = gql`
+  query GetLatestAlertAndCustomSettings {
+    customSettings {
+      customOptions {
+        addresscountry
+        addresslocality
+        addressregion
+        postalcode
+        streetaddress
+        telephone
+        tollfreenumber
+      }
+    }
+    alerts(first: 1) {
+      edges {
+        node {
+          alertButtonLabel
+          alertButtonUri
+          databaseId
+          alertMsgTitle
+          tags {
+            edges {
+              node {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
