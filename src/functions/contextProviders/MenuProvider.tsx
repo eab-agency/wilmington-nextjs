@@ -10,43 +10,43 @@ import {
 import * as MENUS from '../../constants/menus'
 import mockData from './mockData.json'
 
-interface LayoutData {
+interface MenuData {
   footerMenuItems?: { nodes: any[] } | null
   resourceMenuItems?: { nodes: any[] } | null
   mainMenuItems?: { nodes: any[] } | null
   utilityMenuItems?: { nodes: any[] } | null
 }
 
-interface LayoutContextProps {
+interface MenuContextProps {
   loading: boolean
   error: ApolloError | null
-  data: LayoutData | null
+  data: MenuData | null
 }
 
-const LayoutContext = createContext<LayoutContextProps>({
+const MenuContext = createContext<MenuContextProps>({
   loading: true,
   error: null,
   data: null
 })
 
-export function useLayoutData() {
-  return useContext(LayoutContext)
+export function useMenuData() {
+  return useContext(MenuContext)
 }
 
-interface LayoutProviderProps {
+interface MenuProviderProps {
   children: ReactNode
 }
 
-const layoutVariables = {
+const menuVariables = {
   resourceLocation: MENUS.RESOURCE_LOCATION,
   footerLocation: MENUS.FOOTER_LOCATION,
   mainLocation: MENUS.PRIMARY_LOCATION,
   utilityLocation: MENUS.UTILITY_LOCATION
 }
 
-const layoutQuery = gql`
+const menuQuery = gql`
   ${MainNavigation.fragments.entry}
-  query GetLayoutData(
+  query GetMenuData(
     $resourceLocation: MenuLocationEnum
     $footerLocation: MenuLocationEnum
     $mainLocation: MenuLocationEnum
@@ -81,19 +81,21 @@ const layoutQuery = gql`
   }
 `
 
-export function LayoutProvider({ children }: LayoutProviderProps) {
+export function MenuProvider({ children }: MenuProviderProps) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<ApolloError | null>(null)
-  const [data, setData] = useState<LayoutData | null>(mockData)
+  const [data, setData] = useState<MenuData | null>(mockData)
 
   const {
     loading: queryLoading,
     error: queryError,
     data: queryData
-  } = useQuery<any>(layoutQuery, { variables: layoutVariables })
+  } = useQuery<any>(menuQuery, { variables: menuVariables })
 
   useEffect(() => {
-    if (queryLoading) setLoading(true)
+    if (queryLoading) {
+      setLoading(true)
+    }
     if (queryError) setError(queryError)
     if (queryData) {
       setData(queryData)
@@ -107,8 +109,8 @@ export function LayoutProvider({ children }: LayoutProviderProps) {
   }
 
   return (
-    <LayoutContext.Provider value={{ loading, error, data }}>
+    <MenuContext.Provider value={{ loading, error, data }}>
       {children}
-    </LayoutContext.Provider>
+    </MenuContext.Provider>
   )
 }

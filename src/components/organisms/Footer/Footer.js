@@ -1,18 +1,15 @@
 import Logo from '@/components/atoms/Logo/Logo'
 import FooterMenu from '@/components/molecules/Navigation/FooterMenu'
 import PreFooter from '@/components/molecules/PreFooter'
-import {
-  CustomSettingsContext,
-  useLayoutData
-} from '@/functions/contextProviders/'
+import { useCustomData, useMenuData } from '@/functions/contextProviders/'
 import { useContext } from 'react'
 import * as styles from './Footer.module.scss'
 
 const currentYear = new Date().getFullYear()
 
 const Footer = () => {
-  const { customOptions } = useContext(CustomSettingsContext) || {}
-  const { data: menus } = useLayoutData()
+  const { customOptions } = useCustomData()
+  const { data: menus } = useMenuData()
   const footerMenu = menus?.footerMenuItems?.nodes ?? []
   const resourceMenu = menus?.resourceMenuItems?.nodes ?? []
 
