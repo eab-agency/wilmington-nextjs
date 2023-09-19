@@ -39,7 +39,7 @@ export default function CoreParagraph(props) {
         className={cn(classes)}
         id={attributes?.anchor}
         dropCap={attributes?.dropCap}
-        style={style}
+        style={paragraphStyle}
         tag="p"
       >
         {attributes?.content}

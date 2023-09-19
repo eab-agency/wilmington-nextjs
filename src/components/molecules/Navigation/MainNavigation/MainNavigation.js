@@ -2,7 +2,7 @@
 import { gql } from '@apollo/client'
 
 // import React from 'react'
-import { useLayoutData } from '@/functions/contextProviders/'
+import { useMenuData } from '@/functions/contextProviders/'
 import formatHeirarchialMenu from '@/functions/wordpress/menus/formatHeirarchialMenu'
 import { useEffect, useState } from 'react'
 import { MdClose, MdMenu } from 'react-icons/md'
@@ -36,7 +36,7 @@ const Burger = ({ open, setOpen }) => {
 }
 
 const MainNavigation = ({ enableDropdown }) => {
-  const { data: menu } = useLayoutData()
+  const { data: menu } = useMenuData()
   const mainMenu = formatHeirarchialMenu(menu?.mainMenuItems?.nodes ?? [])
 
   const [open, setOpen] = useState(false)
