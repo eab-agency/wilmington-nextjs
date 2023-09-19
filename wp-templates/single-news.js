@@ -15,7 +15,7 @@ export default function SingleNews(props) {
   if (props.loading) {
     return <Preloader />
   }
-  const { title, editorBlocks, seo, featuredImage, uri, date, newsCategories } =
+  const { title, editorBlocks, seo, featuredImage, newsCategories } =
     props.data.article
   const blocks = flatListToHierarchical(editorBlocks)
 
@@ -35,13 +35,6 @@ export default function SingleNews(props) {
             />
             <div className="page-content">
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
-              <div className="news-date">
-                {new Date(date).toLocaleDateString('en-US', {
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric'
-                })}
-              </div>
               <WordPressBlocksViewer blocks={blocks} />
             </div>
           </article>
