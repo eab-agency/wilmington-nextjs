@@ -30,7 +30,6 @@ const NewsPost = ({
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
       ) : null}
       <div className="newsContentContainer">
-        <TheDate date={date} />
         <Link href={uri} className="articleTitle">
           <h3>{title}</h3>
         </Link>
