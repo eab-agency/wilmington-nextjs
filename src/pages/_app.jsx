@@ -2,9 +2,9 @@
 import WordPressProvider from '@/components/common/WordPressProvider'
 import {
   CustomSettingsProvider,
-  LayoutProvider
+  MenuProvider
 } from '@/functions/contextProviders/'
-import fetchCustomSettings from '@/functions/fetchCustomSettings'
+
 import { WordPressBlocksProvider } from '@faustwp/blocks'
 import { FaustProvider } from '@faustwp/core'
 import { useRouter } from 'next/router'
@@ -14,24 +14,14 @@ import '../../faust.config'
 
 import blocks from '../../wp-blocks'
 
+import { logToConsole } from '@/functions/welcomeLog'
 import '@/styles/styles.scss'
 import '@faustwp/core/dist/css/toolbar.css'
-
 const gtmId = 'GTM-P3X3WCQ'
 
-export default function WilmingtonApp({
-  Component,
-  pageProps,
-  customSettings,
-  alert
-}) {
-  console.log(
-    '%cWilmington College',
-    'color: rgb(142, 198, 64);font-size: 30px;font-weight: bold;text-shadow: 1px 1px 5px rgb(0, 0, 0);filter: dropshadow(color=rgb(0, 198, 0), offx=1, offy=1);'
-  )
-  console.log(
-    'You have what it takes. Apply now!\nhttps://www.wilmington.edu/admission/apply/'
-  )
+export default function WilmingtonApp({ Component, pageProps }) {
+  logToConsole()
+
   const router = useRouter()
 
   useEffect(() => {
@@ -48,9 +38,9 @@ export default function WilmingtonApp({
   })
 
   return (
-    <CustomSettingsProvider customSettings={customSettings} alert={alert}>
-      <FaustProvider pageProps={pageProps}>
-        <LayoutProvider>
+    <FaustProvider pageProps={pageProps}>
+      <CustomSettingsProvider>
+        <MenuProvider>
           <WordPressProvider value={wp}>
             <WordPressBlocksProvider
               config={{
@@ -60,17 +50,8 @@ export default function WilmingtonApp({
               <Component {...pageProps} key={router.asPath} />
             </WordPressBlocksProvider>
           </WordPressProvider>
-        </LayoutProvider>
-      </FaustProvider>
-    </CustomSettingsProvider>
+        </MenuProvider>
+      </CustomSettingsProvider>
+    </FaustProvider>
   )
-}
-
-WilmingtonApp.getInitialProps = async () => {
-  const { data } = await fetchCustomSettings()
-
-  return {
-    customSettings: data?.customSettings,
-    alert: data?.alerts.edges[0]?.node
-  }
 }

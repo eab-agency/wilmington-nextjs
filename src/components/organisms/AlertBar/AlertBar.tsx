@@ -1,11 +1,10 @@
 /* eslint-disable no-console */
-import CustomSettingsContext from '@/functions/contextProviders/CustomSettingsProvider'
+import { useCustomData } from '@/functions/contextProviders/CustomSettingsProvider'
 import React, { useContext, useEffect, useState } from 'react'
 import styles from './AlertBar.module.scss'
 
 const AlertBar: React.FC = () => {
-  const { alert, clear, showAlert } = useContext(CustomSettingsContext)
-  console.log('🚀 ~ file: AlertBar.tsx:7 ~ alert:', alert, showAlert)
+  const { alert, clear, showAlert } = useCustomData()
 
   const tagName = alert?.tags?.edges[0]?.node?.name?.toLowerCase()
   const tagClass = tagName ? styles[tagName] : ''

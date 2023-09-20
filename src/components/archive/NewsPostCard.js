@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import Button from '@/components/atoms/Buttons/Button'
 import Image from '@/components/atoms/Image'
-import TheDate from '@/components/atoms/TheDate'
 import Link from 'next/link'
 
 const NewsPost = ({
@@ -30,7 +29,6 @@ const NewsPost = ({
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
       ) : null}
       <div className="newsContentContainer">
-        <TheDate date={date} />
         <Link href={uri} className="articleTitle">
           <h3>{title}</h3>
         </Link>
