@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import Button from '@/components/atoms/Buttons/Button'
 import Image from '@/components/atoms/Image'
-import TheDate from '@/components/atoms/TheDate'
 
 const NewsPost = ({
   isFirst = false,
