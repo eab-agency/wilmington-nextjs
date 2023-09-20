@@ -1,10 +1,10 @@
 {
-  "name": "wilmingto-help",
+  "name": "wilmington-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "clean": "rimraf .next/",
-    "develop": "npm dev",
+    "develop": "faust dev",
     "format": "npx prettier  '**/*.{js,jsx,ts,tsx,md,html,css,scss,json,yml}' --write || true",
     "lint": "npm run format && npm run lint:js && npm run lint:css",
     "lint:css": "npx stylelint '**/*.css' --fix || true",

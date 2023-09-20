@@ -4,6 +4,7 @@ import Preloader from '@/components/atoms/Preloader'
 import BlockFeaturedPrograms from '@/components/blocks/acf/BlockFeaturedPrograms/BlockFeaturedPrograms'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import { gql, useQuery } from '@apollo/client'
+import { useEffect } from 'react'
 
 export default function AcfFeaturedDept(props) {
   const attributes = props.attributes
@@ -47,7 +48,7 @@ AcfFeaturedDept.query = gql`
   query getFeaturedDepartmens(
     $ids: [ID!]!
     $imageSize: MediaItemSizeEnum = DEPT_CARD
-    $programLimit: Int = 2
+    $programLimit: Int = 5
   ) {
     departments(where: { include: $ids }) {
       nodes {

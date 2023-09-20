@@ -1,5 +1,2 @@
-export {
-  CustomSettingsContext,
-  CustomSettingsProvider
-} from './CustomSettingsProvider'
-export { LayoutProvider, useLayoutData } from './LayoutProvider'
+export { CustomSettingsProvider, useCustomData } from './CustomSettingsProvider'
+export { MenuProvider, useMenuData } from './MenuProvider'

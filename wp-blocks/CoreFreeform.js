@@ -11,12 +11,13 @@
 import { gql } from '@apollo/client'
 
 export default function CoreFreeform(props) {
-  const attributes = props.attributes
+  // could be that content comes from attributes.content or renderedHtml
+  const content = props.renderedHtml || props.attributes.content
 
   // filter out links that are internal to the site but keep image paths
   const filteredContent =
-    attributes?.content &&
-    attributes?.content.replace(
+    content &&
+    content.replace(
       /(href=["'])(?!(?:https?:\/\/(?:www\.)?wilmington\.edu\/wp-content))(?:https?:\/\/(?:www\.)?wilmington\.edu)(?=[^"']*(?:["']|$))/g,
       '$1'
     )
