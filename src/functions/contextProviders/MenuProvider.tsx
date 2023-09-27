@@ -65,14 +65,14 @@ const menuQuery = gql`
         ...NavigationMenuItemFragment
       }
     }
-    mainMenuItems: menuItems(where: { location: $mainLocation }, first: 200) {
+    mainMenuItems: menuItems(where: { location: $mainLocation }, first: 150) {
       nodes {
         ...NavigationMenuItemFragment
       }
     }
     utilityMenuItems: menuItems(
       where: { location: $utilityLocation }
-      first: 100
+      first: 10
     ) {
       nodes {
         ...NavigationMenuItemFragment

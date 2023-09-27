@@ -85,11 +85,6 @@ MainNavigation.fragments = {
       label
       parentId
       cssClasses
-      menu {
-        node {
-          name
-        }
-      }
     }
   `
 }
