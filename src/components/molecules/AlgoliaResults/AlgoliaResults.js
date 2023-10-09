@@ -17,7 +17,9 @@ import SearchResults from './templates/SearchResults'
 export default function AlgoliaResults({
   config = {
     query: '',
-    hitsPerPage: 15
+    hitsPerPage: 15,
+    highlightPreTag: '<em class="search-highlight">',
+    highlightPostTag: '</em>'
   }
 }) {
   const { algolia } = useWordPressContext()
