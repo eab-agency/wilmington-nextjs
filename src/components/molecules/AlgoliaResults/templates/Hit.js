@@ -10,8 +10,6 @@ import * as styles from '../AlgoliaResults.module.scss';
  * @return {Element}           The Hit component.
  */
 export default function Hit({ hit }) {
-  console.log("🚀 ~ file: Hit.js:13 ~ Hit ~ hit:", hit)
-  const trimmedExcerpt = hit._snippetResult.content.value
   return (
     <div className={styles.hit}>
 
@@ -20,7 +18,7 @@ export default function Hit({ hit }) {
           __html: hit._highlightResult.post_title.value
         }}
       /></Link>
-      <div className={styles.date} dangerouslySetInnerHTML={{ __html: trimmedExcerpt }} />
+      <div className={styles.date} dangerouslySetInnerHTML={{ __html: hit._snippetResult.content.value }} />
     </div >
   )
 }
