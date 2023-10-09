@@ -1,7 +1,7 @@
-import React from 'react'
-import ReactHtmlParser from 'react-html-parser' // Import the library
-import { Highlight } from 'react-instantsearch-dom'
-import searchClick from '../functions/searchClick'
+import React from 'react';
+import ReactHtmlParser from 'react-html-parser'; // Import the library
+import { Highlight } from 'react-instantsearch-dom';
+import searchClick from '../functions/searchClick';
 
 /**
  * Render the Hit component.
