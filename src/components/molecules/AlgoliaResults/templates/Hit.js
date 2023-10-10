@@ -1,6 +1,6 @@
-import Link from '@/components/common/Link';
-import { Highlight } from 'react-instantsearch-dom';
-import * as styles from '../AlgoliaResults.module.scss';
+import Link from '@/components/common/Link'
+import { Highlight } from 'react-instantsearch-dom'
+import * as styles from '../AlgoliaResults.module.scss'
 
 /**
  * Render the Hit component.
@@ -12,13 +12,17 @@ import * as styles from '../AlgoliaResults.module.scss';
 export default function Hit({ hit }) {
   return (
     <div className={styles.hit}>
-
-      <Link href={hit.permalink}><h3
-        dangerouslySetInnerHTML={{
-          __html: hit._highlightResult.post_title.value
-        }}
-      /></Link>
-      <div className={styles.date} dangerouslySetInnerHTML={{ __html: hit._snippetResult.content.value }} />
-    </div >
+      <Link href={hit.permalink}>
+        <h3
+          dangerouslySetInnerHTML={{
+            __html: hit._highlightResult.post_title.value
+          }}
+        />
+      </Link>
+      <div
+        className={styles.date}
+        dangerouslySetInnerHTML={{ __html: hit._snippetResult.content.value }}
+      />
+    </div>
   )
 }
