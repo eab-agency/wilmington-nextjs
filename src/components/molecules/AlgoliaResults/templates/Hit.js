@@ -19,6 +19,7 @@ export default function Hit({ hit }) {
           }}
         />
       </Link>
+
       <div
         className={styles.date}
         dangerouslySetInnerHTML={{ __html: hit._snippetResult.content.value }}
