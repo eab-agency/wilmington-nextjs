@@ -22,7 +22,10 @@ export default function Search() {
   const query = path.includes('q=') ? parseQuerystring(path, 'q') : '' // Parse the querystring.
   const algoliaConfig = {
     query: query,
-    hitsPerPage: 15
+    hitsPerPage: 25,
+    highlightPreTag: '<em class="search-highlight">',
+    highlightPostTag: '</em>',
+    attributesToSnippet: ['content:30;']
   }
 
   return (
