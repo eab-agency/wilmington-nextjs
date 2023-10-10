@@ -29,7 +29,9 @@ export default async function getPostTypeStaticProps(
   // Set sharedProps.
   const sharedProps = {
     algolia: {
-      indexName: algoliaIndexName
+      indexName: algoliaIndexName,
+      highlightPreTag: '<em class="search-highlight">',
+      highlightPostTag: '</em>'
     }
   }
 
