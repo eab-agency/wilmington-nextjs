@@ -25,8 +25,7 @@ export default function Search() {
     hitsPerPage: 25,
     highlightPreTag: '<em class="search-highlight">',
     highlightPostTag: '</em>',
-    attributesToSnippet: [
-      'content:30;']
+    attributesToSnippet: ['content:30;']
   }
 
   return (
