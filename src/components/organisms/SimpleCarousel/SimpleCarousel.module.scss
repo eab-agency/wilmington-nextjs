@@ -1,5 +1,5 @@
-@use "tokens";
-@use "utilities/mixins";
+@use 'tokens';
+@use 'utilities/mixins';
 
 .carouselContainer {
   // height: clamp(30rem, 45vw, 45rem);
@@ -72,7 +72,7 @@
   }
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     background: rgba(#001411, 0.2);
     // background: rgba(#001411, 0.4) url('./../../../assets/bg-texture.png');
