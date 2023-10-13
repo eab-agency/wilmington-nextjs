@@ -97,7 +97,9 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-            <a href='https://www.wilmington.edu/about/accreditation'><Image src={hclAccredited} width={100} height={100} /></a>
+            <a href="https://www.wilmington.edu/about/accreditation">
+              <Image src={hclAccredited} width={100} height={100} alt='HCL Accredited' />
+            </a>
           </div>
         </div>
         <div className={styles.legal}>
