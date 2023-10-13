@@ -1,0 +1,32 @@
+@use "tokens";
+
+.scrollButtonsCotainer {
+  button[type="button"] {
+    color: tokens.$c-darkGreen-700;
+    background: transparent;
+    border: none;
+    text-indent: -999em;
+    width: 2.5em;
+    height: 2.5em;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: none;
+
+    &::after {
+      text-indent: 0;
+      background: tokens.$c-gray-300;
+      color: tokens.$c-darkGreen-700;
+    }
+
+    &.leftArrow {
+      left: 0;
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    &.rightArrow {
+      right: 0;
+    }
+  }
+}
