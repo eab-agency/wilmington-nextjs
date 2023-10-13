@@ -1,7 +1,7 @@
-@use "tokens";
+@use 'tokens';
 
 .scrollButtonsCotainer {
-  button[type="button"] {
+  button[type='button'] {
     color: tokens.$c-darkGreen-700;
     background: transparent;
     border: none;

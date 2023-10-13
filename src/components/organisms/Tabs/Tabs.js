@@ -8,10 +8,9 @@ import ScrollButtons from './scrollButtons'
 
 const TabComponent = ({ tabs }) => {
   if (!tabs) return null
+  const tabsContainer = document.querySelector('.react-tabs__tab-list')
 
   const [showScrollButtons, setShowScrollButtons] = useState(false)
-
-  const tabsContainer = document.querySelector('.react-tabs__tab-list');
 
 
   const updateScrollButtons = () => {
