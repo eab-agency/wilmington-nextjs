@@ -1,7 +1,9 @@
+import hclAccredited from '@/assets/wc-hlc-accredited.png'
 import Logo from '@/components/atoms/Logo/Logo'
 import FooterMenu from '@/components/molecules/Navigation/FooterMenu'
 import PreFooter from '@/components/molecules/PreFooter'
 import { useCustomData, useMenuData } from '@/functions/contextProviders/'
+import Image from 'next/image'
 import { useContext } from 'react'
 import * as styles from './Footer.module.scss'
 
@@ -95,6 +97,7 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
+            <a href='https://www.wilmington.edu/about/accreditation'><Image src={hclAccredited} width={100} height={100} /></a>
           </div>
         </div>
         <div className={styles.legal}>
