@@ -23,7 +23,7 @@ const TabComponent = ({ tabs }) => {
     return () => {
       window.removeEventListener('resize', updateScrollButtons)
     }
-  }, [tabs, updateScrollButtons])
+  }, [tabs])
 
   if (!tabs) return null
 
