@@ -20,11 +20,15 @@ const TabComponent = ({ tabs }) => {
 
     if (tabsContainer) {
       updateScrollButtons(tabsContainer)
-      window.addEventListener('resize', () => updateScrollButtons(tabsContainer))
+      window.addEventListener('resize', () =>
+        updateScrollButtons(tabsContainer)
+      )
     }
 
     return () => {
-      window.removeEventListener('resize', () => updateScrollButtons(tabsContainer))
+      window.removeEventListener('resize', () =>
+        updateScrollButtons(tabsContainer)
+      )
     }
   }, [tabs, tabsContainer])
 

@@ -1,10 +1,10 @@
-@use "sass:color";
-@use "tokens";
-@use "utilities/mixins";
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
 
 .front-page {
   .eventsSection {
-    @include mixins.extendedBackground("before", tokens.$c-gray-700);
+    @include mixins.extendedBackground('before', tokens.$c-gray-700);
 
     width: 100%;
     background: tokens.$c-gray-700;
@@ -83,7 +83,7 @@
         }
 
         &::after {
-          content: "";
+          content: '';
           display: block;
           width: 1px;
           height: 90%;
@@ -102,7 +102,7 @@
       }
     }
 
-    a[class*="Button_"] {
+    a[class*='Button_'] {
       width: fit-content;
     }
   }
@@ -127,7 +127,7 @@
     padding: 0;
   }
 
-  a[class*="Button_"] {
+  a[class*='Button_'] {
     width: fit-content;
 
     &.articleLink {
@@ -141,11 +141,12 @@
     padding-bottom: 3em;
 
     &::after {
-      content: "";
+      content: '';
       display: block;
       width: 100%;
       height: 4px;
-      background: url(../../../assets/divider-draw-line-horizontal.svg) no-repeat center;
+      background: url(../../../assets/divider-draw-line-horizontal.svg)
+        no-repeat center;
       background-size: auto 100%;
       position: absolute;
       bottom: 0;
@@ -153,7 +154,7 @@
       transform: translateX(-50%);
     }
 
-    time[class*="theTime"] {
+    time[class*='theTime'] {
       background: tokens.$c-limeGreen-700;
       color: tokens.$c-white;
       width: fit-content;
