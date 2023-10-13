@@ -170,7 +170,6 @@
     .tabMainContent {
       order: 1;
       width: 100%;
-      // max-width: 20em;
 
       @media (min-width: tokens.$mq-1000) {
         order: 0;
