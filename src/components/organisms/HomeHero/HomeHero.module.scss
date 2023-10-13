@@ -1,10 +1,14 @@
-@use 'tokens';
-@use 'utilities/mixins';
+@use "tokens";
+@use "utilities/mixins";
 
 .homeHero {
   position: relative;
   z-index: tokens.$layer-1;
-  min-height: 40rem;
+  min-height: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .heroIntroContent {
@@ -14,12 +18,12 @@
   width: 100%;
   position: relative;
   z-index: tokens.$layer-2;
-  margin-top: -15rem;
+  // margin-top: -15rem;
 
   @media (min-width: tokens.$mq-800) {
     flex-direction: row;
     gap: 15vw;
-    align-items: flex-end;
+    align-items: center;
     position: absolute;
     top: 60%;
     left: 0;
@@ -28,15 +32,23 @@
   }
 
   .introCopy {
+    text-align: center;
+
+    @media (min-width: tokens.$mq-800) {
+      text-align: left;
+    }
+
     h1 {
       color: tokens.$c-white;
       font-weight: 700;
-      font-size: clamp(tokens.$fs-2xl, 5vw, tokens.$fs-4xl);
+      font-size: clamp(tokens.$fs-2xl, 5vw, tokens.$fs-4xl * 0.9);
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+      line-height: 0.9;
 
       strong {
         font-weight: 100;
         font-size: 0.6em;
+        line-height: 1.2;
       }
     }
 
@@ -61,7 +73,7 @@
   align-items: center;
   // justify-content: center;
   gap: 1.2rem;
-  flex: 1 0 16rem;
+  flex: 0 1 16rem;
   margin: 0 auto;
   list-style: none;
   position: relative;
