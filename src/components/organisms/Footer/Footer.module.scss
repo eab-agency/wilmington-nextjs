@@ -1,11 +1,11 @@
-@use "sass:color";
-@use "tokens";
+@use 'sass:color';
+@use 'tokens';
 
 $social-icons: (
-  "facebook": tokens.$i-facebook,
-  "twitter": tokens.$i-twitter,
-  "instagram": tokens.$i-instagram,
-  "youtube": tokens.$i-youtube
+  'facebook': tokens.$i-facebook,
+  'twitter': tokens.$i-twitter,
+  'instagram': tokens.$i-instagram,
+  'youtube': tokens.$i-youtube
 );
 
 .footer {
@@ -154,13 +154,13 @@ $social-icons: (
           }
 
           @each $platform, $icon in $social-icons {
-            &[href*="#{$platform}"]::before {
+            &[href*='#{$platform}']::before {
               content: $icon;
             }
           }
 
-          &[href*="#{"twitter"}"]::before {
-            content: "\e900";
+          &[href*='#{'twitter'}']::before {
+            content: '\e900';
           }
 
           &:hover {
