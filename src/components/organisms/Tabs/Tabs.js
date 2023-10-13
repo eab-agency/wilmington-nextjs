@@ -7,11 +7,9 @@ import styles from './Tabs.module.scss'
 import ScrollButtons from './scrollButtons'
 
 const TabComponent = ({ tabs }) => {
-  if (!tabs) return null
   const tabsContainer = document.querySelector('.react-tabs__tab-list')
 
   const [showScrollButtons, setShowScrollButtons] = useState(false)
-
 
   const updateScrollButtons = () => {
     setShowScrollButtons(tabsContainer.scrollWidth > tabsContainer.clientWidth)
@@ -25,7 +23,9 @@ const TabComponent = ({ tabs }) => {
     return () => {
       window.removeEventListener('resize', updateScrollButtons)
     }
-  }, [tabs])
+  }, [tabs, updateScrollButtons])
+
+  if (!tabs) return null
 
   return (
     <>
