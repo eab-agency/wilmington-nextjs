@@ -159,6 +159,10 @@ $social-icons: (
             }
           }
 
+          &[href*='#{'twitter'}']::before {
+            content: '\e900';
+          }
+
           &:hover {
             color: tokens.$c-limeGreen-300;
             border-color: tokens.$c-limeGreen-300;

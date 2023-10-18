@@ -26,6 +26,8 @@
 
       h2 {
         color: tokens.$c-white;
+        position: relative;
+        z-index: tokens.$layer-2;
       }
 
       // @media (min-width: tokens.$mq-1200) {

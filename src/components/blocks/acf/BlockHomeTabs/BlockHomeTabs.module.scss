@@ -1,6 +1,10 @@
+@use 'tokens';
 @use 'utilities/mixins';
 
 .tabsSection {
   // padding: clamp(2rem, 4vw, 4rem);
-  @include mixins.sectionPadding;
+
+  @media (min-width: tokens.$mq-900) {
+    @include mixins.sectionPadding;
+  }
 }
