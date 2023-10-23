@@ -69,7 +69,7 @@
 
           &[class*='twitter'] {
             &::before {
-              content: tokens.$i-twitter;
+              content: '\e900';
             }
           }
 
