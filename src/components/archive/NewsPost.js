@@ -20,16 +20,21 @@ const NewsPost = ({
   const { node: { sourceUrl, altText, mediaDetails } = {} } =
     featuredImage || {}
 
-  // console.log('post excerpt', excerpt)
-
   return (
     <article className={className} {...props}>
-      {!isFrontPage && sourceUrl ? (
+      {/* {!isFrontPage && sourceUrl ? (
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
-      ) : null}
-      <div className="newsContentContainer">
+      ) : null} */}
+      <div className={`newsContentContainer ${sourceUrl ? 'wImage': "noImage"}`}>
         <TheDate date={date} />
-        <h3 className="articleTitle">{title}</h3>
+        { sourceUrl && <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} /> }
+        <div className='newsContent'>
+          <h3 className="articleTitle">{title}</h3>
+          <div
+            className="articleExcerpt"
+            dangerouslySetInnerHTML={{ __html: excerpt }}
+            />
+        </div>
         <Button
           className="articleLink"
           url={uri}
