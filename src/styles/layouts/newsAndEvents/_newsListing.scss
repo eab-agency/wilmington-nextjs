@@ -10,6 +10,28 @@
     background: tokens.$c-darkGreen-700;
     @include mixins.extendedBackground("before", tokens.$c-darkGreen-700);
 
+    .sectionHead {
+      h2 {
+        color: tokens.$c-white;
+      }
+
+      &::after {
+        background: tokens.$c-gray-200;
+        opacity: 0.2;
+      }
+    }
+
+    .newsContainer {
+      li.react-multi-carousel-item {
+        border-left: rgba(white, 0.1) 1px solid;
+
+        time {
+          color: tokens.$c-limeGreen-300;
+          border-left: 0.2em solid tokens.$c-darkGreen-800;
+        }
+      }
+    }
+
     .articleTitle {
       color: tokens.$c-white;
     }
@@ -37,7 +59,7 @@
     }
 
     h2 {
-      color: tokens.$c-white;
+      // color: tokens.$c-white;
     }
 
     &::after {
@@ -46,11 +68,10 @@
       width: 150vw;
       height: 1px;
       position: absolute;
-      background: tokens.$c-gray-200;
+      background: tokens.$c-gray-400;
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      opacity: 0.2;
     }
   }
 
@@ -59,12 +80,19 @@
     z-index: tokens.$layer-2;
 
     li.react-multi-carousel-item {
-      border-left: rgba(white, 0.1) 1px solid;
+      border-left: tokens.$c-gray-400 1px solid;
     }
 
     article {
       padding-block: tokens.$p-xl;
       padding-inline: clamp(tokens.$p-l, 2vw, tokens.$p-xl);
+
+      time {
+        color: tokens.$c-limeGreen-800;
+        padding-left: 0.4em;
+        border-left: 0.2em solid tokens.$c-limeGreen-400;
+        line-height: 1;
+      }
 
       .articleExcerpt {
         p {
