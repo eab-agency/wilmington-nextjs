@@ -21,7 +21,9 @@ const NewsPost = ({
   const { node: { sourceUrl, altText, mediaDetails } = {} } =
     featuredImage || {}
 
-  const excerptLimit = sourceUrl ? excerpt.split(' ').slice(0, 30).join(' ') + ' [...]' : excerpt
+  const excerptLimit = sourceUrl
+    ? excerpt.split(' ').slice(0, 30).join(' ') + ' [...]'
+    : excerpt
 
   return (
     <article
@@ -31,25 +33,27 @@ const NewsPost = ({
       {/* {!isFrontPage && sourceUrl && showImage ? (
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
       ) : null} */}
-      <div className={`newsContentContainer ${sourceUrl ? 'wImage': "noImage"}`}>
+      <div
+        className={`newsContentContainer ${sourceUrl ? 'wImage' : 'noImage'}`}
+      >
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
-        <div className='newsPostCardContent'>
-        <Link href={uri} className="articleTitle">
-          <h3>{title}</h3>
-        </Link>
-        <TheDate date={date} />
-        <div
+        <div className="newsPostCardContent">
+          <Link href={uri} className="articleTitle">
+            <h3>{title}</h3>
+          </Link>
+          <TheDate date={date} />
+          <div
             className="articleExcerpt"
             dangerouslySetInnerHTML={{ __html: excerptLimit }}
-            />
-        <Button
-          className="articleLink"
-          url={uri}
-          type="regularlink"
-          text="Read More"
-          ariaLabel={`Read more about ${title}`}
           />
-          </div>
+          <Button
+            className="articleLink"
+            url={uri}
+            type="regularlink"
+            text="Read More"
+            ariaLabel={`Read more about ${title}`}
+          />
+        </div>
       </div>
     </article>
   )

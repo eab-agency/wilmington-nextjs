@@ -37,15 +37,17 @@ export const PostsList = ({ posts, type, ...props }) => {
               />
             )
           } else {
-            return <>
-            {/* <NewsListCard key={post.id} post={post} /> */}
-            <NewsPostCard
-                key={post.id}
-                post={post}
-                showImage={isFirst}
-                isFirst={isFirst}
-              />
-            </>
+            return (
+              <>
+                {/* <NewsListCard key={post.id} post={post} /> */}
+                <NewsPostCard
+                  key={post.id}
+                  post={post}
+                  showImage={isFirst}
+                  isFirst={isFirst}
+                />
+              </>
+            )
           }
         } else {
           return <ArchivePost key={post.id} post={post} isFirst={isFirst} />

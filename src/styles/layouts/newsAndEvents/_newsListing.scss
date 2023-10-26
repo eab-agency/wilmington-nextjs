@@ -1,13 +1,13 @@
-@use "sass:color";
-@use "tokens";
-@use "utilities/mixins";
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
 
 .newsSection {
   @include mixins.sectionPadding(block);
 
   &.atHomePage {
     background: tokens.$c-darkGreen-700;
-    @include mixins.extendedBackground("before", tokens.$c-darkGreen-700);
+    @include mixins.extendedBackground('before', tokens.$c-darkGreen-700);
 
     .sectionHead {
       h2 {
@@ -63,7 +63,7 @@
     }
 
     &::after {
-      content: "";
+      content: '';
       display: block;
       width: 150vw;
       height: 1px;
@@ -92,7 +92,7 @@
   .react-multi-carousel-list {
     padding-bottom: 5rem;
 
-    & + a[class*="button"] {
+    & + a[class*='button'] {
       position: absolute;
       bottom: 0;
     }
