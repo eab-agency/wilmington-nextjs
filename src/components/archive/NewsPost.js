@@ -25,15 +25,19 @@ const NewsPost = ({
       {/* {!isFrontPage && sourceUrl ? (
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
       ) : null} */}
-      <div className={`newsContentContainer ${sourceUrl ? 'wImage': "noImage"}`}>
-        { sourceUrl && <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} /> }
-        <div className='newsContent'>
+      <div
+        className={`newsContentContainer ${sourceUrl ? 'wImage' : 'noImage'}`}
+      >
+        {sourceUrl && (
+          <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
+        )}
+        <div className="newsContent">
           <h3 className="articleTitle">{title}</h3>
-        <TheDate date={date} />
+          <TheDate date={date} />
           <div
             className="articleExcerpt"
             dangerouslySetInnerHTML={{ __html: excerpt }}
-            />
+          />
         </div>
         <Button
           className="articleLink"

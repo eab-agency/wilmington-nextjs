@@ -22,7 +22,7 @@ export default function Archive(props) {
 
   let archiveTitle
 
-  switch(name) {
+  switch (name) {
     case 'faculty':
       archiveTitle = 'Faculty and Staff'
       break
@@ -50,8 +50,6 @@ export default function Archive(props) {
     default:
       archiveTitle = name
   }
-
-
 
   return (
     <>
@@ -109,7 +107,7 @@ Archive.query = gql`
               ... on NodeWithContentEditor {
                 content
               }
-              ... on NodeWithExcerpt{
+              ... on NodeWithExcerpt {
                 excerpt
               }
               date
