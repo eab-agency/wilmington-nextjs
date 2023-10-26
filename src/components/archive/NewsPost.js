@@ -26,10 +26,10 @@ const NewsPost = ({
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
       ) : null} */}
       <div className={`newsContentContainer ${sourceUrl ? 'wImage': "noImage"}`}>
-        <TheDate date={date} />
         { sourceUrl && <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} /> }
         <div className='newsContent'>
           <h3 className="articleTitle">{title}</h3>
+        <TheDate date={date} />
           <div
             className="articleExcerpt"
             dangerouslySetInnerHTML={{ __html: excerpt }}

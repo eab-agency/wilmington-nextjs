@@ -26,7 +26,7 @@ export const PostsList = ({ posts, type, ...props }) => {
           )
         }
         if (type === 'news') {
-          if (index < 4) {
+          if (index < 5) {
             return (
               <NewsPostCard
                 key={post.id}
@@ -36,15 +36,16 @@ export const PostsList = ({ posts, type, ...props }) => {
                 isFirst={isFirst}
               />
             )
-          } else if (posts.length > 4 && index === 4) {
-            return (
-              <>
-                <h3>More News</h3>
-                <NewsListCard key={post.id} post={post} />
-              </>
-            )
           } else {
-            return <NewsListCard key={post.id} post={post} />
+            return <>
+            {/* <NewsListCard key={post.id} post={post} /> */}
+            <NewsPostCard
+                key={post.id}
+                post={post}
+                showImage={isFirst}
+                isFirst={isFirst}
+              />
+            </>
           }
         } else {
           return <ArchivePost key={post.id} post={post} isFirst={isFirst} />

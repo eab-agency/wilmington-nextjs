@@ -1,0 +1,24 @@
+@use "sass:color";
+@use "tokens";
+@use "utilities/mixins";
+
+.news-archiveList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1rem, 5vw, 4rem);
+  border-left: 1px solid tokens.$c-gray-400;
+  padding-left: clamp(1rem, 5vw, 3rem);
+  padding-block: clamp(1rem, 5vw, 3rem);
+
+  .newsPostCard {
+    border-bottom: 1px solid tokens.$c-gray-300;
+    padding-block: clamp(1rem, 5vw, 4rem);
+
+    @media (min-width: tokens.$mq-700) {
+      border-right: 1px solid tokens.$c-gray-300;
+      padding-right: clamp(1rem, 5vw, 4rem);
+      padding-block: 0;
+      border-bottom: none;
+    }
+  }
+}

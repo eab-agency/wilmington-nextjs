@@ -29,6 +29,7 @@ const NewsListCard = ({
           type="regularlink"
           text={title}
         />
+        <div dangerouslySetInnerHTML={{ __html: excerpt }}></div>
       </div>
     </article>
   )
