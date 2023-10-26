@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import NewsPost from '@/components/archive/NewsPost'
+import NewsPostCard from '@/components/archive/NewsPostCard'
 import Button from '@/components/atoms/Buttons/Button'
 import MultiCarousel from '@/components/common/MultiCarousel'
 import useIsFrontPage from '@/functions/useIsFrontPage'
@@ -52,7 +52,7 @@ function NewsListing({ listing_title, posts, showImage, listing_display }) {
           containerClass="newsCarousel"
         >
           {posts.map((item, index) => (
-            <NewsPost
+            <NewsPostCard
               key={index}
               post={item}
               ctx={undefined}
