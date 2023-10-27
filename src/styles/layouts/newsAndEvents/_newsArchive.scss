@@ -1,8 +1,8 @@
-@use "sass:color";
-@use "tokens";
-@use "utilities/mixins";
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
 
-div[class*="-archiveList"] {
+div[class*='-archiveList'] {
   display: flex;
   flex-direction: column;
   gap: clamp(1rem, 5vw, 4rem);

@@ -27,27 +27,26 @@ const NewsPost = ({
 
   return (
     <article
-      className={`${className !== null ? className : ''} newsPostCard ${sourceUrl ? 'wImage' : 'noImage'}`}
+      className={`${className !== null ? className : ''} newsPostCard ${
+        sourceUrl ? 'wImage' : 'noImage'
+      }`}
       {...props}
     >
-      <div
-        className='newsContentContainer'
-      >
+      <div className="newsContentContainer">
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
         <div className="newsPostCardContent">
           {!isFrontPage ? (
-              <>
-                  <Link href={uri} className="articleTitle">
-                  <h2>{title}</h2>
-                </Link>
-                  <TheDate date={date} />
-              </>
-            ): (
+            <>
               <Link href={uri} className="articleTitle">
+                <h2>{title}</h2>
+              </Link>
+              <TheDate date={date} />
+            </>
+          ) : (
+            <Link href={uri} className="articleTitle">
               <h3>{title}</h3>
             </Link>
-            )
-          }
+          )}
           <div
             className="articleExcerpt"
             dangerouslySetInnerHTML={{ __html: excerptLimit }}
