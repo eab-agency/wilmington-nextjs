@@ -27,20 +27,27 @@ const NewsPost = ({
 
   return (
     <article
-      className={`${className !== null ? className : ''} newsPostCard`}
+      className={`${className !== null ? className : ''} newsPostCard ${sourceUrl ? 'wImage' : 'noImage'}`}
       {...props}
     >
       <div
-        className={`newsContentContainer ${sourceUrl ? 'wImage' : 'noImage'}`}
+        className='newsContentContainer'
       >
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
         <div className="newsPostCardContent">
-          <Link href={uri} className="articleTitle">
-            <h3>{title}</h3>
-          </Link>
-          {!isFrontPage && (
-            <TheDate date={date} />
-            )}
+          {!isFrontPage ? (
+              <>
+                  <Link href={uri} className="articleTitle">
+                  <h2>{title}</h2>
+                </Link>
+                  <TheDate date={date} />
+              </>
+            ): (
+              <Link href={uri} className="articleTitle">
+              <h3>{title}</h3>
+            </Link>
+            )
+          }
           <div
             className="articleExcerpt"
             dangerouslySetInnerHTML={{ __html: excerptLimit }}

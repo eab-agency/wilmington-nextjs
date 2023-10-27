@@ -1,14 +1,41 @@
-@use 'sass:color';
-@use 'tokens';
-@use 'utilities/mixins';
+@use "sass:color";
+@use "tokens";
+@use "utilities/mixins";
 
-.news-archiveList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+div[class*="-archiveList"] {
+  display: flex;
+  flex-direction: column;
   gap: clamp(1rem, 5vw, 4rem);
   border-left: 1px solid tokens.$c-gray-400;
   padding-left: clamp(1rem, 5vw, 3rem);
   padding-block: clamp(1rem, 5vw, 3rem);
+
+  @media (min-width: tokens.$mq-500) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  h2 {
+    font-size: clamp(tokens.$fs-s, 2vw, tokens.$fs-m);
+  }
+
+  img {
+    max-height: 15rem;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .archiveArticle {
+    border-bottom: 1px solid tokens.$c-gray-300;
+    padding-block: clamp(1rem, 5vw, 4rem);
+
+    @media (min-width: tokens.$mq-700) {
+      border-right: 1px solid tokens.$c-gray-300;
+      padding-right: clamp(1rem, 5vw, 4rem);
+      padding-block: 0;
+      border-bottom: none;
+    }
+  }
 
   .newsPostCard {
     border-bottom: 1px solid tokens.$c-gray-300;
