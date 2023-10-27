@@ -64,7 +64,7 @@ Archive.query = gql`
     $uri: String!
     $first: Int!
     $after: String!
-    $imageSize: MediaItemSizeEnum = MEDIUM
+    $imageSize: MediaItemSizeEnum = LARGE
   ) {
     nodeByUri(uri: $uri) {
       __typename
