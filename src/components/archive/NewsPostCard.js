@@ -30,9 +30,6 @@ const NewsPost = ({
       className={`${className !== null ? className : ''} newsPostCard`}
       {...props}
     >
-      {/* {!isFrontPage && sourceUrl && showImage ? (
-        <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
-      ) : null} */}
       <div
         className={`newsContentContainer ${sourceUrl ? 'wImage' : 'noImage'}`}
       >
@@ -41,7 +38,9 @@ const NewsPost = ({
           <Link href={uri} className="articleTitle">
             <h3>{title}</h3>
           </Link>
-          <TheDate date={date} />
+          {!isFrontPage && (
+            <TheDate date={date} />
+            )}
           <div
             className="articleExcerpt"
             dangerouslySetInnerHTML={{ __html: excerptLimit }}
