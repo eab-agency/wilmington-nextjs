@@ -11,6 +11,18 @@ const nextConfig = {
   experimental: {
     appDir: true
   },
+  async rewrites() {
+    return [
+      {
+        source: '/(.*)sitemap.xml',
+        destination: '/api/sitemap-proxy'
+      },
+      {
+        source: '/sitemap(.*).xml',
+        destination: '/api/sitemap-proxy'
+      }
+    ]
+  },
   async redirects() {
     const redirects = await fetchRedirects()
     return [
