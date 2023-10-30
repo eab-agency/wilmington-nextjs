@@ -19,7 +19,7 @@ const EabProgramJumplinks = (props) => {
         behavior: 'smooth'
       })
 
-      window.history.pushState(null, null, `#${target.id}`);
+      window.history.pushState(null, null, `#${target.id}`)
     }
 
     jumpLinksGroup.forEach((link) => {
