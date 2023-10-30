@@ -156,7 +156,7 @@ const GET_NEWS_BY_CATEGORY = gql`
 
 const GET_LATEST_NEWS = gql`
   query GetLatestNews {
-    news(first: 4, where: { orderby: { field: DATE, order: DESC } }) {
+    news(first: 10, where: { orderby: { field: DATE, order: DESC } }) {
       nodes {
         ...NewsFields
       }
