@@ -20,29 +20,48 @@ const NewsPost = ({
   const { node: { sourceUrl, altText, mediaDetails } = {} } =
     featuredImage || {}
 
+  const excerptLimit = sourceUrl
+    ? excerpt.split(' ').slice(0, 30).join(' ') + ' [...]'
+    : excerpt
+
   return (
     <article
-      className={`${className !== null ? className : ''} newsPostCard`}
+      className={`${className !== null ? className : ''} newsPostCard ${
+        sourceUrl ? 'wImage' : 'noImage'
+      }`}
       {...props}
     >
-      {!isFrontPage && sourceUrl && showImage ? (
+       <div className="newsContentContainer">
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
-      ) : null}
-      <div className="newsContentContainer">
-        <Link href={uri} className="articleTitle">
-          <h3>{title}</h3>
-        </Link>
-        {/* <div dangerouslySetInnerHTML={{ __html: excerpt }}></div> */}
-        <Button
-          className="articleLink"
-          url={uri}
-          type="regularlink"
-          text="Read More"
-          ariaLabel={`Read more about ${title}`}
-        />
+        <div className="newsPostCardContent">
+          {!isFrontPage ? (
+            <>
+              <Link href={uri} className="articleTitle">
+                <h2>{title}</h2>
+              </Link>
+              <TheDate date={date} />
+            </>
+          ) : (
+            <Link href={uri} className="articleTitle">
+              <h3>{title}</h3>
+            </Link>
+          )}
+          <div
+            className="articleExcerpt"
+            dangerouslySetInnerHTML={{ __html: excerptLimit }}
+          />
+          <Button
+            className="articleLink"
+            url={uri}
+            type="regularlink"
+            text="Read More"
+            ariaLabel={`Read more about ${title}`}
+          />
+        </div>
       </div>
     </article>
   )
 }
 
 export default NewsPost
+
