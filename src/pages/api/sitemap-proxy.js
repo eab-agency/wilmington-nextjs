@@ -19,7 +19,7 @@ export default async function proxy(req, res) {
   // manually (if we get a redirect). So the next step of this function can work.
   const upstreamRes = await fetch(`${WORDPRESS_URL}${req.url}`, {
     redirect: 'manual'
-  });
+  })
 
   // Check for redirects.
   // This allows for any internal WordPress redirect. For example the /sitemap_index.xml to /sitemap.xml.
