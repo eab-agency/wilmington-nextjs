@@ -2,12 +2,15 @@
 @use 'utilities/mixins';
 
 .carouselContainer {
-  height: clamp(30rem, 45vw, 45rem);
+  // height: clamp(30rem, 45vw, 45rem);
   width: 100%;
-  position: relative;
+  height: 100%;
+  position: absolute;
+  top: 0;
 
   @media (min-width: tokens.$mq-800) {
     height: 80vh;
+    position: relative;
   }
 
   .carouselItem {
@@ -27,7 +30,8 @@
     &.heroImage {
       position: absolute;
       z-index: tokens.$layer-1;
-      height: clamp(30rem, 45vw, 45rem);
+      // height: clamp(30rem, 45vw, 45rem);
+      height: 100%;
       width: 105vw;
       left: 50%;
       transform: translateX(-50%);
@@ -70,7 +74,7 @@
   &::before {
     content: '';
     display: block;
-    background: rgba(#001411, 0.45);
+    background: rgba(#001411, 0.2);
     // background: rgba(#001411, 0.4) url('./../../../assets/bg-texture.png');
     width: 105vw;
     height: 100%;

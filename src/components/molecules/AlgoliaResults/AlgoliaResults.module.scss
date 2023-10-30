@@ -6,25 +6,26 @@
     // background: red;
   }
 
+  // TODO: Andrei, i had to comment this out because the bg was hiding the text.
   /* Results Header */
-  & .resultsHeader {
-    position: relative;
-    background: tokens.$c-gray-200;
-    @include mixins.sectionPadding();
-    @include mixins.extendedBackground('before', tokens.$c-gray-200);
+  // & .resultsHeader {
+  //   position: relative;
+  //   background: tokens.$c-gray-200;
+  //   @include mixins.sectionPadding();
+  //   @include mixins.extendedBackground('before', tokens.$c-gray-200);
 
-    .resultsHeaderContent {
-      display: flex;
-      gap: clamp(2rem, 4vw, 4rem);
-    }
+  //   .resultsHeaderContent {
+  //     display: flex;
+  //     gap: clamp(2rem, 4vw, 4rem);
+  //   }
 
-    & .total {
-      font-size: clamp(tokens.$fs-s, 2vw, tokens.$fs-m);
-      & span {
-        font-weight: bold;
-      }
-    }
-  }
+  //   & .total {
+  //     font-size: clamp(tokens.$fs-s, 2vw, tokens.$fs-m);
+  //     & span {
+  //       font-weight: bold;
+  //     }
+  //   }
+  // }
 
   /* Results Listing */
   & .results {

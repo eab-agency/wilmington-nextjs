@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import Button from '@/components/atoms/Buttons/Button'
 import Image from '@/components/atoms/Image'
-import TheDate from '@/components/atoms/TheDate'
 
 const NewsPost = ({
   isFirst = false,
@@ -22,10 +21,7 @@ const NewsPost = ({
 
   return (
     <article className={className} {...props}>
-      {/* {!isFrontPage && sourceUrl ? (
-        <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
-      ) : null} */}
-      <div
+     <div
         className={`newsContentContainer ${sourceUrl ? 'wImage' : 'noImage'}`}
       >
         {sourceUrl && (

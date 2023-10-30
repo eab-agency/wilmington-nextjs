@@ -4,14 +4,17 @@ import Logo from '@/components/atoms/Logo'
 import Link from '@/components/common/Link'
 import AlgoliaSearch from '@/components/molecules/AlgoliaSearch/AlgoliaSearch'
 import TopMenu from '@/components/molecules/Navigation/TopMenu'
+import { useMenuData } from '@/functions/contextProviders/'
 import classNames from 'classnames'
 import { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
 
-const Header = ({ menu }) => {
+const Header = () => {
   const [scrollDirection, setScrollDirection] = useState(null)
   const [prevScrollPos, setPrevScrollPos] = useState(0)
   const [scrollPosition, setScrollPosition] = useState(0)
+  const { data: menus } = useMenuData()
+  const utilityMenu = menus?.utilityMenuItems?.nodes ?? []
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +65,7 @@ const Header = ({ menu }) => {
               <Logo type="dark" />
             </Link>
             <div className={styles.topMenu}>
-              <TopMenu menuItems={menu} />
+              <TopMenu menuItems={utilityMenu} />
               <div className={styles.search}>
                 <AlgoliaSearch
                   className=""
