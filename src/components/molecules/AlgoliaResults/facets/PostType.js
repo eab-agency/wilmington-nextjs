@@ -16,7 +16,7 @@ export default function PostType({
   className
 }) {
   const data = {
-    title: 'Content Type',
+    title: 'Filter Results',
     attribute: 'post_type_label',
     showMore: true,
     limit: refinements.limit,

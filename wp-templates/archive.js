@@ -10,10 +10,15 @@ import appConfig from 'app.config'
 
 export default function Archive(props) {
   const { uri, name, __typename } = props.data.nodeByUri
-  const { data, loading, fetchMore } = useQuery(Archive.query, {
+  const { data, loading, error, fetchMore } = useQuery(Archive.query, {
     variables: Archive.variables({ uri }),
     notifyOnNetworkStatusChange: true
   })
+
+  if (error) {
+    console.error(error)
+    return <p>Error: {error.message}</p>
+  }
 
   const { title: siteTitle, description: siteDescription } =
     data && data.generalSettings

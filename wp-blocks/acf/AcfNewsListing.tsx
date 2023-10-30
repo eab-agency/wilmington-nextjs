@@ -75,7 +75,11 @@ const AcfNewsListing = (props: AcfNewsListingProps) => {
   }
 
   if (idsLoading || latestLoading) return <Preloader />
-  if (idsError || latestError) return <p>Error :(</p>
+  if (idsError || latestError) {
+    // eslint-disable-next-line no-console
+    console.log(idsError || latestError)
+    return null
+  }
 
   if (posts.length === 0) return null
 

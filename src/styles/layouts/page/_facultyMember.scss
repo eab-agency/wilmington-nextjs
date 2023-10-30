@@ -7,10 +7,12 @@
   }
 
   .hero-w-image {
+    margin-bottom: 2rem;
+
     .page-hero {
       position: relative;
-      min-height: 50vh;
-      height: clamp(20rem, 40vw, 30em);
+      height: clamp(20rem, 40vw, 35rem);
+      width: clamp(15rem, 40vw, 30rem);
 
       & > figure[class*='image'] {
         position: relative;

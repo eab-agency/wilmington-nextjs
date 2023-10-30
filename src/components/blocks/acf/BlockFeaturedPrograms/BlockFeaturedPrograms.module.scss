@@ -4,6 +4,7 @@
 .featuredPrograms {
   position: relative;
   @include mixins.sectionPadding('inline');
+  padding-bottom: 6em;
 
   @media (min-width: tokens.$mq-800) {
     padding: 0;

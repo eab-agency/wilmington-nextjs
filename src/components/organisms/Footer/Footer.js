@@ -1,15 +1,34 @@
+import hclAccredited from '@/assets/wc-hlc-accredited.png'
 import Logo from '@/components/atoms/Logo/Logo'
 import FooterMenu from '@/components/molecules/Navigation/FooterMenu'
 import PreFooter from '@/components/molecules/PreFooter'
+import { useCustomData, useMenuData } from '@/functions/contextProviders/'
+import Image from 'next/image'
+import { useContext } from 'react'
 import * as styles from './Footer.module.scss'
+
 const currentYear = new Date().getFullYear()
 
-const Footer = ({ menus }) => {
+const Footer = () => {
+  const { customOptions } = useCustomData()
+  const { data: menus } = useMenuData()
+  const footerMenu = menus?.footerMenuItems?.nodes ?? []
+  const resourceMenu = menus?.resourceMenuItems?.nodes ?? []
+
+  const {
+    addresslocality,
+    addressregion,
+    postalcode,
+    streetaddress,
+    telephone,
+    tollfreenumber
+  } = customOptions || {}
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <PreFooter
-          menuItems={menus?.FOOTER_NAV}
+          menuItems={footerMenu}
           location="FOOTER_NAV"
           styles={styles.footerMenux}
         />
@@ -17,23 +36,23 @@ const Footer = ({ menus }) => {
           <div className={styles.schoolInfo}>
             <Logo type="dark" />
             <address>
-              1870 Quaker Way
-              <br /> Wilmington, OH 45177
+              {streetaddress}
+              <br /> {addresslocality}, {addressregion} {postalcode}
             </address>
             <ul>
               <li>
-                <a href="tel:19373826661" className={styles.phoneLink}>
-                  <span>937-382-6661</span>
+                <a href={`tel:1${telephone}`} className={styles.phoneLink}>
+                  <span>{telephone}</span>
                 </a>
               </li>
               <li>
-                <a href="tel:18003419318" className={styles.phoneLink}>
-                  <span>1-800-341-9318</span>
+                <a href={`tel:${tollfreenumber}`} className={styles.phoneLink}>
+                  <span>{tollfreenumber}</span>
                 </a>
               </li>
             </ul>
           </div>
-          <FooterMenu menuItems={menus?.RESOURCE_NAV} menuTitle="Resources" />
+          <FooterMenu menuItems={resourceMenu} menuTitle="Resources" />
           <div className={styles.socialFooter}>
             <h3>Connect</h3>
             <ul>
@@ -78,6 +97,14 @@ const Footer = ({ menus }) => {
                 </a>
               </li>
             </ul>
+            <a href="https://www.wilmington.edu/about/accreditation">
+              <Image
+                src={hclAccredited}
+                width={100}
+                height={100}
+                alt="HCL Accredited"
+              />
+            </a>
           </div>
         </div>
         <div className={styles.legal}>
