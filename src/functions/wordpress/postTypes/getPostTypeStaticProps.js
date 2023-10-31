@@ -52,14 +52,14 @@ export default async function getPostTypeStaticProps(
   if (!params) {
     return '404' !== postType
       ? {
-          notFound: true
-        }
+        notFound: true
+      }
       : {
-          props: {
-            ...sharedProps
-          },
-          revalidate
-        }
+        props: {
+          ...sharedProps
+        },
+        revalidate
+      }
   }
   /* -- Handle dynamic archive display. -- */
   if (!Object.keys(params).length) {
@@ -156,7 +156,7 @@ export default async function getPostTypeStaticProps(
     (postId === previewData?.post?.id ||
       // Compare URIs with leading and trailing slashes stripped.
       postId.replace(/^\/|\/$/g, '') ===
-        previewData?.post?.uri?.replace(/^\/|\/$/g, ''))
+      previewData?.post?.uri?.replace(/^\/|\/$/g, ''))
 
   // Check if viewing a draft post.
   const isDraft = isCurrentPostPreview && 'draft' === previewData?.post?.status
