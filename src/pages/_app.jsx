@@ -33,7 +33,8 @@ export default function WilmingtonApp({ Component, pageProps }) {
   // Initialize state for WordPress context provider.
   const [wp] = useState({
     algolia: {
-      indexName: 'wil_searchable_posts'
+      indexName: 'wil_searchable_posts',
+      insights: true
     }
   })
 
