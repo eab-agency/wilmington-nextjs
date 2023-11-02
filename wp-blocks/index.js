@@ -29,6 +29,7 @@ import AcfRelatedPrograms from './acf/AcfRelatedPrograms'
 import AcfStudentOrgs from './acf/AcfStudentOrgs'
 import AcfTestimonialBlock from './acf/AcfTestimonialBlock'
 import EabProgramDirectory from './custom/EabProgramDirectory'
+import EabProgramJumplinks from './custom/EabProgramJumplinks'
 
 /**
  * This object acts as the registry of blocks in your React Gutenberg Bridge.
@@ -67,5 +68,6 @@ export default {
   AcfRelatedPrograms,
   AcfStudentOrgs,
   AcfTestimonialBlock,
-  EabProgramDirectory
+  EabProgramDirectory,
+  EabProgramJumplinks
 }

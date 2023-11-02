@@ -10,24 +10,23 @@ import appConfig from 'app.config'
 
 export default function Archive(props) {
   const { uri, name, __typename } = props.data.nodeByUri
-  const { data, loading, error, fetchMore } = useQuery(Archive.query, {
+  const { data, loading, fetchMore } = useQuery(Archive.query, {
     variables: Archive.variables({ uri }),
     notifyOnNetworkStatusChange: true
   })
-
-  if (error) {
-    console.error(error)
-    return <p>Error: {error.message}</p>
-  }
-
-  if (!data) return null
 
   const { title: siteTitle, description: siteDescription } =
     data && data.generalSettings
 
   const postList = data.nodeByUri?.contentNodes?.edges.map((el) => el.node)
 
-  const archiveTitle = 'Faculty and Staff'
+  let archiveTitle
+
+  if (name === 'faculty') {
+    archiveTitle = 'Faculty and Staff'
+  } else {
+    archiveTitle = name
+  }
 
   return (
     <>
@@ -60,11 +59,11 @@ export default function Archive(props) {
 Archive.query = gql`
   ${BlogInfoFragment}
   ${FeaturedImage.fragments.entry}
-  query GetFacultyPage(
+  query GetCategoryPage(
     $uri: String!
     $first: Int!
     $after: String!
-    $imageSize: MediaItemSizeEnum = LARGE
+    $imageSize: MediaItemSizeEnum = MEDIUM
   ) {
     nodeByUri(uri: $uri) {
       __typename
@@ -74,11 +73,7 @@ Archive.query = gql`
         name
         description
         label
-        contentNodes(
-          first: $first
-          after: $after
-          where: { orderby: { field: TITLE, order: ASC } }
-        ) {
+        contentNodes(first: $first, after: $after) {
           edges {
             node {
               id
@@ -115,6 +110,72 @@ Archive.query = gql`
             hasPreviousPage
             startCursor
             endCursor
+          }
+        }
+      }
+      ... on TermNode {
+        name
+        description
+        ... on Category {
+          contentNodes(first: $first, after: $after) {
+            edges {
+              node {
+                id
+                ... on NodeWithTitle {
+                  title
+                }
+                ... on NodeWithContentEditor {
+                  content
+                }
+                date
+                uri
+                ...FeaturedImageFragment
+                ... on NodeWithAuthor {
+                  author {
+                    node {
+                      name
+                    }
+                  }
+                }
+              }
+            }
+            pageInfo {
+              hasNextPage
+              hasPreviousPage
+              startCursor
+              endCursor
+            }
+          }
+        }
+        ... on Tag {
+          contentNodes(first: $first, after: $after) {
+            edges {
+              node {
+                id
+                ... on NodeWithTitle {
+                  title
+                }
+                ... on NodeWithContentEditor {
+                  content
+                }
+                date
+                uri
+                ...FeaturedImageFragment
+                ... on NodeWithAuthor {
+                  author {
+                    node {
+                      name
+                    }
+                  }
+                }
+              }
+            }
+            pageInfo {
+              hasNextPage
+              hasPreviousPage
+              startCursor
+              endCursor
+            }
           }
         }
       }
