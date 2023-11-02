@@ -40,7 +40,7 @@ function NewsListing({ listing_title, posts, showImage, listing_display }) {
   return (
     <section className={`newsSection ${isFrontPage ? 'atHomePage' : ''}`}>
       <div className="sectionHead">
-        <div className="sectionTag">News</div>
+        {isFrontPage ? <div className="sectionTag">News</div> : null}
         <h2 id="jump-news-listing">{listing_title}</h2>
       </div>
       <div

@@ -34,18 +34,10 @@ const NewsPost = ({
       <div className="newsContentContainer">
         <Image url={sourceUrl} alt={altText} imageMeta={{ mediaDetails }} />
         <div className="newsPostCardContent">
-          {!isFrontPage ? (
-            <>
-              <Link href={uri} className="articleTitle">
-                <h2>{title}</h2>
-              </Link>
-              <TheDate date={date} />
-            </>
-          ) : (
-            <Link href={uri} className="articleTitle">
-              <h3>{title}</h3>
-            </Link>
-          )}
+          <Link href={uri} className="articleTitle">
+            <h3>{title}</h3>
+            {!isFrontPage && <TheDate date={date} />}
+          </Link>
           <div
             className="articleExcerpt"
             dangerouslySetInnerHTML={{ __html: excerptLimit }}
