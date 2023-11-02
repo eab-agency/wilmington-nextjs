@@ -1,5 +1,3 @@
-import { gql } from '@apollo/client'
-
 const JumpLink = ({ jumpLinks, heading }) => {
   if (!jumpLinks) return null
   return (

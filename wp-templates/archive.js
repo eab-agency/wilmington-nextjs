@@ -27,10 +27,33 @@ export default function Archive(props) {
 
   let archiveTitle
 
-  if (name === 'faculty') {
-    archiveTitle = 'Faculty and Staff'
-  } else {
-    archiveTitle = name
+  switch (name) {
+    case 'faculty':
+      archiveTitle = 'Faculty and Staff'
+      break
+
+    case 'news':
+      archiveTitle = 'News'
+      break
+
+    case 'event':
+      archiveTitle = 'Events'
+      break
+
+    case 'program':
+      archiveTitle = 'Programs'
+      break
+
+    case 'organization':
+      archiveTitle = 'Student Organizations'
+      break
+
+    case 'testimonial':
+      archiveTitle = 'Testimonials'
+      break
+
+    default:
+      archiveTitle = name
   }
 
   return (
@@ -45,7 +68,7 @@ export default function Archive(props) {
           <PostsList
             posts={postList}
             type={name}
-            className={name === 'faculty' ? 'facultyList' : undefined}
+            className={`${name}-archiveList`}
           />
           <LoadMore
             className="text-center"
@@ -68,7 +91,7 @@ Archive.query = gql`
     $uri: String!
     $first: Int!
     $after: String!
-    $imageSize: MediaItemSizeEnum = MEDIUM
+    $imageSize: MediaItemSizeEnum = LARGE
   ) {
     nodeByUri(uri: $uri) {
       __typename
@@ -88,6 +111,9 @@ Archive.query = gql`
               }
               ... on NodeWithContentEditor {
                 content
+              }
+              ... on NodeWithExcerpt {
+                excerpt
               }
               date
               uri
