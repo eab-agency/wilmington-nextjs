@@ -1,5 +1,5 @@
-@use "tokens";
-@use "utilities/mixins";
+@use 'tokens';
+@use 'utilities/mixins';
 
 .featuredPrograms {
   position: relative;
@@ -13,7 +13,7 @@
 
   &::before,
   &::after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: 0;
@@ -69,7 +69,7 @@
       }
     }
 
-    button[class*="arrow"] {
+    button[class*='arrow'] {
       height: 3.5rem;
       top: 50%;
       transform: translateY(-50%);
@@ -86,12 +86,12 @@
         transition: all 0.2s ease-in-out;
       }
 
-      &[class*="-left"] {
+      &[class*='-left'] {
         left: -3rem;
         right: initial;
       }
 
-      &[class*="-right"] {
+      &[class*='-right'] {
         right: -3rem;
         left: initial;
       }
@@ -103,11 +103,11 @@
         }
 
         @media (min-width: tokens.$mq-800) {
-          &[class*="-left"] {
+          &[class*='-left'] {
             left: -3.4rem;
           }
 
-          &[class*="-right"] {
+          &[class*='-right'] {
             right: -3.4rem;
           }
         }
@@ -136,7 +136,7 @@
   }
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     width: clamp(17rem, 20vw, 20rem);
     height: 3rem;
@@ -149,7 +149,7 @@
   }
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     width: 100%;
     border-top: 1px solid tokens.$c-limeGreen-700;
