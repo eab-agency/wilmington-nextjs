@@ -27,8 +27,9 @@ const NewsPost = ({
 
   return (
     <article
-      className={`${className !== null ? className : ''} newsPostCard ${sourceUrl ? 'wImage' : 'noImage'
-        }`}
+      className={`${className !== null ? className : ''} newsPostCard ${
+        sourceUrl ? 'wImage' : 'noImage'
+      }`}
       {...props}
     >
       <div className="newsContentContainer">
