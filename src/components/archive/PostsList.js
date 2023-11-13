@@ -19,8 +19,8 @@ export const PostsList = ({ posts, type, ...props }) => {
               key={id}
               title={title}
               description={facultyFields?.faculty?.position}
-              email={email}
-              phone={phone}
+              email={facultyFields?.faculty?.email}
+              phone={facultyFields?.faculty?.phone}
               link={uri}
               image={image}
             />
