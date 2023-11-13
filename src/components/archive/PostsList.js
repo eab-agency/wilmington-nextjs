@@ -11,13 +11,14 @@ export const PostsList = ({ posts, type, ...props }) => {
         const isFirst = index === 0
 
         if (type === 'faculty') {
-          const { id, title, faculty, email, uri, featuredImage, phone } = post
+          const { id, title, facultyFields, email, uri, featuredImage, phone } =
+            post
           const image = featuredImage?.node
           return (
             <FacultyCard
               key={id}
               title={title}
-              description={faculty?.position}
+              description={facultyFields?.faculty?.position}
               email={email}
               phone={phone}
               link={uri}
