@@ -77,7 +77,13 @@ Archive.query = gql`
         contentNodes(
           first: $first
           after: $after
-          where: { orderby: { field: TITLE, order: ASC } }
+          where: {
+            orderby: {
+              field: META_KEY
+              order: ASC
+              metaKeyField: "faculty_last"
+            }
+          }
         ) {
           edges {
             node {
@@ -102,6 +108,8 @@ Archive.query = gql`
               ... on FacultyMember {
                 facultyFields {
                   faculty {
+                    last
+                    first
                     email
                     phone
                     position
