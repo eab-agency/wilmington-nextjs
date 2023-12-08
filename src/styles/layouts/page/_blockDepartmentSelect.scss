@@ -62,7 +62,7 @@
       gap: clamp(1rem, 4vw, 4rem);
 
       section.department {
-        border-left: 1px solid tokens.$c-gray-400;
+        // border-left: 1px solid tokens.$c-gray-400;
         margin-top: 4rem;
 
         .departmentHead {
@@ -86,10 +86,26 @@
           display: flex;
           flex-direction: column;
           background: tokens.$c-gray-200;
-          // padding: tokens.$p-m;
-          border: 1px solid tokens.$c-gray-500;
+          position: relative;
+
+          &::after {
+            content: "";
+            display: block;
+            width: 100vw;
+            height: 100%;
+            background: tokens.$c-gray-200; // url("../../../assets/lines-texture.png");
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+          }
 
           thead {
+            position: relative;
+            z-index: 10;
+            background: tokens.$c-gray-200;
+
             tr {
               display: flex;
               flex-direction: column;
@@ -108,6 +124,7 @@
                   transform: translateY(0.2em);
                   color: tokens.$c-black;
                   font-weight: normal;
+                  padding-top: 1em;
                 }
 
                 // hide all except the first one
@@ -120,10 +137,17 @@
                   }
                 }
 
+                &:last-child {
+                  border-right: none;
+                }
+
                 @media (min-width: tokens.$mq-800) {
                   &:first-child {
                     width: clamp(15rem, 25vw, 25rem);
                     flex-shrink: 0;
+                  }
+                  h2 {
+                    padding-top: 0;
                   }
                 }
               }
@@ -135,15 +159,38 @@
           }
 
           tbody {
+            position: relative;
+            z-index: 10;
+            background: tokens.$c-gray-200;
+
             tr {
               display: flex;
               flex-direction: column;
               border-top: 1px solid tokens.$c-gray-500;
+              margin-bottom: 2em;
+
+              @media (min-width: tokens.$mq-800) {
+                margin: 0;
+              }
 
               td {
                 width: 100%;
                 padding: tokens.$p-m;
                 border-right: 1px solid tokens.$c-gray-500;
+                border-bottom: 1px dashed tokens.$c-gray-500;
+
+                &:last-child {
+                  border-bottom-style: solid;
+                }
+
+                @media (min-width: tokens.$mq-800) {
+                  border-bottom: none;
+
+                  &:last-child {
+                    border-right: none;
+                    border-bottom: none;
+                  }
+                }
 
                 h3 {
                   font-size: clamp(tokens.$fs-s, 1.2vw, tokens.$fs-m);
@@ -164,7 +211,6 @@
 
                 .modalityList {
                   display: flex;
-                  // gap: 0.5em;
 
                   .modalityCard {
                     display: flex;
@@ -181,8 +227,15 @@
                     svg {
                       width: 2em;
                       height: 2em;
+                      fill: tokens.$c-darkGreen-700;
                     }
                   }
+                }
+
+                .tableCellHead {
+                  display: block;
+                  margin-bottom: 1em;
+                  font-weight: 700;
                 }
 
                 @media (min-width: tokens.$mq-800) {
@@ -270,13 +323,13 @@
         //   }
         // }
 
-        &::after {
-          content: "";
-          display: block;
-          width: 100%;
-          height: clamp(2rem, 4vw, 4rem);
-          background: url("../../../assets/lines-texture.png");
-        }
+        // &::after {
+        //   content: "";
+        //   display: block;
+        //   width: 100%;
+        //   height: clamp(2rem, 4vw, 4rem);
+        //   background: url("../../../assets/lines-texture.png");
+        // }
       }
     }
   }
