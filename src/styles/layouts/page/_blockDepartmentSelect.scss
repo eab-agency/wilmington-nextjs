@@ -62,7 +62,7 @@
       gap: clamp(1rem, 4vw, 4rem);
 
       section.department {
-        border-left: 1px solid tokens.$c-gray-400;
+        // border-left: 1px solid tokens.$c-gray-400;
         margin-top: 4rem;
 
         .departmentHead {
@@ -82,80 +82,254 @@
           padding: clamp(1rem, 2vw, 2rem);
         }
 
-        .programsSubtitle {
+        .programTable {
           display: flex;
-          gap: 1rem;
-          align-items: center;
-          padding: 2rem 2rem 0 2rem;
-          margin-bottom: 0;
+          flex-direction: column;
+          background: tokens.$c-gray-200;
+          position: relative;
 
           &::after {
             content: '';
             display: block;
-            width: 100%;
-            height: 1px;
-            background: tokens.$c-gray-400;
+            width: 100vw;
+            height: 100%;
+            background: tokens.$c-gray-200; // url("../../../assets/lines-texture.png");
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
           }
-        }
 
-        .programsList {
-          display: flex;
-          flex-direction: column;
-          margin: 0;
-          padding: 2rem;
-          gap: 1rem;
+          thead {
+            position: relative;
+            z-index: 10;
+            background: tokens.$c-gray-200;
 
-          li {
-            .resultProgramCard {
-              border: 3px solid tokens.$c-gray-300;
-              padding: 1rem;
-              flex: 1;
+            tr {
               display: flex;
               flex-direction: column;
-              align-items: flex-start;
-              gap: clamp(1rem, 2vw, 2rem);
+
+              th {
+                width: 100%;
+                font-size: clamp(tokens.$fs-m, 1.5vw, tokens.$fs-l);
+                font-weight: 400;
+                border-right: 1px solid tokens.$c-gray-500;
+                padding: tokens.$p-m;
+                vertical-align: baseline;
+                margin: 0;
+
+                h2 {
+                  font-size: clamp(tokens.$fs-m, 1.5vw, tokens.$fs-l);
+                  transform: translateY(0.2em);
+                  color: tokens.$c-black;
+                  font-weight: normal;
+                  padding-top: 1em;
+                }
+
+                // hide all except the first one
+                &:not(:first-child) {
+                  position: absolute;
+                  left: -999em;
+                  @media (min-width: tokens.$mq-800) {
+                    position: relative;
+                    left: auto;
+                  }
+                }
+
+                &:last-child {
+                  border-right: none;
+                }
+
+                @media (min-width: tokens.$mq-800) {
+                  &:first-child {
+                    width: clamp(15rem, 25vw, 25rem);
+                    flex-shrink: 0;
+                  }
+                  h2 {
+                    padding-top: 0;
+                  }
+                }
+              }
 
               @media (min-width: tokens.$mq-800) {
                 flex-direction: row;
               }
+            }
+          }
 
-              .programContent {
-                h3 {
-                  border-bottom: 1px solid tokens.$c-gray-400;
-                  padding-bottom: 0.5em;
-                  font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-m);
-                  margin-bottom: 1em;
-                  // min-height: 3em;
+          tbody {
+            position: relative;
+            z-index: 10;
+            background: tokens.$c-gray-200;
+
+            tr {
+              display: flex;
+              flex-direction: column;
+              border-top: 1px solid tokens.$c-gray-500;
+              margin-bottom: 2em;
+
+              @media (min-width: tokens.$mq-800) {
+                margin: 0;
+              }
+
+              td {
+                width: 100%;
+                padding: tokens.$p-m;
+                border-right: 1px solid tokens.$c-gray-500;
+                border-bottom: 1px dashed tokens.$c-gray-500;
+
+                &:last-child {
+                  border-bottom-style: solid;
                 }
 
-                p {
-                  display: -webkit-box;
-                  overflow: hidden;
-                  -webkit-line-clamp: 6;
-                  -webkit-box-orient: vertical;
-                  color: tokens.$c-copy;
-                  font-size: tokens.$fs-xs;
+                @media (min-width: tokens.$mq-800) {
+                  border-bottom: none;
+
+                  &:last-child {
+                    border-right: none;
+                    border-bottom: none;
+                  }
+                }
+
+                h3 {
+                  font-size: clamp(tokens.$fs-s, 1.2vw, tokens.$fs-m);
+                }
+
+                ul {
+                  margin: 0;
+                  padding: 0;
+
+                  li {
+                    margin-left: 0.5em;
+
+                    &:last-child {
+                      margin-bottom: 0;
+                    }
+                  }
+                }
+
+                .modalityList {
+                  display: flex;
+
+                  .modalityCard {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    font-size: 0.85em;
+                    padding: 0.2em 0.8em;
+                    border-right: 1px solid tokens.$c-gray-500;
+
+                    &:last-child {
+                      border-right: none;
+                    }
+
+                    svg {
+                      width: 2em;
+                      height: 2em;
+                      fill: tokens.$c-darkGreen-700;
+                    }
+                  }
+                }
+
+                .tableCellHead {
+                  display: block;
+                  margin-bottom: 1em;
+                  font-weight: 700;
+                }
+
+                @media (min-width: tokens.$mq-800) {
+                  &:first-child {
+                    width: clamp(15rem, 25vw, 25rem);
+                    flex-shrink: 0;
+                  }
+
+                  .tableCellHead {
+                    display: none;
+                  }
                 }
               }
 
-              .button {
-                flex-shrink: 0;
-
-                @media (min-width: tokens.$mq-800) {
-                  margin-top: 1em;
-                }
+              @media (min-width: tokens.$mq-800) {
+                flex-direction: row;
               }
             }
           }
         }
+        // .programsSubtitle {
+        //   display: flex;
+        //   gap: 1rem;
+        //   align-items: center;
+        //   padding: 2rem 2rem 0 2rem;
+        //   margin-bottom: 0;
 
-        &::after {
-          content: '';
-          display: block;
-          width: 100%;
-          height: clamp(2rem, 4vw, 4rem);
-          background: url('../../../assets/lines-texture.png');
-        }
+        //   &::after {
+        //     content: '';
+        //     display: block;
+        //     width: 100%;
+        //     height: 1px;
+        //     background: tokens.$c-gray-400;
+        //   }
+        // }
+
+        // .programsList {
+        //   display: flex;
+        //   flex-direction: column;
+        //   margin: 0;
+        //   padding: 2rem;
+        //   gap: 1rem;
+
+        //   li {
+        //     .resultProgramCard {
+        //       border: 3px solid tokens.$c-gray-300;
+        //       padding: 1rem;
+        //       flex: 1;
+        //       display: flex;
+        //       flex-direction: column;
+        //       align-items: flex-start;
+        //       gap: clamp(1rem, 2vw, 2rem);
+
+        //       @media (min-width: tokens.$mq-800) {
+        //         flex-direction: row;
+        //       }
+
+        //       .programContent {
+        //         h3 {
+        //           border-bottom: 1px solid tokens.$c-gray-400;
+        //           padding-bottom: 0.5em;
+        //           font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-m);
+        //           margin-bottom: 1em;
+        //           // min-height: 3em;
+        //         }
+
+        //         p {
+        //           display: -webkit-box;
+        //           overflow: hidden;
+        //           -webkit-line-clamp: 6;
+        //           -webkit-box-orient: vertical;
+        //           color: tokens.$c-copy;
+        //           font-size: tokens.$fs-xs;
+        //         }
+        //       }
+
+        //       .button {
+        //         flex-shrink: 0;
+
+        //         @media (min-width: tokens.$mq-800) {
+        //           margin-top: 1em;
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
+
+        // &::after {
+        //   content: "";
+        //   display: block;
+        //   width: 100%;
+        //   height: clamp(2rem, 4vw, 4rem);
+        //   background: url("../../../assets/lines-texture.png");
+        // }
       }
     }
   }
