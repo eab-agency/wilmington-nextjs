@@ -1,10 +1,11 @@
 'use client'
 
-import Image from '@/components/atoms/Image'
+// import Image from '@/components/atoms/Image'
 import Link from '@/components/common/Link'
-import ResultProgramCard from '@/components/molecules/ResultProgramCard'
-import { className } from 'classnames/bind'
+// import ResultProgramCard from '@/components/molecules/ResultProgramCard'
+// import { className } from 'classnames/bind'
 import React, { useEffect, useState } from 'react'
+import { FaLaptop, FaSchool } from 'react-icons/fa'
 
 const DepartmentSingle = ({ department }) => {
   const {
@@ -15,40 +16,75 @@ const DepartmentSingle = ({ department }) => {
     departmentFields: { deptImage }
   } = department
 
-  // don't show programs that are a child program page
-  const filteredPrograms = programs.nodes.filter(
+  // filter programs that are not child program pages
+  const parentPrograms = programs.nodes.filter(
     (program) => program.ancestors === null
-  )
+  );
+
+  // filter child programs with concentrationEnabled set to true
+  const childPrograms = programs.nodes.filter(
+    (program) => program.ancestors !== null && program.concentrationEnabled
+  );
+
+  // get childProgram names for a given parentProgram
+  const getChildProgramNamesList = (parentProgram) => {
+    const childNames = childPrograms
+      .filter(childProgram =>
+        childProgram.ancestors.nodes.some(ancestor => ancestor.slug === parentProgram.slug)
+      )
+      .map(childProgram => <li key={childProgram.uri}>{childProgram.title}</li>);
+
+    return childNames.length > 0 ? <ul>{childNames}</ul> : null;
+  }
+
+  // get parentProgram programFields location
+  const getParentProgramLocation = (parentProgram) => {
+    const locations = parentProgram.programFields.program.location
+
+    return (
+
+      <div className='modalityList'>
+        {locations && locations.includes('wilmington') && (
+          <div className='modalityCard'><FaSchool /> On Campus</div>
+        )}
+        {locations && locations.includes('online') && (
+          <div className='modalityCard'><FaLaptop /> Online</div>
+        )}
+      </div>
+    )
+
+  }
 
   return (
     <section key={name} className="department">
-      <header className="departmentHead">
-        {deptImage && (
-          <Image
-            url={deptImage.sourceUrl}
-            alt={deptImage.altText}
-            imageMeta={{ mediaDetails: deptImage.mediaDetails }}
-          />
-        )}
-        <div className="departmentInfo">
-          <h2>{name}</h2>
-          <div dangerouslySetInnerHTML={{ __html: description }} />
-        </div>
-      </header>
-      {filteredPrograms.length > 0 && (
+      {parentPrograms.length > 0 && (
         <>
-          <h3 className="programsSubtitle">Programs</h3>
-          <ul className="programsList">
-            {filteredPrograms.map((program) => (
-              <li key={program.uri}>
-                <ResultProgramCard
-                  title={program.title}
-                  link={program.uri}
-                  excerpt={program.excerpt}
-                />
-              </li>
-            ))}
-          </ul>
+          <table className='programTable'>
+            <thead>
+              <tr>
+                <th><h2>{name} Degrees</h2></th>
+                <th>Concentrations</th>
+                <th>Modality</th>
+              </tr>
+            </thead>
+            <tbody>
+              {parentPrograms.map((program) => (
+                <tr key={program.uri}>
+                  <td> <Link href={program.uri}>
+                    <h3>{program.title}</h3>
+                  </Link></td>
+                  <td>
+                    <span aria-hidden="true" className="tableCellHead">Concentrations</span>
+                    {getChildProgramNamesList(program)}
+                  </td>
+                  <td>
+                    <span aria-hidden="true" className="tableCellHead">Modality</span>
+                    {getParentProgramLocation(program)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </>
       )}
     </section>
