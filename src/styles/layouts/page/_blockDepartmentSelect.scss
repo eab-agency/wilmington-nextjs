@@ -1,6 +1,6 @@
-@use 'sass:color';
-@use 'tokens';
-@use 'utilities/mixins';
+@use "sass:color";
+@use "tokens";
+@use "utilities/mixins";
 
 .departmentSelectorSection {
   gap: 2em;
@@ -9,7 +9,7 @@
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     height: 100%;
     width: 1px;
@@ -29,7 +29,7 @@
     background: tokens.$c-gray-200;
     position: relative;
     gap: 2rem;
-    @include mixins.extendedBackground('after', tokens.$c-gray-200);
+    @include mixins.extendedBackground("after", tokens.$c-gray-200);
 
     & > * {
       position: relative;
@@ -56,7 +56,7 @@
 
   .departmentResults {
     .departmentsContainer {
-      @include mixins.sectionPadding('inline');
+      @include mixins.sectionPadding("inline");
       display: flex;
       flex-direction: column;
       gap: clamp(1rem, 4vw, 4rem);
@@ -82,79 +82,200 @@
           padding: clamp(1rem, 2vw, 2rem);
         }
 
-        .programsSubtitle {
-          display: flex;
-          gap: 1rem;
-          align-items: center;
-          padding: 2rem 2rem 0 2rem;
-          margin-bottom: 0;
-
-          &::after {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 1px;
-            background: tokens.$c-gray-400;
-          }
-        }
-
-        .programsList {
+        .programTable {
           display: flex;
           flex-direction: column;
-          margin: 0;
-          padding: 2rem;
-          gap: 1rem;
+          background: tokens.$c-gray-200;
+          // padding: tokens.$p-m;
+          border: 1px solid tokens.$c-gray-500;
 
-          li {
-            .resultProgramCard {
-              border: 3px solid tokens.$c-gray-300;
-              padding: 1rem;
-              flex: 1;
+          thead {
+            tr {
               display: flex;
               flex-direction: column;
-              align-items: flex-start;
-              gap: clamp(1rem, 2vw, 2rem);
+
+              th {
+                width: 100%;
+                font-size: clamp(tokens.$fs-m, 1.5vw, tokens.$fs-l);
+                font-weight: 400;
+                border-right: 1px solid tokens.$c-gray-500;
+                padding: tokens.$p-m;
+                vertical-align: baseline;
+                margin: 0;
+
+                h2 {
+                  font-size: clamp(tokens.$fs-m, 1.5vw, tokens.$fs-l);
+                  transform: translateY(0.2em);
+                  color: tokens.$c-black;
+                  font-weight: normal;
+                }
+
+                // hide all except the first one
+                &:not(:first-child) {
+                  position: absolute;
+                  left: -999em;
+                  @media (min-width: tokens.$mq-800) {
+                    position: relative;
+                    left: auto;
+                  }
+                }
+
+                @media (min-width: tokens.$mq-800) {
+                  &:first-child {
+                    width: clamp(15rem, 25vw, 25rem);
+                    flex-shrink: 0;
+                  }
+                }
+              }
 
               @media (min-width: tokens.$mq-800) {
                 flex-direction: row;
               }
+            }
+          }
 
-              .programContent {
+          tbody {
+            tr {
+              display: flex;
+              flex-direction: column;
+              border-top: 1px solid tokens.$c-gray-500;
+
+              td {
+                width: 100%;
+                padding: tokens.$p-m;
+                border-right: 1px solid tokens.$c-gray-500;
+
                 h3 {
-                  border-bottom: 1px solid tokens.$c-gray-400;
-                  padding-bottom: 0.5em;
-                  font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-m);
-                  margin-bottom: 1em;
-                  // min-height: 3em;
+                  font-size: clamp(tokens.$fs-s, 1.2vw, tokens.$fs-m);
                 }
 
-                p {
-                  display: -webkit-box;
-                  overflow: hidden;
-                  -webkit-line-clamp: 6;
-                  -webkit-box-orient: vertical;
-                  color: tokens.$c-copy;
-                  font-size: tokens.$fs-xs;
+                ul {
+                  margin: 0;
+                  padding: 0;
+
+                  li {
+                    margin-left: 0.5em;
+
+                    &:last-child {
+                      margin-bottom: 0;
+                    }
+                  }
+                }
+
+                .modalityList {
+                  display: flex;
+                  // gap: 0.5em;
+
+                  .modalityCard {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    font-size: 0.85em;
+                    padding: 0.2em 0.8em;
+                    border-right: 1px solid tokens.$c-gray-500;
+
+                    &:last-child {
+                      border-right: none;
+                    }
+
+                    svg {
+                      width: 2em;
+                      height: 2em;
+                    }
+                  }
+                }
+
+                @media (min-width: tokens.$mq-800) {
+                  &:first-child {
+                    width: clamp(15rem, 25vw, 25rem);
+                    flex-shrink: 0;
+                  }
+
+                  .tableCellHead {
+                    display: none;
+                  }
                 }
               }
 
-              .button {
-                flex-shrink: 0;
-
-                @media (min-width: tokens.$mq-800) {
-                  margin-top: 1em;
-                }
+              @media (min-width: tokens.$mq-800) {
+                flex-direction: row;
               }
             }
           }
         }
+        // .programsSubtitle {
+        //   display: flex;
+        //   gap: 1rem;
+        //   align-items: center;
+        //   padding: 2rem 2rem 0 2rem;
+        //   margin-bottom: 0;
+
+        //   &::after {
+        //     content: '';
+        //     display: block;
+        //     width: 100%;
+        //     height: 1px;
+        //     background: tokens.$c-gray-400;
+        //   }
+        // }
+
+        // .programsList {
+        //   display: flex;
+        //   flex-direction: column;
+        //   margin: 0;
+        //   padding: 2rem;
+        //   gap: 1rem;
+
+        //   li {
+        //     .resultProgramCard {
+        //       border: 3px solid tokens.$c-gray-300;
+        //       padding: 1rem;
+        //       flex: 1;
+        //       display: flex;
+        //       flex-direction: column;
+        //       align-items: flex-start;
+        //       gap: clamp(1rem, 2vw, 2rem);
+
+        //       @media (min-width: tokens.$mq-800) {
+        //         flex-direction: row;
+        //       }
+
+        //       .programContent {
+        //         h3 {
+        //           border-bottom: 1px solid tokens.$c-gray-400;
+        //           padding-bottom: 0.5em;
+        //           font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-m);
+        //           margin-bottom: 1em;
+        //           // min-height: 3em;
+        //         }
+
+        //         p {
+        //           display: -webkit-box;
+        //           overflow: hidden;
+        //           -webkit-line-clamp: 6;
+        //           -webkit-box-orient: vertical;
+        //           color: tokens.$c-copy;
+        //           font-size: tokens.$fs-xs;
+        //         }
+        //       }
+
+        //       .button {
+        //         flex-shrink: 0;
+
+        //         @media (min-width: tokens.$mq-800) {
+        //           margin-top: 1em;
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
 
         &::after {
-          content: '';
+          content: "";
           display: block;
           width: 100%;
           height: clamp(2rem, 4vw, 4rem);
-          background: url('../../../assets/lines-texture.png');
+          background: url("../../../assets/lines-texture.png");
         }
       }
     }

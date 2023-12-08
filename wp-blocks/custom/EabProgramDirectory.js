@@ -44,11 +44,29 @@ EabProgramDirectory.query = gql`
             uri
             title
             excerpt
+            concentrationEnabled
+            link
             ancestors {
               nodes {
                 id
+                slug
               }
             }
+            children {
+            edges {
+              node {
+                slug
+              }
+            }
+          }
+            programFields {
+            program {
+              location
+              degreeTitle
+              degree
+              fieldGroupName
+            }
+          }
           }
         }
       }
