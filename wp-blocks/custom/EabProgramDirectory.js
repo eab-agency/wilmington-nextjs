@@ -53,20 +53,20 @@ EabProgramDirectory.query = gql`
               }
             }
             children {
-            edges {
-              node {
-                slug
+              edges {
+                node {
+                  slug
+                }
               }
             }
-          }
             programFields {
-            program {
-              location
-              degreeTitle
-              degree
-              fieldGroupName
+              program {
+                location
+                degreeTitle
+                degree
+                fieldGroupName
+              }
             }
-          }
           }
         }
       }
