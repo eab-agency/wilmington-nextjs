@@ -74,11 +74,11 @@ const DepartmentSingle = ({ department }) => {
                     <h3>{program.title}</h3>
                   </Link></td>
                   <td>
-                    <span aria-hidden="true" className="tableCellHead">Concentrations</span>
+                    <span aria-hidden="true" className="tableCellHead">Concentrations:</span>
                     {getChildProgramNamesList(program)}
                   </td>
                   <td>
-                    <span aria-hidden="true" className="tableCellHead">Modality</span>
+                    <span aria-hidden="true" className="tableCellHead">Modality:</span>
                     {getParentProgramLocation(program)}
                   </td>
                 </tr>
