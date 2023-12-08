@@ -164,6 +164,7 @@ TaxonomyDepartment.query = gql`
             nodes {
               uri
               id
+              slug
             }
           }
           }

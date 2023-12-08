@@ -64,6 +64,7 @@ AcfFeaturedDept.query = gql`
             ancestors {
               nodes {
                 id
+                slug
               }
             }
             ...FeaturedImageFragment
