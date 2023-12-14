@@ -45,6 +45,15 @@ EabProgramDirectory.query = gql`
             title
             excerpt
             concentrationEnabled
+            degreeTitle
+            degreeTypes {
+              edges {
+                node {
+                  name
+                }
+              }
+            }
+            modalities
             link
             ancestors {
               nodes {

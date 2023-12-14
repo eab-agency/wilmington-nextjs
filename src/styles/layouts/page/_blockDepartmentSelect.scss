@@ -1,6 +1,6 @@
-@use 'sass:color';
-@use 'tokens';
-@use 'utilities/mixins';
+@use "sass:color";
+@use "tokens";
+@use "utilities/mixins";
 
 .departmentSelectorSection {
   gap: 2em;
@@ -9,7 +9,7 @@
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     height: 100%;
     width: 1px;
@@ -29,7 +29,7 @@
     background: tokens.$c-gray-200;
     position: relative;
     gap: 2rem;
-    @include mixins.extendedBackground('after', tokens.$c-gray-200);
+    @include mixins.extendedBackground("after", tokens.$c-gray-200);
 
     & > * {
       position: relative;
@@ -56,7 +56,7 @@
 
   .departmentResults {
     .departmentsContainer {
-      @include mixins.sectionPadding('inline');
+      @include mixins.sectionPadding("inline");
       display: flex;
       flex-direction: column;
       gap: clamp(1rem, 4vw, 4rem);
@@ -89,7 +89,7 @@
           position: relative;
 
           &::after {
-            content: '';
+            content: "";
             display: block;
             width: 100vw;
             height: 100%;
@@ -106,30 +106,19 @@
             z-index: 10;
             background: tokens.$c-gray-300;
 
-            // &::before {
-            //   content: "";
-            //   display: block;
-            //   width: 100vw;
-            //   height: 100%;
-            //   background: tokens.$c-gray-300;
-            //   position: absolute;
-            //   top: 0;
-            //   left: 50%;
-            //   transform: translateX(-50%);
-            // }
-
             tr {
               display: flex;
               flex-direction: column;
 
               th {
                 width: 100%;
-                font-size: clamp(tokens.$fs-m, 1.5vw, tokens.$fs-l);
+                font-size: clamp(tokens.$fs-xs, 1vw, tokens.$fs-s);
                 font-weight: 400;
                 border-right: 1px solid tokens.$c-gray-500;
                 padding: tokens.$p-m;
                 vertical-align: baseline;
                 margin: 0;
+                text-transform: uppercase;
 
                 h2 {
                   font-size: clamp(tokens.$fs-m, 1.5vw, tokens.$fs-l);
@@ -155,7 +144,8 @@
 
                 @media (min-width: tokens.$mq-800) {
                   &:first-child {
-                    width: clamp(15rem, 25vw, 25rem);
+                    // width: clamp(15rem, 25vw, 25rem);
+                    width: 70%;
                     flex-shrink: 0;
                   }
                   h2 {
@@ -204,8 +194,11 @@
                   }
                 }
 
-                h3 {
-                  font-size: clamp(tokens.$fs-s, 1.2vw, tokens.$fs-m);
+                .tableProgramTitle {
+                  h3 {
+                    font-size: clamp(tokens.$fs-m, 1vw, tokens.$fs-m);
+                    margin: 0;
+                  }
                 }
 
                 ul {
@@ -252,7 +245,8 @@
 
                 @media (min-width: tokens.$mq-800) {
                   &:first-child {
-                    width: clamp(15rem, 25vw, 25rem);
+                    // width: clamp(15rem, 25vw, 25rem);
+                    width: 70%;
                     flex-shrink: 0;
                   }
 
