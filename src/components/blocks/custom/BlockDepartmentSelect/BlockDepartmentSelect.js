@@ -16,16 +16,16 @@ const DepartmentSingle = ({ department }) => {
   // get programFields degreeType and group programs by degreeType
   const getProgramDegreeType = (program) => {
     // const degreeType = program.programFields.program.degree
-    let degreeTypeName = "";
+    let degreeTypeName = ''
     if (
       program.degreeTypes &&
       program.degreeTypes.edges &&
       program.degreeTypes.edges.length > 0
     ) {
-      degreeTypeName = program.degreeTypes.edges[0].node.name;
+      degreeTypeName = program.degreeTypes.edges[0].node.name
     }
 
-    return degreeTypeName;
+    return degreeTypeName
   }
 
   // filter programs that are not child program pages
@@ -35,18 +35,17 @@ const DepartmentSingle = ({ department }) => {
   const parentPrograms = programs.nodes
 
   const groupedPrograms = parentPrograms.reduce((acc, program) => {
-    const degreeType = getProgramDegreeType(program);
+    const degreeType = getProgramDegreeType(program)
 
     //return all programs that have the same degree type
     if (!acc[degreeType]) {
-      acc[degreeType] = [];
+      acc[degreeType] = []
     }
 
-    acc[degreeType].push(program);
+    acc[degreeType].push(program)
 
-    return acc;
-  }, {});
-
+    return acc
+  }, {})
 
   // console.log(groupedPrograms);
 
@@ -120,7 +119,6 @@ const DepartmentSingle = ({ department }) => {
         <tbody>
           {Object.keys(groupedPrograms).map((degreeType) => (
             <div key={degreeType}>
-
               {groupedPrograms[degreeType].map((program) => (
                 <tr key={program.uri}>
                   <td>
@@ -140,7 +138,6 @@ const DepartmentSingle = ({ department }) => {
               ))}
             </div>
           ))}
-
         </tbody>
       </table>
     </section>
