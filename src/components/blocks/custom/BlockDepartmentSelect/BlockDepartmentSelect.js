@@ -1,9 +1,6 @@
 'use client'
 
-// import Image from '@/components/atoms/Image'
 import Link from '@/components/common/Link'
-// import ResultProgramCard from '@/components/molecules/ResultProgramCard'
-// import { className } from 'classnames/bind'
 import React, { useEffect, useState } from 'react'
 import { FaLaptop, FaSchool } from 'react-icons/fa'
 
@@ -16,43 +13,92 @@ const DepartmentSingle = ({ department }) => {
     departmentFields: { deptImage }
   } = department
 
+  // get programFields degreeType and group programs by degreeType
+  const getProgramDegreeType = (program) => {
+    // const degreeType = program.programFields.program.degree
+    let degreeTypeName = "";
+    if (
+      program.degreeTypes &&
+      program.degreeTypes.edges &&
+      program.degreeTypes.edges.length > 0
+    ) {
+      degreeTypeName = program.degreeTypes.edges[0].node.name;
+    }
+
+    return degreeTypeName;
+  }
+
   // filter programs that are not child program pages
-  const parentPrograms = programs.nodes.filter(
-    (program) => program.ancestors === null
-  )
+  // const parentPrograms = programs.nodes.filter(
+  //   (program) => program.ancestors === null
+  // )
+  const parentPrograms = programs.nodes
+
+  const groupedPrograms = parentPrograms.reduce((acc, program) => {
+    const degreeType = getProgramDegreeType(program);
+
+    //return all programs that have the same degree type
+    if (!acc[degreeType]) {
+      acc[degreeType] = [];
+    }
+
+    acc[degreeType].push(program);
+
+    return acc;
+  }, {});
+
+
+  // console.log(groupedPrograms);
 
   // filter child programs with concentrationEnabled set to true
-  const childPrograms = programs.nodes.filter(
-    (program) => program.ancestors !== null && program.concentrationEnabled
-  )
+  // const childPrograms = programs.nodes.filter(
+  //   (program) => program.ancestors !== null && program.concentrationEnabled
+  // )
 
   // get childProgram names for a given parentProgram
-  const getChildProgramNamesList = (parentProgram) => {
-    const childNames = childPrograms
-      .filter((childProgram) =>
-        childProgram.ancestors.nodes.some(
-          (ancestor) => ancestor.slug === parentProgram.slug
-        )
-      )
-      .map((childProgram) => (
-        <li key={childProgram.uri}>{childProgram.title}</li>
-      ))
+  // const getChildProgramNamesList = (parentProgram) => {
+  //   const childNames = childPrograms
+  //     .filter((childProgram) =>
+  //       childProgram.ancestors.nodes.some(
+  //         (ancestor) => ancestor.slug === parentProgram.slug
+  //       )
+  //     )
+  //     .map((childProgram) => (
+  //       <li key={childProgram.uri}>{childProgram.title}</li>
+  //     ))
 
-    return childNames.length > 0 ? <ul>{childNames}</ul> : null
-  }
+  //   return childNames.length > 0 ? <ul>{childNames}</ul> : null
+  // }
 
   // get parentProgram programFields location
   const getParentProgramLocation = (parentProgram) => {
-    const locations = parentProgram.programFields.program.location
+    // const locations = parentProgram.programFields.program.location
+
+    // return (
+    //   <div className="modalityList">
+    //     {locations && locations.includes('wilmington') && (
+    //       <div className="modalityCard">
+    //         <FaSchool /> On Campus
+    //       </div>
+    //     )}
+    //     {locations && locations.includes('online') && (
+    //       <div className="modalityCard">
+    //         <FaLaptop /> Online
+    //       </div>
+    //     )}
+    //   </div>
+    // )
+
+    const modalities = parentProgram.modalities
 
     return (
       <div className="modalityList">
-        {locations && locations.includes('wilmington') && (
+        {modalities && modalities.includes('On Campus') && (
           <div className="modalityCard">
             <FaSchool /> On Campus
           </div>
         )}
-        {locations && locations.includes('online') && (
+        {modalities && modalities.includes('Online') && (
           <div className="modalityCard">
             <FaLaptop /> Online
           </div>
@@ -63,32 +109,26 @@ const DepartmentSingle = ({ department }) => {
 
   return (
     <section key={name} className="department">
-      {parentPrograms.length > 0 && (
-        <>
-          <table className="programTable">
-            <thead>
-              <tr>
-                <th>
-                  <h2>{name} Degrees</h2>
-                </th>
-                <th>Concentrations</th>
-                <th>Modality</th>
-              </tr>
-            </thead>
-            <tbody>
-              {parentPrograms.map((program) => (
+      <h2>{name} Degrees</h2>
+      <table className="programTable">
+        <thead>
+          <tr>
+            <th>Degrees</th>
+            <th>Modality</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.keys(groupedPrograms).map((degreeType) => (
+            <div key={degreeType}>
+
+              {groupedPrograms[degreeType].map((program) => (
                 <tr key={program.uri}>
                   <td>
                     {' '}
-                    <Link href={program.uri}>
-                      <h3>{program.title}</h3>
+                    <Link href={program.uri} className="tableProgramTitle">
+                      <h3>{program.title} </h3>
                     </Link>
-                  </td>
-                  <td>
-                    <span aria-hidden="true" className="tableCellHead">
-                      Concentrations:
-                    </span>
-                    {getChildProgramNamesList(program)}
+                    <small>{degreeType}</small>
                   </td>
                   <td>
                     <span aria-hidden="true" className="tableCellHead">
@@ -98,10 +138,11 @@ const DepartmentSingle = ({ department }) => {
                   </td>
                 </tr>
               ))}
-            </tbody>
-          </table>
-        </>
-      )}
+            </div>
+          ))}
+
+        </tbody>
+      </table>
     </section>
   )
 }
