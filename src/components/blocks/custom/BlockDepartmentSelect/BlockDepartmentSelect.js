@@ -47,46 +47,8 @@ const DepartmentSingle = ({ department }) => {
     return acc
   }, {})
 
-  // console.log(groupedPrograms);
-
-  // filter child programs with concentrationEnabled set to true
-  // const childPrograms = programs.nodes.filter(
-  //   (program) => program.ancestors !== null && program.concentrationEnabled
-  // )
-
-  // get childProgram names for a given parentProgram
-  // const getChildProgramNamesList = (parentProgram) => {
-  //   const childNames = childPrograms
-  //     .filter((childProgram) =>
-  //       childProgram.ancestors.nodes.some(
-  //         (ancestor) => ancestor.slug === parentProgram.slug
-  //       )
-  //     )
-  //     .map((childProgram) => (
-  //       <li key={childProgram.uri}>{childProgram.title}</li>
-  //     ))
-
-  //   return childNames.length > 0 ? <ul>{childNames}</ul> : null
-  // }
-
   // get parentProgram programFields location
   const getParentProgramLocation = (parentProgram) => {
-    // const locations = parentProgram.programFields.program.location
-
-    // return (
-    //   <div className="modalityList">
-    //     {locations && locations.includes('wilmington') && (
-    //       <div className="modalityCard">
-    //         <FaSchool /> On Campus
-    //       </div>
-    //     )}
-    //     {locations && locations.includes('online') && (
-    //       <div className="modalityCard">
-    //         <FaLaptop /> Online
-    //       </div>
-    //     )}
-    //   </div>
-    // )
 
     const modalities = parentProgram.modalities
 
