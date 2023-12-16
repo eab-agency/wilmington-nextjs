@@ -8,7 +8,7 @@ interface ModalityIconsProps {
 const ModalityIcons: React.FC<ModalityIconsProps> = ({ modalities }) => {
   const modalityIcons: { [key: string]: React.ReactNode } = {
     'On Campus': <FaSchool />,
-    Online: <FaLaptop />
+    'Online': <FaLaptop />
   }
 
   return (
@@ -17,6 +17,7 @@ const ModalityIcons: React.FC<ModalityIconsProps> = ({ modalities }) => {
         <span key={index} className="modalityCard">
           {modalityIcons[modality]}
           {index !== modalities.length - 1 && ', '}
+          <span className="modalityName">{modality}</span>
         </span>
       ))}
     </div>
