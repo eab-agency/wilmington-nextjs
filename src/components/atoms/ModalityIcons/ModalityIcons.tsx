@@ -8,7 +8,7 @@ interface ModalityIconsProps {
 const ModalityIcons: React.FC<ModalityIconsProps> = ({ modalities }) => {
   const modalityIcons: { [key: string]: React.ReactNode } = {
     'On Campus': <FaSchool />,
-    'Online': <FaLaptop />
+    Online: <FaLaptop />
   }
 
   return (
