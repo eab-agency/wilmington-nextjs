@@ -1,2 +1,1 @@
-export { default } from './ModalityIcons';
-
+export { default } from './ModalityIcons'

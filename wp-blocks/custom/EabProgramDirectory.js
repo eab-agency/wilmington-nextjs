@@ -44,49 +44,48 @@ EabProgramDirectory.query = gql`
             }
           }
         }
-
       }
     }
     programs(where: { orderby: { field: TITLE, order: ASC } }) {
-          nodes {
-            slug
-            uri
-            title
-            excerpt
-            concentrationEnabled
-            degreeTitle
-            degreeTypes {
-              edges {
-                node {
-                  name
-                }
-              }
-            }
-            modalities
-            link
-            ancestors {
-              nodes {
-                id
-                slug
-              }
-            }
-            children {
-              edges {
-                node {
-                  slug
-                }
-              }
-            }
-            programFields {
-              program {
-                location
-                degreeTitle
-                degree
-                fieldGroupName
-              }
+      nodes {
+        slug
+        uri
+        title
+        excerpt
+        concentrationEnabled
+        degreeTitle
+        degreeTypes {
+          edges {
+            node {
+              name
             }
           }
         }
+        modalities
+        link
+        ancestors {
+          nodes {
+            id
+            slug
+          }
+        }
+        children {
+          edges {
+            node {
+              slug
+            }
+          }
+        }
+        programFields {
+          program {
+            location
+            degreeTitle
+            degree
+            fieldGroupName
+          }
+        }
+      }
+    }
   }
 `
 
