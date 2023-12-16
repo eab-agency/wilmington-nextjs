@@ -49,7 +49,6 @@ const DepartmentSingle = ({ department }) => {
 
   // get parentProgram programFields location
   const getParentProgramLocation = (parentProgram) => {
-
     const modalities = parentProgram.modalities
 
     return (
