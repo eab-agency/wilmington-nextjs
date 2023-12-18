@@ -80,37 +80,37 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
 
       {programs.filter((program: any) => !program.degreeTypes.edges.length)
         .length > 0 && (
-        <>
-          <h3 className="degreeTypeName">No Degree Type</h3>
-          <table className="programTable" key="NoDegreeType">
-            <thead>
-              <tr>
-                <th>Degrees</th>
-                <th>Modality</th>
-              </tr>
-            </thead>
-            <tbody>
-              {programs
-                .filter((program: any) => !program.degreeTypes.edges.length)
-                .map((program: any) => (
-                  <tr key={program.slug}>
-                    <td>
-                      <Link href={program.uri} className="tableProgramTitle">
-                        <h4>{program.title} </h4>
-                      </Link>
-                    </td>
-                    <td>
-                      <span aria-hidden="true" className="tableCellHead">
-                        Modality:
-                      </span>
-                      <ModalityIcons modalities={program.modalities} />
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </>
-      )}
+          <>
+            <h3 className="degreeTypeName">No Degree type</h3>
+            <table className="programTable" key="NoDegreeType">
+              <thead>
+                <tr>
+                  <th>Degrees</th>
+                  <th>Modality</th>
+                </tr>
+              </thead>
+              <tbody>
+                {programs
+                  .filter((program: any) => !program.degreeTypes.edges.length)
+                  .map((program: any) => (
+                    <tr key={program.slug}>
+                      <td>
+                        <Link href={program.uri} className="tableProgramTitle">
+                          <h4>{program.title} </h4>
+                        </Link>
+                      </td>
+                      <td>
+                        <span aria-hidden="true" className="tableCellHead">
+                          Modality:
+                        </span>
+                        <ModalityIcons modalities={program.modalities} />
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </>
+        )}
     </div>
   )
 }
