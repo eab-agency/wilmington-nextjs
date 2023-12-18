@@ -1,5 +1,6 @@
 import Preloader from '@/components/atoms/Preloader'
 import BlockDepartmentSelect from '@/components/blocks/custom/BlockDepartmentSelect'
+import ProgramDirectory from '@/components/program/ProgramDirectory'
 import { gql, useQuery } from '@apollo/client'
 
 const EabProgramDirectory = () => {
@@ -12,7 +13,12 @@ const EabProgramDirectory = () => {
     return <p>Error: {error.message}</p>
   }
 
-  return <BlockDepartmentSelect programDepartments={data?.departments.nodes} />
+  return (
+    <>
+      <ProgramDirectory programs={data?.programs.nodes} />
+      {/* <BlockDepartmentSelect programDepartments={data?.departments.nodes} /> */}
+    </>
+  )
 }
 
 export default EabProgramDirectory
@@ -38,35 +44,44 @@ EabProgramDirectory.query = gql`
             }
           }
         }
-        programs(where: { orderby: { field: TITLE, order: ASC } }) {
+      }
+    }
+    programs(where: { orderby: { field: TITLE, order: ASC } }) {
+      nodes {
+        slug
+        uri
+        title
+        excerpt
+        concentrationEnabled
+        degreeTitle
+        degreeTypes {
+          edges {
+            node {
+              name
+            }
+          }
+        }
+        modalities
+        link
+        ancestors {
           nodes {
+            id
             slug
-            uri
-            title
-            excerpt
-            concentrationEnabled
-            link
-            ancestors {
-              nodes {
-                id
-                slug
-              }
+          }
+        }
+        children {
+          edges {
+            node {
+              slug
             }
-            children {
-              edges {
-                node {
-                  slug
-                }
-              }
-            }
-            programFields {
-              program {
-                location
-                degreeTitle
-                degree
-                fieldGroupName
-              }
-            }
+          }
+        }
+        programFields {
+          program {
+            location
+            degreeTitle
+            degree
+            fieldGroupName
           }
         }
       }

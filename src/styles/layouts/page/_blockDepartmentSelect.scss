@@ -104,7 +104,7 @@
           thead {
             position: relative;
             z-index: 10;
-            background: tokens.$c-gray-200;
+            background: tokens.$c-gray-300;
 
             tr {
               display: flex;
@@ -112,12 +112,13 @@
 
               th {
                 width: 100%;
-                font-size: clamp(tokens.$fs-m, 1.5vw, tokens.$fs-l);
+                font-size: clamp(tokens.$fs-xs, 1vw, tokens.$fs-s);
                 font-weight: 400;
                 border-right: 1px solid tokens.$c-gray-500;
                 padding: tokens.$p-m;
                 vertical-align: baseline;
                 margin: 0;
+                text-transform: uppercase;
 
                 h2 {
                   font-size: clamp(tokens.$fs-m, 1.5vw, tokens.$fs-l);
@@ -143,7 +144,8 @@
 
                 @media (min-width: tokens.$mq-800) {
                   &:first-child {
-                    width: clamp(15rem, 25vw, 25rem);
+                    // width: clamp(15rem, 25vw, 25rem);
+                    width: 70%;
                     flex-shrink: 0;
                   }
                   h2 {
@@ -192,8 +194,11 @@
                   }
                 }
 
-                h3 {
-                  font-size: clamp(tokens.$fs-s, 1.2vw, tokens.$fs-m);
+                .tableProgramTitle {
+                  h3 {
+                    font-size: clamp(tokens.$fs-m, 1vw, tokens.$fs-m);
+                    margin: 0;
+                  }
                 }
 
                 ul {
@@ -240,7 +245,8 @@
 
                 @media (min-width: tokens.$mq-800) {
                   &:first-child {
-                    width: clamp(15rem, 25vw, 25rem);
+                    // width: clamp(15rem, 25vw, 25rem);
+                    width: 70%;
                     flex-shrink: 0;
                   }
 
@@ -256,80 +262,220 @@
             }
           }
         }
-        // .programsSubtitle {
-        //   display: flex;
-        //   gap: 1rem;
-        //   align-items: center;
-        //   padding: 2rem 2rem 0 2rem;
-        //   margin-bottom: 0;
+      }
+    }
+  }
+}
 
-        //   &::after {
-        //     content: '';
-        //     display: block;
-        //     width: 100%;
-        //     height: 1px;
-        //     background: tokens.$c-gray-400;
-        //   }
-        // }
+.programDirectory {
+  padding-block: clamp(1.5rem, 3vw, 3rem);
 
-        // .programsList {
-        //   display: flex;
-        //   flex-direction: column;
-        //   margin: 0;
-        //   padding: 2rem;
-        //   gap: 1rem;
+  h2 {
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid tokens.$c-gray-400;
+  }
 
-        //   li {
-        //     .resultProgramCard {
-        //       border: 3px solid tokens.$c-gray-300;
-        //       padding: 1rem;
-        //       flex: 1;
-        //       display: flex;
-        //       flex-direction: column;
-        //       align-items: flex-start;
-        //       gap: clamp(1rem, 2vw, 2rem);
+  .degreeTypeName {
+    border-left: 3px solid tokens.$c-limeGreen-400;
+    padding-left: 0.5em;
+  }
+}
 
-        //       @media (min-width: tokens.$mq-800) {
-        //         flex-direction: row;
-        //       }
+.programTableContainer {
+  display: block;
+}
+.programTable {
+  display: flex;
+  flex-direction: column;
+  background: tokens.$c-gray-200;
+  position: relative;
 
-        //       .programContent {
-        //         h3 {
-        //           border-bottom: 1px solid tokens.$c-gray-400;
-        //           padding-bottom: 0.5em;
-        //           font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-m);
-        //           margin-bottom: 1em;
-        //           // min-height: 3em;
-        //         }
+  &::after {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100%;
+    background: tokens.$c-gray-200; // url("../../../assets/lines-texture.png");
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-        //         p {
-        //           display: -webkit-box;
-        //           overflow: hidden;
-        //           -webkit-line-clamp: 6;
-        //           -webkit-box-orient: vertical;
-        //           color: tokens.$c-copy;
-        //           font-size: tokens.$fs-xs;
-        //         }
-        //       }
+  thead {
+    position: relative;
+    z-index: 10;
+    background: tokens.$c-gray-300;
 
-        //       .button {
-        //         flex-shrink: 0;
+    tr {
+      display: flex;
+      flex-direction: column;
 
-        //         @media (min-width: tokens.$mq-800) {
-        //           margin-top: 1em;
-        //         }
-        //       }
-        //     }
-        //   }
-        // }
+      th {
+        width: 100%;
+        font-size: clamp(tokens.$fs-2xs, 0.8vw, tokens.$fs-s);
+        font-weight: 400;
+        border-right: 1px solid tokens.$c-gray-500;
+        padding-block: tokens.$p-s;
+        padding-inline: tokens.$p-m;
+        vertical-align: baseline;
+        margin: 0;
+        text-transform: uppercase;
 
-        // &::after {
-        //   content: "";
-        //   display: block;
-        //   width: 100%;
-        //   height: clamp(2rem, 4vw, 4rem);
-        //   background: url("../../../assets/lines-texture.png");
-        // }
+        // hide all except the first one
+        &:not(:first-child) {
+          position: absolute;
+          left: -999em;
+          @media (min-width: tokens.$mq-800) {
+            position: relative;
+            left: auto;
+          }
+        }
+
+        &:last-child {
+          border-right: none;
+        }
+
+        @media (min-width: tokens.$mq-800) {
+          &:first-child {
+            width: 70%;
+            flex-shrink: 0;
+          }
+        }
+      }
+
+      @media (min-width: tokens.$mq-800) {
+        flex-direction: row;
+      }
+    }
+  }
+
+  tbody {
+    position: relative;
+    z-index: 10;
+    background: tokens.$c-gray-200;
+
+    tr {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2em;
+
+      @media (min-width: tokens.$mq-800) {
+        border-top: 1px solid tokens.$c-gray-500;
+        margin: 0;
+      }
+
+      &.parentProgram {
+        border-top: 0.5em solid tokens.$c-gray-400;
+
+        .tableProgramTitle {
+          h4 {
+            font-weight: 900;
+            font-size: calc(clamp(tokens.$fs-s, 1vw, tokens.$fs-m) * 1.1);
+          }
+        }
+
+        td {
+          &:first-child {
+            padding-top: 1em;
+          }
+        }
+      }
+
+      td {
+        width: 100%;
+        padding: clamp(tokens.$p-xs, 1vw, tokens.$p-m);
+        border-right: 1px solid tokens.$c-gray-500;
+        border-bottom: 1px dashed tokens.$c-gray-500;
+
+        &:last-child {
+          border-bottom-style: solid;
+        }
+
+        @media (min-width: tokens.$mq-800) {
+          border-bottom: none;
+
+          &:last-child {
+            border-right: none;
+            border-bottom: none;
+          }
+        }
+
+        .tableProgramTitle {
+          h4 {
+            font-size: clamp(tokens.$fs-s, 1vw, tokens.$fs-m);
+            margin: 0;
+            font-weight: 300;
+          }
+        }
+
+        ul {
+          margin: 0;
+          padding: 0;
+
+          li {
+            margin-left: 0.5em;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        .modalityList {
+          display: flex;
+
+          .modalityCard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.85em;
+            line-height: 0;
+            padding: 0.2em 0.8em;
+            border-right: 1px solid tokens.$c-gray-500;
+
+            &:last-child {
+              border-right: none;
+            }
+
+            svg {
+              width: 2em;
+              height: 2em;
+              fill: tokens.$c-darkGreen-700;
+            }
+
+            .modalityName {
+              font-size: 0.65em;
+              font-weight: 700;
+              text-transform: uppercase;
+              display: block;
+              padding-block: 0.5em;
+            }
+          }
+        }
+
+        .tableCellHead {
+          display: block;
+          margin-bottom: 0.2em;
+          font-weight: 700;
+          font-size: 0.85em;
+        }
+
+        @media (min-width: tokens.$mq-800) {
+          &:first-child {
+            width: 70%;
+            flex-shrink: 0;
+          }
+
+          .tableCellHead {
+            display: none;
+          }
+        }
+      }
+
+      @media (min-width: tokens.$mq-800) {
+        flex-direction: row;
       }
     }
   }

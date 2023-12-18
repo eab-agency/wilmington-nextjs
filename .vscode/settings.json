@@ -12,7 +12,7 @@
   // Enable format with prettier on save, configure import organizing.
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.sortImports": true
+    "source.sortImports": "explicit"
   },
   "[javascriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
