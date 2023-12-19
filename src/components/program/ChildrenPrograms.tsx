@@ -4,7 +4,7 @@ import React from 'react'
 
 interface ChildrenProgramsProps {
   programs: any[]
-  parentSlug: any,
+  parentSlug: any
   parentDegreeType: any
 }
 
@@ -26,11 +26,10 @@ export default function ChildrenPrograms({
     }
   )
 
-  const programsAncestorSameDegreeTypeFiltered = programsWithAncestorFiltered.filter(
-    (program) => {
+  const programsAncestorSameDegreeTypeFiltered =
+    programsWithAncestorFiltered.filter((program) => {
       return program.degreeTypes.edges[0].node.name === parentDegreeType
-    }
-  )
+    })
 
   // if concentrationEnabled is true
   // don't show the program, else show the program
@@ -41,8 +40,6 @@ export default function ChildrenPrograms({
   //   }
   // )
 
-
-
   return (
     <>
       {programsAncestorSameDegreeTypeFiltered.map((program: any) => {
@@ -51,7 +48,10 @@ export default function ChildrenPrograms({
             <tr className="concentration">
               <td>
                 <Link href={program.uri} className="tableProgramTitle">
-                  <h4>{program.title}  {program.concentrationEnabled ? "concentrated" : "CHILD"}</h4>
+                  <h4>
+                    {program.title}{' '}
+                    {program.concentrationEnabled ? 'concentrated' : 'CHILD'}
+                  </h4>
                 </Link>
               </td>
               <td>

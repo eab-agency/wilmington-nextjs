@@ -15,7 +15,8 @@ const EabProgramDirectory = () => {
 
   return (
     <>
-      <ProgramDirectory programs={data?.programs.nodes} />dfadsf
+      <ProgramDirectory programs={data?.programs.nodes} />
+      dfadsf
       {/* <BlockDepartmentSelect programDepartments={data?.departments.nodes} /> */}
     </>
   )

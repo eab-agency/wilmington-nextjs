@@ -21,8 +21,6 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
       degreeTypeName = program.degreeTypes.edges[0].node.name
     }
 
-    console.log('degreeTypeName', degreeTypeName)
-
     return degreeTypeName
   }
 
@@ -42,8 +40,6 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
       }
       acc[degreeType].push(program)
     }
-
-
 
     return acc
   }, {})
@@ -93,7 +89,7 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
         </React.Fragment>
       ))}
 
-      {programs.filter((program: any) => !program.degreeTypes.edges.length)
+      {/* {programs.filter((program: any) => !program.degreeTypes.edges.length)
         .length > 0 && (
           <>
             <h3 className="degreeTypeName">No Degree type</h3>
@@ -125,7 +121,7 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
               </tbody>
             </table>
           </>
-        )}
+        )} */}
     </div>
   )
 }
