@@ -28,13 +28,12 @@ export default function ChildrenPrograms({
 
   const programsAncestorSameDegreeTypeFiltered =
     programsWithAncestorFiltered.filter((program) => {
-      const edges = program.degreeTypes?.edges;
+      const edges = program.degreeTypes?.edges
       if (edges && edges.length > 0) {
-        return edges[0].node.name === parentDegreeType;
+        return edges[0].node.name === parentDegreeType
       }
-      return false;
-    });
-
+      return false
+    })
 
   return (
     <>

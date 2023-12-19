@@ -47,32 +47,36 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
   programs.forEach((program) => {
     if (program.degreeTypes?.edges?.length > 0) {
       if (!program.degreeTypes.edges[0].node.degreeTypeOrder) {
-        program.degreeTypes.edges[0].node.degreeTypeOrder = 100;
+        program.degreeTypes.edges[0].node.degreeTypeOrder = 100
       }
     }
-  });
+  })
 
   // sort programs within each degree type group by degreeTypeOrder
   Object.keys(groupedPrograms).forEach((degreeType) => {
     groupedPrograms[degreeType].sort((a: any, b: any) => {
-      const orderA = a.degreeTypes.edges[0]?.node.degreeTypeOrder || 100;
-      const orderB = b.degreeTypes.edges[0]?.node.degreeTypeOrder || 100;
-      return orderA - orderB;
-    });
-  });
+      const orderA = a.degreeTypes.edges[0]?.node.degreeTypeOrder || 100
+      const orderB = b.degreeTypes.edges[0]?.node.degreeTypeOrder || 100
+      return orderA - orderB
+    })
+  })
 
   // sort degree types based on minimum degreeTypeOrder
   const sortedDegreeTypes = Object.keys(groupedPrograms).sort((a, b) => {
     const minOrderA = Math.min(
-      ...groupedPrograms[a].map((program: any) => program.degreeTypes.edges[0]?.node.degreeTypeOrder || 100)
-    );
+      ...groupedPrograms[a].map(
+        (program: any) =>
+          program.degreeTypes.edges[0]?.node.degreeTypeOrder || 100
+      )
+    )
     const minOrderB = Math.min(
-      ...groupedPrograms[b].map((program: any) => program.degreeTypes.edges[0]?.node.degreeTypeOrder || 100)
-    );
-    return minOrderA - minOrderB;
-  });
-
-
+      ...groupedPrograms[b].map(
+        (program: any) =>
+          program.degreeTypes.edges[0]?.node.degreeTypeOrder || 100
+      )
+    )
+    return minOrderA - minOrderB
+  })
 
   return (
     <div className="programDirectory">
@@ -115,7 +119,6 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
           </section>
         </React.Fragment>
       ))}
-
     </div>
   )
 }
