@@ -16,8 +16,6 @@ const EabProgramDirectory = () => {
   return (
     <>
       <ProgramDirectory programs={data?.programs.nodes} />
-      dfadsf
-      {/* <BlockDepartmentSelect programDepartments={data?.departments.nodes} /> */}
     </>
   )
 }
@@ -27,27 +25,7 @@ export default EabProgramDirectory
 // query to get the faq data
 EabProgramDirectory.query = gql`
   query getAllDepartments {
-    departments(where: { order: ASC }) {
-      nodes {
-        databaseId
-        slug
-        uri
-        name
-        description
-        departmentFields {
-          deptImage {
-            altText
-            caption
-            sourceUrl
-            mediaDetails {
-              height
-              width
-            }
-          }
-        }
-      }
-    }
-    programs(where: { orderby: { field: TITLE, order: ASC } }) {
+    programs(first: 200, where: { orderby: { field: TITLE, order: ASC } }) {
       nodes {
         slug
         uri
@@ -58,6 +36,7 @@ EabProgramDirectory.query = gql`
         degreeTypes {
           edges {
             node {
+              degreeTypeOrder
               name
             }
           }
