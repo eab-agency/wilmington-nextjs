@@ -30,15 +30,17 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
     //return all programs that have the same degree type and don't have a parent
     // also return all programs that have a parent but concentrationEnabled is false
 
-    if (
-      !program.ancestors?.nodes.length ||
-      (program.ancestors?.nodes.length &&
-        program.concentrationEnabled === false)
-    ) {
-      if (!acc[degreeType]) {
-        acc[degreeType] = []
+    if (degreeType) {
+      if (
+        !program.ancestors?.nodes.length ||
+        (program.ancestors?.nodes.length &&
+          program.concentrationEnabled === false)
+      ) {
+        if (!acc[degreeType]) {
+          acc[degreeType] = []
+        }
+        acc[degreeType].push(program)
       }
-      acc[degreeType].push(program)
     }
 
     return acc
