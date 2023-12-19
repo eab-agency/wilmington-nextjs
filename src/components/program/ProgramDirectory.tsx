@@ -27,9 +27,6 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
   const groupedPrograms = programs.reduce((acc, program) => {
     const degreeType = getProgramDegreeType(program)
 
-    //return all programs that have the same degree type and don't have a parent
-    // also return all programs that have a parent but concentrationEnabled is false
-
     if (degreeType) {
       if (
         !program.ancestors?.nodes.length ||
@@ -46,15 +43,43 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
     return acc
   }, {})
 
-  //
+  // enforce degreeTypeOrder for programs that don't have a degreeTypeOrder
+  programs.forEach((program) => {
+    if (program.degreeTypes?.edges?.length > 0) {
+      if (!program.degreeTypes.edges[0].node.degreeTypeOrder) {
+        program.degreeTypes.edges[0].node.degreeTypeOrder = 100;
+      }
+    }
+  });
+
+  // sort programs within each degree type group by degreeTypeOrder
+  Object.keys(groupedPrograms).forEach((degreeType) => {
+    groupedPrograms[degreeType].sort((a: any, b: any) => {
+      const orderA = a.degreeTypes.edges[0]?.node.degreeTypeOrder || 100;
+      const orderB = b.degreeTypes.edges[0]?.node.degreeTypeOrder || 100;
+      return orderA - orderB;
+    });
+  });
+
+  // sort degree types based on minimum degreeTypeOrder
+  const sortedDegreeTypes = Object.keys(groupedPrograms).sort((a, b) => {
+    const minOrderA = Math.min(
+      ...groupedPrograms[a].map((program: any) => program.degreeTypes.edges[0]?.node.degreeTypeOrder || 100)
+    );
+    const minOrderB = Math.min(
+      ...groupedPrograms[b].map((program: any) => program.degreeTypes.edges[0]?.node.degreeTypeOrder || 100)
+    );
+    return minOrderA - minOrderB;
+  });
+
+
 
   return (
     <div className="programDirectory">
-      <h2>ProgramDirectory</h2>
-      {Object.keys(groupedPrograms).map((degreeType) => (
+      {sortedDegreeTypes.map((degreeType) => (
         <React.Fragment key={degreeType}>
           <section className="programTableContainer">
-            <h3 className="degreeTypeName">{degreeType}</h3>
+            <h2 className="degreeTypeName">{degreeType}</h2>
             <table className="programTable">
               <thead>
                 <tr>
@@ -68,7 +93,7 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
                     <tr className="parentProgram">
                       <td>
                         <Link href={program.uri} className="tableProgramTitle">
-                          <h4>{program.title}</h4>
+                          <h3>{program.title}</h3>
                         </Link>
                       </td>
                       <td>
@@ -91,39 +116,6 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
         </React.Fragment>
       ))}
 
-      {/* {programs.filter((program: any) => !program.degreeTypes.edges.length)
-        .length > 0 && (
-          <>
-            <h3 className="degreeTypeName">No Degree type</h3>
-            <table className="programTable" key="NoDegreeType">
-              <thead>
-                <tr>
-                  <th>Degrees</th>
-                  <th>Modality</th>
-                </tr>
-              </thead>
-              <tbody>
-                {programs
-                  .filter((program: any) => !program.degreeTypes.edges.length)
-                  .map((program: any) => (
-                    <tr key={program.slug}>
-                      <td>
-                        <Link href={program.uri} className="tableProgramTitle">
-                          <h4>{program.title} </h4>
-                        </Link>
-                      </td>
-                      <td>
-                        <span aria-hidden="true" className="tableCellHead">
-                          Modality:
-                        </span>
-                        <ModalityIcons modalities={program.modalities} />
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </>
-        )} */}
     </div>
   )
 }

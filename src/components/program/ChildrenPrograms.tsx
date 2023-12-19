@@ -28,17 +28,13 @@ export default function ChildrenPrograms({
 
   const programsAncestorSameDegreeTypeFiltered =
     programsWithAncestorFiltered.filter((program) => {
-      return program.degreeTypes.edges[0].node.name === parentDegreeType
-    })
+      const edges = program.degreeTypes?.edges;
+      if (edges && edges.length > 0) {
+        return edges[0].node.name === parentDegreeType;
+      }
+      return false;
+    });
 
-  // if concentrationEnabled is true
-  // don't show the program, else show the program
-
-  // const programsWithConcentrationFiltered = programsWithAncestorFiltered.filter(
-  //   (program) => {
-  //     return program.concentrationEnabled != true
-  //   }
-  // )
 
   return (
     <>
