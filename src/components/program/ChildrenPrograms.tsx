@@ -5,11 +5,13 @@ import React from 'react'
 interface ChildrenProgramsProps {
   programs: any[]
   parentSlug: any
+  parentDegreeType: any
 }
 
 export default function ChildrenPrograms({
   programs,
-  parentSlug
+  parentSlug,
+  parentDegreeType
 }: ChildrenProgramsProps) {
   // get all programs that have an ancestor
   const programsWithAncestor = programs.filter((program) => {
@@ -24,23 +26,42 @@ export default function ChildrenPrograms({
     }
   )
 
+  const programsAncestorSameDegreeTypeFiltered =
+    programsWithAncestorFiltered.filter((program) => {
+      return program.degreeTypes.edges[0].node.name === parentDegreeType
+    })
+
+  // if concentrationEnabled is true
+  // don't show the program, else show the program
+
+  // const programsWithConcentrationFiltered = programsWithAncestorFiltered.filter(
+  //   (program) => {
+  //     return program.concentrationEnabled != true
+  //   }
+  // )
+
   return (
     <>
-      {programsWithAncestorFiltered.map((program: any) => {
+      {programsAncestorSameDegreeTypeFiltered.map((program: any) => {
         return (
-          <tr key={program.slug}>
-            <td>
-              <Link href={program.uri} className="tableProgramTitle">
-                <h4>{program.title} </h4>
-              </Link>
-            </td>
-            <td>
-              <span aria-hidden="true" className="tableCellHead">
-                Modality:
-              </span>
-              <ModalityIcons modalities={program.modalities} />
-            </td>
-          </tr>
+          <React.Fragment key={program.slug}>
+            <tr className="concentration">
+              <td>
+                <Link href={program.uri} className="tableProgramTitle">
+                  <h4>
+                    {program.title}{' '}
+                    {program.concentrationEnabled ? 'concentrated' : 'CHILD'}
+                  </h4>
+                </Link>
+              </td>
+              <td>
+                <span aria-hidden="true" className="tableCellHead">
+                  Modality:
+                </span>
+                <ModalityIcons modalities={program.modalities} />
+              </td>
+            </tr>
+          </React.Fragment>
         )
       })}
     </>
