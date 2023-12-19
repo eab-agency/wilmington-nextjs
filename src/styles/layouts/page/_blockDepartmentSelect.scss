@@ -372,7 +372,7 @@
         .tableProgramTitle {
           display: block;
           width: fit-content;
-          h4 {
+          h3 {
             font-weight: 900;
             font-size: calc(clamp(tokens.$fs-s, 1vw, tokens.$fs-m) * 1.1);
           }
@@ -407,7 +407,7 @@
         .tableProgramTitle {
           display: block;
           width: fit-content;
-          h4 {
+          h3 {
             font-size: clamp(tokens.$fs-s, 1vw, tokens.$fs-m);
             margin: 0;
             font-weight: 300;
