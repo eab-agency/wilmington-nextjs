@@ -25,7 +25,6 @@ export default EabProgramDirectory
 // query to get the faq data
 EabProgramDirectory.query = gql`
   query getAllDepartments {
-
     programs(first: 200, where: { orderby: { field: TITLE, order: ASC } }) {
       nodes {
         slug
