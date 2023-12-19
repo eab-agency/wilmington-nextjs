@@ -370,6 +370,8 @@
         border-top: 0.5em solid tokens.$c-gray-400;
 
         .tableProgramTitle {
+          display: block;
+          width: fit-content;
           h4 {
             font-weight: 900;
             font-size: calc(clamp(tokens.$fs-s, 1vw, tokens.$fs-m) * 1.1);
@@ -403,6 +405,8 @@
         }
 
         .tableProgramTitle {
+          display: block;
+          width: fit-content;
           h4 {
             font-size: clamp(tokens.$fs-s, 1vw, tokens.$fs-m);
             margin: 0;
