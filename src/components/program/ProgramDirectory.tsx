@@ -1,5 +1,4 @@
 import ModalityIcons from '@/components/atoms/ModalityIcons/ModalityIcons'
-import { randomInt } from 'crypto'
 import Link from 'next/link'
 import React from 'react'
 import ChildrenPrograms from './ChildrenPrograms'

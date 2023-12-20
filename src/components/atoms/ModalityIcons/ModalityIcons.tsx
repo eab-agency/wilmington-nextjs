@@ -1,15 +1,17 @@
-import React from 'react'
-import { FaLaptop, FaSchool } from 'react-icons/fa'
+import React from 'react';
+import { FaLaptop, FaSchool } from 'react-icons/fa';
+import { ReactSVG } from 'react-svg';
+import { CollegeHallIcon } from "./icons";
 
 interface ModalityIconsProps {
-  modalities: string[]
+  modalities: string[];
 }
 
 const ModalityIcons: React.FC<ModalityIconsProps> = ({ modalities }) => {
   const modalityIcons: { [key: string]: React.ReactNode } = {
-    'On Campus': <FaSchool />,
+    'On Campus': <CollegeHallIcon />,
     Online: <FaLaptop />
-  }
+  };
 
   return (
     <div className="modalityList">
@@ -21,7 +23,7 @@ const ModalityIcons: React.FC<ModalityIconsProps> = ({ modalities }) => {
         </span>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default ModalityIcons
+export default ModalityIcons;
