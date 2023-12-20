@@ -43,9 +43,7 @@ export default function ChildrenPrograms({
             <tr className="concentration">
               <td>
                 <Link href={program.uri} className="tableProgramTitle">
-                  <h4>
-                    {program.title}
-                  </h4>
+                  <h4>{program.title}</h4>
                 </Link>
               </td>
               <td>
