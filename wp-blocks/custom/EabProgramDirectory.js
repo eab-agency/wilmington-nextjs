@@ -1,5 +1,5 @@
 import Preloader from '@/components/atoms/Preloader'
-import BlockDepartmentSelect from '@/components/blocks/custom/BlockDepartmentSelect'
+// import BlockDepartmentSelect from '@/components/blocks/custom/BlockDepartmentSelect'
 import ProgramDirectory from '@/components/program/ProgramDirectory'
 import { gql, useQuery } from '@apollo/client'
 
