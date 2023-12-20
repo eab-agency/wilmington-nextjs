@@ -1,4 +1,4 @@
-import { SVGIconProps, SvgIcon } from "@/components/atoms/SvgIcon";
+import { SVGIconProps, SvgIcon } from '@/components/atoms/SvgIcon'
 
 export const CollegeHallIcon = (props: SVGIconProps) => {
   return (

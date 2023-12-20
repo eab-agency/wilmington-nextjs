@@ -1,1 +1,1 @@
-export * from './CollegeHallIcon';
+export * from './CollegeHallIcon'
