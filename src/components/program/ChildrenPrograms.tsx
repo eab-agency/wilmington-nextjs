@@ -44,8 +44,7 @@ export default function ChildrenPrograms({
               <td>
                 <Link href={program.uri} className="tableProgramTitle">
                   <h4>
-                    {program.title}{' '}
-                    {program.concentrationEnabled ? 'concentrated' : 'CHILD'}
+                    {program.title}
                   </h4>
                 </Link>
               </td>
