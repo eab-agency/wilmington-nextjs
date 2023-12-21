@@ -25,7 +25,14 @@ export default EabProgramDirectory
 // query to get the faq data
 EabProgramDirectory.query = gql`
   query getAllDepartments {
-    programs(first: 150, where: {concentrationEnabled: false, notListed: false orderby: { field: TITLE, order: ASC } }) {
+    programs(
+      first: 150
+      where: {
+        concentrationEnabled: false
+        notListed: false
+        orderby: { field: TITLE, order: ASC }
+      }
+    ) {
       nodes {
         slug
         uri
@@ -51,27 +58,27 @@ EabProgramDirectory.query = gql`
         }
         children {
           nodes {
-          slug
-          ... on Program {
-            ancestors {
-              nodes {
-                id
-                slug
+            slug
+            ... on Program {
+              ancestors {
+                nodes {
+                  id
+                  slug
+                }
               }
-            }
-            concentrationEnabled
-            id
-            title
-            degreeTypes {
-              nodes {
-                degreeTypeOrder
-                name
+              concentrationEnabled
+              id
+              title
+              degreeTypes {
+                nodes {
+                  degreeTypeOrder
+                  name
+                }
               }
+              modalities
+              uri
             }
-            modalities
-            uri
           }
-        }
         }
       }
     }

@@ -13,14 +13,11 @@ export default function ChildrenPrograms({
   parentSlug,
   parentDegreeType
 }: ChildrenProgramsProps) {
-
   // if parentSlug is the same as ancestor
   // then show the program
-  const programsWithAncestorFiltered = programs.filter(
-    (program) => {
-      return program.ancestors?.nodes[0].slug === parentSlug
-    }
-  )
+  const programsWithAncestorFiltered = programs.filter((program) => {
+    return program.ancestors?.nodes[0].slug === parentSlug
+  })
 
   const programsAncestorSameDegreeTypeFiltered =
     programsWithAncestorFiltered.filter((program) => {
