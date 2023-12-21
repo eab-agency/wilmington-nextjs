@@ -198,6 +198,7 @@
                   h3 {
                     font-size: clamp(tokens.$fs-m, 1vw, tokens.$fs-m);
                     margin: 0;
+                    font-weight: 300;
                   }
                 }
 
@@ -407,7 +408,8 @@
         .tableProgramTitle {
           display: block;
           width: fit-content;
-          h3 {
+          h3,
+          h4 {
             font-size: clamp(tokens.$fs-s, 1vw, tokens.$fs-m);
             margin: 0;
             font-weight: 300;

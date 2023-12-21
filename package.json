@@ -49,6 +49,7 @@
     "react-icons": "^4.8.0",
     "react-instantsearch-dom": "^6.39.1",
     "react-multi-carousel": "^2.8.2",
+    "react-svg": "^16.1.32",
     "react-tabs": "^6.0.1",
     "rimraf": "^5.0.0",
     "sass": "^1.59.3",

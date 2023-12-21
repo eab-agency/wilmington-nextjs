@@ -1,5 +1,7 @@
 import React from 'react'
 import { FaLaptop, FaSchool } from 'react-icons/fa'
+import { ReactSVG } from 'react-svg'
+import { CollegeHallIcon } from './icons'
 
 interface ModalityIconsProps {
   modalities: string[]
@@ -7,7 +9,7 @@ interface ModalityIconsProps {
 
 const ModalityIcons: React.FC<ModalityIconsProps> = ({ modalities }) => {
   const modalityIcons: { [key: string]: React.ReactNode } = {
-    'On Campus': <FaSchool />,
+    'On Campus': <CollegeHallIcon />,
     Online: <FaLaptop />
   }
 

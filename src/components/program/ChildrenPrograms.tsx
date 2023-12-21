@@ -13,24 +13,17 @@ export default function ChildrenPrograms({
   parentSlug,
   parentDegreeType
 }: ChildrenProgramsProps) {
-  // get all programs that have an ancestor
-  const programsWithAncestor = programs.filter((program) => {
-    return program.ancestors?.nodes.length > 0
-  })
-
   // if parentSlug is the same as ancestor
   // then show the program
-  const programsWithAncestorFiltered = programsWithAncestor.filter(
-    (program) => {
-      return program.ancestors?.nodes[0].slug === parentSlug
-    }
-  )
+  const programsWithAncestorFiltered = programs.filter((program) => {
+    return program.ancestors?.nodes[0].slug === parentSlug
+  })
 
   const programsAncestorSameDegreeTypeFiltered =
     programsWithAncestorFiltered.filter((program) => {
-      const edges = program.degreeTypes?.edges
-      if (edges && edges.length > 0) {
-        return edges[0].node.name === parentDegreeType
+      const nodes = program.degreeTypes?.nodes
+      if (nodes && nodes.length > 0) {
+        return nodes[0].name === parentDegreeType
       }
       return false
     })
@@ -43,10 +36,7 @@ export default function ChildrenPrograms({
             <tr className="concentration">
               <td>
                 <Link href={program.uri} className="tableProgramTitle">
-                  <h4>
-                    {program.title}{' '}
-                    {program.concentrationEnabled ? 'concentrated' : 'CHILD'}
-                  </h4>
+                  <h4>{program.title}</h4>
                 </Link>
               </td>
               <td>
