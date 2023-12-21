@@ -28,9 +28,14 @@ export default function ChildrenPrograms({
       return false
     })
 
+  const sortedPrograms = programsAncestorSameDegreeTypeFiltered.slice().sort((a, b) => {
+    return a.title.localeCompare(b.title)
+  })
+
+
   return (
     <>
-      {programsAncestorSameDegreeTypeFiltered.map((program: any) => {
+      {sortedPrograms.map((program: any) => {
         return (
           <React.Fragment key={program.slug}>
             <tr className="concentration">
