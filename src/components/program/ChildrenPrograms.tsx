@@ -28,10 +28,11 @@ export default function ChildrenPrograms({
       return false
     })
 
-  const sortedPrograms = programsAncestorSameDegreeTypeFiltered.slice().sort((a, b) => {
-    return a.title.localeCompare(b.title)
-  })
-
+  const sortedPrograms = programsAncestorSameDegreeTypeFiltered
+    .slice()
+    .sort((a, b) => {
+      return a.title.localeCompare(b.title)
+    })
 
   return (
     <>
