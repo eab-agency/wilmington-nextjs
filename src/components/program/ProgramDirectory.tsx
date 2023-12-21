@@ -1,5 +1,4 @@
 import ModalityIcons from '@/components/atoms/ModalityIcons/ModalityIcons'
-import { randomInt } from 'crypto'
 import Link from 'next/link'
 import React from 'react'
 import ChildrenPrograms from './ChildrenPrograms'
@@ -28,16 +27,10 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
     const degreeType = getProgramDegreeType(program)
 
     if (degreeType) {
-      if (
-        !program.ancestors?.nodes.length ||
-        (program.ancestors?.nodes.length &&
-          program.concentrationEnabled === false)
-      ) {
-        if (!acc[degreeType]) {
-          acc[degreeType] = []
-        }
-        acc[degreeType].push(program)
+      if (!acc[degreeType]) {
+        acc[degreeType] = []
       }
+      acc[degreeType].push(program)
     }
 
     return acc
@@ -108,7 +101,7 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
                       </td>
                     </tr>
                     <ChildrenPrograms
-                      programs={programs}
+                      programs={program.children.nodes}
                       parentSlug={program.slug}
                       parentDegreeType={degreeType}
                     />

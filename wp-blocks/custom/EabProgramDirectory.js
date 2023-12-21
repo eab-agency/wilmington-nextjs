@@ -1,5 +1,5 @@
 import Preloader from '@/components/atoms/Preloader'
-import BlockDepartmentSelect from '@/components/blocks/custom/BlockDepartmentSelect'
+// import BlockDepartmentSelect from '@/components/blocks/custom/BlockDepartmentSelect'
 import ProgramDirectory from '@/components/program/ProgramDirectory'
 import { gql, useQuery } from '@apollo/client'
 
@@ -25,7 +25,14 @@ export default EabProgramDirectory
 // query to get the faq data
 EabProgramDirectory.query = gql`
   query getAllDepartments {
-    programs(first: 200, where: { orderby: { field: TITLE, order: ASC } }) {
+    programs(
+      first: 150
+      where: {
+        concentrationEnabled: false
+        notListed: false
+        orderby: { field: TITLE, order: ASC }
+      }
+    ) {
       nodes {
         slug
         uri
@@ -50,18 +57,27 @@ EabProgramDirectory.query = gql`
           }
         }
         children {
-          edges {
-            node {
-              slug
+          nodes {
+            slug
+            ... on Program {
+              ancestors {
+                nodes {
+                  id
+                  slug
+                }
+              }
+              concentrationEnabled
+              id
+              title
+              degreeTypes {
+                nodes {
+                  degreeTypeOrder
+                  name
+                }
+              }
+              modalities
+              uri
             }
-          }
-        }
-        programFields {
-          program {
-            location
-            degreeTitle
-            degree
-            fieldGroupName
           }
         }
       }
