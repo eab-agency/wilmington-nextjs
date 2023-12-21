@@ -81,9 +81,10 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
               <thead>
                 <tr>
                   <th>Degrees</th>
-                  {degreeType == 'Undergraduate Programs' || degreeType == 'Graduate Programs' ?
+                  {degreeType == 'Undergraduate Programs' ||
+                  degreeType == 'Graduate Programs' ? (
                     <th>Modality</th>
-                    : null}
+                  ) : null}
                 </tr>
               </thead>
               <tbody>
@@ -95,14 +96,15 @@ export default function ProgramDirectory({ programs }: ProgramDirectoryProps) {
                           <h3>{program.title}</h3>
                         </Link>
                       </td>
-                      {degreeType == 'Undergraduate Programs' || degreeType == 'Graduate Programs' ?
+                      {degreeType == 'Undergraduate Programs' ||
+                      degreeType == 'Graduate Programs' ? (
                         <td>
                           <span aria-hidden="true" className="tableCellHead">
                             Modality:
                           </span>
                           <ModalityIcons modalities={program.modalities} />
                         </td>
-                        : null}
+                      ) : null}
                     </tr>
                     <ChildrenPrograms
                       programs={program.children.nodes}
