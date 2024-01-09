@@ -21,6 +21,7 @@ export default function PostType({
     showMore: true,
     limit: refinements.limit,
     translations: refinements.translations,
+    transformItems: refinements.transformItems,
     defaultRefinement: defaultRefinement ? [defaultRefinement] : [],
     className
   }
