@@ -22,6 +22,10 @@ const regexList = [
     replace: ''
   },
   {
+    regex: /https?:\/\/wordpress-test\.wilmington\.edu/,
+    replace: ''
+  },
+  {
     regex: /https?:\/\/wilmington\.vercel\.app/,
     replace: ''
   }
