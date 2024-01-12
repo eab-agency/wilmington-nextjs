@@ -2,9 +2,9 @@ import { SEO } from '@/components'
 import Breadcrumbs from '@/components/atoms/Breadcrumbs'
 import Container from '@/components/atoms/Container'
 import Preloader from '@/components/atoms/Preloader'
-import ProgramTabs, {
-  ProgramTabsFragment
-} from '@/components/atoms/ProgramTabs/ProgramTabs'
+// import ProgramTabs, {
+//   ProgramTabsFragment
+// } from '@/components/atoms/ProgramTabs/ProgramTabs'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import WordPressProvider from '@/components/common/WordPressProvider'
@@ -54,7 +54,7 @@ export default function SingleProgram(props) {
             imageMeta={featuredImage?.node?.mediaDetails}
             text={title}
           />{' '}
-          <ProgramTabs childPages={childPages} uri={uri} parent={parent} />
+          {/* <ProgramTabs childPages={childPages} uri={uri} parent={parent} /> */}
           <Container>
             <article className="innerWrap programContent">
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
@@ -81,7 +81,6 @@ SingleProgram.query = gql`
   ${getFragmentDataFromBlocks(blocks).entries}
   ${RelatedProgramsFragment}
   ${StudentOrgFragment}
-  ${ProgramTabsFragment}
   query GetProgramData($databaseId: ID!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
     program(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
        ... on NodeWithTitle {
@@ -89,7 +88,7 @@ SingleProgram.query = gql`
       }
       ...RelatedProgramsFragment
       ...StudentOrgFragment
-      ...ProgramTabsFragment
+      # ...ProgramTabsFragment
        ... on Program {
                  ${seoPostFields}
 

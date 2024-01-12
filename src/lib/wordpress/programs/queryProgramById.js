@@ -28,7 +28,15 @@ const departmentsAndStudentOrgs = `
             title
             excerpt
             uri
+            concentrationEnabled
             ${featuredImagePostFields}
+            ancestors {
+              edges {
+                node {
+                  slug
+                }
+              }
+            }
           }
         }
       }

@@ -1,10 +1,8 @@
 'use client'
 
-import Image from '@/components/atoms/Image'
 import Link from '@/components/common/Link'
-import ResultProgramCard from '@/components/molecules/ResultProgramCard'
-import { className } from 'classnames/bind'
 import React, { useEffect, useState } from 'react'
+import { FaLaptop, FaSchool } from 'react-icons/fa'
 
 const DepartmentSingle = ({ department }) => {
   const {
@@ -15,42 +13,94 @@ const DepartmentSingle = ({ department }) => {
     departmentFields: { deptImage }
   } = department
 
-  // don't show programs that are a child program page
-  const filteredPrograms = programs.nodes.filter(
-    (program) => program.ancestors === null
-  )
+  // get programFields degreeType and group programs by degreeType
+  const getProgramDegreeType = (program) => {
+    // const degreeType = program.programFields.program.degree
+    let degreeTypeName = ''
+    if (
+      program.degreeTypes &&
+      program.degreeTypes.edges &&
+      program.degreeTypes.edges.length > 0
+    ) {
+      degreeTypeName = program.degreeTypes.edges[0].node.name
+    }
+
+    return degreeTypeName
+  }
+
+  // filter programs that are not child program pages
+  // const parentPrograms = programs.nodes.filter(
+  //   (program) => program.ancestors === null
+  // )
+  const parentPrograms = programs.nodes
+
+  const groupedPrograms = parentPrograms.reduce((acc, program) => {
+    const degreeType = getProgramDegreeType(program)
+
+    //return all programs that have the same degree type
+    if (!acc[degreeType]) {
+      acc[degreeType] = []
+    }
+
+    acc[degreeType].push(program)
+
+    return acc
+  }, {})
+
+  // get parentProgram programFields location
+  const getParentProgramLocation = (parentProgram) => {
+    const modalities = parentProgram.modalities
+
+    return (
+      <div className="modalityList">
+        {modalities && modalities.includes('On Campus') && (
+          <div className="modalityCard">
+            <FaSchool /> On Campus
+          </div>
+        )}
+        {modalities && modalities.includes('Online') && (
+          <div className="modalityCard">
+            <FaLaptop /> Online
+          </div>
+        )}
+      </div>
+    )
+  }
 
   return (
     <section key={name} className="department">
-      <header className="departmentHead">
-        {deptImage && (
-          <Image
-            url={deptImage.sourceUrl}
-            alt={deptImage.altText}
-            imageMeta={{ mediaDetails: deptImage.mediaDetails }}
-          />
-        )}
-        <div className="departmentInfo">
-          <h2>{name}</h2>
-          <div dangerouslySetInnerHTML={{ __html: description }} />
-        </div>
-      </header>
-      {filteredPrograms.length > 0 && (
-        <>
-          <h3 className="programsSubtitle">Programs</h3>
-          <ul className="programsList">
-            {filteredPrograms.map((program) => (
-              <li key={program.uri}>
-                <ResultProgramCard
-                  title={program.title}
-                  link={program.uri}
-                  excerpt={program.excerpt}
-                />
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      <h2>{name} Degrees</h2>
+      <table className="programTable">
+        <thead>
+          <tr>
+            <th>Degrees</th>
+            <th>Modality</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.keys(groupedPrograms).map((degreeType) => (
+            <div key={degreeType}>
+              {groupedPrograms[degreeType].map((program) => (
+                <tr key={program.uri}>
+                  <td>
+                    {' '}
+                    <Link href={program.uri} className="tableProgramTitle">
+                      <h3>{program.title} </h3>
+                    </Link>
+                    <small>{degreeType}</small>
+                  </td>
+                  <td>
+                    <span aria-hidden="true" className="tableCellHead">
+                      Modality:
+                    </span>
+                    {getParentProgramLocation(program)}
+                  </td>
+                </tr>
+              ))}
+            </div>
+          ))}
+        </tbody>
+      </table>
     </section>
   )
 }

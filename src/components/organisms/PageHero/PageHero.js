@@ -34,8 +34,8 @@ export default function PageHero({
             url={sourceUrl}
             alt={altText}
             imageMeta={{ mediaDetails }}
-            width="900"
-            height="300"
+            width="1920"
+            height="1080"
             priority={true}
           />
         </div>
