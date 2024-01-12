@@ -1,5 +1,6 @@
 import archive from './archive'
 import ArchiveFaculty from './archive-faculty'
+import ArchiveOrganization from './archive-organization'
 import ArchiveProgram from './archive-program'
 import frontPage from './front-page'
 import page from './page'
@@ -23,7 +24,8 @@ const templates = {
   'single-event': SingleEvent,
   'single-news': SingleNews,
   'single-testimonial': SingleTestimonial,
-  'taxonomy-department': TaxonomyDepartment
+  'taxonomy-department': TaxonomyDepartment,
+  'archive-organization': ArchiveOrganization
 }
 
 export default templates
