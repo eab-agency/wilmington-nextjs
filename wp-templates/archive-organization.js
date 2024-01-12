@@ -101,7 +101,11 @@ Archive.query = gql`
         name
         description
         label
-        contentNodes(where: {orderby: {field: TITLE, order: ASC}}, first: $first, after: $after) {
+        contentNodes(
+          where: { orderby: { field: TITLE, order: ASC } }
+          first: $first
+          after: $after
+        ) {
           edges {
             node {
               id
