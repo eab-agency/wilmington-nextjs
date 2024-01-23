@@ -83,25 +83,28 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   }
 
   const futureEvents = posts.filter((post) => {
-    const currentDate = new Date();
-    currentDate.setHours(0, 0, 0, 0); // Set time to midnight
-    const currentTime = currentDate.getTime();
+    const currentDate = new Date()
+    currentDate.setHours(0, 0, 0, 0) // Set time to midnight
+    const currentTime = currentDate.getTime()
     // const postStartTime = post.eventsFields.event.startTime
 
-    const postDate = new Date(post.date);
-    const postStartDate = postDate.getTime();
+    const postDate = new Date(post.date)
+    const postStartDate = postDate.getTime()
 
-    const postEndDate = post.endDate ? new Date(post.endDate).setHours(0, 0, 0, 0) : null;
+    const postEndDate = post.endDate
+      ? new Date(post.endDate).setHours(0, 0, 0, 0)
+      : null
 
     console.log(postStartDate, currentTime, postEndDate)
 
     return (
-      (postStartDate > currentTime) &&
-      (!postEndDate && postStartDate >= currentTime) ||
+      (postStartDate > currentTime &&
+        !postEndDate &&
+        postStartDate >= currentTime) ||
       (postEndDate && postEndDate >= currentTime) ||
       (postEndDate === null && postStartDate >= currentTime)
-    );
-  });
+    )
+  })
 
   const sortedFutureEvents = futureEvents
     .sort((post1, post2) => post1.date - post2.date)
