@@ -9,20 +9,19 @@
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  // Enable format with prettier on save, configure import organizing.
-  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.sortImports": "explicit"
   },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
+  // "[javascriptreact]": {
+  //   "editor.defaultFormatter": "vscode.typescript-language-features"
+  // },
+  // "[javascript]": {
+  //   "editor.defaultFormatter": "vscode.typescript-language-features"
+  // },
   // This will get emmet working in JSX.
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
-  }
+  },
+  // "editor.defaultFormatter": "esbenp.prettier-vscode"
   // "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false
 }
