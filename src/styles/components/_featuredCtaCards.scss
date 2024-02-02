@@ -8,22 +8,30 @@
   .wp-block-columns {
     &.is-layout-flex {
       display: flex;
-      flex-direction: column;
+      // flex-direction: column;
+      flex-flow: row wrap;
       gap: clamp(1rem, 5vw, 2rem);
 
       @media (min-width: tokens.$mq-1000) {
-        flex-direction: row;
+        flex-flow: row nowrap;
       }
 
       .wp-block-column {
         display: flex;
         flex-direction: column;
-        flex: 0 0 20%;
+        flex: 0 0 100%;
         min-width: 25%;
         margin-bottom: 20px;
 
+        @media (min-width: tokens.$mq-1000) {
+          flex: 0 0 20%;
+
+          &:first-child {
+            flex: 0 1 50%;
+          }
+        }
+
         &:first-child {
-          flex: 0 1 50%;
           padding-right: clamp(6rem, 13vw, 13rem);
           position: relative;
           line-height: 1.2;
@@ -69,6 +77,10 @@
   min-height: 25rem;
 
   a {
+    &.ctaCard {
+      max-width: 90%;
+    }
+
     img {
       display: block;
       width: 100%;
