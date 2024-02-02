@@ -21,7 +21,7 @@
   // This will get emmet working in JSX.
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
-  },
+  }
   // "editor.defaultFormatter": "esbenp.prettier-vscode"
   // "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false
 }
