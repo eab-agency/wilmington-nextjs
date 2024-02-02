@@ -1,4 +1,5 @@
-@use 'tokens';
+@use "tokens";
+@use "utilities/mixins";
 
 button {
   &.is-style-arrow {
@@ -35,4 +36,55 @@ button {
       background: tokens.$c-limeGreen-200;
     }
   }
+}
+
+// =========================================
+// Button Styles
+
+.is-style-fill {
+  a {
+    @include mixins.button;
+  }
+}
+
+.is-style-outline {
+  a {
+    background-color: transparent;
+    border-color: tokens.$c-darkGreen-800;
+    color: tokens.$c-darkGreen-800;
+
+    i,
+    &::after {
+      background-color: transparent;
+      color: tokens.$c-darkGreen-800;
+    }
+
+    &:hover {
+      background: tokens.$c-limeGreen-200;
+    }
+  }
+}
+
+.is-style-arrow {
+  a {
+    background-color: tokens.$c-darkGreen-700;
+    color: tokens.$c-white;
+
+    i,
+    &::after {
+      background-color: tokens.$c-darkGreen-800;
+    }
+
+    &:hover {
+      background-color: tokens.$c-darkGreen-800;
+
+      i,
+      &::after {
+        color: tokens.$c-white;
+      }
+    }
+  }
+}
+
+.is-style-fill {
 }

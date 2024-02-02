@@ -1,0 +1,77 @@
+@use "sass:color";
+@use "tokens";
+@use "utilities/mixins";
+
+// ==================================
+// Featured CTA Cards Section
+.columns-container {
+  .wp-block-columns {
+    &.is-layout-flex {
+      display: flex;
+      gap: clamp(1rem, 5vw, 2rem);
+
+      .wp-block-column {
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 20%;
+        margin-bottom: 20px;
+
+        &:first-child {
+          flex: 0 1 50%;
+          padding-right: clamp(6rem, 13vw, 13rem);
+          position: relative;
+
+          &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: -2em;
+            width: clamp(5rem, 13vw, 13rem);
+            height: clamp(5rem, 13vw, 13rem);
+            border-right: 2.5em solid tokens.$c-limeGreen-300;
+            border-bottom: 2.5em solid tokens.$c-limeGreen-300;
+            transform: rotate(-45deg) translateY(-50%);
+          }
+        }
+
+        &.is-vertically-aligned-center {
+          align-items: center;
+
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+// =================================
+// Image CTA Card
+.wp-block-eab-blocks-image-cta-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(2em, 5vw, 4em);
+  min-height: 25rem;
+
+  a {
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      object-position: center;
+      z-index: tokens.$layer-1;
+    }
+    span {
+      @include mixins.button;
+      position: relative;
+      z-index: tokens.$layer-2;
+    }
+  }
+}
