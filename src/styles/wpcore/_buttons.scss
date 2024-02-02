@@ -48,20 +48,18 @@ button {
 }
 
 .is-style-outline {
-  a {
+  background-color: transparent;
+  border-color: tokens.$c-darkGreen-800;
+  color: tokens.$c-darkGreen-800;
+
+  i,
+  &::after {
     background-color: transparent;
-    border-color: tokens.$c-darkGreen-800;
     color: tokens.$c-darkGreen-800;
+  }
 
-    i,
-    &::after {
-      background-color: transparent;
-      color: tokens.$c-darkGreen-800;
-    }
-
-    &:hover {
-      background: tokens.$c-limeGreen-200;
-    }
+  &:hover {
+    background: tokens.$c-limeGreen-200;
   }
 }
 
@@ -84,7 +82,4 @@ button {
       }
     }
   }
-}
-
-.is-style-fill {
 }
