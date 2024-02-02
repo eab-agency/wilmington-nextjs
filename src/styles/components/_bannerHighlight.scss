@@ -23,7 +23,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
+      object-position: center right;
     }
   }
 
@@ -33,6 +33,20 @@
 
     h2 {
       color: white;
+      padding-right: clamp(1rem, 5vw, 3rem);
+
+      strong {
+        font-size: clamp(1.5em, 2.5vw, 2em);
+        line-height: 1;
+      }
+    }
+  }
+
+  @media (max-width: tokens.$mq-700) {
+    .overlay {
+      width: 100vw !important;
+      left: 50% !important;
+      transform: translateX(-50%);
     }
   }
 }
