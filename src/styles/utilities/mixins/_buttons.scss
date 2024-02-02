@@ -11,7 +11,8 @@
   text-decoration: none;
   text-align: left;
   text-transform: uppercase;
-  font-size: tokens.$fs-2xs;
+  font-size: 1rem;
+  line-height: 1.2;
   cursor: pointer;
   border: 1px solid color.adjust(tokens.$c-limeGreen-200, $lightness: -30%);
   border-radius: tokens.$br-xs;
@@ -19,8 +20,12 @@
   box-shadow: 0 0.2em 0.3em rgba(tokens.$c-copy, 0.1);
   transition: all 0.15s ease-in;
   position: relative;
-  padding: calc(tokens.$p-s * 1.5) tokens.$p-m;
-  padding-right: 4em;
+  padding: 0.9em tokens.$p-m;
+  padding-right: 3em;
+
+  @media (min-width: tokens.$mq-900) {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
 
   &::after {
     content: tokens.$i-chevron-right;
