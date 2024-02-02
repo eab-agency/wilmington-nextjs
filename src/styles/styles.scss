@@ -1,16 +1,17 @@
-@use 'base';
-@use 'components/reactCarousel';
-@use 'components/buttons';
-@use 'wpcore';
-@use 'layouts/global';
-@use 'layouts/homepage';
-@use 'layouts/page';
-@use 'layouts/program';
-@use 'layouts/forms';
-@use 'layouts/newsAndEvents';
-@use 'layouts/archive';
-@use 'layouts/athletes/athleteCard';
-@use 'layouts/archiveFaculty';
+@use "base";
+// @use 'components/reactCarousel';
+// @use 'components/buttons';
+@use "components";
+@use "wpcore";
+@use "layouts/global";
+@use "layouts/homepage";
+@use "layouts/page";
+@use "layouts/program";
+@use "layouts/forms";
+@use "layouts/newsAndEvents";
+@use "layouts/archive";
+@use "layouts/athletes/athleteCard";
+@use "layouts/archiveFaculty";
 
 .fsBody .fsForm {
   max-width: 900px;
