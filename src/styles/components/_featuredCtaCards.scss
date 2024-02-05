@@ -1,6 +1,6 @@
-@use 'sass:color';
-@use 'tokens';
-@use 'utilities/mixins';
+@use "sass:color";
+@use "tokens";
+@use "utilities/mixins";
 
 // ==================================
 // Featured CTA Cards Section
@@ -37,7 +37,7 @@
           line-height: 1.2;
 
           &::after {
-            content: '';
+            content: "";
             display: block;
             position: absolute;
             top: 50%;
@@ -51,6 +51,7 @@
             @media (min-width: tokens.$mq-1000) {
               transform: rotate(-45deg) translateY(-50%);
               right: -2em;
+              animation: arrowMove 0.8s ease-in-out infinite;
             }
           }
         }
@@ -62,6 +63,18 @@
         }
       }
     }
+  }
+}
+
+@keyframes arrowMove {
+  0% {
+    transform: rotate(-45deg) translateY(-50%) translateX(0);
+  }
+  50% {
+    transform: rotate(-45deg) translateY(-46%) translateX(0.5em);
+  }
+  100% {
+    transform: rotate(-45deg) translateY(-50%) translateX(0);
   }
 }
 
@@ -79,6 +92,12 @@
   a {
     &.ctaCard {
       max-width: 90%;
+
+      span {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background: white;
+      }
     }
 
     img {

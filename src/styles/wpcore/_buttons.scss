@@ -1,5 +1,5 @@
-@use 'tokens';
-@use 'utilities/mixins';
+@use "tokens";
+@use "utilities/mixins";
 
 button {
   &.is-style-arrow {
@@ -41,7 +41,9 @@ button {
 // =========================================
 // Button Styles
 
-.is-style-fill {
+.is-style-fill,
+.is-style-outline,
+.is-style-arrow {
   a {
     @include mixins.button;
   }

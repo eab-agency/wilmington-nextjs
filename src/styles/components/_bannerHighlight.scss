@@ -1,6 +1,6 @@
-@use 'sass:color';
-@use 'tokens';
-@use 'utilities/mixins';
+@use "sass:color";
+@use "tokens";
+@use "utilities/mixins";
 
 // Banner Highlight
 .wp-block-eab-blocks-banner-highlight {
@@ -14,7 +14,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-51%, -50%);
     width: 100vw;
     height: 100%;
     right: 0;
