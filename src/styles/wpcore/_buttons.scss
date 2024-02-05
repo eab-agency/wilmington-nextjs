@@ -41,7 +41,9 @@ button {
 // =========================================
 // Button Styles
 
-.is-style-fill {
+.is-style-fill,
+.is-style-outline,
+.is-style-arrow {
   a {
     @include mixins.button;
   }
