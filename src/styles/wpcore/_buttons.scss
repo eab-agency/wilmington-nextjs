@@ -1,5 +1,5 @@
-@use 'tokens';
-@use 'utilities/mixins';
+@use "tokens";
+@use "utilities/mixins";
 
 button {
   &.is-style-arrow {
@@ -41,27 +41,32 @@ button {
 // =========================================
 // Button Styles
 
-.is-style-fill,
-.is-style-outline,
-.is-style-arrow {
-  a {
-    @include mixins.button;
+.wp-block-button {
+  &,
+  &.is-style-fill,
+  &.is-style-outline,
+  &.is-style-arrow {
+    a {
+      @include mixins.button;
+    }
   }
 }
 
 .is-style-outline {
-  background-color: transparent;
-  border-color: tokens.$c-darkGreen-800;
-  color: tokens.$c-darkGreen-800;
-
-  i,
-  &::after {
+  a {
     background-color: transparent;
+    border-color: tokens.$c-darkGreen-800;
     color: tokens.$c-darkGreen-800;
-  }
 
-  &:hover {
-    background: tokens.$c-limeGreen-200;
+    i,
+    &::after {
+      background-color: transparent;
+      color: tokens.$c-darkGreen-800;
+    }
+
+    &:hover {
+      background: tokens.$c-limeGreen-200;
+    }
   }
 }
 
@@ -84,4 +89,11 @@ button {
       }
     }
   }
+}
+
+.is-layout-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
 }

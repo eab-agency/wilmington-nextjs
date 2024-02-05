@@ -1,6 +1,6 @@
-@use 'sass:color';
-@use 'tokens';
-@use 'utilities/mixins';
+@use "sass:color";
+@use "tokens";
+@use "utilities/mixins";
 
 // Banner Highlight
 .wp-block-eab-blocks-banner-highlight {
@@ -42,11 +42,11 @@
     }
   }
 
-  @media (max-width: tokens.$mq-700) {
-    .overlay {
-      width: 100vw !important;
-      left: 50% !important;
-      transform: translateX(-50%);
-    }
+  // @media (max-width: tokens.$mq-700) {
+  .overlay {
+    width: 100vw !important;
+    left: 50% !important;
+    transform: translateX(-51%);
   }
+  // }
 }
