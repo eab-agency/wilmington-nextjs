@@ -1,4 +1,4 @@
-@use 'tokens';
+@use "tokens";
 
 p {
   strong {
@@ -24,6 +24,18 @@ p {
   font-size: clamp(tokens.$fs-2xs, 1.5vw, tokens.$fs-xs);
 }
 
+.has-medium-font-size {
+  @extend .medium;
+}
+
+.has-small-font-size {
+  @extend .small;
+}
+
 .has-large-font-size {
   @extend .large;
+}
+
+.has-x-large-font-size {
+  @extend .x-large;
 }
