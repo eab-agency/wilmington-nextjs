@@ -22,6 +22,7 @@ import AcfEventsListing from './acf/AcfEventsListing'
 import AcfFacultyCard from './acf/AcfFacultyCard'
 import AcfFaqListing from './acf/AcfFaqListing'
 import AcfFeaturedDept from './acf/AcfFeaturedDept'
+import AcfFeaturedPrograms from './acf/AcfFeaturedPrograms'
 import AcfHomeHero from './acf/AcfHomeHero'
 import AcfHomeTab from './acf/AcfHomeTab'
 import AcfNewsListing from './acf/AcfNewsListing'
@@ -66,6 +67,7 @@ export default {
   AcfHomeTab,
   AcfNewsListing,
   AcfRelatedPrograms,
+  AcfFeaturedPrograms,
   AcfStudentOrgs,
   AcfTestimonialBlock,
   EabProgramDirectory,

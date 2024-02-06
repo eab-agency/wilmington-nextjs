@@ -1,0 +1,52 @@
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
+
+// Banner Highlight
+.wp-block-eab-blocks-banner-highlight {
+  display: flex;
+  position: relative;
+  min-height: 25rem;
+  flex-direction: column;
+  justify-content: center;
+
+  figure {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-51%, -50%);
+    width: 100vw;
+    height: 100%;
+    right: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center right;
+    }
+  }
+
+  .wp-block-columns {
+    position: relative;
+    z-index: 10;
+
+    h2 {
+      color: white;
+      padding-right: clamp(1rem, 5vw, 3rem);
+
+      strong {
+        font-size: clamp(1.5em, 2.5vw, 2em);
+        line-height: 1;
+      }
+    }
+  }
+
+  // @media (max-width: tokens.$mq-700) {
+  .overlay {
+    width: 100vw !important;
+    left: 50% !important;
+    transform: translateX(-51%);
+  }
+  // }
+}
