@@ -25,12 +25,6 @@ import styles from './Image.module.css'
  * @return {Element}                     The DisplayImage component.
  */
 export default function DisplayImage(props) {
-  // Set the image size.
-  const imageSize = {
-    height: props?.height ?? props?.imageMeta?.mediaDetails?.height,
-    width: props?.width ?? props?.imageMeta?.mediaDetails?.width
-  }
-
   // Set the image src.
   const source = props?.imageMeta?.mediaItemUrl ?? props?.url ?? props?.src
   const blurUrl =
@@ -40,6 +34,23 @@ export default function DisplayImage(props) {
   if (!source) {
     return null
   }
+
+  // Set the image size.
+  const imageSize = {
+    height: props?.height ?? props?.imageMeta?.mediaDetails?.height,
+    width: props?.width ?? props?.imageMeta?.mediaDetails?.width
+  }
+
+  // if imageSize.height is a string, remove 'px' and convert to number
+  if (typeof imageSize.height === 'string') {
+    imageSize.height = Number(imageSize.height.replace('px', ''))
+  }
+
+  // if imageSize.width is a string, remove 'px' and convert to number
+  if (typeof imageSize.width === 'string') {
+    imageSize.width = Number(imageSize.width.replace('px', ''))
+  }
+
 
   // Get the src domain from URL and remove the subdomain.
   const sourceDomain = new URL(source).hostname.split('.').slice(-2).join('.')
