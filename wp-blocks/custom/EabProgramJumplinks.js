@@ -1,9 +1,15 @@
 import { gql } from '@apollo/client'
 import { useEffect } from 'react'
 
+const AMPERSAND = '\u0026'
+
 const EabProgramJumplinks = (props) => {
   const { jumpLinks } = props.attributes
   const parsedJumpLinks = JSON.parse(jumpLinks)
+
+  const sanitizeRawHtml = (html) => {
+    return html.replace(/&amp;/g, AMPERSAND)
+  }
 
   useEffect(() => {
     const headHeight = document.querySelector('#page-header').offsetHeight
@@ -41,7 +47,7 @@ const EabProgramJumplinks = (props) => {
           {parsedJumpLinks.map((block, index) => (
             <li key={index}>
               <a href={`#${block.id}`} className="jumpLink">
-                {block.rawHtml}
+                {sanitizeRawHtml(block.rawHtml)}
               </a>
             </li>
           ))}
