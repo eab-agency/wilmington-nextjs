@@ -51,7 +51,6 @@ export default function DisplayImage(props) {
     imageSize.width = Number(imageSize.width.replace('px', ''))
   }
 
-
   // Get the src domain from URL and remove the subdomain.
   const sourceDomain = new URL(source).hostname.split('.').slice(-2).join('.')
 
