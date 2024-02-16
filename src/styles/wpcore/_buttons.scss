@@ -1,94 +1,78 @@
 @use 'tokens';
 @use 'utilities/mixins';
 
-button {
-  &.is-style-arrow {
-    background-color: tokens.$c-darkGreen-700;
-    color: tokens.$c-white;
+// =================================
+// Buttons Style Functions (mixins, extends, etc.)
 
-    i,
-    &::after {
-      background-color: tokens.$c-darkGreen-800;
-    }
+@mixin buttonStyle($bgColor, $textColor, $iconBgColor, $bgColorHover) {
+  background-color: $bgColor;
+  color: $textColor;
 
-    &:hover {
-      background-color: tokens.$c-darkGreen-800;
-
-      i,
-      &::after {
-        color: tokens.$c-white;
-      }
-    }
+  i,
+  &::after {
+    background-color: $iconBgColor;
   }
 
-  &.is-style-outline {
-    background-color: transparent;
-    border-color: tokens.$c-darkGreen-800;
-    color: tokens.$c-darkGreen-800;
+  &:hover {
+    background-color: $bgColorHover;
+    color: $textColor;
 
     i,
     &::after {
-      background-color: transparent;
-      color: tokens.$c-darkGreen-800;
-    }
-
-    &:hover {
-      background: tokens.$c-limeGreen-200;
+      color: $textColor;
     }
   }
 }
 
-// =========================================
-// Button Styles
+%darkButton {
+  @include buttonStyle(
+    tokens.$c-darkGreen-700,
+    tokens.$c-white,
+    tokens.$c-darkGreen-800,
+    tokens.$c-darkGreen-800
+  );
+}
+
+%lightButton {
+  @include buttonStyle(
+    tokens.$c-white,
+    tokens.$c-gray-800,
+    tokens.$c-limeGreen-500,
+    tokens.$c-limeGreen-200
+  );
+}
+
+// =================================
 
 .wp-block-button {
-  &,
-  &.is-style-fill,
-  &.is-style-outline,
-  &.is-style-arrow {
-    a {
+  & {
+    a,
+    button {
       @include mixins.button;
     }
   }
-}
 
-.is-style-outline {
-  a {
-    background-color: transparent;
-    border-color: tokens.$c-darkGreen-800;
-    color: tokens.$c-darkGreen-800;
-
-    i,
-    &::after {
-      background-color: transparent;
-      color: tokens.$c-darkGreen-800;
+  &.is-style-dark {
+    a {
+      @extend %darkButton;
     }
+  }
 
-    &:hover {
-      background: tokens.$c-limeGreen-200;
+  &.is-style-light {
+    a {
+      @extend %lightButton;
     }
   }
 }
 
-.is-style-arrow {
-  a {
-    background-color: tokens.$c-darkGreen-700;
-    color: tokens.$c-white;
+button.is-style-dark,
+a.is-style-dark {
+  @extend %darkButton;
+}
 
-    i,
-    &::after {
-      background-color: tokens.$c-darkGreen-800;
-    }
-
-    &:hover {
-      background-color: tokens.$c-darkGreen-800;
-
-      i,
-      &::after {
-        color: tokens.$c-white;
-      }
-    }
-  }
+button.is-style-light,
+a.is-style-light {
+  @extend %lightButton;
 }
 
 .is-layout-flex {
