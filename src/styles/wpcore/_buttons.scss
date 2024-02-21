@@ -1,5 +1,5 @@
-@use 'tokens';
-@use 'utilities/mixins';
+@use "tokens";
+@use "utilities/mixins";
 
 // =================================
 // Buttons Style Functions (mixins, extends, etc.)
@@ -25,21 +25,11 @@
 }
 
 %darkButton {
-  @include buttonStyle(
-    tokens.$c-darkGreen-700,
-    tokens.$c-white,
-    tokens.$c-darkGreen-800,
-    tokens.$c-darkGreen-800
-  );
+  @include buttonStyle(tokens.$c-darkGreen-700, tokens.$c-white, tokens.$c-darkGreen-800, tokens.$c-darkGreen-800);
 }
 
 %lightButton {
-  @include buttonStyle(
-    tokens.$c-white,
-    tokens.$c-gray-800,
-    tokens.$c-limeGreen-500,
-    tokens.$c-limeGreen-200
-  );
+  @include buttonStyle(tokens.$c-white, tokens.$c-gray-800, tokens.$c-limeGreen-500, tokens.$c-limeGreen-200);
 }
 
 // =================================
@@ -63,6 +53,31 @@
       @extend %lightButton;
     }
   }
+
+  &.is-style-link {
+    a {
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding-block: 0.25em;
+      padding-left: 0;
+      padding-right: 1.5em;
+      color: tokens.$c-teal-800;
+      text-decoration: underline;
+      box-shadow: none;
+
+      &::after {
+        background: none;
+        color: tokens.$c-teal-800;
+        width: 1.2em;
+      }
+
+      &:hover {
+        background: none;
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 button.is-style-dark,
@@ -73,6 +88,30 @@ a.is-style-dark {
 button.is-style-light,
 a.is-style-light {
   @extend %lightButton;
+}
+
+button.is-style-link,
+a.is-style-link {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding-block: 0.25em;
+  padding-left: 0;
+  padding-right: 1.5em;
+  color: tokens.$c-teal-800;
+  text-decoration: underline;
+  box-shadow: none;
+
+  &::after {
+    background: none;
+    width: 1.2em;
+    color: tokens.$c-teal-800;
+  }
+
+  &:hover {
+    background: none;
+    text-decoration: underline;
+  }
 }
 
 .is-layout-flex {
