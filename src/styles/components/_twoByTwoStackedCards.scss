@@ -1,0 +1,68 @@
+@use "sass:color";
+@use "tokens";
+@use "utilities/mixins";
+
+.two-by-two-stacked-cards-block {
+  $gap: clamp(1rem, 4vw, tokens.$p-xxl);
+
+  display: flex;
+  flex-direction: column;
+  @include mixins.sectionPadding;
+
+  @media (min-width: tokens.$mq-1100) {
+    flex-direction: row;
+    gap: $gap;
+  }
+
+  & > .wp-block-image {
+    display: none;
+    @media (min-width: tokens.$mq-1200) {
+      display: block;
+      width: auto;
+      max-width: 40%;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .wp-block-columns {
+    flex: 1;
+    align-items: flex-start;
+    gap: $gap;
+
+    @media (min-width: tokens.$mq-1100) {
+      width: 70%;
+    }
+
+    .wp-block-column {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: $gap;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .wp-block-image {
+        img {
+          position: relative;
+          max-height: clamp(15rem, 25vw, 25rem);
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+    }
+  }
+}
+
+div:where(.two-by-two-stacked-cards-block) {
+  .simple-content-card {
+    background: color.adjust(tokens.$c-sand-300, $lightness: 10%);
+    padding: tokens.$p-l;
+  }
+}
