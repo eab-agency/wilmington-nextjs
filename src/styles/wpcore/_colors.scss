@@ -1,5 +1,5 @@
-@use 'tokens';
-@use 'utilities/mixins';
+@use "tokens";
+@use "utilities/mixins";
 
 $lightColors: (
   bright-green: tokens.$c-limeGreen-300,
@@ -38,9 +38,9 @@ $darkColors: (
       background-color: $theColor;
       color: $colorContrast;
       margin-bottom: clamp(2rem, 4vw, 4rem);
-      @include mixins.extendedBackground('after', $theColor);
+      @include mixins.extendedBackground("after", $theColor);
 
-      & > [class*='_column'] {
+      & > [class*="_column"] {
         position: relative;
         z-index: tokens.$layer-2;
 
@@ -51,7 +51,7 @@ $darkColors: (
       }
     }
 
-    div.#{$name}[class*='_column'] {
+    div.#{$name}[class*="_column"] {
       &::after {
         display: none;
       }
@@ -61,3 +61,35 @@ $darkColors: (
 
 @include colorLoop($lightColors, tokens.$c-gray-800);
 @include colorLoop($darkColors, tokens.$c-white);
+
+//! ===========================================
+//! Has background $color and Has text $color
+//! ===========================================
+@mixin hasColorLoop($colorMap, $classPrefix) {
+  @each $name, $theColor in $colorMap {
+    .has-text-color.has-#{$name}-color {
+      color: $theColor;
+
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: $theColor;
+      }
+    }
+
+    .has-background.has-#{$name}-background-color {
+      background-color: $theColor;
+    }
+
+    .section.has-#{$name}-background-color {
+      background-color: $theColor;
+      margin-bottom: clamp(2rem, 4vw, 4rem);
+      @include mixins.extendedBackground("after", $theColor);
+    }
+  }
+}
+
+@include hasColorLoop($lightColors, "light");
+@include hasColorLoop($darkColors, "dark");

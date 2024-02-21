@@ -20,7 +20,7 @@ CoreBlock.fragments = {
       }
     }
   `,
-  key: `CoreBlockFragment`
+  key: 'CoreBlockFragment'
 }
 
 CoreBlock.displayName = 'CoreBlock'
