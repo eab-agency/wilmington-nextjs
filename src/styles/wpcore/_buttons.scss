@@ -1,5 +1,5 @@
-@use "tokens";
-@use "utilities/mixins";
+@use 'tokens';
+@use 'utilities/mixins';
 
 // =================================
 // Buttons Style Functions (mixins, extends, etc.)
@@ -25,11 +25,21 @@
 }
 
 %darkButton {
-  @include buttonStyle(tokens.$c-darkGreen-700, tokens.$c-white, tokens.$c-darkGreen-800, tokens.$c-darkGreen-800);
+  @include buttonStyle(
+    tokens.$c-darkGreen-700,
+    tokens.$c-white,
+    tokens.$c-darkGreen-800,
+    tokens.$c-darkGreen-800
+  );
 }
 
 %lightButton {
-  @include buttonStyle(tokens.$c-white, tokens.$c-gray-800, tokens.$c-limeGreen-500, tokens.$c-limeGreen-200);
+  @include buttonStyle(
+    tokens.$c-white,
+    tokens.$c-gray-800,
+    tokens.$c-limeGreen-500,
+    tokens.$c-limeGreen-200
+  );
 }
 
 // =================================

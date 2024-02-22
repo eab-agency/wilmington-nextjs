@@ -1,6 +1,6 @@
-@use "sass:color";
-@use "tokens";
-@use "utilities/mixins";
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
 
 .two-by-two-stacked-cards-block {
   $gap: clamp(1rem, 4vw, tokens.$p-xxl);
