@@ -87,6 +87,11 @@ $darkColors: (
       background-color: $theColor;
       margin-bottom: clamp(2rem, 4vw, 4rem);
       @include mixins.extendedBackground("after", $theColor);
+
+      & > .content-container {
+        position: relative;
+        z-index: tokens.$layer-10;
+      }
     }
   }
 }
