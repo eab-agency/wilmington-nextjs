@@ -106,11 +106,12 @@ a.is-style-link {
     background: none;
     width: 1.2em;
     color: tokens.$c-teal-800;
+    font-size: 0.9rem;
   }
 
   &:hover {
     background: none;
-    text-decoration: underline;
+    text-decoration: none;
   }
 }
 
