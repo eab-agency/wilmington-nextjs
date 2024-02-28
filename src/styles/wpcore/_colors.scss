@@ -1,5 +1,5 @@
-@use "tokens";
-@use "utilities/mixins";
+@use 'tokens';
+@use 'utilities/mixins';
 
 $lightColors: (
   bright-green: tokens.$c-limeGreen-300,
@@ -40,9 +40,9 @@ $darkColors: (
       background-color: $theColor;
       color: $colorContrast;
       margin-bottom: clamp(2rem, 4vw, 4rem);
-      @include mixins.extendedBackground("after", $theColor);
+      @include mixins.extendedBackground('after', $theColor);
 
-      & > [class*="_column"] {
+      & > [class*='_column'] {
         position: relative;
         z-index: tokens.$layer-2;
 
@@ -53,7 +53,7 @@ $darkColors: (
       }
     }
 
-    div.#{$name}[class*="_column"] {
+    div.#{$name}[class*='_column'] {
       &::after {
         display: none;
       }
@@ -88,7 +88,7 @@ $darkColors: (
     .section.has-#{$name}-background-color {
       background-color: $theColor;
       margin-bottom: clamp(2rem, 4vw, 4rem);
-      @include mixins.extendedBackground("after", $theColor);
+      @include mixins.extendedBackground('after', $theColor);
       padding-block: clamp(2rem, 4vw, 4rem);
 
       & > .content-container {
@@ -99,8 +99,8 @@ $darkColors: (
   }
 }
 
-@include hasColorLoop($lightColors, "light");
-@include hasColorLoop($darkColors, "dark");
+@include hasColorLoop($lightColors, 'light');
+@include hasColorLoop($darkColors, 'dark');
 
 // !=======================================
 
