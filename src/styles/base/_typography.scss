@@ -1,8 +1,8 @@
 // ================
 // Typography
 // ================
-@use 'tokens';
-@use 'sass:color';
+@use "tokens";
+@use "sass:color";
 // ================
 // Root
 
@@ -65,6 +65,7 @@ h6 {
   font-style: normal;
   font-size: clamp(tokens.$fs-2xs, 1.5vw, tokens.$fs-xs);
   font-family: tokens.$f-bodyFont;
+  max-width: 80ch;
 
   // strong {
   //   font-weight: 700;
