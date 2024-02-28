@@ -1,0 +1,21 @@
+div:where(.wp-block-columns) {
+  &:where(.is-layout-flex) {
+    display: flex;
+    flex-wrap: wrap;
+    // align-items: center;
+    // gap: 1rem;
+  }
+
+  :where(.wp-block-column) {
+    flex: 1;
+    min-width: 0;
+    padding: 0.5em;
+
+    &:where(.is-layout-flow) {
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 auto;
+      gap: 1em;
+    }
+  }
+}
