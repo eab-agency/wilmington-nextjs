@@ -1,9 +1,16 @@
+@use "@/styles/tokens";
+
 div:where(.wp-block-columns) {
   &:where(.is-layout-flex) {
     display: flex;
     flex-wrap: wrap;
     // align-items: center;
     // gap: 1rem;
+    flex-direction: column;
+
+    @media (min-width: tokens.$mq-900) {
+      flex-direction: row;
+    }
   }
 
   :where(.wp-block-column) {
