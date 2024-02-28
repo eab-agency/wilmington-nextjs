@@ -1,11 +1,13 @@
 .text-center,
 .has-text-align-center {
   text-align: center;
+  align-self: center;
 }
 
 .text-right,
 .has-text-align-right {
   text-align: right;
+  align-self: flex-end;
 }
 
 .text-left,
@@ -26,6 +28,26 @@
 :where(.align-center, .aligncenter) {
   text-align: center;
   align-items: center;
+}
+
+:where(.is-content-justification-center) {
+  justify-content: center;
+}
+
+:where(.is-content-justification-right) {
+  justify-content: flex-end;
+}
+
+:where(.is-vertical) {
+  flex-direction: column;
+
+  &:where(.is-content-justification-center) {
+    align-items: center;
+  }
+
+  &:where(.is-content-justification-right) {
+    align-items: flex-end;
+  }
 }
 
 figure:where(.alignleft) {
