@@ -1,4 +1,4 @@
-@use "@/styles/tokens";
+@use '@/styles/tokens';
 
 .numbered-steps {
   counter-reset: steps;
@@ -20,7 +20,7 @@
   border-bottom: 1px dotted tokens.$c-gray-500;
 
   &::before {
-    content: counter(steps) ".";
+    content: counter(steps) '.';
     font-size: 1.8em;
     font-weight: bold;
     display: block;
