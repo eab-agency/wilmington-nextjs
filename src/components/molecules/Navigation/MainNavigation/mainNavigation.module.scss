@@ -10,6 +10,7 @@
 
 .closedMenu {
   ul {
+    // right: 100vw;
     display: none;
   }
 }
@@ -44,7 +45,7 @@
 
   .navWrapper {
     position: sticky;
-    top: 0;
+    top: 4.5em;
     z-index: tokens.$layer-2;
 
     .hamburger {
@@ -112,10 +113,10 @@
 
     & > ul {
       background: tokens.$c-white;
-      width: 100vw;
+      width: 100%;
       position: absolute;
       top: 4rem;
-      right: 0;
+      left: 0;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -137,13 +138,17 @@
         margin: 0;
         // padding: clamp(0.5em, 1vw, 1em);
 
+        &::before {
+          display: none;
+        }
+
         a,
         button {
           display: flex;
           color: tokens.$c-gray-700;
           border: none;
           width: 100%;
-          padding: 1em 2em 1em 0.8em;
+          padding: 0.8em 2.2em 0.8em 1em;
           font-family: tokens.$f-bodyFont;
           background: none;
           border: none;
@@ -200,7 +205,7 @@
             position: absolute;
             left: 100%;
             top: 0;
-            width: 25rem;
+            width: 20rem;
             height: 100vh;
           }
 
@@ -241,6 +246,21 @@
   &.openMenu {
     background: tokens.$c-gray-200;
 
+    .navWrapper {
+      width: 99.2vw;
+      height: 105vh;
+      overflow-x: auto;
+
+      @media (min-width: tokens.$mq-900) {
+        height: calc(100vh - clamp(2rem, 9vw, 9rem));
+        overflow-y: hidden;
+      }
+
+      @media (min-width: tokens.$mq-1400) {
+        overflow: initial;
+      }
+    }
+
     @media (min-width: tokens.$mq-900) {
       &::before {
         content: "";
@@ -272,7 +292,8 @@
       z-index: tokens.$layer-2;
 
       @media (max-width: tokens.$mq-900) {
-        height: calc(100vh - 4.45rem);
+        // height: calc(100vh - 4.45rem);
+        height: calc(100vh - clamp(2rem, 5vw, 5rem));
         padding-bottom: 4em;
       }
 
