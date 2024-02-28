@@ -1,4 +1,8 @@
-@use '@/styles/tokens';
+@use "@/styles/tokens";
+
+.two-columns-numbered-steps {
+  padding-block: clamp(2rem, 4vw, 4rem);
+}
 
 .numbered-steps {
   counter-reset: steps;
@@ -20,7 +24,7 @@
   border-bottom: 1px dotted tokens.$c-gray-500;
 
   &::before {
-    content: counter(steps) '.';
+    content: counter(steps) ".";
     font-size: 1.8em;
     font-weight: bold;
     display: block;

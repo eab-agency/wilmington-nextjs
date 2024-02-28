@@ -1,4 +1,4 @@
-@use "tokens";
+@use 'tokens';
 
 p {
   strong {
@@ -13,7 +13,11 @@ p {
 }
 
 %xx-large {
-  font-size: clamp((calc(tokens.$fs-2xl) * 1.2), 7vw, calc(tokens.$fs-4xl * 1.5));
+  font-size: clamp(
+    (calc(tokens.$fs-2xl) * 1.2),
+    7vw,
+    calc(tokens.$fs-4xl * 1.5)
+  );
   font-family: tokens.$f-headlineFont;
   line-height: 1.1;
 }
