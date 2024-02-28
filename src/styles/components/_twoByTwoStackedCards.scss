@@ -1,6 +1,6 @@
-@use 'sass:color';
-@use 'tokens';
-@use 'utilities/mixins';
+@use "sass:color";
+@use "tokens";
+@use "utilities/mixins";
 
 .two-by-two-stacked-cards-block {
   $gap: clamp(1rem, 4vw, tokens.$p-xxl);
@@ -13,6 +13,7 @@
     @media (min-width: tokens.$mq-1100) {
       flex-direction: row;
       gap: $gap;
+      padding-inline: 0;
     }
 
     & > .wp-block-image {
@@ -63,7 +64,7 @@
 }
 
 div:where(.two-by-two-stacked-cards-block) {
-  .simple-content-card {
+  div:where(.simple-content-card) {
     background: color.adjust(tokens.$c-sand-300, $lightness: 10%);
     padding: tokens.$p-l;
   }

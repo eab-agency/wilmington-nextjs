@@ -9,3 +9,23 @@
 .text-left {
   text-align: left;
 }
+
+:where(.align-left, .alignleft) {
+  text-align: left;
+  align-items: flex-start;
+}
+
+:where(.align-right, .alignright) {
+  text-align: right;
+  align-items: flex-end;
+}
+
+:where(.align-center, .aligncenter) {
+  text-align: center;
+  align-items: center;
+}
+
+figure:where(.alignleft) {
+  display: flex;
+  align-items: flex-start;
+}

@@ -1,0 +1,9 @@
+.ctas-group-block {
+  .wp-block-columns {
+    .wp-block-column {
+      &:first-child {
+        padding-right: clamp(0rem, 5vw, 5rem);
+      }
+    }
+  }
+}

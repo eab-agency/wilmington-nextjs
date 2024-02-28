@@ -1,5 +1,5 @@
-@use 'sass:color';
-@use 'tokens';
+@use "sass:color";
+@use "tokens";
 
 .dropdown {
   display: none;
@@ -28,11 +28,11 @@
 
 .navContainer {
   position: absolute;
-  top: 0.4em;
+  top: 0;
   right: 0;
   z-index: tokens.$layer-9999;
 
-  @media (min-width: tokens.$mq-800) {
+  @media (min-width: tokens.$mq-900) {
     border-left: tokens.$bw-l solid tokens.$c-darkGreen-800;
     background: tokens.$c-white;
     width: 3.75rem;
@@ -44,10 +44,13 @@
 
   .navWrapper {
     position: sticky;
-    top: 4.45rem;
+    top: 0;
     z-index: tokens.$layer-2;
 
     .hamburger {
+      display: flex;
+      align-items: center;
+      height: 4rem;
       background: none;
       border: none;
       font-size: tokens.$fs-m;
@@ -57,14 +60,16 @@
       position: relative;
       border-right: 1px solid tokens.$c-gray-400;
 
-      @media (max-width: tokens.$mq-800) {
-        top: 0.4em;
+      @media (min-width: tokens.$mq-900) {
+        gap: 0.3em;
+        flex-direction: column;
+        height: auto;
       }
 
       span {
         display: none;
 
-        @media (min-width: tokens.$mq-800) {
+        @media (min-width: tokens.$mq-900) {
           display: block;
           font-size: tokens.$fs-xs;
           text-transform: uppercase;
@@ -81,7 +86,7 @@
       }
 
       &::after {
-        content: '';
+        content: "";
         display: block;
         width: 0;
         height: 100%;
@@ -93,7 +98,8 @@
         transition: all 0.2s ease-in-out;
       }
 
-      &:hover {
+      &:hover,
+      &:active {
         svg,
         span {
           color: tokens.$c-darkGreen-700;
@@ -116,7 +122,7 @@
       height: 100vh;
       overflow-y: auto;
 
-      @media (min-width: tokens.$mq-800) {
+      @media (min-width: tokens.$mq-900) {
         left: 3.2rem;
         top: 0;
         width: tokens.$leftOffset;
@@ -171,7 +177,7 @@
             }
           }
 
-          &[aria-expanded='true'] {
+          &[aria-expanded="true"] {
             background: tokens.$c-limeGreen-300;
             color: tokens.$c-gray-800;
             font-weight: bold;
@@ -190,7 +196,7 @@
           margin: 0;
           list-style: none;
 
-          @media (min-width: tokens.$mq-800) {
+          @media (min-width: tokens.$mq-900) {
             position: absolute;
             left: 100%;
             top: 0;
@@ -211,14 +217,11 @@
             border-color: rgba(tokens.$c-gray-300, 0.2);
 
             ul {
-              background: color.adjust(
-                tokens.$c-darkGreen-800,
-                $lightness: -7%
-              );
+              background: color.adjust(tokens.$c-darkGreen-800, $lightness: -7%);
             }
 
             button {
-              &[aria-expanded='true'] {
+              &[aria-expanded="true"] {
                 background: tokens.$c-limeGreen-300;
                 color: tokens.$c-gray-800;
                 font-weight: bold;
@@ -238,9 +241,9 @@
   &.openMenu {
     background: tokens.$c-gray-200;
 
-    @media (min-width: tokens.$mq-800) {
+    @media (min-width: tokens.$mq-900) {
       &::before {
-        content: '';
+        content: "";
         display: block;
         width: 100vw;
         height: 100vh;
@@ -254,7 +257,7 @@
     }
 
     &::after {
-      content: '';
+      content: "";
       display: block;
       width: 4rem;
       height: 100vh;
@@ -268,7 +271,7 @@
       list-style: none;
       z-index: tokens.$layer-2;
 
-      @media (max-width: tokens.$mq-800) {
+      @media (max-width: tokens.$mq-900) {
         height: calc(100vh - 4.45rem);
         padding-bottom: 4em;
       }
