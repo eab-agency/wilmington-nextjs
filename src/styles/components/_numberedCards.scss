@@ -1,0 +1,32 @@
+@use "@/styles/tokens";
+
+.numbered-steps {
+  counter-reset: steps;
+  padding-inline: clamp(1rem, 2vw, 2rem);
+  padding-block: clamp(2rem, 4vw, 4rem);
+
+  @media (min-width: tokens.$mq-1100) {
+    padding-block: 0;
+    margin-top: 0;
+    padding-inline: clamp(1rem, 2vw, 4rem);
+    border: none;
+  }
+}
+
+.numbered-card {
+  counter-increment: steps;
+  position: relative;
+  padding-left: 2.5em;
+  border-bottom: 1px dotted tokens.$c-gray-500;
+
+  &::before {
+    content: counter(steps) ".";
+    font-size: 1.8em;
+    font-weight: bold;
+    display: block;
+    position: absolute;
+    top: -0.1em;
+    left: 0;
+    line-height: 1;
+  }
+}

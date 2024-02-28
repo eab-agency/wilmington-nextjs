@@ -1,0 +1,15 @@
+@use "@/styles/tokens";
+
+.four-cards-band-block {
+  padding-block: clamp(1rem, 2vw, 2rem);
+
+  .wp-block-columns {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    @media (min-width: tokens.$mq-1100) {
+      flex-direction: row;
+    }
+  }
+}
