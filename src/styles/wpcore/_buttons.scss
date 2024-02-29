@@ -63,6 +63,31 @@
       @extend %lightButton;
     }
   }
+
+  &.is-style-link {
+    a {
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding-block: 0.25em;
+      padding-left: 0;
+      padding-right: 1.5em;
+      color: tokens.$c-teal-800;
+      text-decoration: underline;
+      box-shadow: none;
+
+      &::after {
+        background: none;
+        color: tokens.$c-teal-800;
+        width: 1.2em;
+      }
+
+      &:hover {
+        background: none;
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 button.is-style-dark,
@@ -75,9 +100,40 @@ a.is-style-light {
   @extend %lightButton;
 }
 
-.is-layout-flex {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
+button.is-style-link,
+a.is-style-link {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding-block: 0.25em;
+  padding-left: 0;
+  padding-right: 1.5em;
+  color: tokens.$c-teal-800;
+  text-decoration: underline;
+  box-shadow: none;
+
+  &::after {
+    background: none;
+    width: 1.2em;
+    color: tokens.$c-teal-800;
+    font-size: 0.9rem;
+  }
+
+  &:hover {
+    background: none;
+    text-decoration: none;
+  }
+}
+
+.wp-block-buttons {
+  &:where(.is-layout-flex) {
+    display: flex;
+    flex-wrap: wrap;
+    // align-items: center;
+    gap: 1rem;
+  }
+
+  .wp-block-column & {
+    flex-direction: column;
+  }
 }

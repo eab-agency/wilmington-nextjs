@@ -6,36 +6,76 @@ p {
   }
 }
 
-.x-large {
-  font-size: clamp(tokens.$fs-2xl, 5vw, calc(tokens.$fs-4xl * 1.5));
+%xxx-large {
+  font-size: clamp((calc(tokens.$fs-2xl) * 1.7), 7vw, calc(tokens.$fs-4xl * 2));
   font-family: tokens.$f-headlineFont;
+  line-height: 1;
 }
 
-.large {
+%xx-large {
+  font-size: clamp(
+    (calc(tokens.$fs-2xl) * 1.2),
+    7vw,
+    calc(tokens.$fs-4xl * 1.5)
+  );
+  font-family: tokens.$f-headlineFont;
+  line-height: 1.1;
+}
+
+%x-large {
+  font-size: clamp(tokens.$fs-2xl, 5vw, calc(tokens.$fs-4xl));
+  font-family: tokens.$f-headlineFont;
+  line-height: 1.2;
+}
+
+%large {
   font-size: clamp(tokens.$fs-l, 3vw, tokens.$fs-2xl);
   font-family: tokens.$f-headlineFont;
 }
 
-.medium {
-  font-size: clamp(tokens.$fs-m, 3vw, tokens.$fs-l);
+%medium {
+  font-size: clamp(tokens.$fs-m, 3vw, calc(tokens.$fs-l * 0.7));
 }
 
-.small {
+%small {
   font-size: clamp(tokens.$fs-2xs, 1.5vw, tokens.$fs-xs);
 }
 
-.has-medium-font-size {
-  @extend .medium;
+%x-small {
+  font-size: clamp(tokens.$fs-3xs, 1.2vw, tokens.$fs-2xs);
 }
 
-.has-small-font-size {
-  @extend .small;
+.has-extra-small-font-size,
+.extra-small {
+  @extend %x-small;
 }
 
-.has-large-font-size {
-  @extend .large;
+.has-small-font-size,
+.small {
+  @extend %small;
 }
 
-.has-x-large-font-size {
-  @extend .x-large;
+.has-normal-font-size,
+.normal {
+  @extend %medium;
+}
+
+.has-large-font-size,
+.large {
+  @extend %large;
+}
+
+.has-extra-large-font-size,
+.extra-large {
+  @extend %x-large;
+}
+
+.has-huge-font-size,
+.huge {
+  @extend %xx-large;
+}
+
+.has-extra-huge-font-size,
+.extra-huge {
+  @extend %xxx-large;
 }

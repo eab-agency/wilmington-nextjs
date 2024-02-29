@@ -24,7 +24,8 @@ $social-icons: (
       @media (min-width: tokens.$mq-800) {
         flex-direction: row;
         justify-content: space-between;
-        padding-left: tokens.$leftOffset;
+        // padding-left: tokens.$leftOffset;
+        padding-left: clamp(5rem, 10vw, 14rem);
       }
 
       .schoolInfo {
