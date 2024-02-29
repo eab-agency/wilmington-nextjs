@@ -1,6 +1,8 @@
 @use "@/styles/tokens";
 
 .courses-requirements-band {
+  padding-block: clamp(2rem, 5vw, 4rem);
+
   .content-container {
     display: flex;
     flex-direction: column;

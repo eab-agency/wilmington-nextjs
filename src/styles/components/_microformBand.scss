@@ -1,0 +1,81 @@
+@use "@/styles/tokens";
+
+.wp-block-eab-blocks-student-life-microform {
+  position: relative;
+  padding-block: clamp(2rem, 5vw, 4rem);
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: white;
+  }
+
+  .show-overlay {
+  }
+
+  figure {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100%;
+
+    img {
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      position: absolute;
+      height: 100%;
+    }
+  }
+
+  .overlay {
+    width: 100vw !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+
+  .wp-block-columns {
+    position: relative;
+    z-index: tokens.$layer-5;
+  }
+}
+
+.fsBody {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: tokens.$c-darkGreen-700;
+  }
+
+  .fsRow {
+    &:first-child {
+      border: none;
+
+      span {
+        display: block;
+        font-size: clamp(tokens.$fs-l, 3vw, tokens.$fs-xl) !important;
+        font-family: tokens.$f-headlineFont;
+        line-height: 1.2;
+        text-align: left;
+      }
+    }
+
+    .fsSupporting {
+      padding-top: 0.5em;
+      font-size: tokens.$fs-2xs;
+    }
+  }
+
+  div.fsError {
+    font-size: tokens.$fs-xs;
+  }
+}
