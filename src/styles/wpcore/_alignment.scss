@@ -50,6 +50,25 @@
   }
 }
 
+:where(.is-vertically-aligned-center) {
+  // align-items: center;
+  justify-content: center;
+}
+
+:where(.is-vertically-aligned-bottom) {
+  // align-items: flex-end;
+  justify-content: flex-end;
+}
+
+:where(.is-vertically-aligned-top) {
+  // align-items: flex-start;
+  justify-content: flex-start;
+}
+
+:where(.is-vertically-aligned-stretch) {
+  justify-content: stretch;
+}
+
 figure:where(.alignleft) {
   display: flex;
   align-items: flex-start;
