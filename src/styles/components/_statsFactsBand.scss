@@ -1,0 +1,10 @@
+.stats-facts-band-block {
+  .content-container {
+    display: flex;
+    flex-direction: column;
+
+    & > .has-text-align-center {
+      align-self: center;
+    }
+  }
+}
