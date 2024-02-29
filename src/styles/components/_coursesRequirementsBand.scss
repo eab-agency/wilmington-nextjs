@@ -1,0 +1,74 @@
+@use "@/styles/tokens";
+
+.courses-requirements-band {
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1em, 3vw, 2em);
+
+    @media (min-width: tokens.$mq-900) {
+      flex-direction: row;
+    }
+
+    .curriculum-column {
+      flex: 1 1 65%;
+    }
+    .requirements-column {
+      flex: 1 1 35%;
+    }
+  }
+}
+
+.requirements-card {
+  background: tokens.$c-limeGreen-100;
+  padding: clamp(2em, 3vw, 3em);
+
+  .requirementItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    line-height: 1;
+    padding-block: 0.5em;
+    border-bottom: 1px dotted tokens.$c-limeGreen-400;
+    margin-bottom: 0.5em;
+    padding-left: 1.5em;
+    position: relative;
+
+    &::before {
+      content: tokens.$i-office;
+      font-family: tokens.$f-icons;
+      position: absolute;
+      left: 0;
+      top: 0.4em;
+      color: tokens.$c-darkGreen-700;
+    }
+
+    &:nth-child(3) {
+      &::before {
+        content: tokens.$i-book;
+      }
+    }
+
+    &:nth-child(4) {
+      &::before {
+        content: tokens.$i-clock;
+      }
+    }
+
+    .requirementLabel {
+      color: tokens.$c-darkGreen-700;
+      font-size: tokens.$fs-2xs;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .requirementValue {
+      line-height: 1.2;
+      font-size: 1.1em;
+    }
+  }
+
+  .wp-block-group {
+    margin-top: 1.5em;
+  }
+}
