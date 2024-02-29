@@ -1,5 +1,5 @@
-@use 'sass:color';
-@use 'tokens';
+@use "sass:color";
+@use "tokens";
 
 .wp-block-table {
   margin-bottom: clamp(2rem, 5vw, 4rem);
@@ -17,6 +17,11 @@
   table {
     width: 100%;
 
+    th {
+      background-color: tokens.$c-limeGreen-300;
+      // color: tokens.$c-white;
+    }
+
     th,
     td {
       padding: 0.5rem;
@@ -33,6 +38,12 @@
 
     thead {
       border-bottom: 3px solid tokens.$c-limeGreen-500;
+    }
+
+    tr {
+      &:nth-child(even) {
+        background-color: color.adjust(tokens.$c-limeGreen-100, $lightness: 10%);
+      }
     }
 
     // tbody {
