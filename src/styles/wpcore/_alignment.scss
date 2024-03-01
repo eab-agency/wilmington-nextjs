@@ -1,3 +1,5 @@
+@use "@/styles/tokens";
+
 .text-center,
 .has-text-align-center {
   text-align: center;
@@ -42,8 +44,11 @@
 
 :where(.is-layout-flex) {
   display: flex;
-  // flex-wrap: wrap;
   gap: 1rem;
+
+  @media (max-width: tokens.$mq-900) {
+    flex-direction: column;
+  }
 }
 
 :where(.is-vertical) {
