@@ -2,6 +2,7 @@
 .has-text-align-center {
   text-align: center;
   align-self: center;
+  margin-inline: auto;
 }
 
 .text-right,
@@ -28,6 +29,7 @@
 :where(.align-center, .aligncenter) {
   text-align: center;
   align-items: center;
+  margin-inline: auto;
 }
 
 :where(.is-content-justification-center) {
