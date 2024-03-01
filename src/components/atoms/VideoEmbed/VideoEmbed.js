@@ -2,7 +2,7 @@ import RichText from '@/components/atoms/RichText'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import * as styles from './VideoEmbed.module.css'
+import * as styles from './VideoEmbed.module.scss'
 
 /**
  * VideoEmbed Block
@@ -60,7 +60,7 @@ export default function VideoEmbed({ className, url, type, caption }) {
   }
 
   return (
-    <div className={cn(styles.videoEmbed, className)}>
+    <div className={`${className} ${styles.videoEmbed}`}>
       <div className={styles.wrapper}>
         <iframe
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
