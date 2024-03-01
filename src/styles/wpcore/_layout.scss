@@ -1,16 +1,16 @@
-@use '@/styles/tokens';
+@use "@/styles/tokens";
 
 div:where(.wp-block-columns) {
   &:where(.is-layout-flex) {
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
     // align-items: center;
     // gap: 1rem;
-    flex-direction: column;
+    // flex-direction: column;
 
-    @media (min-width: tokens.$mq-900) {
-      flex-direction: row;
-    }
+    // @media (min-width: tokens.$mq-900) {
+    //   flex-direction: row;
+    // }
   }
 
   :where(.wp-block-column) {
@@ -20,7 +20,9 @@ div:where(.wp-block-columns) {
 
     &:where(.is-layout-flow) {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      // flex-flow: row wrap;
+      // flex-direction: column;
       flex: 1;
       gap: 1em;
     }
