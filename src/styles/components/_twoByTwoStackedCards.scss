@@ -1,6 +1,6 @@
-@use 'sass:color';
-@use 'tokens';
-@use 'utilities/mixins';
+@use "sass:color";
+@use "tokens";
+@use "utilities/mixins";
 
 .two-by-two-stacked-cards-block {
   $gap: clamp(1rem, 4vw, tokens.$p-xxl);
@@ -8,9 +8,9 @@
   .content-container {
     display: flex;
     flex-direction: column;
-    @include mixins.sectionPadding;
 
     @media (min-width: tokens.$mq-1100) {
+      @include mixins.sectionPadding;
       flex-direction: row;
       gap: $gap;
       padding-inline: 0;
