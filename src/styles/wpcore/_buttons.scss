@@ -88,6 +88,29 @@
       }
     }
   }
+
+  &.has-custom-width {
+    .wp-element-button {
+      width: 100%;
+    }
+
+    &.wp-block-button__width-100 {
+      flex-basis: 100%;
+      width: 100%;
+    }
+    &.wp-block-button__width-75 {
+      flex-basis: 75%;
+      width: 75%;
+    }
+    &.wp-block-button__width-50 {
+      flex-basis: 50%;
+      width: 50%;
+    }
+    &.wp-block-button__width-25 {
+      flex-basis: 25%;
+      width: 25%;
+    }
+  }
 }
 
 button.is-style-dark,
@@ -125,15 +148,12 @@ a.is-style-link {
   }
 }
 
-.wp-block-buttons {
+:where(.wp-block-buttons) {
   &:where(.is-layout-flex) {
-    display: flex;
     flex-wrap: wrap;
-    // align-items: center;
-    gap: 1rem;
-  }
 
-  .wp-block-column & {
-    flex-direction: column;
+    &:where(.is-vertical) {
+      flex-wrap: nowrap;
+    }
   }
 }
