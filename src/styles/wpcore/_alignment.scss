@@ -40,8 +40,15 @@
   justify-content: flex-end;
 }
 
+:where(.is-layout-flex) {
+  display: flex;
+  // flex-wrap: wrap;
+  gap: 1rem;
+}
+
 :where(.is-vertical) {
   flex-direction: column;
+  flex-wrap: nowrap;
 
   &:where(.is-content-justification-center) {
     align-items: center;
