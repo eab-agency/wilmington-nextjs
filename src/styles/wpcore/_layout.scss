@@ -20,7 +20,9 @@ div:where(.wp-block-columns) {
 
     &:where(.is-layout-flow) {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      // flex-wrap: wrap;
       // flex-flow: row wrap;
       // flex-direction: column;
       flex: 1;
