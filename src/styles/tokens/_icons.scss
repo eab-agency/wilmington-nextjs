@@ -406,9 +406,7 @@ $i-radioSelect: '\e6ef';
 }
 $i-warning2: '\e729';
 
-.icon-location:before {
-  content: '\e72a';
-}
+$i-location: '\e72a';
 .icon-map2:before {
   content: '\e72b';
 }
@@ -427,15 +425,12 @@ $i-warning2: '\e729';
 .icon-home-line:before {
   content: '\e731';
 }
-.icon-cap:before {
-  content: '\e739';
-}
+$i-cap: '\e739';
+
 .icon-search-book:before {
   content: '\e73e';
 }
-.icon-book-open-line:before {
-  content: '\e73f';
-}
+$i-bookopen: '\e73f';
 .icon-diploma:before {
   content: '\e740';
 }
@@ -466,17 +461,14 @@ $i-warning2: '\e729';
 .icon-audiobook:before {
   content: '\e74f';
 }
-.icon-scholarship:before {
-  content: '\e751';
-}
+$i-scholarship: '\e751';
 $i-bulb: '\e752';
 
 .icon-fed-scholarship:before {
   content: '\e753';
 }
-.icon-book:before {
-  content: '\e754';
-}
+$i-book: '\e754';
+
 .icon-arrow-down:before {
   content: '\e755';
 }
@@ -549,7 +541,4 @@ $i-mail: '\e760';
   content: '\e76f';
 }
 $i-ex: '\e900';
-
-.icon-location1:before {
-  content: '\e902';
-}
+$i-location2: '\e902';

@@ -15,12 +15,7 @@ html {
 // ================
 // Headlines
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:where(h1, h2, h3, h4, h5, h6) {
   margin: 0 0 1rem 0;
   line-height: tokens.$headingLineHeight;
   font-family: tokens.$f-headlineFont;
@@ -70,6 +65,7 @@ h6 {
   font-style: normal;
   font-size: clamp(tokens.$fs-2xs, 1.5vw, tokens.$fs-xs);
   font-family: tokens.$f-bodyFont;
+  max-width: 80ch;
 
   // strong {
   //   font-weight: 700;

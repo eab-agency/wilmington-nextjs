@@ -1,99 +1,159 @@
 @use 'tokens';
 @use 'utilities/mixins';
 
-button {
-  &.is-style-arrow {
-    background-color: tokens.$c-darkGreen-700;
-    color: tokens.$c-white;
+// =================================
+// Buttons Style Functions (mixins, extends, etc.)
 
-    i,
-    &::after {
-      background-color: tokens.$c-darkGreen-800;
-    }
+@mixin buttonStyle($bgColor, $textColor, $iconBgColor, $bgColorHover) {
+  background-color: $bgColor;
+  color: $textColor;
 
-    &:hover {
-      background-color: tokens.$c-darkGreen-800;
-
-      i,
-      &::after {
-        color: tokens.$c-white;
-      }
-    }
+  i,
+  &::after {
+    background-color: $iconBgColor;
   }
 
-  &.is-style-outline {
-    background-color: transparent;
-    border-color: tokens.$c-darkGreen-800;
-    color: tokens.$c-darkGreen-800;
+  &:hover {
+    background-color: $bgColorHover;
+    color: $textColor;
 
     i,
     &::after {
-      background-color: transparent;
-      color: tokens.$c-darkGreen-800;
-    }
-
-    &:hover {
-      background: tokens.$c-limeGreen-200;
+      color: $textColor;
     }
   }
 }
 
-// =========================================
-// Button Styles
+%darkButton {
+  @include buttonStyle(
+    tokens.$c-darkGreen-700,
+    tokens.$c-white,
+    tokens.$c-darkGreen-800,
+    tokens.$c-darkGreen-800
+  );
+}
+
+%lightButton {
+  @include buttonStyle(
+    tokens.$c-white,
+    tokens.$c-gray-800,
+    tokens.$c-limeGreen-500,
+    tokens.$c-limeGreen-200
+  );
+}
+
+// =================================
 
 .wp-block-button {
-  &,
-  &.is-style-fill,
-  &.is-style-outline,
-  &.is-style-arrow {
-    a {
+  & {
+    a,
+    button {
       @include mixins.button;
     }
   }
-}
 
-.is-style-outline {
-  a {
-    background-color: transparent;
-    border-color: tokens.$c-darkGreen-800;
-    color: tokens.$c-darkGreen-800;
-
-    i,
-    &::after {
-      background-color: transparent;
-      color: tokens.$c-darkGreen-800;
-    }
-
-    &:hover {
-      background: tokens.$c-limeGreen-200;
+  &.is-style-dark {
+    a {
+      @extend %darkButton;
     }
   }
-}
 
-.is-style-arrow {
-  a {
-    background-color: tokens.$c-darkGreen-700;
-    color: tokens.$c-white;
-
-    i,
-    &::after {
-      background-color: tokens.$c-darkGreen-800;
+  &.is-style-light {
+    a {
+      @extend %lightButton;
     }
+  }
 
-    &:hover {
-      background-color: tokens.$c-darkGreen-800;
+  &.is-style-link {
+    a {
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding-block: 0.25em;
+      padding-left: 0;
+      padding-right: 1.5em;
+      color: tokens.$c-teal-800;
+      text-decoration: underline;
+      box-shadow: none;
 
-      i,
       &::after {
-        color: tokens.$c-white;
+        background: none;
+        color: tokens.$c-teal-800;
+        width: 1.2em;
+      }
+
+      &:hover {
+        background: none;
+        text-decoration: underline;
       }
     }
   }
+
+  &.has-custom-width {
+    .wp-element-button {
+      width: 100%;
+    }
+
+    &.wp-block-button__width-100 {
+      flex-basis: 100%;
+      width: 100%;
+    }
+    &.wp-block-button__width-75 {
+      flex-basis: 75%;
+      width: 75%;
+    }
+    &.wp-block-button__width-50 {
+      flex-basis: 50%;
+      width: 50%;
+    }
+    &.wp-block-button__width-25 {
+      flex-basis: 25%;
+      width: 25%;
+    }
+  }
 }
 
-.is-layout-flex {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
+button.is-style-dark,
+a.is-style-dark {
+  @extend %darkButton;
+}
+
+button.is-style-light,
+a.is-style-light {
+  @extend %lightButton;
+}
+
+button.is-style-link,
+a.is-style-link {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding-block: 0.25em;
+  padding-left: 0;
+  padding-right: 1.5em;
+  color: tokens.$c-teal-800;
+  text-decoration: underline;
+  box-shadow: none;
+
+  &::after {
+    background: none;
+    width: 1.2em;
+    color: tokens.$c-teal-800;
+    font-size: 0.9rem;
+  }
+
+  &:hover {
+    background: none;
+    text-decoration: none;
+  }
+}
+
+:where(.wp-block-buttons) {
+  &:where(.is-layout-flex) {
+    flex-wrap: wrap;
+
+    &:where(.is-vertical) {
+      flex-wrap: nowrap;
+    }
+  }
 }

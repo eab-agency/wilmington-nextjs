@@ -1,0 +1,49 @@
+@use '@/styles/tokens';
+
+.wp-block-eab-blocks-simple-cta-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 25rem;
+  padding: clamp(2rem, 4vw, 4rem);
+  background: #efefef;
+  text-decoration: none;
+  padding-bottom: 4em;
+  position: relative;
+  outline: 0em solid rgba(255, 255, 255, 0.1);
+  outline-offset: 0;
+  overflow: hidden;
+  transition: all 0.15s ease-in;
+
+  &::after {
+    content: tokens.$i-arrow-right-circle;
+    font-family: tokens.$f-icons;
+    position: absolute;
+    right: 0.8em;
+    bottom: 0.2em;
+    font-size: 2em;
+    transition: all 0.15s ease-in;
+  }
+
+  &:hover,
+  &:active {
+    outline-color: rgba(0, 0, 0, 0.2);
+    outline-offset: -0.5em;
+    outline-width: 0.5em;
+
+    &::after {
+      right: 0.5em;
+    }
+
+    h3 {
+      text-decoration: underline;
+    }
+  }
+
+  :where(h3) {
+    font-size: clamp(tokens.$fs-m, 3vw, calc(tokens.$fs-l * 1));
+    color: tokens.$c-copy;
+  }
+  :where(span) {
+    color: tokens.$c-copy;
+  }
+}
