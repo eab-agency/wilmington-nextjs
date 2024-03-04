@@ -1,0 +1,17 @@
+@use '@/styles/tokens';
+
+.stats-facts-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  background: #efefef;
+
+  :where(h3) {
+    font-size: clamp(tokens.$fs-2xl, 5vw, calc(tokens.$fs-4xl * 1.5));
+  }
+
+  :where(p) {
+    font-size: clamp(tokens.$fs-s, 2vw, calc(tokens.$fs-xl));
+  }
+}

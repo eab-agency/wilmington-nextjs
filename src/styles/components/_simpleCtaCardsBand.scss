@@ -1,0 +1,16 @@
+@use '@/styles/tokens';
+
+.simple-cta-cards-band-block {
+  padding-block: clamp(2rem, 4vw, 4rem);
+
+  h2 {
+    position: relative;
+    z-index: 100;
+  }
+
+  .content-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: clamp(1rem, 2vw, 2rem);
+  }
+}

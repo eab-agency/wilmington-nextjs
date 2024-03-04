@@ -1,11 +1,89 @@
-.text-center {
+@use '@/styles/tokens';
+
+.text-center,
+.has-text-align-center {
   text-align: center;
+  align-self: center;
+  margin-inline: auto;
 }
 
-.text-right {
+.text-right,
+.has-text-align-right {
   text-align: right;
+  align-self: flex-end;
 }
 
-.text-left {
+.text-left,
+.has-text-align-left {
   text-align: left;
+}
+
+:where(.align-left, .alignleft) {
+  text-align: left;
+  align-items: flex-start;
+}
+
+:where(.align-right, .alignright) {
+  text-align: right;
+  align-items: flex-end;
+}
+
+:where(.align-center, .aligncenter) {
+  text-align: center;
+  align-items: center;
+  margin-inline: auto;
+}
+
+:where(.is-content-justification-center) {
+  justify-content: center;
+}
+
+:where(.is-content-justification-right) {
+  justify-content: flex-end;
+}
+
+:where(.is-layout-flex) {
+  display: flex;
+  gap: 1rem;
+
+  @media (max-width: tokens.$mq-900) {
+    flex-direction: column;
+  }
+}
+
+:where(.is-vertical) {
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  &:where(.is-content-justification-center) {
+    align-items: center;
+  }
+
+  &:where(.is-content-justification-right) {
+    align-items: flex-end;
+  }
+}
+
+:where(.is-vertically-aligned-center) {
+  // align-items: center;
+  justify-content: center;
+}
+
+:where(.is-vertically-aligned-bottom) {
+  // align-items: flex-end;
+  justify-content: flex-end;
+}
+
+:where(.is-vertically-aligned-top) {
+  // align-items: flex-start;
+  justify-content: flex-start;
+}
+
+:where(.is-vertically-aligned-stretch) {
+  justify-content: stretch;
+}
+
+figure:where(.alignleft) {
+  display: flex;
+  align-items: flex-start;
 }

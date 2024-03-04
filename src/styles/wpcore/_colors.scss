@@ -4,7 +4,7 @@
 $lightColors: (
   bright-green: tokens.$c-limeGreen-300,
   light-green: tokens.$c-limeGreen-400,
-  medium-green: tokens.$c-limeGreen-500,
+  med-green: tokens.$c-limeGreen-500,
   lime-green: tokens.$c-limeGreen-600,
   bright-teal: tokens.$c-teal-300,
   teal: tokens.$c-teal-500,
@@ -26,6 +26,8 @@ $darkColors: (
   dark-gray: tokens.$c-gray-600,
   black: tokens.$c-gray-800
 );
+
+//! ===========================================
 
 @mixin colorLoop($colorMap, $colorContrast) {
   @each $name, $theColor in $colorMap {
@@ -61,3 +63,48 @@ $darkColors: (
 
 @include colorLoop($lightColors, tokens.$c-gray-800);
 @include colorLoop($darkColors, tokens.$c-white);
+
+//! ===========================================
+//! Has background $color and Has text $color
+//! ===========================================
+@mixin hasColorLoop($colorMap, $classPrefix) {
+  @each $name, $theColor in $colorMap {
+    .has-text-color.has-#{$name}-color {
+      color: $theColor;
+
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      span {
+        color: $theColor;
+      }
+    }
+
+    .has-background.has-#{$name}-background-color {
+      background-color: $theColor;
+    }
+
+    .section.has-#{$name}-background-color {
+      background-color: $theColor;
+      margin-bottom: clamp(2rem, 4vw, 4rem);
+      @include mixins.extendedBackground('after', $theColor);
+      padding-block: clamp(2rem, 4vw, 4rem);
+
+      & > .content-container {
+        position: relative;
+        z-index: tokens.$layer-10;
+      }
+    }
+  }
+}
+
+@include hasColorLoop($lightColors, 'light');
+@include hasColorLoop($darkColors, 'dark');
+
+// !=======================================
+
+.has-background.has-transparent-background-color {
+  background-color: transparent;
+}
