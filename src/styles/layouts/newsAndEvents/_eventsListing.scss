@@ -1,10 +1,10 @@
-@use "sass:color";
-@use "tokens";
-@use "utilities/mixins";
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
 
 .front-page {
   .eventsSection {
-    @include mixins.extendedBackground("before", tokens.$c-gray-700);
+    @include mixins.extendedBackground('before', tokens.$c-gray-700);
 
     width: 100%;
     background: tokens.$c-gray-700;
@@ -83,7 +83,7 @@
         }
 
         &::after {
-          content: "";
+          content: '';
           display: block;
           width: 1px;
           height: 90%;
@@ -102,7 +102,7 @@
       }
     }
 
-    a[class*="Button_"] {
+    a[class*='Button_'] {
       width: fit-content;
     }
   }
@@ -196,7 +196,7 @@
       }
 
       &::after {
-        content: "";
+        content: '';
         display: block;
         width: 1px;
         height: 90%;
@@ -215,7 +215,7 @@
     }
   }
 
-  a[class*="Button_"] {
+  a[class*='Button_'] {
     width: fit-content;
 
     &.articleLink {
@@ -228,7 +228,7 @@
     position: relative;
     padding-bottom: 3em;
 
-    time[class*="theTime"] {
+    time[class*='theTime'] {
       background: tokens.$c-limeGreen-700;
       color: tokens.$c-white;
       width: fit-content;
