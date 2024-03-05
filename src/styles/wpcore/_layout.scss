@@ -22,9 +22,6 @@ div:where(.wp-block-columns) {
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
-      // flex-wrap: wrap;
-      // flex-flow: row wrap;
-      // flex-direction: column;
       flex: 1;
       gap: 1em;
     }
