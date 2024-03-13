@@ -93,6 +93,7 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
                 alt={mediaItem.altText}
                 width={1080}
                 height={720}
+                priority
               />
             </figure>
           ) : (
