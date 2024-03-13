@@ -13,7 +13,7 @@ interface SimpleCarouselProps {
     type: string
     mediaItem: {
       altText: string
-      mediaItemUrl: string
+      mediaUrl: string
     }
   }[]
 }
@@ -82,14 +82,14 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
           ((isImageType && browserWidth < MOBILE_BREAKPOINT) ||
             (isImageType &&
               browserWidth > MOBILE_BREAKPOINT &&
-              mediaItems.length > 1) ||
+              mediaItems.length > 0) ||
             (type === 'internal' && browserWidth > MOBILE_BREAKPOINT))
         ) {
           const classNames = generateItemClassName(index, type)
           return isImageType ? (
             <figure key={index} className={classNames}>
               <Image
-                src={mediaItem.mediaItemUrl}
+                src={mediaItem.mediaUrl}
                 alt={mediaItem.altText}
                 width={1080}
                 height={720}
@@ -99,7 +99,7 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
             <VideoPlayer
               key={index}
               className={classNames}
-              src={mediaItem.mediaItemUrl}
+              src={mediaItem.mediaUrl}
               autoPlay={true}
               caption={mediaItem.altText}
             />

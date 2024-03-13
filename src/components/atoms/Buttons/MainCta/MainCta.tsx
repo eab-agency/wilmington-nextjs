@@ -1,11 +1,11 @@
 import Link from '@/components/common/Link'
 import React from 'react'
 import {
-  MdOutlineEditNote,
   MdCardGiftcard,
-  MdOutlinePlace,
   MdInfoOutline,
-  MdLocalPhone
+  MdLocalPhone,
+  MdOutlineEditNote,
+  MdOutlinePlace
 } from 'react-icons/md'
 
 interface MainCtaProps {
@@ -14,7 +14,7 @@ interface MainCtaProps {
   url: string
 }
 
-function MainCta({ text, icon, url }: MainCtaProps) {
+function MainCta({ text, icon = 'edit_note', url }: MainCtaProps) {
   return (
     <Link href={url}>
       {icon === 'location_on' && (

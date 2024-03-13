@@ -3,13 +3,14 @@ import RichText from '@/components/atoms/RichText'
 import SimpleCarousel from '@/components/organisms/SimpleCarousel'
 import styles from './HomeHero.module.scss'
 
-function Hero({ mediaItems, content, ctas }) {
+function Hero({ mediaItems, content, description, ctas = [] }) {
   return (
     <div className={styles.homeHero}>
       <SimpleCarousel mediaItems={mediaItems} />
       <div className={styles.heroIntroContent}>
         <div className={styles.introCopy}>
-          <RichText tag="div">{content}</RichText>
+          <RichText tag="h1">{content}</RichText>
+          <RichText tag="div">{description}</RichText>
         </div>
         <ul className={styles.ctasRow}>
           {ctas.map((cta, index) => (
