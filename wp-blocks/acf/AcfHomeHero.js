@@ -17,7 +17,7 @@ const IMAGE_QUERY = gql`
       edges {
         node {
           altText
-          mediaItemUrl
+          mediaUrl: mediaItemUrl
           mediaDetails {
             height
             width
