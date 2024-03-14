@@ -6,10 +6,13 @@ const EabBlocksHomepageHeroSlider = (props) => {
   const {
     ctaOneLink,
     ctaOneText,
+    ctaOneIcon,
     ctaTwoLink,
     ctaTwoText,
+    ctaTwoIcon,
     ctaThreeLink,
     ctaThreeText,
+    ctaThreeIcon,
     heroExtraContent,
     heroTitle
   } = attributes
@@ -17,17 +20,21 @@ const EabBlocksHomepageHeroSlider = (props) => {
   // put the three ctas into an array
   const ctas = []
 
-  if (ctaOneText) {
-    ctas.push({ title: ctaOneText, url: ctaOneLink.url })
+  const ctaTexts = [ctaOneText, ctaTwoText, ctaThreeText];
+  const ctaLinks = [ctaOneLink, ctaTwoLink, ctaThreeLink];
+  const ctaIcons = [ctaOneIcon, ctaTwoIcon, ctaThreeIcon];
+
+  for (let i = 0; i < 3; i++) {
+    const ctaText = ctaTexts[i];
+    const ctaLink = ctaLinks[i];
+    const ctaIcon = ctaIcons[i];
+
+    if (ctaText && ctaLink) {
+      ctas.push({ title: ctaText, url: ctaLink.url, icon: ctaIcon });
+    }
+
   }
 
-  if (ctaTwoText) {
-    ctas.push({ title: ctaTwoText, url: ctaTwoLink.url })
-  }
-
-  if (ctaThreeText) {
-    ctas.push({ title: ctaThreeText, url: ctaThreeLink.url })
-  }
   const mediaArray = props?.children
   const mediaItems = []
 
@@ -75,16 +82,19 @@ EabBlocksHomepageHeroSlider.fragments = {
         className
         ctaOneLink
         ctaOneText
+        ctaOneIcon
         ctaThreeLink
         ctaThreeText
+        ctaThreeIcon
         ctaTwoLink
         ctaTwoText
+        ctaTwoIcon
         heroExtraContent
         heroTitle
       }
     }
   `,
-  key: `EabBlocksHomepageHeroSliderFragment`
+  key: 'EabBlocksHomepageHeroSliderFragment'
 }
 
 EabBlocksHomepageHeroSlider.displayName = 'EabBlocksHomepageHeroSlider'
