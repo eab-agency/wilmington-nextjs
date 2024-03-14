@@ -75,18 +75,17 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
     <div className={styles.carouselContainer}>
       {mediaItems.map((item, index) => {
         const { type, mediaItem } = item
-        const isImageType = type === 'image'
 
         if (
           mediaItem &&
-          ((isImageType && browserWidth < MOBILE_BREAKPOINT) ||
-            (isImageType &&
+          ((type && browserWidth < MOBILE_BREAKPOINT) ||
+            (type &&
               browserWidth > MOBILE_BREAKPOINT &&
               mediaItems.length > 0) ||
             (type === 'internal' && browserWidth > MOBILE_BREAKPOINT))
         ) {
           const classNames = generateItemClassName(index, type)
-          return isImageType ? (
+          return type === 'image' ? (
             <figure key={index} className={classNames}>
               <Image
                 src={mediaItem.mediaUrl}

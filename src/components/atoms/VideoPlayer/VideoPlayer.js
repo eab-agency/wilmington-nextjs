@@ -6,6 +6,8 @@ import * as styles from './VideoPlayer.module.css'
 export default function VideoPlayer({ src, autoPlay, caption, className }) {
   const videoRef = useRef(null)
 
+  const videoPlayerClasses = cn(styles.videoPlayer, className)
+
   useEffect(() => {
     const videoElement = videoRef.current
 
@@ -14,15 +16,15 @@ export default function VideoPlayer({ src, autoPlay, caption, className }) {
     }
   }, [autoPlay])
   return (
-    <div className={cn(styles.videoPlayer, className)}>
+    <figure className={videoPlayerClasses}>
       <div className={styles.wrapper}>
         <video ref={videoRef} src={src} muted loop />
       </div>
       {!!caption && (
-        <div className={styles.caption}>
+        <figcaption className={styles.caption}>
           <RichText tag="span">{caption}</RichText>
-        </div>
+        </figcaption>
       )}
-    </div>
+    </figure>
   )
 }
