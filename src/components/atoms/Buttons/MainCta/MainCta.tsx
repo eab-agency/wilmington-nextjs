@@ -17,7 +17,7 @@ interface MainCtaProps {
 
 function MainCta({ text, icon = 'edit_note', url }: MainCtaProps) {
   return (
-    <Link href={url} tabindex="0">
+    <Link href={url} tabIndex="0">
       {icon === 'location' && (
         <figure>
           <MdOutlinePlace />

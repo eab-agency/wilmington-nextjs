@@ -38,14 +38,15 @@ const EabBlocksHomepageHeroSlider = (props) => {
   const mediaItems = []
 
   // Iterate over each object in the mediaArray
-  mediaArray.forEach((item) => {
+  // mediaArray.forEach((item) => {
+  for (const item of mediaArray) {
     // Check if mediaId and mediaUrl are available
     if (item.attributes.mediaId && item.attributes.mediaUrl) {
       // Extract relevant information
       const imageId = item.attributes.mediaId.toString()
-      const type = 'image'
       const altText = item.attributes.mediaAlt || ''
       const mediaUrl = item.attributes.mediaUrl
+      const type = item.attributes.mediaUrl.split('.').pop() === 'mp4' ? 'video' : 'image'
 
       // Create the new object with the extracted information
       const mediaItem = {
@@ -60,7 +61,7 @@ const EabBlocksHomepageHeroSlider = (props) => {
       // Push the new object to the mediaItems array
       mediaItems.push(mediaItem)
     }
-  })
+  }
 
   return (
     <Hero
