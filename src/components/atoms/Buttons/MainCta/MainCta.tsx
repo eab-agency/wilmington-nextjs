@@ -5,7 +5,8 @@ import {
   MdInfoOutline,
   MdLocalPhone,
   MdOutlineEditNote,
-  MdOutlinePlace
+  MdOutlinePlace,
+  MdStar
 } from 'react-icons/md'
 
 interface MainCtaProps {
@@ -16,8 +17,8 @@ interface MainCtaProps {
 
 function MainCta({ text, icon = 'edit_note', url }: MainCtaProps) {
   return (
-    <Link href={url}>
-      {icon === 'location_on' && (
+    <Link href={url} tabindex="0">
+      {icon === 'location' && (
         <figure>
           <MdOutlinePlace />
         </figure>
@@ -27,22 +28,26 @@ function MainCta({ text, icon = 'edit_note', url }: MainCtaProps) {
           <MdOutlineEditNote />
         </figure>
       )}
-      {icon === 'redeem_outlined' && (
+      {icon === 'redeem' && (
         <figure>
           <MdCardGiftcard />
         </figure>
       )}
-      {icon === 'info_outlined' && (
+      {icon === 'info' && (
         <figure>
           <MdInfoOutline />
         </figure>
       )}
-      {icon === 'phone_enabled' && (
+      {icon === 'phone' && (
         <figure>
           <MdLocalPhone />
         </figure>
       )}
-
+      {icon === null && (
+        <figure>
+          <MdStar />
+        </figure>
+      )}
       {text}
     </Link>
   )
