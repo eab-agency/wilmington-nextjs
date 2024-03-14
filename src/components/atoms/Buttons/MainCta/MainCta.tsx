@@ -15,39 +15,27 @@ interface MainCtaProps {
   url: string
 }
 
-function MainCta({ text, icon = 'edit_note', url }: MainCtaProps) {
+function MainCta({ text, icon, url }: MainCtaProps) {
   return (
     <Link href={url} tabIndex="0">
-      {icon === 'location' && (
-        <figure>
-          <MdOutlinePlace />
-        </figure>
-      )}
-      {icon === 'edit_note' && (
-        <figure>
-          <MdOutlineEditNote />
-        </figure>
-      )}
-      {icon === 'redeem' && (
-        <figure>
-          <MdCardGiftcard />
-        </figure>
-      )}
-      {icon === 'info' && (
-        <figure>
-          <MdInfoOutline />
-        </figure>
-      )}
-      {icon === 'phone' && (
-        <figure>
-          <MdLocalPhone />
-        </figure>
-      )}
-      {icon === null && (
-        <figure>
-          <MdStar />
-        </figure>
-      )}
+      <figure>
+        {(() => {
+          switch (icon) {
+            case 'location':
+              return <MdOutlinePlace />
+            case 'edit_note':
+              return <MdOutlineEditNote />
+            case 'redeem':
+              return <MdCardGiftcard />
+            case 'info':
+              return <MdInfoOutline />
+            case 'phone':
+              return <MdLocalPhone />
+            default:
+              return <MdStar />
+          }
+        })()}
+      </figure>
       {text}
     </Link>
   )
