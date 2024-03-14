@@ -1,5 +1,5 @@
-@use 'sass:color';
-@use 'tokens';
+@use "sass:color";
+@use "tokens";
 
 @mixin button {
   display: inline-flex;
@@ -45,7 +45,8 @@
     transition: all 0.15s ease-in;
   }
 
-  &:hover {
+  &:hover,
+  &:active {
     background: tokens.$c-limeGreen-400;
 
     &::after {
