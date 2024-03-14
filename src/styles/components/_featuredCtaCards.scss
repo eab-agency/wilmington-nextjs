@@ -1,6 +1,6 @@
-@use "sass:color";
-@use "tokens";
-@use "utilities/mixins";
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
 
 // ==================================
 // Featured CTA Cards Section
@@ -37,7 +37,7 @@
           line-height: 1.2;
 
           &::after {
-            content: "";
+            content: '';
             display: block;
             position: absolute;
             top: 50%;

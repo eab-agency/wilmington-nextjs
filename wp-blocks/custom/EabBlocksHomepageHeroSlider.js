@@ -20,19 +20,18 @@ const EabBlocksHomepageHeroSlider = (props) => {
   // put the three ctas into an array
   const ctas = []
 
-  const ctaTexts = [ctaOneText, ctaTwoText, ctaThreeText];
-  const ctaLinks = [ctaOneLink, ctaTwoLink, ctaThreeLink];
-  const ctaIcons = [ctaOneIcon, ctaTwoIcon, ctaThreeIcon];
+  const ctaTexts = [ctaOneText, ctaTwoText, ctaThreeText]
+  const ctaLinks = [ctaOneLink, ctaTwoLink, ctaThreeLink]
+  const ctaIcons = [ctaOneIcon, ctaTwoIcon, ctaThreeIcon]
 
   for (let i = 0; i < 3; i++) {
-    const ctaText = ctaTexts[i];
-    const ctaLink = ctaLinks[i];
-    const ctaIcon = ctaIcons[i];
+    const ctaText = ctaTexts[i]
+    const ctaLink = ctaLinks[i]
+    const ctaIcon = ctaIcons[i]
 
     if (ctaText && ctaLink) {
-      ctas.push({ title: ctaText, url: ctaLink.url, icon: ctaIcon });
+      ctas.push({ title: ctaText, url: ctaLink.url, icon: ctaIcon })
     }
-
   }
 
   const mediaArray = props?.children
