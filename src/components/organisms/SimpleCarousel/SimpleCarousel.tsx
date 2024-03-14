@@ -63,8 +63,9 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
   }, [mediaItems.length, browserWidth, mediaTypes, numSlides, mediaItemCount])
 
   const generateItemClassName = (index: number, type: string) => {
-    const baseClass = `${styles.carouselItem} ${index === currentSlide ? styles.active : ''
-      }`
+    const baseClass = `${styles.carouselItem} ${
+      index === currentSlide ? styles.active : ''
+    }`
     return type === 'image'
       ? `${baseClass} ${styles.heroImage}`
       : `${baseClass} ${styles.heroVideo}`

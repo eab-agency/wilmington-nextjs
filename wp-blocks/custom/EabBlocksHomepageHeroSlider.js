@@ -46,7 +46,8 @@ const EabBlocksHomepageHeroSlider = (props) => {
       const imageId = item.attributes.mediaId.toString()
       const altText = item.attributes.mediaAlt || ''
       const mediaUrl = item.attributes.mediaUrl
-      const type = item.attributes.mediaUrl.split('.').pop() === 'mp4' ? 'video' : 'image'
+      const type =
+        item.attributes.mediaUrl.split('.').pop() === 'mp4' ? 'video' : 'image'
 
       // Create the new object with the extracted information
       const mediaItem = {

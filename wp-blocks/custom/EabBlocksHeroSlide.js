@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-const EabBlocksHeroSlide = () => { }
+const EabBlocksHeroSlide = () => {}
 export default EabBlocksHeroSlide
 
 EabBlocksHeroSlide.fragments = {
