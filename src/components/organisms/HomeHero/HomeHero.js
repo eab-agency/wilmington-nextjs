@@ -10,9 +10,9 @@ function Hero({ mediaItems, content, description, ctas = [] }) {
       <div className={styles.heroIntroContent}>
         <div className={styles.introCopy}>
           {content?.length > 0 && <RichText tag="h1">{content}</RichText>}
-          {description?.length > 0 &&
+          {description?.length > 0 && (
             <RichText tag="p">{description}</RichText>
-          }
+          )}
         </div>
         <ul className={styles.ctasRow}>
           {ctas.map((cta, index) => (
