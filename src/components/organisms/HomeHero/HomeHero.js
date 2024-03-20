@@ -9,8 +9,10 @@ function Hero({ mediaItems, content, description, ctas = [] }) {
       <SimpleCarousel mediaItems={mediaItems} />
       <div className={styles.heroIntroContent}>
         <div className={styles.introCopy}>
-          <RichText tag="h1">{content}</RichText>
-          <RichText tag="p">{description}</RichText>
+          {content?.length > 0 && <RichText tag="h1">{content}</RichText>}
+          {description?.length > 0 && (
+            <RichText tag="p">{description}</RichText>
+          )}
         </div>
         <ul className={styles.ctasRow}>
           {ctas.map((cta, index) => (
