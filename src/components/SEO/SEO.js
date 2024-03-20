@@ -18,11 +18,17 @@ export default function SEO({ seo, title, description }) {
     ...(seo?.metaRobotsNoindex ? [seo.metaRobotsNoindex] : [])
   ]
 
+  // canonical being passed by Yoast/WP is the wordpress URL, we need to replace it with the actual URL
+  const modifiedFullHead = seo?.fullHead?.replace(
+    /(href=")(https?:\/\/)([^/"]+)(\/)?/g,
+    '$1https://www.wilmington.edu/'
+  )
+
   return (
     <Head>
       <title>{title ?? seo?.title}</title>
       <meta name="description" content={seo?.metaDesc ?? description} />
-      {seo?.fullHead && parse(seo.fullHead)}
+      {modifiedFullHead && parse(modifiedFullHead)}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />
       <meta name="robots" content={robots.join(', ')} />
