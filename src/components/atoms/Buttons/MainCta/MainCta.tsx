@@ -1,11 +1,12 @@
 import Link from '@/components/common/Link'
 import React from 'react'
 import {
-  MdOutlineEditNote,
   MdCardGiftcard,
-  MdOutlinePlace,
   MdInfoOutline,
-  MdLocalPhone
+  MdLocalPhone,
+  MdOutlineEditNote,
+  MdOutlinePlace,
+  MdStar
 } from 'react-icons/md'
 
 interface MainCtaProps {
@@ -16,33 +17,25 @@ interface MainCtaProps {
 
 function MainCta({ text, icon, url }: MainCtaProps) {
   return (
-    <Link href={url}>
-      {icon === 'location_on' && (
-        <figure>
-          <MdOutlinePlace />
-        </figure>
-      )}
-      {icon === 'edit_note' && (
-        <figure>
-          <MdOutlineEditNote />
-        </figure>
-      )}
-      {icon === 'redeem_outlined' && (
-        <figure>
-          <MdCardGiftcard />
-        </figure>
-      )}
-      {icon === 'info_outlined' && (
-        <figure>
-          <MdInfoOutline />
-        </figure>
-      )}
-      {icon === 'phone_enabled' && (
-        <figure>
-          <MdLocalPhone />
-        </figure>
-      )}
-
+    <Link href={url} tabIndex="0">
+      <figure>
+        {(() => {
+          switch (icon) {
+            case 'location':
+              return <MdOutlinePlace />
+            case 'edit_note':
+              return <MdOutlineEditNote />
+            case 'redeem':
+              return <MdCardGiftcard />
+            case 'info':
+              return <MdInfoOutline />
+            case 'phone':
+              return <MdLocalPhone />
+            default:
+              return <MdStar />
+          }
+        })()}
+      </figure>
       {text}
     </Link>
   )

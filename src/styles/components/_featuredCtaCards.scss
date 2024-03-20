@@ -98,6 +98,12 @@
         border-bottom-left-radius: 0;
         background: white;
       }
+
+      &:focus {
+        span {
+          outline: 3px solid pink;
+        }
+      }
     }
 
     img {

@@ -29,6 +29,8 @@ import AcfNewsListing from './acf/AcfNewsListing'
 import AcfRelatedPrograms from './acf/AcfRelatedPrograms'
 import AcfStudentOrgs from './acf/AcfStudentOrgs'
 import AcfTestimonialBlock from './acf/AcfTestimonialBlock'
+import EabBlocksHeroSlide from './custom/EabBlocksHeroSlide'
+import EabBlocksHomepageHeroSlider from './custom/EabBlocksHomepageHeroSlider'
 import EabProgramDirectory from './custom/EabProgramDirectory'
 import EabProgramJumplinks from './custom/EabProgramJumplinks'
 
@@ -71,5 +73,7 @@ export default {
   AcfStudentOrgs,
   AcfTestimonialBlock,
   EabProgramDirectory,
-  EabProgramJumplinks
+  EabProgramJumplinks,
+  EabBlocksHomepageHeroSlider,
+  EabBlocksHeroSlide
 }
