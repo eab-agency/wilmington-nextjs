@@ -4,7 +4,6 @@ import SimpleCarousel from '@/components/organisms/SimpleCarousel'
 import styles from './HomeHero.module.scss'
 
 function Hero({ mediaItems, content, description, ctas = [] }) {
-  console.log("The CTAs:", ctas)
   return (
     <div className={styles.homeHero}>
       <SimpleCarousel mediaItems={mediaItems} />
