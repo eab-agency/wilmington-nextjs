@@ -30,7 +30,16 @@ const EabBlocksHomepageHeroSlider = (props) => {
     const ctaIcon = ctaIcons[i]
 
     if (ctaText && ctaLink) {
-      ctas.push({ title: ctaText, url: ctaLink.url, icon: ctaIcon })
+      // parse the JSON string to access the url property
+      let url = ''
+      try {
+        const parsedLink = JSON.parse(ctaLink)
+        url = parsedLink.url
+      } catch (error) {
+        console.error('Error parsing JSON for ctaLink:', error)
+      }
+
+      ctas.push({ title: ctaText, url: url, icon: ctaIcon })
     }
   }
 
