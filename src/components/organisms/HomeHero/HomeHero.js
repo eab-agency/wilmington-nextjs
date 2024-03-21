@@ -17,6 +17,7 @@ function Hero({ mediaItems, content, description, ctas = [] }) {
         <ul className={styles.ctasRow}>
           {ctas.map((cta, index) => (
             <li key={index}>
+              {/* the url:{cta.url} */}
               <MainCta
                 key={index}
                 text={cta.title}
