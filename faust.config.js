@@ -10,7 +10,7 @@ import templates from './wp-templates'
  **/
 export default setConfig({
   templates,
-  experimentalPlugins: [new CustomToolbar(), new RelayStylePaginationPlugin()],
+  plugins: [new CustomToolbar(), new RelayStylePaginationPlugin()],
   experimentalToolbar: true,
   possibleTypes,
   useGETForQueries: false
