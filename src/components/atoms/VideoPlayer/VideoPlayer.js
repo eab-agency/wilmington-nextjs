@@ -18,7 +18,7 @@ export default function VideoPlayer({ src, autoPlay, caption, className }) {
   return (
     <figure className={videoPlayerClasses}>
       <div className={styles.wrapper}>
-        <video ref={videoRef} src={src} muted loop playsinline />
+        <video ref={videoRef} src={src} muted loop playsInline />
       </div>
       {!!caption && (
         <figcaption className={styles.caption}>
