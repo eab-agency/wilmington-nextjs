@@ -17,7 +17,7 @@
     "start": "faust start"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.15",
+    "@apollo/client": "^3.9.11",
     "@faustwp/blocks": "^4.0.0",
     "@faustwp/cli": "3.0.1",
     "@faustwp/core": "2.1.2",
