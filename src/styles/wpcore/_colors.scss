@@ -40,6 +40,7 @@ $darkColors: (
       background-color: $theColor;
       color: $colorContrast;
       margin-bottom: clamp(2rem, 4vw, 4rem);
+      padding-block: clamp(2rem, 4vw, 4rem);
       @include mixins.extendedBackground('after', $theColor);
 
       & > [class*='_column'] {
@@ -49,7 +50,17 @@ $darkColors: (
         &::after {
           display: none;
         }
-        // @include mixins.extendedBackground('after', $theColor);
+      }
+
+      & > p,
+      ul,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        position: relative;
+        z-index: tokens.$layer-2;
       }
     }
 
@@ -91,6 +102,7 @@ $darkColors: (
       margin-bottom: clamp(2rem, 4vw, 4rem);
       @include mixins.extendedBackground('after', $theColor);
       padding-block: clamp(2rem, 4vw, 4rem);
+      position: relative;
 
       & > .content-container {
         position: relative;
