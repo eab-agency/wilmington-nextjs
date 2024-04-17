@@ -1,4 +1,4 @@
-@use "tokens";
+@use 'tokens';
 
 .facultyCard {
   display: flex;
@@ -31,7 +31,7 @@
       position: relative;
 
       &::before {
-        content: "";
+        content: '';
         display: block;
         position: absolute;
         top: 0;
@@ -42,7 +42,7 @@
       }
 
       &::after {
-        content: "";
+        content: '';
         display: block;
         position: absolute;
         bottom: 100%;
@@ -84,7 +84,7 @@
         cursor: pointer;
 
         &::before {
-          content: "";
+          content: '';
           display: flex;
           align-items: center;
           justify-content: center;

@@ -1,5 +1,5 @@
-@use "sass:color";
-@use "tokens";
+@use 'sass:color';
+@use 'tokens';
 
 .single-faculty {
   .page-content {
@@ -14,7 +14,7 @@
       height: clamp(20rem, 40vw, 35rem);
       width: clamp(15rem, 40vw, 30rem);
 
-      & > figure[class*="image"] {
+      & > figure[class*='image'] {
         position: relative;
         width: 100%;
 
@@ -42,7 +42,7 @@
       position: relative;
 
       &::before {
-        content: "";
+        content: '';
         display: block;
         position: absolute;
         bottom: calc(100% - 2rem);
@@ -54,7 +54,7 @@
       }
 
       &::after {
-        content: "";
+        content: '';
         display: block;
         width: clamp(1em, 2vw, 2em);
         height: 100%;
@@ -68,12 +68,13 @@
         position: relative;
         padding-left: 2.2em;
         margin-bottom: 0.5rem;
-        border-bottom: 1px solid color.adjust(tokens.$c-gray-300, $lightness: -10%);
+        border-bottom: 1px solid
+          color.adjust(tokens.$c-gray-300, $lightness: -10%);
         padding-block: clamp(0.2em, 1vw, 0.4em);
         word-break: break-word;
 
         &::before {
-          content: "";
+          content: '';
           display: flex;
           align-items: center;
           justify-content: center;

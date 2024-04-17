@@ -1,4 +1,4 @@
-@use "tokens";
+@use 'tokens';
 
 .facultyList {
   display: flex;
@@ -20,7 +20,7 @@
     grid-template-columns: repeat(4, 1fr);
   }
 
-  & > div[class*="_facultyCard"] {
+  & > div[class*='_facultyCard'] {
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid tokens.$c-gray-400;
@@ -33,7 +33,7 @@
       // }
     }
 
-    [class*="facultyContent"] {
+    [class*='facultyContent'] {
       flex: 1 0 auto;
     }
   }
