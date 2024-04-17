@@ -17,6 +17,10 @@
       & > figure[class*='image'] {
         position: relative;
         width: 100%;
+
+        img {
+          object-position: top;
+        }
       }
     }
     .page-head {
@@ -67,13 +71,13 @@
         border-bottom: 1px solid
           color.adjust(tokens.$c-gray-300, $lightness: -10%);
         padding-block: clamp(0.2em, 1vw, 0.4em);
+        word-break: break-word;
 
         &::before {
           content: '';
           display: flex;
           align-items: center;
           justify-content: center;
-          // color: tokens.$c-white;
           color: tokens.$c-darkGreen-700;
           font-family: tokens.$f-icons;
           width: 1.5em;
@@ -82,35 +86,30 @@
           position: absolute;
           top: 0.3em;
           left: 0;
-          // background: tokens.$c-limeGreen-700;
           transform: rotate(-2deg);
         }
 
         &.email {
           &::before {
             content: tokens.$i-mail;
-            // background: tokens.$c-orange-500;
           }
         }
 
         &.phone {
           &::before {
             content: tokens.$i-phone;
-            // background: tokens.$c-lavender-500;
           }
         }
 
         &.location {
           &::before {
             content: tokens.$i-office;
-            // background: tokens.$c-teal-500;
           }
         }
 
         &.position {
           &::before {
             content: tokens.$i-books;
-            // background: tokens.$c-limeGreen-700;
             background: none;
             color: tokens.$c-darkGreen-700;
           }
