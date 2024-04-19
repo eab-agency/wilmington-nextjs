@@ -1,10 +1,19 @@
 @use 'tokens';
 
 .facultyList {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 70%;
   gap: clamp(2rem, 5vw, 4rem);
+  margin-inline: auto;
   margin-bottom: 4rem;
+
+  @media (min-width: tokens.$mq-500) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+  }
 
   @media (min-width: tokens.$mq-1000) {
     grid-template-columns: repeat(4, 1fr);
