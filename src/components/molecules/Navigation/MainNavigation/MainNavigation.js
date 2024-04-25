@@ -4,7 +4,7 @@ import { gql } from '@apollo/client'
 // import React from 'react'
 import { useMenuData } from '@/functions/contextProviders/'
 import formatHeirarchialMenu from '@/functions/wordpress/menus/formatHeirarchialMenu'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MdClose, MdMenu } from 'react-icons/md'
 import MainNavigationItem from './MainNavigationItem'
 import styles from './mainNavigation.module.scss'
@@ -23,6 +23,7 @@ const Burger = ({ open, setOpen }) => {
       className={styles.hamburger}
       open={open}
       onClick={() => setOpen(!open)}
+      type='button'
     >
       {open ? (
         <MdClose />
@@ -44,6 +45,31 @@ const MainNavigation = ({ enableDropdown }) => {
     setOpen((prev) => !prev)
   }
 
+  const navWrapper = useRef(null)
+
+  const documentClickHandler = (e) => {
+    if (open && !e.target.closest('ul')) {
+      setOpen(false)
+    }
+  }
+
+  useEffect(() => {
+    navWrapper.current.addEventListener('click', documentClickHandler
+    )
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        setOpen(false)
+      }
+    })
+
+    return () => {
+      navWrapper.current.removeEventListener('click', documentClickHandler)
+    }
+  })
+
+
+
   if (!mainMenu) {
     return null
   }
@@ -55,19 +81,18 @@ const MainNavigation = ({ enableDropdown }) => {
         aria-label="Main"
         className={`${styles.navContainer} ${openCloseClasses}`}
       >
-        <div className={styles.navWrapper}>
+        <div ref={navWrapper} className={styles.navWrapper}>
           <Burger open={open} setOpen={handleToggle} />
           <ul>
-            {mainMenu &&
-              mainMenu.map((navItem, index) => (
-                <MainNavigationItem
-                  item={navItem}
-                  key={index}
-                  index={index}
-                  depthLevel={depthLevel}
-                  enableDropdown={enableDropdown}
-                />
-              ))}
+            {mainMenu?.map((navItem, index) => (
+              <MainNavigationItem
+                item={navItem}
+                key={index}
+                index={index}
+                depthLevel={depthLevel}
+                enableDropdown={enableDropdown}
+              />
+            ))}
           </ul>
         </div>
       </nav>
