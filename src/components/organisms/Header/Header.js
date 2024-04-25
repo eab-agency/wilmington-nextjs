@@ -46,7 +46,8 @@ const Header = () => {
   const pageHeaderClass = classNames({
     [styles.pageHeaderSticky]: scrollPosition > headerHeight,
     [styles.pageHeader]: scrollPosition <= headerHeight,
-    [headerClass]: headerClass
+    [headerClass]: headerClass,
+    scrolled: scrollPosition > headerHeight
   })
 
   return (
