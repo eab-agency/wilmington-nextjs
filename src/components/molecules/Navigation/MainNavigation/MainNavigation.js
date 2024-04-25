@@ -64,7 +64,7 @@ const MainNavigation = ({ enableDropdown }) => {
     })
 
     return () => {
-      navWrapper.current.removeEventListener('click', documentClickHandler)
+      navWrapper?.current?.removeEventListener('click', documentClickHandler)
     }
   })
 
