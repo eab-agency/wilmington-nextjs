@@ -23,7 +23,7 @@ const Burger = ({ open, setOpen }) => {
       className={styles.hamburger}
       open={open}
       onClick={() => setOpen(!open)}
-      type='button'
+      type="button"
     >
       {open ? (
         <MdClose />
@@ -54,8 +54,9 @@ const MainNavigation = ({ enableDropdown }) => {
   }
 
   useEffect(() => {
-    navWrapper.current.addEventListener('click', documentClickHandler
-    )
+    const theNavWrapper = navWrapper.current
+
+    theNavWrapper.addEventListener('click', documentClickHandler)
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -64,11 +65,9 @@ const MainNavigation = ({ enableDropdown }) => {
     })
 
     return () => {
-      navWrapper?.current?.removeEventListener('click', documentClickHandler)
+      theNavWrapper.removeEventListener('click', documentClickHandler)
     }
   })
-
-
 
   if (!mainMenu) {
     return null

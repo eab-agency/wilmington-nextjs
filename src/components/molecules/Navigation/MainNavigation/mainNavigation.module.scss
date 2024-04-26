@@ -1,5 +1,5 @@
-@use "sass:color";
-@use "tokens";
+@use 'sass:color';
+@use 'tokens';
 
 .dropdown {
   display: none;
@@ -88,7 +88,7 @@
       }
 
       &::after {
-        content: "";
+        content: '';
         display: block;
         width: 0;
         height: 100%;
@@ -182,7 +182,7 @@
             }
           }
 
-          &[aria-expanded="true"] {
+          &[aria-expanded='true'] {
             background: tokens.$c-limeGreen-300;
             color: tokens.$c-gray-800;
             font-weight: bold;
@@ -222,11 +222,14 @@
             border-color: rgba(tokens.$c-gray-300, 0.2);
 
             ul {
-              background: color.adjust(tokens.$c-darkGreen-800, $lightness: -7%);
+              background: color.adjust(
+                tokens.$c-darkGreen-800,
+                $lightness: -7%
+              );
             }
 
             button {
-              &[aria-expanded="true"] {
+              &[aria-expanded='true'] {
                 background: tokens.$c-limeGreen-300;
                 color: tokens.$c-gray-800;
                 font-weight: bold;
@@ -264,7 +267,7 @@
 
     @media (min-width: tokens.$mq-900) {
       &::before {
-        content: "";
+        content: '';
         display: block;
         width: 100vw;
         height: 100vh;
@@ -278,7 +281,7 @@
     }
 
     &::after {
-      content: "";
+      content: '';
       display: block;
       width: 4rem;
       height: 100vh;
