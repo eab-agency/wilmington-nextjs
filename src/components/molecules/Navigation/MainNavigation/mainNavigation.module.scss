@@ -10,7 +10,6 @@
 
 .closedMenu {
   ul {
-    // right: 100vw;
     display: none;
   }
 }
@@ -55,11 +54,13 @@
       background: none;
       border: none;
       font-size: tokens.$fs-m;
-      padding-inline: 0.85rem;
+      padding-inline: 0.75rem;
       padding-block: tokens.$p-s;
       cursor: pointer;
       position: relative;
       border-right: 1px solid tokens.$c-gray-400;
+      box-shadow: none;
+      border-radius: 0;
 
       @media (min-width: tokens.$mq-900) {
         gap: 0.3em;
@@ -136,7 +137,6 @@
         position: initial;
         z-index: tokens.$layer-2;
         margin: 0;
-        // padding: clamp(0.5em, 1vw, 1em);
 
         &::before {
           display: none;
@@ -255,7 +255,8 @@
       overflow-x: auto;
 
       @media (min-width: tokens.$mq-900) {
-        height: calc(100vh - clamp(2rem, 9vw, 9rem));
+        // height: calc(100vh - clamp(2rem, 9vw, 9rem));
+        height: calc(100vh - 4.5em);
         overflow-y: hidden;
       }
 
