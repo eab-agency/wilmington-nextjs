@@ -38,3 +38,14 @@ section {
 section section {
   margin-block: 0;
 }
+
+// Main Nav fix
+header.scrolled {
+  & + div {
+    nav {
+      & > div {
+        position: fixed !important;
+      }
+    }
+  }
+}
