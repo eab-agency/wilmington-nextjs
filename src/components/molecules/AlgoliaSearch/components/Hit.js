@@ -13,6 +13,8 @@ import searchClick from '../functions/searchClick'
  */
 export default function Hit({ hit }) {
   const sanitizedTitle = ReactHtmlParser(hit.post_title)
+  // strip off "https://www.wilmington.edu" from the beginning of the permalink
+  const permalink = hit.permalink.replace(/^https:\/\/www.wilmington.edu/, '')
 
   return (
     <button
@@ -34,6 +36,7 @@ export default function Hit({ hit }) {
           }
         }}
       />
+      <span> {permalink}</span>
     </button>
   )
 }
