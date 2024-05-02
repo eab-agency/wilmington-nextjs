@@ -6,14 +6,20 @@ import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import { gql, useQuery } from '@apollo/client'
+import { useFaustQuery } from '@faustwp/core'
 import appConfig from 'app.config'
 
 export default function Archive(props) {
-  const { uri, name, __typename } = props.data.nodeByUri
-  const { data, loading, error, fetchMore } = useQuery(Archive.query, {
-    variables: Archive.variables({ uri }),
-    notifyOnNetworkStatusChange: true
-  })
+  const uri = '/faculty'
+  const { data, loading, error, fetchMore, refetch } = useQuery(
+    GET_FACULTY_QUERY,
+    {
+      variables: Archive.variables({ uri: uri }),
+      notifyOnNetworkStatusChange: true
+    }
+  )
+
+  const { generalSettings } = useFaustQuery(GET_LAYOUT_QUERY)
 
   if (error) {
     console.error(error)
@@ -22,8 +28,7 @@ export default function Archive(props) {
 
   if (!data) return null
 
-  const { title: siteTitle, description: siteDescription } =
-    data && data.generalSettings
+  const { description } = generalSettings
 
   const postList = data.nodeByUri?.contentNodes?.edges.map((el) => el.node)
 
@@ -31,18 +36,14 @@ export default function Archive(props) {
 
   return (
     <>
-      <SEO seo={{ title: archiveTitle, description: siteDescription }} />
+      <SEO seo={{ title: archiveTitle, description: description }} />
       <Layout className="thelayoutclass">
         <div className="inner-wrap archive">
           <RichText className="archiveTitle" tag="h1">
             {archiveTitle}
           </RichText>
-          {data.description && <RichText>{data.description}</RichText>}
-          <PostsList
-            posts={postList}
-            type={name}
-            className={name === 'faculty' ? 'facultyList' : undefined}
-          />
+
+          <PostsList posts={postList} type="faculty" className="facultyList" />
           <LoadMore
             className="text-center"
             hasNextPage={data.nodeByUri?.contentNodes?.pageInfo.hasNextPage}
@@ -57,8 +58,7 @@ export default function Archive(props) {
   )
 }
 
-Archive.query = gql`
-  ${BlogInfoFragment}
+const GET_FACULTY_QUERY = gql`
   ${FeaturedImage.fragments.entry}
   query GetFacultyPage(
     $uri: String!
@@ -92,9 +92,6 @@ Archive.query = gql`
               ... on NodeWithTitle {
                 title
               }
-              ... on NodeWithContentEditor {
-                content
-              }
               date
               uri
               ...FeaturedImageFragment
@@ -127,11 +124,32 @@ Archive.query = gql`
         }
       }
     }
+  }
+`
+
+const GET_LAYOUT_QUERY = gql`
+  ${BlogInfoFragment}
+
+  query GetLayout {
     generalSettings {
       ...BlogInfoFragment
     }
   }
 `
+
+Archive.queries = [
+  {
+    query: GET_FACULTY_QUERY,
+    variables: ({ uri }) => ({
+      uri,
+      first: appConfig.postsPerPage,
+      after: ''
+    })
+  },
+  {
+    query: GET_LAYOUT_QUERY
+  }
+]
 
 Archive.variables = ({ uri }) => {
   return {
