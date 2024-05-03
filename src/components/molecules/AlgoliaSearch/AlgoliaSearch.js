@@ -68,10 +68,10 @@ function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
           <SearchPlaceholder query={query} toggleAlgolia={toggleAlgolia} />
           {!!loadAlgolia || !usePlaceholder ? (
             <>
-              <div className='searchContainer'>
+              <div className="searchContainer">
                 <button
                   type="button"
-                  className='closeSearch'
+                  className="closeSearch"
                   onClick={() => {
                     toggleAlgolia(false)
                   }}

@@ -66,7 +66,7 @@ export default function Search({ indexName, query, useHistory = true }) {
   return (
     <InstantSearch searchClient={searchClient} indexName={indexName}>
       <Configure {...config} />
-      <div className='searchBox'>
+      <div className="searchBox">
         <SearchBox
           /* eslint-disable */
           autoFocus={true}

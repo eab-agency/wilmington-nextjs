@@ -14,13 +14,13 @@ import { MdOutlineSearch } from 'react-icons/md'
 // export default function SearchPlaceholder({ toggleAlgolia, query }) {
 export default function SearchPlaceholder({ toggleAlgolia }) {
   return (
-    <div className='searchPlaceholder'>
-      <div className='searchBox'>
+    <div className="searchPlaceholder">
+      <div className="searchBox">
         <button
           role="button"
           tabIndex={0}
           type="button"
-          className='trigger'
+          className="trigger"
           onClick={() => {
             toggleAlgolia(true)
           }}
