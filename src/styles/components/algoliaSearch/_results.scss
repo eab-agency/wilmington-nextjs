@@ -1,0 +1,281 @@
+@use "sass:color";
+@use "tokens";
+@use "utilities/mixins";
+
+//? =============================
+//? Algolia Search Results PAGE
+
+.algoliaResults {
+  @media (max-width: tokens.$mq-1000) {
+    padding-inline: 2rem;
+  }
+
+  .ais-SearchBox {
+    @include mixins.sectionPadding(block);
+    padding-bottom: 0;
+    position: relative;
+    width: 100%;
+    max-width: tokens.$mq-1000;
+    display: flex;
+    margin: 0 auto;
+
+    form {
+      width: 100%;
+      display: flex;
+      gap: 0.5rem;
+      position: relative;
+    }
+
+    & input {
+      width: 100%;
+      padding: 1rem 1rem;
+      padding-right: 3.5rem;
+      border: 3px solid tokens.$c-gray-400;
+      border-radius: 0.3em;
+      background: white;
+      font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-l);
+      font-family: "__Cantarell_da86bb", "__Cantarell_Fallback_da86bb", sans-serif;
+
+      &::-webkit-search-decoration,
+      &::-webkit-search-cancel-button,
+      &::-webkit-search-results-button,
+      &::-webkit-search-results-decoration {
+        appearance: none;
+      }
+    }
+
+    /* Buttons (Submit, Reset) */
+    & button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: clamp(tokens.$fs-xs, 1.5vw, tokens.$fs-s);
+      background: white;
+      border: none;
+      font-weight: 300;
+      color: tokens.$c-gray-600;
+      box-shadow: none;
+
+      & svg {
+        width: 80%;
+        height: 80%;
+      }
+
+      &[type="submit"] {
+        background: tokens.$c-limeGreen-700;
+        padding: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: clamp(1rem, 1.5vw, tokens.$fs-m);
+        width: 3em;
+        height: 3em;
+        border: 1px solid tokens.$c-limeGreen-400;
+        box-shadow: 0 0.2em 0.3em rgba(0, 22, 19, 0.1);
+
+        & svg {
+          width: 50%;
+          height: 50%;
+          fill: tokens.$c-white;
+        }
+
+        &::after {
+          display: none;
+        }
+      }
+
+      /* Reset Button */
+      &[type="reset"] {
+        position: absolute;
+        top: 50%;
+        // top: clamp(3.5em, 5vw, 4.5em);
+        // top: calc(50% + clamp(2rem, 4vw, 4rem));
+        right: clamp(3.5em, 10vw, 4.5em);
+        cursor: pointer;
+        width: 2.5em;
+        height: 2em;
+        transform: translateY(-50%);
+
+        & svg {
+          width: 70%;
+          height: 70%;
+          fill: tokens.$c-gray-600;
+        }
+
+        &[hidden] {
+          display: none;
+          visibility: hidden;
+        }
+
+        &:hover,
+        &:focus {
+          & svg {
+            fill: tokens.$c-orange-800;
+          }
+        }
+      }
+    }
+  }
+
+  .resultsHeader {
+    position: relative;
+    background: tokens.$c-gray-200;
+    padding-block: clamp(1rem, 2vw, 2rem);
+    @include mixins.extendedBackground("before", tokens.$c-gray-200);
+
+    .resultsHeaderContent {
+      display: flex;
+      gap: clamp(2rem, 4vw, 4rem);
+      z-index: 100;
+      position: relative;
+    }
+
+    & .total {
+      font-size: clamp(tokens.$fs-s, 2vw, tokens.$fs-m);
+      margin: 0;
+
+      & span {
+        font-weight: bold;
+      }
+    }
+
+    h1 {
+      z-index: 100;
+      position: relative;
+      margin: 0;
+    }
+  }
+
+  //? ================================
+  //? Algolia Search Results LISTING
+  //? ================================
+
+  .results {
+    section {
+      margin: 0;
+    }
+
+    & .filterPanel section {
+      padding-block: 2em;
+      border-left: 1px solid #ccc;
+      margin-bottom: clamp(2rem, 4vw, 4rem);
+      padding-inline: clamp(1rem, 2vw, 2rem);
+
+      & ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        max-width: tokens.$mq-1000;
+        gap: 1rem;
+        margin-top: 0;
+
+        li {
+          grid-column: span 1;
+          margin: 0;
+
+          label {
+            padding-left: 0.5em;
+          }
+        }
+      }
+    }
+
+    /* Hits/Results */
+    & .aisHits {
+      & > ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          padding: 1rem;
+          border: 1px solid #ccc;
+        }
+      }
+
+      & > button {
+        @include mixins.button;
+        margin-block: clamp(2rem, 4vw, 4rem);
+      }
+      //   display: flex;
+      //   width: 100%;
+      //   gap: 1em;
+      //   padding: 0.8em 1em;
+      //   text-align: left;
+      //   font-size: clamp(tokens.$fs-xs, 1.5vw, tokens.$fs-s);
+      //   background: white;
+      //   border: none;
+      //   border-radius: 0;
+      //   border-bottom: 1px solid tokens.$c-gray-400;
+      //   transition: font-weight 150ms ease-in-out;
+      //   cursor: pointer;
+      //   text-transform: initial;
+
+      //   figure {
+      //     display: flex;
+      //     justify-content: center;
+      //     align-items: center;
+      //     width: 2em;
+      //     height: 2em;
+      //     background: tokens.$c-gray-200;
+
+      //     svg {
+      //       fill: tokens.$c-gray-700;
+      //     }
+
+      //     img {
+      //       width: 100%;
+      //       height: 100%;
+      //       object-fit: cover;
+      //     }
+      //   }
+
+      //   & > div {
+      //     display: flex;
+      //     flex-direction: column;
+      //     align-items: flex-start;
+      //     gap: 0.2em;
+
+      //     small {
+      //       font-size: 0.7em;
+      //       color: tokens.$c-gray-600;
+      //     }
+      //   }
+
+      //   &::after {
+      //     display: none;
+      //   }
+
+      //   &:hover,
+      //   &:focus {
+      //     text-decoration: underline;
+      //     background: tokens.$c-limeGreen-200;
+
+      //     figure {
+      //       background: tokens.$c-white;
+      //     }
+
+      //     & > div {
+      //       small {
+      //         color: tokens.$c-gray-800;
+      //       }
+      //     }
+      //   }
+
+      //   & em {
+      //     font-style: normal;
+      //   }
+
+      //   &[disabled] {
+      //     // @apply opacity-25 cursor-not-allowed;
+      //   }
+      // }
+    }
+  }
+
+  /* No results */
+  & .empty {
+    // @apply py-20;
+  }
+}

@@ -2,7 +2,7 @@ import RichText from '@/components/atoms/RichText'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connectStateResults, InfiniteHits } from 'react-instantsearch-dom'
-import * as styles from '../AlgoliaResults.module.scss'
+// import * as styles from '../AlgoliaResults.module.scss'
 import PostType from '../facets/PostType'
 import CustomClearRefinements from '../refinements/CustomClearRefinements'
 import Hit from './Hit'
@@ -36,25 +36,25 @@ const SearchResults = connectStateResults(({ searchResults, indexName }) => {
     <>
       {searchResults?.nbHits ? (
         <>
-          <div className={styles.resultsHeader}>
+          <div className='resultsHeader'>
             {/* <div className="resultsHeader"> */}
             <RichText tag="h1">Search Results</RichText>
-            <div className={styles.resultsHeaderContent}>
-              <p className={styles.total}>
+            <div className='resultsHeaderContent'>
+              <p className='total'>
                 <span>{searchResults.nbHits} Results</span> for{' '}
                 {searchResults.query}
               </p>
               {/* <Sort index={indexName} /> */}
             </div>
           </div>
-          <aside className={styles.results}>
-            <div className={styles.filterPanel}>
+          <aside className='results'>
+            <div className='filterPanel'>
               <PostType refinements={refinements} />
               <CustomClearRefinements clearsQuery={true} />
             </div>
-            <div className={styles.content}>
+            <div className='content'>
               <InfiniteHits
-                className={styles.aisHits}
+                className='aisHits'
                 hitComponent={Hit}
                 translations={{
                   loadMore: 'Load More'
