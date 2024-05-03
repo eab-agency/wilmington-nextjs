@@ -63,7 +63,7 @@ function Menu({
               onClick={() => {
                 setExtended(!extended)
               }}
-              className='moreBtn'
+              className="moreBtn"
             >
               {translations.showMore(extended)}
             </button>

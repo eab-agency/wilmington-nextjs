@@ -12,11 +12,11 @@ export default function NoResults({ query }) {
     <>
       <h1>Search Results</h1>
       {query !== '' && (
-        <p className='total'>
+        <p className="total">
           <span>0 Results</span> for {query}
         </p>
       )}
-      <div className='empty'>
+      <div className="empty">
         Sorry, there are no results found for your search criteria.
         <br />
         <span>Try searching again with a different term.</span>

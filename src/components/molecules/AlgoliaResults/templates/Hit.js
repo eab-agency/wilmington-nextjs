@@ -10,7 +10,7 @@ import { Highlight } from 'react-instantsearch-dom'
  */
 export default function Hit({ hit }) {
   return (
-    <div className='hit'>
+    <div className="hit">
       <Link href={hit.permalink}>
         <h3
           dangerouslySetInnerHTML={{
@@ -20,7 +20,7 @@ export default function Hit({ hit }) {
       </Link>
 
       <div
-        className='date'
+        className="date"
         dangerouslySetInnerHTML={{ __html: hit._snippetResult.content.value }}
       />
     </div>
