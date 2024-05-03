@@ -1,6 +1,6 @@
-@use 'sass:color';
-@use 'tokens';
-@use 'utilities/mixins';
+@use "sass:color";
+@use "tokens";
+@use "utilities/mixins";
 
 //? =============================
 //? Algolia Search Results PAGE
@@ -34,8 +34,7 @@
       border-radius: 0.3em;
       background: white;
       font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-l);
-      font-family: '__Cantarell_da86bb', '__Cantarell_Fallback_da86bb',
-        sans-serif;
+      font-family: "__Cantarell_da86bb", "__Cantarell_Fallback_da86bb", sans-serif;
 
       &::-webkit-search-decoration,
       &::-webkit-search-cancel-button,
@@ -62,7 +61,7 @@
         height: 80%;
       }
 
-      &[type='submit'] {
+      &[type="submit"] {
         background: tokens.$c-limeGreen-700;
         padding: 0;
         top: 50%;
@@ -85,7 +84,7 @@
       }
 
       /* Reset Button */
-      &[type='reset'] {
+      &[type="reset"] {
         position: absolute;
         top: 50%;
         // top: clamp(3.5em, 5vw, 4.5em);
@@ -121,7 +120,7 @@
     position: relative;
     background: tokens.$c-gray-200;
     padding-block: clamp(1rem, 2vw, 2rem);
-    @include mixins.extendedBackground('before', tokens.$c-gray-200);
+    @include mixins.extendedBackground("before", tokens.$c-gray-200);
 
     .resultsHeaderContent {
       display: flex;
@@ -199,79 +198,6 @@
         @include mixins.button;
         margin-block: clamp(2rem, 4vw, 4rem);
       }
-      //   display: flex;
-      //   width: 100%;
-      //   gap: 1em;
-      //   padding: 0.8em 1em;
-      //   text-align: left;
-      //   font-size: clamp(tokens.$fs-xs, 1.5vw, tokens.$fs-s);
-      //   background: white;
-      //   border: none;
-      //   border-radius: 0;
-      //   border-bottom: 1px solid tokens.$c-gray-400;
-      //   transition: font-weight 150ms ease-in-out;
-      //   cursor: pointer;
-      //   text-transform: initial;
-
-      //   figure {
-      //     display: flex;
-      //     justify-content: center;
-      //     align-items: center;
-      //     width: 2em;
-      //     height: 2em;
-      //     background: tokens.$c-gray-200;
-
-      //     svg {
-      //       fill: tokens.$c-gray-700;
-      //     }
-
-      //     img {
-      //       width: 100%;
-      //       height: 100%;
-      //       object-fit: cover;
-      //     }
-      //   }
-
-      //   & > div {
-      //     display: flex;
-      //     flex-direction: column;
-      //     align-items: flex-start;
-      //     gap: 0.2em;
-
-      //     small {
-      //       font-size: 0.7em;
-      //       color: tokens.$c-gray-600;
-      //     }
-      //   }
-
-      //   &::after {
-      //     display: none;
-      //   }
-
-      //   &:hover,
-      //   &:focus {
-      //     text-decoration: underline;
-      //     background: tokens.$c-limeGreen-200;
-
-      //     figure {
-      //       background: tokens.$c-white;
-      //     }
-
-      //     & > div {
-      //       small {
-      //         color: tokens.$c-gray-800;
-      //       }
-      //     }
-      //   }
-
-      //   & em {
-      //     font-style: normal;
-      //   }
-
-      //   &[disabled] {
-      //     // @apply opacity-25 cursor-not-allowed;
-      //   }
-      // }
     }
   }
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import { connectCurrentRefinements } from 'react-instantsearch-dom'
-import * as styles from '../AlgoliaResults.module.scss'
 
 /**
  * Render the ClearRefinements component.
@@ -19,7 +18,7 @@ function ClearRefinements({ items, refine }) {
           type="button"
           onClick={() => refine(items)}
           disabled={!items.length}
-          className={styles.clearBtn}
+          className='clearBtn'
         >
           Clear All Filters
         </button>

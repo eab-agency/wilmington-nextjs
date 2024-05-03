@@ -2,7 +2,6 @@ import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { connectMenu } from 'react-instantsearch-dom'
-import * as styles from '../AlgoliaResults.module.scss'
 
 /**
  * Render the Menu component.
@@ -36,7 +35,7 @@ function Menu({
   return (
     <>
       {!!items && items.length > 0 && (
-        <section className={cn(styles.filterPanel, className)}>
+        <section className={`filterPanel  ${className}`}>
           {title && <h3>{title}</h3>}
           <ul>
             {items.map(
@@ -64,7 +63,7 @@ function Menu({
               onClick={() => {
                 setExtended(!extended)
               }}
-              className={styles.moreBtn}
+              className='moreBtn'
             >
               {translations.showMore(extended)}
             </button>
