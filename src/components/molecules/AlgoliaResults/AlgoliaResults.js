@@ -3,7 +3,6 @@ import { searchResultsClient } from '@/lib/algolia/connector'
 import React from 'react'
 import { Configure, InstantSearch } from 'react-instantsearch-dom'
 import Search from '../AlgoliaSearch/components/Search'
-import * as styles from './AlgoliaResults.module.scss'
 import NoResults from './templates/NoResults'
 import SearchResults from './templates/SearchResults'
 
@@ -26,7 +25,7 @@ export default function AlgoliaResults({
     console.warn('Algolia: Index Name is missing from env variables.')
   }
   return (
-    <div className={styles.algoliaResults}>
+    <div className='algoliaResults'>
       {config.query !== '' && (
         <InstantSearch
           searchClient={config.query !== '' ? searchResultsClient : ''}
