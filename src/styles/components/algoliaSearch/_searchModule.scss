@@ -1,5 +1,9 @@
 @use 'sass:color';
 @use 'tokens';
+// @use "utilities/mixins";
+
+//? =============================
+//? Algolia Search Global Component
 
 .algoliaSearch {
   position: relative;
@@ -177,178 +181,13 @@
       }
     }
   }
-
-  /* Drop Menu (Hits &  History) */
-  & .dropMenu {
-    visibility: hidden;
-    opacity: 0;
-    transition: all 150ms ease-in-out;
-    z-index: 999;
-    width: 100%;
-    width: 100%;
-    max-width: tokens.$mq-1000;
-    padding: 0;
-  }
-
-  /* Show dropmenu on Focus */
-  &:focus-within {
-    & input {
-      border-color: tokens.$c-limeGreen-400;
-      outline: none;
-    }
-
-    & .dropMenu {
-      visibility: visible;
-      opacity: 1;
-      padding-top: 1em;
-    }
-  }
-
-  /* History and Hits Menu */
-  & .history,
-  & .hits {
-    display: flex;
-    // position: absolute;
-    border: 1px solid #ccc;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    width: 100%;
-    background-color: #fff;
-    z-index: 1;
-
-    & ul {
-      display: flex;
-      flex-direction: column;
-      list-style: none;
-      width: 100%;
-      padding: 0rem;
-      margin: 0rem;
-    }
-
-    & button {
-      display: block;
-      width: 100%;
-      padding: 0.8em 1em;
-      text-align: left;
-      font-size: clamp(tokens.$fs-xs, 1.5vw, tokens.$fs-m);
-      background: white;
-      border: none;
-      border-bottom: 1px solid tokens.$c-gray-400;
-      transition: font-weight 150ms ease-in-out;
-      cursor: pointer;
-
-      &::after {
-        display: none;
-      }
-
-      &:hover,
-      &:focus {
-        text-decoration: underline;
-        background: tokens.$c-limeGreen-200;
-      }
-
-      & em {
-        font-style: normal;
-      }
-    }
-  }
-
-  /* History Menu */
-  & .history {
-    & ul {
-      list-style: none;
-      padding: 0;
-
-      li {
-        margin: 0;
-        padding: 0;
-
-        &:before {
-          display: none;
-        }
-
-        button {
-          box-shadow: none;
-        }
-
-        &[class*='clear'] {
-          // padding-inline: clamp(2rem, 4vw, 4rem);
-        }
-      }
-    }
-    & button {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      & span.time {
-        overflow: hidden;
-        text-align: right;
-        font-style: italic;
-        font-weight: normal;
-        flex-shrink: 0;
-        align-self: flex-start;
-        font-size: 0.7em;
-        opacity: 0.5;
-      }
-    }
-
-    & .clear {
-      // margin-top: 1.5rem;
-      // max-width: 7em;
-      // padding-inline: 1rem;
-      border-top: 1px dotted #ccc;
-
-      & button {
-        display: flex;
-        align-items: center;
-        font-weight: normal;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        text-decoration: underline;
-        position: relative;
-        padding: 1rem;
-        padding-left: 3em;
-        width: 10rem;
-        color: tokens.$c-gray-600;
-        border-radius: 0;
-
-        &::before {
-          content: tokens.$i-trash;
-          font-family: tokens.$f-icons;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 1.5em;
-          position: absolute;
-          left: 1rem;
-          color: tokens.$c-orange-500;
-        }
-
-        &:hover,
-        &:focus {
-          background: color.adjust(tokens.$c-gray-500, $lightness: 20%);
-          // color: white;
-          text-decoration: none;
-
-          &::after {
-            border-color: white;
-          }
-        }
-      }
-    }
-  }
 }
 
-.searchOpen {
-  overflow: hidden;
-}
-
-// div[class*='AlgoliaSearch_history'] {
-//   ul {
-//     padding: 0;
-//     list-style: none;
-
-//     li {
-//     }
-//   }
+//* ========================================
+//* ========================================
+//* Remove scrollbar from page when search is open
+// .searchOpen {
+//   overflow: hidden;
 // }
+//* ========================================
+//* ========================================

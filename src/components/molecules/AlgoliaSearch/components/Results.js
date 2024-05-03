@@ -1,6 +1,6 @@
 import React from 'react'
 import { connectStateResults, Hits } from 'react-instantsearch-dom'
-import * as styles from '../AlgoliaSearch.module.scss'
+// import * as styles from '../AlgoliaSearch.module.scss'
 import buildSearchUrl from '../functions/buildSearchUrl'
 import searchClick from '../functions/searchClick'
 import History from './History'
@@ -18,13 +18,12 @@ const Results = connectStateResults(
     clearLocalStorage
   }) => {
     return (
-      <div className={styles.dropMenu}>
-        {searchState &&
-        searchState.query &&
+      <div className="dropMenuResults">
+        {searchState?.query &&
         searchState.query.length > 0 &&
         searchResults &&
         searchResults.nbHits > 0 ? (
-          <Hits className={styles.hits} hitComponent={Hit} />
+          <Hits className="resultsHits" hitComponent={Hit} />
         ) : (
           displayHistory && (
             <History
