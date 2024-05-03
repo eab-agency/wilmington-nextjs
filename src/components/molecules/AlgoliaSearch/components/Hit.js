@@ -25,10 +25,9 @@ import {
 export default function Hit({ hit }) {
   const sanitizedTitle = ReactHtmlParser(hit.post_title)
   // strip off "https://www.wilmington.edu" from the beginning of the permalink
-  const strippedPermalink = hit.permalink.replace(
-    /^https:\/\/www.wilmington.edu/,
-    ''
-  )
+  const strippedPermalink = hit.permalink
+    .replace(/^https:\/\/www.wilmington.edu/, '')
+    .replace(/^https:\/\/wordpress.wilmington.edu/, '')
 
   const { post_title, post_type, permalink } = hit
 
@@ -83,7 +82,7 @@ export default function Hit({ hit }) {
             }
           }}
         />
-        <small className="resultLink"> {strippedPermalink}</small>
+        <small className="resultLink">{strippedPermalink}</small>
       </div>
     </button>
   )
