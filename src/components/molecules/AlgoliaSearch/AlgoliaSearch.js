@@ -4,7 +4,7 @@ import { useWordPressContext } from '@/components/common/WordPressProvider'
 import parseQuerystring from '@/functions/parseQuerystring'
 import cn from 'classnames'
 import { useEffect, useRef, useState } from 'react'
-import * as styles from './AlgoliaSearch.module.scss'
+// import * as styles from './AlgoliaSearch.module.scss'
 import Search from './components/Search'
 import SearchPlaceholder from './components/SearchPlaceholder'
 
@@ -31,9 +31,9 @@ function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
    */
   useEffect(() => {
     if (loadAlgolia) {
-      document.body.classList.add(styles.searchOpen)
+      document.body.classList.add('searchOpen')
     } else {
-      document.body.classList.remove(styles.searchOpen)
+      document.body.classList.remove('searchOpen')
     }
   }, [loadAlgolia])
 
@@ -64,14 +64,14 @@ function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
   return (
     <div>
       {!!algolia?.indexName && (
-        <div className={cn(styles.algoliaSearch, className)} ref={searchRef}>
+        <div className={`${className} algoliaSearch`} ref={searchRef}>
           <SearchPlaceholder query={query} toggleAlgolia={toggleAlgolia} />
           {!!loadAlgolia || !usePlaceholder ? (
             <>
-              <div className={styles.searchContainer}>
+              <div className='searchContainer'>
                 <button
                   type="button"
-                  className={styles.closeSearch}
+                  className='closeSearch'
                   onClick={() => {
                     toggleAlgolia(false)
                   }}
