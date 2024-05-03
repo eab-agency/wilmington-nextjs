@@ -33,45 +33,30 @@ export default function Hit({ hit }) {
   const { post_title, post_type, permalink } = hit
 
   const PostIcon = () => {
-    if (post_type === 'program') {
-      return (
-        <figure>
-          <MdSchool />
-        </figure>
-      )
-    }
-    if (post_type === 'page') {
-      return (
-        <figure>
-          <MdArticle />
-        </figure>
-      )
-    }
-    if (post_type === 'news') {
-      return (
-        <figure>
-          <MdCampaign />
-        </figure>
-      )
-    }
-    if (post_type === 'event') {
-      return (
-        <figure>
-          <MdEvent />
-        </figure>
-      )
-    }
-    if (post_type === 'faculty') {
-      return (
-        <figure>
-          <MdOutlineContactPage />
-        </figure>
-      )
+    let Icon
+    switch (post_type) {
+      case 'program':
+        Icon = MdSchool
+        break
+      case 'page':
+        Icon = MdArticle
+        break
+      case 'news':
+        Icon = MdCampaign
+        break
+      case 'event':
+        Icon = MdEvent
+        break
+      case 'faculty':
+        Icon = MdOutlineContactPage
+        break
+      default:
+        Icon = MdFindInPage
     }
 
     return (
       <figure>
-        <MdFindInPage />
+        <Icon />
       </figure>
     )
   }
