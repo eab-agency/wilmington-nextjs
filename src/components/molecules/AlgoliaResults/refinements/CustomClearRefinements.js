@@ -18,7 +18,7 @@ function ClearRefinements({ items, refine }) {
           type="button"
           onClick={() => refine(items)}
           disabled={!items.length}
-          className='clearBtn'
+          className="clearBtn"
         >
           Clear All Filters
         </button>
