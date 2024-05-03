@@ -1,110 +1,182 @@
-@use 'tokens';
-@use 'utilities/mixins';
+// @use "tokens";
+// @use "utilities/mixins";
 
-.algoliaResults {
-  .ais-SearchBox {
-    // background: red;
-  }
+// .algoliaResults {
+//   /* Results Header */
+//   & .resultsHeader {
+//     position: relative;
+//     background: tokens.$c-gray-200;
+//     padding-block: clamp(1rem, 2vw, 2rem);
+//     @include mixins.extendedBackground("before", tokens.$c-gray-200);
 
-  // TODO: Andrei, i had to comment this out because the bg was hiding the text.
-  /* Results Header */
-  // & .resultsHeader {
-  //   position: relative;
-  //   background: tokens.$c-gray-200;
-  //   @include mixins.sectionPadding();
-  //   @include mixins.extendedBackground('before', tokens.$c-gray-200);
+//     .resultsHeaderContent {
+//       display: flex;
+//       gap: clamp(2rem, 4vw, 4rem);
+//       z-index: 100;
+//       position: relative;
+//     }
 
-  //   .resultsHeaderContent {
-  //     display: flex;
-  //     gap: clamp(2rem, 4vw, 4rem);
-  //   }
+//     & .total {
+//       font-size: clamp(tokens.$fs-s, 2vw, tokens.$fs-m);
+//       margin: 0;
 
-  //   & .total {
-  //     font-size: clamp(tokens.$fs-s, 2vw, tokens.$fs-m);
-  //     & span {
-  //       font-weight: bold;
-  //     }
-  //   }
-  // }
+//       & span {
+//         font-weight: bold;
+//       }
+//     }
 
-  /* Results Listing */
-  & .results {
-    section {
-      margin: 0;
-    }
+//     h1 {
+//       z-index: 100;
+//       position: relative;
+//       margin: 0;
+//     }
+//   }
 
-    & .filterPanel {
-      padding: 2em;
+//   /* Results Listing */
+//   & .results {
+//     section {
+//       margin: 0;
+//     }
 
-      & h3 {
-        // @apply font-bold mb-8;
-      }
+//     & .filterPanel section {
+//       padding-block: 2em;
+//       border-left: 1px solid #ccc;
+//       margin-bottom: clamp(2rem, 4vw, 4rem);
+//       padding-inline: clamp(1rem, 2vw, 2rem);
 
-      & ul {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
-        max-width: tokens.$mq-1000;
-        // gap: 1rem;
+//       & h3 {
+//       }
 
-        li {
-          // margin: 0;
-          // padding: 1em;
-          // border-top: 1px solid tokens.$c-gray-500;
-          // border-bottom: 1px solid tokens.$c-gray-500;
+//       & ul {
+//         display: grid;
+//         grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+//         max-width: tokens.$mq-1000;
+//         gap: 1rem;
+//         margin-top: 0;
 
-          label {
-            padding-left: 0.5em;
-          }
-        }
-      }
-    }
+//         li {
+//           grid-column: span 1;
+//           margin: 0;
 
-    & > .content {
-      // @apply col-span-9;
-    }
+//           &:first-child {
+//           }
 
-    /* Hits/Results */
-    & .aisHits {
-      // @apply text-center;
+//           label {
+//             padding-left: 0.5em;
+//           }
+//         }
+//       }
+//     }
 
-      & > ul {
-        // @apply grid gap-4 grid-cols-1 text-left;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1rem;
-        list-style: none;
-        margin: 0;
-        padding: 0;
+//     & > .content {
+//       // @apply col-span-9;
+//     }
 
-        li {
-          padding: 1rem;
-          border: 1px solid #ccc;
-        }
-      }
+//     /* Hits/Results */
+//     & .aisHits {
+//       // @apply text-center;
 
-      /* Hit */
-      & .hit {
-        // @apply p-8 border;
+//       & > ul {
+//         // @apply grid gap-4 grid-cols-1 text-left;
+//         display: grid;
+//         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+//         gap: 1rem;
+//         list-style: none;
+//         margin: 0;
+//         padding: 0;
 
-        & .date {
-          // @apply italic mb-4;
-        }
-      }
+//         li {
+//           padding: 1rem;
+//           border: 1px solid #ccc;
+//         }
+//       }
 
-      & > button {
-        // @apply inline-block m-auto mt-8 border rounded p-4 transition-colors duration-200 ease-in-out;
-        @include mixins.button();
-        margin: 3rem 0 4rem;
+//       /* Hit */
+//       & .hit {
+//         & .date {
+//           // @apply italic mb-4;
+//         }
+//       }
 
-        &[disabled] {
-          // @apply opacity-25 cursor-not-allowed;
-        }
-      }
-    }
-  }
+//       & > button {
+//         display: flex;
+//         width: 100%;
+//         gap: 1em;
+//         padding: 0.8em 1em;
+//         text-align: left;
+//         font-size: clamp(tokens.$fs-xs, 1.5vw, tokens.$fs-s);
+//         background: white;
+//         border: none;
+//         border-radius: 0;
+//         border-bottom: 1px solid tokens.$c-gray-400;
+//         transition: font-weight 150ms ease-in-out;
+//         cursor: pointer;
+//         text-transform: initial;
 
-  /* No results */
-  & .empty {
-    // @apply py-20;
-  }
-}
+//         figure {
+//           display: flex;
+//           justify-content: center;
+//           align-items: center;
+//           width: 2em;
+//           height: 2em;
+//           background: tokens.$c-gray-200;
+
+//           svg {
+//             fill: tokens.$c-gray-700;
+//           }
+
+//           img {
+//             width: 100%;
+//             height: 100%;
+//             object-fit: cover;
+//           }
+//         }
+
+//         & > div {
+//           display: flex;
+//           flex-direction: column;
+//           align-items: flex-start;
+//           gap: 0.2em;
+
+//           small {
+//             font-size: 0.7em;
+//             color: tokens.$c-gray-600;
+//           }
+//         }
+
+//         &::after {
+//           display: none;
+//         }
+
+//         &:hover,
+//         &:focus {
+//           text-decoration: underline;
+//           background: tokens.$c-limeGreen-200;
+
+//           figure {
+//             background: tokens.$c-white;
+//           }
+
+//           & > div {
+//             small {
+//               color: tokens.$c-gray-800;
+//             }
+//           }
+//         }
+
+//         & em {
+//           font-style: normal;
+//         }
+
+//         &[disabled] {
+//           // @apply opacity-25 cursor-not-allowed;
+//         }
+//       }
+//     }
+//   }
+
+//   /* No results */
+//   & .empty {
+//     // @apply py-20;
+//   }
+// }
