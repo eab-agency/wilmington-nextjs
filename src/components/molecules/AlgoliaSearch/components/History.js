@@ -36,7 +36,7 @@ export default function History({
   return (
     <>
       {!!history?.length && (
-        <div className='history'>
+        <div className="history">
           <ul>
             {history.map((item, index) => (
               <li key={`history-${index}`}>
@@ -46,11 +46,11 @@ export default function History({
                   onClick={(e) => searchClick(e)}
                 >
                   <span>{item.title}</span>
-                  <span className='time'>{convertDate(item.time)}</span>
+                  <span className="time">{convertDate(item.time)}</span>
                 </button>
               </li>
             ))}
-            <li className='clear'>
+            <li className="clear">
               <button type="button" onClick={clearLocalStorage}>
                 Clear History
               </button>

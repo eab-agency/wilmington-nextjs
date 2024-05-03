@@ -1,9 +1,9 @@
-@use "tokens";
-@use "utilities/mixins";
+@use 'tokens';
+@use 'utilities/mixins';
 
 .relatedPrograms {
   position: relative;
-  @include mixins.sectionPadding("inline");
+  @include mixins.sectionPadding('inline');
 
   @media (min-width: tokens.$mq-800) {
     padding: 0;
@@ -54,7 +54,7 @@
 
   @media (min-width: tokens.$mq-800) {
     &::after {
-      content: "";
+      content: '';
       display: block;
       width: 100%;
       border-top: 1px solid tokens.$c-limeGreen-700;

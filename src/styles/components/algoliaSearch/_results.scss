@@ -1,6 +1,6 @@
-@use "sass:color";
-@use "tokens";
-@use "utilities/mixins";
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
 
 //? =============================
 //? Algolia Search Results PAGE
@@ -34,7 +34,8 @@
       border-radius: 0.3em;
       background: white;
       font-size: clamp(tokens.$fs-s, 1.5vw, tokens.$fs-l);
-      font-family: "__Cantarell_da86bb", "__Cantarell_Fallback_da86bb", sans-serif;
+      font-family: '__Cantarell_da86bb', '__Cantarell_Fallback_da86bb',
+        sans-serif;
 
       &::-webkit-search-decoration,
       &::-webkit-search-cancel-button,
@@ -61,7 +62,7 @@
         height: 80%;
       }
 
-      &[type="submit"] {
+      &[type='submit'] {
         background: tokens.$c-limeGreen-700;
         padding: 0;
         top: 50%;
@@ -84,7 +85,7 @@
       }
 
       /* Reset Button */
-      &[type="reset"] {
+      &[type='reset'] {
         position: absolute;
         top: 50%;
         // top: clamp(3.5em, 5vw, 4.5em);
@@ -120,7 +121,7 @@
     position: relative;
     background: tokens.$c-gray-200;
     padding-block: clamp(1rem, 2vw, 2rem);
-    @include mixins.extendedBackground("before", tokens.$c-gray-200);
+    @include mixins.extendedBackground('before', tokens.$c-gray-200);
 
     .resultsHeaderContent {
       display: flex;

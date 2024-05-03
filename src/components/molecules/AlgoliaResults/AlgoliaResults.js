@@ -25,7 +25,7 @@ export default function AlgoliaResults({
     console.warn('Algolia: Index Name is missing from env variables.')
   }
   return (
-    <div className='algoliaResults'>
+    <div className="algoliaResults">
       {config.query !== '' && (
         <InstantSearch
           searchClient={config.query !== '' ? searchResultsClient : ''}

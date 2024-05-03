@@ -18,12 +18,12 @@ const Results = connectStateResults(
     clearLocalStorage
   }) => {
     return (
-      <div className='dropMenuResults'>
+      <div className="dropMenuResults">
         {searchState?.query &&
-          searchState.query.length > 0 &&
-          searchResults &&
-          searchResults.nbHits > 0 ? (
-          <Hits className='resultsHits' hitComponent={Hit} />
+        searchState.query.length > 0 &&
+        searchResults &&
+        searchResults.nbHits > 0 ? (
+          <Hits className="resultsHits" hitComponent={Hit} />
         ) : (
           displayHistory && (
             <History

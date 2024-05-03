@@ -36,25 +36,25 @@ const SearchResults = connectStateResults(({ searchResults, indexName }) => {
     <>
       {searchResults?.nbHits ? (
         <>
-          <div className='resultsHeader'>
+          <div className="resultsHeader">
             {/* <div className="resultsHeader"> */}
             <RichText tag="h1">Search Results</RichText>
-            <div className='resultsHeaderContent'>
-              <p className='total'>
+            <div className="resultsHeaderContent">
+              <p className="total">
                 <span>{searchResults.nbHits} Results</span> for{' '}
                 {searchResults.query}
               </p>
               {/* <Sort index={indexName} /> */}
             </div>
           </div>
-          <aside className='results'>
-            <div className='filterPanel'>
+          <aside className="results">
+            <div className="filterPanel">
               <PostType refinements={refinements} />
               <CustomClearRefinements clearsQuery={true} />
             </div>
-            <div className='content'>
+            <div className="content">
               <InfiniteHits
-                className='aisHits'
+                className="aisHits"
                 hitComponent={Hit}
                 translations={{
                   loadMore: 'Load More'
