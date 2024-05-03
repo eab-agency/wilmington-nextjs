@@ -2,7 +2,7 @@ import { searchClient } from '@/lib/algolia/connector'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 import { Configure, InstantSearch, SearchBox } from 'react-instantsearch-dom'
-import styles from '../AlgoliaSearch.module.scss'
+// import styles from '../AlgoliaSearch.module.scss'
 import { deleteLocalStorage } from '../functions/localStorage'
 import searchSubmit from '../functions/searchSubmit'
 import Results from './Results'
@@ -66,7 +66,7 @@ export default function Search({ indexName, query, useHistory = true }) {
   return (
     <InstantSearch searchClient={searchClient} indexName={indexName}>
       <Configure {...config} />
-      <div className={styles.searchBox}>
+      <div className='searchBox'>
         <SearchBox
           /* eslint-disable */
           autoFocus={true}
