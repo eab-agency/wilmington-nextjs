@@ -2,7 +2,6 @@ import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connectToggleRefinement } from 'react-instantsearch-dom'
-import * as styles from '../AlgoliaResults.module.scss'
 
 /**
  * Render the ToggleRefinement component.
@@ -26,7 +25,7 @@ function ToggleRefinement({
   value
 }) {
   return (
-    <section className={cn(styles.filterPanel, className)}>
+    <section className={`filterPanel ${className}`}>
       {title && <h3>{title}</h3>}
       <ul>
         <li>

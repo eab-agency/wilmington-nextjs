@@ -1,5 +1,5 @@
 import { MdOutlineSearch } from 'react-icons/md'
-import * as styles from '../AlgoliaSearch.module.scss'
+// import * as styles from '../AlgoliaSearch.module.scss'
 
 /**
  * Render the SearchPlaceholder component.
@@ -14,13 +14,13 @@ import * as styles from '../AlgoliaSearch.module.scss'
 // export default function SearchPlaceholder({ toggleAlgolia, query }) {
 export default function SearchPlaceholder({ toggleAlgolia }) {
   return (
-    <div className={styles.searchPlaceholder}>
-      <div className={styles.searchBox}>
+    <div className="searchPlaceholder">
+      <div className="searchBox">
         <button
           role="button"
           tabIndex={0}
           type="button"
-          className={styles.trigger}
+          className="trigger"
           onClick={() => {
             toggleAlgolia(true)
           }}

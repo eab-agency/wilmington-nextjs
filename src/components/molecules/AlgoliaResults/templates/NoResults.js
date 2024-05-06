@@ -1,5 +1,4 @@
 import React from 'react'
-import * as styles from '../AlgoliaResults.module.scss'
 
 /**
  * Render the NoResults component.
@@ -13,11 +12,11 @@ export default function NoResults({ query }) {
     <>
       <h1>Search Results</h1>
       {query !== '' && (
-        <p className={styles.total}>
+        <p className="total">
           <span>0 Results</span> for {query}
         </p>
       )}
-      <div className={styles.empty}>
+      <div className="empty">
         Sorry, there are no results found for your search criteria.
         <br />
         <span>Try searching again with a different term.</span>
