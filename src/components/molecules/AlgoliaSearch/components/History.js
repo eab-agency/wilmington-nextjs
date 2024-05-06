@@ -1,7 +1,7 @@
-import React from 'react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import * as styles from '../AlgoliaSearch.module.scss'
+import React from 'react'
+// import * as styles from '../AlgoliaSearch.module.scss'
 
 /**
  * Render the History component.
@@ -36,7 +36,7 @@ export default function History({
   return (
     <>
       {!!history?.length && (
-        <div className={styles.history}>
+        <div className="history">
           <ul>
             {history.map((item, index) => (
               <li key={`history-${index}`}>
@@ -46,11 +46,11 @@ export default function History({
                   onClick={(e) => searchClick(e)}
                 >
                   <span>{item.title}</span>
-                  <span className={styles.time}>{convertDate(item.time)}</span>
+                  <span className="time">{convertDate(item.time)}</span>
                 </button>
               </li>
             ))}
-            <li className={styles.clear}>
+            <li className="clear">
               <button type="button" onClick={clearLocalStorage}>
                 Clear History
               </button>
