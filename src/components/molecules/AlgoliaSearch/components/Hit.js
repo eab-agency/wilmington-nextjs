@@ -1,8 +1,7 @@
-import Image from 'next/image'
+import Link from '@/components/common/Link'
 import React from 'react'
 import ReactHtmlParser from 'react-html-parser' // Import the library
 import { Highlight } from 'react-instantsearch-dom'
-import searchClick from '../functions/searchClick'
 
 import {
   MdArticle,
@@ -61,12 +60,7 @@ export default function Hit({ hit }) {
   }
 
   return (
-    <button
-      type="button"
-      data-url={permalink}
-      data-title={post_title}
-      onClick={(e) => searchClick(e)}
-    >
+    <Link href={permalink} className="button">
       <PostIcon />
       <div className="hitResultContent">
         <Highlight
@@ -84,6 +78,6 @@ export default function Hit({ hit }) {
         />
         <small className="resultLink">{strippedPermalink}</small>
       </div>
-    </button>
+    </Link>
   )
 }
