@@ -1,4 +1,4 @@
-@use '@/styles/tokens';
+@use "@/styles/tokens";
 
 div:where(.wp-block-columns) {
   &:where(.is-layout-flex) {
@@ -26,4 +26,9 @@ div:where(.wp-block-columns) {
       gap: 1em;
     }
   }
+}
+
+.block-html {
+  width: 100%;
+  max-width: 100%;
 }
