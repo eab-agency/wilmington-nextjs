@@ -26,7 +26,8 @@ const regexList = [
     replace: ''
   },
   {
-    regex: /https?:\/\/wordpress\.wilmington\.edu/,
+    // catch all wordpress.wilmington.edu but not wp-content
+    regex: /https?:\/\/wordpress\.wilmington\.edu(?!\/wp-content\/)/,
     replace: ''
   },
   {
