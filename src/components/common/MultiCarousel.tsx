@@ -21,6 +21,7 @@ const MultiCarousel = ({
 }: MultiCarouselProps) => {
   return (
     <>
+      {/* @ts-expect-error Server Component */}
       <Carousel containerClass={containerClass} {...carouselProps}>
         {children}
       </Carousel>
