@@ -8,9 +8,6 @@ const path = require('path')
 const glob = require('glob')
 
 const nextConfig = {
-  experimental: {
-    appDir: true
-  },
   async rewrites() {
     return [
       {
