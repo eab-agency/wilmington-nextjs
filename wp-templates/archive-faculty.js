@@ -7,7 +7,7 @@ import Layout from '@/components/common/Layout'
 import { BlogInfoFragment } from '@/fragments/GeneralSettings'
 import { gql, useQuery } from '@apollo/client'
 import { useFaustQuery } from '@faustwp/core'
-import appConfig from 'app.config'
+import appConfig from '../app.config'
 
 export default function Archive(props) {
   const uri = '/faculty'
