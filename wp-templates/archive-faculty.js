@@ -28,11 +28,11 @@ export default function Archive(props) {
 
   if (!data) return null
 
-  const { description } = generalSettings
+  const { description, title } = generalSettings
 
   const postList = data.nodeByUri?.contentNodes?.edges.map((el) => el.node)
 
-  const archiveTitle = 'Faculty and Staff'
+  const archiveTitle = 'Faculty and Staff | ' + title
 
   return (
     <>
