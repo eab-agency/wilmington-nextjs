@@ -1,25 +1,33 @@
-import { gql } from '@apollo/client'
-// import { Container, Footer, Header, Hero, Main, SEO } from '../components'
-import { SEO } from '@/components'
-import Breadcrumbs from '@/components/atoms/Breadcrumbs'
-import Container from '@/components/atoms/Container'
-import Preloader from '@/components/atoms/Preloader'
-import FeaturedImage from '@/components/common/FeaturedImage'
-import Layout from '@/components/common/Layout'
-import PageHero from '@/components/organisms/PageHero/PageHero'
-import { seoPostFields } from '@/fragments'
-import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
-import { WordPressBlocksViewer } from '@faustwp/blocks'
-import { flatListToHierarchical } from '@faustwp/core'
-import blocks from '../wp-blocks'
+import { SEO } from '@/components';
+import Breadcrumbs from '@/components/atoms/Breadcrumbs';
+import Container from '@/components/atoms/Container';
+import Preloader from '@/components/atoms/Preloader';
+import FeaturedImage from '@/components/common/FeaturedImage';
+import Layout from '@/components/common/Layout';
+import PageHero from '@/components/organisms/PageHero/PageHero';
+import { seoPostFields } from '@/fragments';
+import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks';
+import { gql } from '@apollo/client';
+import { WordPressBlocksViewer } from '@faustwp/blocks';
+import { flatListToHierarchical } from '@faustwp/core';
+import { Fragment } from 'react';
+import blocks from '../wp-blocks';
 
 export default function Page(props) {
-  // Loading state for previews
+
   if (props.loading) {
-    return <Preloader />
+    return <Preloader />;
   }
-  const { editorBlocks, title, featuredImage, seo } = props.data.page
-  const blocks = flatListToHierarchical(editorBlocks)
+
+  const { editorBlocks, title, featuredImage, seo } = props.data.page;
+  const blocks = flatListToHierarchical(editorBlocks);
+
+
+  const pageHeroIndex = blocks.findIndex(
+    (block) => block.name === 'eab-blocks/page-hero'
+  );
+
+  const shouldRenderBreadcrumbsAfterHero = !!seo?.breadcrumbs && pageHeroIndex !== -1;
 
   return (
     <>
@@ -27,23 +35,37 @@ export default function Page(props) {
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
-            <PageHero
-              sourceUrl={featuredImage?.node?.sourceUrl}
-              alt={featuredImage?.node?.altText}
-              imageMeta={featuredImage?.node?.mediaDetails}
-              text={title}
-            />
-            <div className="page-content">
-              {!!seo?.breadcrumbs && (
+
+            {/* Fallback if eab-blocks/page-hero block does not exist */}
+            {!shouldRenderBreadcrumbsAfterHero && !!seo?.breadcrumbs && (
+              <>
+                <PageHero
+                  sourceUrl={featuredImage?.node?.sourceUrl}
+                  alt={featuredImage?.node?.altText}
+                  imageMeta={featuredImage?.node?.mediaDetails}
+                  text={title}
+                />
                 <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
-              )}
-              <WordPressBlocksViewer blocks={blocks} />
+              </>
+            )}
+            <div className="page-content">
+              {blocks.map((block, index) => (
+                <Fragment key={block.id || index} className='wp-block'>
+                  <WordPressBlocksViewer blocks={[block]} />
+
+                  {/* Conditionally render Breadcrumbs after the eab-blocks/page-hero block */}
+                  {shouldRenderBreadcrumbsAfterHero && index === pageHeroIndex && (
+                    <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+                  )}
+                </Fragment>
+              ))}
+
             </div>
           </article>
         </Container>
       </Layout>
     </>
-  )
+  );
 }
 
 Page.query = gql`
@@ -56,9 +78,7 @@ Page.query = gql`
       content
       ${seoPostFields}
       ...FeaturedImageFragment
-        ... on NodeWithEditorBlocks {
-        # Get contentBlocks with flat=true and the nodeId and parentId
-        # so we can reconstruct them later using flatListToHierarchical()
+      ... on NodeWithEditorBlocks {
         editorBlocks {
           cssClassNames
           isDynamic
@@ -66,19 +86,16 @@ Page.query = gql`
           id: clientId
           parentId: parentClientId
           renderedHtml
-          # Get all block fragment keys and call them in the query
           ${getFragmentDataFromBlocks(blocks).keys}
         }
       }
-
     }
-
   }
-`
+`;
 
 Page.variables = ({ databaseId }, ctx) => {
   return {
     databaseId,
-    asPreview: ctx?.asPreview
-  }
-}
+    asPreview: ctx?.asPreview,
+  };
+};
