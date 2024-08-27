@@ -1,9 +1,10 @@
-@use 'tokens';
+@use "tokens";
 
 ul.breadcrumbs {
   display: flex;
   list-style: none;
   padding: 0;
+  margin-block: 1rem;
 
   li {
     display: flex;
