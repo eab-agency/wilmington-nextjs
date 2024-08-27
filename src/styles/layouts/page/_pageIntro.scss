@@ -1,4 +1,4 @@
-@use 'tokens';
+@use "tokens";
 
 .wc-program-intro {
   background: none;
@@ -7,7 +7,7 @@
     display: none;
   }
 
-  & > div[style*='66'] {
+  & > div[style*="66"] {
     flex: 1 1 auto;
     max-width: 100%;
 
