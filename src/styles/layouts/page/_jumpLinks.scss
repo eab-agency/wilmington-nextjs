@@ -1,4 +1,4 @@
-@use "tokens";
+@use 'tokens';
 
 .wc-jump-links {
   position: relative;
@@ -34,7 +34,7 @@
     color: tokens.$c-white;
 
     &::before {
-      content: "";
+      content: '';
       display: block;
       width: 2em;
       height: 2em;
@@ -90,7 +90,7 @@
     margin-top: 0;
   }
 
-  & > div[class*="button"]:first-of-type {
+  & > div[class*='button']:first-of-type {
     padding-bottom: 2em;
     border-bottom: 1px solid rgba(tokens.$c-limeGreen-600, 0.4);
   }
