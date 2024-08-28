@@ -21,20 +21,15 @@
 
     & > figure[class*="image"] {
       display: block;
-      // width: 120%;
       width: 100vw;
       height: 100%;
       position: absolute;
+      transform: translateX(-50%);
       left: 50%;
-      // transform: translateX(-50%);
-      transform: translateX(-40%);
 
-      // @media (min-width: tokens.$mq-1000) {
-      //   right: 0;
-      //   left: initial;
-      //   transform: translateX(0);
-      //   width: calc(100vw - tokens.$pageOffset);
-      // }
+      @media (min-width: tokens.$mq-1000) {
+        transform: translateX(-40%);
+      }
 
       img {
         width: 100%;
@@ -51,9 +46,12 @@
     border-bottom: 1px solid tokens.$c-gray-500;
     width: 100%;
     padding-block: clamp(1rem, 2vw, 2rem);
-
     position: relative;
-    margin-top: -8em;
+    margin-top: -6em;
+
+    @media (min-width: tokens.$mq-1000) {
+      margin-top: -8em;
+    }
 
     h1 {
       margin: 0;
@@ -66,7 +64,10 @@
     @include mixins.extendedBackground("before", tokens.$c-white);
 
     &::before {
-      width: 110%;
+      width: 105%;
+      @media (min-width: tokens.$mq-1000) {
+        width: 110%;
+      }
     }
   }
 }
