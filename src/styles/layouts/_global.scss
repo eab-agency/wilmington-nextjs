@@ -1,5 +1,5 @@
-@use 'tokens';
-@use 'utilities/mixins';
+@use "tokens";
+@use "utilities/mixins";
 
 .inner-wrap {
   position: relative;
@@ -44,7 +44,9 @@ header.scrolled {
   & + div {
     nav {
       & > div {
-        position: fixed !important;
+        @media (min-width: tokens.$mq-900) {
+          position: fixed !important;
+        }
       }
     }
   }
