@@ -4,7 +4,7 @@ import Container from '@/components/atoms/Container'
 import Preloader from '@/components/atoms/Preloader'
 // import ProgramTabs, {
 //   ProgramTabsFragment
-// } from '@/components/atoms/ProgramTabs/ProgramTabs'
+// } from '@/components/atoms/ProgramTabs/ProgramTabs';
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
 import WordPressProvider from '@/components/common/WordPressProvider'
@@ -23,6 +23,7 @@ export default function SingleProgram(props) {
   if (props.loading) {
     return <Preloader />
   }
+
   const {
     editorBlocks,
     title,
@@ -43,27 +44,58 @@ export default function SingleProgram(props) {
     currentProgramId,
     studentOrganizations: programOrgRelationship?.programorg
   }
+
+  // Find the index of the 'eab-blocks/page-hero' block
+  const pageHeroIndex = blocks.findIndex(
+    (block) => block.name === 'eab-blocks/page-hero'
+  )
+
+  const shouldRenderBreadcrumbsAfterHero =
+    !!seo?.breadcrumbs && pageHeroIndex !== -1
+
   return (
     <>
       <SEO seo={seo} />
       <Layout className="thelayoutclass">
-        <article className="inner-wrap">
-          <PageHero
-            sourceUrl={featuredImage?.node?.sourceUrl}
-            alt={featuredImage?.node?.altText}
-            imageMeta={featuredImage?.node?.mediaDetails}
-            text={title}
-          />{' '}
-          {/* <ProgramTabs childPages={childPages} uri={uri} parent={parent} /> */}
+        <div className="inner-wrap">
+          {
+            /* Fallback if eab-blocks/page-hero block does not exist */
+            !shouldRenderBreadcrumbsAfterHero && !!seo?.breadcrumbs && (
+              <>
+                <PageHero
+                  sourceUrl={featuredImage?.node?.sourceUrl}
+                  alt={featuredImage?.node?.altText}
+                  imageMeta={featuredImage?.node?.mediaDetails}
+                  text={title}
+                />
+                <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+              </>
+            )
+          }
+
           <Container>
             <article className="innerWrap programContent">
-              <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+              {blocks.map((block, index) => (
+                <div key={block.id || index}>
+                  {/* Render the block */}
+                  <WordPressBlocksViewer blocks={[block]} />
+
+                  {shouldRenderBreadcrumbsAfterHero &&
+                    index === pageHeroIndex && (
+                      <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+                    )}
+                </div>
+              ))}
+
+              {!shouldRenderBreadcrumbsAfterHero && !!seo?.breadcrumbs && (
+                <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+              )}
               <WordPressProvider value={programPageState}>
                 <WordPressBlocksViewer blocks={blocks} />
               </WordPressProvider>
             </article>
           </Container>
-        </article>
+        </div>
       </Layout>
     </>
   )
@@ -83,18 +115,17 @@ SingleProgram.query = gql`
   ${StudentOrgFragment}
   query GetProgramData($databaseId: ID!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
     program(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
-       ... on NodeWithTitle {
+      ... on NodeWithTitle {
         title
       }
       ...RelatedProgramsFragment
       ...StudentOrgFragment
       # ...ProgramTabsFragment
-       ... on Program {
-                 ${seoPostFields}
-
-  }
-   ...FeaturedImageFragment
-        ... on NodeWithEditorBlocks {
+      ... on Program {
+        ${seoPostFields}
+      }
+      ...FeaturedImageFragment
+      ... on NodeWithEditorBlocks {
         # Get contentBlocks with flat=true and the nodeId and parentId
         # so we can reconstruct them later using flatListToHierarchical()
         editorBlocks {
@@ -110,6 +141,4 @@ SingleProgram.query = gql`
       }
     }
   }
-
-
 `
