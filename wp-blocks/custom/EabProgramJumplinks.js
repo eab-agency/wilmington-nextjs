@@ -41,18 +41,16 @@ const EabProgramJumplinks = (props) => {
 
   return (
     <div className="wp-block-eab-program-jumplinks">
-      <section>
-        <h3>On this page</h3>
-        <ul>
-          {parsedJumpLinks.map((block, index) => (
-            <li key={index}>
-              <a href={`#${block.id}`} className="jumpLink">
-                {sanitizeRawHtml(block.rawHtml)}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <h3>On this page</h3>
+      <ul>
+        {parsedJumpLinks.map((block, index) => (
+          <li key={index}>
+            <a href={`#${block.id}`} className="jumpLink">
+              {sanitizeRawHtml(block.rawHtml)}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

@@ -1,5 +1,5 @@
-@use 'tokens';
-@use 'utilities/mixins';
+@use "tokens";
+@use "utilities/mixins";
 
 .hero-w-image {
   position: relative;
@@ -13,24 +13,22 @@
   .page-hero {
     display: block;
     width: 100%;
-    height: clamp(20rem, 40vw, 40em);
+    // height: clamp(20rem, 40vw, 40em);
+    height: clamp(20rem, 50vw, 50em);
     position: relative;
     z-index: tokens.$layer-1;
     background: #efefef;
 
-    & > figure[class*='image'] {
+    & > figure[class*="image"] {
       display: block;
-      width: 120%;
+      width: 100vw;
       height: 100%;
       position: absolute;
-      left: 50%;
       transform: translateX(-50%);
+      left: 50%;
 
       @media (min-width: tokens.$mq-1000) {
-        right: 0;
-        left: initial;
-        transform: translateX(0);
-        width: calc(100vw - tokens.$pageOffset);
+        transform: translateX(-40%);
       }
 
       img {
@@ -48,6 +46,12 @@
     border-bottom: 1px solid tokens.$c-gray-500;
     width: 100%;
     padding-block: clamp(1rem, 2vw, 2rem);
+    position: relative;
+    margin-top: -6em;
+
+    @media (min-width: tokens.$mq-1000) {
+      margin-top: -8em;
+    }
 
     h1 {
       margin: 0;
@@ -57,6 +61,107 @@
       z-index: tokens.$layer-2;
     }
 
-    @include mixins.extendedBackground('before', tokens.$c-white);
+    @include mixins.extendedBackground("before", tokens.$c-white);
+
+    &::before {
+      width: 105%;
+      @media (min-width: tokens.$mq-1000) {
+        width: 110%;
+      }
+    }
+  }
+}
+
+// ===================================
+// New Page Hero
+
+.pageHero {
+  width: 100vw;
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  // padding-left: clamp(2rem, 4vw, 14rem);
+
+  @media (min-width: tokens.$mq-800) {
+    padding-left: calc(clamp(2rem, 4vw, 14rem) + 1rem);
+  }
+  @media (min-width: tokens.$mq-1200) {
+    padding-left: calc(clamp(5rem, 10vw, 14rem) + 1rem);
+  }
+
+  .hero-content-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: tokens.$mq-800) {
+      flex-direction: row-reverse;
+    }
+
+    figure.hero-image {
+      flex: 1 1 60%;
+      display: flex;
+
+      @media (max-width: tokens.$mq-800) {
+        height: clamp(13rem, 18vw, 18em);
+      }
+
+      @media (min-width: tokens.$mq-1200) {
+        height: clamp(20rem, 35vw, 35em);
+      }
+
+      img {
+        flex: 1;
+        object-fit: cover;
+      }
+    }
+    .hero-body {
+      flex: 1 1 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-block: clamp(1rem, 3vw, 3rem);
+      padding-inline: clamp(1rem, 3vw, 3rem);
+
+      @media (min-width: tokens.$mq-1200) {
+        padding-block: clamp(1rem, 3vw, 3rem);
+        padding-inline: 0 clamp(1rem, 3vw, 3rem);
+      }
+
+      &.has-watermark {
+        position: relative;
+
+        &::before {
+          content: "";
+          display: block;
+          width: calc(clamp(5rem, 11vw, 15rem) + 100%);
+          height: 100%;
+          position: absolute;
+          top: 0;
+          right: 0;
+          background: url("../../../assets/wilmington-icon-white.svg") no-repeat center 60%;
+          background-size: 150%;
+          mix-blend-mode: overlay;
+          opacity: 0.2;
+          z-index: tokens.$layer-0;
+        }
+
+        .hero-title,
+        .hero-copy {
+          position: relative;
+          z-index: tokens.$layer-2;
+        }
+      }
+    }
+  }
+
+  &.has-deep-green-background-color,
+  &.has-dark-green-background-color,
+  &.has-dark-purple-background-color,
+  &.has-dark-gray-background-color,
+  &.has-dark-teal-background-color {
+    h1 {
+      color: tokens.$c-white;
+    }
   }
 }
