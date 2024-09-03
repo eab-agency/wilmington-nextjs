@@ -28,6 +28,9 @@ export default function Page(props) {
   const shouldRenderBreadcrumbsAfterHero =
     !!seo?.breadcrumbs && pageHeroIndex !== -1
 
+  console.log('PageHeroIndex:', pageHeroIndex);
+  console.log('ShouldRenderBreadcrumbsAfterHero:', shouldRenderBreadcrumbsAfterHero);
+
   return (
     <>
       <SEO seo={seo} />
@@ -35,17 +38,19 @@ export default function Page(props) {
         <Container>
           <article className="inner-wrap">
             {/* Fallback if eab-blocks/page-hero block does not exist */}
-            {!shouldRenderBreadcrumbsAfterHero && !!seo?.breadcrumbs && (
-              <>
-                <PageHero
-                  sourceUrl={featuredImage?.node?.sourceUrl}
-                  alt={featuredImage?.node?.altText}
-                  imageMeta={featuredImage?.node?.mediaDetails}
-                  text={title}
-                />
-                <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
-              </>
-            )}
+            {
+              // !shouldRenderBreadcrumbsAfterHero && !!seo?.breadcrumbs && (
+              pageHeroIndex === -1 && (
+                <>
+                  <PageHero
+                    sourceUrl={featuredImage?.node?.sourceUrl}
+                    alt={featuredImage?.node?.altText}
+                    imageMeta={featuredImage?.node?.mediaDetails}
+                    text={title}
+                  />
+                  <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+                </>
+              )}
             <div className="page-content">
               {blocks.map((block, index) => (
                 <Fragment key={block.id || index} className="wp-block">
