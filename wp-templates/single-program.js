@@ -53,6 +53,9 @@ export default function SingleProgram(props) {
   const shouldRenderBreadcrumbsAfterHero =
     !!seo?.breadcrumbs && pageHeroIndex !== -1
 
+  console.log('PageHeroIndex:', pageHeroIndex);
+  console.log('ShouldRenderBreadcrumbsAfterHero:', shouldRenderBreadcrumbsAfterHero);
+
   return (
     <>
       <SEO seo={seo} />
@@ -60,7 +63,8 @@ export default function SingleProgram(props) {
         <div className="inner-wrap">
           {
             /* Fallback if eab-blocks/page-hero block does not exist */
-            !shouldRenderBreadcrumbsAfterHero && !!seo?.breadcrumbs && (
+            // !shouldRenderBreadcrumbsAfterHero && !!seo?.breadcrumbs && (
+            pageHeroIndex === -1 && (
               <>
                 <PageHero
                   sourceUrl={featuredImage?.node?.sourceUrl}
