@@ -47,11 +47,7 @@
     width: 100%;
     padding-block: clamp(1rem, 2vw, 2rem);
     position: relative;
-    margin-top: -6em;
-
-    @media (min-width: tokens.$mq-1000) {
-      margin-top: -8em;
-    }
+    margin-top: clamp(-3em, -8vw, -8em);
 
     h1 {
       margin: 0;
