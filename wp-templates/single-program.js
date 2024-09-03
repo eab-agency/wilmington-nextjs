@@ -53,9 +53,6 @@ export default function SingleProgram(props) {
   const shouldRenderBreadcrumbsAfterHero =
     !!seo?.breadcrumbs && pageHeroIndex !== -1
 
-  console.log('PageHeroIndex:', pageHeroIndex);
-  console.log('ShouldRenderBreadcrumbsAfterHero:', shouldRenderBreadcrumbsAfterHero);
-
   return (
     <>
       <SEO seo={seo} />
@@ -63,7 +60,6 @@ export default function SingleProgram(props) {
         <div className="inner-wrap">
           {
             /* Fallback if eab-blocks/page-hero block does not exist */
-            // !shouldRenderBreadcrumbsAfterHero && !!seo?.breadcrumbs && (
             pageHeroIndex === -1 && (
               <>
                 <PageHero
@@ -81,22 +77,18 @@ export default function SingleProgram(props) {
             <article className="innerWrap programContent">
               {blocks.map((block, index) => (
                 <div key={block.id || index}>
-                  {/* Render the block */}
-                  <WordPressBlocksViewer blocks={[block]} />
+                  <WordPressProvider value={programPageState}>
 
-                  {shouldRenderBreadcrumbsAfterHero &&
-                    index === pageHeroIndex && (
-                      <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
-                    )}
+                    <WordPressBlocksViewer blocks={[block]} />
+
+                    {shouldRenderBreadcrumbsAfterHero &&
+                      index === pageHeroIndex && (
+                        <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+                      )}
+                  </WordPressProvider>
                 </div>
               ))}
 
-              {!shouldRenderBreadcrumbsAfterHero && !!seo?.breadcrumbs && (
-                <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
-              )}
-              <WordPressProvider value={programPageState}>
-                <WordPressBlocksViewer blocks={blocks} />
-              </WordPressProvider>
             </article>
           </Container>
         </div>
