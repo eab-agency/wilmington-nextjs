@@ -14,6 +14,7 @@ import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentD
 import { gql } from '@apollo/client'
 import { WordPressBlocksViewer } from '@faustwp/blocks'
 import { flatListToHierarchical } from '@faustwp/core'
+import { Fragment } from 'react'
 import blocks from '../wp-blocks'
 import { RelatedProgramsFragment } from '../wp-blocks/acf/AcfRelatedPrograms'
 import { StudentOrgFragment } from '../wp-blocks/acf/AcfStudentOrgs'
@@ -45,50 +46,60 @@ export default function SingleProgram(props) {
     studentOrganizations: programOrgRelationship?.programorg
   }
 
+  const blockGroupContainsPageHero = (children) => {
+    return children.some(child => {
+      if (child.name === 'eab-blocks/page-hero') {
+        return true;
+      }
+      // Recursively check nested children blocks
+      if (child.children && child.children.length > 0) {
+        return blockGroupContainsPageHero(child.children);
+      }
+      return false;
+    });
+  };
+
+  const hasPageHeroInGroup = blocks.some(block => {
+    return block.name === 'core/group' && blockGroupContainsPageHero(block.children);
+  });
+
   // Find the index of the 'eab-blocks/page-hero' block
   const pageHeroIndex = blocks.findIndex(
     (block) => block.name === 'eab-blocks/page-hero'
   )
 
-  const shouldRenderBreadcrumbsAfterHero =
-    !!seo?.breadcrumbs && pageHeroIndex !== -1
 
   return (
     <>
       <SEO seo={seo} />
       <Layout className="thelayoutclass">
         <div className="inner-wrap">
-          {
-            /* Fallback if eab-blocks/page-hero block does not exist */
-            pageHeroIndex === -1 && (
-              <>
-                <PageHero
-                  sourceUrl={featuredImage?.node?.sourceUrl}
-                  alt={featuredImage?.node?.altText}
-                  imageMeta={featuredImage?.node?.mediaDetails}
-                  text={title}
-                />
-                <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
-              </>
-            )
+          {pageHeroIndex === -1 && !hasPageHeroInGroup && (
+            <>
+              <PageHero
+                sourceUrl={featuredImage?.node?.sourceUrl}
+                alt={featuredImage?.node?.altText}
+                imageMeta={featuredImage?.node?.mediaDetails}
+                text={title}
+              />
+              <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+            </>
+          )
           }
 
           <Container>
             <article className="innerWrap programContent">
               {blocks.map((block, index) => (
-                <div key={block.id || index}>
+                <Fragment key={block.id || index}>
                   <WordPressProvider value={programPageState}>
-
                     <WordPressBlocksViewer blocks={[block]} />
 
-                    {shouldRenderBreadcrumbsAfterHero &&
-                      index === pageHeroIndex && (
-                        <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
-                      )}
+                    {(block.name === 'eab-blocks/page-hero' || hasPageHeroInGroup) && (
+                      <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+                    )}
                   </WordPressProvider>
-                </div>
+                </Fragment>
               ))}
-
             </article>
           </Container>
         </div>
