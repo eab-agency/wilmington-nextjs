@@ -1,5 +1,5 @@
-@use "tokens";
-@use "utilities/mixins";
+@use 'tokens';
+@use 'utilities/mixins';
 
 .hero-w-image {
   position: relative;
@@ -19,7 +19,7 @@
     z-index: tokens.$layer-1;
     background: #efefef;
 
-    & > figure[class*="image"] {
+    & > figure[class*='image'] {
       display: block;
       width: 100vw;
       height: 100%;
@@ -57,7 +57,7 @@
       z-index: tokens.$layer-2;
     }
 
-    @include mixins.extendedBackground("before", tokens.$c-white);
+    @include mixins.extendedBackground('before', tokens.$c-white);
 
     &::before {
       width: 105%;
@@ -128,14 +128,15 @@
         position: relative;
 
         &::before {
-          content: "";
+          content: '';
           display: block;
           width: calc(clamp(5rem, 11vw, 15rem) + 100%);
           height: 100%;
           position: absolute;
           top: 0;
           right: 0;
-          background: url("../../../assets/wilmington-icon-white.svg") no-repeat center 60%;
+          background: url('../../../assets/wilmington-icon-white.svg') no-repeat
+            center 60%;
           background-size: 150%;
           mix-blend-mode: overlay;
           opacity: 0.2;
