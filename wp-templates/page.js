@@ -21,12 +21,27 @@ export default function Page(props) {
   const { editorBlocks, title, featuredImage, seo } = props.data.page
   const blocks = flatListToHierarchical(editorBlocks)
 
+  const blockGroupContainsPageHero = (children) => {
+    return children.some(child => {
+      if (child.name === 'eab-blocks/page-hero') {
+        return true;
+      }
+      // Recursively check nested children blocks
+      if (child.children && child.children.length > 0) {
+        return blockGroupContainsPageHero(child.children);
+      }
+      return false;
+    });
+  };
+
+  const hasPageHeroInGroup = blocks.some(block => {
+    return block.name === 'core/group' && blockGroupContainsPageHero(block.children);
+  });
+
   const pageHeroIndex = blocks.findIndex(
     (block) => block.name === 'eab-blocks/page-hero'
   )
 
-  const shouldRenderBreadcrumbsAfterHero =
-    !!seo?.breadcrumbs && pageHeroIndex !== -1
 
   return (
     <>
@@ -34,30 +49,26 @@ export default function Page(props) {
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
-            {/* Fallback if eab-blocks/page-hero block does not exist */}
-            {
-              pageHeroIndex === -1 && (
-                <>
-                  <PageHero
-                    sourceUrl={featuredImage?.node?.sourceUrl}
-                    alt={featuredImage?.node?.altText}
-                    imageMeta={featuredImage?.node?.mediaDetails}
-                    text={title}
-                  />
-                  <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
-                </>
-              )
-            }
+            {pageHeroIndex === -1 && !hasPageHeroInGroup && (
+              <>
+                <PageHero
+                  sourceUrl={featuredImage?.node?.sourceUrl}
+                  alt={featuredImage?.node?.altText}
+                  imageMeta={featuredImage?.node?.mediaDetails}
+                  text={title}
+                />
+                <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+              </>
+            )}
             <div className="page-content">
               {blocks.map((block, index) => (
-                <Fragment key={block.id || index} className="wp-block">
+                <Fragment key={block.id || index}>
                   <WordPressBlocksViewer blocks={[block]} />
 
                   {/* Conditionally render Breadcrumbs after the eab-blocks/page-hero block */}
-                  {shouldRenderBreadcrumbsAfterHero &&
-                    index === pageHeroIndex && (
-                      <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
-                    )}
+                  {(block.name === 'eab-blocks/page-hero' || hasPageHeroInGroup) && (
+                    <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
+                  )}
                 </Fragment>
               ))}
             </div>
