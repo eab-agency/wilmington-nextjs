@@ -74,8 +74,8 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
     data: latestData
   } = useQuery(GET_LATEST_EVENTS)
 
-  if (latestData && latestData.events.length > 0) {
-    latestData.events.forEach((event: Event) => {
+  if (latestData && latestData.events.nodes.length > 0) {
+    latestData.events.nodes.forEach((event: Event) => {
       if (event.eventsFields.event.startDate) {
         posts.push(extractEventData(event))
       }
