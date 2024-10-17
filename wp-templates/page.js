@@ -22,26 +22,27 @@ export default function Page(props) {
   const blocks = flatListToHierarchical(editorBlocks)
 
   const blockGroupContainsPageHero = (children) => {
-    return children.some(child => {
+    return children.some((child) => {
       if (child.name === 'eab-blocks/page-hero') {
-        return true;
+        return true
       }
       // Recursively check nested children blocks
       if (child.children && child.children.length > 0) {
-        return blockGroupContainsPageHero(child.children);
+        return blockGroupContainsPageHero(child.children)
       }
-      return false;
-    });
-  };
+      return false
+    })
+  }
 
-  const hasPageHeroInGroup = blocks.some(block => {
-    return block.name === 'core/group' && blockGroupContainsPageHero(block.children);
-  });
+  const hasPageHeroInGroup = blocks.some((block) => {
+    return (
+      block.name === 'core/group' && blockGroupContainsPageHero(block.children)
+    )
+  })
 
   const pageHeroIndex = blocks.findIndex(
     (block) => block.name === 'eab-blocks/page-hero'
   )
-
 
   return (
     <>
@@ -66,7 +67,8 @@ export default function Page(props) {
                   <WordPressBlocksViewer blocks={[block]} />
 
                   {/* Conditionally render Breadcrumbs after the eab-blocks/page-hero block */}
-                  {(block.name === 'eab-blocks/page-hero' || hasPageHeroInGroup) && (
+                  {(block.name === 'eab-blocks/page-hero' ||
+                    hasPageHeroInGroup) && (
                     <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
                   )}
                 </Fragment>
