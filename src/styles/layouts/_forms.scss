@@ -20,7 +20,7 @@
   box-sizing: border-box;
   border-radius: 0.2em;
   height: auto !important;
-    line-height: 1.5 !important;
+  line-height: 1.5 !important;
 
   .type-telephone &,
   .type-ssn &,
@@ -87,7 +87,7 @@ select {
   width: auto;
   max-width: 100%;
   height: auto !important;
-    line-height: 1.5 !important;
+  line-height: 1.5 !important;
   cursor: pointer;
 }
 
@@ -321,77 +321,68 @@ select {
 
 // Formstack specific
 
-
-
-.fsFieldCell{
+.fsFieldCell {
   border-top: 1px solid tokens.$c-gray-400;
   padding-top: 1em;
 
-  .fsLabel{
+  .fsLabel {
     font-size: 1rem;
     margin: 0;
 
-    .fsRequiredMarker{
+    .fsRequiredMarker {
       color: tokens.$c-error;
     }
   }
 
-
-  .fsSubFieldGroup{
+  .fsSubFieldGroup {
     gap: 1em;
 
-    .fsSubField{
+    .fsSubField {
       margin-bottom: 0;
     }
   }
 
-  .fsSubField{
+  .fsSubField {
     input,
-    select{
-
-      & ~ label{
+    select {
+      & ~ label {
         font-size: 0.9rem;
         padding-top: 0.5em;
       }
     }
   }
 
-
-  .fsFieldSelect{
+  .fsFieldSelect {
     font-size: 1rem;
   }
 }
 
-
-
-
-.uauet{
-  [class*="StyledErrorBannerText"]{
+.uauet {
+  [class*='StyledErrorBannerText'] {
     font-size: clamp(1rem, 1.5vw, 1.5rem);
     color: color.adjust(tokens.$c-error, $lightness: -20%);
   }
 
-  [class*="StyledErrorBannerIcon"]{
+  [class*='StyledErrorBannerIcon'] {
     width: 1em;
     height: 1em;
   }
 }
 
-[class*="StyledErrorBanner-sc"]{
-  [class*="StyledErrorBannerText-sc"]{
+[class*='StyledErrorBanner-sc'] {
+  [class*='StyledErrorBannerText-sc'] {
     font-size: 0.9rem;
   }
 }
 
-
-[class*="StyledOptionWrapper"]{
-gap: 0.5em;
-  [class*="StyledOptionLabel"]{
+[class*='StyledOptionWrapper'] {
+  gap: 0.5em;
+  [class*='StyledOptionLabel'] {
     padding-left: 1.7em;
     position: relative;
 
-    input{
-      &::before{
+    input {
+      &::before {
         width: 1.2rem;
         height: 1.2rem;
         position: absolute;
@@ -401,5 +392,3 @@ gap: 0.5em;
     }
   }
 }
-
-
