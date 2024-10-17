@@ -32,11 +32,13 @@ export default function Archive(props) {
 
   const postList = data.nodeByUri?.contentNodes?.edges.map((el) => el.node)
 
-  const archiveTitle = 'Faculty and Staff | ' + title
+  const archiveTitle = 'Faculty and Staff'
 
   return (
     <>
-      <SEO seo={{ title: archiveTitle, description: description }} />
+      <SEO
+        seo={{ title: `${archiveTitle} | ${title}`, description: description }}
+      />
       <Layout className="thelayoutclass">
         <div className="inner-wrap archive">
           <RichText className="archiveTitle" tag="h1">

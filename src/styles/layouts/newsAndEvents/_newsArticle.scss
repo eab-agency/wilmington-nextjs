@@ -1,6 +1,6 @@
-@use "sass:color";
-@use "tokens";
-@use "utilities/mixins";
+@use 'sass:color';
+@use 'tokens';
+@use 'utilities/mixins';
 
 .news-article {
   .inner-wrap {
@@ -13,7 +13,7 @@
         padding-left: clamp(1rem, 5vw, 3rem);
 
         &::after {
-          content: "";
+          content: '';
           display: block;
           height: 100%;
           width: 0.25em;
@@ -45,7 +45,7 @@
           width: fit-content;
 
           &::before {
-            content: "";
+            content: '';
             display: block;
             position: absolute;
             top: 0;
@@ -77,7 +77,7 @@
           z-index: tokens.$layer-3;
           min-height: 48vh;
 
-          & > figure[class*="image"] {
+          & > figure[class*='image'] {
             position: relative;
             width: 100%;
             transform: translateX(-50%);
@@ -127,7 +127,7 @@
         max-width: 100%;
 
         &::before {
-          content: "";
+          content: '';
           display: block;
           position: absolute;
           top: 0;
@@ -162,7 +162,7 @@
       font-size: clamp(tokens.$fs-xs, 2vw, tokens.$fs-m);
     }
 
-    div[class*="image-"] {
+    div[class*='image-'] {
       position: relative;
       display: flex;
       flex-direction: column;
@@ -172,7 +172,7 @@
       //   align-items: flex-end;
       // }
 
-      figure[class*="image"] {
+      figure[class*='image'] {
         // width: calc(100vw - tokens.$pageOffset);
 
         // img {
@@ -182,7 +182,7 @@
         //   object-fit: cover;
         // }
 
-        div[class*="_caption"] {
+        div[class*='_caption'] {
           width: 100%;
           max-width: calc(tokens.$mq-900 - clamp(1.5rem, 4vw, 4rem));
           margin: 0 0 0 auto;
