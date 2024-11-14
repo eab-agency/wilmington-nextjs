@@ -47,27 +47,28 @@ export default function SingleProgram(props) {
   }
 
   const blockGroupContainsPageHero = (children) => {
-    return children.some(child => {
+    return children.some((child) => {
       if (child.name === 'eab-blocks/page-hero') {
-        return true;
+        return true
       }
       // Recursively check nested children blocks
       if (child.children && child.children.length > 0) {
-        return blockGroupContainsPageHero(child.children);
+        return blockGroupContainsPageHero(child.children)
       }
-      return false;
-    });
-  };
+      return false
+    })
+  }
 
-  const hasPageHeroInGroup = blocks.some(block => {
-    return block.name === 'core/group' && blockGroupContainsPageHero(block.children);
-  });
+  const hasPageHeroInGroup = blocks.some((block) => {
+    return (
+      block.name === 'core/group' && blockGroupContainsPageHero(block.children)
+    )
+  })
 
   // Find the index of the 'eab-blocks/page-hero' block
   const pageHeroIndex = blocks.findIndex(
     (block) => block.name === 'eab-blocks/page-hero'
   )
-
 
   return (
     <>
@@ -84,8 +85,7 @@ export default function SingleProgram(props) {
               />
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
             </>
-          )
-          }
+          )}
 
           <Container>
             <article className="innerWrap programContent">
@@ -94,7 +94,8 @@ export default function SingleProgram(props) {
                   <WordPressProvider value={programPageState}>
                     <WordPressBlocksViewer blocks={[block]} />
 
-                    {(block.name === 'eab-blocks/page-hero' || hasPageHeroInGroup) && (
+                    {(block.name === 'eab-blocks/page-hero' ||
+                      hasPageHeroInGroup) && (
                       <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
                     )}
                   </WordPressProvider>

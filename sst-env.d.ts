@@ -2,13 +2,13 @@
 /* tslint:disable */
 /* eslint-disable */
 /* deno-fmt-ignore-file */
-import "sst"
+import 'sst'
 export {}
-declare module "sst" {
+declare module 'sst' {
   export interface Resource {
-    "wilmington-college": {
-      "type": "sst.aws.Nextjs"
-      "url": string
+    'wilmington-college': {
+      type: 'sst.aws.Nextjs'
+      url: string
     }
   }
 }
