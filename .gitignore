@@ -39,3 +39,9 @@ next-env.d.ts
 # sitemap local builds
 public/robots.txt
 public/*.xml
+
+# sst
+.sst
+
+# open-next
+.open-next
