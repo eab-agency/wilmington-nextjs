@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Form from './Form'
 
+// get formId from EabBlocksFormstackEmbed
 const FormStack = ({ formId }) => {
   const [formData, setFormData] = useState(null)
 
@@ -25,7 +26,7 @@ const FormStack = ({ formId }) => {
     return <div>Loading...</div>
   }
 
-  return <Form formData={formData} />
+  return <Form fields={formData} />
 }
 
 export default FormStack
