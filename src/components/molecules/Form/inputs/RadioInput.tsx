@@ -15,8 +15,6 @@ const RadioInput: React.FC<RadioInputProps> = ({ field }) => {
       <div className="fsLabel">
         <span>{field.label}</span>
       </div>
-      <ErrorMessage name={field.id} component="div" className="error" />
-
       <fieldset role="radiogroup">
         <span
           style={{
@@ -51,6 +49,7 @@ const RadioInput: React.FC<RadioInputProps> = ({ field }) => {
           </p>
         )}
       </fieldset>
+      <ErrorMessage name={field.id} component="div" className="error" />
     </span>
   )
 }
