@@ -1,7 +1,7 @@
 'use client'
 import { Form, Formik, FormikHelpers } from 'formik'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import * as Yup from 'yup'
 import { FormField } from './formTypes'
 import {
@@ -20,6 +20,36 @@ import {
 
 // Accepts form data from FormStack component
 
+// helper function to group fields into sections
+const groupFieldsIntoSections = (fields: FormField[]) => {
+  const sections: Array<{ section?: FormField; fields: FormField[] }> = []
+  let currentSection: { section?: FormField; fields: FormField[] } | null = null
+
+  fields.forEach((field) => {
+    if (field.type === 'section') {
+      // Push current section if it exists
+      if (currentSection) {
+        sections.push(currentSection)
+      }
+      // Start new section
+      currentSection = { section: field, fields: [] }
+    } else {
+      // Create initial section only when needed
+      if (!currentSection) {
+        currentSection = { fields: [] }
+      }
+      currentSection.fields.push(field)
+    }
+  })
+
+  // Push the final section
+  if (currentSection) {
+    sections.push(currentSection)
+  }
+
+  return sections
+}
+
 const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
   fields
 }) => {
@@ -28,6 +58,13 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
     null
   )
   const [submissionError, setSubmissionError] = useState<string | null>(null)
+
+  // Process fields into sections
+  const groupedSections = useMemo(
+    () => groupFieldsIntoSections(fields),
+    [fields]
+  )
+
   // if fields is empty or undefined, return null
   if (!fields || fields.length === 0) return null
   // Create initial values for Formik
@@ -76,20 +113,35 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
     if (!field.logic) return true
 
     const { action, conditional, checks } = field.logic
+
     const results = checks.map((check) => {
       const fieldValue = values[check.field]
+      const isArray = Array.isArray(fieldValue)
+
       switch (check.condition) {
         case 'equals':
-          return fieldValue === check.option
-        // Add more conditions as needed
+          return isArray
+            ? fieldValue.includes(check.option)
+            : fieldValue === check.option
+        case 'not_equals':
+          return isArray
+            ? !fieldValue.includes(check.option)
+            : fieldValue !== check.option
+        case 'contains':
+          return String(fieldValue).includes(check.option)
+        case 'greater_than':
+          return Number(fieldValue) > Number(check.option)
+        case 'less_than':
+          return Number(fieldValue) < Number(check.option)
         default:
           return false
       }
     })
 
-    return conditional === 'all'
-      ? results.every(Boolean)
-      : results.some(Boolean)
+    const conditionalMet =
+      conditional === 'all' ? results.every(Boolean) : results.some(Boolean)
+
+    return action === 'show' ? conditionalMet : !conditionalMet
   }
 
   // Render form fields
@@ -118,7 +170,7 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
       case 'richtext':
         return <RichTextField key={field.id} field={field} />
       default:
-        return null
+        return <h2>{field.type}</h2>
     }
   }
 
@@ -178,30 +230,58 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
   }
 
   return (
-    <>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ values, isSubmitting }) => (
-          <Form>
-            {fields.map((field) => renderField(field, values))}
-            <div className="fsSubmitButtonWrapper">
-              <button
-                className="fsSubmitButton"
-                type="submit"
-                disabled={isSubmitting}
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      {({ values, isSubmitting }) => (
+        <Form>
+          {groupedSections.map((sectionGroup, index) => {
+            // Determine if we should show this section
+            const showSection = sectionGroup.section
+              ? shouldShowField(sectionGroup.section, values)
+              : true // Always show fields without a section
+
+            if (!showSection) return null
+
+            return (
+              <div
+                key={sectionGroup.section?.id || `section-${index}`}
+                className="form-section"
               >
-                {isSubmitting ? 'Submitting form...' : 'Submit'}
-              </button>
-            </div>
-          </Form>
-        )}
-      </Formik>
-      {submissionMessage && <p>{submissionMessage}</p>}
-      {submissionError && <p style={{ color: 'red' }}>{submissionError}</p>}
-    </>
+                {/* Render section header */}
+                {sectionGroup.section && (
+                  <div className="section-header">
+                    <h2>{sectionGroup.section.section_heading}</h2>
+                    {sectionGroup.section.section_text && (
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: sectionGroup.section.section_text
+                        }}
+                      />
+                    )}
+                  </div>
+                )}
+
+                {/* Render fields in this section */}
+                {sectionGroup.fields.map((field) => renderField(field, values))}
+              </div>
+            )
+          })}
+
+          <div className="fsSubmitButtonWrapper">
+            <button
+              className="fsSubmitButton"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Submitting form...' : 'Submit'}
+            </button>
+          </div>
+        </Form>
+      )}
+    </Formik>
   )
 }
 
