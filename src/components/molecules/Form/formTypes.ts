@@ -85,5 +85,6 @@ export interface FormField {
   display_option?: string
   hide_option_button?: boolean
   section_text?: string
+  section_heading?: string
   text_editor?: string
 }

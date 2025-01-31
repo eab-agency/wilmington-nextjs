@@ -248,7 +248,8 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
             return (
               <div
                 key={sectionGroup.section?.id || `section-${index}`}
-                className="form-section"
+                className="fsSection"
+                id={`fsSection${index}`}
               >
                 {/* Render section header */}
                 {sectionGroup.section && (
