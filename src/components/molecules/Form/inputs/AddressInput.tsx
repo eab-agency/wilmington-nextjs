@@ -53,6 +53,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ field }) => (
           <div
             key={`${field.id}-${subfield}`}
             className={`fsSubField fsField${subfield}`}
+            id={field.id}
           >
             <Field
               type="text"

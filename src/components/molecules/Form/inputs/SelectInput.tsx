@@ -29,6 +29,7 @@ const SelectInput: React.FC<SelectInputProps> = ({ field }) => {
 
   return (
     <label
+      id={field.id}
       key={field.id}
       className={`fsFieldCell ${hasError ? 'error' : ''}`}
       htmlFor={field.id}

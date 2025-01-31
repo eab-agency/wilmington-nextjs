@@ -8,7 +8,7 @@ interface TextInputProps {
 
 const TextInput: React.FC<TextInputProps> = ({ field }) => {
   return (
-    <label htmlFor={field.id} className="fsFieldCell">
+    <label id={field.id} htmlFor={field.id} className="fsFieldCell">
       {field.label}
       {field.required === '1' && <span className="fsRequiredMarker">*</span>}
       <Field
