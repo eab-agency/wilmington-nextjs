@@ -11,7 +11,11 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({ field }) => {
   const hasError = meta.touched && meta.error
 
   return (
-    <span key={field.id} className={`fsFieldCell ${hasError ? 'error' : ''}`}>
+    <span
+      id={field.id}
+      key={field.id}
+      className={`fsFieldCell ${hasError ? 'error' : ''}`}
+    >
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
       <div className="fsLabel">
         <span>{field.label}</span>

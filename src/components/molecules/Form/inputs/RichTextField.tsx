@@ -10,7 +10,7 @@ const RichTextField: React.FC<RichTextProps> = ({ field }) => {
     return null
   } else {
     return (
-      <span className="fsFieldCell">
+      <span id={field.id} className="fsFieldCell">
         <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
         <div
           dangerouslySetInnerHTML={{ __html: field.section_text || '' }}

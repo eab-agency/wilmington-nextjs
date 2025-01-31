@@ -8,7 +8,7 @@ interface NameInputProps {
 
 const NameInput: React.FC<NameInputProps> = ({ field }) => {
   return (
-    <span className="fsFieldCell">
+    <span id={field.id} className="fsFieldCell">
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
       <div className="fsLabel">
         <span className="label">{field.label}</span>
