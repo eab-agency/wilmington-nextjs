@@ -8,6 +8,7 @@ import useScrollToFirstError from './hooks/useScrollToFirstError'
 import {
   AddressInput,
   CheckboxInput,
+  DateTimeInput,
   EmailInput,
   NameInput,
   PhoneInput,
@@ -108,8 +109,10 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
         return <NameInput key={field.id} field={field} />
       case 'richtext':
         return <RichTextField key={field.id} field={field} />
+      case 'datetime':
+        return <DateTimeInput key={field.id} field={field} />
       default:
-        return <h2>{field.type}</h2>
+        return null
     }
   }
 
