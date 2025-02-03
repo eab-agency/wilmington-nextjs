@@ -9,8 +9,11 @@ interface TextInputProps {
 const TextInput: React.FC<TextInputProps> = ({ field }) => {
   return (
     <label id={field.id} htmlFor={field.id} className="fsFieldCell">
-      {field.label}
-      {field.required === '1' && <span className="fsRequiredMarker">*</span>}
+      <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
+      <div className="fsLabel">
+        <span>{field.label}</span>
+        {field.required === '1' && <span className="fsRequiredMarker">*</span>}
+      </div>
       <Field
         type="text"
         name={field.id} // Use id for the field name

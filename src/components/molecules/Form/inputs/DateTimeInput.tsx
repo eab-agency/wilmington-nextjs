@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { Field, useFormikContext } from 'formik'
+import { ErrorMessage, Field, useFormikContext } from 'formik'
 import React, { useRef, useState } from 'react'
 import { FormField } from '../formTypes'
 
@@ -8,7 +8,8 @@ interface DateTimeInputProps {
 }
 
 const DateTimeInput: React.FC<DateTimeInputProps> = ({ field }) => {
-  const { setFieldValue } = useFormikContext()
+  const { setFieldValue, errors, touched } =
+    useFormikContext<Record<string, any>>()
   const [inputValue, setInputValue] = useState({
     month: '',
     day: '',
@@ -21,9 +22,9 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({ field }) => {
 
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
-    if (name === 'month' && value.length === 2) {
+    if (name === `${field.id}M` && value.length === 2) {
       dayRef.current?.focus()
-    } else if (name === 'day' && value.length === 2) {
+    } else if (name === `${field.id}D` && value.length === 2) {
       yearRef.current?.focus()
     }
     setInputValue((prev) => ({ ...prev, [name]: value }))
@@ -32,9 +33,9 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({ field }) => {
   const handleBackspace = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const { name, value } = event.target as HTMLInputElement
     if (event.key === 'Backspace' && value.length === 0) {
-      if (name === 'day') {
+      if (name === `${field.id}D`) {
         monthRef.current?.focus()
-      } else if (name === 'year') {
+      } else if (name === `${field.id}Y`) {
         dayRef.current?.focus()
       }
     }
@@ -63,6 +64,8 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({ field }) => {
     }
   }
 
+  const hasError = touched[field.id] && errors[field.id]
+
   return (
     <div className="fsFieldCell">
       <label
@@ -82,7 +85,7 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({ field }) => {
           <span className="fsDateTimeWrapper">
             <Field
               id={`${field.id}M`}
-              name="month"
+              name={`${field.id}M`}
               placeholder="MM"
               required={field.required === '1'}
               type="text"
@@ -92,12 +95,12 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({ field }) => {
               onChange={handleDateChange}
               onKeyDown={handleBackspace}
               onBlur={handleBlur}
-              className="fsDateInput"
+              className={`fsDateInput ${hasError ? 'error' : ''}`}
               innerRef={monthRef}
             />
             <Field
               id={`${field.id}D`}
-              name="day"
+              name={`${field.id}D`}
               placeholder="DD"
               required={field.required === '1'}
               type="text"
@@ -107,12 +110,12 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({ field }) => {
               onChange={handleDateChange}
               onKeyDown={handleBackspace}
               onBlur={handleBlur}
-              className="fsDateInput"
+              className={`fsDateInput ${hasError ? 'error' : ''}`}
               innerRef={dayRef}
             />
             <Field
               id={`${field.id}Y`}
-              name="year"
+              name={`${field.id}Y`}
               placeholder="YYYY"
               required={field.required === '1'}
               type="text"
@@ -122,11 +125,12 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({ field }) => {
               onChange={handleDateChange}
               onKeyDown={handleBackspace}
               onBlur={handleBlur}
-              className="fsDateInput"
+              className={`fsDateInput ${hasError ? 'error' : ''}`}
               innerRef={yearRef}
             />
           </span>
         </div>
+        <ErrorMessage name={field.id} component="div" className="error" />
       </label>
       <input
         name={`${field.id}H`}
