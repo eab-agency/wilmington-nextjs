@@ -19,6 +19,7 @@ const EmailInput: React.FC<EmailInputProps> = ({ field }) => {
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
       <div className="fsLabel">
         <span>{field.label}</span>
+        {field.required === '1' && <span className="fsRequiredMarker">*</span>}
       </div>
       <div className="fsSubFieldGroup">
         <Field
@@ -26,6 +27,7 @@ const EmailInput: React.FC<EmailInputProps> = ({ field }) => {
           name={field.id} // Use id for the field name
           placeholder={field.placeholder}
           size={field.text_size}
+          aria-required={field.required === '1'}
         />
       </div>
       <ErrorMessage name={field.id} component="div" className="error" />

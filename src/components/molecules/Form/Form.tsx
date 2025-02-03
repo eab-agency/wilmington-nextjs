@@ -52,6 +52,8 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
       field.visible_subfields.forEach((subfield) => {
         acc[`${field.id}-${subfield}`] = ''
       })
+    } else if (field.type === 'checkbox') {
+      acc[field.id] = []
     } else {
       acc[field.id] = ''
     }
@@ -76,6 +78,8 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
       if (field.required === '1') {
         if (field.type === 'address' && field.visible_subfields) {
           Object.assign(acc, getAddressValidationSchema(field))
+        } else if (field.type === 'checkbox') {
+          acc[field.id] = Yup.array().min(1, `${field.label} is required`)
         } else {
           acc[field.id] = Yup.string().required(`${field.label} is required`)
         }
@@ -128,7 +132,10 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
       ...Object.fromEntries(
         Object.entries(values).map(([name, value]) => {
           const id = nameToIdMap[name] || name // Use name if id is not found
-          return [`field${id}`, value]
+          return [
+            `field${id}`,
+            Array.isArray(value) ? JSON.stringify(value) : value
+          ]
         })
       )
     }
