@@ -21,7 +21,7 @@
   .fsSubFieldGroup {
     gap: 1em;
     // margin-top: 1em;
-    @media(min-width: tokens.$mq-900){
+    @media (min-width: tokens.$mq-900) {
       display: flex;
     }
 
@@ -31,18 +31,18 @@
       margin-bottom: 0.5em;
       flex: 1;
 
-      label{
+      label {
         text-transform: capitalize;
         // order: 0;
         margin-top: -0.5em;
       }
 
-      input{
+      input {
         // order: 1;
       }
 
       &.nameSuffix,
-      &.nameMiddle{
+      &.nameMiddle {
         max-width: 6em;
       }
     }
@@ -62,28 +62,28 @@
     font-size: 1rem;
   }
 
-  p{
+  p {
     margin-inline: auto;
   }
 
-  &.error{
+  &.error {
     color: color.adjust(tokens.$c-error, $lightness: -20%);
   }
 
-  .fsRadioField{
+  .fsRadioField {
     margin-bottom: 0.5em;
 
-    input[type="radio"]{
+    input[type='radio'] {
       opacity: 0;
       width: 0;
       height: 0;
 
-      & + span{
+      & + span {
         position: relative;
         padding-left: 1.5em;
         cursor: pointer;
 
-        &::before{
+        &::before {
           content: '';
           display: block;
           width: 1.2em;
@@ -97,8 +97,8 @@
         }
       }
 
-      &:checked + span::after{
-        content: "";
+      &:checked + span::after {
+        content: '';
         display: block;
         background: tokens.$c-darkGreen-700;
         width: 0.8em;
@@ -111,20 +111,20 @@
     }
   }
 
-  .fsCheckBoxField{
+  .fsCheckBoxField {
     margin-bottom: 0.5em;
 
-    input[type="checkbox"]{
+    input[type='checkbox'] {
       opacity: 0;
       width: 0;
       height: 0;
 
-      & + span{
+      & + span {
         position: relative;
         padding-left: 1.5em;
         cursor: pointer;
 
-        &::before{
+        &::before {
           content: '';
           display: block;
           width: 1.2em;
@@ -137,8 +137,8 @@
         }
       }
 
-      &:checked + span::after{
-        content: "\2713";
+      &:checked + span::after {
+        content: '\2713';
         display: block;
         color: tokens.$c-darkGreen-700;
         font-size: 1.7em;
@@ -149,7 +149,7 @@
     }
   }
 
-  .fsFieldSelect{
+  .fsFieldSelect {
     display: block;
   }
 }

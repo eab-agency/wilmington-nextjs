@@ -107,8 +107,6 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
       : results.some(Boolean)
   }
 
-  console.log('fields', fields);
-
   // Render form fields
   const renderField = (field: FormField, values: Record<string, unknown>) => {
     if (field.hidden === '1' || !shouldShowField(field, values)) return null

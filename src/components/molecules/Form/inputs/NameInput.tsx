@@ -20,39 +20,38 @@ const NameInput: React.FC<NameInputProps> = ({ field }) => {
       </div>
       <div className="fsSubFieldGroup">
         {field.visible_subfields?.map((subfield) => {
-            const subFieldName = `${field.name}${
-              subfield.charAt(0).toUpperCase() + subfield.slice(1)
-            }`
+          const subFieldName = `${field.name}${
+            subfield.charAt(0).toUpperCase() + subfield.slice(1)
+          }`
           return (
-          <div
-            key={`${field.id}-${subfield}`}
-            className={`fsSubField ${subFieldName}`}
-          >
-            <Field
-              type="text"
-              label={field.label}
-              name={`${field.id}-${subfield}`} // Use id for the field name
-              placeholder={field.placeholder}
-              autoComplete={
-                subfield === 'first'
-                  ? 'given-name'
-                  : subfield === 'last'
-                  ? 'family-name'
-                  : undefined
-              }
-            />
-            <label htmlFor={`${field.id}-${subfield}`}>
-              {`${subfield} ${field.type}`}
-            </label>
-            <ErrorMessage
-              name={`${field.id}-${subfield}`}
-              component="div"
-              className="error"
-            />
-          </div>
-        )
-
-      }) || <p>No subfields available</p>}
+            <div
+              key={`${field.id}-${subfield}`}
+              className={`fsSubField ${subFieldName}`}
+            >
+              <Field
+                type="text"
+                label={field.label}
+                name={`${field.id}-${subfield}`} // Use id for the field name
+                placeholder={field.placeholder}
+                autoComplete={
+                  subfield === 'first'
+                    ? 'given-name'
+                    : subfield === 'last'
+                    ? 'family-name'
+                    : undefined
+                }
+              />
+              <label htmlFor={`${field.id}-${subfield}`}>
+                {`${subfield} ${field.type}`}
+              </label>
+              <ErrorMessage
+                name={`${field.id}-${subfield}`}
+                component="div"
+                className="error"
+              />
+            </div>
+          )
+        }) || <p>No subfields available</p>}
       </div>
     </div>
   )
