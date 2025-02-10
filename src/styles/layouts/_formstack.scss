@@ -1,0 +1,102 @@
+@use 'sass:color';
+@use 'src/styles/tokens';
+// Formstack specific
+
+.fsFieldCell {
+  // border-top: 1px solid tokens.$c-gray-400;
+  // padding-top: 1em;
+  display: block;
+  margin-bottom: 1em;
+
+  .fsLabel {
+    font-size: 1.2rem;
+    margin: 0;
+    // border-bottom: 1px solid tokens.$c-gray-400;
+
+    .fsRequiredMarker {
+      color: tokens.$c-error;
+    }
+  }
+
+  .fsSubFieldGroup {
+    display: flex;
+    gap: 1em;
+    // margin-top: 1em;
+
+    .fsSubField {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5em;
+      flex: 1;
+
+      label{
+        text-transform: capitalize;
+        // order: 0;
+        margin-top: -0.5em;
+      }
+
+      input{
+        // order: 1;
+      }
+
+      &.nameSuffix,
+      &.nameMiddle{
+        max-width: 6em;
+      }
+    }
+  }
+
+  .fsSubField {
+    input,
+    select {
+      & ~ label {
+        font-size: 0.9rem;
+        padding-top: 0.5em;
+      }
+    }
+  }
+
+  .fsFieldSelect {
+    font-size: 1rem;
+  }
+
+  p{
+    margin-inline: auto;
+  }
+}
+
+.uauet {
+  [class*='StyledErrorBannerText'] {
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    color: color.adjust(tokens.$c-error, $lightness: -20%);
+  }
+
+  [class*='StyledErrorBannerIcon'] {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+[class*='StyledErrorBanner-sc'] {
+  [class*='StyledErrorBannerText-sc'] {
+    font-size: 0.9rem;
+  }
+}
+
+[class*='StyledOptionWrapper'] {
+  gap: 0.5em;
+  [class*='StyledOptionLabel'] {
+    padding-left: 1.7em;
+    position: relative;
+
+    input {
+      &::before {
+        width: 1.2rem;
+        height: 1.2rem;
+        position: absolute;
+        left: 0;
+        top: 0.1em;
+      }
+    }
+  }
+}

@@ -83,6 +83,32 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
     }, {} as Record<string, any>)
   )
 
+  // Function to check if a field should be shown based on logic
+  const shouldShowField = (
+    field: FormField,
+    values: Record<string, unknown>
+  ) => {
+    if (!field.logic) return true
+
+    const { action, conditional, checks } = field.logic
+    const results = checks.map((check) => {
+      const fieldValue = values[check.field]
+      switch (check.condition) {
+        case 'equals':
+          return fieldValue === check.option
+        // Add more conditions as needed
+        default:
+          return false
+      }
+    })
+
+    return conditional === 'all'
+      ? results.every(Boolean)
+      : results.some(Boolean)
+  }
+
+  console.log('fields', fields);
+
   // Render form fields
   const renderField = (field: FormField, values: Record<string, unknown>) => {
     if (field.hidden === '1' || !shouldShowField(field, values)) return null
