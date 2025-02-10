@@ -19,9 +19,11 @@
   }
 
   .fsSubFieldGroup {
-    display: flex;
     gap: 1em;
     // margin-top: 1em;
+    @media(min-width: tokens.$mq-900){
+      display: flex;
+    }
 
     .fsSubField {
       display: flex;
@@ -145,6 +147,10 @@
         left: 0.05em;
       }
     }
+  }
+
+  .fsFieldSelect{
+    display: block;
   }
 }
 
