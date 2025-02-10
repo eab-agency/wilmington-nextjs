@@ -33,7 +33,6 @@ const SelectInput: React.FC<SelectInputProps> = ({ field }) => {
       id={field.id}
       key={field.id}
       className={`fsFieldCell ${isRequired} ${hasError ? 'error' : ''}`}
-
     >
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
 
