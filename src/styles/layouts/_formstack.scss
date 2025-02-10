@@ -63,6 +63,89 @@
   p{
     margin-inline: auto;
   }
+
+  &.error{
+    color: color.adjust(tokens.$c-error, $lightness: -20%);
+  }
+
+  .fsRadioField{
+    margin-bottom: 0.5em;
+
+    input[type="radio"]{
+      opacity: 0;
+      width: 0;
+      height: 0;
+
+      & + span{
+        position: relative;
+        padding-left: 1.5em;
+        cursor: pointer;
+
+        &::before{
+          content: '';
+          display: block;
+          width: 1.2em;
+          height: 1.2em;
+          border: 1px solid tokens.$c-black;
+          background: tokens.$c-white;
+          position: absolute;
+          left: 0;
+          top: 0.1em;
+          border-radius: 50%;
+        }
+      }
+
+      &:checked + span::after{
+        content: "";
+        display: block;
+        background: tokens.$c-darkGreen-700;
+        width: 0.8em;
+        height: 0.8em;
+        position: absolute;
+        top: 0.28em;
+        left: 0.21em;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .fsCheckBoxField{
+    margin-bottom: 0.5em;
+
+    input[type="checkbox"]{
+      opacity: 0;
+      width: 0;
+      height: 0;
+
+      & + span{
+        position: relative;
+        padding-left: 1.5em;
+        cursor: pointer;
+
+        &::before{
+          content: '';
+          display: block;
+          width: 1.2em;
+          height: 1.2em;
+          border: 1px solid tokens.$c-black;
+          background: tokens.$c-white;
+          position: absolute;
+          left: 0;
+          top: 0.1em;
+        }
+      }
+
+      &:checked + span::after{
+        content: "\2713";
+        display: block;
+        color: tokens.$c-darkGreen-700;
+        font-size: 1.7em;
+        position: absolute;
+        top: -0.5em;
+        left: 0.05em;
+      }
+    }
+  }
 }
 
 .uauet {

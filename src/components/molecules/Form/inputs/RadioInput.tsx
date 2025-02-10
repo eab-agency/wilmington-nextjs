@@ -9,16 +9,19 @@ interface RadioInputProps {
 const RadioInput: React.FC<RadioInputProps> = ({ field }) => {
   const [, meta] = useField(field.id)
   const hasError = meta.touched && meta.error
+  const isRequired = field.required === '1' ? 'fsRequiredLabel' : ''
+
   return (
-    <span
+    <div
       id={field.id}
       key={field.id}
-      className={`fsFieldCell ${hasError ? 'error' : ''}`}
+      className={`fsFieldCell ${isRequired} ${hasError ? 'error' : ''}`}
     >
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
-      <div className="fsLabel">
+      <label className="fsLabel">
         <span>{field.label}</span>
-      </div>
+        {field.required === '1' && <span className="fsRequiredMarker">*</span>}
+      </label>
       <fieldset role="radiogroup">
         <span
           style={{
@@ -33,7 +36,7 @@ const RadioInput: React.FC<RadioInputProps> = ({ field }) => {
         </span>
         {Array.isArray(field.options) ? (
           field.options.map((option, i) => (
-            <div key={option.value}>
+            <div className="fsRadioField" key={option.value}>
               <label htmlFor={`${field.id}_${i}`} className="fsOptionLabel">
                 <Field
                   type="radio"
@@ -54,7 +57,7 @@ const RadioInput: React.FC<RadioInputProps> = ({ field }) => {
         )}
       </fieldset>
       <ErrorMessage name={field.id} component="div" className="error" />
-    </span>
+    </div>
   )
 }
 

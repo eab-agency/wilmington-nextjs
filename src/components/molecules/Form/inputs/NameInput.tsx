@@ -1,4 +1,4 @@
-import { ErrorMessage, Field } from 'formik'
+import { ErrorMessage, Field, useField } from 'formik'
 import React from 'react'
 import { FormField } from '../formTypes'
 
@@ -7,10 +7,12 @@ interface NameInputProps {
 }
 
 const NameInput: React.FC<NameInputProps> = ({ field }) => {
+  const [, meta] = useField(field.id)
+  const hasError = meta.touched && meta.error
   const isRequired = field.required === '1' ? 'fsRequiredLabel' : ''
 
   return (
-    <span id={field.id} className="fsFieldCell">
+    <div id={field.id} className={`fsFieldCell ${hasError ? 'error' : ''}`}>
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
       <div className={`fsLabel ${isRequired}`}>
         <span className="label">{field.label}</span>
@@ -52,7 +54,7 @@ const NameInput: React.FC<NameInputProps> = ({ field }) => {
 
       }) || <p>No subfields available</p>}
       </div>
-    </span>
+    </div>
   )
 }
 

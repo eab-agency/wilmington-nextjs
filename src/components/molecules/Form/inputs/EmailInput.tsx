@@ -11,16 +11,16 @@ const EmailInput: React.FC<EmailInputProps> = ({ field }) => {
   const hasError = meta.touched && meta.error
   const isRequired = field.required === '1' ? 'fsRequiredLabel' : ''
   return (
-    <label
+    <div
       id={field.id}
       key={field.id}
       className={`fsFieldCell ${hasError ? 'error' : ''}`}
     >
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
-      <div className={`fsLabel ${isRequired}`}>
+      <label className={`fsLabel ${isRequired}`}>
         <span>{field.label}</span>
         {field.required === '1' && <span className="fsRequiredMarker">*</span>}
-      </div>
+      </label>
       <div className="fsSubFieldGroup">
         <Field
           type="email"
@@ -30,7 +30,7 @@ const EmailInput: React.FC<EmailInputProps> = ({ field }) => {
         />
       </div>
       <ErrorMessage name={field.id} component="div" className="error" />
-    </label>
+    </div>
   )
 }
 
