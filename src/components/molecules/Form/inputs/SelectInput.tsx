@@ -9,6 +9,7 @@ interface SelectInputProps {
 const SelectInput: React.FC<SelectInputProps> = ({ field }) => {
   const [, meta] = useField(field.id)
   const hasError = meta.touched && meta.error
+  const isRequired = field.required === '1' ? 'fsRequiredLabel' : ''
 
   const renderOptions = () => {
     if (Array.isArray(field.options)) {
@@ -28,18 +29,18 @@ const SelectInput: React.FC<SelectInputProps> = ({ field }) => {
   }
 
   return (
-    <label
+    <div
       id={field.id}
       key={field.id}
-      className={`fsFieldCell ${hasError ? 'error' : ''}`}
-      htmlFor={field.id}
+      className={`fsFieldCell ${isRequired} ${hasError ? 'error' : ''}`}
+
     >
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
 
-      <div className="fsLabel">
+      <label className="fsLabel" htmlFor={field.id}>
         <span>{field.label}</span>
         {field.required === '1' && <span className="fsRequiredMarker">*</span>}
-      </div>
+      </label>
       <Field
         as="select"
         name={field.id}
@@ -49,7 +50,7 @@ const SelectInput: React.FC<SelectInputProps> = ({ field }) => {
         {renderOptions()}
       </Field>
       <ErrorMessage name={field.id} component="div" className="error" />
-    </label>
+    </div>
   )
 }
 
