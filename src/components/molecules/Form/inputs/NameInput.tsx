@@ -7,15 +7,25 @@ interface NameInputProps {
 }
 
 const NameInput: React.FC<NameInputProps> = ({ field }) => {
+  const isRequired = field.required === '1' ? 'fsRequiredLabel' : ''
+
   return (
     <span id={field.id} className="fsFieldCell">
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
-      <div className="fsLabel">
+      <div className={`fsLabel ${isRequired}`}>
         <span className="label">{field.label}</span>
+        {field.required === '1' && <span className="fsRequiredMarker">*</span>}
       </div>
       <div className="fsSubFieldGroup">
-        {field.visible_subfields?.map((subfield) => (
-          <div key={`${field.id}-${subfield}`} className="fsSubField">
+        {field.visible_subfields?.map((subfield) => {
+            const subFieldName = `${field.name}${
+              subfield.charAt(0).toUpperCase() + subfield.slice(1)
+            }`
+          return (
+          <div
+            key={`${field.id}-${subfield}`}
+            className={`fsSubField ${subFieldName}`}
+          >
             <Field
               type="text"
               label={field.label}
@@ -38,7 +48,9 @@ const NameInput: React.FC<NameInputProps> = ({ field }) => {
               className="error"
             />
           </div>
-        )) || <p>No subfields available</p>}
+        )
+
+      }) || <p>No subfields available</p>}
       </div>
     </span>
   )

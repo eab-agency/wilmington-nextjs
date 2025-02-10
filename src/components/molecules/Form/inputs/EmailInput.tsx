@@ -9,7 +9,7 @@ interface EmailInputProps {
 const EmailInput: React.FC<EmailInputProps> = ({ field }) => {
   const [, meta] = useField(field.id)
   const hasError = meta.touched && meta.error
-
+  const isRequired = field.required === '1' ? 'fsRequiredLabel' : ''
   return (
     <label
       id={field.id}
@@ -17,8 +17,9 @@ const EmailInput: React.FC<EmailInputProps> = ({ field }) => {
       className={`fsFieldCell ${hasError ? 'error' : ''}`}
     >
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
-      <div className="fsLabel">
+      <div className={`fsLabel ${isRequired}`}>
         <span>{field.label}</span>
+        {field.required === '1' && <span className="fsRequiredMarker">*</span>}
       </div>
       <div className="fsSubFieldGroup">
         <Field
