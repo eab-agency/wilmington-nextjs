@@ -9,18 +9,19 @@ interface TextInputProps {
 const PhoneInput: React.FC<TextInputProps> = ({ field }) => {
   const [, meta] = useField(field.id)
   const hasError = meta.touched && meta.error
+  const isRequired = field.required === '1' ? 'fsRequiredLabel' : ''
 
   return (
-    <label
+    <div
       id={field.id}
       key={field.id}
-      className={`fsFieldCell ${hasError ? 'error' : ''}`}
-      htmlFor={field.id}
+      className={`fsFieldCell ${isRequired} ${hasError ? 'error' : ''}`}
     >
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
-      <div className="fsLabel">
+      <label className="fsLabel" htmlFor={field.id}>
         <span>{field.label}</span>
-      </div>
+        {field.required === '1' && <span className="fsRequiredMarker">*</span>}
+      </label>
       <Field
         type="tel"
         name={field.id} // Use id for the field name
@@ -29,7 +30,7 @@ const PhoneInput: React.FC<TextInputProps> = ({ field }) => {
         className="fsFieldPhone"
       />
       <ErrorMessage name={field.id} component="div" className="error" />
-    </label>
+    </div>
   )
 }
 

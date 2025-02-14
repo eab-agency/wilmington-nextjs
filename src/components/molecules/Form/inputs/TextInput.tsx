@@ -1,4 +1,4 @@
-import { ErrorMessage, Field } from 'formik'
+import { ErrorMessage, Field, useField } from 'formik'
 import React from 'react'
 import { FormField } from '../formTypes'
 
@@ -7,12 +7,18 @@ interface TextInputProps {
 }
 
 const TextInput: React.FC<TextInputProps> = ({ field }) => {
+  const [, meta] = useField(field.id)
+  const hasError = meta.touched && meta.error
+  const isRequired = field.required === '1' ? 'fsRequiredLabel' : ''
+
   return (
-    <label id={field.id} htmlFor={field.id} className="fsFieldCell">
+    <div className={`fsFieldCell ${isRequired} ${hasError ? 'error' : ''}`}>
+      <label className="fsLabel" htmlFor={field.id}>
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
       <div className="fsLabel">
-        <span>{field.label}</span>
-        {field.required === '1' && <span className="fsRequiredMarker">*</span>}
+        <span>  <span>{field.label}</span></span>
+          {field.required === '1' && <span className="fsRequiredMarker">*</span>}
+      </label>
       </div>
       <Field
         type="text"
@@ -23,7 +29,7 @@ const TextInput: React.FC<TextInputProps> = ({ field }) => {
         aria-required={field.required === '1'}
       />
       <ErrorMessage name={field.id} component="div" className="error" />
-    </label>
+    </div>
   )
 }
 

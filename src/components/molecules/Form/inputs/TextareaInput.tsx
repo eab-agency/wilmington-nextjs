@@ -10,17 +10,19 @@ const TextareaInput: React.FC<TextareaInputProps> = ({ field }) => {
   const [, meta] = useField(field.id)
   const hasError = meta.touched && meta.error
 
+  const isRequired = field.required === '1' ? 'fsRequiredLabel' : ''
+
   return (
-    <label
+    <div
       id={field.id}
       key={field.id}
-      className={`fsFieldCell ${hasError ? 'error' : ''}`}
+      className={`fsFieldCell ${isRequired} ${hasError ? 'error' : ''}`}
     >
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
-      <div className="fsLabel">
+      <label className="fsLabel" htmlFor={field.id}>
         <span>{field.label}</span>
         {field.required === '1' && <span className="fsRequiredMarker">*</span>}
-      </div>
+      </label>
       <Field
         as="textarea"
         name={field.id} // Use id for the field name
@@ -29,7 +31,7 @@ const TextareaInput: React.FC<TextareaInputProps> = ({ field }) => {
         aria-required={field.required === '1'}
       />
       <ErrorMessage name={field.id} component="div" className="error" />
-    </label>
+    </div>
   )
 }
 

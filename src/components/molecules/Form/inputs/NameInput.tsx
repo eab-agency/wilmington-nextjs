@@ -12,11 +12,15 @@ const NameInput: React.FC<NameInputProps> = ({ field }) => {
     (a, b) => subfieldOrder.indexOf(a) - subfieldOrder.indexOf(b)
   )
 
+  const [, meta] = useField(field.id)
+  const hasError = meta.touched && meta.error
+  const isRequired = field.required === '1' ? 'fsRequiredLabel' : ''
+
   return (
-    <span id={field.id} className="fsFieldCell">
+    <div id={field.id} className={`fsFieldCell ${hasError ? 'error' : ''}`}>
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
-      <div className="fsLabel">
-        <span>{field.label}</span>
+      <div className={`fsLabel ${isRequired}`}>
+        <span className="label">{field.label}</span>
         {field.required === '1' && <span className="fsRequiredMarker">*</span>}
       </div>
       <div className="fsSubFieldGroup">
@@ -60,7 +64,7 @@ const NameInput: React.FC<NameInputProps> = ({ field }) => {
           )
         }) || <p>No subfields available</p>}
       </div>
-    </span>
+    </div>
   )
 }
 
