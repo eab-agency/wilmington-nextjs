@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 import { ErrorMessage, Field, useFormikContext } from 'formik'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FormField } from '../formTypes'
 
 interface DateTimeInputProps {
@@ -8,26 +8,40 @@ interface DateTimeInputProps {
 }
 
 const DateTimeInput: React.FC<DateTimeInputProps> = ({ field }) => {
-  const { setFieldValue, errors, touched } =
+  const { setFieldValue, values, errors, touched } =
     useFormikContext<Record<string, any>>()
   const [inputValue, setInputValue] = useState({
-    month: '',
-    day: '',
-    year: ''
+    month: values[`${field.id}M`] || '',
+    day: values[`${field.id}D`] || '',
+    year: values[`${field.id}Y`] || ''
   })
 
   const monthRef = useRef<HTMLInputElement>(null)
   const dayRef = useRef<HTMLInputElement>(null)
   const yearRef = useRef<HTMLInputElement>(null)
 
+  useEffect(() => {
+    setInputValue({
+      month: values[`${field.id}M`] || '',
+      day: values[`${field.id}D`] || '',
+      year: values[`${field.id}Y`] || ''
+    })
+  }, [values, field.id])
+
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
-    if (name === `${field.id}M` && value.length === 2) {
+    const subfield = name.slice(-1).toLowerCase()
+    setInputValue((prev) => ({
+      ...prev,
+      [subfield]: value
+    }))
+    setFieldValue(name, value)
+
+    if (subfield === 'm' && value.length === 2) {
       dayRef.current?.focus()
-    } else if (name === `${field.id}D` && value.length === 2) {
+    } else if (subfield === 'd' && value.length === 2) {
       yearRef.current?.focus()
     }
-    setInputValue((prev) => ({ ...prev, [name]: value }))
   }
 
   const handleBackspace = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -41,30 +55,27 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({ field }) => {
     }
   }
 
-  const handleBlur = () => {
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    const subfield = name.slice(-1).toLowerCase()
+    setInputValue((prev) => ({
+      ...prev,
+      [subfield]: value
+    }))
+    setFieldValue(name, value)
+
     const date = dayjs(
       `${inputValue.month} ${inputValue.day}, ${inputValue.year}`
     )
-    if (date.isValid()) {
-      setFieldValue(`${field.id}M`, date.format('MMM'))
-      setFieldValue(`${field.id}D`, date.format('DD'))
-      setFieldValue(`${field.id}Y`, date.format('YYYY'))
-      setFieldValue(`${field.id}H`, date.format('hh'))
-      setFieldValue(`${field.id}I`, date.format('mm'))
-      setFieldValue(`${field.id}S`, date.format('ss'))
-      setFieldValue(`${field.id}A`, date.format('A'))
-    } else {
+    if (!date.isValid()) {
       setFieldValue(`${field.id}M`, '')
       setFieldValue(`${field.id}D`, '')
       setFieldValue(`${field.id}Y`, '')
-      setFieldValue(`${field.id}H`, '')
-      setFieldValue(`${field.id}I`, '')
-      setFieldValue(`${field.id}S`, '')
-      setFieldValue(`${field.id}A`, '')
     }
   }
 
-  const hasError = touched[field.id] && errors[field.id]
+  const hasError = (subfield: string) =>
+    touched[`${field.id}${subfield}`] && errors[`${field.id}${subfield}`]
 
   return (
     <div className="fsFieldCell">
@@ -95,8 +106,13 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({ field }) => {
               onChange={handleDateChange}
               onKeyDown={handleBackspace}
               onBlur={handleBlur}
-              className={`fsDateInput ${hasError ? 'error' : ''}`}
+              className={`fsDateInput ${hasError('M') ? 'error' : ''}`}
               innerRef={monthRef}
+            />
+            <ErrorMessage
+              name={`${field.id}M`}
+              component="div"
+              className="error"
             />
             <Field
               id={`${field.id}D`}
@@ -110,8 +126,13 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({ field }) => {
               onChange={handleDateChange}
               onKeyDown={handleBackspace}
               onBlur={handleBlur}
-              className={`fsDateInput ${hasError ? 'error' : ''}`}
+              className={`fsDateInput ${hasError('D') ? 'error' : ''}`}
               innerRef={dayRef}
+            />
+            <ErrorMessage
+              name={`${field.id}D`}
+              component="div"
+              className="error"
             />
             <Field
               id={`${field.id}Y`}
@@ -125,57 +146,17 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({ field }) => {
               onChange={handleDateChange}
               onKeyDown={handleBackspace}
               onBlur={handleBlur}
-              className={`fsDateInput ${hasError ? 'error' : ''}`}
+              className={`fsDateInput ${hasError('Y') ? 'error' : ''}`}
               innerRef={yearRef}
+            />
+            <ErrorMessage
+              name={`${field.id}Y`}
+              component="div"
+              className="error"
             />
           </span>
         </div>
-        <ErrorMessage name={field.id} component="div" className="error" />
       </label>
-      <input
-        name={`${field.id}H`}
-        id={`${field.id}H`}
-        type="hidden"
-        readOnly
-        data-testid="hour"
-        data-fs-field-id={field.id}
-        data-fs-field-name="datetime"
-        data-fs-field-alias="H"
-        className="StyledHiddenInput"
-      />
-      <input
-        name={`${field.id}I`}
-        id={`${field.id}I`}
-        type="hidden"
-        readOnly
-        data-testid="minutes"
-        data-fs-field-id={field.id}
-        data-fs-field-name="datetime"
-        data-fs-field-alias="I"
-        className="StyledHiddenInput"
-      />
-      <input
-        name={`${field.id}S`}
-        id={`${field.id}S`}
-        type="hidden"
-        readOnly
-        data-testid="seconds"
-        data-fs-field-id={field.id}
-        data-fs-field-name="datetime"
-        data-fs-field-alias="S"
-        className="StyledHiddenInput"
-      />
-      <input
-        name={`${field.id}A`}
-        id={`${field.id}A`}
-        type="hidden"
-        readOnly
-        data-testid="ampm"
-        data-fs-field-id={field.id}
-        data-fs-field-name="datetime"
-        data-fs-field-alias="A"
-        className="StyledHiddenInput"
-      />
     </div>
   )
 }
