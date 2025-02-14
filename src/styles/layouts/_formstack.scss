@@ -1,0 +1,191 @@
+@use 'sass:color';
+@use 'src/styles/tokens';
+// Formstack specific
+
+.fsFieldCell {
+  // border-top: 1px solid tokens.$c-gray-400;
+  // padding-top: 1em;
+  display: block;
+  margin-bottom: 1em;
+
+  .fsLabel {
+    font-size: 1.2rem;
+    margin: 0;
+    // border-bottom: 1px solid tokens.$c-gray-400;
+
+    .fsRequiredMarker {
+      color: tokens.$c-error;
+    }
+  }
+
+  .fsSubFieldGroup {
+    gap: 1em;
+    // margin-top: 1em;
+    @media (min-width: tokens.$mq-900) {
+      display: flex;
+    }
+
+    .fsSubField {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5em;
+      flex: 1;
+
+      label {
+        text-transform: capitalize;
+        // order: 0;
+        margin-top: -0.5em;
+      }
+
+      input {
+        // order: 1;
+      }
+
+      &.nameSuffix,
+      &.nameMiddle {
+        max-width: 6em;
+      }
+    }
+  }
+
+  .fsSubField {
+    input,
+    select {
+      & ~ label {
+        font-size: 0.9rem;
+        padding-top: 0.5em;
+      }
+    }
+  }
+
+  .fsFieldSelect {
+    font-size: 1rem;
+  }
+
+  p {
+    margin-inline: auto;
+  }
+
+  &.error {
+    color: color.adjust(tokens.$c-error, $lightness: -20%);
+  }
+
+  .fsRadioField {
+    margin-bottom: 0.5em;
+
+    input[type='radio'] {
+      opacity: 0;
+      width: 0;
+      height: 0;
+
+      & + span {
+        position: relative;
+        padding-left: 1.5em;
+        cursor: pointer;
+
+        &::before {
+          content: '';
+          display: block;
+          width: 1.2em;
+          height: 1.2em;
+          border: 1px solid tokens.$c-black;
+          background: tokens.$c-white;
+          position: absolute;
+          left: 0;
+          top: 0.1em;
+          border-radius: 50%;
+        }
+      }
+
+      &:checked + span::after {
+        content: '';
+        display: block;
+        background: tokens.$c-darkGreen-700;
+        width: 0.8em;
+        height: 0.8em;
+        position: absolute;
+        top: 0.28em;
+        left: 0.21em;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .fsCheckBoxField {
+    margin-bottom: 0.5em;
+
+    input[type='checkbox'] {
+      opacity: 0;
+      width: 0;
+      height: 0;
+
+      & + span {
+        position: relative;
+        padding-left: 1.5em;
+        cursor: pointer;
+
+        &::before {
+          content: '';
+          display: block;
+          width: 1.2em;
+          height: 1.2em;
+          border: 1px solid tokens.$c-black;
+          background: tokens.$c-white;
+          position: absolute;
+          left: 0;
+          top: 0.1em;
+        }
+      }
+
+      &:checked + span::after {
+        content: '\2713';
+        display: block;
+        color: tokens.$c-darkGreen-700;
+        font-size: 1.7em;
+        position: absolute;
+        top: -0.5em;
+        left: 0.05em;
+      }
+    }
+  }
+
+  .fsFieldSelect {
+    display: block;
+  }
+}
+
+.uauet {
+  [class*='StyledErrorBannerText'] {
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    color: color.adjust(tokens.$c-error, $lightness: -20%);
+  }
+
+  [class*='StyledErrorBannerIcon'] {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+[class*='StyledErrorBanner-sc'] {
+  [class*='StyledErrorBannerText-sc'] {
+    font-size: 0.9rem;
+  }
+}
+
+[class*='StyledOptionWrapper'] {
+  gap: 0.5em;
+  [class*='StyledOptionLabel'] {
+    padding-left: 1.7em;
+    position: relative;
+
+    input {
+      &::before {
+        width: 1.2rem;
+        height: 1.2rem;
+        position: absolute;
+        left: 0;
+        top: 0.1em;
+      }
+    }
+  }
+}

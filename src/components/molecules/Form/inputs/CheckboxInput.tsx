@@ -9,17 +9,19 @@ interface CheckboxInputProps {
 const CheckboxInput: React.FC<CheckboxInputProps> = ({ field }) => {
   const [, meta] = useField(field.id)
   const hasError = meta.touched && meta.error
+  const isRequired = field.required === '1' ? 'fsRequiredLabel' : ''
 
   return (
-    <span
+    <div
       id={field.id}
       key={field.id}
-      className={`fsFieldCell ${hasError ? 'error' : ''}`}
+      className={`fsFieldCell ${isRequired} ${hasError ? 'error' : ''}`}
     >
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
-      <div className="fsLabel">
+      <label className="fsLabel">
         <span>{field.label}</span>
-      </div>
+        {field.required === '1' && <span className="fsRequiredMarker">*</span>}
+      </label>
       <ErrorMessage name={field.id} component="div" className="error" />
       <fieldset role="group">
         <span
@@ -35,10 +37,10 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({ field }) => {
         </span>
         {Array.isArray(field.options) ? (
           field.options.map((option) => (
-            <div key={option.value}>
+            <div className="fsCheckBoxField" key={option.value}>
               <label className="fsOptionLabel">
                 <Field type="checkbox" name={field.id} value={option.value} />{' '}
-                {option.label}
+                <span>{option.label}</span>
               </label>
             </div>
           ))
@@ -50,7 +52,7 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({ field }) => {
           </p>
         )}
       </fieldset>
-    </span>
+    </div>
   )
 }
 
