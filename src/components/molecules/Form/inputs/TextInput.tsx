@@ -13,13 +13,11 @@ const TextInput: React.FC<TextInputProps> = ({ field }) => {
 
   return (
     <div className={`fsFieldCell ${isRequired} ${hasError ? 'error' : ''}`}>
-      <label className="fsLabel" htmlFor={field.id}>
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
-      <div className="fsLabel">
-        <span>  <span>{field.label}</span></span>
-          {field.required === '1' && <span className="fsRequiredMarker">*</span>}
+      <label className="fsLabel" htmlFor={field.id}>
+        <span>{field.label}</span>
+        {field.required === '1' && <span className="fsRequiredMarker">*</span>}
       </label>
-      </div>
       <Field
         type="text"
         name={field.id} // Use id for the field name
