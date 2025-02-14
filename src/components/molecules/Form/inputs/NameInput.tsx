@@ -1,4 +1,4 @@
-import { ErrorMessage, Field } from 'formik'
+import { ErrorMessage, Field, useFormikContext } from 'formik'
 import React from 'react'
 import { FormField } from '../formTypes'
 
@@ -7,38 +7,58 @@ interface NameInputProps {
 }
 
 const NameInput: React.FC<NameInputProps> = ({ field }) => {
+  const subfieldOrder = ['prefix', 'first', 'middle', 'last', 'suffix']
+  const sortedSubfields = field.visible_subfields?.sort(
+    (a, b) => subfieldOrder.indexOf(a) - subfieldOrder.indexOf(b)
+  )
+
   return (
     <span id={field.id} className="fsFieldCell">
       <a id={`field-anchor-${field.id}`} tabIndex={-1} aria-hidden="true"></a>
       <div className="fsLabel">
-        <span className="label">{field.label}</span>
+        <span>{field.label}</span>
+        {field.required === '1' && <span className="fsRequiredMarker">*</span>}
       </div>
       <div className="fsSubFieldGroup">
-        {field.visible_subfields?.map((subfield) => (
-          <div key={`${field.id}-${subfield}`} className="fsSubField">
-            <Field
-              type="text"
-              label={field.label}
-              name={`${field.id}-${subfield}`} // Use id for the field name
-              placeholder={field.placeholder}
-              autoComplete={
-                subfield === 'first'
-                  ? 'given-name'
-                  : subfield === 'last'
-                  ? 'family-name'
-                  : undefined
-              }
-            />
-            <label htmlFor={`${field.id}-${subfield}`}>
-              {`${subfield} ${field.type}`}
-            </label>
-            <ErrorMessage
-              name={`${field.id}-${subfield}`}
-              component="div"
-              className="error"
-            />
-          </div>
-        )) || <p>No subfields available</p>}
+        {sortedSubfields?.map((subfield) => {
+          const isOptional =
+            (subfield === 'suffix' && field.suffix_optional === 1) ||
+            (subfield === 'prefix' && field.suffix_optional === 1) ||
+            (subfield === 'middle' && field.middle_name_optional === 1)
+          return (
+            <div
+              key={`${field.id}-${subfield}`}
+              className={`fsSubField fsName${
+                subfield.charAt(0).toUpperCase() + subfield.slice(1)
+              }`}
+            >
+              <Field
+                type="text"
+                label={field.label}
+                name={`${field.id}-${subfield}`} // Use id for the field name
+                placeholder={field.placeholder}
+                autoComplete={
+                  subfield === 'first'
+                    ? 'given-name'
+                    : subfield === 'last'
+                    ? 'family-name'
+                    : undefined
+                }
+              />
+              <label htmlFor={`${field.id}-${subfield}`}>
+                {`${subfield.charAt(0).toUpperCase() + subfield.slice(1)} ${
+                  field.type
+                }`}{' '}
+                {isOptional && '(optional)'}
+              </label>
+              <ErrorMessage
+                name={`${field.id}-${subfield}`}
+                component="div"
+                className="error"
+              />
+            </div>
+          )
+        }) || <p>No subfields available</p>}
       </div>
     </span>
   )

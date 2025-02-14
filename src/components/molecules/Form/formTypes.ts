@@ -87,4 +87,12 @@ export interface FormField {
   section_text?: string
   section_heading?: string
   text_editor?: string
+  middle_initial_optional?: number
+  middle_name_optional?: number
+  prefix_optional?: number
+  show_initial?: number
+  show_middle?: boolean
+  show_prefix?: number
+  show_suffix?: boolean
+  suffix_optional?: number
 }

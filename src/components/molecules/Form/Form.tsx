@@ -3,6 +3,7 @@ import { Form, Formik, FormikHelpers, useFormikContext } from 'formik'
 import { useRouter } from 'next/router'
 import React, { useMemo, useState } from 'react'
 import * as Yup from 'yup'
+import CurrentValues from './CurrentValues' // Import the CurrentValues component
 import { FormField } from './formTypes'
 import useScrollToFirstError from './hooks/useScrollToFirstError'
 import {
@@ -54,6 +55,14 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
       })
     } else if (field.type === 'checkbox') {
       acc[field.id] = []
+    } else if (field.type === 'datetime') {
+      acc[`${field.id}M`] = ''
+      acc[`${field.id}D`] = ''
+      acc[`${field.id}Y`] = ''
+    } else if (field.type === 'name' && field.visible_subfields) {
+      field.visible_subfields.forEach((subfield) => {
+        acc[`${field.id}-${subfield}`] = ''
+      })
     } else {
       acc[field.id] = ''
     }
@@ -80,6 +89,35 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
           Object.assign(acc, getAddressValidationSchema(field))
         } else if (field.type === 'checkbox') {
           acc[field.id] = Yup.array().min(1, `${field.label} is required`)
+        } else if (field.type === 'datetime') {
+          acc[field.id] = Yup.object({
+            [`${field.id}M`]: Yup.string().required('Month is required'),
+            [`${field.id}D`]: Yup.string().required('Day is required'),
+            [`${field.id}Y`]: Yup.string().required('Year is required')
+          }).test(
+            'datetime-required',
+            `${field.label} is required`,
+            (value) =>
+              !!value[`${field.id}M`] &&
+              !!value[`${field.id}D`] &&
+              !!value[`${field.id}Y`]
+          )
+        } else if (field.type === 'name' && field.visible_subfields) {
+          field.visible_subfields.forEach((subfield) => {
+            if (
+              (subfield === 'suffix' && field.suffix_optional === 1) ||
+              (subfield === 'prefix' && field.suffix_optional === 1) ||
+              (subfield === 'middle' && field.middle_name_optional === 1)
+            ) {
+              acc[`${field.id}-${subfield}`] = Yup.string()
+            } else {
+              acc[`${field.id}-${subfield}`] = Yup.string().required(
+                `${
+                  subfield.charAt(0).toUpperCase() + subfield.slice(1)
+                } Name is required`
+              )
+            }
+          })
         } else {
           acc[field.id] = Yup.string().required(`${field.label} is required`)
         }
@@ -116,7 +154,7 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
       case 'datetime':
         return <DateTimeInput key={field.id} field={field} />
       default:
-        return null
+        return <h2 key={field.id}>{field.type} Field type not supported</h2>
     }
   }
 
@@ -232,6 +270,7 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
                 {isSubmitting ? 'Submitting form...' : 'Submit'}
               </button>
             </div>
+            <CurrentValues /> {/* Add the CurrentValues component here */}
           </Form>
         )
       }}
