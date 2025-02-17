@@ -27,6 +27,7 @@ const RequestForInformationForm: React.FC<{
   fields: FormField[]
   formId: string
 }> = ({ fields, formId }) => {
+  // console.log('🚀 ~ formId:', formId)
   // console.log('🚀 ~ fields:', fields)
   const router = useRouter()
   const [submissionMessage, setSubmissionMessage] = useState<string | null>(
@@ -191,6 +192,7 @@ const RequestForInformationForm: React.FC<{
     const transformedValues = {
       displayTime: new Date().toISOString(),
       form: formId,
+      viewkey: 'TYlVmXXEl1',
       fsUserAgent: navigator.userAgent,
       ...Object.fromEntries(
         Object.entries(values).map(([name, value]) => {
