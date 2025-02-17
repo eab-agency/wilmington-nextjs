@@ -41,6 +41,15 @@ const RequestForInformationForm: React.FC<{
     () => groupFieldsIntoSections(fields),
     [fields]
   )
+  // Show submission message and hide form
+  if (submissionMessage) {
+    return (
+      <div className="submissionMessage">
+        <h2>Submission Successful</h2>
+        <p>{submissionMessage}</p>
+      </div>
+    )
+  }
 
   // if fields is empty or undefined, return null
   if (!fields || fields.length === 0) return null
@@ -225,7 +234,7 @@ const RequestForInformationForm: React.FC<{
 
       // Check if the thank you page exists
       const currentPath = window.location.pathname
-      const thankYouPagePath = `${currentPath}/thanks`
+      const thankYouPagePath = `${currentPath}/rfi-thanks`
       const thankYouPageResponse = await fetch(thankYouPagePath)
       if (thankYouPageResponse.ok) {
         router.push(thankYouPagePath)
