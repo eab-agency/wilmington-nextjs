@@ -1,11 +1,10 @@
 'use client'
-import { Form, Formik, FormikHelpers, useFormikContext } from 'formik'
+import { Form, Formik, FormikHelpers } from 'formik'
 import { useRouter } from 'next/router'
 import React, { useMemo, useState } from 'react'
 import * as Yup from 'yup'
 import CurrentValues from './CurrentValues' // Import the CurrentValues component
 import { FormField } from './formTypes'
-import useScrollToFirstError from './hooks/useScrollToFirstError'
 import {
   AddressInput,
   CheckboxInput,
@@ -24,20 +23,16 @@ import groupFieldsIntoSections from './utils/groupFieldsIntoSections'
 import shouldShowField from './utils/shouldShowFields'
 // Accepts form data from FormStack component
 
-const ScrollToFirstErrorWrapper: React.FC = () => {
-  const { errors } = useFormikContext() // Access errors using Formik context
-  useScrollToFirstError(errors) // Use the custom hook here
-  return null
-}
-
 const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
   fields
 }) => {
+  // console.log('🚀 ~ fields:', fields)
   const router = useRouter()
   const [submissionMessage, setSubmissionMessage] = useState<string | null>(
     null
   )
   const [submissionError, setSubmissionError] = useState<string | null>(null)
+  const [submitAttempted, setSubmitAttempted] = useState(false)
 
   // Process fields into sections
   const groupedSections = useMemo(
@@ -81,9 +76,12 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
     return acc
   }, {} as Record<string, string>)
 
-  // Create Yup validation schema
+  // Create a sorted array of fields based on the sort property
+  const sortedFields = [...fields].sort((a, b) => +a.sort - +b.sort)
+
+  // Create Yup validation schema using the sortedFields array
   const validationSchema = Yup.object(
-    fields.reduce((acc, field) => {
+    sortedFields.reduce((acc, field) => {
       if (field.required === '1') {
         if (field.type === 'address' && field.visible_subfields) {
           Object.assign(acc, getAddressValidationSchema(field))
@@ -186,6 +184,9 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
     values: Record<string, any>,
     { setSubmitting }: FormikHelpers<Record<string, unknown>>
   ) => {
+    setSubmitting(true)
+    setSubmitAttempted(true) // Set the state when the submit button is clicked
+
     const transformedValues = {
       displayTime: new Date().toISOString(),
       form: 3222784,
@@ -246,10 +247,9 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ values, errors, isSubmitting }) => {
+      {({ errors, touched, isSubmitting, values, dirty }) => {
         return (
           <Form>
-            <ScrollToFirstErrorWrapper /> {/* Add the wrapper component here */}
             {groupedSections.map((sectionGroup, index) => {
               // Determine if we should show this section
               const showSection = sectionGroup.section
@@ -279,22 +279,27 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
                   )}
 
                   {/* Render fields in this section */}
-                  {sectionGroup.fields.map((field) =>
-                    renderField(field, values)
-                  )}
+                  {sectionGroup.fields
+                    .sort((a, b) => +a.sort - +b.sort)
+                    .map((field) => renderField(field, values))}
                 </div>
               )
             })}
+            {Object.keys(errors).length > 0 && (
+              <div className="error">
+                There are errors on the form. Please fix them before submitting.
+              </div>
+            )}
             <div className="fsSubmitButtonWrapper">
               <button
                 className="fsSubmitButton"
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || Object.keys(errors).length > 0}
               >
                 {isSubmitting ? 'Submitting form...' : 'Submit'}
               </button>
             </div>
-            <CurrentValues /> {/* Add the CurrentValues component here */}
+            {/* <CurrentValues /> */}
           </Form>
         )
       }}

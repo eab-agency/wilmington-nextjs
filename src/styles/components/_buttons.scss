@@ -21,3 +21,9 @@ a[class*='secondary'] {
     color: tokens.$c-black;
   }
 }
+
+button:disabled {
+  cursor: default;
+  opacity: 0.5;
+  pointer-events: none;
+}
