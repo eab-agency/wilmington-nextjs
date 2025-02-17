@@ -27,7 +27,7 @@ const NameInput: React.FC<NameInputProps> = ({ field }) => {
         {sortedSubfields?.map((subfield) => {
           const isOptional =
             (subfield === 'suffix' && field.suffix_optional === 1) ||
-            (subfield === 'prefix' && field.suffix_optional === 1) ||
+            (subfield === 'prefix' && field.prefix_optional === 1) ||
             (subfield === 'middle' && field.middle_name_optional === 1)
           return (
             <div
