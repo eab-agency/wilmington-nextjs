@@ -10,6 +10,11 @@ query GetFormstackApiToken {
 export default async function handler(req, res) {
   const { formId } = req.query
 
+  // Validate that formId is a non-empty string of digits
+  if (!formId || !/^[0-9]+$/.test(formId)) {
+    return res.status(400).json({ error: 'Invalid formId query parameter' })
+  }
+
   try {
     // Fetch the Formstack API token
     const tokenData = await fetchAuthenticatedGraphQLData(tokenQuery)
