@@ -23,7 +23,8 @@ function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
   const [loadAlgolia, setLoadAlgolia] = useState(false)
   const searchRef = useRef()
 
-  const { algolia } = useWordPressContext()
+  // Provide a fallback empty object if the context is undefined
+  const { algolia } = useWordPressContext() || {}
 
   /**
    * Add a class to the body when the Algolia search is open.
