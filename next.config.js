@@ -17,6 +17,14 @@ const nextConfig = {
       {
         source: '/sitemap(.*).xml',
         destination: '/api/sitemap-proxy'
+      },
+      // {
+      //   source: '/api/formstack:path*',
+      //   destination: 'https://go.advance.appily.com/form/submit:path*'
+      // },
+      {
+        source: '/api/formstack/form/:slug*',
+        destination: 'https://www.formstack.com/api/v2/form/:slug*'
       }
     ]
   },

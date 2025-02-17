@@ -5,6 +5,7 @@
 @use 'sass:color';
 @use 'tokens';
 @use 'utilities/mixins';
+@use 'formstack';
 
 // ================
 // Form Fields
@@ -20,7 +21,7 @@
   box-sizing: border-box;
   border-radius: 0.2em;
   height: auto !important;
-    line-height: 1.5 !important;
+  line-height: 1.5 !important;
 
   .type-telephone &,
   .type-ssn &,
@@ -87,7 +88,7 @@ select {
   width: auto;
   max-width: 100%;
   height: auto !important;
-    line-height: 1.5 !important;
+  line-height: 1.5 !important;
   cursor: pointer;
 }
 
@@ -95,8 +96,8 @@ select {
 input[type='radio'],
 input[type='checkbox'] {
   float: left;
-  width: 0px;
-  height: 0px;
+  // width: 0px;
+  // height: 0px;
   margin: 0.5em 0 0;
   // opacity: 0;
 
@@ -319,87 +320,7 @@ select {
   font-family: tokens.$f-bodyFont !important;
 }
 
-// Formstack specific
-
-
-
-.fsFieldCell{
-  border-top: 1px solid tokens.$c-gray-400;
-  padding-top: 1em;
-
-  .fsLabel{
-    font-size: 1rem;
-    margin: 0;
-
-    .fsRequiredMarker{
-      color: tokens.$c-error;
-    }
-  }
-
-
-  .fsSubFieldGroup{
-    gap: 1em;
-
-    .fsSubField{
-      margin-bottom: 0;
-    }
-  }
-
-  .fsSubField{
-    input,
-    select{
-
-      & ~ label{
-        font-size: 0.9rem;
-        padding-top: 0.5em;
-      }
-    }
-  }
-
-
-  .fsFieldSelect{
-    font-size: 1rem;
-  }
+form {
+  max-width: tokens.$mq-900;
+  margin-inline: auto;
 }
-
-
-
-
-.uauet{
-  [class*="StyledErrorBannerText"]{
-    font-size: clamp(1rem, 1.5vw, 1.5rem);
-    color: color.adjust(tokens.$c-error, $lightness: -20%);
-  }
-
-  [class*="StyledErrorBannerIcon"]{
-    width: 1em;
-    height: 1em;
-  }
-}
-
-[class*="StyledErrorBanner-sc"]{
-  [class*="StyledErrorBannerText-sc"]{
-    font-size: 0.9rem;
-  }
-}
-
-
-[class*="StyledOptionWrapper"]{
-gap: 0.5em;
-  [class*="StyledOptionLabel"]{
-    padding-left: 1.7em;
-    position: relative;
-
-    input{
-      &::before{
-        width: 1.2rem;
-        height: 1.2rem;
-        position: absolute;
-        left: 0;
-        top: 0.1em;
-      }
-    }
-  }
-}
-
-
