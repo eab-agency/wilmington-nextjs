@@ -26,7 +26,7 @@ const FormStack = ({ formId }) => {
     return <div>Loading...</div>
   }
 
-  return <Form fields={formData} />
+  return <Form fields={formData} formId={formId} />
 }
 
 export default FormStack

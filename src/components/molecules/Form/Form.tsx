@@ -23,9 +23,10 @@ import groupFieldsIntoSections from './utils/groupFieldsIntoSections'
 import shouldShowField from './utils/shouldShowFields'
 // Accepts form data from FormStack component
 
-const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
-  fields
-}) => {
+const RequestForInformationForm: React.FC<{
+  fields: FormField[]
+  formId: string
+}> = ({ fields, formId }) => {
   // console.log('🚀 ~ fields:', fields)
   const router = useRouter()
   const [submissionMessage, setSubmissionMessage] = useState<string | null>(
@@ -189,8 +190,7 @@ const RequestForInformationForm: React.FC<{ fields: FormField[] }> = ({
 
     const transformedValues = {
       displayTime: new Date().toISOString(),
-      form: 3222784,
-      viewkey: 'TYlVmXXEl1',
+      form: formId,
       fsUserAgent: navigator.userAgent,
       ...Object.fromEntries(
         Object.entries(values).map(([name, value]) => {
