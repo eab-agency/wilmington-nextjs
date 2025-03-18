@@ -19,18 +19,22 @@ export default function Archive(props) {
     }
   )
 
-  const { generalSettings } = useFaustQuery(GET_LAYOUT_QUERY)
+  const { data: layoutData, loading: layoutLoading } =
+    useFaustQuery(GET_LAYOUT_QUERY)
 
   if (error) {
     console.error(error)
     return <p>Error: {error.message}</p>
   }
 
-  if (!data) return null
+  if (!data || layoutLoading) return null
 
-  const { description, title } = generalSettings
+  const { generalSettings } = layoutData || {}
+  const { title = 'Wilmington University', description = '' } =
+    generalSettings || {}
 
-  const postList = data.nodeByUri?.contentNodes?.edges.map((el) => el.node)
+  const postList =
+    data.nodeByUri?.contentNodes?.edges?.map((el) => el.node) || []
 
   const archiveTitle = 'Faculty and Staff'
 
