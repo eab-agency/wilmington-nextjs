@@ -6,6 +6,8 @@ FORMDATA.json
 /.pnp
 .pnp.js
 
+*.log
+
 # testing
 /coverage
 
