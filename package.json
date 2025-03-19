@@ -5,7 +5,7 @@
   "scripts": {
     "build": "faust build",
     "clean": "rimraf .next/",
-    "dev": "NODE_OPTIONS='-r newrelic' npm run clean && faust dev",
+    "dev": "npm run clean && faust dev",
     "develop": "faust dev",
     "format": "npx prettier  '**/*.{js,jsx,ts,tsx,md,html,css,scss,json,yml}' --write || true",
     "generate": "faust generatePossibleTypes",
@@ -14,7 +14,7 @@
     "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && next lint",
     "postbuild": "next-sitemap",
     "prepare": "husky install",
-    "start": "NODE_OPTIONS='-r newrelic' faust start"
+    "start": "faust start"
   },
   "dependencies": {
     "@apollo/client": "^3.7.15",
@@ -22,7 +22,6 @@
     "@faustwp/cli": "3.0.1",
     "@faustwp/core": "^3.0.1",
     "@mui/material": "^6.4.2",
-    "@newrelic/next": "^0.10.0",
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -42,7 +41,6 @@
     "html-react-parser": "^3.0.12",
     "isomorphic-unfetch": "^4.0.2",
     "lodash": "^4.17.21",
-    "newrelic": "^12.16.0",
     "next": "^14.2.5",
     "next-auth": "^4.24.5",
     "next-sitemap": "^4.0.7",
@@ -63,7 +61,6 @@
     "yup": "^1.0.2"
   },
   "devDependencies": {
-    "@types/newrelic": "^9.14.8",
     "eslint": "^8.38.0",
     "eslint-config-next": "^14.2.5",
     "eslint-config-prettier": "^8.8.0",

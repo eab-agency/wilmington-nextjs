@@ -3,7 +3,6 @@
 const fetchRedirects = require('./src/lib/wordpress/fetchRedirects')
 const { withFaust } = require('@faustwp/core')
 const remotePatterns = require('./src/config/imageConfig')
-const nrExternals = require('newrelic/load-externals')
 const path = require('path')
 const glob = require('glob')
 
@@ -39,13 +38,6 @@ const nextConfig = {
       },
       ...redirects
     ]
-  },
-  experimental: {
-    serverComponentsExternalPackages: ['newrelic']
-  },
-  webpack: (config) => {
-    nrExternals(config)
-    return config
   },
   reactStrictMode: true,
   images: {
