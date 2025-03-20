@@ -16,14 +16,9 @@ export default function NewRelicScript() {
 
   return (
     <Script
-      // We have to set an id for inline scripts.
-      // See https://nextjs.org/docs/app/building-your-application/optimizing/scripts#inline-scripts
       id="nr-browser-agent"
-      // By setting the strategy to "beforeInteractive" we guarantee that
-      // the script will be added to the document's `head` element.
       strategy="beforeInteractive"
-    >
-      {scriptContent}
-    </Script>
+      dangerouslySetInnerHTML={{ __html: scriptContent }}
+    />
   )
 }

@@ -7,6 +7,9 @@ const path = require('path')
 const glob = require('glob')
 
 const nextConfig = {
+  experimental: {
+    instrumentationHook: true
+  },
   async rewrites() {
     return [
       {
