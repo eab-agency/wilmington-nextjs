@@ -22,6 +22,7 @@
     "@faustwp/cli": "3.0.1",
     "@faustwp/core": "^3.0.1",
     "@mui/material": "^6.4.2",
+    "@newrelic/next": "^0.10.0",
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -62,6 +63,7 @@
     "yup": "^1.0.2"
   },
   "devDependencies": {
+    "@types/newrelic": "^9.14.8",
     "eslint": "^8.38.0",
     "eslint-config-next": "^14.2.5",
     "eslint-config-prettier": "^8.8.0",

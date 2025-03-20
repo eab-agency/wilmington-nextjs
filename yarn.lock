@@ -801,6 +801,13 @@
     node-gyp-build "^4.8.1"
     prebuildify "^6.0.1"
 
+"@newrelic/next@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@newrelic/next/-/next-0.10.0.tgz#95c9884f4e677b70271c9d9a7da38ab508913695"
+  integrity sha512-66PcrzRDwGGLOrxEokbssoJ6x+HPeBYFoEUmXNISnVt6s+Ot1SvThd3B4WUvD98ZCJoPlncogoMviacoikZPwA==
+  dependencies:
+    semver "^7.3.7"
+
 "@newrelic/security-agent@^2.3.0":
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/@newrelic/security-agent/-/security-agent-2.3.2.tgz#00527d666f9e601c113d8bafab9fa63642b32bb5"
@@ -1421,6 +1428,11 @@
   version "1.6.15"
   resolved "https://registry.yarnpkg.com/@types/mousetrap/-/mousetrap-1.6.15.tgz#f144a0c539a4cef553a631824651d48267e53c86"
   integrity sha512-qL0hyIMNPow317QWW/63RvL1x5MVMV+Ru3NaY9f/CuEpCqrmb7WeuK2071ZY5hczOnm38qExWM2i2WtkXLSqFw==
+
+"@types/newrelic@^9.14.8":
+  version "9.14.8"
+  resolved "https://registry.yarnpkg.com/@types/newrelic/-/newrelic-9.14.8.tgz#68cb95f327dc212b8d0bebc083ff9e69dac864ee"
+  integrity sha512-rkOTEVR7Lui4TTEykDUxIxCbFkcI/yw3C8URLOWM84zjuHh9W35RAequHTEvGBbbrLCdn43FVTHMLji4uunDWQ==
 
 "@types/node@*":
   version "22.12.0"
@@ -6571,7 +6583,7 @@ semver@^7.3.4, semver@^7.6.0, semver@^7.6.3:
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.6.3.tgz#980f7b5550bc175fb4dc09403085627f9eb33143"
   integrity sha512-oVekP1cKtI+CTDvHWYFUcMtsK/00wmAEfyqKfNdARm8u1wNVhSgaX7A8d4UuIlUI5e84iEwOhs7ZPYRmzU9U6A==
 
-semver@^7.3.5, semver@^7.5.2, semver@^7.5.4:
+semver@^7.3.5, semver@^7.3.7, semver@^7.5.2, semver@^7.5.4:
   version "7.7.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.7.1.tgz#abd5098d82b18c6c81f6074ff2647fd3e7220c9f"
   integrity sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==
