@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "faust build",
+    "build": "NODE_OPTIONS='-r dotenv/config' faust build",
     "clean": "rimraf .next/",
-    "dev": "npm run clean && faust dev",
+    "dev": "NODE_OPTIONS='-r dotenv/config -r newrelic' npm run clean && faust dev",
     "develop": "faust dev",
     "format": "npx prettier  '**/*.{js,jsx,ts,tsx,md,html,css,scss,json,yml}' --write || true",
     "generate": "faust generatePossibleTypes",
@@ -14,7 +14,7 @@
     "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && next lint",
     "postbuild": "next-sitemap",
     "prepare": "husky install",
-    "start": "faust start"
+    "start": "NODE_OPTIONS='-r dotenv/config -r newrelic' faust start"
   },
   "dependencies": {
     "@apollo/client": "^3.7.15",
