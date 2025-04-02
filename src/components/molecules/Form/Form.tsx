@@ -3,7 +3,7 @@ import { Form, Formik, FormikHelpers } from 'formik'
 import { useRouter } from 'next/router'
 import React, { useMemo, useState } from 'react'
 import * as Yup from 'yup'
-import CurrentValues from './CurrentValues'; // Import the CurrentValues component
+import CurrentValues from './CurrentValues' // Import the CurrentValues component
 import { FormField } from './formTypes'
 import {
   AddressInput,
