@@ -36,6 +36,61 @@ export const getAddressValidationSchema = (
   return schema
 }
 
+// US state abbreviations only
+const US_STATE_ABBREVIATIONS = [
+  '',
+  'AL',
+  'AK',
+  'AZ',
+  'AR',
+  'CA',
+  'CO',
+  'CT',
+  'DE',
+  'FL',
+  'GA',
+  'HI',
+  'ID',
+  'IL',
+  'IN',
+  'IA',
+  'KS',
+  'KY',
+  'LA',
+  'ME',
+  'MD',
+  'MA',
+  'MI',
+  'MN',
+  'MS',
+  'MO',
+  'MT',
+  'NE',
+  'NV',
+  'NH',
+  'NJ',
+  'NM',
+  'NY',
+  'NC',
+  'ND',
+  'OH',
+  'OK',
+  'OR',
+  'PA',
+  'RI',
+  'SC',
+  'SD',
+  'TN',
+  'TX',
+  'UT',
+  'VT',
+  'VA',
+  'WA',
+  'WV',
+  'WI',
+  'WY'
+]
+
 const AddressInput: React.FC<AddressInputProps> = ({ field }) => {
   const [, meta] = useField(field.id)
   const hasError = meta.touched && meta.error
@@ -54,6 +109,9 @@ const AddressInput: React.FC<AddressInputProps> = ({ field }) => {
           if (subfield === 'address') subfieldLabel = 'Address line 1'
           else if (subfield === 'address2') subfieldLabel = 'Address line 2'
           else if (subfield === 'zip') subfieldLabel = 'ZIP code'
+          else if (subfield === 'state') subfieldLabel = 'State'
+
+          const isStateDropdown = subfield === 'state' && field.format === 'US'
 
           return (
             <div
@@ -61,11 +119,21 @@ const AddressInput: React.FC<AddressInputProps> = ({ field }) => {
               className={`fsSubField fsField${subfield}`}
               id={field.id}
             >
-              <Field
-                type="text"
-                name={`${field.id}-${subfield}`} // Use id for the field name
-                placeholder={field.placeholder}
-              />
+              {isStateDropdown ? (
+                <Field name={`${field.id}-${subfield}`} as="select">
+                  {US_STATE_ABBREVIATIONS.map((abbr) => (
+                    <option key={abbr} value={abbr}>
+                      {abbr || 'Select a state'}
+                    </option>
+                  ))}
+                </Field>
+              ) : (
+                <Field
+                  type="text"
+                  name={`${field.id}-${subfield}`}
+                  placeholder={field.placeholder}
+                />
+              )}
               <label htmlFor={`${field.id}-${subfield}`}>{subfieldLabel}</label>
               <ErrorMessage
                 name={`${field.id}-${subfield}`}
