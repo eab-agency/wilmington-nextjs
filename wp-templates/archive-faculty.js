@@ -9,30 +9,53 @@ import { gql, useQuery } from '@apollo/client'
 import { useFaustQuery } from '@faustwp/core'
 import appConfig from '../app.config'
 
+const DEFAULT_SETTINGS = {
+  title: 'Faculty and Staff | Wilmington University',
+  description:
+    "Discover Wilmington College's dedicated faculty and staff across academic, administrative, and athletic departments. Find contact information and professional details for our diverse team of educators and professionals."
+}
+
 export default function Archive(props) {
   const uri = '/faculty'
-  const { data, loading, error, fetchMore, refetch } = useQuery(
-    GET_FACULTY_QUERY,
-    {
-      variables: Archive.variables({ uri: uri }),
-      notifyOnNetworkStatusChange: true
-    }
-  )
+  const { data, loading, error, fetchMore } = useQuery(GET_FACULTY_QUERY, {
+    variables: Archive.variables({ uri: uri }),
+    notifyOnNetworkStatusChange: true
+  })
 
-  const { generalSettings } = useFaustQuery(GET_LAYOUT_QUERY)
+  const layoutQuery = useFaustQuery(GET_LAYOUT_QUERY)
+  const layoutData = layoutQuery?.data
+  const layoutLoading = layoutQuery?.loading || false
+  const layoutError = layoutQuery?.error
 
-  if (error) {
-    console.error(error)
-    return <p>Error: {error.message}</p>
+  if (error || layoutError) {
+    console.error(error || layoutError)
+    return <p>Error: {(error || layoutError)?.message}</p>
   }
 
-  if (!data) return null
+  if (!data || layoutLoading) return null
 
-  const { description, title } = generalSettings
+  const { generalSettings } = layoutData || {}
+  const { title, description } = { ...DEFAULT_SETTINGS, ...generalSettings }
 
-  const postList = data.nodeByUri?.contentNodes?.edges.map((el) => el.node)
+  const postList =
+    data.nodeByUri?.contentNodes?.edges?.reduce((acc, edge) => {
+      if (edge?.node) acc.push(edge.node)
+      return acc
+    }, []) || []
 
   const archiveTitle = 'Faculty and Staff'
+
+  const handleLoadMore = async () => {
+    try {
+      await fetchMore({
+        variables: {
+          after: data.nodeByUri?.contentNodes?.pageInfo.endCursor
+        }
+      })
+    } catch (err) {
+      console.error('Error loading more posts:', err)
+    }
+  }
 
   return (
     <>
@@ -51,7 +74,7 @@ export default function Archive(props) {
             hasNextPage={data.nodeByUri?.contentNodes?.pageInfo.hasNextPage}
             endCursor={data.nodeByUri?.contentNodes?.pageInfo.endCursor}
             isLoading={loading}
-            fetchMore={fetchMore}
+            fetchMore={handleLoadMore}
             useInfiniteScroll={true}
           />
         </div>
