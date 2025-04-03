@@ -3,7 +3,7 @@ import { Form, Formik, FormikHelpers } from 'formik'
 import { useRouter } from 'next/router'
 import React, { useMemo, useState } from 'react'
 import * as Yup from 'yup'
-import CurrentValues from './CurrentValues'; // Import the CurrentValues component
+import CurrentValues from './CurrentValues' // Import the CurrentValues component
 import { FormField } from './formTypes'
 import {
   AddressInput,
@@ -218,7 +218,7 @@ const RequestForInformationForm: React.FC<{
       const response = await fetch(`/api/formstack?formId=${formId}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(values)
       })

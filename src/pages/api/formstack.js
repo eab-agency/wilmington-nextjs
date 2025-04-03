@@ -43,9 +43,38 @@ export default async function handler(req, res) {
 
       const data = await response.json()
       res.status(200).json(data)
+
     } else if (req.method === 'POST') {
-      // Handle form submission
       const submissionData = req.body
+
+      if (req.headers['content-type'] === 'application/x-www-form-urlencoded') {
+        // Proxy to legacy HTML endpoint using form-urlencoded data
+        const rawBody = typeof submissionData === 'string'
+          ? submissionData
+          : new URLSearchParams(submissionData).toString()
+
+        const response = await fetch(
+          'https://wilmingtoncollege.formstack.com/forms/index.php',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: rawBody
+          }
+        )
+
+        const text = await response.text()
+        return res.status(response.status).send(text)
+      }
+
+      // Otherwise, use API endpoint with token
+      const tokenData = await fetchAuthenticatedGraphQLData(tokenQuery)
+      if (!tokenData || !tokenData.formstackApiToken) {
+        throw new Error('Failed to retrieve Formstack API token')
+      }
+
+      const formstackApiToken = tokenData.formstackApiToken
 
       const response = await fetch(
         `https://www.formstack.com/api/v2/form/${formId}/submission.json`,
@@ -55,16 +84,12 @@ export default async function handler(req, res) {
             'Content-Type': 'application/json',
             authorization: `Bearer ${formstackApiToken}`
           },
-          body: JSON.stringify(submissionData)
+          body: JSON.stringify(submissionData),
         }
       )
 
-      if (!response.ok) {
-        throw new Error(`Error submitting form: ${response.statusText}`)
-      }
-
       const data = await response.json()
-      res.status(200).json(data)
+      res.status(response.status).json(data)
     } else {
       res.setHeader('Allow', ['GET', 'POST'])
       res.status(405).end(`Method ${req.method} Not Allowed`)
