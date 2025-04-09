@@ -1,9 +1,8 @@
 import { useWordPressContext } from '@/components/common/WordPressProvider'
 import { searchResultsClient } from '@/lib/algolia/connector'
 import React from 'react'
-import { Configure, InstantSearch } from 'react-instantsearch-dom'
+import { Configure, InstantSearch } from 'react-instantsearch'
 import Search from '../AlgoliaSearch/components/Search'
-import Department from './facets/Department'
 import NoResults from './templates/NoResults'
 import SearchResults from './templates/SearchResults'
 
@@ -35,14 +34,9 @@ export default function AlgoliaResults({
         >
           <Configure {...config} />
           <div className="searchResults">
-            <div className="facets">
-              <Department
-                attribute="faculty_departments"
-                limit={10}
-                showMore={true}
-              />
-            </div>
             <div className="results">
+              <Search indexName={algolia?.indexName} query={config.query} />
+              <Configure {...config} />
               <SearchResults indexName={algolia?.indexName} />
             </div>
           </div>

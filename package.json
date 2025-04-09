@@ -52,7 +52,7 @@
     "react-gtm-module": "^2.0.11",
     "react-html-parser": "^2.0.2",
     "react-icons": "^4.8.0",
-    "react-instantsearch-dom": "^6.39.1",
+    "react-instantsearch": "^7.15.5",
     "react-multi-carousel": "^2.8.5",
     "react-svg": "^16.1.32",
     "react-tabs": "^6.0.1",
