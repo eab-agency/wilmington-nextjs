@@ -11,9 +11,7 @@ export const PostsList = ({ posts, type, ...props }) => {
         const isFirst = index === 0
 
         if (type === 'faculty') {
-          const { id, title, facultyFields, email, uri, featuredImage, phone } =
-            post
-          const image = featuredImage?.node
+          const { id, title, facultyFields, uri, featuredImage } = post
           return (
             <FacultyCard
               key={id}
@@ -22,10 +20,11 @@ export const PostsList = ({ posts, type, ...props }) => {
               email={facultyFields?.faculty?.email}
               phone={facultyFields?.faculty?.phone}
               link={uri}
-              image={image}
+              image={featuredImage?.node}
             />
           )
         }
+
         if (type === 'news') {
           if (index < 5) {
             return (
@@ -39,15 +38,12 @@ export const PostsList = ({ posts, type, ...props }) => {
             )
           } else {
             return (
-              <>
-                {/* <NewsListCard key={post.id} post={post} /> */}
-                <NewsPostCard
-                  key={post.id}
-                  post={post}
-                  showImage={isFirst}
-                  isFirst={isFirst}
-                />
-              </>
+              <NewsPostCard
+                key={post.id}
+                post={post}
+                showImage={isFirst}
+                isFirst={isFirst}
+              />
             )
           }
         } else {

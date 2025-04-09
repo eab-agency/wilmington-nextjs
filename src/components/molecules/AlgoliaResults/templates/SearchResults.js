@@ -14,11 +14,12 @@ const transformItems = (items) => {
     label: item.label === 'Programs' ? 'Academics' : item.label
   }))
 }
+
 /**
  * Refinement config passed into Algolia facets.
  */
 const refinements = {
-  limit: 2,
+  limit: 5,
   transformItems: transformItems,
   translations: {
     showMore(expanded) {
@@ -36,18 +37,17 @@ const SearchResults = connectStateResults(({ searchResults, indexName }) => {
       {searchResults?.nbHits ? (
         <>
           <div className="resultsHeader">
-            {/* <div className="resultsHeader"> */}
             <RichText tag="h1">Search Results</RichText>
             <div className="resultsHeaderContent">
               <p className="total">
                 <span>{searchResults.nbHits} Results</span> for{' '}
                 {searchResults.query}
               </p>
-              {/* <Sort index={indexName} /> */}
             </div>
           </div>
           <aside className="results">
             <div className="filterPanel">
+              <h2>Filter by Department...</h2>
               <PostType refinements={refinements} />
               <CustomClearRefinements clearsQuery={true} />
             </div>
