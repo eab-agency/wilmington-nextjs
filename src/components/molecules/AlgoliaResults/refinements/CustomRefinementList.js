@@ -3,22 +3,6 @@ import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { connectRefinementList } from 'react-instantsearch-dom'
 
-/**
- * Render the RefinementList component.
- *
- * @see https://www.algolia.com/doc/api-reference/widgets/refinement-list/react/
- * @param  {object}   props              The component attributes as props.
- * @param  {string}   props.attribute    The name of the attribute in the record.
- * @param  {string}   props.className    The component class.
- * @param  {any}      props.items        Any refinement.
- * @param  {number}   props.limit        The number of facet values to retrieve.
- * @param  {Function} props.refine       Modifies the items being displayed.
- * @param  {boolean}  props.showCount    Whether to display the count.
- * @param  {boolean}  props.showMore     Whether to display a button that expands the number of items.
- * @param  {string}   props.title        The component title.
- * @param  {object}   props.translations A mapping of keys to translation values.
- * @return {Element}                     The RefinementList component.
- */
 function RefinementList({
   attribute,
   className,
@@ -46,7 +30,7 @@ function RefinementList({
                       type="checkbox"
                       id={`chk-${item.label}`}
                       name={attribute}
-                      value={item.value.join(',')}
+                      value={item.value}
                       onChange={() => refine(item.value)}
                       checked={item.isRefined}
                     />
