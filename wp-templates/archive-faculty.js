@@ -9,12 +9,12 @@ import { InstantSearch, RefinementList, SearchBox } from 'react-instantsearch'
 
 function Hit({ hit }) {
   const featuredImage = {
-    node: hit.images?.thumbnail
+    node: hit.images?.medium
       ? {
-          sourceUrl: hit.images.thumbnail.url,
+          sourceUrl: hit.images.medium.url,
           mediaDetails: {
-            width: hit.images.thumbnail.width,
-            height: hit.images.thumbnail.height
+            width: hit.images.medium.width,
+            height: hit.images.medium.height
           }
         }
       : null
