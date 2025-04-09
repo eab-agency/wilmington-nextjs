@@ -2,7 +2,7 @@ import { searchClient } from '@/lib/algolia/connector'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 import { MdOutlineSearch } from 'react-icons/md'
-import { Configure, InstantSearch, SearchBox } from 'react-instantsearch-dom'
+import { Configure, InstantSearch, SearchBox } from 'react-instantsearch'
 import { deleteLocalStorage } from '../functions/localStorage'
 import searchSubmit from '../functions/searchSubmit'
 import Results from './Results'
@@ -101,13 +101,15 @@ export default function Search({
           onReset={() => {
             setSearchState('')
           }}
-          submit={<MdOutlineSearch />}
+          submitIconComponent={() => <MdOutlineSearch />}
+          /* TODO (Codemod generated): Move this into `InstantSearch`'s `initialUiState` prop.
+          See https://www.algolia.com/doc/guides/building-search-ui/upgrade-guides/react/#default-refinements */
           defaultRefinement={query || null}
           translations={{
-            submitTitle: 'Submit Search Query.',
-            resetTitle: 'Clear Search Query',
-            placeholder: placeholder
+            submitButtonTitle: 'Submit Search Query.',
+            resetButtonTitle: 'Clear Search Query'
           }}
+          placeholder={placeholder}
         />
       </div>
       {showResults && (

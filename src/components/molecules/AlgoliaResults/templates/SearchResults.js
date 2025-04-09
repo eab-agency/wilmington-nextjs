@@ -1,7 +1,7 @@
 import RichText from '@/components/atoms/RichText'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { connectStateResults, InfiniteHits } from 'react-instantsearch-dom'
+import { InfiniteHits, useInstantSearch } from 'react-instantsearch'
 import PostType from '../facets/PostType'
 import CustomClearRefinements from '../refinements/CustomClearRefinements'
 import Hit from './Hit'
@@ -31,23 +31,23 @@ const refinements = {
 /**
  * Component for rendering search results.
  */
-const SearchResults = connectStateResults(({ searchResults, indexName }) => {
+const SearchResults = () => {
+  const { results } = useInstantSearch()
+
   return (
     <>
-      {searchResults?.nbHits ? (
+      {results && results.nbHits > 0 ? (
         <>
           <div className="resultsHeader">
             <RichText tag="h1">Search Results</RichText>
             <div className="resultsHeaderContent">
               <p className="total">
-                <span>{searchResults.nbHits} Results</span> for{' '}
-                {searchResults.query}
+                <span>{results.nbHits} Results</span> for {results.query}
               </p>
             </div>
           </div>
           <aside className="results">
             <div className="filterPanel">
-              <h2>Filter by Department...</h2>
               <PostType refinements={refinements} />
               <CustomClearRefinements clearsQuery={true} />
             </div>
@@ -55,6 +55,7 @@ const SearchResults = connectStateResults(({ searchResults, indexName }) => {
               <InfiniteHits
                 className="aisHits"
                 hitComponent={Hit}
+                showPrevious={false}
                 translations={{
                   loadMore: 'Load More'
                 }}
@@ -65,12 +66,10 @@ const SearchResults = connectStateResults(({ searchResults, indexName }) => {
       ) : (
         <></>
       )}
-      {searchResults && searchResults.nbHits === 0 && (
-        <NoResults query={searchResults.query} />
-      )}
+      {results && results.nbHits === 0 && <NoResults query={results.query} />}
     </>
   )
-})
+}
 export default SearchResults
 
 SearchResults.propTypes = {

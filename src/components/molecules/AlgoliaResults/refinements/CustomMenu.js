@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
-import { connectMenu } from 'react-instantsearch-dom'
+import { useMenu } from 'react-instantsearch';
 
 /**
  * Render the Menu component.
@@ -88,3 +88,14 @@ Menu.propTypes = {
 
 const CustomMenu = connectMenu(Menu)
 export default CustomMenu
+
+// TODO (Codemod generated): ensure your usage correctly maps the props from the connector to the hook
+function connectMenu(Component) {
+  const Menu = (props) => {
+    const data = useMenu(props);
+
+    return <Component {...props} {...data} />;
+  };
+
+  return Menu;
+}

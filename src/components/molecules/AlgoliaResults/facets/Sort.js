@@ -1,5 +1,5 @@
 import React from 'react'
-import { SortBy } from 'react-instantsearch-dom'
+import { SortBy } from 'react-instantsearch';
 
 /**
  * Render the Sort component.
@@ -26,9 +26,11 @@ export default function Sort({ index, defaultRefinement }) {
           label: 'Most Recent'
         }
       ]}
+      /* TODO (Codemod generated): Move this into `InstantSearch`'s `initialUiState` prop.
+      See https://www.algolia.com/doc/guides/building-search-ui/upgrade-guides/react/#default-refinements */
       defaultRefinement={
         defaultRefinement ? `${index}${defaultRefinement}` : index
       }
     />
-  )
+  );
 }

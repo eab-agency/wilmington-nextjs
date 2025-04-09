@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
-import { connectRefinementList } from 'react-instantsearch-dom'
+import { useRefinementList } from 'react-instantsearch'
 
 function RefinementList({
   attribute,
@@ -9,7 +9,7 @@ function RefinementList({
   items,
   limit,
   refine,
-  showCount = true,
+  showCount = false,
   showMore,
   title,
   translations
@@ -72,3 +72,14 @@ RefinementList.propTypes = {
 
 const CustomRefinementList = connectRefinementList(RefinementList)
 export default CustomRefinementList
+
+// TODO (Codemod generated): ensure your usage correctly maps the props from the connector to the hook
+function connectRefinementList(Component) {
+  const RefinementList = (props) => {
+    const data = useRefinementList(props)
+
+    return <Component {...props} {...data} />
+  }
+
+  return RefinementList
+}

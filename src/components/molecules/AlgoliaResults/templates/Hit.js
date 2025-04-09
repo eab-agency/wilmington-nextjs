@@ -1,5 +1,5 @@
 import Link from '@/components/common/Link'
-import { Highlight } from 'react-instantsearch-dom'
+import { Highlight } from 'react-instantsearch';
 
 /**
  * Render the Hit component.

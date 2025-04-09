@@ -1,5 +1,5 @@
 import React from 'react'
-import { connectCurrentRefinements } from 'react-instantsearch-dom'
+import { useCurrentRefinements } from 'react-instantsearch';
 
 /**
  * Render the ClearRefinements component.
@@ -29,3 +29,14 @@ function ClearRefinements({ items, refine }) {
 
 const CustomClearRefinements = connectCurrentRefinements(ClearRefinements)
 export default CustomClearRefinements
+
+// TODO (Codemod generated): ensure your usage correctly maps the props from the connector to the hook
+function connectCurrentRefinements(Component) {
+  const CurrentRefinements = (props) => {
+    const data = useCurrentRefinements(props);
+
+    return <Component {...props} {...data} />;
+  };
+
+  return CurrentRefinements;
+}
