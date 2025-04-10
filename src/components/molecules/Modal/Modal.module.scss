@@ -1,0 +1,68 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/utilities/mixins';
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: $layer-9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalBackdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba($c-black, 0.7);
+  cursor: pointer;
+}
+
+.modalContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 64rem;
+  margin-inline: 1rem;
+  background-color: $c-white;
+}
+
+.closeButton {
+  position: absolute;
+  top: -3rem;
+  right: 0rem;
+  padding: 0.5rem;
+  color: $c-gray-500;
+  cursor: pointer;
+  transition: color 0.2s;
+  z-index: 999;
+  background: transparent;
+  border: none;
+
+  &:hover {
+    color: white;
+  }
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.modalBody {
+  // padding: 1rem;
+}
+
+.aspectRatio {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; // 16:9 aspect ratio
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}

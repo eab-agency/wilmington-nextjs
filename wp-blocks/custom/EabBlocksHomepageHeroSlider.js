@@ -2,76 +2,59 @@ import Hero from '@/components/organisms/HomeHero'
 import { gql } from '@apollo/client'
 
 const EabBlocksHomepageHeroSlider = (props) => {
-  const { attributes } = props
-  const {
-    ctaOneLink,
-    ctaOneText,
-    ctaOneIcon,
-    ctaTwoLink,
-    ctaTwoText,
-    ctaTwoIcon,
-    ctaThreeLink,
-    ctaThreeText,
-    ctaThreeIcon,
-    heroExtraContent,
-    heroTitle
-  } = attributes
+  const { innerBlocks } = props
 
-  // put the three ctas into an array
-  const ctas = []
+  // Find the hero top section block
+  const heroTopSection = innerBlocks?.find(block => block.name === 'eab-blocks/hero-top-section')
 
-  const ctaTexts = [ctaOneText, ctaTwoText, ctaThreeText]
-  const ctaLinks = [ctaOneLink, ctaTwoLink, ctaThreeLink]
-  const ctaIcons = [ctaOneIcon, ctaTwoIcon, ctaThreeIcon]
+  // Get content blocks from hero content section
+  const heroContent = heroTopSection?.innerBlocks?.find(
+    block => block.name === 'eab-blocks/hero-content'
+  )
+  const heading = heroContent?.innerBlocks?.find(block => block.name === 'core/heading')
+  const paragraph = heroContent?.innerBlocks?.find(block => block.name === 'core/paragraph')
+  const modalButton = heroContent?.innerBlocks?.find(block => block.name === 'eab-blocks/modal-button')
 
-  for (let i = 0; i < 3; i++) {
-    const ctaText = ctaTexts[i]
-    const ctaLink = ctaLinks[i]
-    const ctaIcon = ctaIcons[i]
+  const heroTitle = heading?.attributes?.content || ''
+  const heroExtraContent = paragraph?.attributes?.content || ''
 
-    if (ctaText && ctaLink) {
-      // parse the JSON string to access the url property
-      let url = ''
-      try {
-        const parsedLink = JSON.parse(ctaLink)
-        url = parsedLink.url
-      } catch (error) {
-        console.error('Error parsing JSON for ctaLink:', error)
-      }
+  // Extract modal button data - pass both videoUrl and imageUrl
+  const modalButtonData = modalButton?.attributes ? {
+    title: modalButton.attributes.label || '',
+    url: modalButton.attributes.videoUrl || '', // videoUrl for the modal iframe
+    imageUrl: modalButton.attributes.imageUrl || '', // imageUrl for the button display
+    type: modalButton.attributes.useImage ? 'image' : 'video',
+    useImage: modalButton.attributes.useImage || false
+  } : null
 
-      ctas.push({ title: ctaText, url: url, icon: ctaIcon })
+  // Get CTAs from hero-ctas-group
+  const ctasGroup = heroTopSection?.innerBlocks?.find(
+    block => block.name === 'eab-blocks/hero-ctas-group'
+  )
+  const ctas = ctasGroup?.innerBlocks?.filter(cta => cta.name === 'eab-blocks/hero-cta-button')?.map(cta => {
+    const { buttonText, buttonLink, buttonIcon } = cta.attributes || {}
+    return {
+      title: buttonText || '',
+      url: buttonLink?.url || '',
+      icon: buttonIcon || ''
     }
-  }
+  }) || []
 
-  const mediaArray = props?.children
-  const mediaItems = []
+  // Get slides from hero-slides-area
+  const slidesArea = innerBlocks?.find(block => block.name === 'eab-blocks/hero-slides-area')
+  const mediaItems = slidesArea?.innerBlocks?.filter(block => block.name === 'eab-blocks/hero-slide')?.map(slide => {
+    const { mediaUrl, mediaId, mediaAlt } = slide.attributes || {}
+    if (!mediaUrl || !mediaId) return null
 
-  // Iterate over each object in the mediaArray
-  // mediaArray.forEach((item) => {
-  for (const item of mediaArray) {
-    // Check if mediaId and mediaUrl are available
-    if (item.attributes.mediaId && item.attributes.mediaUrl) {
-      // Extract relevant information
-      const imageId = item.attributes.mediaId.toString()
-      const altText = item.attributes.mediaAlt || ''
-      const mediaUrl = item.attributes.mediaUrl
-      const type =
-        item.attributes.mediaUrl.split('.').pop() === 'mp4' ? 'video' : 'image'
-
-      // Create the new object with the extracted information
-      const mediaItem = {
-        imageId,
-        type,
-        mediaItem: {
-          altText,
-          mediaUrl
-        }
+    return {
+      imageId: mediaId.toString(),
+      type: mediaUrl?.endsWith('.mp4') ? 'video' : 'image',
+      mediaItem: {
+        altText: mediaAlt || '',
+        mediaUrl
       }
-
-      // Push the new object to the mediaItems array
-      mediaItems.push(mediaItem)
     }
-  }
+  }).filter(Boolean) || []
 
   return (
     <Hero
@@ -79,28 +62,72 @@ const EabBlocksHomepageHeroSlider = (props) => {
       content={heroTitle}
       description={heroExtraContent}
       ctas={ctas}
+      modalButton={modalButtonData}
     />
   )
 }
+
 export default EabBlocksHomepageHeroSlider
 
 EabBlocksHomepageHeroSlider.fragments = {
   entry: gql`
     fragment EabBlocksHomepageHeroSliderFragment on EabBlocksHomepageHeroSlider {
-      attributes {
-        backgroundColor
-        className
-        ctaOneLink
-        ctaOneText
-        ctaOneIcon
-        ctaThreeLink
-        ctaThreeText
-        ctaThreeIcon
-        ctaTwoLink
-        ctaTwoText
-        ctaTwoIcon
-        heroExtraContent
-        heroTitle
+      innerBlocks {
+        name
+        ... on EabBlocksHeroTopSection {
+          innerBlocks {
+            name
+            ... on EabBlocksHeroContent {
+              innerBlocks {
+                name
+                ... on CoreHeading {
+                  attributes {
+                    content
+                  }
+                }
+                ... on CoreParagraph {
+                  attributes {
+                    content
+                  }
+                }
+                ... on EabBlocksModalButton {
+                  attributes {
+                    label
+                    videoUrl
+                    useImage
+                    imageUrl
+                    imageWidth
+                    align
+                  }
+                }
+              }
+            }
+            ... on EabBlocksHeroCtasGroup {
+              innerBlocks {
+                name
+                ... on EabBlocksHeroCtaButton {
+                  attributes {
+                    buttonText
+                    buttonIcon
+                    buttonLink
+                  }
+                }
+              }
+            }
+          }
+        }
+        ... on EabBlocksHeroSlidesArea {
+          innerBlocks {
+            name
+            ... on EabBlocksHeroSlide {
+              attributes {
+                mediaUrl
+                mediaId
+                mediaAlt
+              }
+            }
+          }
+        }
       }
     }
   `,

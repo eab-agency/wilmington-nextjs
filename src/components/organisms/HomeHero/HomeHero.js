@@ -1,9 +1,10 @@
 import MainCta from '@/components/atoms/Buttons/MainCta'
 import RichText from '@/components/atoms/RichText'
+import ModalButton from '@/components/molecules/ModalButton/ModalButton'
 import SimpleCarousel from '@/components/organisms/SimpleCarousel'
 import styles from './HomeHero.module.scss'
 
-function Hero({ mediaItems, content, description, ctas = [] }) {
+function Hero({ mediaItems, content, description, ctas = [], modalButton }) {
   return (
     <div className={styles.homeHero}>
       <SimpleCarousel mediaItems={mediaItems} />
@@ -13,16 +14,25 @@ function Hero({ mediaItems, content, description, ctas = [] }) {
           {description?.length > 0 && (
             <RichText tag="p">{description}</RichText>
           )}
+          {modalButton && (
+            <div className={styles.modalButtonWrapper}>
+              <ModalButton
+                label={modalButton.title}
+                url={modalButton.url}
+                useImage={modalButton.type === 'image'}
+                imageUrl={modalButton.imageUrl}
+              />
+            </div>
+          )}
         </div>
         <ul className={styles.ctasRow}>
           {ctas.map((cta, index) => (
             <li key={index}>
-              {/* the url:{cta.url} */}
               <MainCta
                 key={index}
                 text={cta.title}
-                icon={cta.icon}
                 url={cta.url}
+                icon={cta.icon}
               />
             </li>
           ))}

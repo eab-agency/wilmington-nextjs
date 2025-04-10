@@ -1,0 +1,81 @@
+'use client'
+
+import cn from 'classnames'
+import Image from 'next/image'
+import { useState } from 'react'
+import Modal from '../Modal/Modal'
+import modalStyles from '../Modal/Modal.module.scss'
+import styles from './ModalButton.module.scss'
+
+function getEmbedUrl(url) {
+  if (!url) return ''
+
+  if (url.includes('youtube.com') || url.includes('youtu.be')) {
+    if (url.includes('watch?v=')) {
+      return url.replace('watch?v=', 'embed/')
+    } else if (url.includes('youtu.be/')) {
+      const videoId = url.split('youtu.be/')[1]
+      return `https://www.youtube.com/embed/${videoId}`
+    }
+  } else if (url.includes('vimeo.com')) {
+    const matches = url.match(/vimeo\.com\/(\d+)/)
+    if (matches) {
+      return `https://player.vimeo.com/video/${matches[1]}`
+    }
+  }
+  return url
+}
+
+export default function ModalButton({
+  label = 'Open Modal',
+  url = '', // This is now the videoUrl
+  imageUrl = '', // Separate imageUrl prop
+  useImage = false,
+  imageWidth = '100%',
+  align = 'center'
+}) {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const embedUrl = getEmbedUrl(url) // Process the videoUrl
+  const containerClasses = cn(styles.modalButton, `align${align}`)
+
+  return (
+    <>
+      <div className={containerClasses}>
+        {useImage && imageUrl ? (
+          <button
+            className={styles.imageButton}
+            onClick={() => setIsModalOpen(true)}
+            aria-label={label}
+          >
+            <Image
+              src={imageUrl}
+              alt={label}
+              width={800}
+              height={450}
+              style={{ width: imageWidth }}
+            />
+          </button>
+        ) : (
+          <button
+            className={styles.defaultButton}
+            onClick={() => setIsModalOpen(true)}
+          >
+            {label}
+          </button>
+        )}
+      </div>
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        {embedUrl && (
+          <div className={modalStyles.aspectRatio}>
+            <iframe
+              src={embedUrl}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        )}
+      </Modal>
+    </>
+  )
+}
