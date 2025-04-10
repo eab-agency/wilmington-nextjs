@@ -1,11 +1,11 @@
 import { SEO } from '@/components'
 import RichText from '@/components/atoms/RichText'
 import Layout from '@/components/common/Layout'
+import CustomMenu from '@/components/molecules/AlgoliaResults/refinements/CustomMenu.js'
 import { InfiniteHits } from '@/components/molecules/AlgoliaResults/templates/InfiniteHits.js'
-import Search from '@/components/molecules/AlgoliaSearch/components/Search'
 import FacultyCard from '@/components/molecules/FacultyCard'
 import { searchResultsClient } from '@/lib/algolia/connector'
-import { InstantSearch, RefinementList, SearchBox } from 'react-instantsearch'
+import { InstantSearch, SearchBox } from 'react-instantsearch'
 
 function Hit({ hit }) {
   const featuredImage = {
@@ -69,11 +69,15 @@ export default function Archive() {
                   />
                 </div>
               </div>
-              <RefinementList
+              <CustomMenu
                 attribute="faculty_departments"
                 classNames={{
-                  count: 'hide'
+                  root: 'testClass',
+                  select: 'customSelectClass',
+                  option: 'customOptionClass',
+                  optionFirst: 'customOptionFirstClass'
                 }}
+                hideCount={true}
               />
             </div>
 
