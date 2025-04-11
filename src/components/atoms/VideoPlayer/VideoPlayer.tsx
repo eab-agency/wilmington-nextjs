@@ -5,22 +5,55 @@ import React, { useEffect, useRef, useState } from 'react'
 import { FaPause, FaPlay } from 'react-icons/fa'
 import styles from './VideoPlayer.module.scss'
 
-export default function VideoPlayer({ src, autoPlay, caption, className, id }) {
-  const videoRef = useRef(null)
-  const [isPlaying, setIsPlaying] = useState(autoPlay)
+interface VideoPlayerProps {
+  src: string
+  autoPlay?: boolean
+  caption?: string
+  className?: string
+  id?: string
+}
+
+interface PlayerControls {
+  play: () => void
+  pause: () => void
+}
+
+interface VideoElementWithControls extends HTMLVideoElement {
+  playerControls?: PlayerControls
+}
+
+// Type assertion for RichText since it's a JS component
+const TypedRichText = RichText as unknown as React.FC<{
+  tag: string
+  className?: string
+  id?: string
+  attributes?: string | Record<string, unknown>
+  dropCap?: boolean
+  style?: React.CSSProperties
+  children?: React.ReactNode
+}>
+
+export default function VideoPlayer({
+  src,
+  autoPlay = false,
+  caption,
+  className,
+  id
+}: VideoPlayerProps) {
+  const videoRef = useRef<VideoElementWithControls>(null)
+  const [isPlaying, setIsPlaying] = useState<boolean>(autoPlay)
 
   const videoPlayerClasses = cn(styles.videoPlayer, className)
 
-  // Create an object with methods that can be accessed via ref
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playerControls = {
         play: () => {
-          videoRef.current.play()
+          videoRef.current?.play()
           setIsPlaying(true)
         },
         pause: () => {
-          videoRef.current.pause()
+          videoRef.current?.pause()
           setIsPlaying(false)
         }
       }
@@ -38,7 +71,7 @@ export default function VideoPlayer({ src, autoPlay, caption, className, id }) {
 
   const handleVideoAction = () => {
     const videoElement = videoRef.current
-    if (videoElement) {
+    if (videoElement?.playerControls) {
       if (isPlaying) {
         videoElement.playerControls.pause()
       } else {
@@ -54,7 +87,16 @@ export default function VideoPlayer({ src, autoPlay, caption, className, id }) {
       </div>
       {!!caption && (
         <figcaption className={styles.caption}>
-          <RichText tag="span">{caption}</RichText>
+          <TypedRichText
+            tag="span"
+            className={styles.captionText}
+            id={`${id}-caption`}
+            attributes={{}}
+            dropCap={false}
+            style={{}}
+          >
+            {caption}
+          </TypedRichText>
         </figcaption>
       )}
       <button onClick={handleVideoAction} className={styles.toggleButton}>

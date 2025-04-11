@@ -47,3 +47,7 @@ public/*.xml
 
 # open-next
 .open-next
+
+# local DEVAO
+.github
+/AI-CONTEXT
