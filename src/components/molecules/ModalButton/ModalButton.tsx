@@ -7,7 +7,25 @@ import Modal from '../Modal/Modal'
 import modalStyles from '../Modal/Modal.module.scss'
 import styles from './ModalButton.module.scss'
 
-function getEmbedUrl(url) {
+interface ModalButtonProps {
+  url?: string
+  label?: string
+  imageUrl?: string
+  useImage?: boolean
+  imageWidth?: string
+  align?: 'left' | 'center' | 'right'
+}
+
+interface PlayerControls {
+  play: () => void
+  pause: () => void
+}
+
+interface EnhancedVideoElement extends HTMLVideoElement {
+  playerControls?: PlayerControls
+}
+
+function getEmbedUrl(url: string): string {
   if (!url) return ''
 
   if (url.includes('youtube.com') || url.includes('youtu.be')) {
@@ -38,11 +56,27 @@ export default function ModalButton({
   useImage = false,
   imageWidth = '100%',
   align = 'center'
-}) {
+}: ModalButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const embedUrl = getEmbedUrl(url) // Process the videoUrl
+  const embedUrl = getEmbedUrl(url)
   const containerClasses = cn(styles.modalButton, `align${align}`)
-  const modalId = React.useId() // Generate unique ID for each modal instance
+  const modalId = React.useId()
+
+  const handleModalOpen = () => {
+    const carouselVideo = document.querySelector('#carousel-video') as EnhancedVideoElement
+    if (carouselVideo && carouselVideo.playerControls) {
+      carouselVideo.playerControls.pause()
+    }
+    setIsModalOpen(true)
+  }
+
+  const handleModalClose = () => {
+    const carouselVideo = document.querySelector('#carousel-video') as EnhancedVideoElement
+    if (carouselVideo && carouselVideo.playerControls) {
+      carouselVideo.playerControls.play()
+    }
+    setIsModalOpen(false)
+  }
 
   return (
     <>
@@ -50,7 +84,7 @@ export default function ModalButton({
         {useImage && imageUrl ? (
           <button
             className={styles.imageButton}
-            onClick={() => setIsModalOpen(true)}
+            onClick={handleModalOpen}
             aria-label={label}
             data-modal-id={modalId}
           >
@@ -65,14 +99,14 @@ export default function ModalButton({
         ) : (
           <button
             className={styles.defaultButton}
-            onClick={() => setIsModalOpen(true)}
+            onClick={handleModalOpen}
             data-modal-id={modalId}
           >
             {label}
           </button>
         )}
       </div>
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <Modal isOpen={isModalOpen} onClose={handleModalClose}>
         {embedUrl && (
           <div className={modalStyles.aspectRatio}>
             <iframe
