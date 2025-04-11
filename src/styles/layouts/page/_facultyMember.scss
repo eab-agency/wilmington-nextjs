@@ -17,15 +17,27 @@
       & > figure[class*='image'] {
         position: relative;
         width: 100%;
+        transform: initial;
+        left: 0;
 
         img {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          left: 0;
+          top: 0;
+          object-fit: cover;
           object-position: top;
         }
       }
     }
     .page-head {
-      bottom: 4em;
+      bottom: clamp(0.5rem, 2vw, 2rem);
       padding-block: clamp(0.7rem, 2vw, 1rem);
+
+      @media(min-width: tokens.$mq-800) {
+        bottom: clamp(0.5rem, 4vw, 2rem);
+      }
     }
   }
 

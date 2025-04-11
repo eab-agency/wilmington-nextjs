@@ -137,6 +137,21 @@ input[type='checkbox'] {
   }
 }
 
+.refinementList{
+  input[type='checkbox'] {
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+
+    & + label{
+      position: relative;
+      padding-left: 2em !important;
+    }
+  }
+}
+
 // ================
 // Question Layout
 
@@ -323,4 +338,8 @@ select {
 form {
   max-width: tokens.$mq-900;
   margin-inline: auto;
+
+  &.ais-SearchBox-form{
+    max-width: 100%;;
+  }
 }
