@@ -4,7 +4,13 @@ import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import styles from './Modal.module.scss'
 
-export default function Modal({ children, isOpen, onClose }) {
+interface ModalProps {
+  children: React.ReactNode
+  isOpen: boolean
+  onClose: () => void
+}
+
+export default function Modal({ children, isOpen, onClose }: ModalProps) {
   const [mounted, setMounted] = useState(false)
   const modalId = React.useId()
 

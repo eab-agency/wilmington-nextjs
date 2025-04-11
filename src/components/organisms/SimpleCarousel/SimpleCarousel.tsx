@@ -102,6 +102,7 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ mediaItems }) => {
               src={mediaItem.mediaUrl}
               autoPlay={true}
               caption={mediaItem.altText}
+              id="carousel-video"
             />
           )
         }
