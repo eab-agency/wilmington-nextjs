@@ -63,7 +63,9 @@ export default function ModalButton({
   const modalId = React.useId()
 
   const handleModalOpen = () => {
-    const carouselVideo = document.querySelector('#carousel-video') as EnhancedVideoElement
+    const carouselVideo = document.querySelector(
+      '#carousel-video'
+    ) as EnhancedVideoElement
     if (carouselVideo && carouselVideo.playerControls) {
       carouselVideo.playerControls.pause()
     }
@@ -71,7 +73,9 @@ export default function ModalButton({
   }
 
   const handleModalClose = () => {
-    const carouselVideo = document.querySelector('#carousel-video') as EnhancedVideoElement
+    const carouselVideo = document.querySelector(
+      '#carousel-video'
+    ) as EnhancedVideoElement
     if (carouselVideo && carouselVideo.playerControls) {
       carouselVideo.playerControls.play()
     }
