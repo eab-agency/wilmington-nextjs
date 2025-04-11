@@ -21,7 +21,7 @@ function RefinementList({
       {!!items && items.length > 0 && (
         <section className={`filterPanel ${className}`}>
           {title && <h3>{title}</h3>}
-          <ul>
+          <ul className='refinementList'>
             {items.map(
               (item, index) =>
                 (index < limit || extended) && (

@@ -1,6 +1,6 @@
-import cn from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import cn from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { useToggleRefinement } from 'react-instantsearch';
 
 /**
@@ -29,16 +29,18 @@ function ToggleRefinement({
       {title && <h3>{title}</h3>}
       <ul>
         <li>
-          <input
-            type="checkbox"
-            id={`chk-${label}`}
-            label={label}
-            name={label}
-            value={value}
-            onChange={() => refine(!currentRefinement)}
-            checked={currentRefinement}
-          />
-          <label htmlFor={`chk-${label}`}>{label}</label>
+          <label htmlFor={`chk-${label}`}>
+            <input
+              type="checkbox"
+              id={`chk-${label}`}
+              label={label}
+              name={label}
+              value={value}
+              onChange={() => refine(!currentRefinement)}
+              checked={currentRefinement}
+            />
+            {label}
+          </label>
         </li>
       </ul>
     </section>
