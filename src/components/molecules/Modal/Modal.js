@@ -6,6 +6,7 @@ import styles from './Modal.module.scss'
 
 export default function Modal({ children, isOpen, onClose }) {
   const [mounted, setMounted] = useState(false)
+  const modalId = React.useId() // Generate unique ID for each modal instance
 
   useEffect(() => {
     setMounted(true)
@@ -20,7 +21,7 @@ export default function Modal({ children, isOpen, onClose }) {
   if (!mounted || !isOpen) return null
 
   return createPortal(
-    <div className={styles.modalOverlay}>
+    <div className={styles.modalOverlay} data-modal-id={modalId}>
       <div className={styles.modalBackdrop} onClick={onClose} />
       <div className={styles.modalContent}>
         <button
@@ -42,7 +43,7 @@ export default function Modal({ children, isOpen, onClose }) {
             />
           </svg>
         </button>
-        <div className={styles.modalBody}>{children}</div>
+        {children}
       </div>
     </div>,
     document.body
