@@ -72,7 +72,7 @@ export default function Archive() {
               <CustomMenu
                 attribute="faculty_departments"
                 classNames={{
-                  root: 'testClass',
+                  root: 'facultyDepartments',
                   select: 'customSelectClass',
                   option: 'customOptionClass',
                   optionFirst: 'customOptionFirstClass'
