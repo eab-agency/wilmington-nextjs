@@ -1,5 +1,5 @@
 import React from 'react'
-import { SortBy } from 'react-instantsearch';
+import { SortBy } from 'react-instantsearch'
 
 /**
  * Render the Sort component.
@@ -32,5 +32,5 @@ export default function Sort({ index, defaultRefinement }) {
         defaultRefinement ? `${index}${defaultRefinement}` : index
       }
     />
-  );
+  )
 }
