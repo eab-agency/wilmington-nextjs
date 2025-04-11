@@ -18,13 +18,15 @@ const EabBlocksHomepageHeroSlider = (props) => {
     (block) => block.name === 'core/heading'
   )
 
-  const paragraphs = heroContent?.innerBlocks?.filter(
-    (block) => block.name === 'core/paragraph'
-  ) || []
+  const paragraphs =
+    heroContent?.innerBlocks?.filter(
+      (block) => block.name === 'core/paragraph'
+    ) || []
 
-  const modalButtons = heroContent?.innerBlocks?.filter(
-    (block) => block.name === 'eab-blocks/modal-button'
-  ) || []
+  const modalButtons =
+    heroContent?.innerBlocks?.filter(
+      (block) => block.name === 'eab-blocks/modal-button'
+    ) || []
 
   const heroTitle = heading?.attributes?.content || ''
   const paragraphsContent = paragraphs.map((p) => p.attributes?.content || '')
@@ -49,38 +51,40 @@ const EabBlocksHomepageHeroSlider = (props) => {
     (block) => block.name === 'eab-blocks/hero-ctas-group'
   )
 
-  const ctas = ctasGroup?.innerBlocks
-    ?.filter((cta) => cta.name === 'eab-blocks/hero-cta-button')
-    ?.map((cta) => {
+  const ctas =
+    ctasGroup?.innerBlocks
+      ?.filter((cta) => cta.name === 'eab-blocks/hero-cta-button')
+      ?.map((cta) => {
         const { buttonText, buttonLink, buttonIcon } = cta.attributes || {}
         return {
-            title: buttonText || '',
-            url: buttonLink?.url || '',
-            icon: buttonIcon || ''
+          title: buttonText || '',
+          url: buttonLink?.url || '',
+          icon: buttonIcon || ''
         }
-    }) || []
+      }) || []
 
   // Get slides from hero-slides-area
   const slidesArea = innerBlocks?.find(
     (block) => block.name === 'eab-blocks/hero-slides-area'
   )
 
-  const mediaItems = slidesArea?.innerBlocks
-    ?.filter((block) => block.name === 'eab-blocks/hero-slide')
-    ?.map((slide) => {
+  const mediaItems =
+    slidesArea?.innerBlocks
+      ?.filter((block) => block.name === 'eab-blocks/hero-slide')
+      ?.map((slide) => {
         const { mediaUrl, mediaId, mediaAlt } = slide.attributes || {}
         if (!mediaUrl || !mediaId) return null
 
         return {
-            imageId: mediaId.toString(),
-            type: mediaUrl?.endsWith('.mp4') ? 'video' : 'image',
-            mediaItem: {
-                altText: mediaAlt || '',
-                mediaUrl
-            }
+          imageId: mediaId.toString(),
+          type: mediaUrl?.endsWith('.mp4') ? 'video' : 'image',
+          mediaItem: {
+            altText: mediaAlt || '',
+            mediaUrl
+          }
         }
-    })
-    .filter(Boolean) || []
+      })
+      .filter(Boolean) || []
 
   return (
     <Hero
