@@ -137,7 +137,7 @@ input[type='checkbox'] {
   }
 }
 
-.refinementList{
+.refinementList {
   input[type='checkbox'] {
     margin: 0;
     padding: 0;
@@ -145,7 +145,7 @@ input[type='checkbox'] {
     height: 0;
     opacity: 0;
 
-    & + label{
+    & + label {
       position: relative;
       padding-left: 2em !important;
     }
@@ -339,7 +339,7 @@ form {
   max-width: tokens.$mq-900;
   margin-inline: auto;
 
-  &.ais-SearchBox-form{
-    max-width: 100%;;
+  &.ais-SearchBox-form {
+    max-width: 100%;
   }
 }

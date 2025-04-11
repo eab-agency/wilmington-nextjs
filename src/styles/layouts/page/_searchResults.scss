@@ -10,34 +10,31 @@
 
 //? =============================
 
-
 .aisHits {
-  .ais-InfiniteHits-list{
+  .ais-InfiniteHits-list {
     display: flex;
     flex-direction: column;
     gap: clamp(2rem, 3vw, 3rem);
     margin-block: clamp(2rem, 4vw, 4rem);
     padding: 0;
 
-    .ais-InfiniteHits-item{
+    .ais-InfiniteHits-item {
       max-width: 80ch;
       padding-bottom: clamp(2rem, 3vw, 3rem);
       border-bottom: 1px solid tokens.$c-gray-400;
 
-      .hit{
-        a{
-          h3{
-
+      .hit {
+        a {
+          h3 {
           }
         }
-        .date{
-
+        .date {
         }
       }
     }
   }
 
-  mark{
+  mark {
     font-weight: 700;
   }
 }

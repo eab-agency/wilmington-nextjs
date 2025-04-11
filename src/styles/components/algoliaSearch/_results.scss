@@ -153,10 +153,10 @@
   .results {
     position: relative;
 
-    .searchBox{
+    .searchBox {
       margin-bottom: 2em;
 
-      & + .dropMenuResults{
+      & + .dropMenuResults {
         margin-top: -2em;
       }
     }
