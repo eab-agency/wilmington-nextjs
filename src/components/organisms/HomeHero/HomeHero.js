@@ -4,24 +4,35 @@ import ModalButton from '@/components/molecules/ModalButton/ModalButton'
 import SimpleCarousel from '@/components/organisms/SimpleCarousel'
 import styles from './HomeHero.module.scss'
 
-function Hero({ mediaItems, content, description, ctas = [], modalButton }) {
+function Hero({
+  mediaItems,
+  content,
+  description = [],
+  ctas = [],
+  modalButtons = []
+}) {
   return (
     <div className={styles.homeHero}>
       <SimpleCarousel mediaItems={mediaItems} />
       <div className={styles.heroIntroContent}>
         <div className={styles.introCopy}>
           {content?.length > 0 && <RichText tag="h1">{content}</RichText>}
-          {description?.length > 0 && (
-            <RichText tag="p">{description}</RichText>
-          )}
-          {modalButton && (
+          {description.map((paragraph, index) => (
+            <RichText key={index} tag="p">
+              {paragraph}
+            </RichText>
+          ))}
+          {modalButtons.length > 0 && (
             <div className={styles.modalButtonWrapper}>
-              <ModalButton
-                label={modalButton.title}
-                url={modalButton.url}
-                useImage={modalButton.type === 'image'}
-                imageUrl={modalButton.imageUrl}
-              />
+              {modalButtons.map((modalButton, index) => (
+                <ModalButton
+                  key={index}
+                  label={modalButton.title}
+                  url={modalButton.url}
+                  useImage={modalButton.type === 'image'}
+                  imageUrl={modalButton.imageUrl}
+                />
+              ))}
             </div>
           )}
         </div>

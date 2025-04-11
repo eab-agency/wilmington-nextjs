@@ -3,6 +3,7 @@
 import cn from 'classnames'
 import Image from 'next/image'
 import { useState } from 'react'
+import React from 'react'
 import Modal from '../Modal/Modal'
 import modalStyles from '../Modal/Modal.module.scss'
 import styles from './ModalButton.module.scss'
@@ -37,6 +38,7 @@ export default function ModalButton({
   const [isModalOpen, setIsModalOpen] = useState(false)
   const embedUrl = getEmbedUrl(url) // Process the videoUrl
   const containerClasses = cn(styles.modalButton, `align${align}`)
+  const modalId = React.useId() // Generate unique ID for each modal instance
 
   return (
     <>
@@ -46,6 +48,7 @@ export default function ModalButton({
             className={styles.imageButton}
             onClick={() => setIsModalOpen(true)}
             aria-label={label}
+            data-modal-id={modalId}
           >
             <Image
               src={imageUrl}
@@ -59,12 +62,12 @@ export default function ModalButton({
           <button
             className={styles.defaultButton}
             onClick={() => setIsModalOpen(true)}
+            data-modal-id={modalId}
           >
             {label}
           </button>
         )}
       </div>
-
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {embedUrl && (
           <div className={modalStyles.aspectRatio}>
@@ -72,6 +75,7 @@ export default function ModalButton({
               src={embedUrl}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              data-modal-id={modalId}
             />
           </div>
         )}
