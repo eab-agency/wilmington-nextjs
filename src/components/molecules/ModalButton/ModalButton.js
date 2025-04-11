@@ -2,8 +2,7 @@
 
 import cn from 'classnames'
 import Image from 'next/image'
-import { useState } from 'react'
-import React from 'react'
+import React, { useState } from 'react'
 import Modal from '../Modal/Modal'
 import modalStyles from '../Modal/Modal.module.scss'
 import styles from './ModalButton.module.scss'
@@ -12,12 +11,17 @@ function getEmbedUrl(url) {
   if (!url) return ''
 
   if (url.includes('youtube.com') || url.includes('youtu.be')) {
+    let videoId
     if (url.includes('watch?v=')) {
-      return url.replace('watch?v=', 'embed/')
+      videoId = url.split('watch?v=')[1]
+      // Remove any additional parameters
+      videoId = videoId.split('&')[0]
     } else if (url.includes('youtu.be/')) {
-      const videoId = url.split('youtu.be/')[1]
-      return `https://www.youtube.com/embed/${videoId}`
+      videoId = url.split('youtu.be/')[1]
+      // Remove any additional parameters
+      videoId = videoId.split('?')[0]
     }
+    return `https://www.youtube.com/embed/${videoId}`
   } else if (url.includes('vimeo.com')) {
     const matches = url.match(/vimeo\.com\/(\d+)/)
     if (matches) {

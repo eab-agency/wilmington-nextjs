@@ -6,19 +6,29 @@ import styles from './Modal.module.scss'
 
 export default function Modal({ children, isOpen, onClose }) {
   const [mounted, setMounted] = useState(false)
-  const modalId = React.useId() // Generate unique ID for each modal instance
+  const modalId = React.useId()
 
   useEffect(() => {
     setMounted(true)
-    if (isOpen) {
+  }, [])
+
+  useEffect(() => {
+    if (mounted && isOpen) {
       document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
     }
+
     return () => {
       document.body.style.overflow = 'unset'
     }
-  }, [isOpen])
+  }, [isOpen, mounted])
 
-  if (!mounted || !isOpen) return null
+  // Don't render anything on the server side
+  if (!mounted) return null
+
+  // Don't render if modal is not open
+  if (!isOpen) return null
 
   return createPortal(
     <div className={styles.modalOverlay} data-modal-id={modalId}>
