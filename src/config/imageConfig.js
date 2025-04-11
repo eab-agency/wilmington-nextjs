@@ -9,5 +9,13 @@ module.exports = [
   {
     protocol: 'https',
     hostname: '**.wilmington.edu'
+  },
+  {
+    protocol: 'https',
+    hostname: 'www.youtube.com'
+  },
+  {
+    protocol: 'https',
+    hostname: 'img.youtube.com'
   }
 ]
