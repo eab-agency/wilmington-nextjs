@@ -6,6 +6,11 @@ const regexList = [
     replace: 'https://wordpress.wilmington.edu/wp-content/uploads'
   },
   {
+    // catch all localhost links and remove localhost
+    regex: /https?:\/\/localhost(:\d+)?\//,
+    replace: ''
+  },
+  {
     regex: /^\/(?!\/|$)/,
     replace: ''
   },

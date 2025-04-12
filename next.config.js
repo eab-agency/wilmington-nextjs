@@ -3,7 +3,7 @@
 const fetchRedirects = require('./src/lib/wordpress/fetchRedirects')
 const { withFaust } = require('@faustwp/core')
 const remotePatterns = require('./src/config/imageConfig')
-
+const nrExternals = require('newrelic/load-externals')
 const path = require('path')
 const glob = require('glob')
 
@@ -17,6 +17,14 @@ const nextConfig = {
       {
         source: '/sitemap(.*).xml',
         destination: '/api/sitemap-proxy'
+      },
+      // {
+      //   source: '/api/formstack:path*',
+      //   destination: 'https://go.advance.appily.com/form/submit:path*'
+      // },
+      {
+        source: '/api/formstack/form/:slug*',
+        destination: 'https://www.formstack.com/api/v2/form/:slug*'
       }
     ]
   },
@@ -31,6 +39,13 @@ const nextConfig = {
       },
       ...redirects
     ]
+  },
+  experimental: {
+    serverComponentsExternalPackages: ['newrelic']
+  },
+  webpack: (config) => {
+    nrExternals(config)
+    return config
   },
   reactStrictMode: true,
   images: {

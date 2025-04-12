@@ -1,31 +1,15 @@
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
-import { connectRefinementList } from 'react-instantsearch-dom'
+import { useRefinementList } from 'react-instantsearch'
 
-/**
- * Render the RefinementList component.
- *
- * @see https://www.algolia.com/doc/api-reference/widgets/refinement-list/react/
- * @param  {object}   props              The component attributes as props.
- * @param  {string}   props.attribute    The name of the attribute in the record.
- * @param  {string}   props.className    The component class.
- * @param  {any}      props.items        Any refinement.
- * @param  {number}   props.limit        The number of facet values to retrieve.
- * @param  {Function} props.refine       Modifies the items being displayed.
- * @param  {boolean}  props.showCount    Whether to display the count.
- * @param  {boolean}  props.showMore     Whether to display a button that expands the number of items.
- * @param  {string}   props.title        The component title.
- * @param  {object}   props.translations A mapping of keys to translation values.
- * @return {Element}                     The RefinementList component.
- */
 function RefinementList({
   attribute,
   className,
   items,
   limit,
   refine,
-  showCount = true,
+  showCount = false,
   showMore,
   title,
   translations
@@ -37,7 +21,7 @@ function RefinementList({
       {!!items && items.length > 0 && (
         <section className={`filterPanel ${className}`}>
           {title && <h3>{title}</h3>}
-          <ul>
+          <ul className="refinementList">
             {items.map(
               (item, index) =>
                 (index < limit || extended) && (
@@ -46,7 +30,7 @@ function RefinementList({
                       type="checkbox"
                       id={`chk-${item.label}`}
                       name={attribute}
-                      value={item.value.join(',')}
+                      value={item.value}
                       onChange={() => refine(item.value)}
                       checked={item.isRefined}
                     />
@@ -88,3 +72,14 @@ RefinementList.propTypes = {
 
 const CustomRefinementList = connectRefinementList(RefinementList)
 export default CustomRefinementList
+
+// TODO (Codemod generated): ensure your usage correctly maps the props from the connector to the hook
+function connectRefinementList(Component) {
+  const RefinementList = (props) => {
+    const data = useRefinementList(props)
+
+    return <Component {...props} {...data} />
+  }
+
+  return RefinementList
+}

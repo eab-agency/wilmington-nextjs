@@ -10,7 +10,10 @@ export default function formatManualSeoMeta(title, path, seo) {
   const siteTitle = seo?.siteSeo?.schema?.siteName || ''
   const siteLogo = seo?.siteSeo?.openGraph?.defaultImage?.sourceUrl || ''
   const fullTitle = `${title} - ${siteTitle}`
-  const domain = seo?.siteSeo?.schema?.siteUrl || ''
+  let domain = seo?.siteSeo?.schema?.siteUrl || ''
+  if (domain === 'https://wordpress.wilmington.edu') {
+    domain = 'https://wilmington.edu'
+  }
 
   // Create array of social links.
   const social = []

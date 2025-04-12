@@ -1,7 +1,7 @@
 import { useWordPressContext } from '@/components/common/WordPressProvider'
 import { searchResultsClient } from '@/lib/algolia/connector'
 import React from 'react'
-import { Configure, InstantSearch } from 'react-instantsearch-dom'
+import { Configure, InstantSearch } from 'react-instantsearch'
 import Search from '../AlgoliaSearch/components/Search'
 import NoResults from './templates/NoResults'
 import SearchResults from './templates/SearchResults'
@@ -24,6 +24,7 @@ export default function AlgoliaResults({
   if (!algolia?.indexName) {
     console.warn('Algolia: Index Name is missing from env variables.')
   }
+
   return (
     <div className="algoliaResults">
       {config.query !== '' && (
@@ -31,9 +32,14 @@ export default function AlgoliaResults({
           searchClient={config.query !== '' ? searchResultsClient : ''}
           indexName={algolia?.indexName}
         >
-          <Search indexName={algolia?.indexName} query={config.query} />
           <Configure {...config} />
-          <SearchResults indexName={algolia?.indexName} />
+          <div className="searchResults">
+            <div className="results">
+              <Search indexName={algolia?.indexName} query={config.query} />
+              <Configure {...config} />
+              <SearchResults indexName={algolia?.indexName} />
+            </div>
+          </div>
         </InstantSearch>
       )}
       {config.query === '' && <NoResults query={config.query} />}
