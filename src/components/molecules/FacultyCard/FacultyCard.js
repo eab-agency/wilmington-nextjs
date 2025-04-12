@@ -1,21 +1,35 @@
 import DefaultProfileImg from '@/assets/no-profile-image-default.jpg'
 import Image from '@/components/atoms/Image'
 import Link from '@/components/common/Link'
-import { className } from 'classnames/bind'
 import StaticImage from 'next/image'
 import * as React from 'react'
+import { useState } from 'react'
 import styles from './FacultyCard.module.scss'
 
 const FacultyCard = ({ title, description, email, phone, link, image }) => {
   const defaultProfileImg = DefaultProfileImg
+  const [imageError, setImageError] = useState(false)
+
+  // Transform the image URL from pantheonsite.io to wilmington.edu
+  const transformImageUrl = (url) => {
+    if (!url) return url
+    return url.replace(
+      'dev-wilmington-college.pantheonsite.io',
+      'wordpress.wilmington.edu'
+    )
+  }
+
+  const imageUrl = image?.sourceUrl ? transformImageUrl(image.sourceUrl) : null
+
   return (
     <div className={styles.facultyCard}>
-      {image ? (
+      {imageUrl && !imageError ? (
         <Image
           className={styles.image}
-          url={image.sourceUrl}
+          url={imageUrl}
           alt={image.altText || ''}
           imageMeta={{ mediaDetails: image.mediaDetails }}
+          onError={() => setImageError(true)}
         />
       ) : (
         <figure className={styles.image}>

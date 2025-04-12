@@ -22,6 +22,7 @@ import styles from './Image.module.css'
  * @param  {boolean} props.nextImageFill Whether next/image should be set to fill or have height/width defined.
  * @param  {string}  props.rel           The relationship of the linked URL.
  * @param  {string}  props.url           The image src attribute.
+ * @param  {function} props.onError      The error handler for the image.
  * @return {Element}                     The DisplayImage component.
  */
 export default function DisplayImage(props) {
@@ -72,7 +73,8 @@ export default function DisplayImage(props) {
       src: source,
       priority: props?.priority,
       placeholder: blurUrl ? 'blur' : 'empty',
-      blurDataURL: blurUrl
+      blurDataURL: blurUrl,
+      onError: props?.onError
     }
 
     // Add extra props depending on whether image needs to be set to "fill".
@@ -106,6 +108,7 @@ export default function DisplayImage(props) {
         id={props?.anchor}
         src={props?.url}
         width={imageSize?.width}
+        onError={props?.onError}
       />
     )
   }

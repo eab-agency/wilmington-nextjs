@@ -7,12 +7,25 @@
   position: relative;
 
   .algoliaResults & {
-    margin-left: 0.4em;
     max-width: tokens.$mq-1000;
     left: 50%;
     transform: translateX(-50%);
-    margin-bottom: 2em;
-    padding-right: clamp(3.7rem, 5vw, 5.5em);
+    position: absolute;
+    z-index: 999;
+
+    @media (min-width: tokens.$mq-700) {
+      padding-right: clamp(3.7rem, 5.6vw, 5.4em);
+      margin-left: 0.4em;
+      margin-bottom: 2em;
+    }
+
+    .resultsHits {
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+      ol {
+        padding: 0;
+      }
+    }
   }
 
   //? ================================
@@ -130,6 +143,11 @@
       & em {
         font-style: normal;
       }
+    }
+
+    .ais-Hits-list {
+      padding: 0;
+      width: 100%;
     }
   }
 
