@@ -193,11 +193,6 @@ input[type='checkbox'] {
     }
   }
 
-  // Help Text
-  .help {
-    // @extend %small;
-  }
-
   // "For Print" Styles
   // Hides printable textarea content on screens
   @media screen {
@@ -343,7 +338,6 @@ form {
     max-width: 100%;
   }
 }
-=======
 // Formstack specific
 
 .fsFieldCell {
