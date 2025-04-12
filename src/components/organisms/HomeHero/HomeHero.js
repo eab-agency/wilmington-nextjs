@@ -17,11 +17,15 @@ function Hero({
       <div className={styles.heroIntroContent}>
         <div className={styles.introCopy}>
           {content?.length > 0 && <RichText tag="h1">{content}</RichText>}
-          {description.map((paragraph, index) => (
-            <RichText key={index} tag="p">
-              {paragraph}
-            </RichText>
-          ))}
+          {description.length > 0 && (
+            <div className={styles.description}>
+              {description.map((paragraph, index) => (
+                <RichText key={index} tag="p">
+                  {paragraph}
+                </RichText>
+              ))}
+            </div>
+          )}
           {modalButtons.length > 0 && (
             <div className={styles.modalButtonWrapper}>
               {modalButtons.map((modalButton, index) => (
