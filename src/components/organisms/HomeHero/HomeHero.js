@@ -28,7 +28,8 @@ function Hero({
           )}
           {modalButtons.length > 0 && (
             <div className={styles.modalButtonWrapper}>
-              {modalButtons.map((modalButton, index) =>
+              {modalButtons.map(
+                (modalButton, index) =>
                   modalButton.url && (
                     <ModalButton
                       key={index}
