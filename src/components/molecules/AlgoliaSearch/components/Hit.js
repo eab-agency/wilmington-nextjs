@@ -1,7 +1,7 @@
 import Link from '@/components/common/Link'
 import React from 'react'
 import ReactHtmlParser from 'react-html-parser' // Import the library
-import { Highlight } from 'react-instantsearch-dom'
+import { Highlight } from 'react-instantsearch'
 
 import {
   MdArticle,

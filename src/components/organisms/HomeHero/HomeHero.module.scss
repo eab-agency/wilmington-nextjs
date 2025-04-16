@@ -1,5 +1,5 @@
-@use 'tokens';
-@use 'utilities/mixins';
+@use '../../../styles/tokens';
+@use '../../../styles/utilities/mixins';
 
 .homeHero {
   position: relative;
@@ -52,7 +52,7 @@
       }
     }
 
-    p {
+    .description {
       display: block;
       background: tokens.$c-darkGreen-800;
       color: tokens.$c-white;
@@ -66,6 +66,35 @@
 
       a {
         color: tokens.$c-teal-500;
+      }
+
+      p {
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .modalButtonWrapper {
+      margin-top: 2rem;
+
+      :global(.modal-button) {
+        display: inline-flex;
+        padding: 1rem 2rem;
+        background-color: tokens.$c-darkGreen-800;
+        color: tokens.$c-white;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: darken(tokens.$c-darkGreen-800, 10%);
+        }
+
+        img {
+          max-width: 100%;
+          height: auto;
+        }
       }
     }
   }
