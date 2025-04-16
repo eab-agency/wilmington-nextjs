@@ -28,15 +28,17 @@ function Hero({
           )}
           {modalButtons.length > 0 && (
             <div className={styles.modalButtonWrapper}>
-              {modalButtons.map((modalButton, index) => (
-                <ModalButton
-                  key={index}
-                  label={modalButton.title}
-                  url={modalButton.url}
-                  useImage={modalButton.type === 'image'}
-                  imageUrl={modalButton.imageUrl}
-                />
-              ))}
+              {modalButtons.map((modalButton, index) =>
+                  modalButton.url && (
+                    <ModalButton
+                      key={index}
+                      label={modalButton.title}
+                      url={modalButton.url}
+                      useImage={modalButton.type === 'image'}
+                      imageUrl={modalButton.imageUrl}
+                    />
+                  )
+              )}
             </div>
           )}
         </div>
