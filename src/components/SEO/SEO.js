@@ -12,11 +12,21 @@ import Head from 'next/head'
  * @returns {React.ReactElement} The SEO component
  */
 export default function SEO({ seo, title, description }) {
-  // Combine robots data.
-  const robots = [
-    ...(seo?.metaRobotsNofollow ? [seo.metaRobotsNofollow] : []),
-    ...(seo?.metaRobotsNoindex ? [seo.metaRobotsNoindex] : [])
-  ]
+  // List of production domains
+  const productionDomains = ['wilmington.edu', 'www.wilmington.edu']
+
+  // Determine if the current environment is production
+  const isProductionEnvironment =
+    typeof window !== 'undefined' &&
+    productionDomains.includes(window.location.hostname)
+
+  // Set robots meta tag based on environment
+  const robots = isProductionEnvironment
+    ? [
+        ...(seo?.metaRobotsNofollow ? [seo.metaRobotsNofollow] : []),
+        ...(seo?.metaRobotsNoindex ? [seo.metaRobotsNoindex] : [])
+      ]
+    : ['noindex', 'nofollow']
 
   // canonical being passed by Yoast/WP is the wordpress URL, we need to replace it with the actual URL
   const modifiedFullHead = seo?.fullHead?.replace(

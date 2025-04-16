@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { connectToggleRefinement } from 'react-instantsearch-dom'
+import { useToggleRefinement } from 'react-instantsearch'
 
 /**
  * Render the ToggleRefinement component.
@@ -29,16 +29,18 @@ function ToggleRefinement({
       {title && <h3>{title}</h3>}
       <ul>
         <li>
-          <input
-            type="checkbox"
-            id={`chk-${label}`}
-            label={label}
-            name={label}
-            value={value}
-            onChange={() => refine(!currentRefinement)}
-            checked={currentRefinement}
-          />
-          <label htmlFor={`chk-${label}`}>{label}</label>
+          <label htmlFor={`chk-${label}`}>
+            <input
+              type="checkbox"
+              id={`chk-${label}`}
+              label={label}
+              name={label}
+              value={value}
+              onChange={() => refine(!currentRefinement)}
+              checked={currentRefinement}
+            />
+            {label}
+          </label>
         </li>
       </ul>
     </section>
@@ -56,3 +58,14 @@ ToggleRefinement.propTypes = {
 
 const CustomToggleRefinement = connectToggleRefinement(ToggleRefinement)
 export default CustomToggleRefinement
+
+// TODO (Codemod generated): ensure your usage correctly maps the props from the connector to the hook
+function connectToggleRefinement(Component) {
+  const ToggleRefinement = (props) => {
+    const data = useToggleRefinement(props)
+
+    return <Component {...props} {...data} />
+  }
+
+  return ToggleRefinement
+}

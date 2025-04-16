@@ -1,5 +1,5 @@
 import React from 'react'
-import { connectStateResults, Hits } from 'react-instantsearch-dom'
+import { Hits, useInstantSearch } from 'react-instantsearch'
 // import * as styles from '../AlgoliaSearch.module.scss'
 import buildSearchUrl from '../functions/buildSearchUrl'
 import searchClick from '../functions/searchClick'
@@ -9,33 +9,32 @@ import Hit from './Hit'
 /**
  * Component for rendering Algolia `Hits` and search `History` components.
  */
-const Results = connectStateResults(
-  ({
-    searchResults,
-    searchState,
-    displayHistory,
-    searchHistory,
-    clearLocalStorage
-  }) => {
-    return (
-      <div className="dropMenuResults">
-        {searchState?.query &&
-        searchState.query.length > 0 &&
-        searchResults &&
-        searchResults.nbHits > 0 ? (
-          <Hits className="resultsHits" hitComponent={Hit} />
-        ) : (
-          displayHistory && (
-            <History
-              history={searchHistory}
-              searchClick={searchClick}
-              clearLocalStorage={clearLocalStorage}
-              buildSearchUrl={buildSearchUrl}
-            />
-          )
-        )}
-      </div>
-    )
-  }
-)
+const Results = ({
+  displayHistory = true,
+  searchHistory,
+  clearLocalStorage
+}) => {
+  const { results } = useInstantSearch({
+    future: {
+      preserveSharedStateOnUnmount: true
+    }
+  })
+  return (
+    <div className="dropMenuResults">
+      {results && results.nbHits > 0 ? (
+        <Hits className="resultsHits" hitComponent={Hit} />
+      ) : (
+        displayHistory && (
+          <History
+            history={searchHistory}
+            searchClick={searchClick}
+            clearLocalStorage={clearLocalStorage}
+            buildSearchUrl={buildSearchUrl}
+          />
+        )
+      )}
+    </div>
+  )
+}
+
 export default Results
