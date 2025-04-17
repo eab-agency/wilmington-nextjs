@@ -58,7 +58,7 @@ export default function Archive() {
 
           <InstantSearch
             searchClient={searchResultsClient}
-            indexName="wil_dev_posts_faculty"
+            indexName="wil_posts_faculty"
           >
             <div className="facultySearch">
               <div className="algoliaResults">
