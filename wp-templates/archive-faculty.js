@@ -41,7 +41,7 @@ const DEFAULT_SETTINGS = {
 const FACULTY_INDEX_NAME =
   process.env.NODE_ENV === 'production'
     ? 'wil_posts_faculty'
-    : 'wil_posts_faculty'
+    : 'wil_dev_posts_faculty'
 
 export default function Archive() {
   const archiveTitle = 'Faculty and Staff'

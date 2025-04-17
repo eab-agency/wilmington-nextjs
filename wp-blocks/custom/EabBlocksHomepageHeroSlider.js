@@ -56,12 +56,12 @@ const EabBlocksHomepageHeroSlider = (props) => {
       ?.filter((cta) => cta.name === 'eab-blocks/hero-cta-button')
       ?.map((cta) => {
         const { buttonText, buttonLink, buttonIcon } = cta.attributes || {}
-        let parsedButtonLink;
+        let parsedButtonLink
         try {
-          parsedButtonLink = JSON.parse(buttonLink);
+          parsedButtonLink = JSON.parse(buttonLink)
         } catch (e) {
-          console.error('Error parsing buttonLink:', e);
-          parsedButtonLink = { url: '' };
+          console.error('Error parsing buttonLink:', e)
+          parsedButtonLink = { url: '' }
         }
         return {
           title: buttonText || '',
