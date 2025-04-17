@@ -1,11 +1,10 @@
 import { SEO } from '@/components'
 import RichText from '@/components/atoms/RichText'
 import Layout from '@/components/common/Layout'
-import CustomMenu from '@/components/molecules/AlgoliaResults/refinements/CustomMenu.js'
 import { InfiniteHits } from '@/components/molecules/AlgoliaResults/templates/InfiniteHits.js'
 import FacultyCard from '@/components/molecules/FacultyCard'
 import { searchResultsClient } from '@/lib/algolia/connector'
-import { InstantSearch, SearchBox } from 'react-instantsearch'
+import { HierarchicalMenu, InstantSearch, SearchBox } from 'react-instantsearch'
 
 function Hit({ hit }) {
   const featuredImage = {
@@ -42,7 +41,7 @@ const DEFAULT_SETTINGS = {
 const FACULTY_INDEX_NAME =
   process.env.NODE_ENV === 'production'
     ? 'wil_posts_faculty'
-    : 'wil_dev_posts_faculty'
+    : 'wil_posts_faculty'
 
 export default function Archive() {
   const archiveTitle = 'Faculty and Staff'
@@ -73,17 +72,27 @@ export default function Archive() {
                     className="searchbox"
                   />
                 </div>
+                <div className="refinements">
+                  <div id="departments"></div>
+                  <HierarchicalMenu
+                    limit={10}
+                    showParentLevel={true}
+                    showMore={true}
+                    showMoreLimit={100}
+                    classNames={{
+                      root: 'EABHierarchicalMenu',
+                      count: 'hidden',
+                      showMore: 'button'
+                    }}
+                    attributes={[
+                      'departments.lvl0',
+                      'departments.lvl1',
+                      'departments.lvl2'
+                    ]}
+                    title="Departments"
+                  />
+                </div>
               </div>
-              <CustomMenu
-                attribute="faculty_departments"
-                classNames={{
-                  root: 'facultyDepartments',
-                  select: 'customSelectClass',
-                  option: 'customOptionClass',
-                  optionFirst: 'customOptionFirstClass'
-                }}
-                hideCount={true}
-              />
             </div>
 
             <InfiniteHits
