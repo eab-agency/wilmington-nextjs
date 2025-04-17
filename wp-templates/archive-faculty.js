@@ -39,6 +39,11 @@ const DEFAULT_SETTINGS = {
     "Discover Wilmington College's dedicated faculty and staff across academic, administrative, and athletic departments. Find contact information and professional details for our diverse team of educators and professionals."
 }
 
+const FACULTY_INDEX_NAME =
+  process.env.NODE_ENV === 'production'
+    ? 'wil_posts_faculty'
+    : 'wil_dev_posts_faculty'
+
 export default function Archive() {
   const archiveTitle = 'Faculty and Staff'
 
@@ -58,7 +63,7 @@ export default function Archive() {
 
           <InstantSearch
             searchClient={searchResultsClient}
-            indexName="wil_posts_faculty"
+            indexName={FACULTY_INDEX_NAME}
           >
             <div className="facultySearch">
               <div className="algoliaResults">
