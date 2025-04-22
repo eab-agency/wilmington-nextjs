@@ -5,6 +5,7 @@ import { InfiniteHits } from '@/components/molecules/AlgoliaResults/templates/In
 import FacultyCard from '@/components/molecules/FacultyCard'
 import { searchResultsClient } from '@/lib/algolia/connector'
 import { HierarchicalMenu, InstantSearch, SearchBox } from 'react-instantsearch'
+import CustomHierarchicalMenu from '../src/components/archive/CustomHierarchicalMenu'
 
 function Hit({ hit }) {
   const featuredImage = {
@@ -72,25 +73,20 @@ export default function Archive() {
                     className="searchbox"
                   />
                 </div>
-                <div className="refinements">
-                  <div id="departments"></div>
-                  <HierarchicalMenu
-                    limit={10}
-                    showParentLevel={true}
-                    showMore={true}
-                    showMoreLimit={100}
-                    classNames={{
-                      root: 'EABHierarchicalMenu',
-                      count: 'hidden',
-                      showMore: 'button'
-                    }}
-                    attributes={[
-                      'departments.lvl0',
-                      'departments.lvl1',
-                      'departments.lvl2'
-                    ]}
-                    title="Departments"
-                  />
+                <div className="departments">
+                  <div className="wrapper">
+                    <div className="label">Departments:</div>
+                    <CustomHierarchicalMenu
+                      attributes={[
+                        'departments.lvl0',
+                        'departments.lvl1',
+                        'departments.lvl2'
+                      ]}
+                      limit={10}
+                      showMore={true}
+                      showMoreLimit={100}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
