@@ -1,9 +1,8 @@
 @use '@/styles/tokens';
 .facultySearch {
-
-  .algoliaResults{
+  .algoliaResults {
     padding-inline: 0;
-    @media(min-width: tokens.$mq-600){
+    @media (min-width: tokens.$mq-600) {
       padding-inline: 2rem;
     }
   }
@@ -17,14 +16,14 @@
     font-size: 1rem;
   }
 
-  .departments{
+  .departments {
     margin-inline: auto;
     margin-bottom: 2em;
     width: 100%;
     max-width: 62.5rem;
     border-bottom: 1px solid #e4e4da;
 
-    .wrapper{
+    .wrapper {
       display: flex;
       flex-direction: column;
       position: relative;
@@ -33,19 +32,19 @@
       margin: 0 auto;
       padding-block: 0.8rem;
 
-      @media(min-width: tokens.$mq-600){
+      @media (min-width: tokens.$mq-600) {
         padding: 0.8rem 1.5rem;
         flex-direction: row;
       }
 
-      .label{
+      .label {
         font-size: clamp(0.9rem, 2vw, 1rem);
         display: flex;
         align-items: center;
         padding-right: 1rem;
       }
 
-      .EABHierarchicalMenu{
+      .EABHierarchicalMenu {
         background: white;
         width: 100%;
         max-width: 40rem;
@@ -65,6 +64,7 @@
           position: relative;
           border: 1px solid #e4e4da;
           border-radius: 4px;
+          font-size: clamp(0.9rem, 2vw, 1rem);
 
           &::after {
             content: '+';
@@ -74,7 +74,7 @@
           }
 
           &:hover {
-            background: #F2FFA4;
+            background: #f2ffa4;
             color: #333;
           }
         }
@@ -83,52 +83,53 @@
         .dropdownContent {
           display: none;
           background: white;
-          border-top: 1px solid #F2F2F2;
+          border-top: 1px solid #f2f2f2;
           position: absolute;
           top: 100%;
           right: 0;
           width: 100%;
           box-shadow: 0.2rem 0.1rem 0.5rem rgba(0, 0, 0, 0.1);
-          border-top: 2px solid #F2F2F2;
+          border-top: 2px solid #f2f2f2;
 
           &.show {
             display: block;
           }
         }
 
-        ul{
+        ul {
           padding: 0;
           margin: 0;
           max-height: 50vh;
           overflow-y: auto;
           list-style: none;
 
-          li{
+          li {
             overflow: hidden;
             margin: 0;
             padding: 0;
 
-            &::before{
+            &::before {
               display: none;
             }
 
-            a{
+            a {
               display: block;
-              padding: 0.3rem 1.2rem;
-              border-bottom: 1px solid #F2F2F2;
+              padding: 0.4rem 1.2rem;
+              border-bottom: 1px solid #f2f2f2;
               text-decoration: none;
               position: relative;
               cursor: pointer;
+              font-size: clamp(0.9rem, 2vw, 1rem);
 
-              &:hover{
-                background: #F2FFA4;
+              &:hover {
+                background: #f2ffa4;
                 color: #333;
               }
             }
 
-            &[class*="selected"]{
-              & > a{
-                &::before{
+            &[class*='selected'] {
+              & > a {
+                &::before {
                   content: '';
                   display: block;
                   width: 5rem;
@@ -136,19 +137,19 @@
                   position: absolute;
                   top: 0;
                   right: calc(100% - 0.5rem);
-                  background: #8EC640;
+                  background: #8ec640;
                 }
               }
             }
 
-            ul{
-              li{
+            ul {
+              li {
                 padding-left: 1.5rem;
                 border-bottom: none;
                 position: relative;
                 display: flex;
 
-                &::before{
+                &::before {
                   content: '';
                   display: block;
                   width: 0.7rem;
@@ -159,21 +160,20 @@
                   margin-top: 0.5em;
                 }
 
-
-                a{
+                a {
                   padding: 0.3rem 1.2rem 0.3em 0.8em;
-                  border-bottom: 1px solid #F2F2F2;
+                  border-bottom: 1px solid #f2f2f2;
                   position: relative;
                   width: 100%;
 
-                  &:hover{
-                    background: #F2FFA4;
+                  &:hover {
+                    background: #f2ffa4;
                     color: #333;
                   }
                 }
 
-                &[class*="selected"]{
-                  & > a::before{
+                &[class*='selected'] {
+                  & > a::before {
                     content: '';
                     display: block;
                     width: 5rem;
@@ -187,18 +187,17 @@
               }
             }
           }
-
         }
 
         .showMoreButton {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0.3rem 1.2rem;
+          padding: 0.4rem 1.2rem;
           border: none;
           text-decoration: none;
           position: relative;
-          background: #F2F2F2;
+          background: #f2f2f2;
           cursor: pointer;
           border-radius: 0;
           width: calc(100% - 0.4em);
@@ -208,7 +207,7 @@
           box-shadow: none;
 
           &:hover {
-            background: #F2FFA4;
+            background: #f2ffa4;
             color: #333;
           }
 
@@ -216,7 +215,6 @@
             display: none;
           }
         }
-
 
         &.is-expanded,
         &.isOpen {
