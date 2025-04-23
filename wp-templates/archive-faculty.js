@@ -1,11 +1,11 @@
 import { SEO } from '@/components'
 import RichText from '@/components/atoms/RichText'
 import Layout from '@/components/common/Layout'
-import CustomMenu from '@/components/molecules/AlgoliaResults/refinements/CustomMenu.js'
 import { InfiniteHits } from '@/components/molecules/AlgoliaResults/templates/InfiniteHits.js'
 import FacultyCard from '@/components/molecules/FacultyCard'
 import { searchResultsClient } from '@/lib/algolia/connector'
-import { InstantSearch, SearchBox } from 'react-instantsearch'
+import { HierarchicalMenu, InstantSearch, SearchBox } from 'react-instantsearch'
+import CustomHierarchicalMenu from '../src/components/archive/CustomHierarchicalMenu'
 
 function Hit({ hit }) {
   const featuredImage = {
@@ -39,6 +39,11 @@ const DEFAULT_SETTINGS = {
     "Discover Wilmington College's dedicated faculty and staff across academic, administrative, and athletic departments. Find contact information and professional details for our diverse team of educators and professionals."
 }
 
+const FACULTY_INDEX_NAME =
+  process.env.NODE_ENV === 'production'
+    ? 'wil_posts_faculty'
+    : 'wil_dev_posts_faculty'
+
 export default function Archive() {
   const archiveTitle = 'Faculty and Staff'
 
@@ -58,7 +63,7 @@ export default function Archive() {
 
           <InstantSearch
             searchClient={searchResultsClient}
-            indexName="wil_dev_posts_faculty"
+            indexName={FACULTY_INDEX_NAME}
           >
             <div className="facultySearch">
               <div className="algoliaResults">
@@ -68,17 +73,22 @@ export default function Archive() {
                     className="searchbox"
                   />
                 </div>
+                <div className="departments">
+                  <div className="wrapper">
+                    <div className="label">Departments:</div>
+                    <CustomHierarchicalMenu
+                      attributes={[
+                        'departments.lvl0',
+                        'departments.lvl1',
+                        'departments.lvl2'
+                      ]}
+                      limit={10}
+                      showMore={true}
+                      showMoreLimit={100}
+                    />
+                  </div>
+                </div>
               </div>
-              <CustomMenu
-                attribute="faculty_departments"
-                classNames={{
-                  root: 'facultyDepartments',
-                  select: 'customSelectClass',
-                  option: 'customOptionClass',
-                  optionFirst: 'customOptionFirstClass'
-                }}
-                hideCount={true}
-              />
             </div>
 
             <InfiniteHits
