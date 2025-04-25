@@ -75,7 +75,10 @@ export default function Archive() {
                 </div>
                 <div className="departments">
                   <div className="wrapper">
-                    <div className="label">Departments:</div>
+                    <div className="label">
+                      Find faculty and staff by entering a name or selecting a
+                      department:
+                    </div>
                     <CustomHierarchicalMenu
                       attributes={[
                         'departments.lvl0',
