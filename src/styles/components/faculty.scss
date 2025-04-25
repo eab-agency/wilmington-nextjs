@@ -1,5 +1,11 @@
+@use '@/styles/tokens';
 .facultySearch {
-  // ...existing styles...
+  .algoliaResults {
+    padding-inline: 0;
+    @media (min-width: tokens.$mq-600) {
+      padding-inline: 2rem;
+    }
+  }
 
   .departmentFilter {
     margin-left: 1rem;
@@ -8,5 +14,223 @@
     border-radius: 4px;
     min-width: 200px;
     font-size: 1rem;
+  }
+
+  .departments {
+    margin-inline: auto;
+    margin-bottom: 2em;
+    width: 100%;
+    max-width: 62.5rem;
+    border-bottom: 1px solid #e4e4da;
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      max-width: 62.5rem;
+      margin: 0 auto;
+      padding-block: 0.8rem;
+
+      @media (min-width: tokens.$mq-600) {
+        padding: 0.8rem 0 0.8rem 0;
+        flex-direction: row;
+      }
+
+      .label {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        display: flex;
+        align-items: center;
+        padding-right: 1rem;
+        width: 100%;
+
+        @media (max-width: tokens.$mq-600) {
+          margin-bottom: 1rem;
+        }
+      }
+
+      .EABHierarchicalMenu {
+        background: white;
+        width: 100%;
+        z-index: 99;
+        position: relative;
+
+        @media (min-width: tokens.$mq-600) {
+          max-width: 30rem;
+        }
+
+        // Dropdown toggle styles
+        .dropdownToggle {
+          width: 100%;
+          padding: 0.5rem 1.2rem;
+          background: white;
+          text-align: left;
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: relative;
+          border: 1px solid #e4e4da;
+          border-radius: 4px;
+          font-size: clamp(0.9rem, 2vw, 1rem);
+
+          &::after {
+            content: '+';
+            display: block;
+            position: relative;
+            font-size: 1.2rem;
+          }
+
+          &:hover {
+            background: #f2ffa4;
+            color: #333;
+          }
+        }
+
+        // Dropdown content styles
+        .dropdownContent {
+          display: none;
+          background: white;
+          border-top: 1px solid #f2f2f2;
+          position: absolute;
+          top: 100%;
+          right: 0;
+          width: 100%;
+          box-shadow: 0.2rem 0.1rem 0.5rem rgba(0, 0, 0, 0.1);
+          border-top: 2px solid #f2f2f2;
+
+          &.show {
+            display: block;
+          }
+        }
+
+        ul {
+          padding: 0;
+          margin: 0;
+          max-height: 50vh;
+          overflow-y: auto;
+          list-style: none;
+
+          li {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+
+            &::before {
+              display: none;
+            }
+
+            a {
+              display: block;
+              padding: 0.4rem 1.2rem;
+              border-bottom: 1px solid #f2f2f2;
+              text-decoration: none;
+              position: relative;
+              cursor: pointer;
+              font-size: clamp(0.9rem, 2vw, 1rem);
+
+              &:hover {
+                background: #f2ffa4;
+                color: #333;
+              }
+            }
+
+            &[class*='selected'] {
+              & > a {
+                &::before {
+                  content: '';
+                  display: block;
+                  width: 5rem;
+                  height: 100%;
+                  position: absolute;
+                  top: 0;
+                  right: calc(100% - 0.5rem);
+                  background: #8ec640;
+                }
+              }
+            }
+
+            ul {
+              li {
+                padding-left: 1.5rem;
+                border-bottom: none;
+                position: relative;
+                display: flex;
+
+                &::before {
+                  content: '';
+                  display: block;
+                  width: 0.7rem;
+                  height: 0.7rem;
+                  border-left: 1px solid #3f3f3f;
+                  border-bottom: 1px solid #3f3f3f;
+                  position: relative;
+                  margin-top: 0.5em;
+                }
+
+                a {
+                  padding: 0.3rem 1.2rem 0.3em 0.8em;
+                  border-bottom: 1px solid #f2f2f2;
+                  position: relative;
+                  width: 100%;
+
+                  &:hover {
+                    background: #f2ffa4;
+                    color: #333;
+                  }
+                }
+
+                &[class*='selected'] {
+                  & > a::before {
+                    content: '';
+                    display: block;
+                    width: 5rem;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    right: calc(100% + 1.7rem);
+                    background: #74a233;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .showMoreButton {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.4rem 1.2rem;
+          border: none;
+          text-decoration: none;
+          position: relative;
+          background: #f2f2f2;
+          cursor: pointer;
+          border-radius: 0;
+          width: calc(100% - 0.4em);
+          font-size: 0.9rem;
+          text-transform: initial;
+          width: 100%;
+          box-shadow: none;
+
+          &:hover {
+            background: #f2ffa4;
+            color: #333;
+          }
+
+          &::after {
+            display: none;
+          }
+        }
+
+        &.is-expanded,
+        &.isOpen {
+          .dropdownToggle::after {
+            content: '-';
+          }
+        }
+      }
+    }
   }
 }
