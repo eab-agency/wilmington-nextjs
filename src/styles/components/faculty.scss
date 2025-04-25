@@ -28,12 +28,12 @@
       flex-direction: column;
       position: relative;
       width: 100%;
-      max-width: 40rem;
+      max-width: 62.5rem;
       margin: 0 auto;
       padding-block: 0.8rem;
 
       @media (min-width: tokens.$mq-600) {
-        padding: 0.8rem 1.5rem;
+        padding: 0.8rem 0 0.8rem 0;
         flex-direction: row;
       }
 
@@ -42,14 +42,22 @@
         display: flex;
         align-items: center;
         padding-right: 1rem;
+        width: 100%;
+
+        @media (max-width: tokens.$mq-600) {
+          margin-bottom: 1rem;
+        }
       }
 
       .EABHierarchicalMenu {
         background: white;
         width: 100%;
-        max-width: 40rem;
         z-index: 99;
         position: relative;
+
+        @media (min-width: tokens.$mq-600) {
+          max-width: 30rem;
+        }
 
         // Dropdown toggle styles
         .dropdownToggle {
