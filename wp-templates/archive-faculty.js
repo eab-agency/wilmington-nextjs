@@ -9,12 +9,12 @@ import CustomHierarchicalMenu from '../src/components/archive/CustomHierarchical
 
 function Hit({ hit }) {
   const featuredImage = {
-    node: hit.images?.medium
+    node: hit.image?.medium
       ? {
-          sourceUrl: hit.images.medium.url,
+          sourceUrl: hit.image.medium.url,
           mediaDetails: {
-            width: hit.images.medium.width,
-            height: hit.images.medium.height
+            width: hit.image.medium.width,
+            height: hit.image.medium.height
           }
         }
       : null
