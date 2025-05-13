@@ -71,7 +71,7 @@ export default function WilmingtonApp({ Component, pageProps }) {
                 blocks
               }}
             >
-              <AuthDebug />
+              {/* <AuthDebug /> */}
               <Component {...pageProps} key={router.asPath} />
             </WordPressBlocksProvider>
           </WordPressProvider>
