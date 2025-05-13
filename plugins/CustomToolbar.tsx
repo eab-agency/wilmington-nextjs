@@ -1,10 +1,13 @@
 import {
   FaustHooks,
   FaustPlugin,
+  FaustToolbarContext,
+  FaustToolbarNodes,
   ToolbarItem,
   ToolbarSubmenu,
   ToolbarSubmenuWrapper
 } from '@faustwp/core'
+import React from 'react'
 
 /**
  * Example Custom Toolbar Plugin.
@@ -16,24 +19,24 @@ export class CustomToolbar implements FaustPlugin {
      * in order to add your own custom nodes!
      */
     // hooks.addFilter(
-    //   "toolbarNodes",
-    //   "faust",
+    //   'toolbarNodes',
+    //   'faust',
     //   (toolbarNodes: FaustToolbarNodes, context: FaustToolbarContext) => {
     //     const customToolbarNodes: FaustToolbarNodes = [
     //       {
-    //         id: "custom-node",
-    //         location: "primary",
-    //         component: <CustomNode />,
+    //         id: 'custom-node',
+    //         location: 'primary',
+    //         component: <CustomNode />
     //       },
     //       {
-    //         id: "custom-node-with-submenu",
-    //         location: "primary",
-    //         component: <CustomNodeWithSubmenu />,
-    //       },
-    //     ];
-    //     return [...toolbarNodes, ...customToolbarNodes];
+    //         id: 'custom-node-with-submenu',
+    //         location: 'primary',
+    //         component: <CustomNodeWithSubmenu />
+    //       }
+    //     ]
+    //     return [...toolbarNodes, ...customToolbarNodes]
     //   }
-    // );
+    // )
   }
 }
 
