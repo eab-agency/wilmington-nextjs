@@ -20,7 +20,7 @@ import {
 } from '@/functions/contextProviders/'
 
 import { WordPressBlocksProvider } from '@faustwp/blocks'
-import { FaustProvider } from '@faustwp/core'
+import { FaustProvider, useAuth } from '@faustwp/core'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import TagManager from 'react-gtm-module'
@@ -32,6 +32,12 @@ import { logToConsole } from '@/functions/welcomeLog'
 import '@/styles/styles.scss'
 import '@faustwp/core/dist/css/toolbar.css'
 const gtmId = 'GTM-P3X3WCQ'
+
+function AuthDebug() {
+  const { isAuthenticated, user } = useAuth()
+  console.log('Auth status:', { isAuthenticated, user })
+  return null
+}
 
 export default function WilmingtonApp({ Component, pageProps }) {
   logToConsole()
@@ -65,6 +71,7 @@ export default function WilmingtonApp({ Component, pageProps }) {
                 blocks
               }}
             >
+              {/* <AuthDebug /> */}
               <Component {...pageProps} key={router.asPath} />
             </WordPressBlocksProvider>
           </WordPressProvider>

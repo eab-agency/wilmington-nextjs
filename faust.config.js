@@ -1,6 +1,5 @@
 import { setConfig } from '@faustwp/core'
 
-import { CustomToolbar } from './plugins/CustomToolbar'
 import { RelayStylePaginationPlugin } from './plugins/RelayStylePaginationPlugin'
 import possibleTypes from './possibleTypes.json'
 import templates from './wp-templates'
@@ -10,7 +9,7 @@ import templates from './wp-templates'
  **/
 export default setConfig({
   templates,
-  plugins: [new CustomToolbar(), new RelayStylePaginationPlugin()],
+  plugins: [new RelayStylePaginationPlugin()],
   experimentalToolbar: true,
   possibleTypes,
   useGETForQueries: false
