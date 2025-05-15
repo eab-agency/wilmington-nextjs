@@ -206,8 +206,8 @@
       }
 
       & > button {
-        @include mixins.button;
         margin-block: clamp(2rem, 4vw, 4rem);
+        @include mixins.button;
       }
     }
   }
