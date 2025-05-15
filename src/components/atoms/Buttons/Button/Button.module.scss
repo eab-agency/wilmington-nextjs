@@ -22,8 +22,11 @@
 
 .button {
   @include mixins.button;
-  position: relative;
-  z-index: tokens.$layer-1;
+
+  & {
+    position: relative;
+    z-index: tokens.$layer-1;
+  }
 
   i {
     display: none;
