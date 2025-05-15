@@ -40,9 +40,7 @@ const nextConfig = {
       ...redirects
     ]
   },
-  experimental: {
-    serverExternalPackages: ['newrelic']
-  },
+  serverExternalPackages: ['newrelic'],
   webpack: (config) => {
     nrExternals(config)
     return config
