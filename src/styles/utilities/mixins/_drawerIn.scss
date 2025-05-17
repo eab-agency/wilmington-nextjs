@@ -8,7 +8,9 @@
         transform: translateX(0);
       }
     }
-    animation: drawerInLeft $duration $timing;
+    & {
+      animation: drawerInLeft $duration $timing;
+    }
   } @else if $direction == right {
     @keyframes drawerInRight {
       from {
@@ -18,7 +20,9 @@
         transform: translateX(0);
       }
     }
-    animation: drawerInRight $duration $timing;
+    & {
+      animation: drawerInRight $duration $timing;
+    }
   } @else if $direction == top {
     @keyframes drawerInTop {
       from {
@@ -28,7 +32,9 @@
         transform: translateY(0);
       }
     }
-    animation: drawerInTop $duration $timing;
+    & {
+      animation: drawerInTop $duration $timing;
+    }
   } @else if $direction == bottom {
     @keyframes drawerInBottom {
       from {
@@ -38,6 +44,8 @@
         transform: translateY(0);
       }
     }
-    animation: drawerInBottom $duration $timing;
+    & {
+      animation: drawerInBottom $duration $timing;
+    }
   }
 }

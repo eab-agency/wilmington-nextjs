@@ -118,9 +118,9 @@
       z-index: tokens.$layer-1;
     }
     span {
-      @include mixins.button;
       position: relative;
       z-index: tokens.$layer-2;
+      @include mixins.button;
     }
   }
 }
