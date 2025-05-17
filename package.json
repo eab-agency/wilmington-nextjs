@@ -83,5 +83,8 @@
     "stylelint": "^15.10.1",
     "stylelint-config-standard": "^31.0.0",
     "stylelint-scss": "^4.6.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
