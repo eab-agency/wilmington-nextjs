@@ -40,7 +40,10 @@ const EabBlocksHomepageHeroSlider = (props) => {
             url: modalButton.attributes.videoUrl || '',
             imageUrl: modalButton.attributes.imageUrl || '',
             type: modalButton.attributes.useImage ? 'image' : 'video',
-            useImage: modalButton.attributes.useImage || false
+            useImage: modalButton.attributes.useImage || false,
+            imageWidth: modalButton.attributes.imageWidth || 0,
+            imageHeight: modalButton.attributes.imageHeight || 0,
+            align: modalButton.attributes.align || 'left'
           }
         : null
     )
@@ -134,6 +137,7 @@ EabBlocksHomepageHeroSlider.fragments = {
                     useImage
                     imageUrl
                     imageWidth
+                    imageHeight
                     align
                   }
                 }

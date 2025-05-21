@@ -11,6 +11,8 @@ function Hero({
   ctas = [],
   modalButtons = []
 }) {
+
+
   return (
     <div className={styles.homeHero}>
       <SimpleCarousel mediaItems={mediaItems} />
@@ -31,13 +33,7 @@ function Hero({
               {modalButtons.map(
                 (modalButton, index) =>
                   modalButton.url && (
-                    <ModalButton
-                      key={index}
-                      label={modalButton.title}
-                      url={modalButton.url}
-                      useImage={modalButton.type === 'image'}
-                      imageUrl={modalButton.imageUrl}
-                    />
+                    <ModalButton key={index} {...modalButton} />
                   )
               )}
             </div>
