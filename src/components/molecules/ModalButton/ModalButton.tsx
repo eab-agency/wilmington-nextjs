@@ -13,6 +13,8 @@ interface ModalButtonProps {
   imageUrl?: string
   useImage?: boolean
   imageWidth?: string
+  imageHeight?: string
+  imageAlt?: string
   align?: 'left' | 'center' | 'right'
 }
 
@@ -54,7 +56,9 @@ export default function ModalButton({
   url = '', // This is now the videoUrl
   imageUrl = '', // Separate imageUrl prop
   useImage = false,
-  imageWidth = '100%',
+  imageWidth,
+  imageHeight,
+  imageAlt = 'Image',
   align = 'center'
 }: ModalButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -82,6 +86,23 @@ export default function ModalButton({
     setIsModalOpen(false)
   }
 
+  // Helper to parse dimension (number or string with %/px)
+  function parseDimension(dim?: string) {
+    if (!dim) return { prop: undefined, style: undefined }
+    if (typeof dim === 'string' && dim.match(/%$/)) {
+      return { prop: undefined, style: dim }
+    }
+    if (typeof dim === 'string' && dim.match(/px$/)) {
+      return { prop: parseInt(dim, 10), style: dim }
+    }
+    // If only a number string, treat as px
+    return { prop: parseInt(dim as string, 10), style: `${dim}px` }
+  }
+
+  const widthParsed = parseDimension(imageWidth)
+  const heightParsed = parseDimension(imageHeight)
+
+
   return (
     <>
       <div className={containerClasses}>
@@ -95,9 +116,12 @@ export default function ModalButton({
             <Image
               src={imageUrl}
               alt={label}
-              width={800}
-              height={450}
-              style={{ width: imageWidth }}
+              width={widthParsed.prop ?? 400}
+              height={heightParsed.prop ?? 400}
+              style={{
+                width: widthParsed.style,
+                height: heightParsed.style
+              }}
             />
           </button>
         ) : (
