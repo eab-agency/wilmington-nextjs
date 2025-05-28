@@ -1,5 +1,6 @@
 @use '../../../styles/tokens';
 @use '../../../styles/utilities/mixins';
+@use 'sass:color';
 
 .homeHero {
   position: relative;
@@ -88,7 +89,10 @@
         transition: background-color 0.2s;
 
         &:hover {
-          background-color: darken(tokens.$c-darkGreen-800, 10%);
+          background-color: color.adjust(
+            tokens.$c-darkGreen-800,
+            $lightness: -10%
+          );
         }
 
         img {

@@ -31,12 +31,15 @@ $darkColors: (
 
 @mixin colorLoop($colorMap, $colorContrast) {
   @each $name, $theColor in $colorMap {
-    .#{$name} {
+    // Convert $name to a string with "" + $name to prevent issues with color keywords
+    $safeName: '' + $name;
+
+    .#{$safeName} {
       color: $theColor;
     }
 
-    div.#{$name},
-    section.#{$name} {
+    div.#{$safeName},
+    section.#{$safeName} {
       background-color: $theColor;
       color: $colorContrast;
       margin-bottom: clamp(2rem, 4vw, 4rem);
@@ -64,7 +67,7 @@ $darkColors: (
       }
     }
 
-    div.#{$name}[class*='_column'] {
+    div.#{$safeName}[class*='_column'] {
       &::after {
         display: none;
       }
@@ -80,7 +83,10 @@ $darkColors: (
 //! ===========================================
 @mixin hasColorLoop($colorMap, $classPrefix) {
   @each $name, $theColor in $colorMap {
-    .has-text-color.has-#{$name}-color {
+    // Convert $name to a string with "" + $name to prevent issues with color keywords
+    $safeName: '' + $name;
+
+    .has-text-color.has-#{$safeName}-color {
       color: $theColor;
 
       h2,
@@ -93,11 +99,11 @@ $darkColors: (
       }
     }
 
-    .has-background.has-#{$name}-background-color {
+    .has-background.has-#{$safeName}-background-color {
       background-color: $theColor;
     }
 
-    .section.has-#{$name}-background-color {
+    .section.has-#{$safeName}-background-color {
       background-color: $theColor;
       margin-bottom: clamp(2rem, 4vw, 4rem);
       @include mixins.extendedBackground('after', $theColor);
