@@ -11,28 +11,59 @@ import Head from 'next/head'
  *
  * @returns {React.ReactElement} The SEO component
  */
-export default function SEO({ seo, title, description }) {
+export default function SEO({ seo = {}, title, description }) {
   // List of production domains
-  const productionDomains = ['wilmington.edu', 'www.wilmington.edu']
+  const productionDomains = [
+    'wilmington.edu',
+    'www.wilmington.edu',
+    'localhost'
+  ]
 
-  // Determine if the current environment is production
-  const isProductionEnvironment =
-    typeof window !== 'undefined' &&
-    productionDomains.includes(window.location.hostname)
+  // Determine if the current environment is production (SSR-safe)
+  const isProductionEnvironment = process.env.NODE_ENV === 'production'
 
   // Set robots meta tag based on environment
-  const robots = isProductionEnvironment
-    ? [
-        ...(seo?.metaRobotsNofollow ? [seo.metaRobotsNofollow] : []),
-        ...(seo?.metaRobotsNoindex ? [seo.metaRobotsNoindex] : [])
-      ]
-    : ['noindex', 'nofollow']
+  let robots
+  if (isProductionEnvironment) {
+    // If seo is missing or fields are missing, default to index/follow
+    const noindex = seo?.metaRobotsNoindex === 'noindex'
+    const nofollow = seo?.metaRobotsNofollow === 'nofollow'
+    if (noindex && nofollow) {
+      robots = ['noindex', 'nofollow']
+    } else if (noindex) {
+      robots = ['noindex', 'follow']
+    } else if (nofollow) {
+      robots = ['index', 'nofollow']
+    } else {
+      robots = ['index', 'follow']
+    }
+  } else {
+    robots = ['noindex', 'nofollow']
+  }
 
-  // canonical being passed by Yoast/WP is the wordpress URL, we need to replace it with the actual URL
-  const modifiedFullHead = seo?.fullHead?.replace(
-    /(href=")(https?:\/\/)([^/"]+)(\/)?/g,
-    '$1https://www.wilmington.edu/'
-  )
+  // Ensure correct order: index before follow
+  if (isProductionEnvironment && robots.length === 2) {
+    const order = ['index', 'noindex', 'follow', 'nofollow']
+    robots = robots.sort((a, b) => order.indexOf(a) - order.indexOf(b))
+  }
+
+  // Remove any robots meta tag from seo.fullHead to avoid duplicates/conflicts
+  let modifiedFullHead = seo?.fullHead
+  if (modifiedFullHead) {
+    modifiedFullHead = modifiedFullHead
+      .replace(/<meta[^>]*name=["']robots["'][^>]*>/gi, '')
+      .replace(
+        /(href=")(https?:\/\/)([^/"]+)(\/)?/g,
+        '$1https://www.wilmington.edu/'
+      )
+  }
+
+  // Remove DEBUG LOGGING for production cleanliness
+
+  // If seo is missing, provide a default object with correct robots fields
+  if (!seo || typeof seo !== 'object') {
+    seo = { metaRobotsNoindex: 'index', metaRobotsNofollow: 'follow' }
+  }
 
   return (
     <Head>
