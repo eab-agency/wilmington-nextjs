@@ -102,7 +102,6 @@ export default function ModalButton({
   const widthParsed = parseDimension(imageWidth)
   const heightParsed = parseDimension(imageHeight)
 
-
   return (
     <>
       <div className={containerClasses}>
