@@ -1,0 +1,27 @@
+# Wilmington College
+
+Wilmington College is dedicated to providing a hands-on learning experience that empowers students through real-world applications of knowledge. The institution emphasizes the importance of practical skills across various fields, making it an ideal choice for prospective students interested in a liberal arts education enhanced by Quaker values.
+
+## Experience Wilmington College
+
+This main page offers visitors insight into the vibrant community at Wilmington College. Key offerings include opportunities to schedule campus visits, apply for admission, and request additional information. The college highlights its commitment to real-world learning through various undergraduate and graduate programs.
+
+**Key Features:**
+
+- **Undergraduate Programs:** A variety of fields catered to different interests [Explore Programs](https://wordpress.wilmington.edu/academics/program-directory/).
+- **Graduate Programs:** Advanced study options [View Programs](https://wordpress.wilmington.edu/academics/graduate-studies/).
+- **Online Learning:** Opportunities for 100% online education [WC Online](https://online.wilmington.edu/).
+- **Athletics:** An active athletics program promoting student involvement [Wilmington Quakers](https://wilmingtonquakers.com).
+
+### Links
+- [Admissions](https://wordpress.wilmington.edu/admission)
+- [Financial Aid](https://wordpress.wilmington.edu/financial-aid)
+- [About Wilmington College](https://wordpress.wilmington.edu/about)
+  
+## Latest Posts
+
+This section showcases recent blog posts and updates from Wilmington College, providing users with current information about events, activities, and student experiences.
+
+## Search Results
+
+The search results page allows users to find information on specific topics related to Wilmington College. If no results are found, users are encouraged to try different search terms to refine their inquiries.
