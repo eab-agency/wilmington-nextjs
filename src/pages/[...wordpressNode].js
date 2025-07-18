@@ -26,11 +26,15 @@ export async function getStaticPaths() {
     `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/pages?per_page=100`
   )
   if (!res.ok) {
-    const paths = pages.map((page) => ({
-      params: { wordpressNode: page.slug ? page.slug.split('/') : [''] }
-    }))
+    return {
+      paths: [],
+      fallback: 'blocking'
+    }
+  }
+
+  const pages = await res.json()
   const paths = pages.map((page) => ({
-    params: { wordpressNode: page.slug.split('/') }
+    params: { wordpressNode: page.slug ? page.slug.split('/') : [''] }
   }))
 
   return {
