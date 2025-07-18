@@ -21,6 +21,7 @@
     "@faustwp/blocks": "^4.0.0",
     "@faustwp/cli": "3.2.3",
     "@faustwp/core": "^3.2.3",
+    "@microsoft/clarity": "^1.0.0",
     "@mui/material": "^6.4.2",
     "@newrelic/next": "^0.10.0",
     "@types/node": "^22.15.18",
