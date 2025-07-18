@@ -1,105 +1,91 @@
 # Wilmington College
 
-Wilmington College is a private liberal arts college located in Ohio, offering a hands-on learning approach designed to empower students in their academic and career pursuits. Emphasizing a community-oriented environment with core Quaker values, the college supports both on-campus and online students in achieving their educational goals. With diverse academic programs, Wilmington College equips learners with practical skills and opportunities for a successful future.
+Wilmington College is a private liberal arts institution located in Ohio, dedicated to providing hands-on learning opportunities to empower students in their academic and professional journeys. The college embraces Quaker values of integrity, peace, and social justice, aiming to create a supportive and inclusive environment for all students, whether they are on-campus or enrolled in online programs.
 
 ## About Wilmington College
 
-This page details the institution's mission, vision, and commitment to student success. It presents an overview of the college's history, leadership, and accreditation, including core values and educational philosophy.
+This section provides an overview of the college's mission and vision, highlighting its commitment to academic excellence and community impact. It outlines the college's rich history, senior leadership, and accreditation status, emphasizing a holistic educational experience rooted in Quaker principles.
 
-### Key Points
-- **Mission and Vision**: Commitment to academic excellence and community impact.
-- **History**: Over 150 years of educational experience.
-- **Accreditation**: Recognized by the Higher Learning Commission.
-- **Leadership**: Information about the college administration and board.
+- Learn about the history and traditions of the college.
+- Understand the mission and vision that guide the institution.
+- Meet senior leadership and discover the college's governance.
 
 ### Links
-- [Mission](https://wilmington.edu/about/mission)
-- [History](https://wilmington.edu/about/history-and-tradition)
-- [Leadership](https://wilmington.edu/about/senior-leadership)
+- [Mission and Vision](https://www.wilmington.edu/about/mission)
+- [History and Traditions](https://www.wilmington.edu/about/history-and-tradition)
+- [Senior Leadership](https://www.wilmington.edu/about/senior-leadership)
 
 ## Alumni and Friends
 
-This section invites alumni to maintain their connection with Wilmington College through engagement and support, emphasizing the importance of their contributions to current and future students. Opportunities to give back, participate in events, and stay connected are highlighted.
+Wilmington College fosters a lifelong connection with its alumni and friends, encouraging engagement and support for future generations. Alumni can participate in various gatherings and contribute to the college through donations to ensure continued educational opportunities for students.
 
-### Key Points
-- **Lifelong Connection**: Encouragement to contribute to the college's legacy and support future generations.
-- **Ways to Give**: Various options for financial contributions.
-- **Alumni Services**: Continuous support including career services and networking.
+- Alumni are invited to give back and support the college's future.
+- Regular events keep alumni connected and involved.
+- Opportunities to volunteer and assist current students.
 
 ### Links
 - [Ways to Give](https://www.wilmington.edu/alumni-and-friends-of-wilmington-college/giving)
-- [Alumni Council](https://www.wilmington.edu/alumni-and-friends-of-wilmington-college/council)
+- [Alumni News and Events](#jump-news)
 
 ## Athletics
 
-Wilmington College offers a vibrant athletic program with 18 NCAA Division III sports teams. The athletics page highlights the college's support for student-athletes and encourages participation in sports and recreational activities.
+Wilmington College boasts a robust athletics program with 18 NCAA Division III sports teams. The college encourages student-athletes to balance their academic pursuits with sports, cultivating both athletic excellence and personal development within a supportive community.
 
-### Key Points
-- **Athletic Teams**: A source of pride and community engagement.
-- **Facilities**: State-of-the-art athletic facilities including the Center for Sport Sciences.
+- Varsity sports play a key role in student life, with nearly half of the student body participating.
+- Explore athletic facilities and intramural sports options.
 
 ### Links
 - [Quaker Athletics](https://wilmingtonquakers.com)
-- [Athletic Facilities](https://wilmingtonquakers.com/sports/2024/5/3/recruits-recruitcentral.aspx)
 
 ## Wilmington College Online
 
-This section outlines Wilmington College’s online programs aimed at adult learners seeking flexibility in earning degrees. Programs are designed to support working professionals while maintaining high educational standards.
+With a strong commitment to adult learners, Wilmington College offers a variety of online programs designed to provide flexibility and support for those balancing education with other life responsibilities. The online platform includes bachelor’s and master’s degrees in various fields.
 
-### Key Points
-- **Online Flexibility**: Options for undergraduate and graduate degrees, designed for adult learners.
-- **Support Services**: Advising and resources available to online students.
+- Access a range of undergraduate and graduate programs.
+- Benefit from financial aid options to assist with tuition costs.
 
 ### Links
-- [WC Online Programs](https://wilmington.edu/wc-online)
+- [Learn about Online Programs](https://www.wilmington.edu/wc-online)
 
 ## Get Involved on Campus
 
-Wilmington College encourages students to engage in campus organizations and events, fostering a well-rounded college experience. Opportunities include student-led projects, Greek life, and community outreach.
+Wilmington College encourages students to engage in extracurricular activities that enhance their college experience. From student organizations to community outreach programs, there are numerous opportunities for personal growth and involvement.
 
-### Key Points
-- **Student Organizations**: A variety of extracurricular activities available.
-- **Service Opportunities**: Emphasis on community engagement and personal growth.
+- Join clubs, sports, and volunteer initiatives.
+- Participate in Greek life or lead student-led projects.
 
 ### Links
 - [Student Organizations](https://www.wilmington.edu/student-organizations)
+- [Community Engagement](https://www.wilmington.edu/student-life/)
 
 ## Research Symposium
 
-The Undergraduate Research Symposium is a platform for students to showcase their original research, providing valuable experience in a formal setting. The event highlights student achievements and the importance of collaborative learning.
+The college hosts an Undergraduate Research Symposium, providing a platform for students to share their original research and engage with their peers in meaningful discussions.
 
-### Key Points
-- **Event Details**: Authors present their research findings to peers and faculty.
-- **Networking Opportunities**: Engaging with professionals in the field.
+- Presenters receive feedback from faculty and fellow students.
+- A chance to gain exposure and recognition for scholarly work.
 
 ### Links
-- [Research Symposium](https://dev-wilmington-college.pantheonsite.io/research-symposium/)
+- [Research Symposium Details](https://dev-wilmington-college.pantheonsite.io/research-symposium/)
 
 ## Together We RISE
 
-This comprehensive campaign aims to enhance Wilmington College's educational environment by encouraging donations that support various initiatives, such as enhancing facilities and student support services.
+Wilmington College is embarking on a comprehensive campaign to enhance higher education experiences for its students. This initiative aims to invest in people, the learning environment, and sustainable practices to secure a bright future for all.
 
-### Key Points
-- **Investment Goals**: Focus on people, environment, and sustainability.
-- **Call to Action**: Invitation for community support towards broader initiatives.
+- The campaign seeks to raise $45 million to support educational excellence and accessibility.
 
 ### Links
-- [Comprehensive Campaign Information](https://www.wilmington.edu/together-we-rise)
+- [Together We RISE Campaign](https://www.wilmington.edu/together-we-rise)
 
-## International Student Resources
+## Additional Resources
 
-Wilmington College provides resources and guidance for international students, promoting an inclusive and supportive campus environment that respects diverse backgrounds and perspectives.
+The college provides various resources and links for students and alumni, including financial aid information and directories to help navigate their academic journeys.
 
-### Key Points
-- **Support Services**: Focused on helping international students adapt to life in Ohio.
-- **Global Programs**: Options for online and on-campus degrees.
-
-### Links
-- [International Admission Information](https://www.wilmington.edu/admission/international-students)
-
-## Contact Information
-
-For further inquiries or support regarding enrollment and campus resources, prospective students and others can reach out directly via provided contacts across various pages.
+- Access important financial aid websites and scholarship opportunities.
+- Stay informed about campus events and news.
 
 ### Links
-- [Request Information](https://dev-wilmington-college.pantheonsite.io/request-information)
+- [FAFSA on the Web](http://www.fafsa.gov)
+- [Scholarship Search](http://www.fastweb.com)
+
+This summary encapsulates the essential features and offerings of Wilmington College, emphasizing its educational philosophy, community engagement, and commitment to student success.
