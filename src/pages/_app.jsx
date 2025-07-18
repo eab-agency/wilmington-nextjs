@@ -12,7 +12,7 @@ if (typeof window !== 'undefined') {
 }
 
 // ...rest of your _app.js code
-
+import ClarityScript from '@/components/common/ClarityScript'
 import WordPressProvider from '@/components/common/WordPressProvider'
 import {
   CustomSettingsProvider,
@@ -72,6 +72,7 @@ export default function WilmingtonApp({ Component, pageProps }) {
               }}
             >
               {/* <AuthDebug /> */}
+              <ClarityScript />
               <Component {...pageProps} key={router.asPath} />
             </WordPressBlocksProvider>
           </WordPressProvider>
