@@ -13,5 +13,5 @@ export default setConfig({
   experimentalToolbar: true,
   possibleTypes,
   useGETForQueries: false,
-  graphqlEndpoint: '/index.php?graphql' // Updated to match the new WPGraphQL endpoint path
+  graphqlEndpoint: '/graphql' // Try the default endpoint path
 })
