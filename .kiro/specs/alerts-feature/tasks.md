@@ -6,7 +6,7 @@
   - Define interface for AlertsContextType
   - _Requirements: 4.2_
 
-- [-] 2. Create cookie utility module
+- [x] 2. Create cookie utility module
 
   - Implement setCookie, getCookie, and removeCookie functions with TypeScript support
   - Add proper typing for cookie options
