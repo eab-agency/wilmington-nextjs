@@ -55,7 +55,7 @@
   - Verify that the application builds successfully without error
   - _Requirements: 5.1, 5.2, 5.3_
 
-- [ ] 9. Test alert dismissal functionality
+- [x] 9. Test alert dismissal functionality
 
   - Verify that dismissing an alert stores the state in a cookie
   - Verify that dismissed alerts don't reappear on page reload
