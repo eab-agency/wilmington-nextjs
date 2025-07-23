@@ -2,7 +2,9 @@
 
 const wpAppUser = process.env.WORDPRESS_APPLICATION_USERNAME
 const wpAppPass = process.env.WORDPRESS_APPLICATION_PASSWORD
-export const graphQlEndpoint = `${process.env.NEXT_PUBLIC_WORDPRESS_URL}graphql`
+export const graphQlEndpoint = `${process.env.NEXT_PUBLIC_WORDPRESS_URL}${
+  process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT || 'index.php?graphql'
+}`
 
 const auth = Buffer.from(`${wpAppUser}:${wpAppPass}`).toString('base64')
 
@@ -27,7 +29,17 @@ const fetchAuthenticatedGraphQLData = async (query, variables) => {
 
     const result = await response.json()
     if (result.errors) {
-      throw new Error(`GraphQL errors: ${JSON.stringify(result.errors)}`)
+      // Handle updated error structure - debug info is now in extensions
+      const errorMessages = result.errors
+        .map((error) => {
+          const debugInfo = error.extensions?.debug
+            ? ` (Debug: ${JSON.stringify(error.extensions.debug)})`
+            : ''
+          return `${error.message}${debugInfo}`
+        })
+        .join(', ')
+
+      throw new Error(`GraphQL errors: ${errorMessages}`)
     }
 
     return result.data
