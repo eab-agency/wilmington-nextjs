@@ -41,7 +41,11 @@ export default function HomepageModal() {
           <p className={styles.subheading}>
             Late legendary coach funds transformational initiative.
           </p>
-          <a href="https://www.wilmington.edu/jerry-scheves-cornerstone-gift/" target='_blank' className={styles.readMoreButton}>
+          <a
+            href="https://www.wilmington.edu/jerry-scheves-cornerstone-gift/"
+            target="_blank"
+            className={styles.readMoreButton}
+          >
             READ MORE
           </a>
         </div>
