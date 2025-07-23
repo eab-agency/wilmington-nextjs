@@ -4,6 +4,7 @@ import Header from '@/components/organisms/Header'
 import useIsFrontPage from '@/functions/useIsFrontPage'
 import styles from './Layout.module.scss'
 
+import HomepageModal from '@/components/HomepageModal'
 import AlertBar from '@/components/organisms/AlertBar'
 import { cantarell, icomoon, museo, robotoSlab } from '@/fonts'
 /**
@@ -40,6 +41,7 @@ export default function Layout({ children }) {
         </main>
       </div>
       <Footer />
+      <HomepageModal />
     </div>
   )
 }
