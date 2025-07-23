@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
   background: rgb(0 0 0 / 70%);
-  z-index: 1000;
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,8 +13,6 @@
 
 .modalContent {
   background: none;
-
-  /* border-radius: 12px; */
   position: relative;
   max-width: 900px;
   width: 90vw;
@@ -88,23 +86,6 @@
   position: relative;
   padding: clamp(0.65em, 1vw, 0.8em) 1rem;
   padding-right: 3em;
-
-  /* background: linear-gradient(90deg, #d6e94a 0%, #7cc51c 100%);
-  color: #222;
-  border: none;
-  border-radius: 4px;
-  padding: 0.75rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
-  cursor: pointer;
-  transition: background 0.2s;
-  margin-top: 0.5rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: fit-content;
-  text-decoration: none; */
 }
 
 .readMoreButton::before {
@@ -165,7 +146,6 @@
 }
 
 .image {
-  /* border-radius: 0 12px 12px 0; */
   object-fit: cover;
   height: 100%;
 }
