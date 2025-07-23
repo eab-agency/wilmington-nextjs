@@ -33,13 +33,6 @@ export async function getStaticPaths() {
   }
 
   const pages = await res.json()
-    return {
-      paths: [],
-      fallback: 'blocking'
-    }
-  }
-
-  const pages = await res.json()
   const paths = pages.map((page) => ({
     params: {
       wordpressNode: page.slug ? page.slug.split('/') : ['']
