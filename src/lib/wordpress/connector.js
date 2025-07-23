@@ -26,9 +26,9 @@ let wpApolloClient
  * @return {object}       Apollo client instance.
  */
 export function createWpApolloClient(auth = false) {
-  console.log(
-    `Connecting to GraphQL endpoint: ${wpApiUrlBase}${graphQlEndpoint}`
-  )
+  // console.log(
+  //   `Connecting to GraphQL endpoint: ${wpApiUrlBase}${graphQlEndpoint}`
+  // )
 
   return new ApolloClient({
     ssrMode: false,
