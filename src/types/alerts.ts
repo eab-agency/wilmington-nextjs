@@ -27,6 +27,13 @@ export interface AlertBarData extends BaseAlert {
   alertButtonUri: string
   buttonLabel: string
   buttonUrl: string
+  tags?: {
+    edges: Array<{
+      node: {
+        name: string
+      }
+    }>
+  }
 }
 
 /**
