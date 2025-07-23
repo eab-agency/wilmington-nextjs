@@ -1,31 +1,31 @@
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import styles from './HomepageModal.module.css';
+import Image from 'next/image'
+import React, { useEffect, useState } from 'react'
+import styles from './HomepageModal.module.css'
 
 export default function HomepageModal() {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     // Check for cookie on mount
     if (typeof document !== 'undefined') {
-      const cookies = document.cookie.split(';').map(c => c.trim());
-      const found = cookies.find(c => c.startsWith('hideHomeModal='));
+      const cookies = document.cookie.split(';').map((c) => c.trim())
+      const found = cookies.find((c) => c.startsWith('hideHomeModal='))
       if (!found) {
-        setShowModal(true);
+        setShowModal(true)
       }
     }
-  }, []);
+  }, [])
 
   const handleClose = () => {
-    setShowModal(false);
+    setShowModal(false)
     // Set cookie to expire in 24 hours
     if (typeof document !== 'undefined') {
-      const expires = new Date(Date.now() + 24 * 60 * 60 * 1000).toUTCString();
-      document.cookie = `hideHomeModal=true; expires=${expires}; path=/`;
+      const expires = new Date(Date.now() + 24 * 60 * 60 * 1000).toUTCString()
+      document.cookie = `hideHomeModal=true; expires=${expires}; path=/`
     }
-  };
+  }
 
-  if (!showModal) return null;
+  if (!showModal) return null
   return (
     <div className={styles.modalWrapper}>
       <div className={styles.modalContent}>
@@ -38,9 +38,7 @@ export default function HomepageModal() {
         </button>
         {/* Left column: text */}
         <div className={styles.leftColumn}>
-          <h1 className={styles.heading}>
-            Record $20 million gift
-          </h1>
+          <h1 className={styles.heading}>Record $20 million gift</h1>
           <p className={styles.subheading}>
             Late legendary coach funds transformational initiative.
           </p>
@@ -60,6 +58,5 @@ export default function HomepageModal() {
         </div>
       </div>
     </div>
-  );
+  )
 }
-
