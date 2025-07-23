@@ -158,12 +158,19 @@ export const AlertsProvider: React.FC<AlertsProviderProps> = ({ children }) => {
    * Filter and process alerts from the GraphQL response
    */
   const processAlerts = (): Alert[] => {
+    console.log(
+      '🚀 ~ processAlerts ~ data?.alerts?.nodes:',
+      data?.alerts?.nodes
+    )
+
     if (!data?.alerts?.nodes) return []
 
     // Filter only published alerts
     const publishedAlerts = data.alerts.nodes.filter(
       (alert: any) => alert.status === 'publish'
     )
+
+    console.log('🚀 ~ processAlerts ~ publishedAlerts:', publishedAlerts)
 
     // Sort by date (newest first)
     publishedAlerts.sort(
@@ -178,10 +185,13 @@ export const AlertsProvider: React.FC<AlertsProviderProps> = ({ children }) => {
     }
 
     publishedAlerts.forEach((alert: any) => {
+      console.log('🚀 ~ processAlerts ~ alert.alertType:', alert.alertType)
       if (alert.alertType && alertsByType[alert.alertType]) {
         alertsByType[alert.alertType].push(alert)
       }
     })
+
+    console.log('🚀 ~ processAlerts ~ alertsByType:', alertsByType)
 
     // Get the most recent alert of each type
     const latestAlerts: Alert[] = []

@@ -48,10 +48,11 @@
   - Ensure proper handling of the dismiss action
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 5.1_
 
-- [ ] 8. Integrate alerts components into the application
+- [x] 8. Integrate alerts components into the application
 
   - Add AlertsProvider to the application's provider hierarchy
   - Ensure AlertBar and HomepageModal are rendered at the appropriate level
+  - Verify that the application builds successfully without error
   - _Requirements: 5.1, 5.2, 5.3_
 
 - [ ] 9. Test alert dismissal functionality

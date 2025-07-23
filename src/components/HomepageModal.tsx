@@ -1,4 +1,4 @@
-import { useAlerts } from '@/functions/contextProviders/AlertsProvider'
+import { useCustomData } from '@/functions/contextProviders/CustomSettingsProvider'
 import { PopupModalData } from '@/types/alerts'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -21,7 +21,7 @@ import styles from './HomepageModal.module.css'
  * @returns React component that renders a modal popup when conditions are met
  */
 const HomepageModal: React.FC = () => {
-  const { alerts, dismissAlert, isDismissed } = useAlerts()
+  const { alert, showAlert, clear } = useCustomData()
   const router = useRouter()
   const [isVisible, setIsVisible] = useState(false)
 
@@ -29,32 +29,36 @@ const HomepageModal: React.FC = () => {
   // Extract the slug from the path (last segment after /)
   const currentPath = router.asPath.split('/').filter(Boolean).pop() || ''
 
-  // Find the first published popup-modal type alert that matches the current page or is global
-  const modalData = alerts.find(
-    (alert) =>
-      alert.alertType === 'popup-modal' &&
-      alert.status === 'publish' &&
-      !isDismissed(alert.id) &&
-      // Show if it's a global modal (no page specified) or if it matches the current page
-      (!alert.popupVisibilityPage ||
-        alert.popupVisibilityPage === currentPath ||
-        alert.popupVisibilityPage === router.asPath)
-  ) as PopupModalData | undefined
+  // Check if we have an alert and it's a popup-modal type
+  const modalData =
+    alert && alert.alertType === 'popup-modal'
+      ? (alert as PopupModalData)
+      : null
+
+  // Check if modal should be shown based on page visibility
+  const shouldShowModal =
+    modalData &&
+    showAlert &&
+    (!modalData.popupVisibilityPage ||
+      modalData.popupVisibilityPage === currentPath ||
+      modalData.popupVisibilityPage === router.asPath)
 
   // Control modal visibility with animation
   useEffect(() => {
-    if (modalData) {
+    if (shouldShowModal) {
       // Small delay for better UX
       const timer = setTimeout(() => {
         setIsVisible(true)
       }, 500)
       return () => clearTimeout(timer)
+    } else {
+      setIsVisible(false)
     }
     return () => {}
-  }, [modalData])
+  }, [shouldShowModal])
 
-  // If no modal data or it's dismissed, don't render anything
-  if (!modalData || !isVisible) return null
+  // If no modal data or it shouldn't be shown, don't render anything
+  if (!shouldShowModal || !isVisible) return null
 
   /**
    * Handle closing the modal
@@ -64,7 +68,7 @@ const HomepageModal: React.FC = () => {
     setIsVisible(false)
     // Small delay to allow animation to complete before removing from DOM
     setTimeout(() => {
-      dismissAlert(modalData.id)
+      clear()
     }, 300)
   }
 
@@ -104,7 +108,7 @@ const HomepageModal: React.FC = () => {
           )}
         </div>
         {/* Right column: image (only render if there's an image) */}
-        {hasImage && (
+        {hasImage && modalData.popupImage && (
           <div className={styles.rightColumn}>
             <Image
               src={modalData.popupImage.sourceUrl}

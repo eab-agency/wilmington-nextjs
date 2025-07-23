@@ -1,4 +1,4 @@
-import { useAlerts } from '@/functions/contextProviders/AlertsProvider'
+import { useCustomData } from '@/functions/contextProviders/CustomSettingsProvider'
 import { AlertBarData } from '@/types/alerts'
 import React from 'react'
 import styles from './AlertBar.module.scss'
@@ -6,7 +6,7 @@ import styles from './AlertBar.module.scss'
 /**
  * AlertBar component that displays alert bars from the alerts system
  *
- * This component renders an alert bar at the top of the page based on data from the AlertsContext.
+ * This component renders an alert bar at the top of the page based on data from the CustomSettingsProvider.
  * It supports dismissal with cookie persistence.
  *
  * Features:
@@ -18,18 +18,13 @@ import styles from './AlertBar.module.scss'
  * @returns React component that renders an alert bar when conditions are met
  */
 const AlertBar: React.FC = () => {
-  const { alerts, dismissAlert, isDismissed } = useAlerts()
+  const { alertBarAlert, showAlert, clear } = useCustomData()
 
-  // Find the first published alert-bar type alert that isn't dismissed
-  const alertBarData = alerts.find(
-    (alert) =>
-      alert.alertType === 'alert-bar' &&
-      alert.status === 'publish' &&
-      !isDismissed(alert.id)
-  ) as AlertBarData | undefined
+  // Use the specific alert bar data
+  const alertBarData = alertBarAlert as AlertBarData | null
 
-  // If no alert data or it's dismissed, don't render anything
-  if (!alertBarData) return null
+  // If no alert bar data or showAlert is false, don't render anything
+  if (!alertBarData || !showAlert) return null
 
   // Get tag class for styling (if available)
   const tagName = alertBarData.tags?.edges[0]?.node?.name?.toLowerCase()
@@ -40,7 +35,7 @@ const AlertBar: React.FC = () => {
    * Dismisses the alert and stores the state in a cookie
    */
   const handleClose = () => {
-    dismissAlert(alertBarData.id)
+    clear()
   }
 
   return (
@@ -68,7 +63,5 @@ const AlertBar: React.FC = () => {
     </div>
   )
 }
-
-export default AlertBar
 
 export default AlertBar

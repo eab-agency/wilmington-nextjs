@@ -24,6 +24,8 @@ interface CustomSettings {
 
 interface CustomSettingsContextProps {
   alert: Alert | null
+  alertBarAlert: Alert | null
+  popupModalAlert: Alert | null
   closed: boolean
   showAlert: boolean
   clear: () => void
@@ -56,6 +58,8 @@ export const CustomSettingsProvider = ({
     useState<CustomSettings | null>(null)
 
   const [alertState, setAlertState] = useState<Alert | null>(null)
+  const [alertBarState, setAlertBarState] = useState<Alert | null>(null)
+  const [popupModalState, setPopupModalState] = useState<Alert | null>(null)
   const [closed, setClosed] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
 
@@ -77,7 +81,12 @@ export const CustomSettingsProvider = ({
       setLoading(true)
     }
     if (queryError) {
-      console.error(queryError)
+      console.error('🚀 ~ CustomSettingsProvider ~ GraphQL Error:', queryError)
+      console.error('🚀 ~ CustomSettingsProvider ~ Error details:', {
+        message: queryError.message,
+        graphQLErrors: queryError.graphQLErrors,
+        networkError: queryError.networkError
+      })
       setError(queryError)
     }
     if (queryData) {
@@ -93,13 +102,35 @@ export const CustomSettingsProvider = ({
           new Date(b.date).getTime() - new Date(a.date).getTime()
       )
 
-      // Get the most recent alert (if any)
+      // Group alerts by type
+      const alertsByType: Record<string, any[]> = {
+        'alert-bar': [],
+        'popup-modal': []
+      }
+
+      publishedAlerts.forEach((alert: any) => {
+        if (alert.alertType && alertsByType[alert.alertType]) {
+          alertsByType[alert.alertType].push(alert)
+        }
+      })
+
+      // Get the most recent alert of each type
+      const latestAlertBar =
+        alertsByType['alert-bar'].length > 0
+          ? alertsByType['alert-bar'][0]
+          : null
+      const latestPopupModal =
+        alertsByType['popup-modal'].length > 0
+          ? alertsByType['popup-modal'][0]
+          : null
       const latestAlert = publishedAlerts.length > 0 ? publishedAlerts[0] : null
 
-      setShowAlert(!!latestAlert)
+      setShowAlert(!!(latestAlertBar || latestPopupModal))
       setCustomSettingsData(queryData?.customSettings)
       setLoading(false)
       setAlertState(latestAlert)
+      setAlertBarState(latestAlertBar)
+      setPopupModalState(latestPopupModal)
     }
   }, [queryLoading, queryError, queryData])
 
@@ -112,6 +143,8 @@ export const CustomSettingsProvider = ({
     <CustomSettingsContext.Provider
       value={{
         alert: alertState,
+        alertBarAlert: alertBarState,
+        popupModalAlert: popupModalState,
         closed: closed,
         showAlert: showAlert,
         clear: handleClearAlert,
@@ -129,13 +162,13 @@ const alertAndSettingsQuery = gql`
   query GetLatestAlertAndCustomSettings {
     customSettings {
       customOptions {
-        addresscountry
-        addresslocality
-        addressregion
-        postalcode
-        streetaddress
         telephone
-        tollfreenumber
+        addressCountry
+        addressLocality
+        addressRegion
+        postalCode
+        streetAddress
+        tollfreeNumber
       }
     }
     alerts {
