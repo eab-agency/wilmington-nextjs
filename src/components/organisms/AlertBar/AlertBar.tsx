@@ -18,7 +18,7 @@ import styles from './AlertBar.module.scss'
  * @returns React component that renders an alert bar when conditions are met
  */
 const AlertBar: React.FC = () => {
-  const { alertBarAlert, showAlert, clear } = useCustomData()
+  const { alertBarAlert, showAlert, clearAlertBar } = useCustomData()
 
   // Use the specific alert bar data
   const alertBarData = alertBarAlert as AlertBarData | null
@@ -35,7 +35,8 @@ const AlertBar: React.FC = () => {
    * Dismisses the alert and stores the state in a cookie
    */
   const handleClose = () => {
-    clear()
+    // Use specific clearAlertBar method to only dismiss this type of alert
+    clearAlertBar()
   }
 
   return (

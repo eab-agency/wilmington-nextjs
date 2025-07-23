@@ -5,6 +5,9 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import styles from './HomepageModal.module.css'
 
+// Cookie name constants
+const MODAL_COOKIE_PREFIX = 'dismissedModal_'
+
 /**
  * HomepageModal component that displays popup modals from the alerts system
  *
@@ -21,9 +24,10 @@ import styles from './HomepageModal.module.css'
  * @returns React component that renders a modal popup when conditions are met
  */
 const HomepageModal: React.FC = () => {
-  const { alert, showAlert, clear } = useCustomData()
+  const { popupModalAlert, showAlert, clearPopupModal } = useCustomData()
   const router = useRouter()
   const [isVisible, setIsVisible] = useState(false)
+  const [isDismissed, setIsDismissed] = useState(false)
 
   // Get the current page path for page-specific visibility
   // Extract the slug from the path (last segment after /)
@@ -31,21 +35,51 @@ const HomepageModal: React.FC = () => {
 
   // Check if we have an alert and it's a popup-modal type
   const modalData =
-    alert && alert.alertType === 'popup-modal'
-      ? (alert as PopupModalData)
+    popupModalAlert && popupModalAlert.alertType === 'popup-modal'
+      ? (popupModalAlert as PopupModalData)
       : null
 
-  // Check if modal should be shown based on page visibility
-  const shouldShowModal =
-    modalData &&
-    showAlert &&
-    (!modalData.popupVisibilityPage ||
-      modalData.popupVisibilityPage === currentPath ||
-      modalData.popupVisibilityPage === router.asPath)
+  // Set a cookie to track modal dismissal
+  const setDismissedCookie = (modalId: any) => {
+    // Create a date 30 days in the future
+    const expiryDate = new Date()
+    expiryDate.setDate(expiryDate.getDate() + 30)
+
+    // Set the cookie directly
+    document.cookie = `${MODAL_COOKIE_PREFIX}${modalId}=true; expires=${expiryDate.toUTCString()}; path=/`
+  }
+
+  // Check if a modal has been dismissed via cookie
+  const checkIfDismissed = (modalId: any): boolean => {
+    if (typeof document === 'undefined') return false
+
+    // Look for a specific cookie for this modal
+    const cookies = document.cookie.split(';').map((cookie) => cookie.trim())
+    return cookies.some((cookie) =>
+      cookie.startsWith(`${MODAL_COOKIE_PREFIX}${modalId}=true`)
+    )
+  }
+
+  // Check for dismissed state on mount and when modal data changes
+  useEffect(() => {
+    if (!modalData?.id) return
+
+    // Check if this specific modal has been dismissed
+    const modalDismissed = checkIfDismissed(modalData.id)
+    setIsDismissed(modalDismissed)
+  }, [modalData?.id])
 
   // Control modal visibility with animation
   useEffect(() => {
-    if (shouldShowModal) {
+    const shouldShowModalBasedOnAllFactors =
+      modalData &&
+      showAlert &&
+      !isDismissed &&
+      (!modalData.popupVisibilityPage ||
+        modalData.popupVisibilityPage === currentPath ||
+        modalData.popupVisibilityPage === router.asPath)
+
+    if (shouldShowModalBasedOnAllFactors) {
       // Small delay for better UX
       const timer = setTimeout(() => {
         setIsVisible(true)
@@ -55,25 +89,34 @@ const HomepageModal: React.FC = () => {
       setIsVisible(false)
     }
     return () => {}
-  }, [shouldShowModal])
+  }, [modalData, showAlert, currentPath, router.asPath, isDismissed])
 
   // If no modal data or it shouldn't be shown, don't render anything
-  if (!shouldShowModal || !isVisible) return null
+  if (!isVisible || !modalData) return null
 
   /**
    * Handle closing the modal
    * Dismisses the alert and stores the state in a cookie
    */
   const handleClose = () => {
+    if (modalData?.id) {
+      // Set our own cookie directly - more reliable
+      setDismissedCookie(modalData.id)
+      setIsDismissed(true)
+    }
+
     setIsVisible(false)
     // Small delay to allow animation to complete before removing from DOM
     setTimeout(() => {
-      clear()
+      // Also call provider's method as a backup
+      if (modalData?.id) {
+        clearPopupModal(String(modalData.id))
+      }
     }, 300)
   }
 
   // Determine if we should render the image column
-  const hasImage = modalData.popupImage && modalData.popupImage.sourceUrl
+  const hasImage = modalData?.popupImage && modalData.popupImage.sourceUrl
 
   return (
     <div className={styles.modalWrapper}>
@@ -91,12 +134,12 @@ const HomepageModal: React.FC = () => {
             !hasImage ? styles.fullWidth : ''
           }`}
         >
-          <h1 className={styles.heading}>{modalData.popupTitle}</h1>
+          <h1 className={styles.heading}>{modalData?.popupTitle}</h1>
           <div
             className={styles.subheading}
-            dangerouslySetInnerHTML={{ __html: modalData.popupContent }}
+            dangerouslySetInnerHTML={{ __html: modalData?.popupContent || '' }}
           />
-          {modalData.buttonLabel && modalData.buttonUrl && (
+          {modalData?.buttonLabel && modalData?.buttonUrl && (
             <a
               href={modalData.buttonUrl}
               target="_blank"
@@ -108,7 +151,7 @@ const HomepageModal: React.FC = () => {
           )}
         </div>
         {/* Right column: image (only render if there's an image) */}
-        {hasImage && modalData.popupImage && (
+        {hasImage && modalData?.popupImage && (
           <div className={styles.rightColumn}>
             <Image
               src={modalData.popupImage.sourceUrl}

@@ -3,10 +3,12 @@ import { ApolloError, gql, useQuery } from '@apollo/client'
 import React, {
   ReactNode,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState
 } from 'react'
+import { getCookie, setCookie } from '../cookieUtils'
 
 interface CustomOptions {
   addresscountry: string
@@ -28,7 +30,8 @@ interface CustomSettingsContextProps {
   popupModalAlert: Alert | null
   closed: boolean
   showAlert: boolean
-  clear: () => void
+  clearAlertBar: () => void
+  clearPopupModal: (id: string) => void
   customOptions: CustomOptions | null
 }
 
@@ -36,6 +39,11 @@ export const CustomSettingsContext = createContext<CustomSettingsContextProps>(
   {} as CustomSettingsContextProps
 )
 CustomSettingsContext.displayName = 'CustomSettingsContext'
+
+// Cookie constants for alert dismissal
+const DISMISSED_ALERT_COOKIE_PREFIX = 'dismissedAlert_'
+const DISMISSED_MODAL_COOKIE_PREFIX = 'dismissedModal_'
+const COOKIE_EXPIRATION_DAYS = 30
 
 interface CustomSettingsProviderProps {
   children: ReactNode
@@ -62,11 +70,51 @@ export const CustomSettingsProvider = ({
   const [popupModalState, setPopupModalState] = useState<Alert | null>(null)
   const [closed, setClosed] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
+  const [dismissedAlerts, setDismissedAlerts] = useState<
+    Record<string, boolean>
+  >({})
+  const [dismissedModals, setDismissedModals] = useState<
+    Record<string, boolean>
+  >({})
 
-  const handleClearAlert = () => {
-    setAlertState(null)
-    setClosed(true)
+  // Handles clearing an alert bar and storing the dismissal in a cookie
+  const handleClearAlertBar = () => {
+    if (alertBarState?.id) {
+      // Store dismissal in state
+      setDismissedAlerts((prev) => ({
+        ...prev,
+        [alertBarState.id]: true
+      }))
+
+      // Store dismissal in cookie - using consistent naming pattern
+      const cookieId = String(alertBarState.id)
+      setCookie(`${DISMISSED_ALERT_COOKIE_PREFIX}${cookieId}`, 'true', {
+        expires: COOKIE_EXPIRATION_DAYS,
+        path: '/'
+      })
+
+      // Only set the alert bar state to null
+      setAlertBarState(null)
+    }
   }
+
+  // Handles clearing a popup modal and storing the dismissal in a cookie
+  const handleClearPopupModal = useCallback((id: string) => {
+    setDismissedModals((prev) => ({
+      ...prev,
+      [id]: true
+    }))
+
+    // Set cookie specifically for this modal
+    const cookieId = String(id)
+    const cookieName = `${DISMISSED_MODAL_COOKIE_PREFIX}${cookieId}`
+
+    setCookie(cookieName, 'true', {
+      path: '/',
+      expires: COOKIE_EXPIRATION_DAYS,
+      sameSite: 'lax'
+    })
+  }, [])
 
   const {
     loading: queryLoading,
@@ -125,19 +173,103 @@ export const CustomSettingsProvider = ({
           : null
       const latestAlert = publishedAlerts.length > 0 ? publishedAlerts[0] : null
 
-      setShowAlert(!!(latestAlertBar || latestPopupModal))
+      // Check if each alert type is dismissed - using explicit ID check
+      // Check if each alert type is dismissed - using explicit ID check with string conversion
+      // Check if alerts are already dismissed
+      const isAlertBarDismissed =
+        latestAlertBar && dismissedAlerts[String(latestAlertBar.id)] === true
+
+      const isPopupModalDismissed =
+        latestPopupModal &&
+        dismissedModals[String(latestPopupModal.id)] === true
+
+      const alertBarVisible = latestAlertBar && !isAlertBarDismissed
+      const popupModalVisible = latestPopupModal && !isPopupModalDismissed
+
+      // Show alert if either type is visible and not dismissed
+      const shouldShowAlert = alertBarVisible || popupModalVisible
+
+      setShowAlert(shouldShowAlert)
       setCustomSettingsData(queryData?.customSettings)
       setLoading(false)
       setAlertState(latestAlert)
       setAlertBarState(latestAlertBar)
       setPopupModalState(latestPopupModal)
     }
-  }, [queryLoading, queryError, queryData])
+  }, [queryLoading, queryError, queryData, dismissedAlerts, dismissedModals])
 
   useEffect(() => {
     // Reset error state if it changes to allow subsequent fetch attempts
     setError(null)
   }, [queryError])
+
+  // Load dismissed alerts from cookies on mount
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const loadDismissedAlertsFromCookies = () => {
+      const cookies = document.cookie.split(';').map((cookie) => cookie.trim())
+      const dismissedAlertsCookies = cookies.filter((cookie) =>
+        cookie.startsWith(`${DISMISSED_ALERT_COOKIE_PREFIX}`)
+      )
+
+      const dismissedAlertsMap: Record<string, boolean> = {}
+
+      dismissedAlertsCookies.forEach((cookie) => {
+        const [key, value] = cookie.split('=')
+        // Properly decode the URL-encoded ID
+        const alertId = decodeURIComponent(
+          key.replace(`${DISMISSED_ALERT_COOKIE_PREFIX}`, '')
+        )
+
+        // Accept any truthy value as confirmation of dismissal
+        if (
+          alertId &&
+          (value === 'true' || value === '1' || value === '' || value)
+        ) {
+          dismissedAlertsMap[alertId] = true
+        }
+      })
+
+      setDismissedAlerts(dismissedAlertsMap)
+    }
+
+    loadDismissedAlertsFromCookies()
+  }, [])
+
+  // Load dismissed modals from cookies on mount
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const loadDismissedModalsFromCookies = () => {
+      const cookies = document.cookie.split(';').map((cookie) => cookie.trim())
+      const dismissedModalsCookies = cookies.filter((cookie) =>
+        cookie.startsWith(`${DISMISSED_MODAL_COOKIE_PREFIX}`)
+      )
+
+      const dismissedModalsMap: Record<string, boolean> = {}
+
+      dismissedModalsCookies.forEach((cookie) => {
+        const [key, value] = cookie.split('=')
+        // Properly decode the URL-encoded ID
+        const modalId = decodeURIComponent(
+          key.replace(`${DISMISSED_MODAL_COOKIE_PREFIX}`, '')
+        )
+
+        // Accept any truthy value as confirmation of dismissal
+        if (
+          modalId &&
+          (value === 'true' || value === '1' || value === '' || value)
+        ) {
+          dismissedModalsMap[modalId] = true
+        }
+      })
+
+      setDismissedModals(dismissedModalsMap)
+    }
+
+    loadDismissedModalsFromCookies()
+  }, [])
 
   return (
     <CustomSettingsContext.Provider
@@ -147,7 +279,8 @@ export const CustomSettingsProvider = ({
         popupModalAlert: popupModalState,
         closed: closed,
         showAlert: showAlert,
-        clear: handleClearAlert,
+        clearAlertBar: handleClearAlertBar,
+        clearPopupModal: handleClearPopupModal,
         customOptions: customSettingsData?.customOptions || null
       }}
     >
