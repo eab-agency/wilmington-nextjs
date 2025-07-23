@@ -27,7 +27,7 @@
   - Implement cookie integration for persisting dismissed alerts
   - _Requirements: 1.2, 1.3, 2.3, 2.4, 3.5, 3.6_
 
-- [ ] 5. Convert HomepageModal.js to TypeScript
+- [x] 5. Convert HomepageModal.js to TypeScript
 
   - Rename file to HomepageModal.tsx
   - Add proper TypeScript types and interfaces
