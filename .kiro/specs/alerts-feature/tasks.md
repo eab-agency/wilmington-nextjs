@@ -34,7 +34,7 @@
   - Refactor to use the new AlertsContext
   - _Requirements: 3.4, 4.1, 5.2_
 
-- [ ] 6. Update HomepageModal component functionality
+- [x] 6. Update HomepageModal component functionality
 
   - Implement page-specific visibility logic
   - Add support for dynamic content from WordPress
