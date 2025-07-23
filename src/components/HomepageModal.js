@@ -18,10 +18,9 @@ export default function HomepageModal() {
 
   const handleClose = () => {
     setShowModal(false)
-    // Set cookie to expire in 24 hours
+    // Set session cookie (expires when browser/tab is closed)
     if (typeof document !== 'undefined') {
-      const expires = new Date(Date.now() + 24 * 60 * 60 * 1000).toUTCString()
-      document.cookie = `hideHomeModal=true; expires=${expires}; path=/`
+      document.cookie = 'hideHomeModal=true; path=/'
     }
   }
 
@@ -38,13 +37,13 @@ export default function HomepageModal() {
         </button>
         {/* Left column: text */}
         <div className={styles.leftColumn}>
-          <h1 className={styles.heading}>Record $20 million gift</h1>
+          <h1 className={styles.heading}>Record $23 million gift</h1>
           <p className={styles.subheading}>
             Late legendary coach funds transformational initiative.
           </p>
-          <button className={styles.readMoreButton}>
-            READ MORE <span className={styles.arrow}>&#8594;</span>
-          </button>
+          <a href="https://www.wilmington.edu/jerry-scheves-cornerstone-gift/" target='_blank' className={styles.readMoreButton}>
+            READ MORE
+          </a>
         </div>
         {/* Right column: image */}
         <div className={styles.rightColumn}>
