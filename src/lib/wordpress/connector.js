@@ -7,7 +7,7 @@ export const wpApiUrlBase =
   process.env.WORDPRESS_URL?.replace(/\/?$/, '/') || '/'
 export const wpPreviewSecret = process.env.WORDPRESS_PREVIEW_SECRET
 export const graphQlEndpoint =
-  process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT || 'graphql'
+  process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT || 'index.php?graphql' // Updated to match new WPGraphQL endpoint
 const wpAppUser = process.env.WORDPRESS_APPLICATION_USERNAME
 const wpAppPass = process.env.WORDPRESS_APPLICATION_PASSWORD
 
@@ -32,10 +32,32 @@ export function createWpApolloClient(auth = false) {
       uri: `${wpApiUrlBase}${graphQlEndpoint}`,
       credentials: '',
       headers: {
-        authorization: auth ? `Basic ${wpAuthorization}` : ''
+        authorization: auth ? `Basic ${wpAuthorization}` : '',
+        'Content-Type': 'application/json' // Ensure proper Content-Type header is set
       }
     }),
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    defaultOptions: {
+      watchQuery: {
+        errorPolicy: 'all' // Handle both data and errors
+      },
+      query: {
+        errorPolicy: 'all' // Handle both data and errors
+      },
+      mutate: {
+        errorPolicy: 'all' // Handle both data and errors
+      }
+    },
+    // Custom error handling for updated WPGraphQL error structure
+    onError: (error) => {
+      // Access debug information from extensions key instead of the previous location
+      const debugInfo = error.graphQLErrors?.[0]?.extensions?.debug || null
+      console.error(
+        'GraphQL Error:',
+        error.message,
+        debugInfo ? { debug: debugInfo } : ''
+      )
+    }
   })
 }
 

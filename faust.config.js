@@ -12,5 +12,6 @@ export default setConfig({
   plugins: [new RelayStylePaginationPlugin()],
   experimentalToolbar: true,
   possibleTypes,
-  useGETForQueries: false
+  useGETForQueries: false,
+  graphqlEndpoint: '/index.php?graphql' // Updated to match the new WPGraphQL endpoint path
 })
