@@ -1,3 +1,4 @@
+import { Alert } from '@/types/alerts'
 import { ApolloError, gql, useQuery } from '@apollo/client'
 import React, {
   ReactNode,
@@ -19,16 +20,6 @@ interface CustomOptions {
 
 interface CustomSettings {
   customOptions?: CustomOptions
-}
-
-interface Alert {
-  alertButtonLabel: string
-  alertButtonUri: string
-  databaseId: number
-  alertMsgTitle: string
-  tags: {
-    edges: any[]
-  }
 }
 
 interface CustomSettingsContextProps {
@@ -90,10 +81,25 @@ export const CustomSettingsProvider = ({
       setError(queryError)
     }
     if (queryData) {
-      setShowAlert(queryData?.alerts?.edges[0]?.node ? true : false)
+      // Get the most recent published alert
+      const publishedAlerts =
+        queryData?.alerts?.nodes?.filter(
+          (alert: any) => alert.status === 'publish'
+        ) || []
+
+      // Sort by date (newest first)
+      publishedAlerts.sort(
+        (a: any, b: any) =>
+          new Date(b.date).getTime() - new Date(a.date).getTime()
+      )
+
+      // Get the most recent alert (if any)
+      const latestAlert = publishedAlerts.length > 0 ? publishedAlerts[0] : null
+
+      setShowAlert(!!latestAlert)
       setCustomSettingsData(queryData?.customSettings)
       setLoading(false)
-      setAlertState(queryData?.alerts?.edges[0]?.node)
+      setAlertState(latestAlert)
     }
   }, [queryLoading, queryError, queryData])
 
@@ -132,18 +138,30 @@ const alertAndSettingsQuery = gql`
         tollfreenumber
       }
     }
-    alerts(first: 1) {
-      edges {
-        node {
-          alertButtonLabel
-          alertButtonUri
-          databaseId
-          alertMsgTitle
-          tags {
-            edges {
-              node {
-                name
-              }
+    alerts {
+      nodes {
+        id
+        status
+        date
+        alertType
+        alertMsgTitle
+        alertMessage
+        alertButtonLabel
+        alertButtonUri
+        buttonLabel
+        buttonUrl
+        popupTitle
+        popupContent
+        popupVisibilityPage
+        popupImage {
+          altText
+          id
+          sourceUrl
+        }
+        tags {
+          edges {
+            node {
+              name
             }
           }
         }

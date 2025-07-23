@@ -13,7 +13,7 @@
   - Create unit tests for cookie functions
   - _Requirements: 2.3, 2.4, 3.5, 3.6, 4.3_
 
-- [ ] 3. Update GraphQL query for alerts
+- [x] 3. Update GraphQL query for alerts
 
   - Modify the existing query to include all required fields for both alert types
   - Ensure the query handles the new alert structure
