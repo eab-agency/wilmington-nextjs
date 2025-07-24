@@ -5,16 +5,16 @@
   width: 100vw;
   height: 100vh;
   background: rgb(0 0 0 / 70%);
-  z-index: 1000;
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  overflow-y: auto;
 }
 
 .modalContent {
   background: none;
-
-  /* border-radius: 12px; */
   position: relative;
   max-width: 900px;
   width: 90vw;
@@ -24,7 +24,7 @@
 
   @media (max-width: 768px) {
     flex-direction: column;
-    max-height: 90vh;
+    max-height: 80vh;
   }
 }
 
@@ -60,16 +60,16 @@
 }
 
 .heading {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 2vw + 1rem, 2rem);
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
   line-height: 1.1;
   color: #fff;
 }
 
 .subheading {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
+  font-size: 1rem;
+  margin-bottom: 2em;
   font-weight: 400;
 }
 
@@ -93,23 +93,6 @@
   position: relative;
   padding: clamp(0.65em, 1vw, 0.8em) 1rem;
   padding-right: 3em;
-
-  /* background: linear-gradient(90deg, #d6e94a 0%, #7cc51c 100%);
-  color: #222;
-  border: none;
-  border-radius: 4px;
-  padding: 0.75rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
-  cursor: pointer;
-  transition: background 0.2s;
-  margin-top: 0.5rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: fit-content;
-  text-decoration: none; */
 }
 
 .readMoreButton::before {
@@ -173,4 +156,5 @@
   /* border-radius: 0 12px 12px 0; */
   object-fit: cover;
   height: 100%;
+  width: 100%;
 }
