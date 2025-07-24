@@ -4,10 +4,10 @@ import { useMemo } from 'react'
 
 // Define env vars.
 export const wpApiUrlBase =
-  process.env.WORDPRESS_URL?.replace(/\/?$/, '/') || '/'
+  process.env.NEXT_PUBLIC_WORDPRESS_URL?.replace(/\/?$/, '/') || '/'
 export const wpPreviewSecret = process.env.WORDPRESS_PREVIEW_SECRET
 export const graphQlEndpoint =
-  process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT || 'graphql'
+  process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT || 'index.php?graphql' // Updated to match new WPGraphQL endpoint
 const wpAppUser = process.env.WORDPRESS_APPLICATION_USERNAME
 const wpAppPass = process.env.WORDPRESS_APPLICATION_PASSWORD
 
@@ -26,16 +26,49 @@ let wpApolloClient
  * @return {object}       Apollo client instance.
  */
 export function createWpApolloClient(auth = false) {
+  // console.log(
+  //   `Connecting to GraphQL endpoint: ${wpApiUrlBase}${graphQlEndpoint}`
+  // )
+
   return new ApolloClient({
     ssrMode: false,
     link: new HttpLink({
       uri: `${wpApiUrlBase}${graphQlEndpoint}`,
       credentials: '',
       headers: {
-        authorization: auth ? `Basic ${wpAuthorization}` : ''
+        authorization: auth ? `Basic ${wpAuthorization}` : '',
+        'Content-Type': 'application/json' // Ensure proper Content-Type header is set
+      },
+      // Add fetch options with longer timeout
+      fetchOptions: {
+        timeout: 30000 // 30 seconds timeout
       }
     }),
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    defaultOptions: {
+      watchQuery: {
+        errorPolicy: 'all', // Handle both data and errors
+        fetchPolicy: 'network-only' // Don't use cache for queries
+      },
+      query: {
+        errorPolicy: 'all', // Handle both data and errors
+        fetchPolicy: 'network-only' // Don't use cache for queries
+      },
+      mutate: {
+        errorPolicy: 'all' // Handle both data and errors
+      }
+    },
+    // Custom error handling for updated WPGraphQL error structure
+    onError: (error) => {
+      // Access debug information from extensions key instead of the previous location
+      const debugInfo = error.graphQLErrors?.[0]?.extensions?.debug || null
+      console.error(
+        'GraphQL Error:',
+        error.message,
+        debugInfo ? { debug: debugInfo } : '',
+        error.networkError ? { networkError: error.networkError } : ''
+      )
+    }
   })
 }
 

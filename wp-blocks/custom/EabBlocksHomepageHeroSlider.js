@@ -168,7 +168,7 @@ EabBlocksHomepageHeroSlider.fragments = {
               attributes {
                 mediaUrl
                 mediaId
-                heroSlideMediaAlt: mediaAlt
+                mediaAltHeroSlider: mediaAlt
               }
             }
           }
