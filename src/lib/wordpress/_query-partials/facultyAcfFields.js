@@ -15,7 +15,9 @@ const facultyAcfFields = `
         twitter
         youtube
         cv {
-          mediaItemUrl
+          node {
+            mediaItemUrl
+          }
         }
       }
     }
