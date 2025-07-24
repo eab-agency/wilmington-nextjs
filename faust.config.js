@@ -12,5 +12,6 @@ export default setConfig({
   plugins: [new RelayStylePaginationPlugin()],
   experimentalToolbar: true,
   possibleTypes,
-  useGETForQueries: false
+  useGETForQueries: false,
+  graphqlEndpoint: '/graphql' // Try the default endpoint path
 })

@@ -43,7 +43,7 @@ export default function SingleProgram(props) {
   const programPageState = {
     departments: departments?.nodes,
     currentProgramId,
-    studentOrganizations: programOrgRelationship?.programorg
+    studentOrganizations: programOrgRelationship?.programOrg.node
   }
 
   const blockGroupContainsPageHero = (children) => {
@@ -116,11 +116,14 @@ SingleProgram.variables = ({ databaseId }, ctx) => {
   }
 }
 
+// ${StudentOrgFragment}
+
 SingleProgram.query = gql`
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
   ${RelatedProgramsFragment}
   ${StudentOrgFragment}
+
   query GetProgramData($databaseId: ID!, $imageSize: MediaItemSizeEnum = LARGE, $asPreview: Boolean = false) {
     program(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       ... on NodeWithTitle {

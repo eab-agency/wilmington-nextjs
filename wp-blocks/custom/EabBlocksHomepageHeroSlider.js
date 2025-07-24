@@ -82,7 +82,11 @@ const EabBlocksHomepageHeroSlider = (props) => {
     slidesArea?.innerBlocks
       ?.filter((block) => block.name === 'eab-blocks/hero-slide')
       ?.map((slide) => {
-        const { mediaUrl, mediaId, mediaAlt } = slide.attributes || {}
+        const {
+          mediaUrl,
+          mediaId,
+          heroSlideMediaAlt: mediaAlt
+        } = slide.attributes || {}
         if (!mediaUrl || !mediaId) return null
 
         return {
@@ -164,7 +168,7 @@ EabBlocksHomepageHeroSlider.fragments = {
               attributes {
                 mediaUrl
                 mediaId
-                mediaAlt
+                mediaAltHeroSlider: mediaAlt
               }
             }
           }
