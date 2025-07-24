@@ -110,7 +110,7 @@ const fetchRedirects = async () => {
     return Promise.resolve([])
   }
 
-  console.warn(`WordPress Credentials: ${getCredentialInfo()}`)
+  // console.warn(`WordPress Credentials: ${getCredentialInfo()}`)
 
   // Test the API connection first
   const apiAvailable = await testApiConnection()
