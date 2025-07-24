@@ -29,10 +29,6 @@ const HomepageModal: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [isDismissed, setIsDismissed] = useState(false)
 
-  // Get the current page path for page-specific visibility
-  // Extract the slug from the path (last segment after /)
-  const currentPath = router.asPath.split('/').filter(Boolean).pop() || ''
-
   // Check if we have an alert and it's a popup-modal type
   const modalData =
     popupModalAlert && popupModalAlert.alertType === 'popup-modal'
@@ -79,13 +75,32 @@ const HomepageModal: React.FC = () => {
 
   // Control modal visibility with animation
   useEffect(() => {
+    // Normalize the popupVisibilityPage value - handles 'homepage' special case
+    const normalizedVisibilityPage =
+      modalData?.popupVisibilityPage === 'homepage'
+        ? '/'
+        : modalData?.popupVisibilityPage
+
+    // Normalize the current path for comparison - removing query params and hash fragments
+    const normalizedCurrentPath = router.asPath.split('?')[0].split('#')[0]
+
+    // Handle trailing slashes for consistent comparison
+    const isHomepage =
+      normalizedCurrentPath === '/' || normalizedCurrentPath === ''
+
+    // Check if current path matches the visibility page (accounting for homepage special case)
+    const pathMatches = normalizedVisibilityPage
+      ? (normalizedVisibilityPage === '/' && isHomepage) || // Special homepage check
+        normalizedCurrentPath === normalizedVisibilityPage || // Exact match
+        normalizedCurrentPath.replace(/\/$/, '') ===
+          normalizedVisibilityPage.replace(/\/$/, '') // Without trailing slashes
+      : false
+
     const shouldShowModalBasedOnAllFactors =
       modalData &&
       showAlert &&
       !isDismissed &&
-      (!modalData.popupVisibilityPage ||
-        modalData.popupVisibilityPage === currentPath ||
-        modalData.popupVisibilityPage === router.asPath)
+      (!normalizedVisibilityPage || pathMatches)
 
     if (shouldShowModalBasedOnAllFactors) {
       // Small delay for better UX
@@ -97,7 +112,7 @@ const HomepageModal: React.FC = () => {
       setIsVisible(false)
     }
     return () => {}
-  }, [modalData, showAlert, currentPath, router.asPath, isDismissed])
+  }, [modalData, showAlert, router.asPath, isDismissed])
 
   // If no modal data or it shouldn't be shown, don't render anything
   if (!isVisible || !modalData) return null

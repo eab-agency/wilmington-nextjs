@@ -14,13 +14,13 @@ import { getCookie, setCookie } from '../cookieUtils'
  * Interface for custom site options from WordPress
  */
 interface CustomOptions {
-  addresscountry: string
-  addresslocality: string
-  addressregion: string
-  postalcode: string
-  streetaddress: string
+  addressCountry: string
+  addressLocality: string
+  addressRegion: string
+  postalCode: string
+  streetAddress: string
   telephone: string
-  tollfreenumber: string
+  tollfreeNumber: string
 }
 
 /**
