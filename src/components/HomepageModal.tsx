@@ -79,18 +79,22 @@ const HomepageModal: React.FC = () => {
 
   // Control modal visibility with animation
   useEffect(() => {
-    // Check if the modal should show on homepage and we're on the homepage
+    // Check if the current path is the homepage
     const isHomePage = router.asPath === '/' || router.asPath === ''
-    const isHomepageModal = modalData?.popupVisibilityPage === 'homepage'
+
+    // Normalize the popupVisibilityPage value - handles 'homepage' special case
+    const normalizedVisibilityPage =
+      modalData?.popupVisibilityPage === 'homepage'
+        ? '/'
+        : modalData?.popupVisibilityPage
 
     const shouldShowModalBasedOnAllFactors =
       modalData &&
       showAlert &&
       !isDismissed &&
-      (!modalData.popupVisibilityPage ||
-        modalData.popupVisibilityPage === currentPath ||
-        modalData.popupVisibilityPage === router.asPath ||
-        (isHomepageModal && isHomePage))
+      (!normalizedVisibilityPage ||
+        normalizedVisibilityPage === currentPath ||
+        normalizedVisibilityPage === router.asPath)
 
     if (shouldShowModalBasedOnAllFactors) {
       // Small delay for better UX
