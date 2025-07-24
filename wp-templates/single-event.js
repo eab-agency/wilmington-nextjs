@@ -23,10 +23,10 @@ import blockEntries from '../wp-blocks'
  */
 const formatDateWithoutTime = (dateString) => {
   if (!dateString) return ''
-  
+
   // Check if the date string includes a time component (contains 'T' or ':')
   const hasTimeComponent = dateString.includes('T') || dateString.includes(':')
-  
+
   if (hasTimeComponent) {
     // Create a Date object and format it to display only month/day/year
     const date = new Date(dateString)
@@ -36,7 +36,7 @@ const formatDateWithoutTime = (dateString) => {
       year: 'numeric'
     })
   }
-  
+
   // If it's already just a date without time, return as is
   return dateString
 }
