@@ -30,6 +30,7 @@ const formatDateWithoutTime = (dateString) => {
   if (hasTimeComponent) {
     // Create a Date object and format it to display only month/day/year
     const date = new Date(dateString)
+    if (isNaN(date.getTime())) return dateString
     return date.toLocaleDateString('en-US', {
       month: 'long',
       day: 'numeric',
