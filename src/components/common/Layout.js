@@ -10,6 +10,17 @@ import { cantarell, icomoon, museo, robotoSlab } from '@/fonts'
 /**
  * Render the Layout component.
  *
+ * This component provides the main layout structure for all pages, including:
+ * - Site header and navigation
+ * - Alert bar for site-wide notifications
+ * - Main content area
+ * - Site footer
+ * - Homepage modal for popup notifications
+ *
+ * The alerts system is integrated at the layout level to ensure alerts
+ * appear consistently across all pages. The AlertBar appears within the
+ * main content area, while the HomepageModal renders as an overlay.
+ *
  * @param  {object}  props          The component attributes as props.
  * @param  {any}     props.children Child component(s) to render.
  * @param  {object}  props.seo      Yoast SEO data from WordPress.
