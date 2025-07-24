@@ -15,7 +15,15 @@ import React, {
 import { getCookie, setCookie } from '../cookieUtils'
 
 /**
- * Context for managing alerts
+ * React context for managing alerts throughout the application.
+ *
+ * This context provides access to alert data, dismissal functionality,
+ * and dismissal state checking. It should be used via the useAlerts hook.
+ *
+ * @example
+ * ```tsx
+ * const { alerts, dismissAlert, isDismissed } = useAlerts()
+ * ```
  */
 export const AlertsContext = createContext<AlertsContextType>({
   alerts: [],
@@ -79,15 +87,70 @@ const alertsQuery = gql`
 `
 
 /**
- * Hook to access the alerts context
- * @returns The alerts context
+ * Custom hook to access the alerts context.
+ *
+ * Provides access to alert data, dismissal functionality, and dismissal state.
+ * Must be used within an AlertsProvider component tree.
+ *
+ * @returns {AlertsContextType} The alerts context containing:
+ *   - alerts: Array of current alerts
+ *   - dismissAlert: Function to dismiss an alert by ID
+ *   - isDismissed: Function to check if an alert is dismissed
+ *
+ * @example
+ * ```tsx
+ * function MyComponent() {
+ *   const { alerts, dismissAlert, isDismissed } = useAlerts()
+ *
+ *   const handleDismiss = (alertId: number) => {
+ *     dismissAlert(alertId)
+ *   }
+ *
+ *   return (
+ *     <div>
+ *       {alerts.map(alert => (
+ *         <div key={alert.id}>
+ *           {alert.alertType === 'alert-bar' && <AlertBar data={alert} />}
+ *         </div>
+ *       ))}
+ *     </div>
+ *   )
+ * }
+ * ```
  */
 export const useAlerts = () => useContext(AlertsContext)
 
 /**
- * Provider component for alerts
- * @param props Component props
- * @returns Provider component
+ * Provider component that manages alerts state and provides alert functionality.
+ *
+ * This component fetches alerts from WordPress via GraphQL, manages dismissal state
+ * through cookies, and provides alert data to child components through React Context.
+ *
+ * Features:
+ * - Fetches alerts from WordPress every 5 minutes
+ * - Filters to show only published alerts
+ * - Shows only the most recent alert of each type (alert-bar, popup-modal)
+ * - Persists dismissal state in cookies for 30 days
+ * - Provides type-safe access to alert data
+ *
+ * @param props - Component props
+ * @param props.children - Child components that will have access to the alerts context
+ * @returns Provider component that wraps children with alerts context
+ *
+ * @example
+ * ```tsx
+ * function App() {
+ *   return (
+ *     <AlertsProvider>
+ *       <Layout>
+ *         <AlertBar />
+ *         <HomePage />
+ *         <HomepageModal />
+ *       </Layout>
+ *     </AlertsProvider>
+ *   )
+ * }
+ * ```
  */
 export const AlertsProvider: React.FC<AlertsProviderProps> = ({ children }) => {
   const [dismissedAlerts, setDismissedAlerts] = useState<
@@ -128,8 +191,22 @@ export const AlertsProvider: React.FC<AlertsProviderProps> = ({ children }) => {
   }, [])
 
   /**
-   * Dismiss an alert by ID
-   * @param id The ID of the alert to dismiss
+   * Dismisses an alert by ID and stores the dismissal state in a cookie.
+   *
+   * When an alert is dismissed, it will not be shown again for 30 days.
+   * The dismissal state is stored in a cookie with the format:
+   * `dismissedAlert_{alertId}=true`
+   *
+   * @param id - The unique ID of the alert to dismiss
+   *
+   * @example
+   * ```tsx
+   * const { dismissAlert } = useAlerts()
+   *
+   * const handleCloseAlert = () => {
+   *   dismissAlert(123) // Dismiss alert with ID 123
+   * }
+   * ```
    */
   const dismissAlert = (id: number) => {
     // Update state
@@ -146,16 +223,46 @@ export const AlertsProvider: React.FC<AlertsProviderProps> = ({ children }) => {
   }
 
   /**
-   * Check if an alert is dismissed
-   * @param id The ID of the alert to check
-   * @returns True if the alert is dismissed, false otherwise
+   * Checks if an alert has been dismissed by the user.
+   *
+   * This function checks the internal dismissal state which is loaded
+   * from cookies on component mount. An alert is considered dismissed
+   * if the user has previously clicked the dismiss button.
+   *
+   * @param id - The unique ID of the alert to check
+   * @returns True if the alert has been dismissed, false otherwise
+   *
+   * @example
+   * ```tsx
+   * const { isDismissed } = useAlerts()
+   *
+   * const shouldShowAlert = !isDismissed(alertId)
+   * ```
    */
   const isDismissed = (id: number): boolean => {
     return dismissedAlerts[id] || false
   }
 
   /**
-   * Filter and process alerts from the GraphQL response
+   * Processes and filters alerts from the GraphQL response.
+   *
+   * This function:
+   * 1. Filters alerts to only include those with 'publish' status
+   * 2. Sorts alerts by date (newest first)
+   * 3. Groups alerts by type (alert-bar, popup-modal)
+   * 4. Returns only the most recent alert of each type
+   *
+   * This ensures that only one alert bar and one popup modal are shown
+   * at any given time, preventing UI clutter.
+   *
+   * @returns Array of processed alerts (max 2: one alert-bar, one popup-modal)
+   *
+   * @example
+   * ```tsx
+   * // Internal usage within AlertsProvider
+   * const alerts = processAlerts()
+   * // alerts might contain: [{ alertType: 'alert-bar', ... }, { alertType: 'popup-modal', ... }]
+   * ```
    */
   const processAlerts = (): Alert[] => {
     if (!data?.alerts?.nodes) return []

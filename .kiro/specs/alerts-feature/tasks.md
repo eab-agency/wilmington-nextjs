@@ -62,19 +62,19 @@
   - Verify that different alerts are tracked separately
   - _Requirements: 2.3, 2.4, 3.5, 3.6_
 
-- [ ] 10. Test page-specific modal functionality
+- [x] 10. Test page-specific modal functionality
 
   - Verify that global modals appear on all pages
   - Verify that page-specific modals only appear on the specified pages
   - _Requirements: 3.2, 3.3_
 
-- [ ] 11. Implement alert status filtering
+- [x] 11. Implement alert status filtering
 
   - Ensure only alerts with "publish" status are displayed
   - Add filtering logic in the AlertsContext
   - _Requirements: 1.2, 1.3_
 
-- [ ] 12. Add documentation
+- [x] 12. Add documentation
   - Document the alerts feature in the codebase
   - Add JSDoc comments to functions and components
   - Update any existing documentation to reflect the new alerts functionality
