@@ -51,3 +51,4 @@ public/*.xml
 # local DEVAO
 .github
 /AI-CONTEXT
+.env.local.bak
