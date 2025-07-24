@@ -42,15 +42,17 @@ const departmentsAndStudentOrgs = `
       }
     }
   programOrgRelationship {
-      programorg {
-        ... on StudentOrg {
-          id
-          title
-          link
-          orgFields {
-            quickFacts
+      programOrg {
+        nodes {
+            ... on StudentOrg {
+              id
+              title
+              link
+              orgFields {
+                quickFacts
+              }
+            }
           }
-        }
       }
     }
 `
