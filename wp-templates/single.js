@@ -18,8 +18,12 @@ export default function Component(props) {
   if (props.loading) {
     return <Preloader />
   }
-  const { title, editorBlocks, seo, featuredImage } =
-    props.data.post || props.data.studentOrg
+  const postOrOrg = props.data.post || props.data.studentOrg
+  if (!postOrOrg) {
+    // Optionally, you can render a 404 or null here
+    return null
+  }
+  const { title, editorBlocks, seo, featuredImage } = postOrOrg
   const blocks = flatListToHierarchical(editorBlocks)
   const { description: siteDescription } = props?.data?.generalSettings ?? {}
 
