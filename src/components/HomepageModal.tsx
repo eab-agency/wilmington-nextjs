@@ -39,7 +39,15 @@ const HomepageModal: React.FC = () => {
       ? (popupModalAlert as PopupModalData)
       : null
 
-  // Set a cookie to track modal dismissal
+  /**
+   * Sets a cookie to track modal dismissal.
+   *
+   * Creates a cookie with 30-day expiration to remember that the user
+   * has dismissed this specific modal. The cookie format is:
+   * `dismissedModal_{modalId}=true`
+   *
+   * @param modalId - The unique ID of the modal to mark as dismissed
+   */
   const setDismissedCookie = (modalId: any) => {
     // Create a date 30 days in the future
     const expiryDate = new Date()
@@ -95,8 +103,20 @@ const HomepageModal: React.FC = () => {
   if (!isVisible || !modalData) return null
 
   /**
-   * Handle closing the modal
-   * Dismisses the alert and stores the state in a cookie
+   * Handles closing the modal popup.
+   *
+   * This function:
+   * 1. Sets a dismissal cookie for the current modal
+   * 2. Updates the local dismissed state
+   * 3. Hides the modal with animation
+   * 4. Calls the provider's clear method as backup
+   *
+   * The modal will not appear again for 30 days after dismissal.
+   *
+   * @example
+   * ```tsx
+   * <button onClick={handleClose}>Close Modal</button>
+   * ```
    */
   const handleClose = () => {
     if (modalData?.id) {

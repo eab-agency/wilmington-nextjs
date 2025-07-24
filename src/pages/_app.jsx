@@ -28,6 +28,24 @@ function AuthDebug() {
   return null
 }
 
+/**
+ * Main application component for the Wilmington College website
+ *
+ * This component sets up the application-wide providers and configuration:
+ * - FaustProvider: Headless WordPress integration
+ * - CustomSettingsProvider: Manages alerts and site settings
+ * - MenuProvider: Manages navigation menus
+ * - WordPressProvider: WordPress-specific context
+ * - WordPressBlocksProvider: Block rendering system
+ *
+ * The alerts system is integrated through the CustomSettingsProvider,
+ * which makes alert data available to all child components.
+ *
+ * @param {Object} props - Component props
+ * @param {React.Component} props.Component - The page component to render
+ * @param {Object} props.pageProps - Props for the page component
+ * @returns {JSX.Element} The main application component
+ */
 export default function WilmingtonApp({ Component, pageProps }) {
   logToConsole()
 
