@@ -16,6 +16,31 @@ import Preloader from '@/components/atoms/Preloader'
 import { MdForward } from 'react-icons/md'
 import blockEntries from '../wp-blocks'
 
+/**
+ * Format date string to display only month/day/year without time
+ * @param {string} dateString - The date string to format
+ * @returns {string} Formatted date string
+ */
+const formatDateWithoutTime = (dateString) => {
+  if (!dateString) return ''
+  
+  // Check if the date string includes a time component (contains 'T' or ':')
+  const hasTimeComponent = dateString.includes('T') || dateString.includes(':')
+  
+  if (hasTimeComponent) {
+    // Create a Date object and format it to display only month/day/year
+    const date = new Date(dateString)
+    return date.toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    })
+  }
+  
+  // If it's already just a date without time, return as is
+  return dateString
+}
+
 export default function SingleEvent(props) {
   if (props.loading) {
     return <Preloader />
@@ -87,13 +112,13 @@ export default function SingleEvent(props) {
                 <div className="eventDateTime">
                   <div className="eventDate">
                     <EventIcon icon="calendar" />
-                    {event.startDate}{' '}
+                    {formatDateWithoutTime(event.startDate)}{' '}
                     {event.endDate && (
                       <>
                         <span className="separatorUpTo">
                           <MdForward />
                         </span>{' '}
-                        {event.endDate}
+                        {formatDateWithoutTime(event.endDate)}
                       </>
                     )}
                   </div>
