@@ -29,17 +29,21 @@ const HomepageModal: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [isDismissed, setIsDismissed] = useState(false)
 
-  // Get the current page path for page-specific visibility
-  // Extract the slug from the path (last segment after /)
-  const currentPath = router.asPath.split('/').filter(Boolean).pop() || ''
-
   // Check if we have an alert and it's a popup-modal type
   const modalData =
     popupModalAlert && popupModalAlert.alertType === 'popup-modal'
       ? (popupModalAlert as PopupModalData)
       : null
 
-  // Set a cookie to track modal dismissal
+  /**
+   * Sets a cookie to track modal dismissal.
+   *
+   * Creates a cookie with 30-day expiration to remember that the user
+   * has dismissed this specific modal. The cookie format is:
+   * `dismissedModal_{modalId}=true`
+   *
+   * @param modalId - The unique ID of the modal to mark as dismissed
+   */
   const setDismissedCookie = (modalId: any) => {
     // Create a date 30 days in the future
     const expiryDate = new Date()
@@ -71,13 +75,32 @@ const HomepageModal: React.FC = () => {
 
   // Control modal visibility with animation
   useEffect(() => {
+    // Normalize the popupVisibilityPage value - handles 'homepage' special case
+    const normalizedVisibilityPage =
+      modalData?.popupVisibilityPage === 'homepage'
+        ? '/'
+        : modalData?.popupVisibilityPage
+
+    // Normalize the current path for comparison - removing query params and hash fragments
+    const normalizedCurrentPath = router.asPath.split('?')[0].split('#')[0]
+
+    // Handle trailing slashes for consistent comparison
+    const isHomepage =
+      normalizedCurrentPath === '/' || normalizedCurrentPath === ''
+
+    // Check if current path matches the visibility page (accounting for homepage special case)
+    const pathMatches = normalizedVisibilityPage
+      ? (normalizedVisibilityPage === '/' && isHomepage) || // Special homepage check
+        normalizedCurrentPath === normalizedVisibilityPage || // Exact match
+        normalizedCurrentPath.replace(/\/$/, '') ===
+          normalizedVisibilityPage.replace(/\/$/, '') // Without trailing slashes
+      : false
+
     const shouldShowModalBasedOnAllFactors =
       modalData &&
       showAlert &&
       !isDismissed &&
-      (!modalData.popupVisibilityPage ||
-        modalData.popupVisibilityPage === currentPath ||
-        modalData.popupVisibilityPage === router.asPath)
+      (!normalizedVisibilityPage || pathMatches)
 
     if (shouldShowModalBasedOnAllFactors) {
       // Small delay for better UX
@@ -89,14 +112,26 @@ const HomepageModal: React.FC = () => {
       setIsVisible(false)
     }
     return () => {}
-  }, [modalData, showAlert, currentPath, router.asPath, isDismissed])
+  }, [modalData, showAlert, router.asPath, isDismissed])
 
   // If no modal data or it shouldn't be shown, don't render anything
   if (!isVisible || !modalData) return null
 
   /**
-   * Handle closing the modal
-   * Dismisses the alert and stores the state in a cookie
+   * Handles closing the modal popup.
+   *
+   * This function:
+   * 1. Sets a dismissal cookie for the current modal
+   * 2. Updates the local dismissed state
+   * 3. Hides the modal with animation
+   * 4. Calls the provider's clear method as backup
+   *
+   * The modal will not appear again for 30 days after dismissal.
+   *
+   * @example
+   * ```tsx
+   * <button onClick={handleClose}>Close Modal</button>
+   * ```
    */
   const handleClose = () => {
     if (modalData?.id) {

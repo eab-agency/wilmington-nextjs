@@ -10,28 +10,48 @@ import React, {
 } from 'react'
 import { getCookie, setCookie } from '../cookieUtils'
 
+/**
+ * Interface for custom site options from WordPress
+ */
 interface CustomOptions {
-  addresscountry: string
-  addresslocality: string
-  addressregion: string
-  postalcode: string
-  streetaddress: string
+  addressCountry: string
+  addressLocality: string
+  addressRegion: string
+  postalCode: string
+  streetAddress: string
   telephone: string
-  tollfreenumber: string
+  tollfreeNumber: string
 }
 
+/**
+ * Interface for custom settings data structure
+ */
 interface CustomSettings {
   customOptions?: CustomOptions
 }
 
+/**
+ * Interface for the CustomSettingsContext props
+ *
+ * This context provides access to alerts and custom site settings from WordPress.
+ * It manages alert state, dismissal functionality, and site configuration options.
+ */
 interface CustomSettingsContextProps {
+  /** The most recent alert of any type */
   alert: Alert | null
+  /** The most recent alert bar alert */
   alertBarAlert: Alert | null
+  /** The most recent popup modal alert */
   popupModalAlert: Alert | null
+  /** Legacy closed state (deprecated) */
   closed: boolean
+  /** Whether any alert should be shown */
   showAlert: boolean
+  /** Function to dismiss the current alert bar */
   clearAlertBar: () => void
+  /** Function to dismiss a popup modal by ID */
   clearPopupModal: (id: string) => void
+  /** Custom site options from WordPress */
   customOptions: CustomOptions | null
 }
 
@@ -45,6 +65,9 @@ const DISMISSED_ALERT_COOKIE_PREFIX = 'dismissedAlert_'
 const DISMISSED_MODAL_COOKIE_PREFIX = 'dismissedModal_'
 const COOKIE_EXPIRATION_DAYS = 30
 
+/**
+ * Props for the CustomSettingsProvider component
+ */
 interface CustomSettingsProviderProps {
   children: ReactNode
   customSettings: {
@@ -53,10 +76,68 @@ interface CustomSettingsProviderProps {
   alert?: Alert
 }
 
+/**
+ * Custom hook to access the CustomSettingsContext
+ *
+ * Provides access to alerts and custom site settings. This hook should be used
+ * within components that need to display alerts or access site configuration.
+ *
+ * @returns {CustomSettingsContextProps} The context containing alerts and settings
+ *
+ * @example
+ * ```tsx
+ * function MyComponent() {
+ *   const { alertBarAlert, showAlert, clearAlertBar } = useCustomData()
+ *
+ *   if (!alertBarAlert || !showAlert) return null
+ *
+ *   return (
+ *     <div>
+ *       <p>{alertBarAlert.alertMsgTitle}</p>
+ *       <button onClick={clearAlertBar}>Dismiss</button>
+ *     </div>
+ *   )
+ * }
+ * ```
+ */
 export function useCustomData() {
   return useContext(CustomSettingsContext)
 }
 
+/**
+ * Provider component that manages custom settings and alerts from WordPress
+ *
+ * This component fetches and manages:
+ * - Site-wide alerts (alert bars and popup modals)
+ * - Custom site settings and configuration options
+ * - Alert dismissal state with cookie persistence
+ *
+ * Features:
+ * - Fetches data from WordPress via GraphQL every 5 minutes
+ * - Filters alerts to show only published ones
+ * - Shows only the most recent alert of each type
+ * - Persists alert dismissal state in cookies for 30 days
+ * - Provides type-safe access to alerts and settings
+ *
+ * @param props - Component props
+ * @param props.children - Child components that will have access to the context
+ * @returns Provider component that wraps children with custom settings context
+ *
+ * @example
+ * ```tsx
+ * function App() {
+ *   return (
+ *     <CustomSettingsProvider>
+ *       <Layout>
+ *         <AlertBar />
+ *         <HomePage />
+ *         <HomepageModal />
+ *       </Layout>
+ *     </CustomSettingsProvider>
+ *   )
+ * }
+ * ```
+ */
 export const CustomSettingsProvider = ({
   children
 }: CustomSettingsProviderProps) => {
@@ -77,7 +158,16 @@ export const CustomSettingsProvider = ({
     Record<string, boolean>
   >({})
 
-  // Handles clearing an alert bar and storing the dismissal in a cookie
+  /**
+   * Handles clearing an alert bar and storing the dismissal in a cookie
+   *
+   * When called, this function:
+   * 1. Updates the dismissed alerts state
+   * 2. Sets a cookie to remember the dismissal for 30 days
+   * 3. Removes the alert bar from the UI
+   *
+   * The dismissal is stored with the format: `dismissedAlert_{alertId}=true`
+   */
   const handleClearAlertBar = () => {
     if (alertBarState?.id) {
       // Store dismissal in state
@@ -98,7 +188,17 @@ export const CustomSettingsProvider = ({
     }
   }
 
-  // Handles clearing a popup modal and storing the dismissal in a cookie
+  /**
+   * Handles clearing a popup modal and storing the dismissal in a cookie
+   *
+   * When called, this function:
+   * 1. Updates the dismissed modals state for the specified ID
+   * 2. Sets a cookie to remember the dismissal for 30 days
+   *
+   * The dismissal is stored with the format: `dismissedModal_{modalId}=true`
+   *
+   * @param id - The unique ID of the modal to dismiss
+   */
   const handleClearPopupModal = useCallback((id: string) => {
     setDismissedModals((prev) => ({
       ...prev,
@@ -291,6 +391,15 @@ export const CustomSettingsProvider = ({
 
 export default CustomSettingsContext
 
+/**
+ * GraphQL query to fetch alerts and custom settings from WordPress
+ *
+ * This query retrieves:
+ * - All alerts with their complete data structure
+ * - Custom site settings and configuration options
+ *
+ * The query is executed every 5 minutes to check for new alerts and settings.
+ */
 const alertAndSettingsQuery = gql`
   query GetLatestAlertAndCustomSettings {
     customSettings {
