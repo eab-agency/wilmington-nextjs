@@ -1,16 +1,5 @@
 /* eslint-disable no-console */
 
-// Remove the Admin Toolbar warning from Faust.js
-if (typeof window !== 'undefined') {
-  const originalWarn = console.warn
-  console.warn = (...args) => {
-    if (args[0]?.includes('[Faust.js]') && args[0]?.includes('Admin Toolbar')) {
-      return
-    }
-    originalWarn.apply(console, args)
-  }
-}
-
 // ...rest of your _app.js code
 import ClarityScript from '@/components/common/ClarityScript'
 import WordPressProvider from '@/components/common/WordPressProvider'
