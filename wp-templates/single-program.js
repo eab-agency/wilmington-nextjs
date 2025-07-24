@@ -43,7 +43,7 @@ export default function SingleProgram(props) {
   const programPageState = {
     departments: departments?.nodes,
     currentProgramId,
-    studentOrganizations: programOrgRelationship?.programOrg.node
+    studentOrganizations: programOrgRelationship?.programOrg?.node
   }
 
   const blockGroupContainsPageHero = (children) => {
