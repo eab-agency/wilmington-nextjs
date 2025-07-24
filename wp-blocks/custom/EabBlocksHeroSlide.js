@@ -9,7 +9,7 @@ EabBlocksHeroSlide.fragments = {
       attributes {
         mediaId
         media
-        mediaAlt
+        slideMediaAlt: mediaAlt
         mediaUrl
       }
     }
