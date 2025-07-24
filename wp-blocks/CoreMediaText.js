@@ -47,7 +47,7 @@ export default function CoreMediaText(props) {
         className={attributes?.className}
         focalPoint={newFocalPoint}
         id={attributes?.anchor}
-        image={{ url: attributes?.mediaUrl, alt: attributes?.mediaAlt }}
+        image={{ url: attributes?.mediaUrl, alt: attributes?.mediaAltText }}
         imageFill={attributes?.imageFill}
         mediaLeft={attributes?.mediaPosition === 'left'}
         mediaWidth={attributes?.mediaWidth}
@@ -70,7 +70,7 @@ CoreMediaText.fragments = {
         focalPoint
         imageFill
         isStackedOnMobile
-        mediaAlt
+        mediaAltText: mediaAlt
         mediaPosition
         mediaUrl
         mediaWidth
