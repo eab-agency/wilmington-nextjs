@@ -37,12 +37,14 @@ export default function HomepageModal() {
         </button>
         {/* Left column: text */}
         <div className={styles.leftColumn}>
-          <h1 className={styles.heading}>Record $23 million gift</h1>
+          <h1 className={styles.heading}>
+            Late legendary coach funds transformational initiative
+          </h1>
           <p className={styles.subheading}>
-            Late legendary coach funds transformational initiative.
+            Wilmington College has received the largest gift in its 155-year history—a $23 million designated contribution from longtime head women’s basketball coach and professor of accounting, Jerry Scheve. This transformational gift reflects a lifetime of service, leadership, and belief in the mission and future of the institution.
           </p>
           <a
-            href="https://www.wilmington.edu/jerry-scheves-cornerstone-gift/"
+            href="https://www.wilmington.edu/scheves-cornerstone-gift"
             target="_blank"
             className={styles.readMoreButton}
           >
