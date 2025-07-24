@@ -1,7 +1,7 @@
 # Incident Report: WPGraphQL Plugin Update Breaking Changes
 
 **Date:** July 24, 2025
-**Reporter:** Bob Smith
+**Reporter:** Elias Rufe via partner
 **Severity:** High
 **Status:** Resolved
 
