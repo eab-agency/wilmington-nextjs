@@ -16,12 +16,12 @@ const Footer = () => {
   const resourceMenu = menus?.resourceMenuItems?.nodes ?? []
 
   const {
-    addresslocality,
-    addressregion,
-    postalcode,
-    streetaddress,
+    addressLocality,
+    addressRegion,
+    postalCode,
+    streetAddress,
     telephone,
-    tollfreenumber
+    tollfreeNumber
   } = customOptions || {}
 
   return (
@@ -36,8 +36,8 @@ const Footer = () => {
           <div className={styles.schoolInfo}>
             <Logo type="dark" />
             <address>
-              {streetaddress}
-              <br /> {addresslocality}, {addressregion} {postalcode}
+              {streetAddress}
+              <br /> {addressLocality}, {addressRegion} {postalCode}
             </address>
             <ul>
               <li>
@@ -46,8 +46,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href={`tel:${tollfreenumber}`} className={styles.phoneLink}>
-                  <span>{tollfreenumber}</span>
+                <a href={`tel:${tollfreeNumber}`} className={styles.phoneLink}>
+                  <span>{tollfreeNumber}</span>
                 </a>
               </li>
             </ul>

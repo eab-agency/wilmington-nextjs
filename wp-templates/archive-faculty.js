@@ -34,7 +34,7 @@ function Hit({ hit }) {
 }
 
 const DEFAULT_SETTINGS = {
-  title: 'Faculty and Staff | Wilmington University',
+  title: 'Wilmington College (Wilmington, Ohio) Liberal Arts College',
   description:
     "Discover Wilmington College's dedicated faculty and staff across academic, administrative, and athletic departments. Find contact information and professional details for our diverse team of educators and professionals."
 }
@@ -51,7 +51,7 @@ export default function Archive() {
     <>
       <SEO
         seo={{
-          title: `${archiveTitle} | ${DEFAULT_SETTINGS.title}`,
+          title: `${archiveTitle} - ${DEFAULT_SETTINGS.title}`,
           description: DEFAULT_SETTINGS.description
         }}
       />

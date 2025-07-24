@@ -51,8 +51,7 @@ export default function Page() {
 
   return (
     <>
-      <p>Welcome!</p>
-      <a href={loginUrl}>Login</a>
+      <h1>404</h1>
     </>
   )
 }

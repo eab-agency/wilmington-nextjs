@@ -2,13 +2,13 @@ const latestAlertAndCustomSettings = `
 query GetLatestAlertAndCustomSettings {
   customSettings {
     customOptions {
-      addresscountry
-      addresslocality
-      addressregion
-      postalcode
-      streetaddress
+      addressCountry
+      addressLocality
+      addressRegion
+      postalCode
+      streetAddress
       telephone
-      tollfreenumber
+      tollfreeNumber
     }
   }
   alerts(first: 1) {

@@ -90,7 +90,9 @@ const FACULTY_QUERY = gql`
             twitter
             youtube
             cv {
-              mediaItemUrl
+              node {
+                mediaItemUrl
+              }
             }
           }
         }

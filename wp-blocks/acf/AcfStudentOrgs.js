@@ -34,13 +34,15 @@ export default AcfStudentOrgs
 export const StudentOrgFragment = gql`
   fragment StudentOrgFragment on Program {
     programOrgRelationship {
-      programorg {
-        ... on StudentOrg {
-          id
-          link
-          title
-          orgFields {
-            quickFacts
+      programOrg {
+        nodes {
+          ... on StudentOrg {
+            id
+            link
+            title
+            orgFields {
+              quickFacts
+            }
           }
         }
       }
