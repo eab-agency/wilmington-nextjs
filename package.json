@@ -14,7 +14,8 @@
     "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && next lint",
     "postbuild": "next-sitemap",
     "prepare": "husky install",
-    "start": "NODE_OPTIONS='-r newrelic' faust start"
+    "start": "NODE_OPTIONS='-r newrelic' faust start",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@apollo/client": "^3.13.8",
@@ -50,7 +51,9 @@
     "next": "^15.3.3",
     "next-auth": "^4.24.5",
     "next-sitemap": "^4.0.7",
+    "patch-package": "^8.0.0",
     "postcss": "^8.5.3",
+    "postinstall-postinstall": "^2.1.0",
     "qs": "^6.11.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
