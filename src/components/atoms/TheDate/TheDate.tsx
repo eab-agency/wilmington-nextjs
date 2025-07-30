@@ -3,6 +3,7 @@ import styles from './theDate.module.scss'
 const formatDate = (dateString: string): string => {
   let formattedDate
   const options: Intl.DateTimeFormatOptions = {
+    timeZone: 'UTC', // Ensuring our formatted date respects the timezone already passed in the date string
     month: 'short',
     day: 'numeric',
     year: 'numeric'
