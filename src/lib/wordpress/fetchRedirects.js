@@ -2,19 +2,6 @@
 const wpAppUser = process.env.WORDPRESS_APPLICATION_USERNAME
 const wpAppPass = process.env.WORDPRESS_APPLICATION_PASSWORD
 
-// Debug: Log the credentials being used (partially masked) - uncomment for debugging
-// console.log(`🔐 Using WordPress credentials:`)
-// console.log(`   Username: ${wpAppUser}`)
-// console.log(
-//   `   Password: ${
-//     wpAppPass
-//       ? wpAppPass.substring(0, 4) +
-//         '***' +
-//         wpAppPass.substring(wpAppPass.length - 4)
-//       : 'NOT SET'
-//   }`
-// )
-
 const auth = Buffer.from(`${wpAppUser}:${wpAppPass}`).toString('base64')
 const url = 'https://wordpress.wilmington.edu/wp-json/redirection/v1/redirect'
 
@@ -45,7 +32,14 @@ const getCredentialInfo = () => {
 const testApiConnection = async () => {
   const testUrl = 'https://wordpress.wilmington.edu/wp-json'
   try {
-    const response = await fetch(testUrl)
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+
+    const response = await fetch(testUrl, {
+      signal: controller.signal
+    })
+
+    clearTimeout(timeoutId)
 
     // 200 (OK) or 401 (Unauthorized) both indicate the API is available
     // 401 is expected for protected endpoints
@@ -56,8 +50,34 @@ const testApiConnection = async () => {
     console.error(`WordPress API test failed with status: ${response.status}`)
     return false
   } catch (error) {
-    console.error('Error testing WordPress API connection:', error.message)
+    if (error.name === 'AbortError') {
+      console.error('WordPress API connection timeout')
+    } else {
+      console.error('Error testing WordPress API connection:', error.message)
+    }
     return false
+  }
+}
+
+// Utility function to safely parse error responses with size limits
+const parseErrorResponse = async (response, maxSize = 1024) => {
+  try {
+    const contentType = response.headers.get('content-type')
+    if (!contentType?.includes('application/json')) {
+      return `HTTP ${response.status}: ${response.statusText}`
+    }
+
+    const text = await response.text()
+    if (text.length > maxSize) {
+      return `HTTP ${response.status}: Response too large (${text.length} chars)`
+    }
+
+    const jsonError = JSON.parse(text)
+    return (
+      jsonError.message || `HTTP ${response.status}: ${response.statusText}`
+    )
+  } catch (e) {
+    return `HTTP ${response.status}: ${response.statusText}`
   }
 }
 
@@ -66,42 +86,37 @@ const testUserAuth = async () => {
   try {
     const userEndpoint =
       'https://wordpress.wilmington.edu/wp-json/wp/v2/users/me'
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+
     const authOptions = {
       method: 'GET',
       headers: {
         Authorization: `Basic ${auth}`,
         'Content-Type': 'application/json',
         'User-Agent': 'Wilmington-NextJS-Site'
-      }
+      },
+      signal: controller.signal
     }
 
     const response = await fetch(userEndpoint, authOptions)
+    clearTimeout(timeoutId)
 
     if (response.ok) {
       const userData = await response.json()
-      console.log(
-        `✅ Authentication successful! User: ${userData.name} (${userData.email})`
-      )
-      console.log(
-        `User roles: ${userData.roles ? userData.roles.join(', ') : 'Unknown'}`
-      )
-
+      // console.log(`✅ Authentication successful! User: ${userData.name}`)
       return true
     } else {
-      console.error(
-        `❌ User authentication failed with status: ${response.status}`
-      )
-      const responseText = await response.text()
-      try {
-        const jsonError = JSON.parse(responseText)
-        console.error('Auth error response:', jsonError)
-      } catch (e) {
-        console.error('Auth error response text:', responseText)
-      }
+      const errorMsg = await parseErrorResponse(response)
+      console.error(`❌ User authentication failed: ${errorMsg}`)
       return false
     }
   } catch (error) {
-    console.error('Error testing user authentication:', error.message)
+    if (error.name === 'AbortError') {
+      console.error('User authentication timeout')
+    } else {
+      console.error('Error testing user authentication:', error.message)
+    }
     return false
   }
 }
@@ -119,38 +134,36 @@ const testRedirectionEndpoint = async () => {
     }
 
     // Now test the redirection endpoint
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+
     const authOptions = {
       method: 'GET',
       headers: {
         Authorization: `Basic ${auth}`,
         'Content-Type': 'application/json',
         'User-Agent': 'Wilmington-NextJS-Site'
-      }
+      },
+      signal: controller.signal
     }
 
     const authResponse = await fetch(`${url}?page=0&per_page=5`, authOptions)
+    clearTimeout(timeoutId)
 
     if (authResponse.ok) {
       // console.log('✅ Redirection endpoint is accessible')
       return true
     } else {
-      console.error(
-        `❌ Redirection endpoint test failed with status: ${authResponse.status}`
-      )
-
-      // Get the response text for more detailed error info
-      const responseText = await authResponse.text()
-      try {
-        const jsonError = JSON.parse(responseText)
-        console.error('Redirection error response:', jsonError)
-      } catch (e) {
-        console.error('Redirection error response text:', responseText)
-      }
-
+      const errorMsg = await parseErrorResponse(authResponse)
+      console.error(`❌ Redirection endpoint test failed: ${errorMsg}`)
       return false
     }
   } catch (error) {
-    console.error('Error testing redirection endpoint:', error.message)
+    if (error.name === 'AbortError') {
+      console.error('Redirection endpoint timeout')
+    } else {
+      console.error('Error testing redirection endpoint:', error.message)
+    }
     return false
   }
 }
@@ -221,22 +234,23 @@ const fetchRedirects = async () => {
     const perPage = 100
     const pageUrl = `${url}?page=${page}&per_page=${perPage}`
 
-    return fetch(pageUrl, options)
-      .then((response) => {
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 15000) // 15 second timeout for data fetching
+
+    const fetchOptions = {
+      ...options,
+      signal: controller.signal
+    }
+
+    return fetch(pageUrl, fetchOptions)
+      .then(async (response) => {
+        clearTimeout(timeoutId)
         if (!response.ok) {
+          const errorMsg = await parseErrorResponse(response)
           console.error(
-            `HTTP error fetching redirects. Status: ${response.status}`
+            `HTTP error fetching redirects from ${pageUrl}: ${errorMsg}`
           )
-          console.error(`URL: ${pageUrl}`)
-          return response.text().then((text) => {
-            try {
-              const jsonError = JSON.parse(text)
-              console.error('Error response:', jsonError)
-            } catch (e) {
-              console.error('Error response text:', text)
-            }
-            throw new Error(`HTTP error! status: ${response.status}`)
-          })
+          throw new Error(`HTTP error! status: ${response.status}`)
         }
         return response.json()
       })
@@ -264,8 +278,14 @@ const fetchRedirects = async () => {
   }
 
   return fetchPage().catch((error) => {
-    console.error('Error fetching redirects from API:', error.message)
-    console.warn('Falling back to static redirects file')
+    if (error.name === 'AbortError') {
+      console.error(
+        'Redirect fetch timeout - falling back to static redirects file'
+      )
+    } else {
+      console.error('Error fetching redirects from API:', error.message)
+      console.warn('Falling back to static redirects file')
+    }
     return loadStaticRedirects()
   })
 }
