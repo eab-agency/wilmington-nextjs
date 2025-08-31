@@ -171,9 +171,12 @@ const testRedirectionEndpoint = async () => {
 const fetchRedirects = async () => {
   // Check if credentials are present
   if (!wpAppUser || !wpAppPass) {
+    console.warn('━'.repeat(80))
+    console.warn('🚨 CRITICAL BUILD WARNING: WordPress credentials missing!')
     console.warn(
-      'WordPress credentials missing. Using static redirects fallback.'
+      '   Using static redirects fallback - redirects may be outdated'
     )
+    console.warn('━'.repeat(80))
   }
 
   // console.warn(`WordPress Credentials: ${getCredentialInfo()}`)
@@ -181,17 +184,29 @@ const fetchRedirects = async () => {
   // Test the API connection first
   const apiAvailable = await testApiConnection()
   if (!apiAvailable) {
+    console.warn('━'.repeat(80))
     console.warn(
-      '🚨 WordPress API is completely unavailable. Using static redirects fallback.'
+      '🚨 CRITICAL BUILD WARNING: WordPress API completely unavailable!'
     )
+    console.warn(
+      '   Using static redirects fallback - redirects may be outdated'
+    )
+    console.warn('   Check WordPress server status and network connectivity')
+    console.warn('━'.repeat(80))
   }
 
   // Test if the redirection endpoint is available
   const redirectionAvailable = await testRedirectionEndpoint()
   if (!redirectionAvailable) {
+    console.warn('━'.repeat(80))
     console.warn(
-      '🚨 Redirection plugin endpoint is not available. Using static redirects fallback.'
+      '🚨 CRITICAL BUILD WARNING: Redirection plugin endpoint unavailable!'
     )
+    console.warn(
+      '   Using static redirects fallback - redirects may be outdated'
+    )
+    console.warn('   Check WordPress redirection plugin status and permissions')
+    console.warn('━'.repeat(80))
   }
 
   const options = {
@@ -254,14 +269,23 @@ const fetchRedirects = async () => {
   }
 
   return fetchPage().catch((error) => {
+    console.warn('━'.repeat(80))
     if (error.name === 'AbortError') {
-      console.error(
-        'Redirect fetch timeout - falling back to static redirects file'
-      )
+      console.warn('🚨 CRITICAL BUILD WARNING: Redirect fetch timeout!')
+      console.warn('   WordPress API took too long to respond')
     } else {
-      console.error('Error fetching redirects from API:', error.message)
-      console.warn('Falling back to static redirects file')
+      console.warn(
+        '🚨 CRITICAL BUILD WARNING: Failed to fetch redirects from API!'
+      )
+      console.warn(`   Error: ${error.message}`)
     }
+    console.warn(
+      '   Using static redirects fallback - redirects may be outdated'
+    )
+    console.warn(
+      '   This may result in broken redirect functionality on the site'
+    )
+    console.warn('━'.repeat(80))
   })
 }
 
