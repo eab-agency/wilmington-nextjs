@@ -1,5 +1,19 @@
 const wpAppUser = process.env.WORDPRESS_APPLICATION_USERNAME
 const wpAppPass = process.env.WORDPRESS_APPLICATION_PASSWORD
+
+// Debug: Log the credentials being used (partially masked) - uncomment for debugging
+// console.log(`🔐 Using WordPress credentials:`)
+// console.log(`   Username: ${wpAppUser}`)
+// console.log(
+//   `   Password: ${
+//     wpAppPass
+//       ? wpAppPass.substring(0, 4) +
+//         '***' +
+//         wpAppPass.substring(wpAppPass.length - 4)
+//       : 'NOT SET'
+//   }`
+// )
+
 const auth = Buffer.from(`${wpAppUser}:${wpAppPass}`).toString('base64')
 const url = 'https://wordpress.wilmington.edu/wp-json/redirection/v1/redirect'
 
@@ -30,17 +44,63 @@ const getCredentialInfo = () => {
 const testApiConnection = async () => {
   const testUrl = 'https://wordpress.wilmington.edu/wp-json'
   try {
-    // Public endpoint - should work without auth
     const response = await fetch(testUrl)
-    if (!response.ok) {
-      console.error(`WordPress API test failed with status: ${response.status}`)
-      return false
+
+    // 200 (OK) or 401 (Unauthorized) both indicate the API is available
+    // 401 is expected for protected endpoints
+    if (response.status === 200 || response.status === 401) {
+      return true
     }
 
-    // A 401 error for the main API is normal - we just needed to confirm the API is responding
-    return true
+    console.error(`WordPress API test failed with status: ${response.status}`)
+    return false
   } catch (error) {
     console.error('Error testing WordPress API connection:', error.message)
+    return false
+  }
+}
+
+// Function to test WordPress user authentication
+const testUserAuth = async () => {
+  try {
+    const userEndpoint =
+      'https://wordpress.wilmington.edu/wp-json/wp/v2/users/me'
+    const authOptions = {
+      method: 'GET',
+      headers: {
+        Authorization: `Basic ${auth}`,
+        'Content-Type': 'application/json',
+        'User-Agent': 'Wilmington-NextJS-Site'
+      }
+    }
+
+    const response = await fetch(userEndpoint, authOptions)
+
+    if (response.ok) {
+      const userData = await response.json()
+      console.log(
+        `✅ Authentication successful! User: ${userData.name} (${userData.email})`
+      )
+      console.log(
+        `User roles: ${userData.roles ? userData.roles.join(', ') : 'Unknown'}`
+      )
+
+      return true
+    } else {
+      console.error(
+        `❌ User authentication failed with status: ${response.status}`
+      )
+      const responseText = await response.text()
+      try {
+        const jsonError = JSON.parse(responseText)
+        console.error('Auth error response:', jsonError)
+      } catch (e) {
+        console.error('Auth error response text:', responseText)
+      }
+      return false
+    }
+  } catch (error) {
+    console.error('Error testing user authentication:', error.message)
     return false
   }
 }
@@ -48,53 +108,44 @@ const testApiConnection = async () => {
 // Function to check if the redirection plugin is available
 const testRedirectionEndpoint = async () => {
   try {
-    // First try without authentication to see if endpoint exists
-    const response = await fetch(`${url}?page=0&per_page=1`)
-
-    if (response.status === 401) {
-      // 401 means the endpoint exists but requires authentication
-      // Now try with authentication
-
-      // Testing with authentication
-      const authOptions = {
-        method: 'GET',
-        headers: {
-          Authorization: `Basic ${auth}`
-        }
-      }
-
-      // Try with authentication
-      const authResponse = await fetch(`${url}?page=0&per_page=1`, authOptions)
-
-      if (authResponse.ok) {
-        return true
-      } else {
-        console.error(
-          `Authenticated redirection endpoint test failed with status: ${authResponse.status}`
-        )
-
-        // Get the response text for more detailed error info
-        const responseText = await authResponse.text()
-        try {
-          const jsonError = JSON.parse(responseText)
-          console.error('Error response:', jsonError)
-        } catch (e) {
-          console.error('Error response text:', responseText)
-        }
-
-        return false
-      }
-    } else if (response.ok) {
-      return true
-    } else if (response.status === 404) {
+    // First test user authentication
+    const authWorking = await testUserAuth()
+    if (!authWorking) {
       console.error(
-        'Redirection plugin endpoint not found. Is the Redirection plugin installed and active?'
+        '❌ User authentication failed, cannot test redirection endpoint'
       )
       return false
+    }
+
+    // Now test the redirection endpoint
+    const authOptions = {
+      method: 'GET',
+      headers: {
+        Authorization: `Basic ${auth}`,
+        'Content-Type': 'application/json',
+        'User-Agent': 'Wilmington-NextJS-Site'
+      }
+    }
+
+    const authResponse = await fetch(`${url}?page=0&per_page=5`, authOptions)
+
+    if (authResponse.ok) {
+      // console.log('✅ Redirection endpoint is accessible')
+      return true
     } else {
       console.error(
-        `Redirection endpoint test failed with status: ${response.status}`
+        `❌ Redirection endpoint test failed with status: ${authResponse.status}`
       )
+
+      // Get the response text for more detailed error info
+      const responseText = await authResponse.text()
+      try {
+        const jsonError = JSON.parse(responseText)
+        console.error('Redirection error response:', jsonError)
+      } catch (e) {
+        console.error('Redirection error response text:', responseText)
+      }
+
       return false
     }
   } catch (error) {
@@ -103,11 +154,34 @@ const testRedirectionEndpoint = async () => {
   }
 }
 
+// Fallback function to load static redirects
+const loadStaticRedirects = () => {
+  try {
+    const fs = require('fs')
+    const path = require('path')
+    const redirectsPath = path.join(process.cwd(), 'data', 'redirects.json')
+
+    if (fs.existsSync(redirectsPath)) {
+      const redirectsData = fs.readFileSync(redirectsPath, 'utf8')
+      const redirects = JSON.parse(redirectsData)
+      console.warn(
+        `📁 Using static redirects file: ${redirects.length} redirects loaded`
+      )
+      return redirects
+    }
+  } catch (error) {
+    console.error('Error loading static redirects:', error.message)
+  }
+  return []
+}
+
 const fetchRedirects = async () => {
   // Check if credentials are present
   if (!wpAppUser || !wpAppPass) {
-    console.warn('WordPress credentials missing. Skipping redirect fetch.')
-    return Promise.resolve([])
+    console.warn(
+      'WordPress credentials missing. Using static redirects fallback.'
+    )
+    return loadStaticRedirects()
   }
 
   // console.warn(`WordPress Credentials: ${getCredentialInfo()}`)
@@ -116,24 +190,26 @@ const fetchRedirects = async () => {
   const apiAvailable = await testApiConnection()
   if (!apiAvailable) {
     console.warn(
-      'WordPress API is completely unavailable. Skipping redirect fetch.'
+      '🚨 WordPress API is completely unavailable. Using static redirects fallback.'
     )
-    return []
+    return loadStaticRedirects()
   }
 
   // Test if the redirection endpoint is available
   const redirectionAvailable = await testRedirectionEndpoint()
   if (!redirectionAvailable) {
     console.warn(
-      'Redirection plugin endpoint is not available. Skipping redirect fetch.'
+      '🚨 Redirection plugin endpoint is not available. Using static redirects fallback.'
     )
-    return []
+    return loadStaticRedirects()
   }
 
   const options = {
     method: 'GET',
     headers: {
-      Authorization: `Basic ${auth}`
+      Authorization: `Basic ${auth}`,
+      'Content-Type': 'application/json',
+      'User-Agent': 'Wilmington-NextJS-Site'
     }
   }
 
@@ -187,9 +263,9 @@ const fetchRedirects = async () => {
   }
 
   return fetchPage().catch((error) => {
-    console.error('Error fetching redirects:', error.message)
-    console.error('Continuing build without redirects')
-    return [] // Return empty array to avoid breaking the build
+    console.error('Error fetching redirects from API:', error.message)
+    console.warn('Falling back to static redirects file')
+    return loadStaticRedirects()
   })
 }
 
