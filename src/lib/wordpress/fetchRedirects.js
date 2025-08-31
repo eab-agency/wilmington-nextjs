@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 const wpAppUser = process.env.WORDPRESS_APPLICATION_USERNAME
 const wpAppPass = process.env.WORDPRESS_APPLICATION_PASSWORD
+
 const auth = Buffer.from(`${wpAppUser}:${wpAppPass}`).toString('base64')
 const url = 'https://wordpress.wilmington.edu/wp-json/redirection/v1/redirect'
 
@@ -30,17 +32,91 @@ const getCredentialInfo = () => {
 const testApiConnection = async () => {
   const testUrl = 'https://wordpress.wilmington.edu/wp-json'
   try {
-    // Public endpoint - should work without auth
-    const response = await fetch(testUrl)
-    if (!response.ok) {
-      console.error(`WordPress API test failed with status: ${response.status}`)
-      return false
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+
+    const response = await fetch(testUrl, {
+      signal: controller.signal
+    })
+
+    clearTimeout(timeoutId)
+
+    // 200 (OK) or 401 (Unauthorized) both indicate the API is available
+    // 401 is expected for protected endpoints
+    if (response.status === 200 || response.status === 401) {
+      return true
     }
 
-    // A 401 error for the main API is normal - we just needed to confirm the API is responding
-    return true
+    console.error(`WordPress API test failed with status: ${response.status}`)
+    return false
   } catch (error) {
-    console.error('Error testing WordPress API connection:', error.message)
+    if (error.name === 'AbortError') {
+      console.error('WordPress API connection timeout')
+    } else {
+      console.error('Error testing WordPress API connection:', error.message)
+    }
+    return false
+  }
+}
+
+// Utility function to safely parse error responses with size limits
+const parseErrorResponse = async (response, maxSize = 1024) => {
+  try {
+    const contentType = response.headers.get('content-type')
+    if (!contentType?.includes('application/json')) {
+      return `HTTP ${response.status}: ${response.statusText}`
+    }
+
+    const text = await response.text()
+    if (text.length > maxSize) {
+      return `HTTP ${response.status}: Response too large (${text.length} chars)`
+    }
+
+    const jsonError = JSON.parse(text)
+    return (
+      jsonError.message || `HTTP ${response.status}: ${response.statusText}`
+    )
+  } catch (e) {
+    return `HTTP ${response.status}: ${response.statusText}`
+  }
+}
+
+// Function to test WordPress user authentication
+const testUserAuth = async () => {
+  try {
+    const userEndpoint =
+      'https://wordpress.wilmington.edu/wp-json/wp/v2/users/me'
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+
+    const authOptions = {
+      method: 'GET',
+      headers: {
+        Authorization: `Basic ${auth}`,
+        'Content-Type': 'application/json',
+        'User-Agent': 'Wilmington-NextJS-Site'
+      },
+      signal: controller.signal
+    }
+
+    const response = await fetch(userEndpoint, authOptions)
+    clearTimeout(timeoutId)
+
+    if (response.ok) {
+      const userData = await response.json()
+      // console.log(`✅ Authentication successful! User: ${userData.name}`)
+      return true
+    } else {
+      const errorMsg = await parseErrorResponse(response)
+      console.error(`❌ User authentication failed: ${errorMsg}`)
+      return false
+    }
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      console.error('User authentication timeout')
+    } else {
+      console.error('Error testing user authentication:', error.message)
+    }
     return false
   }
 }
@@ -48,57 +124,46 @@ const testApiConnection = async () => {
 // Function to check if the redirection plugin is available
 const testRedirectionEndpoint = async () => {
   try {
-    // First try without authentication to see if endpoint exists
-    const response = await fetch(`${url}?page=0&per_page=1`)
-
-    if (response.status === 401) {
-      // 401 means the endpoint exists but requires authentication
-      // Now try with authentication
-
-      // Testing with authentication
-      const authOptions = {
-        method: 'GET',
-        headers: {
-          Authorization: `Basic ${auth}`
-        }
-      }
-
-      // Try with authentication
-      const authResponse = await fetch(`${url}?page=0&per_page=1`, authOptions)
-
-      if (authResponse.ok) {
-        return true
-      } else {
-        console.error(
-          `Authenticated redirection endpoint test failed with status: ${authResponse.status}`
-        )
-
-        // Get the response text for more detailed error info
-        const responseText = await authResponse.text()
-        try {
-          const jsonError = JSON.parse(responseText)
-          console.error('Error response:', jsonError)
-        } catch (e) {
-          console.error('Error response text:', responseText)
-        }
-
-        return false
-      }
-    } else if (response.ok) {
-      return true
-    } else if (response.status === 404) {
+    // First test user authentication
+    const authWorking = await testUserAuth()
+    if (!authWorking) {
       console.error(
-        'Redirection plugin endpoint not found. Is the Redirection plugin installed and active?'
-      )
-      return false
-    } else {
-      console.error(
-        `Redirection endpoint test failed with status: ${response.status}`
+        '❌ User authentication failed, cannot test redirection endpoint'
       )
       return false
     }
+
+    // Now test the redirection endpoint
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+
+    const authOptions = {
+      method: 'GET',
+      headers: {
+        Authorization: `Basic ${auth}`,
+        'Content-Type': 'application/json',
+        'User-Agent': 'Wilmington-NextJS-Site'
+      },
+      signal: controller.signal
+    }
+
+    const authResponse = await fetch(`${url}?page=0&per_page=5`, authOptions)
+    clearTimeout(timeoutId)
+
+    if (authResponse.ok) {
+      // console.log('✅ Redirection endpoint is accessible')
+      return true
+    } else {
+      const errorMsg = await parseErrorResponse(authResponse)
+      console.error(`❌ Redirection endpoint test failed: ${errorMsg}`)
+      return false
+    }
   } catch (error) {
-    console.error('Error testing redirection endpoint:', error.message)
+    if (error.name === 'AbortError') {
+      console.error('Redirection endpoint timeout')
+    } else {
+      console.error('Error testing redirection endpoint:', error.message)
+    }
     return false
   }
 }
@@ -106,8 +171,13 @@ const testRedirectionEndpoint = async () => {
 const fetchRedirects = async () => {
   // Check if credentials are present
   if (!wpAppUser || !wpAppPass) {
-    console.warn('WordPress credentials missing. Skipping redirect fetch.')
-    return Promise.resolve([])
+    console.warn('━'.repeat(80))
+    console.warn('🚨 CRITICAL BUILD WARNING: WordPress credentials missing!')
+    console.warn(
+      '   Using static redirects fallback - redirects may be outdated'
+    )
+    console.warn('━'.repeat(80))
+    return [] // Return empty array when credentials are missing
   }
 
   // console.warn(`WordPress Credentials: ${getCredentialInfo()}`)
@@ -115,25 +185,39 @@ const fetchRedirects = async () => {
   // Test the API connection first
   const apiAvailable = await testApiConnection()
   if (!apiAvailable) {
+    console.warn('━'.repeat(80))
     console.warn(
-      'WordPress API is completely unavailable. Skipping redirect fetch.'
+      '🚨 CRITICAL BUILD WARNING: WordPress API completely unavailable!'
     )
-    return []
+    console.warn(
+      '   Using static redirects fallback - redirects may be outdated'
+    )
+    console.warn('   Check WordPress server status and network connectivity')
+    console.warn('━'.repeat(80))
+    return [] // Return empty array when API is unavailable
   }
 
   // Test if the redirection endpoint is available
   const redirectionAvailable = await testRedirectionEndpoint()
   if (!redirectionAvailable) {
+    console.warn('━'.repeat(80))
     console.warn(
-      'Redirection plugin endpoint is not available. Skipping redirect fetch.'
+      '🚨 CRITICAL BUILD WARNING: Redirection plugin endpoint unavailable!'
     )
-    return []
+    console.warn(
+      '   Using static redirects fallback - redirects may be outdated'
+    )
+    console.warn('   Check WordPress redirection plugin status and permissions')
+    console.warn('━'.repeat(80))
+    return [] // Return empty array when redirection endpoint is unavailable
   }
 
   const options = {
     method: 'GET',
     headers: {
-      Authorization: `Basic ${auth}`
+      Authorization: `Basic ${auth}`,
+      'Content-Type': 'application/json',
+      'User-Agent': 'Wilmington-NextJS-Site'
     }
   }
 
@@ -144,22 +228,23 @@ const fetchRedirects = async () => {
     const perPage = 100
     const pageUrl = `${url}?page=${page}&per_page=${perPage}`
 
-    return fetch(pageUrl, options)
-      .then((response) => {
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 15000) // 15 second timeout for data fetching
+
+    const fetchOptions = {
+      ...options,
+      signal: controller.signal
+    }
+
+    return fetch(pageUrl, fetchOptions)
+      .then(async (response) => {
+        clearTimeout(timeoutId)
         if (!response.ok) {
+          const errorMsg = await parseErrorResponse(response)
           console.error(
-            `HTTP error fetching redirects. Status: ${response.status}`
+            `HTTP error fetching redirects from ${pageUrl}: ${errorMsg}`
           )
-          console.error(`URL: ${pageUrl}`)
-          return response.text().then((text) => {
-            try {
-              const jsonError = JSON.parse(text)
-              console.error('Error response:', jsonError)
-            } catch (e) {
-              console.error('Error response text:', text)
-            }
-            throw new Error(`HTTP error! status: ${response.status}`)
-          })
+          throw new Error(`HTTP error! status: ${response.status}`)
         }
         return response.json()
       })
@@ -187,9 +272,24 @@ const fetchRedirects = async () => {
   }
 
   return fetchPage().catch((error) => {
-    console.error('Error fetching redirects:', error.message)
-    console.error('Continuing build without redirects')
-    return [] // Return empty array to avoid breaking the build
+    console.warn('━'.repeat(80))
+    if (error.name === 'AbortError') {
+      console.warn('🚨 CRITICAL BUILD WARNING: Redirect fetch timeout!')
+      console.warn('   WordPress API took too long to respond')
+    } else {
+      console.warn(
+        '🚨 CRITICAL BUILD WARNING: Failed to fetch redirects from API!'
+      )
+      console.warn(`   Error: ${error.message}`)
+    }
+    console.warn(
+      '   Using static redirects fallback - redirects may be outdated'
+    )
+    console.warn(
+      '   This may result in broken redirect functionality on the site'
+    )
+    console.warn('━'.repeat(80))
+    return [] // Return empty array on error to prevent build failure
   })
 }
 
