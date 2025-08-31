@@ -168,34 +168,12 @@ const testRedirectionEndpoint = async () => {
   }
 }
 
-// Fallback function to load static redirects
-const loadStaticRedirects = () => {
-  try {
-    const fs = require('fs')
-    const path = require('path')
-    const redirectsPath = path.join(process.cwd(), 'data', 'redirects.json')
-
-    if (fs.existsSync(redirectsPath)) {
-      const redirectsData = fs.readFileSync(redirectsPath, 'utf8')
-      const redirects = JSON.parse(redirectsData)
-      console.warn(
-        `📁 Using static redirects file: ${redirects.length} redirects loaded`
-      )
-      return redirects
-    }
-  } catch (error) {
-    console.error('Error loading static redirects:', error.message)
-  }
-  return []
-}
-
 const fetchRedirects = async () => {
   // Check if credentials are present
   if (!wpAppUser || !wpAppPass) {
     console.warn(
       'WordPress credentials missing. Using static redirects fallback.'
     )
-    return loadStaticRedirects()
   }
 
   // console.warn(`WordPress Credentials: ${getCredentialInfo()}`)
@@ -206,7 +184,6 @@ const fetchRedirects = async () => {
     console.warn(
       '🚨 WordPress API is completely unavailable. Using static redirects fallback.'
     )
-    return loadStaticRedirects()
   }
 
   // Test if the redirection endpoint is available
@@ -215,7 +192,6 @@ const fetchRedirects = async () => {
     console.warn(
       '🚨 Redirection plugin endpoint is not available. Using static redirects fallback.'
     )
-    return loadStaticRedirects()
   }
 
   const options = {
@@ -286,7 +262,6 @@ const fetchRedirects = async () => {
       console.error('Error fetching redirects from API:', error.message)
       console.warn('Falling back to static redirects file')
     }
-    return loadStaticRedirects()
   })
 }
 
