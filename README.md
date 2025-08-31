@@ -1,3 +1,8 @@
+## Requirements
+
+- Node.js 20+ (required for fetch/AbortController support)
+- Yarn package manager
+
 ## Getting Started
 
 First, pull the environment varaibles with:
