@@ -177,6 +177,7 @@ const fetchRedirects = async () => {
       '   Using static redirects fallback - redirects may be outdated'
     )
     console.warn('━'.repeat(80))
+    return [] // Return empty array when credentials are missing
   }
 
   // console.warn(`WordPress Credentials: ${getCredentialInfo()}`)
@@ -193,6 +194,7 @@ const fetchRedirects = async () => {
     )
     console.warn('   Check WordPress server status and network connectivity')
     console.warn('━'.repeat(80))
+    return [] // Return empty array when API is unavailable
   }
 
   // Test if the redirection endpoint is available
@@ -207,6 +209,7 @@ const fetchRedirects = async () => {
     )
     console.warn('   Check WordPress redirection plugin status and permissions')
     console.warn('━'.repeat(80))
+    return [] // Return empty array when redirection endpoint is unavailable
   }
 
   const options = {
@@ -286,6 +289,7 @@ const fetchRedirects = async () => {
       '   This may result in broken redirect functionality on the site'
     )
     console.warn('━'.repeat(80))
+    return [] // Return empty array on error to prevent build failure
   })
 }
 
