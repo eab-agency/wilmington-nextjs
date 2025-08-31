@@ -50,7 +50,7 @@ const testApiConnection = async () => {
     console.error(`WordPress API test failed with status: ${response.status}`)
     return false
   } catch (error) {
-    if (error.name === 'AbortError') {
+    if (error instanceof DOMException && error.name === 'AbortError') {
       console.error('WordPress API connection timeout')
     } else {
       console.error('Error testing WordPress API connection:', error.message)
@@ -112,7 +112,7 @@ const testUserAuth = async () => {
       return false
     }
   } catch (error) {
-    if (error.name === 'AbortError') {
+    if (error instanceof DOMException && error.name === 'AbortError') {
       console.error('User authentication timeout')
     } else {
       console.error('Error testing user authentication:', error.message)
@@ -159,7 +159,7 @@ const testRedirectionEndpoint = async () => {
       return false
     }
   } catch (error) {
-    if (error.name === 'AbortError') {
+    if (error instanceof DOMException && error.name === 'AbortError') {
       console.error('Redirection endpoint timeout')
     } else {
       console.error('Error testing redirection endpoint:', error.message)
@@ -281,7 +281,7 @@ const fetchRedirects = async () => {
     })
     .catch((error) => {
       console.warn('━'.repeat(80))
-      if (error.name === 'AbortError') {
+      if (error instanceof DOMException && error.name === 'AbortError') {
         console.warn('🚨 CRITICAL BUILD WARNING: Redirect fetch timeout!')
         console.warn('   WordPress API took too long to respond')
       } else {
