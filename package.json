@@ -1,6 +1,9 @@
 {
   "name": "wilmington-website",
   "version": "0.1.0",
+  "engines": {
+    "node": ">=20"
+  },
   "private": true,
   "scripts": {
     "build": "faust build",
@@ -9,6 +12,7 @@
     "develop": "faust dev",
     "format": "npx prettier  '**/*.{js,jsx,ts,tsx,md,html,css,scss,json,yml}' --write || true",
     "generate": "faust generatePossibleTypes",
+    "import-redirects": "node scripts/import-redirects.js",
     "lint": "npm run format && npm run lint:js && npm run lint:css",
     "lint:css": "npx stylelint '**/*.css' --fix || true",
     "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && next lint",
@@ -39,7 +43,7 @@
     "classnames": "^2.3.2",
     "dayjs": "^1.11.7",
     "deepmerge": "^4.3.1",
-    "dotenv": "^16.5.0",
+    "dotenv": "^17.2.1",
     "formik": "^2.4.6",
     "glob": "^10.2.2",
     "graphql": "^16.11.0",
@@ -84,8 +88,5 @@
     "stylelint": "^15.10.1",
     "stylelint-config-standard": "^31.0.0",
     "stylelint-scss": "^4.6.0"
-  },
-  "engines": {
-    "node": ">=20"
   }
 }
