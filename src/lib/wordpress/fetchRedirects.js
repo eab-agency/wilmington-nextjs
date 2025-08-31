@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const wpAppUser = process.env.WORDPRESS_APPLICATION_USERNAME
 const wpAppPass = process.env.WORDPRESS_APPLICATION_PASSWORD
 
