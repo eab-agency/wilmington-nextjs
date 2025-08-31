@@ -222,9 +222,19 @@ const fetchRedirects = async () => {
   }
 
   const allRedirects = [] // Array to store all the fetched items
+  const seenUrls = new Set() // Track seen URLs to prevent duplicates
+  const maxPages = 1000 // Safety limit to prevent infinite loops
 
   // Recursive function to fetch all pages
   const fetchPage = (page = 0) => {
+    // Safety check to prevent infinite loops
+    if (page >= maxPages) {
+      console.warn(
+        `⚠️  Reached maximum page limit (${maxPages}), stopping pagination`
+      )
+      return allRedirects
+    }
+
     const perPage = 100
     const pageUrl = `${url}?page=${page}&per_page=${perPage}`
 
@@ -246,26 +256,66 @@ const fetchRedirects = async () => {
           )
           throw new Error(`HTTP error! status: ${response.status}`)
         }
-        return response.json()
+
+        // Check for pagination headers
+        const totalPages = response.headers.get('X-WP-TotalPages')
+        const totalItems = response.headers.get('X-WP-Total')
+
+        const data = await response.json()
+
+        // Use header info if available, otherwise fall back to response data
+        const actualTotal = totalItems ? parseInt(totalItems, 10) : data.total
+        const actualTotalPages = totalPages ? parseInt(totalPages, 10) : null
+
+        return { data, actualTotal, actualTotalPages }
       })
-      .then((data) => {
-        const redirects = data.items
+      .then(({ data, actualTotal, actualTotalPages }) => {
+        const currentPageItems = data.items || []
+
+        // Filter and map redirects, checking for duplicates
+        const redirects = currentPageItems
           .filter(
             (item) =>
-              item.url && item.action_data.url && item.action_code === 301
+              item.url &&
+              item.action_data.url &&
+              item.action_code === 301 &&
+              !seenUrls.has(item.url) // Prevent duplicates
           )
-          .map((item) => ({
-            source: item.url,
-            destination: item.action_data.url,
-            permanent: true
-          }))
+          .map((item) => {
+            seenUrls.add(item.url) // Track this URL
+            return {
+              source: item.url,
+              destination: item.action_data.url,
+              permanent: true
+            }
+          })
 
         allRedirects.push(...redirects) // Add the fetched items to the array
 
-        if (data.total > (page + 1) * perPage) {
+        // Determine if we should continue pagination
+        const shouldContinue = (() => {
+          // If we have total pages from headers, use that
+          if (actualTotalPages !== null) {
+            return page < actualTotalPages - 1
+          }
+
+          // If we have total items, use that calculation
+          if (actualTotal !== undefined) {
+            return actualTotal > (page + 1) * perPage
+          }
+
+          // Fallback: continue if we got a full page of items
+          // But add safety check - if we got 0 items, definitely stop
+          return (
+            currentPageItems.length === perPage && currentPageItems.length > 0
+          )
+        })()
+
+        if (shouldContinue) {
           // Fetch the next page if there are more items to fetch
           return fetchPage(page + 1)
         }
+
         // Return the fetched items if there are no more items to fetch
         return allRedirects
       })
