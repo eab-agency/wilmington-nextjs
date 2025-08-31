@@ -271,26 +271,34 @@ const fetchRedirects = async () => {
       })
   }
 
-  return fetchPage().catch((error) => {
-    console.warn('━'.repeat(80))
-    if (error.name === 'AbortError') {
-      console.warn('🚨 CRITICAL BUILD WARNING: Redirect fetch timeout!')
-      console.warn('   WordPress API took too long to respond')
-    } else {
+  return fetchPage()
+    .then((redirects) => {
+      console.log('━'.repeat(80))
+      console.log('✅ SUCCESS: WordPress redirects fetched successfully!')
+      console.log(`   Retrieved ${redirects.length} redirect rules from API`)
+      console.log('━'.repeat(80))
+      return redirects
+    })
+    .catch((error) => {
+      console.warn('━'.repeat(80))
+      if (error.name === 'AbortError') {
+        console.warn('🚨 CRITICAL BUILD WARNING: Redirect fetch timeout!')
+        console.warn('   WordPress API took too long to respond')
+      } else {
+        console.warn(
+          '🚨 CRITICAL BUILD WARNING: Failed to fetch redirects from API!'
+        )
+        console.warn(`   Error: ${error.message}`)
+      }
       console.warn(
-        '🚨 CRITICAL BUILD WARNING: Failed to fetch redirects from API!'
+        '   Using static redirects fallback - redirects may be outdated'
       )
-      console.warn(`   Error: ${error.message}`)
-    }
-    console.warn(
-      '   Using static redirects fallback - redirects may be outdated'
-    )
-    console.warn(
-      '   This may result in broken redirect functionality on the site'
-    )
-    console.warn('━'.repeat(80))
-    return [] // Return empty array on error to prevent build failure
-  })
+      console.warn(
+        '   This may result in broken redirect functionality on the site'
+      )
+      console.warn('━'.repeat(80))
+      return [] // Return empty array on error to prevent build failure
+    })
 }
 
 module.exports = fetchRedirects
