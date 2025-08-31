@@ -32,6 +32,7 @@ const formatDateWithoutTime = (dateString) => {
     const date = new Date(dateString)
     if (isNaN(date.getTime())) return dateString
     return date.toLocaleDateString('en-US', {
+      timeZone: 'UTC', // Ensuring our formatted date respects the timezone already passed in the date string
       month: 'long',
       day: 'numeric',
       year: 'numeric'
