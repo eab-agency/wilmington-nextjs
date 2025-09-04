@@ -7,12 +7,12 @@ export const museo = localFont({
   fallback: ['system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial'],
   src: [
     {
-      path: '/assets/Museo500-Regular.woff2',
+      path: '../public/assets/Museo500-Regular.woff2',
       weight: '500',
       style: 'normal'
     },
     {
-      path: '/assets/Museo700-Regular.woff2',
+      path: '../public/assets/Museo700-Regular.woff2',
       weight: '700',
       style: 'normal'
     }
@@ -24,7 +24,7 @@ export const icomoon = localFont({
   preload: true,
   src: [
     {
-      path: '/assets/icomoon.woff',
+      path: '../public/assets/icomoon.woff',
       weight: 'normal'
     }
   ]
