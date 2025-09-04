@@ -64,15 +64,13 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/assets/:all*', // adjust to your actual fonts folder
+        // Matches anything under /assets/ (your fonts live here)
+        source: '/assets/:path*',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }
-        ]
-      },
-      {
-        source: '/:all*(woff2)',
-        headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          }
         ]
       }
     ]
