@@ -91,12 +91,9 @@
   },
   "browserslist": {
     "production": [
-      "last 2 Chrome versions",
-      "last 2 Firefox versions",
-      "last 2 Edge versions",
-      "last 2 Safari versions",
-      "not dead",
-      "not op_mini all"
+      "defaults and supports es6-module",
+      "not ie <= 11",
+      "not dead"
     ],
     "development": [
       "last 1 chrome version",
