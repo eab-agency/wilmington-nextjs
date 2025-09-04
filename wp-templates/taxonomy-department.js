@@ -98,7 +98,7 @@ export default function TaxonomyDepartment(props) {
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
-            <div className="page-content">
+            <div className="page-content" id="page-content">
               {!!seo?.breadcrumbs && (
                 <Breadcrumbs breadcrumbs={seo?.breadcrumbs} />
               )}

@@ -47,7 +47,7 @@ export default function SingleFaculty(props) {
             )}
             {!featuredImage && <RichText tag="h1">{title}</RichText>}
 
-            <div className="page-content">
+            <div className="page-content" id="page-content">
               <div className="facultyContent">
                 <div className="facultyData">
                   {faculty.email ? (

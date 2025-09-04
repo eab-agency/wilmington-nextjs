@@ -33,7 +33,7 @@ export default function SingleNews(props) {
               pageType="news"
               newsCategories={newsCategories}
             />
-            <div className="page-content">
+            <div className="page-content" id="page-content">
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
               <WordPressBlocksViewer blocks={blocks} />
             </div>
