@@ -76,6 +76,12 @@ const nextConfig = {
         ]
       }
     ]
+  },
+  swcMinify: true,
+  // Make SWC stop emitting ES5-era transforms/polyfills
+  experimental: {
+    legacyBrowsers: false, // ✅ drop IE/very old Chrome/Firefox targets
+    browsersListForSwc: true // ✅ respect your package.json browserslist
   }
 }
 
