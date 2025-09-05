@@ -37,26 +37,26 @@ export default function DisplayImage(props) {
   }
 
   // Set the image size.
-  const imageSize = {
-    height: props?.height ?? props?.imageMeta?.mediaDetails?.height,
-    width: props?.width ?? props?.imageMeta?.mediaDetails?.width
-  }
+  let imageHeight = props?.height ?? props?.imageMeta?.mediaDetails?.height
+  let imageWidth = props?.width ?? props?.imageMeta?.mediaDetails?.width
 
-  // if imageSize.height is a string, remove 'px' and convert to number
-  if (typeof imageSize.height === 'string') {
-    imageSize.height = Number(imageSize.height.replace('px', ''))
+  if (typeof imageHeight === 'string') {
+    imageHeight = Number(imageHeight.replace('px', ''))
   }
-
-  // if imageSize.width is a string, remove 'px' and convert to number
-  if (typeof imageSize.width === 'string') {
-    imageSize.width = Number(imageSize.width.replace('px', ''))
+  if (typeof imageWidth === 'string') {
+    imageWidth = Number(imageWidth.replace('px', ''))
   }
 
   // Get the src domain from URL and remove the subdomain.
-  const sourceDomain = new URL(source).hostname.split('.').slice(-2).join('.')
+  let sourceDomain = ''
+  try {
+    sourceDomain = new URL(source).hostname.split('.').slice(-2).join('.')
+  } catch (e) {
+    sourceDomain = ''
+  }
 
   // Get all domains registered in next.config.js.
-  let domains = remotePatterns.map((pattern) =>
+  const domains = remotePatterns.map((pattern) =>
     pattern.hostname.replace('**.', '')
   )
 
@@ -74,24 +74,22 @@ export default function DisplayImage(props) {
       priority: props?.priority,
       placeholder: blurUrl ? 'blur' : 'empty',
       blurDataURL: blurUrl,
-      onError: props?.onError
+      onError: props?.onError,
+      className: cn(
+        styles.image,
+        props?.className,
+        props?.nextImageFill ? styles.imageFill : null
+      )
     }
 
-    // Add extra props depending on whether image needs to be set to "fill".
     if (props?.nextImageFill) {
       imageProps.fill = true
     } else {
-      imageProps.height = imageSize?.height
-      imageProps.width = imageSize?.width
+      imageProps.height = imageHeight
+      imageProps.width = imageWidth
     }
 
-    return (
-      // eslint-disable-next-line
-      <Image
-        {...imageProps}
-        className={cn(props?.nextImageFill ? styles.imageFill : null)}
-      />
-    )
+    return <Image {...imageProps} />
   }
 
   /**
@@ -102,12 +100,12 @@ export default function DisplayImage(props) {
   function HtmlImage() {
     return (
       <img
-        alt={props?.alt}
+        alt={props?.alt ?? ''}
         className={cn(styles.image, props?.className)}
-        height={imageSize?.height}
+        height={imageHeight}
         id={props?.anchor}
         src={props?.url}
-        width={imageSize?.width}
+        width={imageWidth}
         onError={props?.onError}
       />
     )
@@ -153,6 +151,7 @@ export default function DisplayImage(props) {
    */
 
   if (domains.includes(sourceDomain)) {
+    // Always use Next.js Image for allowed domains
     return (
       <figure
         id={props?.anchor}
@@ -175,9 +174,7 @@ export default function DisplayImage(props) {
     )
   }
 
-  /**
-   * Otherwise, just use HTML <img />.
-   */
+  // Otherwise, just use HTML <img /> for unsupported domains
   return (
     <>
       {props?.href ? (
