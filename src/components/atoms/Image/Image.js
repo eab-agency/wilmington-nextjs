@@ -100,12 +100,12 @@ export default function DisplayImage(props) {
   function HtmlImage() {
     return (
       <img
-        alt={props?.alt}
+        alt={props?.alt ?? ''}
         className={cn(styles.image, props?.className)}
-        height={imageSize?.height}
+        height={imageHeight}
         id={props?.anchor}
         src={props?.url}
-        width={imageSize?.width}
+        width={imageWidth}
         onError={props?.onError}
       />
     )
