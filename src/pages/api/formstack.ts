@@ -60,6 +60,10 @@ export default async function handler(
       //   body: JSON.stringify(submissionData).substring(0, 500) + '...' // Log partial body to avoid huge logs
       // })
 
+      // Log the submission data for debugging
+      // console.log('Submission data:', submissionData);
+
+      // Pass the data directly to the Formstack API - they will handle the JSON to form data conversion
       const response = await fetch(
         `https://www.formstack.com/api/v2/form/${formId}/submission.json`,
         {
