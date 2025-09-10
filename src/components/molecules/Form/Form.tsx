@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import React, { useMemo, useState } from 'react'
 import * as Yup from 'yup'
 import CurrentValues from './CurrentValues' // Import the CurrentValues component
+import LoadingIndicator from './LoadingIndicator' // Import the loading indicator
 import { FormField } from './formTypes'
 import {
   AddressInput,
@@ -35,18 +36,40 @@ const RequestForInformationForm: React.FC<{
   )
   const [submissionError, setSubmissionError] = useState<string | null>(null)
   const [submitAttempted, setSubmitAttempted] = useState(false)
+  const [isRedirecting, setIsRedirecting] = useState(false)
 
   // Process fields into sections
   const groupedSections = useMemo(
     () => groupFieldsIntoSections(fields),
     [fields]
   )
+  // Handle different form states
+  if (isRedirecting) {
+    // Show a loading indicator when redirecting
+    return (
+      <div className="submissionMessage">
+        <LoadingIndicator />
+        <p className="text-center">Redirecting to confirmation page...</p>
+      </div>
+    )
+  }
+
   // Show submission message and hide form
   if (submissionMessage) {
     return (
       <div className="submissionMessage">
-        <h2>Submission Successful</h2>
         <p>{submissionMessage}</p>
+      </div>
+    )
+  }
+
+  // Show submission error if there is one
+  if (submissionError) {
+    return (
+      <div className="submissionError">
+        <h2>Submission Error</h2>
+        <p>{submissionError}</p>
+        <button onClick={() => setSubmissionError(null)}>Try Again</button>
       </div>
     )
   }
@@ -198,54 +221,119 @@ const RequestForInformationForm: React.FC<{
     setSubmitting(true)
     setSubmitAttempted(true) // Set the state when the submit button is clicked
 
-    const transformedValues = {
-      displayTime: new Date().toISOString(),
-      form: formId,
-      viewkey: 'TYlVmXXEl1',
-      fsUserAgent: navigator.userAgent,
-      ...Object.fromEntries(
-        Object.entries(values).map(([name, value]) => {
-          const id = nameToIdMap[name] || name // Use name if id is not found
-          return [
-            `field${id}`,
-            Array.isArray(value) ? JSON.stringify(value) : value
-          ]
-        })
+    // Format date in the exact format used by Formstack
+    const now = new Date()
+    const offset = -now.getTimezoneOffset() / 60
+    const offsetStr =
+      offset >= 0
+        ? `+${String(offset).padStart(2, '0')}:00`
+        : `-${String(Math.abs(offset)).padStart(2, '0')}:00`
+    const formattedDate = `${now.getFullYear()}-${String(
+      now.getMonth() + 1
+    ).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}T${String(
+      now.getHours()
+    ).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(
+      now.getSeconds()
+    ).padStart(2, '0')}${offsetStr}`
+
+    // Collect IDs of hidden fields based on logic
+    const hiddenByLogicFieldIds = fields
+      .filter(
+        (field) => field.hidden === '1' || !shouldShowField(field, values)
       )
+      .map((field) => field.id)
+
+    // Prepare the transformed values object for the Formstack API
+    const transformedValues: Record<string, any> = {
+      user_agent: navigator.userAgent
+    }
+
+    // Add form field values according to Formstack API requirements
+    // The API expects field values in the format field_<fieldId>
+    Object.entries(values).forEach(([name, value]) => {
+      const id = nameToIdMap[name] || name // Use name if id is not found
+
+      if (typeof value === 'object' && value !== null) {
+        // For structured fields like name and address
+        Object.entries(value).forEach(([subfield, subfieldValue]) => {
+          transformedValues[`field_${id}[${subfield}]`] = subfieldValue
+        })
+      } else {
+        transformedValues[`field_${id}`] = Array.isArray(value)
+          ? JSON.stringify(value)
+          : value
+      }
+    })
+
+    // Add metadata that might be useful for debugging
+    transformedValues._metadata = {
+      displayTime: formattedDate,
+      hiddenFieldIds: hiddenByLogicFieldIds
     }
 
     try {
-      const response = await fetch(
-        'https://wilmingtoncollege.formstack.com/forms/index.php',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: new URLSearchParams(
-            transformedValues as unknown as Record<string, string>
-          ).toString()
-        }
-      )
+      setSubmissionMessage('Submitting form...')
+
+      // Send the form data to our API endpoint that handles the authentication
+      const response = await fetch(`/api/formstack?formId=${formId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(transformedValues)
+      })
+
+      const data = await response.json()
 
       if (!response.ok) {
-        throw new Error('Network response was not ok')
+        console.error('Form submission error:', data)
+        throw new Error(data.error || data.message || 'Error submitting form')
       }
 
       // Check if the thank you page exists
-      const currentPath = window.location.pathname
-      const thankYouPagePath = `${currentPath}/rfi-thanks`
-      const thankYouPageResponse = await fetch(thankYouPagePath)
-      if (thankYouPageResponse.ok) {
-        router.push(thankYouPagePath)
-      } else {
-        setSubmissionMessage('Thank you for submitting the form')
+      const currentPath = router.asPath
+      const thanksPath = `${currentPath}/rfi-thanks`
+
+      // Show a temporary processing message that won't display if redirecting
+      setSubmissionMessage('Processing your submission...')
+
+      // Check if the thanks page exists before redirecting
+      const checkThanksPage = async () => {
+        try {
+          const response = await fetch(thanksPath, {
+            method: 'HEAD'
+          })
+
+          if (response.ok) {
+            // If the thanks page exists, set redirecting state and navigate
+            setIsRedirecting(true)
+            // Small delay to avoid any flash of the success message
+            setTimeout(() => {
+              router.push(thanksPath)
+            }, 100)
+          } else {
+            // If not, just show a success message
+            setSubmissionMessage(
+              `Thank you for your submission! Your request has been received.`
+            )
+          }
+        } catch (error) {
+          // If there's an error checking the thanks page, show the success message
+          setSubmissionMessage(
+            `Thank you for your submission! Your request has been received.`
+          )
+        }
       }
+
+      // Execute the check
+      checkThanksPage()
     } catch (error) {
-      // Handle submission error
+      // Handle errors during form submission
       console.error('Form submission error:', error)
+
+      // Set a user-friendly error message
       setSubmissionError(
-        'There was an error submitting the form. Please try again.'
+        'There was an error submitting the form. Please try again or contact us directly.'
       )
     } finally {
       setSubmitting(false)
