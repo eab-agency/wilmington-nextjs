@@ -272,7 +272,6 @@ const RequestForInformationForm: React.FC<{
     }
 
     try {
-      console.log('Submitting form to Formstack API...')
       setSubmissionMessage('Submitting form...')
 
       // Send the form data to our API endpoint that handles the authentication
