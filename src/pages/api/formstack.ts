@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // pages/api/formstack.ts
 import type { NextApiRequest, NextApiResponse } from 'next'
 import fetchAuthenticatedGraphQLData from '../../lib/wordpress/fetchAuthenticatedGraphQLData'
@@ -54,10 +55,10 @@ export default async function handler(
       const submissionData = req.body
 
       // Log the request for debugging
-      console.log('Submitting to Formstack API:', {
-        url: `https://www.formstack.com/api/v2/form/${formId}/submission.json`,
-        body: JSON.stringify(submissionData).substring(0, 500) + '...' // Log partial body to avoid huge logs
-      })
+      // console.log('Submitting to Formstack API:', {
+      //   url: `https://www.formstack.com/api/v2/form/${formId}/submission.json`,
+      //   body: JSON.stringify(submissionData).substring(0, 500) + '...' // Log partial body to avoid huge logs
+      // })
 
       const response = await fetch(
         `https://www.formstack.com/api/v2/form/${formId}/submission.json`,
@@ -73,12 +74,12 @@ export default async function handler(
 
       // Get response as text first to help with debugging
       const responseText = await response.text()
-      console.log('Formstack response status:', response.status)
-      console.log(
-        'Formstack response headers:',
-        Object.fromEntries(response.headers.entries())
-      )
-      console.log('Formstack response body:', responseText)
+      // console.log('Formstack response status:', response.status)
+      // console.log(
+      //   'Formstack response headers:',
+      //   Object.fromEntries(response.headers.entries())
+      // )
+      // console.log('Formstack response body:', responseText)
 
       if (!response.ok) {
         console.error('Form submission error:', responseText)
