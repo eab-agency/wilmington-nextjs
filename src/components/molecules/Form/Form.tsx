@@ -248,21 +248,43 @@ const RequestForInformationForm: React.FC<{
       user_agent: navigator.userAgent
     }
 
-    // Add form field values according to Formstack API requirements
-    // The API expects field values in the format field_<fieldId>
-    Object.entries(values).forEach(([name, value]) => {
-      const id = nameToIdMap[name] || name // Use name if id is not found
+    // Group form values by their base field IDs for complex fields
+    const fieldGroups: Record<string, Record<string, any>> = {}
 
-      if (typeof value === 'object' && value !== null) {
-        // For structured fields like name and address
-        Object.entries(value).forEach(([subfield, subfieldValue]) => {
-          transformedValues[`field_${id}[${subfield}]`] = subfieldValue
-        })
+    // Process all values and group them by base field ID for address and name fields
+    Object.entries(values).forEach(([name, value]) => {
+      // Extract the base field ID from composite fields like "12345-street" -> "12345"
+      const nameParts = name.split('-')
+      const baseFieldId = nameParts[0]
+      const subfield = nameParts.length > 1 ? nameParts[1] : null
+
+      // Handle address fields and other fields with subfields
+      if (
+        subfield &&
+        fields.some(
+          (f) =>
+            f.id === baseFieldId && (f.type === 'address' || f.type === 'name')
+        )
+      ) {
+        // Initialize the field group if it doesn't exist
+        if (!fieldGroups[`field_${baseFieldId}`]) {
+          fieldGroups[`field_${baseFieldId}`] = {}
+        }
+
+        // Add the subfield value to the appropriate group
+        fieldGroups[`field_${baseFieldId}`][subfield] = value
       } else {
+        // Handle regular fields
+        const id = nameToIdMap[name] || name // Use name if id is not found
         transformedValues[`field_${id}`] = Array.isArray(value)
           ? JSON.stringify(value)
           : value
       }
+    })
+
+    // Add all grouped fields to the transformed values
+    Object.entries(fieldGroups).forEach(([fieldName, subfieldValues]) => {
+      transformedValues[fieldName] = subfieldValues
     })
 
     // Add metadata that might be useful for debugging
