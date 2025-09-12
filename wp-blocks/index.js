@@ -32,6 +32,7 @@ import AcfTestimonialBlock from './acf/AcfTestimonialBlock'
 import EabBlocksFormstackEmbed from './custom/EabBlocksFormstackEmbed'
 import EabBlocksHeroSlide from './custom/EabBlocksHeroSlide'
 import EabBlocksHomepageHeroSlider from './custom/EabBlocksHomepageHeroSlider'
+import EabBlocksStudentLifeMicroform from './custom/EabBlocksStudentLifeMicroform'
 import EabProgramDirectory from './custom/EabProgramDirectory'
 import EabProgramJumplinks from './custom/EabProgramJumplinks'
 
@@ -77,5 +78,6 @@ export default {
   EabProgramJumplinks,
   EabBlocksHomepageHeroSlider,
   EabBlocksHeroSlide,
-  EabBlocksFormstackEmbed
+  EabBlocksFormstackEmbed,
+  EabBlocksStudentLifeMicroform
 }
