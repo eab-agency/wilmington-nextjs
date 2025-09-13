@@ -1,0 +1,32 @@
+import RichText from '@/components/atoms/RichText'
+import Accordion from '@/components/molecules/Accordian/Accordian'
+import { gql } from '@apollo/client'
+
+const EabBlocksAccordion = (props) => {
+  // Extract title and content from the props structure
+  const attributes = props.attributes ?? {}
+  const accordionTitle = attributes.accordionTitle ?? 'Accordion Title'
+  const accordionContent = attributes.accordionContent ?? 'Accordion Content'
+
+  return (
+    <Accordion title={accordionTitle}>
+      <RichText>{accordionContent}</RichText>
+    </Accordion>
+  )
+}
+
+export default EabBlocksAccordion
+
+EabBlocksAccordion.fragments = {
+  entry: gql`
+    fragment EabBlocksAccordionBlockFragment on EabBlocksAccordion {
+      attributes {
+        accordionTitle
+        accordionContent
+      }
+    }
+  `,
+  key: `EabBlocksAccordionBlockFragment`
+}
+
+EabBlocksAccordion.displayName = 'EabBlocksAccordion'
