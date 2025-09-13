@@ -4,9 +4,9 @@ import { gql } from '@apollo/client'
 
 const EabBlocksAccordion = (props) => {
   // Extract title and content from the props structure
-    const attributes = props.attributes ?? {}
-    const accordionTitle = attributes.accordionTitle ?? 'Accordion Title'
-    const accordionContent = attributes.accordionContent ?? 'Accordion Content'
+  const attributes = props.attributes ?? {}
+  const accordionTitle = attributes.accordionTitle ?? 'Accordion Title'
+  const accordionContent = attributes.accordionContent ?? 'Accordion Content'
 
   return (
     <Accordion title={accordionTitle}>
