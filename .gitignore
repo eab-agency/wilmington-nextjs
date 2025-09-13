@@ -52,3 +52,4 @@ public/*.xml
 .github
 /AI-CONTEXT
 .env.local.bak
+yarn.lock
