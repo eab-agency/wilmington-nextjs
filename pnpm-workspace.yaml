@@ -1,0 +1,12 @@
+packages:
+  - "."
+
+onlyBuiltDependencies:
+  - '@newrelic/fn-inspect'
+  - '@newrelic/native-metrics'
+  - '@parcel/watcher'
+  - aws-sdk
+  - core-js
+  - protobufjs
+  - sharp
+  - unrs-resolver
