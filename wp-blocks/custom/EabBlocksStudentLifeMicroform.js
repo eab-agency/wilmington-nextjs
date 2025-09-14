@@ -35,12 +35,16 @@ const EabBlocksStudentLifeMicroform = (props) => {
             position: 'absolute',
             top: 0,
             left: 0,
-            zIndex: 2
+            zIndex: 1,
+            pointerEvents: 'none'
           }}
+          aria-hidden="true"
         />
       )}
 
-      <WordPressBlocksViewer blocks={props?.children ?? []} />
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        <WordPressBlocksViewer blocks={props?.children ?? []} />
+      </div>
     </div>
   )
 }
