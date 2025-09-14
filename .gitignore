@@ -49,7 +49,7 @@ public/*.xml
 .open-next
 
 # local DEVAO
-.github
+# .github this should not be ignored
 /AI-CONTEXT
 .env.local.bak
-yarn.lock
+# yarn.lock this should not be ignored
