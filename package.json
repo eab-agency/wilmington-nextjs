@@ -2,18 +2,21 @@
   "name": "wilmington-website",
   "version": "0.1.0",
   "engines": {
-    "node": ">=20"
+    "node": ">=20",
+    "pnpm": ">=8.0.0"
   },
+  "packageManager": "pnpm@8.15.6",
   "private": true,
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "faust build",
     "clean": "rimraf .next/",
-    "dev": "NODE_OPTIONS='-r newrelic' npm run clean && faust dev",
+    "dev": "NODE_OPTIONS='-r newrelic' pnpm run clean && faust dev",
     "develop": "faust dev",
     "format": "npx prettier  '**/*.{js,jsx,ts,tsx,md,html,css,scss,json,yml}' --write || true",
     "generate": "faust generatePossibleTypes",
     "import-redirects": "node scripts/import-redirects.js",
-    "lint": "npm run format && npm run lint:js && npm run lint:css",
+    "lint": "pnpm run format && pnpm run lint:js && pnpm run lint:css",
     "lint:css": "npx stylelint '**/*.css' --fix || true",
     "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && next lint",
     "postbuild": "next-sitemap",
