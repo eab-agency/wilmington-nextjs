@@ -10,7 +10,7 @@
 
   @media (min-width: tokens.$mq-800) {
     height: 80vh;
-    min-height: 30rem;
+    min-height: 39rem;
     position: relative;
   }
 
@@ -53,7 +53,7 @@
     &.heroVideo {
       position: absolute;
       z-index: tokens.$layer-1;
-      height: clamp(30rem, 45vw, 45rem);
+      height: clamp(39rem, 45vw, 45rem);
       width: 103vw;
       left: 50%;
       transform: translateX(-50%);
