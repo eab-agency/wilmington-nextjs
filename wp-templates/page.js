@@ -61,7 +61,7 @@ export default function Page(props) {
                 <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
               </>
             )}
-            <div className="page-content">
+            <div className="page-content" id="page-content">
               {blocks.map((block, index) => (
                 <Fragment key={block.id || index}>
                   <WordPressBlocksViewer blocks={[block]} />
