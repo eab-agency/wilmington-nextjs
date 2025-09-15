@@ -47,7 +47,7 @@ const EabBlocksHomepageHeroSlider = (props) => {
           }
         : null
     )
-    .filter(Boolean)
+    .filter((modalButton) => modalButton && modalButton.url) // Filter out modal buttons without valid URLs
 
   // Get CTAs from hero-ctas-group
   const ctasGroup = heroTopSection?.innerBlocks?.find(
@@ -73,7 +73,8 @@ const EabBlocksHomepageHeroSlider = (props) => {
           icon: buttonIcon || '',
           style: buttonStyle || 'primary'
         }
-      }) || []
+      })
+      ?.filter((cta) => cta.url) || [] // Filter out CTAs without valid URLs
 
   // Get slides from hero-slides-area
   const slidesArea = innerBlocks?.find(
