@@ -38,20 +38,24 @@ function Hero({
           )}
         </div>
         <ul className={styles.ctasRow}>
+
           {ctas.map((cta, index) => {
             const buttonClassname = styles[cta.style]
 
             return (
-              <li key={index}>
-                <MainCta
-                  text={cta.title}
-                  url={cta.url}
-                  icon={cta.icon}
-                  className={buttonClassname}
-                />
-              </li>
+              cta.url && (
+                <li key={index}>
+                  <MainCta
+                    text={cta.title}
+                    url={cta.url}
+                    icon={cta.icon}
+                    className={buttonClassname}
+                  />
+                </li>
+              )
             )
           })}
+
         </ul>
       </div>
     </div>
