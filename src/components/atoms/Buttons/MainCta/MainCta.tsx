@@ -1,3 +1,4 @@
+import { CollegeHallIcon } from '@/components/atoms/ModalityIcons/icons'
 import Link from '@/components/common/Link'
 import React from 'react'
 import {
@@ -31,6 +32,8 @@ function MainCta({ text, icon, url }: MainCtaProps) {
               return <MdInfoOutline />
             case 'phone':
               return <MdLocalPhone />
+            case 'building':
+              return <CollegeHallIcon />
             default:
               return <MdStar />
           }

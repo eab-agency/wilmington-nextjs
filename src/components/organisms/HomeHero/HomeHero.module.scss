@@ -150,6 +150,7 @@
 
         svg {
           color: tokens.$c-white;
+          fill: tokens.$c-white;
           font-size: clamp(tokens.$fs-xs, 7vw, tokens.$fs-xl);
         }
       }
