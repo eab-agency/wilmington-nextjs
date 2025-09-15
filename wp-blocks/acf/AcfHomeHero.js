@@ -36,7 +36,6 @@ const IMAGE_QUERY = gql`
 
 export default function AcfHomeHero(props) {
   const attributes = props.attributes
-
   const {
     hero_content,
     hero_primary_ctas: cta_count,
@@ -44,7 +43,9 @@ export default function AcfHomeHero(props) {
     ...other
   } = JSON.parse(attributes?.data)
 
-  const hero_ctas_array = createCTAArray(other, cta_count)
+  const hero_ctas_array = createCTAArray(other, cta_count).filter(
+    (cta) => cta.url
+  )
 
   const hero_media_slider_array = []
 
