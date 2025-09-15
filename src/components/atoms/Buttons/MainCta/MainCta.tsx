@@ -1,3 +1,4 @@
+import { CollegeHallIcon } from '@/components/atoms/ModalityIcons/icons'
 import Link from '@/components/common/Link'
 import React from 'react'
 import {
@@ -13,11 +14,12 @@ interface MainCtaProps {
   text: string
   icon: string
   url: string
+  className?: string
 }
 
-function MainCta({ text, icon, url }: MainCtaProps) {
+function MainCta({ text, icon, url, className }: MainCtaProps) {
   return (
-    <Link href={url} tabIndex="0">
+    <Link href={url} tabIndex="0" className={className}>
       <figure>
         {(() => {
           switch (icon) {
@@ -31,6 +33,8 @@ function MainCta({ text, icon, url }: MainCtaProps) {
               return <MdInfoOutline />
             case 'phone':
               return <MdLocalPhone />
+            case 'building':
+              return <CollegeHallIcon />
             default:
               return <MdStar />
           }
