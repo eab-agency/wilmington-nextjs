@@ -13,37 +13,42 @@ const FooterItemGraphic = ({ className, graphic }: FooterItemGraphicProps) => {
       {graphicName.includes('apply') ? (
         <Image
           src="/apply-prefooter.jpg"
-          alt={graphic}
+          alt=""
           width={300}
           height={300}
+          aria-hidden="true"
         />
       ) : graphicName.includes('info') ? (
         <Image
           src="/info-prefooter.jpg"
-          alt={graphic}
+          alt=""
           width={300}
           height={300}
+          aria-hidden="true"
         />
       ) : graphicName.includes('visit') ? (
         <Image
           src="/visit-prefooter.jpg"
-          alt={graphic}
+          alt=""
           width={300}
           height={300}
+          aria-hidden="true"
         />
       ) : graphicName.includes('give') ? (
         <Image
           src="/give-prefooter.jpg"
-          alt={graphic}
+          alt=""
           width={300}
           height={300}
+          aria-hidden="true"
         />
       ) : (
         <Image
           src="/img-prefooter.jpg"
-          alt={graphic}
+          alt=""
           height={300}
           width={300}
+          aria-hidden="true"
         />
       )}
     </div>

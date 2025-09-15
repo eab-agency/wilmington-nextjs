@@ -51,7 +51,9 @@
 
   &:focus {
     top: 10px;
-    left: 10px;
+    left: 20px;
+    z-index: tokens.$layer-9999;
+    padding: 3px;
   }
 }
 
@@ -69,7 +71,7 @@
 .pageHeader {
   display: flex;
   position: relative;
-  z-index: tokens.$layer-9999;
+  z-index: tokens.$layer-9998;
   background: tokens.$c-white;
 
   @media (max-width: tokens.$mq-900) {

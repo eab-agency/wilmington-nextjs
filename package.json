@@ -2,20 +2,23 @@
   "name": "wilmington-website",
   "version": "0.1.0",
   "engines": {
-    "node": ">=20"
+    "node": ">=20",
+    "pnpm": ">=8.0.0"
   },
+  "packageManager": "pnpm@8.15.6",
   "private": true,
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "faust build",
     "clean": "rimraf .next/",
-    "dev": "NODE_OPTIONS='-r newrelic' npm run clean && faust dev",
+    "dev": "NODE_OPTIONS='-r newrelic' pnpm run clean && faust dev",
     "develop": "faust dev",
     "format": "npx prettier  '**/*.{js,jsx,ts,tsx,md,html,css,scss,json,yml}' --write || true",
     "generate": "faust generatePossibleTypes",
     "import-redirects": "node scripts/import-redirects.js",
-    "lint": "npm run format && npm run lint:js && npm run lint:css",
+    "lint": "pnpm run format && pnpm run lint:js && pnpm run lint:css",
     "lint:css": "npx stylelint '**/*.css' --fix || true",
-    "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && next lint",
+    "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && eslint .",
     "postbuild": "next-sitemap",
     "prepare": "husky install",
     "start": "NODE_OPTIONS='-r newrelic' faust start"
@@ -51,7 +54,7 @@
     "isomorphic-unfetch": "^4.0.2",
     "lodash": "^4.17.21",
     "newrelic": "^12.18.2",
-    "next": "^15.3.3",
+    "next": "^15.4.7",
     "next-auth": "^4.24.5",
     "next-sitemap": "^4.0.7",
     "postcss": "^8.5.3",
@@ -72,6 +75,7 @@
     "yup": "^1.0.2"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "@types/newrelic": "^9.14.8",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
@@ -88,5 +92,17 @@
     "stylelint": "^15.10.1",
     "stylelint-config-standard": "^31.0.0",
     "stylelint-scss": "^4.6.0"
+  },
+  "browserslist": {
+    "production": [
+      "defaults and supports es6-module",
+      "not ie <= 11",
+      "not dead"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

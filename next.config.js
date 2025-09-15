@@ -60,6 +60,26 @@ const nextConfig = {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
     ignoreDuringBuilds: true
+  },
+  async headers() {
+    return [
+      {
+        // Matches anything under /assets/ (your fonts live here)
+        source: '/assets/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          }
+        ]
+      }
+    ]
+  },
+  swcMinify: true,
+  // Make SWC stop emitting ES5-era transforms/polyfills
+  experimental: {
+    legacyBrowsers: false, // ✅ drop IE/very old Chrome/Firefox targets
+    browsersListForSwc: true // ✅ respect your package.json browserslist
   }
 }
 
