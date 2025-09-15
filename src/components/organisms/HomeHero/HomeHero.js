@@ -28,34 +28,27 @@ function Hero({
           )}
           {modalButtons.length > 0 && (
             <div className={styles.modalButtonWrapper}>
-              {modalButtons.map(
-                (modalButton, index) =>
-                  modalButton.url && (
-                    <ModalButton key={index} {...modalButton} />
-                  )
-              )}
+              {modalButtons.map((modalButton, index) => (
+                <ModalButton key={index} {...modalButton} />
+              ))}
             </div>
           )}
         </div>
         <ul className={styles.ctasRow}>
-
           {ctas.map((cta, index) => {
             const buttonClassname = styles[cta.style]
 
             return (
-              cta.url && (
-                <li key={index}>
-                  <MainCta
-                    text={cta.title}
-                    url={cta.url}
-                    icon={cta.icon}
-                    className={buttonClassname}
-                  />
-                </li>
-              )
+              <li key={index}>
+                <MainCta
+                  text={cta.title}
+                  url={cta.url}
+                  icon={cta.icon}
+                  className={buttonClassname}
+                />
+              </li>
             )
           })}
-
         </ul>
       </div>
     </div>

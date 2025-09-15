@@ -43,7 +43,9 @@ export default function AcfHomeHero(props) {
     ...other
   } = JSON.parse(attributes?.data)
 
-  const hero_ctas_array = createCTAArray(other, cta_count)
+  const hero_ctas_array = createCTAArray(other, cta_count).filter(
+    (cta) => cta.url
+  )
 
   const hero_media_slider_array = []
 
