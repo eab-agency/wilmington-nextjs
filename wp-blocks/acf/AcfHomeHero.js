@@ -36,7 +36,6 @@ const IMAGE_QUERY = gql`
 
 export default function AcfHomeHero(props) {
   const attributes = props.attributes
-
   const {
     hero_content,
     hero_primary_ctas: cta_count,
