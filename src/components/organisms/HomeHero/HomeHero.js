@@ -42,16 +42,16 @@ function Hero({
             const buttonClassname = styles[cta.style]
 
             return (
-            <li key={index}>
+              <li key={index}>
                 <MainCta
-                  key={index}
                   text={cta.title}
                   url={cta.url}
                   icon={cta.icon}
                   className={buttonClassname}
                 />
               </li>
-            )})}
+            )
+          })}
         </ul>
       </div>
     </div>

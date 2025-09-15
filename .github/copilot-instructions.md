@@ -1,12 +1,15 @@
 # Wilmington College Next.js Website - AI Agent Instructions
 
 ## Architecture Overview
+
 This is a **Faust.js headless WordPress** site that renders WordPress content via GraphQL. The architecture follows a clear separation:
+
 - **WordPress Backend**: `https://dev-wilmington-college.pantheonsite.io/` (dev), `https://wordpress.wilmington.edu/` (prod)
 - **Next.js Frontend**: `http://localhost:3000/` (local dev)
 - **Content Delivery**: WordPress blocks → React components via `@faustwp/blocks`
 
 ## Key Development Commands
+
 ```bash
 # Setup (first time)
 vercel pull                    # Pull environment variables
@@ -30,7 +33,9 @@ pnpm start                     # Production server
 ## WordPress Integration Patterns
 
 ### Template System (`wp-templates/`)
+
 Maps WordPress template hierarchy to React components:
+
 - `front-page.js` → Homepage
 - `page.js` → Generic pages
 - `single-{post-type}.js` → Custom post type singles
@@ -38,13 +43,16 @@ Maps WordPress template hierarchy to React components:
 - Templates are registered in `wp-templates/index.js`
 
 ### Block System (`wp-blocks/`)
+
 WordPress Gutenberg blocks → React components:
+
 - **Core blocks**: `CoreParagraph`, `CoreImage`, etc.
 - **ACF blocks**: `AcfHomeHero`, `AcfNewsListing`, etc.
 - **Custom blocks**: `EabBlocksFormstackEmbed`, `EabProgramDirectory`
 - All blocks registered in `wp-blocks/index.js`
 
 ### GraphQL Configuration
+
 - **Endpoint**: `/index.php?graphql` (updated from legacy `/graphql`)
 - **Schema**: Auto-generated types in `possibleTypes.json`
 - **Fragments**: Reusable queries in `src/fragments/`
@@ -53,6 +61,7 @@ WordPress Gutenberg blocks → React components:
 ## File Organization Conventions
 
 ### Component Architecture (Atomic Design)
+
 ```
 src/components/
 ├── atoms/          # Basic UI elements
@@ -63,6 +72,7 @@ src/components/
 ```
 
 ### Data Layer Structure
+
 ```
 src/lib/
 ├── wordpress/      # WordPress GraphQL queries by post type
@@ -79,14 +89,17 @@ src/functions/
 ## Development Patterns
 
 ### Environment Management
+
 - **Local**: Uses `.env.local` with Vercel integration
 - **WordPress URLs**: Managed via `scripts/switch-env.sh`
 - **Redirects**: Imported from WordPress via `scripts/import-redirects.js`
 
 ### Error Handling
+
 Custom GraphQL error handling in `src/lib/wordpress/handleGraphQLErrors.js` addresses WPGraphQL v2 breaking changes.
 
 ### Build Process
+
 - **Images**: Remote patterns configured in `src/config/imageConfig`
 - **Redirects**: Fetched from WordPress at build time
 - **Sitemap**: Proxied from WordPress via `/api/sitemap-proxy`
@@ -94,6 +107,7 @@ Custom GraphQL error handling in `src/lib/wordpress/handleGraphQLErrors.js` addr
 ## WordPress Content Integration
 
 ### Custom Post Types
+
 - `program` → Academic programs with custom fields
 - `faculty` → Faculty profiles with department taxonomy
 - `event` → Events with date/location data
@@ -101,11 +115,13 @@ Custom GraphQL error handling in `src/lib/wordpress/handleGraphQLErrors.js` addr
 - `organization` → Student organizations
 
 ### Key WordPress Endpoints
+
 - **Development**: `https://dev-wilmington-college.pantheonsite.io/`
 - **Production**: `https://wordpress.wilmington.edu/`
 - **GraphQL**: `{base-url}/index.php?graphql`
 
 ## Critical Development Notes
+
 - **Package Manager**: Uses pnpm (enforced via `preinstall` script)
 - **Node Version**: Requires Node.js 20+ for fetch/AbortController support
 - **Monitoring**: NewRelic integration in production

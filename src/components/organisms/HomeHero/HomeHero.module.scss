@@ -155,16 +155,15 @@
         }
       }
 
+      &.secondary {
+        background: tokens.$c-white;
+      }
+
       &:hover,
       &:active {
         background: tokens.$c-limeGreen-600;
         color: tokens.$c-white;
         border-color: tokens.$c-limeGreen-600;
-      }
-
-      &.secondary{
-        background: tokens.$c-white;
-        // color:
       }
     }
   }
