@@ -58,7 +58,7 @@ const EabBlocksHomepageHeroSlider = (props) => {
     ctasGroup?.innerBlocks
       ?.filter((cta) => cta.name === 'eab-blocks/hero-cta-button')
       ?.map((cta) => {
-        const { buttonText, buttonLink, buttonIcon } = cta.attributes || {}
+        const { buttonText, buttonLink, buttonIcon, buttonStyle } = cta.attributes || {}
         let parsedButtonLink
         try {
           parsedButtonLink = JSON.parse(buttonLink)
@@ -69,7 +69,8 @@ const EabBlocksHomepageHeroSlider = (props) => {
         return {
           title: buttonText || '',
           url: parsedButtonLink?.url || '',
-          icon: buttonIcon || ''
+          icon: buttonIcon || '',
+          style: buttonStyle || 'primary'
         }
       }) || []
 
@@ -155,6 +156,7 @@ EabBlocksHomepageHeroSlider.fragments = {
                     buttonText
                     buttonIcon
                     buttonLink
+                    buttonStyle
                   }
                 }
               }

@@ -161,6 +161,11 @@
         color: tokens.$c-white;
         border-color: tokens.$c-limeGreen-600;
       }
+
+      &.secondary{
+        background: tokens.$c-white;
+        // color:
+      }
     }
   }
 }

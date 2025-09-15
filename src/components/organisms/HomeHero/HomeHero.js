@@ -11,6 +11,7 @@ function Hero({
   ctas = [],
   modalButtons = []
 }) {
+
   return (
     <div className={styles.homeHero}>
       <SimpleCarousel mediaItems={mediaItems} />
@@ -38,16 +39,20 @@ function Hero({
           )}
         </div>
         <ul className={styles.ctasRow}>
-          {ctas.map((cta, index) => (
+          {ctas.map((cta, index) => {
+            const buttonClassname = styles[cta.style]
+
+            return (
             <li key={index}>
-              <MainCta
-                key={index}
-                text={cta.title}
-                url={cta.url}
-                icon={cta.icon}
-              />
-            </li>
-          ))}
+                <MainCta
+                  key={index}
+                  text={cta.title}
+                  url={cta.url}
+                  icon={cta.icon}
+                  className={buttonClassname}
+                />
+              </li>
+            )})}
         </ul>
       </div>
     </div>

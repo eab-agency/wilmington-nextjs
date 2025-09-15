@@ -14,11 +14,12 @@ interface MainCtaProps {
   text: string
   icon: string
   url: string
+  className?: string
 }
 
-function MainCta({ text, icon, url }: MainCtaProps) {
+function MainCta({ text, icon, url, className }: MainCtaProps) {
   return (
-    <Link href={url} tabIndex="0">
+    <Link href={url} tabIndex="0" className={className}>
       <figure>
         {(() => {
           switch (icon) {
