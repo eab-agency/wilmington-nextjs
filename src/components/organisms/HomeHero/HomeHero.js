@@ -11,7 +11,6 @@ function Hero({
   ctas = [],
   modalButtons = []
 }) {
-
   return (
     <div className={styles.homeHero}>
       <SimpleCarousel mediaItems={mediaItems} />
