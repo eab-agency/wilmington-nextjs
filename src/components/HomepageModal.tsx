@@ -185,11 +185,8 @@ const HomepageModal: React.FC = () => {
       clickedElement &&
       !clickedElement.classList.contains(styles.closeButton)
     ) {
-      // Save the dismissal cookie when user interacts with modal content
-      if (modalData?.id) {
-        setDismissedCookie(modalData.id)
-        setIsDismissed(true)
-      }
+      // A user interaction with content (link/button) should close the modal
+      handleClose()
     }
   }
 
