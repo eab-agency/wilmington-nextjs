@@ -4,6 +4,7 @@ import Container from '@/components/atoms/Container'
 import Preloader from '@/components/atoms/Preloader'
 import FeaturedImage from '@/components/common/FeaturedImage'
 import Layout from '@/components/common/Layout'
+import WordPressProvider from '@/components/common/WordPressProvider'
 import PageHero from '@/components/organisms/PageHero/PageHero'
 import { seoPostFields } from '@/fragments'
 import getFragmentDataFromBlocks from '@/functions/wordpress/blocks/getFragmentDataFromBlocks'
@@ -20,6 +21,12 @@ export default function Page(props) {
 
   const { editorBlocks, title, featuredImage, seo } = props.data.page
   const blocks = flatListToHierarchical(editorBlocks)
+
+  // Create page context with featured image data for blocks
+  const pageState = {
+    featuredImage: featuredImage?.node || null,
+    title
+  }
 
   const blockGroupContainsPageHero = (children) => {
     return children.some((child) => {
@@ -64,7 +71,9 @@ export default function Page(props) {
             <div className="page-content" id="page-content">
               {blocks.map((block, index) => (
                 <Fragment key={block.id || index}>
-                  <WordPressBlocksViewer blocks={[block]} />
+                  <WordPressProvider value={pageState}>
+                    <WordPressBlocksViewer blocks={[block]} />
+                  </WordPressProvider>
 
                   {/* Conditionally render Breadcrumbs after the eab-blocks/page-hero block */}
                   {(block.name === 'eab-blocks/page-hero' ||
@@ -85,7 +94,7 @@ Page.query = gql`
   ${FeaturedImage.fragments.entry}
   ${getFragmentDataFromBlocks(blocks).entries}
 
-  query GetPageData($databaseId: ID!, $imageSize: MediaItemSizeEnum = HERO_IMG, $asPreview: Boolean = false) {
+  query GetPageData($databaseId: ID!, $imageSize: MediaItemSizeEnum = _1536X1536, $asPreview: Boolean = false) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       title
       content
