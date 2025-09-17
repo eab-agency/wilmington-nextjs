@@ -171,26 +171,49 @@ const HomepageModal: React.FC = () => {
    * This function detects clicks on any link (a tag) or button within the modal
    * and saves the dismissal cookie, so the modal won't appear again.
    * Uses event delegation to catch clicks on dynamically generated content.
+   * Prevents race conditions by manually handling link navigation after modal cleanup.
    *
    * @param event - The mouse event from the click
    */
   const handleContentClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const target = event.target as HTMLElement
 
-    // Check if the clicked element is a link, button, or contained within one
     const clickedElement = target.closest('a, button')
 
-    // If we found a link or button (excluding the close button which has its own handler)
     if (
-      clickedElement &&
-      !clickedElement.classList.contains(styles.closeButton)
+      !clickedElement ||
+      clickedElement.classList.contains(styles.closeButton)
     ) {
-      // Save the dismissal cookie when user interacts with modal content
-      if (modalData?.id) {
-        setDismissedCookie(modalData.id)
-        setIsDismissed(true)
+      return
+    }
+
+    // If the clicked element is a link, handle navigation manually
+    if (clickedElement.tagName === 'A') {
+      const link = clickedElement as HTMLAnchorElement
+      const href = link.getAttribute('href')
+      const linkTarget = link.getAttribute('target')
+
+      if (href) {
+        // Prevent default navigation to allow modal to close gracefully
+        event.preventDefault()
+
+        // Close the modal (this also sets the dismissal cookie)
+        handleClose()
+
+        // Navigate after a delay to allow closing animation to complete
+        setTimeout(() => {
+          if (linkTarget === '_blank') {
+            window.open(href, '_blank', 'noopener noreferrer')
+          } else {
+            router.push(href)
+          }
+        }, 300) // This delay should match the one in handleClose
+        return
       }
     }
+
+    // For buttons or other interactions, just close the modal
+    handleClose()
   }
 
   // Determine if we should render the image column
