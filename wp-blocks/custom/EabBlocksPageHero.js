@@ -37,16 +37,12 @@ const EabBlocksPageHero = (props) => {
   // Filter out empty or meaningless blocks
   const filterEmptyBlocks = (blocks = []) => {
     return blocks.filter((block) => {
-      if (!block || !block.renderedHtml) return false
-
-      // Remove blocks that only contain empty HTML
-      const cleanedHtml = block.renderedHtml
-        .replace(/<\/?[^>]+(>|$)/g, '') // Remove HTML tags
-        .replace(/\s+/g, '') // Remove whitespace
-        .trim()
-
-      // Only include blocks that have actual content
-      return cleanedHtml.length > 0
+      if (!block || !block.renderedHtml) {
+        return false
+      }
+      // Only include blocks that have actual content.
+      // This prevents empty paragraphs from creating unwanted space.
+      return block.renderedHtml.trim() !== ''
     })
   }
 
