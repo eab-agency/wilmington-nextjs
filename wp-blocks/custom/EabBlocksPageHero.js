@@ -34,6 +34,24 @@ const EabBlocksPageHero = (props) => {
   const imageSource = featuredImage?.sourceUrl
   const imageAlt = featuredImage?.altText || heroTitle || pageTitle || ''
 
+  // Filter out empty or meaningless blocks
+  const filterEmptyBlocks = (blocks = []) => {
+    return blocks.filter((block) => {
+      if (!block || !block.renderedHtml) return false
+      
+      // Remove blocks that only contain empty HTML
+      const cleanedHtml = block.renderedHtml
+        .replace(/<\/?[^>]+(>|$)/g, '') // Remove HTML tags
+        .replace(/\s+/g, '') // Remove whitespace
+        .trim()
+      
+      // Only include blocks that have actual content
+      return cleanedHtml.length > 0
+    })
+  }
+
+  const filteredBlocks = filterEmptyBlocks(props?.children)
+
   return (
     <div {...blockWrapperAttributes}>
       <div className="hero-content-wrapper">
@@ -56,9 +74,11 @@ const EabBlocksPageHero = (props) => {
         <div className={`hero-body${waterMark ? ' has-watermark' : ''}`}>
           <h1 className="hero-title">{heroTitle}</h1>
 
-          <div className="hero-copy">
-            <WordPressBlocksViewer blocks={props?.children ?? []} />
-          </div>
+          {filteredBlocks.length > 0 && (
+            <div className="hero-copy">
+              <WordPressBlocksViewer blocks={filteredBlocks} />
+            </div>
+          )}
         </div>
       </div>
     </div>
