@@ -150,12 +150,55 @@ const HomepageModal: React.FC = () => {
     }, 300)
   }
 
+  /**
+   * Handles clicks on the modal wrapper to close modal when clicking outside content.
+   *
+   * This function checks if the click target is the modal wrapper itself
+   * (not a child element). If so, it closes the modal.
+   *
+   * @param event - The mouse event from the click
+   */
+  const handleWrapperClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    // Only close if the click was directly on the wrapper (not on child elements)
+    if (event.target === event.currentTarget) {
+      handleClose()
+    }
+  }
+
+  /**
+   * Handles clicks on links and buttons within the modal content.
+   *
+   * This function detects clicks on any link (a tag) or button within the modal
+   * and saves the dismissal cookie, so the modal won't appear again.
+   * Uses event delegation to catch clicks on dynamically generated content.
+   *
+   * @param event - The mouse event from the click
+   */
+  const handleContentClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLElement
+
+    // Check if the clicked element is a link, button, or contained within one
+    const clickedElement = target.closest('a, button')
+
+    // If we found a link or button (excluding the close button which has its own handler)
+    if (
+      clickedElement &&
+      !clickedElement.classList.contains(styles.closeButton)
+    ) {
+      // Save the dismissal cookie when user interacts with modal content
+      if (modalData?.id) {
+        setDismissedCookie(modalData.id)
+        setIsDismissed(true)
+      }
+    }
+  }
+
   // Determine if we should render the image column
   const hasImage = modalData?.popupImage && modalData.popupImage.sourceUrl
 
   return (
-    <div className={styles.modalWrapper}>
-      <div className={styles.modalContent}>
+    <div className={styles.modalWrapper} onClick={handleWrapperClick}>
+      <div className={styles.modalContent} onClick={handleContentClick}>
         <button
           onClick={handleClose}
           className={styles.closeButton}
