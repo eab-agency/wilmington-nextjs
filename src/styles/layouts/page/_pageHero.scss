@@ -103,7 +103,7 @@
       }
 
       @media (min-width: tokens.$mq-1200) {
-        height: clamp(20rem, 35vw, 35em);
+        max-height: 35rem;
       }
 
       img {
