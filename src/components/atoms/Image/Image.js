@@ -75,6 +75,7 @@ export default function DisplayImage(props) {
       placeholder: blurUrl ? 'blur' : 'empty',
       blurDataURL: blurUrl,
       onError: props?.onError,
+      quality: props?.quality ?? 70,
       className: cn(
         styles.image,
         props?.className,
@@ -88,7 +89,8 @@ export default function DisplayImage(props) {
       imageProps.height = imageHeight
       imageProps.width = imageWidth
     }
-
+    // disable eslint rule since alt is provided in imageProps
+    // eslint-disable-next-line jsx-a11y/alt-text
     return <Image {...imageProps} />
   }
 
