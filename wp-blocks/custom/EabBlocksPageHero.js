@@ -38,13 +38,13 @@ const EabBlocksPageHero = (props) => {
   const filterEmptyBlocks = (blocks = []) => {
     return blocks.filter((block) => {
       if (!block || !block.renderedHtml) return false
-      
+
       // Remove blocks that only contain empty HTML
       const cleanedHtml = block.renderedHtml
         .replace(/<\/?[^>]+(>|$)/g, '') // Remove HTML tags
         .replace(/\s+/g, '') // Remove whitespace
         .trim()
-      
+
       // Only include blocks that have actual content
       return cleanedHtml.length > 0
     })
