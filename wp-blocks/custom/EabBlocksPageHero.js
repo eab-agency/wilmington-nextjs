@@ -64,8 +64,8 @@ const EabBlocksPageHero = (props) => {
                 ? { mediaDetails: featuredImage.mediaDetails }
                 : undefined
             }
-            width={1920}
-            height={1080}
+            width={featuredImage?.mediaDetails?.width || 1920}
+            height={featuredImage?.mediaDetails?.height || 1080}
             priority={true}
             className="hero-image"
           />
