@@ -99,11 +99,11 @@
       display: flex;
 
       @media (max-width: tokens.$mq-800) {
-        height: clamp(13rem, 18vw, 18em);
+        min-height: clamp(13rem, 18vw, 18em);
       }
 
       @media (min-width: tokens.$mq-1200) {
-        height: clamp(20rem, 35vw, 35em);
+        min-height: clamp(20rem, 35vw, 35em);
       }
 
       img {
