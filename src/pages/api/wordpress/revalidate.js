@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * On-demand post revalidation.
  *
@@ -6,30 +7,50 @@
  * @param {object} res Instance of http.ServerResponse.
  */
 export default async function revalidate(req, res) {
+  console.log('=== REVALIDATE WEBHOOK CALLED ===')
+  console.log('Method:', req.method)
+  console.log('Headers:', JSON.stringify(req.headers, null, 2))
+  console.log('Query params:', JSON.stringify(req.query, null, 2))
+  console.log('Body:', JSON.stringify(req.body, null, 2))
+  console.log('================================')
+
+  // Support both query params and body
+  const secret = req.query.secret || req.body.secret
+  const path = req.query.path || req.body.slug || req.body.path
+
+  console.log('Extracted secret:', secret ? 'Present' : 'Missing')
+  console.log('Extracted path:', path)
+
   // Check for a valid secret.
-  if (req.query.secret !== process.env.WORDPRESS_PREVIEW_SECRET) {
+  if (secret !== process.env.WORDPRESS_PREVIEW_SECRET) {
+    console.log('❌ Secret validation failed')
     return res.status(401).json({
       message:
         'Invalid secret. Please check your .env file or the POST request.'
     })
   }
 
-  const path = req.query.path
+  console.log('✅ Secret validated')
 
-  // Ensure the path parameter is provided
+  // Check for a valid path.
   if (!path) {
-    return res.status(400).json({ message: 'Path query parameter is required' })
+    console.log('❌ Path missing')
+    return res.status(400).json({
+      message: 'A path is required to revalidate the cache.'
+    })
   }
 
   // Try to revalidate the post cache.
   try {
+    console.log('🔄 Attempting to revalidate:', path)
     await res.revalidate(path)
-
+    console.log('✅ Revalidation successful')
     return res.status(200).json({
       message: `Success! The cache for ${path} was successfully revalidated.`,
       revalidated: true
     })
   } catch (err) {
+    console.log('❌ Revalidation error:', err.message)
     return res.status(500).json({
       message: err.message
     })
