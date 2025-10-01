@@ -1,5 +1,22 @@
 /* eslint-disable no-console */
 import { apiRouter } from '@faustwp/core'
+import cookie from 'cookie'
+
+// Patch the cookie.serialize function to log what's being set
+const originalSerialize = cookie.serialize
+cookie.serialize = function (name, value, options) {
+  console.log('🍪 cookie.serialize called:', { name, value: value?.substring(0, 50), options })
+
+  try {
+    return originalSerialize(name, value, options)
+  } catch (error) {
+    console.error('❌ cookie.serialize error:', error.message)
+    console.error('   Cookie name:', JSON.stringify(name))
+    console.error('   Cookie value:', JSON.stringify(value?.substring(0, 100)))
+    console.error('   Cookie options:', JSON.stringify(options))
+    throw error
+  }
+}
 
 export default async function handler(req, res) {
   // Log all Faust API requests for debugging
