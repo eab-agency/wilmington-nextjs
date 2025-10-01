@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * On-demand post revalidation.
  *
