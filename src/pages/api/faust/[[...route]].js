@@ -33,6 +33,24 @@ export default async function handler(req, res) {
     console.log(
       `   WORDPRESS_APPLICATION_USERNAME: ${process.env.WORDPRESS_APPLICATION_USERNAME}`
     )
+
+    // Log all NEXT_PUBLIC env vars to check for invalid characters
+    console.log('📝 Environment variables check:')
+    Object.keys(process.env)
+      .filter((k) => k.startsWith('NEXT_PUBLIC_'))
+      .forEach((key) => {
+        const value = process.env[key]
+        const hasNewline = value?.includes('\n')
+        const hasTab = value?.includes('\t')
+        // eslint-disable-next-line no-control-regex
+        const hasInvalidChars = /[\x00-\x1F\x7F-\x9F]/.test(value || '')
+        console.log(
+          `   ${key}: ${value?.substring(
+            0,
+            30
+          )}... (newline:${hasNewline}, tab:${hasTab}, invalid:${hasInvalidChars})`
+        )
+      })
   }
 
   if (route === 'auth/user') {
