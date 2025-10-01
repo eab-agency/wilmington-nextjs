@@ -58,6 +58,15 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Intercept res.setHeader to log cookie operations
+    const originalSetHeader = res.setHeader.bind(res)
+    res.setHeader = function (name, value) {
+      if (name.toLowerCase() === 'set-cookie') {
+        console.log('🍪 Attempting to set cookie:', value)
+      }
+      return originalSetHeader(name, value)
+    }
+
     // Call the original apiRouter and await it
     const result = await apiRouter(req, res)
 
@@ -70,6 +79,26 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('❌ Faust API Error:', error.message)
     console.error('   Stack:', error.stack)
+
+    // If it's a cookie error, log all environment variables that might affect cookie names
+    if (error.message?.includes('argument name is invalid')) {
+      console.error('🔍 Cookie error detected! Checking all env vars:')
+      console.error(
+        '   NEXT_PUBLIC_URL:',
+        JSON.stringify(process.env.NEXT_PUBLIC_URL)
+      )
+      console.error(
+        '   NEXT_PUBLIC_WORDPRESS_URL:',
+        JSON.stringify(process.env.NEXT_PUBLIC_WORDPRESS_URL)
+      )
+      console.error(
+        '   FAUST_SECRET_KEY:',
+        JSON.stringify(process.env.FAUST_SECRET_KEY)
+      )
+      console.error('   VERCEL_URL:', JSON.stringify(process.env.VERCEL_URL))
+      console.error('   Error details:', JSON.stringify(error, null, 2))
+    }
+
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     throw error
   }
