@@ -25,9 +25,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.13.8",
-    "@faustwp/blocks": "^4.0.0",
+    "@faustwp/blocks": "^4.1.0",
     "@faustwp/cli": "3.2.3",
-    "@faustwp/core": "^3.2.3",
+    "@faustwp/core": "^3.3.2",
     "@microsoft/clarity": "^1.0.0",
     "@mui/material": "^6.4.2",
     "@newrelic/next": "^0.10.0",
