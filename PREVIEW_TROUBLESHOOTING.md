@@ -1,10 +1,13 @@
 # FaustWP Preview Infinite Loop - Troubleshooting Guide
 
 ## Problem
+
 When clicking "Preview" in WordPress, the page refreshes infinitely at the Next.js frontend URL.
 
 ## Root Cause
+
 The infinite loop occurs because:
+
 1. FaustWP tries to authenticate the preview request
 2. Authentication fails or isn't properly established
 3. The component redirects to WordPress login
@@ -55,11 +58,13 @@ WORDPRESS_APPLICATION_PASSWORD=your-app-password-here
 ### 4. Verify Preview URL Format
 
 The preview URL from WordPress should look like:
+
 ```
 https://qa-web.wilmington.edu/preview?preview=true&previewPathname=/path/to/page/&p=12345&...
 ```
 
 NOT like:
+
 ```
 https://qa-web.wilmington.edu/path/to/page/?preview_id=12345&preview_nonce=...
 ```
@@ -77,14 +82,17 @@ If you see the second format, it means WordPress is using the wrong redirect URL
 ## Known Issues
 
 ### Issue: Safari Localhost Preview
+
 **Problem:** Safari blocks authentication cookies on localhost
 **Solution:** Use HTTPS for localhost or test in Chrome/Firefox
 
 ### Issue: Different Environment URLs
+
 **Problem:** WordPress plugin has one Front-end URL, but you're testing on another
 **Solution:** Update the Front-end site URL in WordPress to match your current environment
 
 ### Issue: Application Password Expired
+
 **Problem:** WordPress application passwords can expire or be revoked
 **Solution:** Generate a new application password and update environment variables
 

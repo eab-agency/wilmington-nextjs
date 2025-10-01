@@ -17,7 +17,8 @@ export default function Preview(props) {
         currentUrl: window.location.href,
         hasPreviewParam: params.has('preview'),
         previewPathname: params.get('previewPathname'),
-        postId: params.get('p') || params.get('page_id') || params.get('preview_id'),
+        postId:
+          params.get('p') || params.get('page_id') || params.get('preview_id'),
         timestamp: new Date().toISOString()
       }
       setDebugInfo(info)
@@ -69,7 +70,9 @@ export default function Preview(props) {
 
         window.location.assign(loginUrl)
       } else {
-        console.error('⚠️ Login redirect already attempted but still not authenticated')
+        console.error(
+          '⚠️ Login redirect already attempted but still not authenticated'
+        )
         console.error('This usually means:')
         console.error('1. WORDPRESS_APPLICATION_PASSWORD is incorrect')
         console.error('2. FAUST_SECRET_KEY mismatch')
