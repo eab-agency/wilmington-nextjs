@@ -10,7 +10,9 @@
       "Bash(git push:*)",
       "Bash(git add:*)",
       "Bash(git rebase:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:faustjs.org)"
     ],
     "deny": [],
     "ask": []
