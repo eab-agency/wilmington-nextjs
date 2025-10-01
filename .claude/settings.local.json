@@ -5,8 +5,15 @@
       "mcp__playwright__browser_network_requests",
       "mcp__playwright__browser_evaluate",
       "mcp__playwright__browser_console_messages",
+<<<<<<< Updated upstream
       "Bash(npm run generate:*)",
       "WebSearch"
+||||||| Stash base
+      "Bash(npm run generate:*)"
+=======
+      "Bash(npm run generate:*)",
+      "Bash(git push:*)"
+>>>>>>> Stashed changes
     ],
     "deny": [],
     "ask": []
