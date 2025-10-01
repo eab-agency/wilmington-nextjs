@@ -7,7 +7,22 @@ const nrExternals = require('newrelic/load-externals')
 const path = require('path')
 const glob = require('glob')
 
+// Set NEXT_PUBLIC_URL based on environment
+if (!process.env.NEXT_PUBLIC_URL) {
+  if (process.env.VERCEL_URL) {
+    // Vercel deployment
+    process.env.NEXT_PUBLIC_URL = `https://${process.env.VERCEL_URL}`
+  } else if (process.env.NODE_ENV === 'development') {
+    // Local development
+    process.env.NEXT_PUBLIC_URL = 'http://localhost:3000'
+  }
+}
+
 const nextConfig = {
+  env: {
+    // Make sure NEXT_PUBLIC_URL is available to the client
+    NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
+  },
   async rewrites() {
     return [
       {
