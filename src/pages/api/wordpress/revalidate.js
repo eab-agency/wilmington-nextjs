@@ -16,10 +16,21 @@ export default async function revalidate(req, res) {
 
   // Support both query params and body
   const secret = req.query.secret || req.body.secret
-  const path = req.query.path || req.body.slug || req.body.path
+  let path = req.query.path || req.body.slug || req.body.path
+
+  // Extract path from post_permalink if not provided directly
+  if (!path && req.body.post_permalink) {
+    try {
+      const url = new URL(req.body.post_permalink)
+      path = url.pathname
+    } catch (e) {
+      console.log('Failed to parse post_permalink:', e.message)
+    }
+  }
 
   console.log('Extracted secret:', secret ? 'Present' : 'Missing')
   console.log('Extracted path:', path)
+  console.log('Post permalink:', req.body.post_permalink)
 
   // Check for a valid secret.
   if (secret !== process.env.WORDPRESS_PREVIEW_SECRET) {
