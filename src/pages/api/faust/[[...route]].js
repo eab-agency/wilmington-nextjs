@@ -12,11 +12,27 @@ export default async function handler(req, res) {
   if (route === 'auth/token') {
     console.log('🔑 Token exchange request detected')
     console.log(`   Code present: ${!!req.query.code || !!req.body?.code}`)
-    console.log(`   Code value: ${req.query.code?.substring(0, 20) || req.body?.code?.substring(0, 20)}...`)
-    console.log(`   FAUST_SECRET_KEY present: ${!!process.env.FAUST_SECRET_KEY}`)
-    console.log(`   FAUST_SECRET_KEY value: ${process.env.FAUST_SECRET_KEY?.substring(0, 10)}...`)
-    console.log(`   WORDPRESS_APPLICATION_PASSWORD present: ${!!process.env.WORDPRESS_APPLICATION_PASSWORD}`)
-    console.log(`   WORDPRESS_APPLICATION_USERNAME: ${process.env.WORDPRESS_APPLICATION_USERNAME}`)
+    console.log(
+      `   Code value: ${
+        req.query.code?.substring(0, 20) || req.body?.code?.substring(0, 20)
+      }...`
+    )
+    console.log(
+      `   FAUST_SECRET_KEY present: ${!!process.env.FAUST_SECRET_KEY}`
+    )
+    console.log(
+      `   FAUST_SECRET_KEY value: ${process.env.FAUST_SECRET_KEY?.substring(
+        0,
+        10
+      )}...`
+    )
+    console.log(
+      `   WORDPRESS_APPLICATION_PASSWORD present: ${!!process.env
+        .WORDPRESS_APPLICATION_PASSWORD}`
+    )
+    console.log(
+      `   WORDPRESS_APPLICATION_USERNAME: ${process.env.WORDPRESS_APPLICATION_USERNAME}`
+    )
   }
 
   if (route === 'auth/user') {

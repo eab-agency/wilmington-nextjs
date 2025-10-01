@@ -21,11 +21,20 @@ export default function Preview(props) {
       // Check if we have an auth code from WordPress
       const authCode = params.get('code')
       if (authCode) {
-        console.log('✅ Auth code received from WordPress:', authCode.substring(0, 20) + '...')
+        console.log(
+          '✅ Auth code received from WordPress:',
+          authCode.substring(0, 20) + '...'
+        )
         console.log('📍 This means WordPress redirected back after login')
-        console.log('🔄 FaustWP should now be exchanging this code for an access token...')
-        console.log('   Check Network tab for request to: /api/faust/auth/token')
-        console.log('   If that request fails (401/403/500), the authentication will fail')
+        console.log(
+          '🔄 FaustWP should now be exchanging this code for an access token...'
+        )
+        console.log(
+          '   Check Network tab for request to: /api/faust/auth/token'
+        )
+        console.log(
+          '   If that request fails (401/403/500), the authentication will fail'
+        )
       }
 
       const info = {
@@ -45,18 +54,11 @@ export default function Preview(props) {
       setDebugInfo(info)
       console.log('🔍 Preview Debug Info:', info)
 
-      // Log the mismatch
+      // Log the WordPress backend connection
       if (loginUrl) {
         const wpUrl = new URL(loginUrl).origin
         console.log('📌 WordPress Backend:', wpUrl)
         console.log('📌 Frontend URL:', window.location.origin)
-
-        if (wpUrl.includes('wordpress-test') && window.location.origin.includes('qa-web')) {
-          console.error('❌ MISMATCH DETECTED!')
-          console.error('   QA environment should connect to wordpress.wilmington.edu')
-          console.error('   But it\'s connecting to wordpress-test.wilmington.edu')
-          console.error('   Fix: Update NEXT_PUBLIC_WORDPRESS_URL in Vercel environment variables')
-        }
       }
 
       // Detect infinite loop - if we see multiple redirects in short time
