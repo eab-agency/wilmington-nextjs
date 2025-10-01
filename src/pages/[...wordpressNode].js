@@ -1,6 +1,51 @@
+/* eslint-disable no-console */
 import { getWordPressProps, WordPressTemplate } from '@faustwp/core'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export default function Page(props) {
+  const router = useRouter()
+
+  useEffect(() => {
+    // Handle preview requests that landed on the wrong URL
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+
+      if (params.has('preview') && params.get('preview') === 'true') {
+        console.log(
+          '⚠️ Preview request detected on page route, redirecting to /preview...'
+        )
+
+        // Build correct preview URL
+        const previewUrl = new URL('/preview', window.location.origin)
+        previewUrl.searchParams.set('preview', 'true')
+
+        // Use previewPathname if available, otherwise use current pathname
+        const previewPathname =
+          params.get('previewPathname') || window.location.pathname
+        previewUrl.searchParams.set('previewPathname', previewPathname)
+
+        // Add post ID (try multiple param names)
+        const postId =
+          params.get('p') || params.get('page_id') || params.get('preview_id')
+        if (postId) {
+          previewUrl.searchParams.set('p', postId)
+        }
+
+        // Add other params
+        if (params.get('page_id')) {
+          previewUrl.searchParams.set('page_id', params.get('page_id'))
+        }
+        if (params.get('typeName')) {
+          previewUrl.searchParams.set('typeName', params.get('typeName'))
+        }
+
+        console.log('Redirecting to:', previewUrl.toString())
+        window.location.replace(previewUrl.toString())
+      }
+    }
+  }, [router])
+
   return <WordPressTemplate {...props} />
 }
 
