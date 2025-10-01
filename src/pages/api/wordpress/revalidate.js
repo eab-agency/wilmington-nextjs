@@ -10,7 +10,10 @@ export default async function revalidate(req, res) {
   console.log('🔔 Revalidate endpoint called')
   console.log('📥 Request method:', req.method)
   console.log('🔑 Secret received:', req.query.secret ? 'Yes' : 'No')
-  console.log('🔑 Secret expected:', process.env.WORDPRESS_PREVIEW_SECRET ? 'Yes' : 'No')
+  console.log(
+    '🔑 Secret expected:',
+    process.env.WORDPRESS_PREVIEW_SECRET ? 'Yes' : 'No'
+  )
   console.log('🔍 Query params:', req.query)
   console.log('📦 Request body:', req.body)
 
