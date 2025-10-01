@@ -8,20 +8,26 @@ const path = require('path')
 const glob = require('glob')
 
 // Set NEXT_PUBLIC_URL based on environment
+// Clean any whitespace from environment variable
+if (process.env.NEXT_PUBLIC_URL) {
+  process.env.NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL.trim()
+}
+
 if (!process.env.NEXT_PUBLIC_URL) {
-  if (process.env.VERCEL_URL) {
-    // Vercel deployment
+  if (process.env.VERCEL_ENV === 'production' && process.env.VERCEL_URL) {
+    // Production deployment - use VERCEL_URL
     process.env.NEXT_PUBLIC_URL = `https://${process.env.VERCEL_URL}`
   } else if (process.env.NODE_ENV === 'development') {
     // Local development
     process.env.NEXT_PUBLIC_URL = 'http://localhost:3000'
   }
+  // For preview/non-production, NEXT_PUBLIC_URL must be set explicitly in Vercel
 }
 
 const nextConfig = {
   env: {
     // Make sure NEXT_PUBLIC_URL is available to the client
-    NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
+    NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL
   },
   async rewrites() {
     return [
