@@ -1,4 +1,4 @@
-/* eslint-disable no-console, jsdoc/check-tag-names */
+/* eslint-disable no-console */
 /**
  * On-demand post revalidation.
  *
