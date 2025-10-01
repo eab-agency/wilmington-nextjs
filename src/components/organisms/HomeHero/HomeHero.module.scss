@@ -119,10 +119,9 @@
   // flex: 0 1 16rem;
   // justify-content: center;
   // min-width: 16rem;
-  @media(min-width: tokens.$mq-800){
+  @media (min-width: tokens.$mq-800) {
     align-items: flex-end;
   }
-
 
   li {
     // width: 100%;
@@ -139,7 +138,7 @@
       text-transform: uppercase;
       font-weight: 600;
       text-decoration: none;
-      width: 100%;
+      // width: 100%;
       border-radius: 0.3em;
       overflow: hidden;
       border: 1px solid tokens.$c-limeGreen-600;
