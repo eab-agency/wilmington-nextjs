@@ -5,7 +5,11 @@ import cookie from 'cookie'
 // Patch the cookie.serialize function to log what's being set
 const originalSerialize = cookie.serialize
 cookie.serialize = function (name, value, options) {
-  console.log('🍪 cookie.serialize called:', { name, value: value?.substring(0, 50), options })
+  console.log('🍪 cookie.serialize called:', {
+    name,
+    value: value?.substring(0, 50),
+    options
+  })
 
   try {
     return originalSerialize(name, value, options)
@@ -19,6 +23,25 @@ cookie.serialize = function (name, value, options) {
 }
 
 export default async function handler(req, res) {
+  // Intercept setHeader to catch cookie operations BEFORE FaustWP processes them
+  const originalSetHeader = res.setHeader.bind(res)
+  res.setHeader = function (name, value) {
+    if (name.toLowerCase() === 'set-cookie') {
+      console.log('🍪 INTERCEPT res.setHeader for Set-Cookie:')
+      console.log('   Value type:', typeof value)
+      console.log('   Value:', JSON.stringify(value))
+
+      // Try to parse the cookie string to see what's invalid
+      if (typeof value === 'string') {
+        const cookieParts = value.split(';')[0].split('=')
+        console.log('   Cookie name from string:', JSON.stringify(cookieParts[0]))
+        console.log('   Cookie name length:', cookieParts[0]?.length)
+        console.log('   Cookie name charCodes:', Array.from(cookieParts[0] || '').map(c => c.charCodeAt(0)))
+      }
+    }
+    return originalSetHeader(name, value)
+  }
+
   // Log all Faust API requests for debugging
   const route = req.query.route?.join('/') || 'root'
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
@@ -75,15 +98,6 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Intercept res.setHeader to log cookie operations
-    const originalSetHeader = res.setHeader.bind(res)
-    res.setHeader = function (name, value) {
-      if (name.toLowerCase() === 'set-cookie') {
-        console.log('🍪 Attempting to set cookie:', value)
-      }
-      return originalSetHeader(name, value)
-    }
-
     // Call the original apiRouter and await it
     const result = await apiRouter(req, res)
 
