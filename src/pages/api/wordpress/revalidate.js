@@ -17,28 +17,19 @@ export default async function revalidate(req, res) {
 
   const path = req.query.path
   console.log('🚀 ~ revalidate ~ path:', path)
-  const slug = req.body.slug
-  console.log('🚀 ~ revalidate ~ slug:', slug)
 
   // Ensure the path parameter is provided
   if (!path) {
     return res.status(400).json({ message: 'Path query parameter is required' })
   }
 
-  // Check for a valid post slug.
-  if (!slug) {
-    return res.status(400).json({
-      message: 'A slug is required to revalidate the cache.'
-    })
-  }
-
   // Try to revalidate the post cache.
   try {
-    await res.unstable_revalidate(req.body.slug)
     await res.revalidate(path)
 
     return res.status(200).json({
-      message: `Success! The cache for ${req.body.slug} was successfully revalidated.`
+      message: `Success! The cache for ${req.body.slug} was successfully revalidated.`,
+      revalidated: true
     })
   } catch (err) {
     return res.status(500).json({
