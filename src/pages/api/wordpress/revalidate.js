@@ -8,7 +8,7 @@
  */
 export default async function revalidate(req, res) {
   // Check for a valid secret.
-  if (req.body.secret !== process.env.WORDPRESS_PREVIEW_SECRET) {
+  if (req.query.secret !== process.env.WORDPRESS_PREVIEW_SECRET) {
     return res.status(401).json({
       message:
         'Invalid secret. Please check your .env file or the POST request.'
