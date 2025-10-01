@@ -62,7 +62,7 @@ const nextConfig = {
     ignoreDuringBuilds: true
   },
   async headers() {
-    return [
+    const headers = [
       {
         // Matches anything under /assets/ (your fonts live here)
         source: '/assets/:path*',
@@ -74,6 +74,25 @@ const nextConfig = {
         ]
       }
     ]
+
+    // Block indexing on Vercel domains, only allow production domain
+    const isVercelDomain =
+      process.env.NEXT_PUBLIC_VERCEL_URL &&
+      !process.env.NEXT_PUBLIC_VERCEL_URL.includes('wilmington.edu')
+
+    if (isVercelDomain || process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production') {
+      headers.push({
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow'
+          }
+        ]
+      })
+    }
+
+    return headers
   },
   swcMinify: true,
   // Make SWC stop emitting ES5-era transforms/polyfills
