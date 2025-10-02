@@ -7,7 +7,31 @@ const nrExternals = require('newrelic/load-externals')
 const path = require('path')
 const glob = require('glob')
 
+// Clean all NEXT_PUBLIC environment variables of whitespace/newlines
+// This prevents "argument name is invalid" errors in cookie setting
+Object.keys(process.env).forEach((key) => {
+  if (key.startsWith('NEXT_PUBLIC_') && typeof process.env[key] === 'string') {
+    process.env[key] = process.env[key].trim()
+  }
+})
+
+// Set NEXT_PUBLIC_URL based on environment
+if (!process.env.NEXT_PUBLIC_URL) {
+  if (process.env.VERCEL_ENV === 'production' && process.env.VERCEL_URL) {
+    // Production deployment - use VERCEL_URL
+    process.env.NEXT_PUBLIC_URL = `https://${process.env.VERCEL_URL}`
+  } else if (process.env.NODE_ENV === 'development') {
+    // Local development
+    process.env.NEXT_PUBLIC_URL = 'http://localhost:3000'
+  }
+  // For preview/non-production, NEXT_PUBLIC_URL must be set explicitly in Vercel
+}
+
 const nextConfig = {
+  env: {
+    // Make sure NEXT_PUBLIC_URL is available to the client
+    NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL
+  },
   async rewrites() {
     return [
       {

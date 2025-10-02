@@ -1,3 +1,5 @@
 import { apiRouter } from '@faustwp/core'
 
-export default apiRouter
+export default function handler(req, res) {
+  return apiRouter(req, res)
+}
