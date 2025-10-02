@@ -17,9 +17,12 @@ import '../../faust.config'
 
 import blocks from '../../wp-blocks'
 
+import { LayoutWithToolbar } from '@/components/common/Layout/LayoutWithToolbar'
+
 import { logToConsole } from '@/functions/welcomeLog'
 import '@/styles/styles.scss'
-import '@faustwp/core/dist/css/toolbar.css'
+import '@/components/common/AdminToolbar/Toolbar.css'
+
 const gtmId = 'GTM-P3X3WCQ'
 
 function AuthDebug() {
@@ -80,7 +83,9 @@ export default function WilmingtonApp({ Component, pageProps }) {
             >
               {/* <AuthDebug /> */}
               <ClarityScript />
-              <Component {...pageProps} key={router.asPath} />
+              <LayoutWithToolbar seedNode={pageProps?.__SEED_NODE__}>
+                <Component {...pageProps} key={router.asPath} />
+              </LayoutWithToolbar>
             </WordPressBlocksProvider>
           </WordPressProvider>
         </MenuProvider>
