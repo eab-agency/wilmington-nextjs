@@ -21,6 +21,7 @@ import { LayoutWithToolbar } from '@/components/common/Layout/LayoutWithToolbar'
 
 import { logToConsole } from '@/functions/welcomeLog'
 import '@/styles/styles.scss'
+import '@/components/common/AdminToolbar/Toolbar.css'
 
 const gtmId = 'GTM-P3X3WCQ'
 
@@ -82,7 +83,7 @@ export default function WilmingtonApp({ Component, pageProps }) {
             >
               {/* <AuthDebug /> */}
               <ClarityScript />
-              <LayoutWithToolbar seedNode={pageProps?.props?.seedNode}>
+              <LayoutWithToolbar seedNode={pageProps?.__SEED_NODE__}>
                 <Component {...pageProps} key={router.asPath} />
               </LayoutWithToolbar>
             </WordPressBlocksProvider>
