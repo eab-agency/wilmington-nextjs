@@ -20,7 +20,8 @@
       "Bash(vercel list:*)",
       "Bash(vercel ls:*)",
       "Bash(git commit:*)",
-      "Bash(pnpm update:*)"
+      "Bash(pnpm update:*)",
+      "Bash(npx stylelint:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,5 +1,6 @@
 html {
   --wp-admin--admin-bar--height: 32px;
+
   scroll-padding-top: var(--wp-admin--admin-bar--height);
 }
 
@@ -49,8 +50,8 @@ html:lang(he-il) .rtl #wpadminbar * {
   white-space: nowrap;
 }
 
-#wpadminbar ul li:before,
-#wpadminbar ul li:after {
+#wpadminbar ul li::before,
+#wpadminbar ul li::after {
   content: normal;
 }
 
@@ -151,7 +152,7 @@ html:lang(he-il) .rtl #wpadminbar * {
 #wpadminbar .shortlink-input {
   margin: 0;
   padding: 0;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
   background: #2c3338;
   display: none;
   position: absolute;
@@ -232,7 +233,7 @@ html:lang(he-il) .rtl #wpadminbar * {
 
 #wpadminbar > #wp-toolbar > #wp-admin-bar-root-default .ab-icon,
 #wpadminbar .ab-icon,
-#wpadminbar .ab-item:before,
+#wpadminbar .ab-item::before,
 .wp-admin-bar-arrow {
   position: relative;
   float: left;
@@ -245,16 +246,16 @@ html:lang(he-il) .rtl #wpadminbar * {
   margin-right: 6px;
 }
 
-#wpadminbar .ab-icon:before,
-#wpadminbar .ab-item:before,
-#wpadminbar #adminbarsearch:before {
+#wpadminbar .ab-icon::before,
+#wpadminbar .ab-item::before,
+#wpadminbar #adminbarsearch::before {
   color: #a7aaad;
-  color: rgba(240, 246, 252, 0.6);
+  color: rgb(240 246 252 / 60%);
 }
 
-#wpadminbar .ab-icon:before,
-#wpadminbar .ab-item:before,
-#wpadminbar #adminbarsearch:before {
+#wpadminbar .ab-icon::before,
+#wpadminbar .ab-item::before,
+#wpadminbar #adminbarsearch::before {
   position: relative;
   transition: color 0.1s ease-in-out;
 }
@@ -266,7 +267,7 @@ html:lang(he-il) .rtl #wpadminbar * {
 
 #wpadminbar .ab-submenu .ab-item {
   color: #c3c4c7;
-  color: rgba(240, 246, 252, 0.7);
+  color: rgb(240 246 252 / 70%);
 }
 
 #wpadminbar .quicklinks .menupop ul li a,
@@ -274,7 +275,7 @@ html:lang(he-il) .rtl #wpadminbar * {
 #wpadminbar .quicklinks .menupop.hover ul li a,
 #wpadminbar.nojs .quicklinks .menupop:hover ul li a {
   color: #c3c4c7;
-  color: rgba(240, 246, 252, 0.7);
+  color: rgb(240 246 252 / 70%);
 }
 
 #wpadminbar .quicklinks .menupop ul li a:hover,
@@ -288,30 +289,30 @@ html:lang(he-il) .rtl #wpadminbar * {
 #wpadminbar .quicklinks .menupop.hover ul li div[tabindex]:focus,
 #wpadminbar.nojs .quicklinks .menupop:hover ul li a:hover,
 #wpadminbar.nojs .quicklinks .menupop:hover ul li a:focus,
-#wpadminbar li:hover .ab-icon:before,
-#wpadminbar li:hover .ab-item:before,
-#wpadminbar li a:focus .ab-icon:before,
-#wpadminbar li .ab-item:focus:before,
-#wpadminbar li .ab-item:focus .ab-icon:before,
-#wpadminbar li.hover .ab-icon:before,
-#wpadminbar li.hover .ab-item:before,
-#wpadminbar li:hover #adminbarsearch:before,
-#wpadminbar li #adminbarsearch.adminbar-focused:before {
+#wpadminbar li:hover .ab-icon::before,
+#wpadminbar li:hover .ab-item::before,
+#wpadminbar li a:focus .ab-icon::before,
+#wpadminbar li .ab-item:focus::before,
+#wpadminbar li .ab-item:focus .ab-icon::before,
+#wpadminbar li.hover .ab-icon::before,
+#wpadminbar li.hover .ab-item::before,
+#wpadminbar li:hover #adminbarsearch::before,
+#wpadminbar li #adminbarsearch.adminbar-focused::before {
   color: #72aee6;
 }
 
-#wpadminbar.mobile .quicklinks .ab-icon:before,
-#wpadminbar.mobile .quicklinks .ab-item:before {
+#wpadminbar.mobile .quicklinks .ab-icon::before,
+#wpadminbar.mobile .quicklinks .ab-item::before {
   color: #c3c4c7;
 }
 
-#wpadminbar.mobile .quicklinks .hover .ab-icon:before,
-#wpadminbar.mobile .quicklinks .hover .ab-item:before {
+#wpadminbar.mobile .quicklinks .hover .ab-icon::before,
+#wpadminbar.mobile .quicklinks .hover .ab-item::before {
   color: #72aee6;
 }
 
-#wpadminbar .menupop .menupop > .ab-item .wp-admin-bar-arrow:before,
-#wpadminbar .ab-top-secondary .menupop .menupop > .ab-item:before {
+#wpadminbar .menupop .menupop > .ab-item .wp-admin-bar-arrow::before,
+#wpadminbar .ab-top-secondary .menupop .menupop > .ab-item::before {
   position: absolute;
   font: normal 17px/1 dashicons;
   speak: never;
@@ -324,7 +325,7 @@ html:lang(he-il) .rtl #wpadminbar * {
   padding-right: 2em;
 }
 
-#wpadminbar .menupop .menupop > .ab-item .wp-admin-bar-arrow:before {
+#wpadminbar .menupop .menupop > .ab-item .wp-admin-bar-arrow::before {
   top: 1px;
   right: 10px;
   padding: 4px 0;
@@ -342,7 +343,7 @@ html:lang(he-il) .rtl #wpadminbar * {
   .menupop
   .menupop
   > .ab-item
-  .wp-admin-bar-arrow:before {
+  .wp-admin-bar-arrow::before {
   top: 1px;
   left: 6px;
   content: '\f141';
@@ -427,7 +428,7 @@ html:lang(he-il) .rtl #wpadminbar * {
   display: inline-block;
 }
 
-#wp-admin-bar-my-account > .ab-item:before {
+#wp-admin-bar-my-account > .ab-item::before {
   content: '\f110';
   top: 2px;
   float: right;
@@ -435,7 +436,7 @@ html:lang(he-il) .rtl #wpadminbar * {
   margin-right: 0;
 }
 
-#wp-admin-bar-my-account.with-avatar > .ab-item:before {
+#wp-admin-bar-my-account.with-avatar > .ab-item::before {
   display: none;
   content: none;
 }
@@ -524,7 +525,7 @@ html:lang(he-il) .rtl #wpadminbar * {
   padding: 0 7px;
 }
 
-#wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon:before {
+#wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon::before {
   content: '\f120';
   top: 2px;
 }
@@ -549,13 +550,13 @@ html:lang(he-il) .rtl #wpadminbar * {
 }
 
 #wpadminbar .quicklinks li img.blavatar,
-#wpadminbar .quicklinks li div.blavatar:before {
+#wpadminbar .quicklinks li div.blavatar::before {
   height: 16px;
   width: 16px;
   margin: 0 8px 2px -2px;
 }
 
-#wpadminbar .quicklinks li div.blavatar:before {
+#wpadminbar .quicklinks li div.blavatar::before {
   content: '\f120';
   display: inline-block;
 }
@@ -564,32 +565,32 @@ html:lang(he-il) .rtl #wpadminbar * {
   margin-top: -12px;
 }
 
-#wpadminbar #wp-admin-bar-my-sites > .ab-item:before,
-#wpadminbar #wp-admin-bar-site-name > .ab-item:before {
+#wpadminbar #wp-admin-bar-my-sites > .ab-item::before,
+#wpadminbar #wp-admin-bar-site-name > .ab-item::before {
   content: '\f541';
   top: 2px;
 }
 
-#wpadminbar #wp-admin-bar-site-editor > .ab-item:before {
+#wpadminbar #wp-admin-bar-site-editor > .ab-item::before {
   content: '\f100';
   top: 2px;
 }
 
-#wpadminbar #wp-admin-bar-customize > .ab-item:before {
+#wpadminbar #wp-admin-bar-customize > .ab-item::before {
   content: '\f540';
   top: 2px;
 }
 
-#wpadminbar #wp-admin-bar-edit > .ab-item:before {
+#wpadminbar #wp-admin-bar-edit > .ab-item::before {
   content: '\f464';
   top: 2px;
 }
 
-#wpadminbar #wp-admin-bar-site-name > .ab-item:before {
+#wpadminbar #wp-admin-bar-site-name > .ab-item::before {
   content: '\f226';
 }
 
-.wp-admin #wpadminbar #wp-admin-bar-site-name > .ab-item:before {
+.wp-admin #wpadminbar #wp-admin-bar-site-name > .ab-item::before {
   content: '\f102';
 }
 
@@ -600,7 +601,7 @@ html:lang(he-il) .rtl #wpadminbar * {
   margin-right: 6px;
 }
 
-#wpadminbar #wp-admin-bar-comments .ab-icon:before {
+#wpadminbar #wp-admin-bar-comments .ab-icon::before {
   content: '\f101';
   top: 3px;
 }
@@ -612,7 +613,7 @@ html:lang(he-il) .rtl #wpadminbar * {
 /**
  * New Content
  */
-#wpadminbar #wp-admin-bar-new-content .ab-icon:before {
+#wpadminbar #wp-admin-bar-new-content .ab-icon::before {
   content: '\f132';
   top: 4px;
 }
@@ -620,21 +621,22 @@ html:lang(he-il) .rtl #wpadminbar * {
 /**
  * Updates
  */
-#wpadminbar #wp-admin-bar-updates .ab-icon:before {
+#wpadminbar #wp-admin-bar-updates .ab-icon::before {
   content: '\f463';
   top: 2px;
 }
 
-#wpadminbar #wp-admin-bar-updates.spin .ab-icon:before {
+#wpadminbar #wp-admin-bar-updates.spin .ab-icon::before {
   display: inline-block;
   animation: rotation 2s infinite linear;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #wpadminbar #wp-admin-bar-updates.spin .ab-icon:before {
+  #wpadminbar #wp-admin-bar-updates.spin .ab-icon::before {
     animation: none;
   }
 }
+
 /**
  * Search
  */
@@ -650,7 +652,7 @@ html:lang(he-il) .rtl #wpadminbar * {
   z-index: 1;
 }
 
-#wpadminbar #adminbarsearch:before {
+#wpadminbar #adminbarsearch::before {
   position: absolute;
   top: 6px;
   left: 5px;
@@ -684,7 +686,7 @@ html:lang(he-il) .rtl #wpadminbar * {
   padding: 0 3px 0 24px;
   margin: 0;
   color: #c3c4c7;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgb(255 255 255 / 0%);
   border: none;
   outline: none;
   cursor: pointer;
@@ -704,7 +706,7 @@ html:lang(he-il) .rtl #wpadminbar * {
   z-index: 10;
   color: #000;
   width: 200px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgb(255 255 255 / 90%);
   cursor: text;
   border: 0;
 }
@@ -732,7 +734,6 @@ html:lang(he-il) .rtl #wpadminbar * {
 #wpadminbar .screen-reader-text span {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
-  -webkit-clip-path: inset(50%);
   clip-path: inset(50%);
   height: 1px;
   margin: -1px;
@@ -762,18 +763,20 @@ html:lang(he-il) .rtl #wpadminbar * {
   z-index: 100000;
   line-height: normal;
   text-decoration: none;
-  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 2px 2px rgb(0 0 0 / 60%);
 }
 
 @media screen and (max-width: 782px) {
   html {
     --wp-admin--admin-bar--height: 46px;
   }
-  /* Toolbar Touchification*/
+
+  /* Toolbar Touchification */
   html #wpadminbar {
     height: 46px;
     min-width: 240px; /* match the min-width of the body in wp-admin/css/common.css */
   }
+
   #wpadminbar * {
     font-size: 14px;
     font-weight: 400;
@@ -781,6 +784,7 @@ html:lang(he-il) .rtl #wpadminbar * {
       Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     line-height: 2.28571428;
   }
+
   #wpadminbar .quicklinks > ul > li > a,
   #wpadminbar .quicklinks .ab-empty-item {
     padding: 0;
@@ -788,6 +792,7 @@ html:lang(he-il) .rtl #wpadminbar * {
     line-height: 3.28571428;
     width: auto;
   }
+
   #wpadminbar .ab-icon {
     font: 40px/1 dashicons !important;
     margin: 0;
@@ -796,17 +801,21 @@ html:lang(he-il) .rtl #wpadminbar * {
     height: 46px;
     text-align: center;
   }
-  #wpadminbar .ab-icon:before {
+
+  #wpadminbar .ab-icon::before {
     text-align: center;
   }
+
   #wpadminbar .ab-submenu {
     padding: 0;
   }
+
   #wpadminbar #wp-admin-bar-site-name a.ab-item,
   #wpadminbar #wp-admin-bar-my-sites a.ab-item,
   #wpadminbar #wp-admin-bar-my-account a.ab-item {
     text-overflow: clip;
   }
+
   #wpadminbar .quicklinks .menupop ul li .ab-item,
   #wpadminbar .quicklinks .menupop ul li a strong,
   #wpadminbar .quicklinks .menupop.hover ul li .ab-item,
@@ -814,10 +823,10 @@ html:lang(he-il) .rtl #wpadminbar * {
   #wpadminbar .shortlink-input {
     line-height: 1.6;
   }
+
   #wpadminbar .ab-label {
     border: 0;
     clip: rect(1px, 1px, 1px, 1px);
-    -webkit-clip-path: inset(50%);
     clip-path: inset(50%);
     height: 1px;
     margin: -1px;
@@ -827,28 +836,35 @@ html:lang(he-il) .rtl #wpadminbar * {
     width: 1px;
     word-wrap: normal !important;
   }
+
   #wpadminbar .menupop li:hover > .ab-sub-wrapper,
   #wpadminbar .menupop li.hover > .ab-sub-wrapper {
     margin-top: -46px;
   }
+
   #wpadminbar .ab-top-menu .menupop .ab-sub-wrapper .menupop > .ab-item {
     padding-right: 30px;
   }
-  #wpadminbar .menupop .menupop > .ab-item:before {
+
+  #wpadminbar .menupop .menupop > .ab-item::before {
     top: 10px;
     right: 6px;
   }
+
   #wpadminbar .ab-top-menu > .menupop > .ab-sub-wrapper .ab-item {
     font-size: 16px;
     padding: 8px 16px;
   }
+
   #wpadminbar .ab-top-menu > .menupop > .ab-sub-wrapper a:empty {
     display: none;
   }
+
   /* WP logo */
   #wpadminbar #wp-admin-bar-wp-logo > .ab-item {
     padding: 0;
   }
+
   #wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon {
     padding: 0;
     width: 52px;
@@ -856,14 +872,17 @@ html:lang(he-il) .rtl #wpadminbar * {
     text-align: center;
     vertical-align: top;
   }
-  #wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon:before {
+
+  #wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon::before {
     font: 28px/1 dashicons !important;
     top: -3px;
   }
+
   #wpadminbar .ab-icon,
-  #wpadminbar .ab-item:before {
+  #wpadminbar .ab-item::before {
     padding: 0;
   }
+
   /* My Sites and "Site Title" menu */
   #wpadminbar #wp-admin-bar-my-sites > .ab-item,
   #wpadminbar #wp-admin-bar-site-name > .ab-item,
@@ -879,18 +898,20 @@ html:lang(he-il) .rtl #wpadminbar * {
     color: #a7aaad; /* @todo not needed? this text is hidden */
     position: relative;
   }
+
   #wpadminbar > #wp-toolbar > #wp-admin-bar-root-default .ab-icon,
   #wpadminbar .ab-icon,
-  #wpadminbar .ab-item:before {
+  #wpadminbar .ab-item::before {
     padding: 0;
     margin-right: 0;
   }
-  #wpadminbar #wp-admin-bar-edit > .ab-item:before,
-  #wpadminbar #wp-admin-bar-my-sites > .ab-item:before,
-  #wpadminbar #wp-admin-bar-site-name > .ab-item:before,
-  #wpadminbar #wp-admin-bar-site-editor > .ab-item:before,
-  #wpadminbar #wp-admin-bar-customize > .ab-item:before,
-  #wpadminbar #wp-admin-bar-my-account > .ab-item:before {
+
+  #wpadminbar #wp-admin-bar-edit > .ab-item::before,
+  #wpadminbar #wp-admin-bar-my-sites > .ab-item::before,
+  #wpadminbar #wp-admin-bar-site-name > .ab-item::before,
+  #wpadminbar #wp-admin-bar-site-editor > .ab-item::before,
+  #wpadminbar #wp-admin-bar-customize > .ab-item::before,
+  #wpadminbar #wp-admin-bar-my-account > .ab-item::before {
     display: block;
     text-indent: 0;
     font: normal 32px/1 dashicons;
@@ -901,18 +922,22 @@ html:lang(he-il) .rtl #wpadminbar * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
   #wpadminbar #wp-admin-bar-appearance {
     margin-top: 0;
   }
-  #wpadminbar .quicklinks li .blavatar:before {
+
+  #wpadminbar .quicklinks li .blavatar::before {
     display: none;
   }
+
   /* Search */
   #wpadminbar #wp-admin-bar-search {
     display: none;
   }
+
   /* New Content */
-  #wpadminbar #wp-admin-bar-new-content .ab-icon:before {
+  #wpadminbar #wp-admin-bar-new-content .ab-icon::before {
     top: 0;
     line-height: 1.33333333;
     height: 46px !important;
@@ -920,24 +945,29 @@ html:lang(he-il) .rtl #wpadminbar * {
     width: 52px;
     display: block;
   }
+
   /* Updates */
   #wpadminbar #wp-admin-bar-updates {
     text-align: center;
   }
-  #wpadminbar #wp-admin-bar-updates .ab-icon:before {
+
+  #wpadminbar #wp-admin-bar-updates .ab-icon::before {
     top: 3px;
   }
+
   /* Comments */
   #wpadminbar #wp-admin-bar-comments .ab-icon {
     margin: 0;
   }
-  #wpadminbar #wp-admin-bar-comments .ab-icon:before {
+
+  #wpadminbar #wp-admin-bar-comments .ab-icon::before {
     display: block;
     font-size: 34px;
     height: 46px;
     line-height: 1.38235294;
     top: 0;
   }
+
   /* My Account */
   #wpadminbar #wp-admin-bar-my-account > a {
     position: relative;
@@ -947,6 +977,7 @@ html:lang(he-il) .rtl #wpadminbar * {
     padding: 0 10px;
     overflow: hidden; /* Prevent link text from forcing horizontal scrolling on mobile */
   }
+
   #wpadminbar .quicklinks li#wp-admin-bar-my-account.with-avatar > a img {
     position: absolute;
     top: 13px;
@@ -954,35 +985,43 @@ html:lang(he-il) .rtl #wpadminbar * {
     width: 26px;
     height: 26px;
   }
+
   #wpadminbar #wp-admin-bar-user-actions.ab-submenu {
     padding: 0;
   }
+
   #wpadminbar #wp-admin-bar-user-actions.ab-submenu img.avatar {
     display: none;
   }
+
   #wpadminbar
     #wp-admin-bar-my-account.with-avatar
     #wp-admin-bar-user-actions
     > li {
     margin: 0;
   }
+
   #wpadminbar #wp-admin-bar-user-info .display-name {
     height: auto;
     font-size: 16px;
     line-height: 1.5;
     color: #f0f0f1;
   }
+
   #wpadminbar #wp-admin-bar-user-info a {
     padding-top: 4px;
   }
+
   #wpadminbar #wp-admin-bar-user-info .username {
     line-height: 0.8 !important;
     margin-bottom: -2px;
   }
+
   /* Show only default top level items */
   #wp-toolbar > ul > li {
     display: none;
   }
+
   #wpadminbar li#wp-admin-bar-menu-toggle,
   #wpadminbar li#wp-admin-bar-wp-logo,
   #wpadminbar li#wp-admin-bar-my-sites,
@@ -996,21 +1035,24 @@ html:lang(he-il) .rtl #wpadminbar * {
   #wpadminbar li#wp-admin-bar-my-account {
     display: block;
   }
+
   /* Allow dropdown list items to appear normally */
   #wpadminbar li:hover ul li,
   #wpadminbar li.hover ul li,
   #wpadminbar li:hover ul li:hover ul li {
     display: list-item;
   }
+
   /* Override default min-width so dropdown lists aren't stretched
   	to 100% viewport width at responsive sizes. */
   #wpadminbar .ab-top-menu > .menupop > .ab-sub-wrapper {
-    min-width: -moz-fit-content;
     min-width: fit-content;
   }
+
   #wpadminbar ul#wp-admin-bar-root-default > li {
     margin-right: 0;
   }
+
   /* Experimental fix for touch toolbar dropdown positioning */
   #wpadminbar .ab-top-menu,
   #wpadminbar .ab-top-secondary,
@@ -1024,26 +1066,31 @@ html:lang(he-il) .rtl #wpadminbar * {
   #wpadminbar #wp-admin-bar-my-account {
     position: static;
   }
+
   #wpadminbar #wp-admin-bar-my-account {
     float: right;
   }
+
   .network-admin
     #wpadminbar
     ul#wp-admin-bar-top-secondary
     > li#wp-admin-bar-my-account {
     margin-right: 0;
   }
+
   /* Realign arrows on taller responsive submenus */
-  #wpadminbar .ab-top-secondary .menupop .menupop > .ab-item:before {
+  #wpadminbar .ab-top-secondary .menupop .menupop > .ab-item::before {
     top: 10px;
     left: 0;
   }
 }
+
 /* Smartphone */
 @media screen and (max-width: 600px) {
   #wpadminbar {
     position: absolute;
   }
+
   #wp-responsive-overlay {
     position: fixed;
     top: 0;
@@ -1052,16 +1099,20 @@ html:lang(he-il) .rtl #wpadminbar * {
     height: 100%;
     z-index: 400;
   }
+
   #wpadminbar .ab-top-menu > .menupop > .ab-sub-wrapper {
     width: 100%;
     left: 0;
   }
-  #wpadminbar .menupop .menupop > .ab-item:before {
+
+  #wpadminbar .menupop .menupop > .ab-item::before {
     display: none;
   }
+
   #wpadminbar #wp-admin-bar-wp-logo.menupop .ab-sub-wrapper {
     margin-left: 0;
   }
+
   #wpadminbar .ab-top-menu > .menupop li > .ab-sub-wrapper {
     margin: 0;
     width: 100%;
@@ -1069,29 +1120,35 @@ html:lang(he-il) .rtl #wpadminbar * {
     left: auto;
     position: relative;
   }
+
   #wpadminbar .ab-top-menu > .menupop li > .ab-sub-wrapper .ab-item {
     font-size: 16px;
     padding: 6px 15px 19px 30px;
   }
+
   #wpadminbar li:hover ul li ul li {
     display: list-item;
   }
+
   #wpadminbar li#wp-admin-bar-wp-logo,
   #wpadminbar li#wp-admin-bar-updates {
     display: none;
   }
+
   /* Make submenus full-width at this size */
   #wpadminbar .ab-top-menu > .menupop li > .ab-sub-wrapper {
     position: static;
     box-shadow: none;
   }
 }
+
 /* Very narrow screens */
 @media screen and (max-width: 400px) {
   #wpadminbar li#wp-admin-bar-comments {
     display: none;
   }
 }
+
 /**
  * DO NOT EDIT THIS FILE DIRECTLY
  * This file is automatically built using a build process
@@ -1112,7 +1169,7 @@ html:lang(he-il) .rtl #wpadminbar * {
 }
 /* stylelint-enable */
 .dashicons,
-.dashicons-before:before {
+.dashicons-before::before {
   font-family: dashicons;
   display: inline-block;
   line-height: 1;
@@ -1133,1407 +1190,1408 @@ html:lang(he-il) .rtl #wpadminbar * {
 }
 
 /* Icons */
-.dashicons-admin-appearance:before {
+.dashicons-admin-appearance::before {
   content: '\f100';
 }
 
-.dashicons-admin-collapse:before {
+.dashicons-admin-collapse::before {
   content: '\f148';
 }
 
-.dashicons-admin-comments:before {
+.dashicons-admin-comments::before {
   content: '\f101';
 }
 
-.dashicons-admin-customizer:before {
+.dashicons-admin-customizer::before {
   content: '\f540';
 }
 
-.dashicons-admin-generic:before {
+.dashicons-admin-generic::before {
   content: '\f111';
 }
 
-.dashicons-admin-home:before {
+.dashicons-admin-home::before {
   content: '\f102';
 }
 
-.dashicons-admin-links:before {
+.dashicons-admin-links::before {
   content: '\f103';
 }
 
-.dashicons-admin-media:before {
+.dashicons-admin-media::before {
   content: '\f104';
 }
 
-.dashicons-admin-multisite:before {
+.dashicons-admin-multisite::before {
   content: '\f541';
 }
 
-.dashicons-admin-network:before {
+.dashicons-admin-network::before {
   content: '\f112';
 }
 
-.dashicons-admin-page:before {
+.dashicons-admin-page::before {
   content: '\f105';
 }
 
-.dashicons-admin-plugins:before {
+.dashicons-admin-plugins::before {
   content: '\f106';
 }
 
-.dashicons-admin-post:before {
+.dashicons-admin-post::before {
   content: '\f109';
 }
 
-.dashicons-admin-settings:before {
+.dashicons-admin-settings::before {
   content: '\f108';
 }
 
-.dashicons-admin-site-alt:before {
+.dashicons-admin-site-alt::before {
   content: '\f11d';
 }
 
-.dashicons-admin-site-alt2:before {
+.dashicons-admin-site-alt2::before {
   content: '\f11e';
 }
 
-.dashicons-admin-site-alt3:before {
+.dashicons-admin-site-alt3::before {
   content: '\f11f';
 }
 
-.dashicons-admin-site:before {
+.dashicons-admin-site::before {
   content: '\f319';
 }
 
-.dashicons-admin-tools:before {
+.dashicons-admin-tools::before {
   content: '\f107';
 }
 
-.dashicons-admin-users:before {
+.dashicons-admin-users::before {
   content: '\f110';
 }
 
-.dashicons-airplane:before {
+.dashicons-airplane::before {
   content: '\f15f';
 }
 
-.dashicons-album:before {
+.dashicons-album::before {
   content: '\f514';
 }
 
-.dashicons-align-center:before {
+.dashicons-align-center::before {
   content: '\f134';
 }
 
-.dashicons-align-full-width:before {
+.dashicons-align-full-width::before {
   content: '\f114';
 }
 
-.dashicons-align-left:before {
+.dashicons-align-left::before {
   content: '\f135';
 }
 
-.dashicons-align-none:before {
+.dashicons-align-none::before {
   content: '\f138';
 }
 
-.dashicons-align-pull-left:before {
+.dashicons-align-pull-left::before {
   content: '\f10a';
 }
 
-.dashicons-align-pull-right:before {
+.dashicons-align-pull-right::before {
   content: '\f10b';
 }
 
-.dashicons-align-right:before {
+.dashicons-align-right::before {
   content: '\f136';
 }
 
-.dashicons-align-wide:before {
+.dashicons-align-wide::before {
   content: '\f11b';
 }
 
-.dashicons-amazon:before {
+.dashicons-amazon::before {
   content: '\f162';
 }
 
-.dashicons-analytics:before {
+.dashicons-analytics::before {
   content: '\f183';
 }
 
-.dashicons-archive:before {
+.dashicons-archive::before {
   content: '\f480';
 }
 
-.dashicons-arrow-down-alt:before {
+.dashicons-arrow-down-alt::before {
   content: '\f346';
 }
 
-.dashicons-arrow-down-alt2:before {
+.dashicons-arrow-down-alt2::before {
   content: '\f347';
 }
 
-.dashicons-arrow-down:before {
+.dashicons-arrow-down::before {
   content: '\f140';
 }
 
-.dashicons-arrow-left-alt:before {
+.dashicons-arrow-left-alt::before {
   content: '\f340';
 }
 
-.dashicons-arrow-left-alt2:before {
+.dashicons-arrow-left-alt2::before {
   content: '\f341';
 }
 
-.dashicons-arrow-left:before {
+.dashicons-arrow-left::before {
   content: '\f141';
 }
 
-.dashicons-arrow-right-alt:before {
+.dashicons-arrow-right-alt::before {
   content: '\f344';
 }
 
-.dashicons-arrow-right-alt2:before {
+.dashicons-arrow-right-alt2::before {
   content: '\f345';
 }
 
-.dashicons-arrow-right:before {
+.dashicons-arrow-right::before {
   content: '\f139';
 }
 
-.dashicons-arrow-up-alt:before {
+.dashicons-arrow-up-alt::before {
   content: '\f342';
 }
 
-.dashicons-arrow-up-alt2:before {
+.dashicons-arrow-up-alt2::before {
   content: '\f343';
 }
 
-.dashicons-arrow-up-duplicate:before {
+.dashicons-arrow-up-duplicate::before {
   content: '\f143';
 }
 
-.dashicons-arrow-up:before {
+.dashicons-arrow-up::before {
   content: '\f142';
 }
 
-.dashicons-art:before {
+.dashicons-art::before {
   content: '\f309';
 }
 
-.dashicons-awards:before {
+.dashicons-awards::before {
   content: '\f313';
 }
 
-.dashicons-backup:before {
+.dashicons-backup::before {
   content: '\f321';
 }
 
-.dashicons-bank:before {
+.dashicons-bank::before {
   content: '\f16a';
 }
 
-.dashicons-beer:before {
+.dashicons-beer::before {
   content: '\f16c';
 }
 
-.dashicons-bell:before {
+.dashicons-bell::before {
   content: '\f16d';
 }
 
-.dashicons-block-default:before {
+.dashicons-block-default::before {
   content: '\f12b';
 }
 
-.dashicons-book-alt:before {
+.dashicons-book-alt::before {
   content: '\f331';
 }
 
-.dashicons-book:before {
+.dashicons-book::before {
   content: '\f330';
 }
 
-.dashicons-buddicons-activity:before {
+.dashicons-buddicons-activity::before {
   content: '\f452';
 }
 
-.dashicons-buddicons-bbpress-logo:before {
+.dashicons-buddicons-bbpress-logo::before {
   content: '\f477';
 }
 
-.dashicons-buddicons-buddypress-logo:before {
+.dashicons-buddicons-buddypress-logo::before {
   content: '\f448';
 }
 
-.dashicons-buddicons-community:before {
+.dashicons-buddicons-community::before {
   content: '\f453';
 }
 
-.dashicons-buddicons-forums:before {
+.dashicons-buddicons-forums::before {
   content: '\f449';
 }
 
-.dashicons-buddicons-friends:before {
+.dashicons-buddicons-friends::before {
   content: '\f454';
 }
 
-.dashicons-buddicons-groups:before {
+.dashicons-buddicons-groups::before {
   content: '\f456';
 }
 
-.dashicons-buddicons-pm:before {
+.dashicons-buddicons-pm::before {
   content: '\f457';
 }
 
-.dashicons-buddicons-replies:before {
+.dashicons-buddicons-replies::before {
   content: '\f451';
 }
 
-.dashicons-buddicons-topics:before {
+.dashicons-buddicons-topics::before {
   content: '\f450';
 }
 
-.dashicons-buddicons-tracking:before {
+.dashicons-buddicons-tracking::before {
   content: '\f455';
 }
 
-.dashicons-building:before {
+.dashicons-building::before {
   content: '\f512';
 }
 
-.dashicons-businessman:before {
+.dashicons-businessman::before {
   content: '\f338';
 }
 
-.dashicons-businessperson:before {
+.dashicons-businessperson::before {
   content: '\f12e';
 }
 
-.dashicons-businesswoman:before {
+.dashicons-businesswoman::before {
   content: '\f12f';
 }
 
-.dashicons-button:before {
+.dashicons-button::before {
   content: '\f11a';
 }
 
-.dashicons-calculator:before {
+.dashicons-calculator::before {
   content: '\f16e';
 }
 
-.dashicons-calendar-alt:before {
+.dashicons-calendar-alt::before {
   content: '\f508';
 }
 
-.dashicons-calendar:before {
+.dashicons-calendar::before {
   content: '\f145';
 }
 
-.dashicons-camera-alt:before {
+.dashicons-camera-alt::before {
   content: '\f129';
 }
 
-.dashicons-camera:before {
+.dashicons-camera::before {
   content: '\f306';
 }
 
-.dashicons-car:before {
+.dashicons-car::before {
   content: '\f16b';
 }
 
-.dashicons-carrot:before {
+.dashicons-carrot::before {
   content: '\f511';
 }
 
-.dashicons-cart:before {
+.dashicons-cart::before {
   content: '\f174';
 }
 
-.dashicons-category:before {
+.dashicons-category::before {
   content: '\f318';
 }
 
-.dashicons-chart-area:before {
+.dashicons-chart-area::before {
   content: '\f239';
 }
 
-.dashicons-chart-bar:before {
+.dashicons-chart-bar::before {
   content: '\f185';
 }
 
-.dashicons-chart-line:before {
+.dashicons-chart-line::before {
   content: '\f238';
 }
 
-.dashicons-chart-pie:before {
+.dashicons-chart-pie::before {
   content: '\f184';
 }
 
-.dashicons-clipboard:before {
+.dashicons-clipboard::before {
   content: '\f481';
 }
 
-.dashicons-clock:before {
+.dashicons-clock::before {
   content: '\f469';
 }
 
-.dashicons-cloud-saved:before {
+.dashicons-cloud-saved::before {
   content: '\f137';
 }
 
-.dashicons-cloud-upload:before {
+.dashicons-cloud-upload::before {
   content: '\f13b';
 }
 
-.dashicons-cloud:before {
+.dashicons-cloud::before {
   content: '\f176';
 }
 
-.dashicons-code-standards:before {
+.dashicons-code-standards::before {
   content: '\f13a';
 }
 
-.dashicons-coffee:before {
+.dashicons-coffee::before {
   content: '\f16f';
 }
 
-.dashicons-color-picker:before {
+.dashicons-color-picker::before {
   content: '\f131';
 }
 
-.dashicons-columns:before {
+.dashicons-columns::before {
   content: '\f13c';
 }
 
-.dashicons-controls-back:before {
+.dashicons-controls-back::before {
   content: '\f518';
 }
 
-.dashicons-controls-forward:before {
+.dashicons-controls-forward::before {
   content: '\f519';
 }
 
-.dashicons-controls-pause:before {
+.dashicons-controls-pause::before {
   content: '\f523';
 }
 
-.dashicons-controls-play:before {
+.dashicons-controls-play::before {
   content: '\f522';
 }
 
-.dashicons-controls-repeat:before {
+.dashicons-controls-repeat::before {
   content: '\f515';
 }
 
-.dashicons-controls-skipback:before {
+.dashicons-controls-skipback::before {
   content: '\f516';
 }
 
-.dashicons-controls-skipforward:before {
+.dashicons-controls-skipforward::before {
   content: '\f517';
 }
 
-.dashicons-controls-volumeoff:before {
+.dashicons-controls-volumeoff::before {
   content: '\f520';
 }
 
-.dashicons-controls-volumeon:before {
+.dashicons-controls-volumeon::before {
   content: '\f521';
 }
 
-.dashicons-cover-image:before {
+.dashicons-cover-image::before {
   content: '\f13d';
 }
 
-.dashicons-dashboard:before {
+.dashicons-dashboard::before {
   content: '\f226';
 }
 
-.dashicons-database-add:before {
+.dashicons-database-add::before {
   content: '\f170';
 }
 
-.dashicons-database-export:before {
+.dashicons-database-export::before {
   content: '\f17a';
 }
 
-.dashicons-database-import:before {
+.dashicons-database-import::before {
   content: '\f17b';
 }
 
-.dashicons-database-remove:before {
+.dashicons-database-remove::before {
   content: '\f17c';
 }
 
-.dashicons-database-view:before {
+.dashicons-database-view::before {
   content: '\f17d';
 }
 
-.dashicons-database:before {
+.dashicons-database::before {
   content: '\f17e';
 }
 
-.dashicons-desktop:before {
+.dashicons-desktop::before {
   content: '\f472';
 }
 
-.dashicons-dismiss:before {
+.dashicons-dismiss::before {
   content: '\f153';
 }
 
-.dashicons-download:before {
+.dashicons-download::before {
   content: '\f316';
 }
 
-.dashicons-drumstick:before {
+.dashicons-drumstick::before {
   content: '\f17f';
 }
 
-.dashicons-edit-large:before {
+.dashicons-edit-large::before {
   content: '\f327';
 }
 
-.dashicons-edit-page:before {
+.dashicons-edit-page::before {
   content: '\f186';
 }
 
-.dashicons-edit:before {
+.dashicons-edit::before {
   content: '\f464';
 }
 
-.dashicons-editor-aligncenter:before {
+.dashicons-editor-aligncenter::before {
   content: '\f207';
 }
 
-.dashicons-editor-alignleft:before {
+.dashicons-editor-alignleft::before {
   content: '\f206';
 }
 
-.dashicons-editor-alignright:before {
+.dashicons-editor-alignright::before {
   content: '\f208';
 }
 
-.dashicons-editor-bold:before {
+.dashicons-editor-bold::before {
   content: '\f200';
 }
 
-.dashicons-editor-break:before {
+.dashicons-editor-break::before {
   content: '\f474';
 }
 
-.dashicons-editor-code-duplicate:before {
+.dashicons-editor-code-duplicate::before {
   content: '\f494';
 }
 
-.dashicons-editor-code:before {
+.dashicons-editor-code::before {
   content: '\f475';
 }
 
-.dashicons-editor-contract:before {
+.dashicons-editor-contract::before {
   content: '\f506';
 }
 
-.dashicons-editor-customchar:before {
+.dashicons-editor-customchar::before {
   content: '\f220';
 }
 
-.dashicons-editor-expand:before {
+.dashicons-editor-expand::before {
   content: '\f211';
 }
 
-.dashicons-editor-help:before {
+.dashicons-editor-help::before {
   content: '\f223';
 }
 
-.dashicons-editor-indent:before {
+.dashicons-editor-indent::before {
   content: '\f222';
 }
 
-.dashicons-editor-insertmore:before {
+.dashicons-editor-insertmore::before {
   content: '\f209';
 }
 
-.dashicons-editor-italic:before {
+.dashicons-editor-italic::before {
   content: '\f201';
 }
 
-.dashicons-editor-justify:before {
+.dashicons-editor-justify::before {
   content: '\f214';
 }
 
-.dashicons-editor-kitchensink:before {
+.dashicons-editor-kitchensink::before {
   content: '\f212';
 }
 
-.dashicons-editor-ltr:before {
+.dashicons-editor-ltr::before {
   content: '\f10c';
 }
 
-.dashicons-editor-ol-rtl:before {
+.dashicons-editor-ol-rtl::before {
   content: '\f12c';
 }
 
-.dashicons-editor-ol:before {
+.dashicons-editor-ol::before {
   content: '\f204';
 }
 
-.dashicons-editor-outdent:before {
+.dashicons-editor-outdent::before {
   content: '\f221';
 }
 
-.dashicons-editor-paragraph:before {
+.dashicons-editor-paragraph::before {
   content: '\f476';
 }
 
-.dashicons-editor-paste-text:before {
+.dashicons-editor-paste-text::before {
   content: '\f217';
 }
 
-.dashicons-editor-paste-word:before {
+.dashicons-editor-paste-word::before {
   content: '\f216';
 }
 
-.dashicons-editor-quote:before {
+.dashicons-editor-quote::before {
   content: '\f205';
 }
 
-.dashicons-editor-removeformatting:before {
+.dashicons-editor-removeformatting::before {
   content: '\f218';
 }
 
-.dashicons-editor-rtl:before {
+.dashicons-editor-rtl::before {
   content: '\f320';
 }
 
-.dashicons-editor-spellcheck:before {
+.dashicons-editor-spellcheck::before {
   content: '\f210';
 }
 
-.dashicons-editor-strikethrough:before {
+.dashicons-editor-strikethrough::before {
   content: '\f224';
 }
 
-.dashicons-editor-table:before {
+.dashicons-editor-table::before {
   content: '\f535';
 }
 
-.dashicons-editor-textcolor:before {
+.dashicons-editor-textcolor::before {
   content: '\f215';
 }
 
-.dashicons-editor-ul:before {
+.dashicons-editor-ul::before {
   content: '\f203';
 }
 
-.dashicons-editor-underline:before {
+.dashicons-editor-underline::before {
   content: '\f213';
 }
 
-.dashicons-editor-unlink:before {
+.dashicons-editor-unlink::before {
   content: '\f225';
 }
 
-.dashicons-editor-video:before {
+.dashicons-editor-video::before {
   content: '\f219';
 }
 
-.dashicons-ellipsis:before {
+.dashicons-ellipsis::before {
   content: '\f11c';
 }
 
-.dashicons-email-alt:before {
+.dashicons-email-alt::before {
   content: '\f466';
 }
 
-.dashicons-email-alt2:before {
+.dashicons-email-alt2::before {
   content: '\f467';
 }
 
-.dashicons-email:before {
+.dashicons-email::before {
   content: '\f465';
 }
 
-.dashicons-embed-audio:before {
+.dashicons-embed-audio::before {
   content: '\f13e';
 }
 
-.dashicons-embed-generic:before {
+.dashicons-embed-generic::before {
   content: '\f13f';
 }
 
-.dashicons-embed-photo:before {
+.dashicons-embed-photo::before {
   content: '\f144';
 }
 
-.dashicons-embed-post:before {
+.dashicons-embed-post::before {
   content: '\f146';
 }
 
-.dashicons-embed-video:before {
+.dashicons-embed-video::before {
   content: '\f149';
 }
 
-.dashicons-excerpt-view:before {
+.dashicons-excerpt-view::before {
   content: '\f164';
 }
 
-.dashicons-exit:before {
+.dashicons-exit::before {
   content: '\f14a';
 }
 
-.dashicons-external:before {
+.dashicons-external::before {
   content: '\f504';
 }
 
-.dashicons-facebook-alt:before {
+.dashicons-facebook-alt::before {
   content: '\f305';
 }
 
-.dashicons-facebook:before {
+.dashicons-facebook::before {
   content: '\f304';
 }
 
-.dashicons-feedback:before {
+.dashicons-feedback::before {
   content: '\f175';
 }
 
-.dashicons-filter:before {
+.dashicons-filter::before {
   content: '\f536';
 }
 
-.dashicons-flag:before {
+.dashicons-flag::before {
   content: '\f227';
 }
 
-.dashicons-food:before {
+.dashicons-food::before {
   content: '\f187';
 }
 
-.dashicons-format-aside:before {
+.dashicons-format-aside::before {
   content: '\f123';
 }
 
-.dashicons-format-audio:before {
+.dashicons-format-audio::before {
   content: '\f127';
 }
 
-.dashicons-format-chat:before {
+.dashicons-format-chat::before {
   content: '\f125';
 }
 
-.dashicons-format-gallery:before {
+.dashicons-format-gallery::before {
   content: '\f161';
 }
 
-.dashicons-format-image:before {
+.dashicons-format-image::before {
   content: '\f128';
 }
 
-.dashicons-format-quote:before {
+.dashicons-format-quote::before {
   content: '\f122';
 }
 
-.dashicons-format-status:before {
+.dashicons-format-status::before {
   content: '\f130';
 }
 
-.dashicons-format-video:before {
+.dashicons-format-video::before {
   content: '\f126';
 }
 
-.dashicons-forms:before {
+.dashicons-forms::before {
   content: '\f314';
 }
 
-.dashicons-fullscreen-alt:before {
+.dashicons-fullscreen-alt::before {
   content: '\f188';
 }
 
-.dashicons-fullscreen-exit-alt:before {
+.dashicons-fullscreen-exit-alt::before {
   content: '\f189';
 }
 
-.dashicons-games:before {
+.dashicons-games::before {
   content: '\f18a';
 }
 
-.dashicons-google:before {
+.dashicons-google::before {
   content: '\f18b';
 }
 
-.dashicons-googleplus:before {
+.dashicons-googleplus::before {
   content: '\f462';
 }
 
-.dashicons-grid-view:before {
+.dashicons-grid-view::before {
   content: '\f509';
 }
 
-.dashicons-groups:before {
+.dashicons-groups::before {
   content: '\f307';
 }
 
-.dashicons-hammer:before {
+.dashicons-hammer::before {
   content: '\f308';
 }
 
-.dashicons-heading:before {
+.dashicons-heading::before {
   content: '\f10e';
 }
 
-.dashicons-heart:before {
+.dashicons-heart::before {
   content: '\f487';
 }
 
-.dashicons-hidden:before {
+.dashicons-hidden::before {
   content: '\f530';
 }
 
-.dashicons-hourglass:before {
+.dashicons-hourglass::before {
   content: '\f18c';
 }
 
-.dashicons-html:before {
+.dashicons-html::before {
   content: '\f14b';
 }
 
-.dashicons-id-alt:before {
+.dashicons-id-alt::before {
   content: '\f337';
 }
 
-.dashicons-id:before {
+.dashicons-id::before {
   content: '\f336';
 }
 
-.dashicons-image-crop:before {
+.dashicons-image-crop::before {
   content: '\f165';
 }
 
-.dashicons-image-filter:before {
+.dashicons-image-filter::before {
   content: '\f533';
 }
 
-.dashicons-image-flip-horizontal:before {
+.dashicons-image-flip-horizontal::before {
   content: '\f169';
 }
 
-.dashicons-image-flip-vertical:before {
+.dashicons-image-flip-vertical::before {
   content: '\f168';
 }
 
-.dashicons-image-rotate-left:before {
+.dashicons-image-rotate-left::before {
   content: '\f166';
 }
 
-.dashicons-image-rotate-right:before {
+.dashicons-image-rotate-right::before {
   content: '\f167';
 }
 
-.dashicons-image-rotate:before {
+.dashicons-image-rotate::before {
   content: '\f531';
 }
 
-.dashicons-images-alt:before {
+.dashicons-images-alt::before {
   content: '\f232';
 }
 
-.dashicons-images-alt2:before {
+.dashicons-images-alt2::before {
   content: '\f233';
 }
 
-.dashicons-index-card:before {
+.dashicons-index-card::before {
   content: '\f510';
 }
 
-.dashicons-info-outline:before {
+.dashicons-info-outline::before {
   content: '\f14c';
 }
 
-.dashicons-info:before {
+.dashicons-info::before {
   content: '\f348';
 }
 
-.dashicons-insert-after:before {
+.dashicons-insert-after::before {
   content: '\f14d';
 }
 
-.dashicons-insert-before:before {
+.dashicons-insert-before::before {
   content: '\f14e';
 }
 
-.dashicons-insert:before {
+.dashicons-insert::before {
   content: '\f10f';
 }
 
-.dashicons-instagram:before {
+.dashicons-instagram::before {
   content: '\f12d';
 }
 
-.dashicons-laptop:before {
+.dashicons-laptop::before {
   content: '\f547';
 }
 
-.dashicons-layout:before {
+.dashicons-layout::before {
   content: '\f538';
 }
 
-.dashicons-leftright:before {
+.dashicons-leftright::before {
   content: '\f229';
 }
 
-.dashicons-lightbulb:before {
+.dashicons-lightbulb::before {
   content: '\f339';
 }
 
-.dashicons-linkedin:before {
+.dashicons-linkedin::before {
   content: '\f18d';
 }
 
-.dashicons-list-view:before {
+.dashicons-list-view::before {
   content: '\f163';
 }
 
-.dashicons-location-alt:before {
+.dashicons-location-alt::before {
   content: '\f231';
 }
 
-.dashicons-location:before {
+.dashicons-location::before {
   content: '\f230';
 }
 
-.dashicons-lock-duplicate:before {
+.dashicons-lock-duplicate::before {
   content: '\f315';
 }
 
-.dashicons-lock:before {
+.dashicons-lock::before {
   content: '\f160';
 }
 
-.dashicons-marker:before {
+.dashicons-marker::before {
   content: '\f159';
 }
 
-.dashicons-media-archive:before {
+.dashicons-media-archive::before {
   content: '\f501';
 }
 
-.dashicons-media-audio:before {
+.dashicons-media-audio::before {
   content: '\f500';
 }
 
-.dashicons-media-code:before {
+.dashicons-media-code::before {
   content: '\f499';
 }
 
-.dashicons-media-default:before {
+.dashicons-media-default::before {
   content: '\f498';
 }
 
-.dashicons-media-document:before {
+.dashicons-media-document::before {
   content: '\f497';
 }
 
-.dashicons-media-interactive:before {
+.dashicons-media-interactive::before {
   content: '\f496';
 }
 
-.dashicons-media-spreadsheet:before {
+.dashicons-media-spreadsheet::before {
   content: '\f495';
 }
 
-.dashicons-media-text:before {
+.dashicons-media-text::before {
   content: '\f491';
 }
 
-.dashicons-media-video:before {
+.dashicons-media-video::before {
   content: '\f490';
 }
 
-.dashicons-megaphone:before {
+.dashicons-megaphone::before {
   content: '\f488';
 }
 
-.dashicons-menu-alt:before {
+.dashicons-menu-alt::before {
   content: '\f228';
 }
 
-.dashicons-menu-alt2:before {
+.dashicons-menu-alt2::before {
   content: '\f329';
 }
 
-.dashicons-menu-alt3:before {
+.dashicons-menu-alt3::before {
   content: '\f349';
 }
 
-.dashicons-menu:before {
+.dashicons-menu::before {
   content: '\f333';
 }
 
-.dashicons-microphone:before {
+.dashicons-microphone::before {
   content: '\f482';
 }
 
-.dashicons-migrate:before {
+.dashicons-migrate::before {
   content: '\f310';
 }
 
-.dashicons-minus:before {
+.dashicons-minus::before {
   content: '\f460';
 }
 
-.dashicons-money-alt:before {
+.dashicons-money-alt::before {
   content: '\f18e';
 }
 
-.dashicons-money:before {
+.dashicons-money::before {
   content: '\f526';
 }
 
-.dashicons-move:before {
+.dashicons-move::before {
   content: '\f545';
 }
 
-.dashicons-nametag:before {
+.dashicons-nametag::before {
   content: '\f484';
 }
 
-.dashicons-networking:before {
+.dashicons-networking::before {
   content: '\f325';
 }
 
-.dashicons-no-alt:before {
+.dashicons-no-alt::before {
   content: '\f335';
 }
 
-.dashicons-no:before {
+.dashicons-no::before {
   content: '\f158';
 }
 
-.dashicons-open-folder:before {
+.dashicons-open-folder::before {
   content: '\f18f';
 }
 
-.dashicons-palmtree:before {
+.dashicons-palmtree::before {
   content: '\f527';
 }
 
-.dashicons-paperclip:before {
+.dashicons-paperclip::before {
   content: '\f546';
 }
 
-.dashicons-pdf:before {
+.dashicons-pdf::before {
   content: '\f190';
 }
 
-.dashicons-performance:before {
+.dashicons-performance::before {
   content: '\f311';
 }
 
-.dashicons-pets:before {
+.dashicons-pets::before {
   content: '\f191';
 }
 
-.dashicons-phone:before {
+.dashicons-phone::before {
   content: '\f525';
 }
 
-.dashicons-pinterest:before {
+.dashicons-pinterest::before {
   content: '\f192';
 }
 
-.dashicons-playlist-audio:before {
+.dashicons-playlist-audio::before {
   content: '\f492';
 }
 
-.dashicons-playlist-video:before {
+.dashicons-playlist-video::before {
   content: '\f493';
 }
 
-.dashicons-plugins-checked:before {
+.dashicons-plugins-checked::before {
   content: '\f485';
 }
 
-.dashicons-plus-alt:before {
+.dashicons-plus-alt::before {
   content: '\f502';
 }
 
-.dashicons-plus-alt2:before {
+.dashicons-plus-alt2::before {
   content: '\f543';
 }
 
-.dashicons-plus:before {
+.dashicons-plus::before {
   content: '\f132';
 }
 
-.dashicons-podio:before {
+.dashicons-podio::before {
   content: '\f19c';
 }
 
-.dashicons-portfolio:before {
+.dashicons-portfolio::before {
   content: '\f322';
 }
 
-.dashicons-post-status:before {
+.dashicons-post-status::before {
   content: '\f173';
 }
 
-.dashicons-pressthis:before {
+.dashicons-pressthis::before {
   content: '\f157';
 }
 
-.dashicons-printer:before {
+.dashicons-printer::before {
   content: '\f193';
 }
 
-.dashicons-privacy:before {
+.dashicons-privacy::before {
   content: '\f194';
 }
 
-.dashicons-products:before {
+.dashicons-products::before {
   content: '\f312';
 }
 
-.dashicons-randomize:before {
+.dashicons-randomize::before {
   content: '\f503';
 }
 
-.dashicons-reddit:before {
+.dashicons-reddit::before {
   content: '\f195';
 }
 
-.dashicons-redo:before {
+.dashicons-redo::before {
   content: '\f172';
 }
 
-.dashicons-remove:before {
+.dashicons-remove::before {
   content: '\f14f';
 }
 
-.dashicons-rest-api:before {
+.dashicons-rest-api::before {
   content: '\f124';
 }
 
-.dashicons-rss:before {
+.dashicons-rss::before {
   content: '\f303';
 }
 
-.dashicons-saved:before {
+.dashicons-saved::before {
   content: '\f15e';
 }
 
-.dashicons-schedule:before {
+.dashicons-schedule::before {
   content: '\f489';
 }
 
-.dashicons-screenoptions:before {
+.dashicons-screenoptions::before {
   content: '\f180';
 }
 
-.dashicons-search:before {
+.dashicons-search::before {
   content: '\f179';
 }
 
-.dashicons-share-alt:before {
+.dashicons-share-alt::before {
   content: '\f240';
 }
 
-.dashicons-share-alt2:before {
+.dashicons-share-alt2::before {
   content: '\f242';
 }
 
-.dashicons-share:before {
+.dashicons-share::before {
   content: '\f237';
 }
 
-.dashicons-shield-alt:before {
+.dashicons-shield-alt::before {
   content: '\f334';
 }
 
-.dashicons-shield:before {
+.dashicons-shield::before {
   content: '\f332';
 }
 
-.dashicons-shortcode:before {
+.dashicons-shortcode::before {
   content: '\f150';
 }
 
-.dashicons-slides:before {
+.dashicons-slides::before {
   content: '\f181';
 }
 
-.dashicons-smartphone:before {
+.dashicons-smartphone::before {
   content: '\f470';
 }
 
-.dashicons-smiley:before {
+.dashicons-smiley::before {
   content: '\f328';
 }
 
-.dashicons-sort:before {
+.dashicons-sort::before {
   content: '\f156';
 }
 
-.dashicons-sos:before {
+.dashicons-sos::before {
   content: '\f468';
 }
 
-.dashicons-spotify:before {
+.dashicons-spotify::before {
   content: '\f196';
 }
 
-.dashicons-star-empty:before {
+.dashicons-star-empty::before {
   content: '\f154';
 }
 
-.dashicons-star-filled:before {
+.dashicons-star-filled::before {
   content: '\f155';
 }
 
-.dashicons-star-half:before {
+.dashicons-star-half::before {
   content: '\f459';
 }
 
-.dashicons-sticky:before {
+.dashicons-sticky::before {
   content: '\f537';
 }
 
-.dashicons-store:before {
+.dashicons-store::before {
   content: '\f513';
 }
 
-.dashicons-superhero-alt:before {
+.dashicons-superhero-alt::before {
   content: '\f197';
 }
 
-.dashicons-superhero:before {
+.dashicons-superhero::before {
   content: '\f198';
 }
 
-.dashicons-table-col-after:before {
+.dashicons-table-col-after::before {
   content: '\f151';
 }
 
-.dashicons-table-col-before:before {
+.dashicons-table-col-before::before {
   content: '\f152';
 }
 
-.dashicons-table-col-delete:before {
+.dashicons-table-col-delete::before {
   content: '\f15a';
 }
 
-.dashicons-table-row-after:before {
+.dashicons-table-row-after::before {
   content: '\f15b';
 }
 
-.dashicons-table-row-before:before {
+.dashicons-table-row-before::before {
   content: '\f15c';
 }
 
-.dashicons-table-row-delete:before {
+.dashicons-table-row-delete::before {
   content: '\f15d';
 }
 
-.dashicons-tablet:before {
+.dashicons-tablet::before {
   content: '\f471';
 }
 
-.dashicons-tag:before {
+.dashicons-tag::before {
   content: '\f323';
 }
 
-.dashicons-tagcloud:before {
+.dashicons-tagcloud::before {
   content: '\f479';
 }
 
-.dashicons-testimonial:before {
+.dashicons-testimonial::before {
   content: '\f473';
 }
 
-.dashicons-text-page:before {
+.dashicons-text-page::before {
   content: '\f121';
 }
 
-.dashicons-text:before {
+.dashicons-text::before {
   content: '\f478';
 }
 
-.dashicons-thumbs-down:before {
+.dashicons-thumbs-down::before {
   content: '\f542';
 }
 
-.dashicons-thumbs-up:before {
+.dashicons-thumbs-up::before {
   content: '\f529';
 }
 
-.dashicons-tickets-alt:before {
+.dashicons-tickets-alt::before {
   content: '\f524';
 }
 
-.dashicons-tickets:before {
+.dashicons-tickets::before {
   content: '\f486';
 }
 
-.dashicons-tide:before {
+.dashicons-tide::before {
   content: '\f10d';
 }
 
-.dashicons-translation:before {
+.dashicons-translation::before {
   content: '\f326';
 }
 
-.dashicons-trash:before {
+.dashicons-trash::before {
   content: '\f182';
 }
 
-.dashicons-twitch:before {
+.dashicons-twitch::before {
   content: '\f199';
 }
 
-.dashicons-twitter-alt:before {
+.dashicons-twitter-alt::before {
   content: '\f302';
 }
 
-.dashicons-twitter:before {
+.dashicons-twitter::before {
   content: '\f301';
 }
 
-.dashicons-undo:before {
+.dashicons-undo::before {
   content: '\f171';
 }
 
-.dashicons-universal-access-alt:before {
+.dashicons-universal-access-alt::before {
   content: '\f507';
 }
 
-.dashicons-universal-access:before {
+.dashicons-universal-access::before {
   content: '\f483';
 }
 
-.dashicons-unlock:before {
+.dashicons-unlock::before {
   content: '\f528';
 }
 
-.dashicons-update-alt:before {
+.dashicons-update-alt::before {
   content: '\f113';
 }
 
-.dashicons-update:before {
+.dashicons-update::before {
   content: '\f463';
 }
 
-.dashicons-upload:before {
+.dashicons-upload::before {
   content: '\f317';
 }
 
-.dashicons-vault:before {
+.dashicons-vault::before {
   content: '\f178';
 }
 
-.dashicons-video-alt:before {
+.dashicons-video-alt::before {
   content: '\f234';
 }
 
-.dashicons-video-alt2:before {
+.dashicons-video-alt2::before {
   content: '\f235';
 }
 
-.dashicons-video-alt3:before {
+.dashicons-video-alt3::before {
   content: '\f236';
 }
 
-.dashicons-visibility:before {
+.dashicons-visibility::before {
   content: '\f177';
 }
 
-.dashicons-warning:before {
+.dashicons-warning::before {
   content: '\f534';
 }
 
-.dashicons-welcome-add-page:before {
+.dashicons-welcome-add-page::before {
   content: '\f133';
 }
 
-.dashicons-welcome-comments:before {
+.dashicons-welcome-comments::before {
   content: '\f117';
 }
 
-.dashicons-welcome-learn-more:before {
+.dashicons-welcome-learn-more::before {
   content: '\f118';
 }
 
-.dashicons-welcome-view-site:before {
+.dashicons-welcome-view-site::before {
   content: '\f115';
 }
 
-.dashicons-welcome-widgets-menus:before {
+.dashicons-welcome-widgets-menus::before {
   content: '\f116';
 }
 
-.dashicons-welcome-write-blog:before {
+.dashicons-welcome-write-blog::before {
   content: '\f119';
 }
 
-.dashicons-whatsapp:before {
+.dashicons-whatsapp::before {
   content: '\f19a';
 }
 
-.dashicons-wordpress-alt:before {
+.dashicons-wordpress-alt::before {
   content: '\f324';
 }
 
-.dashicons-wordpress:before {
+.dashicons-wordpress::before {
   content: '\f120';
 }
 
-.dashicons-xing:before {
+.dashicons-xing::before {
   content: '\f19d';
 }
 
-.dashicons-yes-alt:before {
+.dashicons-yes-alt::before {
   content: '\f12a';
 }
 
-.dashicons-yes:before {
+.dashicons-yes::before {
   content: '\f147';
 }
 
-.dashicons-youtube:before {
+.dashicons-youtube::before {
   content: '\f19b';
 }
 
 /* Additional CSS classes, manually added to the CSS template file */
-.dashicons-editor-distractionfree:before {
+.dashicons-editor-distractionfree::before {
   content: '\f211';
 }
 
 /* This is a typo, but was previously released. It should remain for backward compatibility. See https://core.trac.wordpress.org/ticket/30832. */
-.dashicons-exerpt-view:before {
+.dashicons-exerpt-view::before {
   content: '\f164';
 }
 
-.dashicons-format-links:before {
+.dashicons-format-links::before {
   content: '\f103';
 }
 
-.dashicons-format-standard:before {
+.dashicons-format-standard::before {
   content: '\f109';
 }
 
-.dashicons-post-trash:before {
+.dashicons-post-trash::before {
   content: '\f182';
 }
 
-.dashicons-share1:before {
+.dashicons-share1::before {
   content: '\f237';
 }
 
-.dashicons-welcome-edit-page:before {
+.dashicons-welcome-edit-page::before {
   content: '\f119';
 }
 
 #wpadminbar .toolbar-node-skeleton-wrapper {
-  --toolbar-node-skeleton-gradient--dark: rgba(240, 246, 252, 0.1);
-  --toolbar-node-skeleton-gradient--light: rgba(240, 246, 252, 0.3);
+  --toolbar-node-skeleton-gradient--dark: rgb(240 246 252 / 10%);
+  --toolbar-node-skeleton-gradient--light: rgb(240 246 252 / 30%);
+
   box-sizing: border-box;
   min-width: 100px;
   padding: 7px;
@@ -2560,16 +2618,17 @@ html:lang(he-il) .rtl #wpadminbar * {
     animation: none;
   }
 }
+
 @keyframes pulse {
   0% {
     background-position: 0% 0%;
   }
+
   100% {
     background-position: -135% 0%;
   }
 }
+
 body.admin-bar {
   margin-top: var(--wp-admin--admin-bar--height);
 }
-
-/*# sourceMappingURL=toolbar.css.map */

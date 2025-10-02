@@ -21,12 +21,24 @@ export function Toolbar({ seedNode }) {
         id="wp-toolbar"
         role="navigation"
         aria-label="Toolbar"
-        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}
       >
-        <ul id="wp-admin-bar-root-default" className="ab-top-menu" style={{ display: 'flex', margin: 0, padding: 0 }}>
+        <ul
+          id="wp-admin-bar-root-default"
+          className="ab-top-menu"
+          style={{ display: 'flex', margin: 0, padding: 0 }}
+        >
           <ToolbarNodes seedNode={seedNode} position="primary" />
         </ul>
-        <ul id="wp-admin-bar-top-secondary" className="ab-top-secondary ab-top-menu" style={{ display: 'flex', margin: 0, padding: 0 }}>
+        <ul
+          id="wp-admin-bar-top-secondary"
+          className="ab-top-secondary ab-top-menu"
+          style={{ display: 'flex', margin: 0, padding: 0 }}
+        >
           <ToolbarNodes seedNode={seedNode} position="secondary" />
         </ul>
       </div>
