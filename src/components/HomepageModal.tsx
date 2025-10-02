@@ -1,4 +1,5 @@
 import { useCustomData } from '@/functions/contextProviders/CustomSettingsProvider'
+import { setCookie } from '@/functions/cookieUtils'
 import { PopupModalData } from '@/types/alerts'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -45,23 +46,26 @@ const HomepageModal: React.FC = () => {
    * @param modalId - The unique ID of the modal to mark as dismissed
    */
   const setDismissedCookie = (modalId: any) => {
-    // Create a date 30 days in the future
-    const expiryDate = new Date()
-    expiryDate.setDate(expiryDate.getDate() + 30)
+    const cookieName = `${MODAL_COOKIE_PREFIX}${modalId}`
+    setCookie(cookieName, 'true', {
+      path: '/',
+      expires: 30,
+      sameSite: 'lax'
+    })
 
-    // Set the cookie directly
-    document.cookie = `${MODAL_COOKIE_PREFIX}${modalId}=true; expires=${expiryDate.toUTCString()}; path=/`
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new CustomEvent('modalCookieChanged'))
   }
 
   // Check if a modal has been dismissed via cookie
   const checkIfDismissed = (modalId: any): boolean => {
     if (typeof document === 'undefined') return false
 
-    // Look for a specific cookie for this modal
+    // Look for a specific cookie for this modal (URL-encoded to match setCookie)
+    const cookieName = `${MODAL_COOKIE_PREFIX}${modalId}`
+    const encodedCookieName = encodeURIComponent(cookieName)
     const cookies = document.cookie.split(';').map((cookie) => cookie.trim())
-    return cookies.some((cookie) =>
-      cookie.startsWith(`${MODAL_COOKIE_PREFIX}${modalId}=true`)
-    )
+    return cookies.some((cookie) => cookie.startsWith(`${encodedCookieName}=`))
   }
 
   // Check for dismissed state on mount and when modal data changes
@@ -71,6 +75,24 @@ const HomepageModal: React.FC = () => {
     // Check if this specific modal has been dismissed
     const modalDismissed = checkIfDismissed(modalData.id)
     setIsDismissed(modalDismissed)
+
+    // Listen for event to reset modal
+    const handleCookieChange = () => {
+      const stillDismissed = checkIfDismissed(modalData.id)
+      setIsDismissed(stillDismissed)
+
+      // If modal is no longer dismissed, make sure it's visible
+      if (!stillDismissed) {
+        setIsVisible(false) // Reset first
+        setTimeout(() => setIsVisible(true), 100) // Then show with small delay
+      }
+    }
+
+    window.addEventListener('modalCookieChanged', handleCookieChange)
+
+    return () => {
+      window.removeEventListener('modalCookieChanged', handleCookieChange)
+    }
   }, [modalData?.id])
 
   // Control modal visibility with animation
