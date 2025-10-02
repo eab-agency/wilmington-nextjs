@@ -10,7 +10,7 @@ import templates from './wp-templates'
 export default setConfig({
   templates,
   plugins: [new RelayStylePaginationPlugin()],
-  experimentalToolbar: true,
+
   possibleTypes,
   useGETForQueries: false,
   graphqlEndpoint: '/graphql', // Try the default endpoint path
