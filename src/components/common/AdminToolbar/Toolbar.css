@@ -735,7 +735,6 @@ html:lang(he-il) .rtl #wpadminbar * {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
-  clip-path: inset(50%);
   height: 1px;
   margin: -1px;
   overflow: hidden;
@@ -828,7 +827,6 @@ html:lang(he-il) .rtl #wpadminbar * {
   #wpadminbar .ab-label {
     border: 0;
     clip: rect(1px, 1px, 1px, 1px);
-    clip-path: inset(50%);
     clip-path: inset(50%);
     height: 1px;
     margin: -1px;
@@ -1048,7 +1046,6 @@ html:lang(he-il) .rtl #wpadminbar * {
   /* Override default min-width so dropdown lists aren't stretched
   	to 100% viewport width at responsive sizes. */
   #wpadminbar .ab-top-menu > .menupop > .ab-sub-wrapper {
-    min-width: fit-content;
     min-width: fit-content;
   }
 
