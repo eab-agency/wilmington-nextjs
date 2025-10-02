@@ -24,6 +24,7 @@ const Burger = ({ open, setOpen }) => {
       open={open}
       onClick={() => setOpen(!open)}
       type="button"
+      aria-label={open ? 'Close menu' : 'Open menu'}
     >
       {open ? (
         <MdClose />
