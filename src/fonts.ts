@@ -3,25 +3,28 @@ import localFont from 'next/font/local'
 
 export const museo = localFont({
   variable: '--font-museo',
+  preload: true,
+  fallback: ['system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial'],
   src: [
     {
-      path: 'assets/Museo500-Regular.woff',
+      path: '../public/assets/Museo500-Regular.woff2',
       weight: '500',
       style: 'normal'
     },
     {
-      path: 'assets/Museo700-Regular.woff',
+      path: '../public/assets/Museo700-Regular.woff2',
       weight: '700',
-      style: 'bold'
+      style: 'normal'
     }
   ]
 })
 
 export const icomoon = localFont({
   variable: '--font-icomoon',
+  preload: true,
   src: [
     {
-      path: 'assets/icomoon.woff',
+      path: '../public/assets/icomoon.woff',
       weight: 'normal'
     }
   ]
@@ -35,8 +38,9 @@ export const cantarell = Cantarell({
 })
 
 export const robotoSlab = Roboto_Slab({
-  weight: ['200', '300', '400', '900'],
+  weight: 'variable',
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-roboto-slab'
+  variable: '--font-roboto-slab',
+  adjustFontFallback: true
 })

@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_network_requests",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_console_messages",
+      "Bash(npm run generate:*)",
+      "WebSearch",
+      "Bash(git push:*)",
+      "Bash(git add:*)",
+      "Bash(git rebase:*)",
+      "Bash(git checkout:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:faustjs.org)",
+      "mcp__vercel-awesome-ai__list_deployments",
+      "mcp__vercel-awesome-ai__list_projects",
+      "Bash(vercel env:*)",
+      "Bash(vercel logs:*)",
+      "Bash(vercel list:*)",
+      "Bash(vercel ls:*)",
+      "Bash(git commit:*)",
+      "Bash(pnpm update:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

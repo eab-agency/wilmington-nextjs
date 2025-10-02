@@ -13,5 +13,7 @@ export default setConfig({
 
   possibleTypes,
   useGETForQueries: false,
-  graphqlEndpoint: '/graphql' // Try the default endpoint path
+  graphqlEndpoint: '/graphql', // Try the default endpoint path
+  // Explicitly set the login URL to avoid cookie domain issues
+  loginPagePath: '/api/faust/auth/login'
 })

@@ -150,12 +150,78 @@ const HomepageModal: React.FC = () => {
     }, 300)
   }
 
+  /**
+   * Handles clicks on the modal wrapper to close modal when clicking outside content.
+   *
+   * This function checks if the click target is the modal wrapper itself
+   * (not a child element). If so, it closes the modal.
+   *
+   * @param event - The mouse event from the click
+   */
+  const handleWrapperClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    // Only close if the click was directly on the wrapper (not on child elements)
+    if (event.target === event.currentTarget) {
+      handleClose()
+    }
+  }
+
+  /**
+   * Handles clicks on links and buttons within the modal content.
+   *
+   * This function detects clicks on any link (a tag) or button within the modal
+   * and saves the dismissal cookie, so the modal won't appear again.
+   * Uses event delegation to catch clicks on dynamically generated content.
+   * Prevents race conditions by manually handling link navigation after modal cleanup.
+   *
+   * @param event - The mouse event from the click
+   */
+  const handleContentClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLElement
+
+    const clickedElement = target.closest('a, button')
+
+    if (
+      !clickedElement ||
+      clickedElement.classList.contains(styles.closeButton)
+    ) {
+      return
+    }
+
+    // If the clicked element is a link, handle navigation manually
+    if (clickedElement.tagName === 'A') {
+      const link = clickedElement as HTMLAnchorElement
+      const href = link.getAttribute('href')
+      const linkTarget = link.getAttribute('target')
+
+      if (href) {
+        // Prevent default navigation to allow modal to close gracefully
+        event.preventDefault()
+
+        // Close the modal (this also sets the dismissal cookie)
+        handleClose()
+
+        // Navigate after a delay to allow closing animation to complete
+        setTimeout(() => {
+          if (linkTarget === '_blank') {
+            window.open(href, '_blank', 'noopener noreferrer')
+          } else {
+            router.push(href)
+          }
+        }, 300) // This delay should match the one in handleClose
+        return
+      }
+    }
+
+    // For buttons or other interactions, just close the modal
+    handleClose()
+  }
+
   // Determine if we should render the image column
   const hasImage = modalData?.popupImage && modalData.popupImage.sourceUrl
 
   return (
-    <div className={styles.modalWrapper}>
-      <div className={styles.modalContent}>
+    <div className={styles.modalWrapper} onClick={handleWrapperClick}>
+      <div className={styles.modalContent} onClick={handleContentClick}>
         <button
           onClick={handleClose}
           className={styles.closeButton}

@@ -29,9 +29,12 @@ import AcfNewsListing from './acf/AcfNewsListing'
 import AcfRelatedPrograms from './acf/AcfRelatedPrograms'
 import AcfStudentOrgs from './acf/AcfStudentOrgs'
 import AcfTestimonialBlock from './acf/AcfTestimonialBlock'
+import EabBlocksAccordion from './custom/EabBlocksAccordion'
 import EabBlocksFormstackEmbed from './custom/EabBlocksFormstackEmbed'
 import EabBlocksHeroSlide from './custom/EabBlocksHeroSlide'
 import EabBlocksHomepageHeroSlider from './custom/EabBlocksHomepageHeroSlider'
+import EabBlocksPageHero from './custom/EabBlocksPageHero'
+import EabBlocksStudentLifeMicroform from './custom/EabBlocksStudentLifeMicroform'
 import EabProgramDirectory from './custom/EabProgramDirectory'
 import EabProgramJumplinks from './custom/EabProgramJumplinks'
 
@@ -73,9 +76,12 @@ export default {
   AcfFeaturedPrograms,
   AcfStudentOrgs,
   AcfTestimonialBlock,
+  EabBlocksAccordion,
   EabProgramDirectory,
   EabProgramJumplinks,
   EabBlocksHomepageHeroSlider,
   EabBlocksHeroSlide,
-  EabBlocksFormstackEmbed
+  EabBlocksPageHero,
+  EabBlocksFormstackEmbed,
+  EabBlocksStudentLifeMicroform
 }

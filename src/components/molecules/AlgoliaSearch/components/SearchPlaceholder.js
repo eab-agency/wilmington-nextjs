@@ -21,6 +21,7 @@ export default function SearchPlaceholder({ toggleAlgolia }) {
           tabIndex={0}
           type="button"
           className="trigger"
+          aria-label="Open search"
           onClick={() => {
             toggleAlgolia(true)
           }}

@@ -47,7 +47,7 @@ const EabBlocksHomepageHeroSlider = (props) => {
           }
         : null
     )
-    .filter(Boolean)
+    .filter((modalButton) => modalButton && modalButton.url) // Filter out modal buttons without valid URLs
 
   // Get CTAs from hero-ctas-group
   const ctasGroup = heroTopSection?.innerBlocks?.find(
@@ -58,7 +58,8 @@ const EabBlocksHomepageHeroSlider = (props) => {
     ctasGroup?.innerBlocks
       ?.filter((cta) => cta.name === 'eab-blocks/hero-cta-button')
       ?.map((cta) => {
-        const { buttonText, buttonLink, buttonIcon } = cta.attributes || {}
+        const { buttonText, buttonLink, buttonIcon, buttonStyle } =
+          cta.attributes || {}
         let parsedButtonLink
         try {
           parsedButtonLink = JSON.parse(buttonLink)
@@ -69,9 +70,11 @@ const EabBlocksHomepageHeroSlider = (props) => {
         return {
           title: buttonText || '',
           url: parsedButtonLink?.url || '',
-          icon: buttonIcon || ''
+          icon: buttonIcon || '',
+          style: buttonStyle || 'primary'
         }
-      }) || []
+      })
+      ?.filter((cta) => cta.url) || [] // Filter out CTAs without valid URLs
 
   // Get slides from hero-slides-area
   const slidesArea = innerBlocks?.find(
@@ -155,6 +158,7 @@ EabBlocksHomepageHeroSlider.fragments = {
                     buttonText
                     buttonIcon
                     buttonLink
+                    buttonStyle
                   }
                 }
               }

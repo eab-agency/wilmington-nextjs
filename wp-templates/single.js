@@ -39,7 +39,7 @@ export default function Component(props) {
               imageMeta={featuredImage?.node?.mediaDetails}
               text={title}
             />
-            <div className="page-content">
+            <div className="page-content" id="page-content">
               <WordPressBlocksViewer blocks={blocks} />
             </div>
           </article>

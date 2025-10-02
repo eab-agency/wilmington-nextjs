@@ -108,7 +108,7 @@ export default function SingleEvent(props) {
               pageType="news"
               newsCategories={event.newsCategories}
             />
-            <div className="page-content">
+            <div className="page-content" id="page-content">
               <Breadcrumbs breadcrumbs={seo.breadcrumbs} />
               <section className="eventDetails">
                 <div className="eventDateTime">

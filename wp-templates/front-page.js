@@ -28,7 +28,7 @@ export default function Component(props) {
       <Layout className="thelayoutclass">
         <Container>
           <article className="inner-wrap">
-            <div className="page-content">
+            <div className="page-content" id="page-content">
               <WordPressBlocksViewer blocks={blocks} />
             </div>
           </article>
