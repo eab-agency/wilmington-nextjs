@@ -1,7 +1,9 @@
+import { removeCookie } from '@/functions/cookieUtils'
 import { gql, useQuery } from '@apollo/client'
 import { getApolloAuthClient, useAuth } from '@faustwp/core'
 import md5 from 'md5'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { ToolbarItem } from './ToolbarItem'
 import { ToolbarSubmenuWrapper } from './ToolbarSubmenuWrapper'
 
@@ -32,6 +34,36 @@ export function ToolbarNodes({ seedNode, position = 'primary' }) {
   // Remove trailing slash to prevent double slashes in URLs
   const wordpressUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL?.replace(/\/$/, '')
 
+  // Track if modal has been dismissed
+  const [modalDismissed, setModalDismissed] = useState(false)
+
+  // Check if any dismissedModal_ cookie exists
+  const checkModalCookie = () => {
+    if (typeof document === 'undefined') return false
+    const cookies = document.cookie.split(';')
+    return cookies.some((cookie) => {
+      const cookieName = cookie.split('=')[0].trim()
+      const decodedCookieName = decodeURIComponent(cookieName)
+      return decodedCookieName.startsWith('dismissedModal_')
+    })
+  }
+
+  // Check for modal cookie on mount and listen for cookie changes via custom event
+  useEffect(() => {
+    setModalDismissed(checkModalCookie())
+
+    // Listen for custom event when modal cookie changes
+    const handleCookieChange = () => {
+      setModalDismissed(checkModalCookie())
+    }
+
+    window.addEventListener('modalCookieChanged', handleCookieChange)
+
+    return () => {
+      window.removeEventListener('modalCookieChanged', handleCookieChange)
+    }
+  }, [])
+
   // Determine if we're in preview mode
   const isPreview =
     router.pathname === '/preview' || router.query.preview === 'true'
@@ -54,6 +86,24 @@ export function ToolbarNodes({ seedNode, position = 'primary' }) {
     : getGravatarUrl(null, 52)
   const userName = user?.name || 'Admin'
   const userNicename = user?.username || user?.email?.split('@')[0] || 'admin'
+
+  // Handle reset homepage modal
+  const handleResetModal = (e) => {
+    e.preventDefault()
+    // Clear all dismissedModal_ cookies
+    const cookies = document.cookie.split(';')
+    cookies.forEach((cookie) => {
+      const cookieName = cookie.split('=')[0].trim()
+      const decodedCookieName = decodeURIComponent(cookieName)
+      if (decodedCookieName.startsWith('dismissedModal_')) {
+        // Delete the cookie using the utility function
+        removeCookie(decodedCookieName, '/')
+      }
+    })
+
+    // Dispatch event to notify that cookies changed - this will show the modal again
+    window.dispatchEvent(new CustomEvent('modalCookieChanged'))
+  }
 
   // Primary menu (left side)
   if (position === 'primary') {
@@ -96,6 +146,15 @@ export function ToolbarNodes({ seedNode, position = 'primary' }) {
             <span className="ab-label">New Page</span>
           </ToolbarItem>
         </li>
+
+        {/* Reset Homepage Modal - only show if modal has been dismissed */}
+        {modalDismissed && (
+          <li id="wp-admin-bar-reset-modal">
+            <a href="#" onClick={handleResetModal} className="ab-item">
+              Show Modal
+            </a>
+          </li>
+        )}
       </>
     )
   }
