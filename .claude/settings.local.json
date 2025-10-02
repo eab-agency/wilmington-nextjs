@@ -19,7 +19,8 @@
       "Bash(vercel logs:*)",
       "Bash(vercel list:*)",
       "Bash(vercel ls:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(pnpm update:*)"
     ],
     "deny": [],
     "ask": []
