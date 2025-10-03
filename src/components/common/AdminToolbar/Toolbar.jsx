@@ -9,7 +9,7 @@ import { ToolbarNodes } from './ToolbarNodes'
 export function Toolbar({ seedNode }) {
   const { isAuthenticated } = useAuth()
 
-  // Only show toolbar for authenticated users
+  // Only show toolbar for authenticated users (matches original FaustWP behavior)
   if (isAuthenticated !== true) {
     return null
   }
