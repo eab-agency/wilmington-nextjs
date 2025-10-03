@@ -51,7 +51,28 @@ export default function Page() {
 
   return (
     <>
-      <h1>404</h1>
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex,nofollow" />
+      </Head>
+      <div style={{ padding: '40px', textAlign: 'center' }}>
+        <h1>Authentication Required</h1>
+        <p>You need to be logged in to view this page.</p>
+        <a
+          href={loginUrl}
+          style={{
+            display: 'inline-block',
+            padding: '10px 20px',
+            background: '#0073aa',
+            color: 'white',
+            textDecoration: 'none',
+            borderRadius: '4px',
+            marginTop: '20px'
+          }}
+        >
+          Log In with WordPress
+        </a>
+      </div>
     </>
   )
 }
