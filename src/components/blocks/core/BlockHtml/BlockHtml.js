@@ -1,6 +1,6 @@
 'use client'
+import { findScriptHandler } from '@/lib/scriptComponentRegistry'
 import { useEffect, useRef, useState } from 'react'
-import MauticForm from '../MauticForm'
 import { isScriptAllowed } from './allowedScripts'
 
 // Global registry to prevent duplicate script processing across component remounts
@@ -12,18 +12,21 @@ if (typeof window !== 'undefined') {
  * BlockHtml Component
  *
  * Renders HTML content from WordPress and handles script execution.
- * Delegates third-party form rendering to specialized components.
+ * Uses a registry-based approach to delegate third-party script rendering
+ * to specialized components without hardcoding dependencies.
  */
 export default function BlockHtml({ content, renderedHtml }) {
   const theHtml = content || renderedHtml
   const containerRef = useRef(null)
-  const [mauticFormProps, setMauticFormProps] = useState(null)
+  const [specializedComponents, setSpecializedComponents] = useState([])
 
   useEffect(() => {
     if (!containerRef.current || !theHtml) return
 
     const scriptTags = containerRef.current.querySelectorAll('script')
     if (scriptTags.length === 0) return
+
+    const componentsToRender = []
 
     scriptTags.forEach((oldScript) => {
       // Generate unique ID for this script
@@ -49,27 +52,24 @@ export default function BlockHtml({ content, renderedHtml }) {
       // Mark as processed
       window.__PROCESSED_SCRIPTS.add(scriptId)
 
-      // Check if this is a Mautic/EAB form script
-      if (oldScript.src && oldScript.src.includes('form.js?pid=')) {
-        // Extract parameters and delegate to MauticForm component
-        const urlParams = new URLSearchParams(oldScript.src.split('?')[1])
-        const pid = urlParams.get('pid')
-        const formname = urlParams.get('formname') || 'default'
-        const display = urlParams.get('display') || 'inline'
+      // Check if this script matches any registered handler
+      const handler = findScriptHandler(oldScript)
 
-        setMauticFormProps({
-          pid,
-          formname,
-          display,
-          scriptSrc: oldScript.src
+      if (handler) {
+        // Delegate to specialized component
+        const props = handler.getProps(oldScript)
+        componentsToRender.push({
+          Component: handler.component,
+          props,
+          key: scriptId
         })
 
-        // Remove the script tag since MauticForm will handle it
+        // Remove the script tag since the specialized component will handle it
         oldScript.remove()
         return
       }
 
-      // Generic script handling for non-Mautic scripts
+      // Generic script handling for unregistered scripts
       const newScript = document.createElement('script')
 
       // Copy attributes (skip defer for external scripts so onload fires immediately)
@@ -92,6 +92,11 @@ export default function BlockHtml({ content, renderedHtml }) {
       // Replace old script with new one to execute it
       oldScript.parentNode.replaceChild(newScript, oldScript)
     })
+
+    // Update state with all specialized components to render
+    if (componentsToRender.length > 0) {
+      setSpecializedComponents(componentsToRender)
+    }
   }, [theHtml])
 
   if (!theHtml) return null
@@ -104,7 +109,9 @@ export default function BlockHtml({ content, renderedHtml }) {
         suppressHydrationWarning
         dangerouslySetInnerHTML={{ __html: theHtml }}
       />
-      {mauticFormProps && <MauticForm {...mauticFormProps} />}
+      {specializedComponents.map(({ Component, props, key }) => (
+        <Component key={key} {...props} />
+      ))}
     </>
   )
 }
