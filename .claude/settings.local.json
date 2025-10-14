@@ -21,7 +21,8 @@
       "Bash(vercel ls:*)",
       "Bash(git commit:*)",
       "Bash(pnpm update:*)",
-      "Bash(npx stylelint:*)"
+      "Bash(npx stylelint:*)",
+      "Bash(npm run lint:*)"
     ],
     "deny": [],
     "ask": []

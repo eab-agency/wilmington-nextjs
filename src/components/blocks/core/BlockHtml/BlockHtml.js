@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import MauticForm from '../MauticForm'
+import { isScriptAllowed } from './allowedScripts'
 
 // Global registry to prevent duplicate script processing across component remounts
 if (typeof window !== 'undefined') {
@@ -30,6 +31,17 @@ export default function BlockHtml({ content, renderedHtml }) {
 
       // Skip if already processed globally
       if (window.__PROCESSED_SCRIPTS.has(scriptId)) {
+        oldScript.remove()
+        return
+      }
+
+      // Security check: Block scripts not on allowlist
+      if (!isScriptAllowed(oldScript.src)) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          '[BlockHtml Security] Blocked unauthorized script:',
+          oldScript.src || 'inline script'
+        )
         oldScript.remove()
         return
       }
