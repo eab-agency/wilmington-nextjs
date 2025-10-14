@@ -1,14 +1,22 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import MauticForm from '../MauticForm'
 
 // Global registry to prevent duplicate script processing across component remounts
 if (typeof window !== 'undefined') {
-  window.__EAB_PROCESSED_SCRIPTS = window.__EAB_PROCESSED_SCRIPTS || new Set()
+  window.__PROCESSED_SCRIPTS = window.__PROCESSED_SCRIPTS || new Set()
 }
 
+/**
+ * BlockHtml Component
+ *
+ * Renders HTML content from WordPress and handles script execution.
+ * Delegates third-party form rendering to specialized components.
+ */
 export default function BlockHtml({ content, renderedHtml }) {
   const theHtml = content || renderedHtml
   const containerRef = useRef(null)
+  const [mauticFormProps, setMauticFormProps] = useState(null)
 
   useEffect(() => {
     if (!containerRef.current || !theHtml) return
@@ -20,16 +28,36 @@ export default function BlockHtml({ content, renderedHtml }) {
       // Generate unique ID for this script
       const scriptId = oldScript.src || oldScript.textContent?.substring(0, 50)
 
-      // Skip if already processed globally (prevents duplication from React Strict Mode)
-      if (window.__EAB_PROCESSED_SCRIPTS.has(scriptId)) {
+      // Skip if already processed globally
+      if (window.__PROCESSED_SCRIPTS.has(scriptId)) {
         oldScript.remove()
         return
       }
 
       // Mark as processed
-      window.__EAB_PROCESSED_SCRIPTS.add(scriptId)
+      window.__PROCESSED_SCRIPTS.add(scriptId)
 
-      // Create new script element
+      // Check if this is a Mautic/EAB form script
+      if (oldScript.src && oldScript.src.includes('form.js?pid=')) {
+        // Extract parameters and delegate to MauticForm component
+        const urlParams = new URLSearchParams(oldScript.src.split('?')[1])
+        const pid = urlParams.get('pid')
+        const formname = urlParams.get('formname') || 'default'
+        const display = urlParams.get('display') || 'inline'
+
+        setMauticFormProps({
+          pid,
+          formname,
+          display,
+          scriptSrc: oldScript.src
+        })
+
+        // Remove the script tag since MauticForm will handle it
+        oldScript.remove()
+        return
+      }
+
+      // Generic script handling for non-Mautic scripts
       const newScript = document.createElement('script')
 
       // Copy attributes (skip defer for external scripts so onload fires immediately)
@@ -44,73 +72,9 @@ export default function BlockHtml({ content, renderedHtml }) {
         newScript.textContent = oldScript.textContent
       }
 
-      // Special handling for EAB form scripts
-      if (newScript.src && newScript.src.includes('form.js?pid=')) {
-        const urlParams = new URLSearchParams(newScript.src.split('?')[1])
-        const pid = urlParams.get('pid')
-        const formname = urlParams.get('formname') || 'default'
-        const display = urlParams.get('display') || 'inline'
-
-        newScript.onload = () => {
-          // Store parent reference before timeout (React may unmount and remove from DOM)
-          const scriptParent = newScript.parentNode
-
-          // Small delay to ensure EAB object is initialized
-          setTimeout(() => {
-            if (!window.EAB) return
-
-            // Initialize EAB objects
-            window.EAB.form = window.EAB.form || {}
-            window.EAB.form.processed = window.EAB.form.processed || {}
-
-            // Check if form container already exists
-            const existingContainer = document.querySelector(
-              `div[data-form-id="${pid}"]`
-            )
-            if (existingContainer) return
-
-            // Fetch form configuration and load form
-            fetch(`https://admiss.info/edu/v1/pid-data/${pid}.json`)
-              .then((res) => {
-                if (!res.ok) throw new Error(`HTTP ${res.status}`)
-                return res.json()
-              })
-              .then((data) => {
-                const { current: { domain, form = null } = {} } = data
-
-                const formID = Array.isArray(form)
-                  ? form.find((f) => f[formname])?.[formname]
-                  : form
-
-                if (domain && formID && display === 'inline' && scriptParent) {
-                  // Create form container
-                  const container = document.createElement('div')
-                  container.dataset.formId = pid
-                  scriptParent.appendChild(container)
-
-                  // Mark as processed
-                  if (!window.EAB.form.processed[pid]) {
-                    window.EAB.form.processed[pid] = {}
-                  }
-                  window.EAB.form.processed[pid][formname] = true
-
-                  // Load Mautic form script
-                  const mauticScript = document.createElement('script')
-                  mauticScript.src = `https://${domain}/form/generate.js?id=${formID}`
-                  scriptParent.appendChild(mauticScript)
-                }
-              })
-              .catch((error) => {
-                // eslint-disable-next-line no-console
-                console.error('[EAB] Error loading form:', error)
-              })
-          }, 100)
-        }
-
-        newScript.onerror = () => {
-          // eslint-disable-next-line no-console
-          console.error('[EAB] Script failed to load:', newScript.src)
-        }
+      newScript.onerror = () => {
+        // eslint-disable-next-line no-console
+        console.error('[BlockHtml] Script failed to load:', newScript.src)
       }
 
       // Replace old script with new one to execute it
@@ -121,11 +85,14 @@ export default function BlockHtml({ content, renderedHtml }) {
   if (!theHtml) return null
 
   return (
-    <div
-      ref={containerRef}
-      className="block-html"
-      suppressHydrationWarning
-      dangerouslySetInnerHTML={{ __html: theHtml }}
-    />
+    <>
+      <div
+        ref={containerRef}
+        className="block-html"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: theHtml }}
+      />
+      {mauticFormProps && <MauticForm {...mauticFormProps} />}
+    </>
   )
 }
