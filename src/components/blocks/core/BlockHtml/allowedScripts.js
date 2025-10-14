@@ -1,23 +1,21 @@
 /**
  * Security Configuration: Allowed Script Sources
  *
- * This file defines which external scripts are permitted to execute
- * in BlockHtml components. Only scripts from these domains will be loaded.
+ * This file validates script sources for the BlockHtml component.
+ * Domain allowlist is centrally managed in: src/config/allowedScriptDomains.js
  *
- * Add trusted domains here to allow their scripts to execute.
+ * To add new trusted domains, edit src/config/allowedScriptDomains.js
  */
 
-export const ALLOWED_SCRIPT_DOMAINS = [
-  'admiss.info', // EAB/Mautic forms and APIs
-  'formstack.com' // Formstack forms and APIs
-  // Add additional trusted domains below:
-  // 'google-analytics.com',
-  // 'googletagmanager.com',
-  // 'cdn.example.com',
-]
+// Import from centralized config
+// Single source of truth for allowed domains
+import { ALLOWED_SCRIPT_DOMAINS } from '@/config/allowedScriptDomains.js'
 
 /**
  * Check if a script source is allowed based on the domain allowlist
+ * Note: This is a fallback defense layer. Primary security should be enforced
+ * via Content Security Policy (CSP) headers at the Next.js config level.
+ *
  * @param {string} src - The script src URL
  * @returns {boolean} - True if allowed, false otherwise
  */
@@ -31,6 +29,12 @@ export function isScriptAllowed(src) {
     const url = new URL(src, window.location.origin)
     const hostname = url.hostname
 
+    // Validate hostname is not empty
+    if (!hostname || hostname.trim() === '') {
+      console.error('[BlockHtml] Empty hostname in script URL:', src)
+      return false
+    }
+
     // Check if the hostname matches any allowed domain
     return ALLOWED_SCRIPT_DOMAINS.some((allowedDomain) => {
       // Exact match or subdomain match
@@ -40,7 +44,7 @@ export function isScriptAllowed(src) {
     })
   } catch (error) {
     // Invalid URL, block it
-    console.error('[BlockHtml] Invalid script URL:', src)
+    console.error('[BlockHtml] Invalid script URL:', src, error)
     return false
   }
 }
