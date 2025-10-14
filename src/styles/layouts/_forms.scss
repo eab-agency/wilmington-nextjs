@@ -411,3 +411,16 @@ form {
     }
   }
 }
+
+.mauticform_wrapper{
+  width: 100%;
+  form{
+    padding: clamp(1.5em, 2vw, 2em);
+    background: white;
+    border-radius: 0.4em;
+  }
+
+  @media(min-width: tokens.$mq-800){
+    min-width: 25rem;
+  }
+}
