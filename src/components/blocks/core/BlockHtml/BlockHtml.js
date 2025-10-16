@@ -11,9 +11,21 @@ if (typeof window !== 'undefined') {
 /**
  * BlockHtml Component
  *
- * Renders HTML content from WordPress and handles script execution.
+ * Renders HTML content from WordPress with strict security controls.
  * Uses a registry-based approach to delegate third-party script rendering
  * to specialized components without hardcoding dependencies.
+ *
+ * SECURITY POLICY:
+ * - ALL inline JavaScript is blocked (scripts without src attribute)
+ * - External scripts are only allowed if their domain is on the allowlist
+ *   (see: src/config/allowedScriptDomains.js)
+ * - Scripts with both src and inline content are blocked
+ * - Scripts with inline event handlers (onerror, onload, etc.) are blocked
+ * - Only team-approved scripts can execute
+ *
+ * To add a new trusted script domain:
+ * 1. Add the domain to src/config/allowedScriptDomains.js
+ * 2. Get team approval before deploying
  */
 export default function BlockHtml({ content, renderedHtml }) {
   const theHtml = content || renderedHtml
@@ -38,12 +50,55 @@ export default function BlockHtml({ content, renderedHtml }) {
         return
       }
 
-      // Security check: Block scripts not on allowlist
+      // SECURITY CHECK 1: Block inline scripts (no src attribute)
+      if (!oldScript.src || oldScript.src.trim() === '') {
+        // eslint-disable-next-line no-console
+        console.warn(
+          '[BlockHtml Security] Blocked inline script - all inline JavaScript is prohibited for security',
+          { textContent: oldScript.textContent?.substring(0, 100) }
+        )
+        oldScript.remove()
+        return
+      }
+
+      // SECURITY CHECK 2: Block scripts not on allowlist
       if (!isScriptAllowed(oldScript.src)) {
         // eslint-disable-next-line no-console
         console.warn(
-          '[BlockHtml Security] Blocked unauthorized script:',
-          oldScript.src || 'inline script'
+          '[BlockHtml Security] Blocked script from unauthorized domain:',
+          oldScript.src
+        )
+        oldScript.remove()
+        return
+      }
+
+      // SECURITY CHECK 3: Block scripts that have both src and inline content
+      // This prevents potential XSS via inline handlers even if src is allowed
+      if (oldScript.textContent && oldScript.textContent.trim() !== '') {
+        // eslint-disable-next-line no-console
+        console.warn(
+          '[BlockHtml Security] Blocked script with both src and inline content:',
+          oldScript.src,
+          { inlineContent: oldScript.textContent?.substring(0, 100) }
+        )
+        oldScript.remove()
+        return
+      }
+
+      // SECURITY CHECK 4: Block scripts with inline event handlers in attributes
+      const dangerousAttrs = ['onerror', 'onload', 'onreadystatechange']
+      const hasDangerousAttr = Array.from(oldScript.attributes).some((attr) =>
+        dangerousAttrs.includes(attr.name.toLowerCase())
+      )
+
+      if (hasDangerousAttr) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          '[BlockHtml Security] Blocked script with inline event handler attributes:',
+          oldScript.src,
+          {
+            attributes: Array.from(oldScript.attributes).map((a) => a.name)
+          }
         )
         oldScript.remove()
         return
