@@ -1,6 +1,6 @@
 import { removeCookie } from '@/functions/cookieUtils'
 import { gql, useQuery } from '@apollo/client'
-import { getApolloAuthClient, useAuth } from '@faustwp/core'
+import { getApolloAuthClient, useAuth, useLogout } from '@faustwp/core'
 import md5 from 'md5'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -13,6 +13,7 @@ import { ToolbarSubmenuWrapper } from './ToolbarSubmenuWrapper'
 export function ToolbarNodes({ seedNode, position = 'primary' }) {
   const router = useRouter()
   const { isAuthenticated } = useAuth()
+  const { logout } = useLogout()
   const client = getApolloAuthClient()
 
   // Query WordPress for user data
@@ -207,12 +208,16 @@ export function ToolbarNodes({ seedNode, position = 'primary' }) {
               </ToolbarItem>
             </li>
             <li id="wp-admin-bar-logout">
-              <ToolbarItem
-                href={`${wordpressUrl}/wp-login.php?action=logout`}
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault()
+                  logout('/')
+                }}
                 className="ab-item"
               >
                 Log Out
-              </ToolbarItem>
+              </a>
             </li>
           </ul>
         </ToolbarSubmenuWrapper>

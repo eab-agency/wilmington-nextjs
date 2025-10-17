@@ -64,6 +64,9 @@ EabBlocksStudentLifeMicroform.fragments = {
         overlayOpacity
         showOverlay
       }
+      innerBlocks {
+        name
+      }
     }
   `,
   key: `EabBlocksStudentLifeMicroformFragment`
