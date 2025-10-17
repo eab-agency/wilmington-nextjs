@@ -65,7 +65,7 @@ export default function BlockHtml({ content, renderedHtml }) {
       }
 
       // Extract src if present
-      const srcAttr = attributes.find(attr => attr.name === 'src')
+      const srcAttr = attributes.find((attr) => attr.name === 'src')
 
       scripts.push({
         src: srcAttr?.value || '',
@@ -75,14 +75,25 @@ export default function BlockHtml({ content, renderedHtml }) {
     }
 
     // Remove all script tags from HTML
-    const sanitizedHtml = theHtml.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+    const sanitizedHtml = theHtml.replace(
+      /<script[^>]*>[\s\S]*?<\/script>/gi,
+      ''
+    )
 
     // Debug logging
     if (scripts.length > 0) {
       // eslint-disable-next-line no-console
-      console.log('[BlockHtml] Extracted scripts before rendering:', scripts.length)
+      console.log(
+        '[BlockHtml] Extracted scripts before rendering:',
+        scripts.length
+      )
       // eslint-disable-next-line no-console
-      console.log('[BlockHtml] Original HTML length:', theHtml.length, 'Sanitized:', sanitizedHtml.length)
+      console.log(
+        '[BlockHtml] Original HTML length:',
+        theHtml.length,
+        'Sanitized:',
+        sanitizedHtml.length
+      )
     }
 
     // Return sanitized HTML (without scripts) and extracted script info
@@ -99,7 +110,8 @@ export default function BlockHtml({ content, renderedHtml }) {
 
     extractedScripts.forEach((scriptInfo) => {
       // Generate unique ID for this script
-      const scriptId = scriptInfo.src || scriptInfo.textContent?.substring(0, 50)
+      const scriptId =
+        scriptInfo.src || scriptInfo.textContent?.substring(0, 50)
 
       // Skip if already processed globally
       if (window.__PROCESSED_SCRIPTS.has(scriptId)) {
