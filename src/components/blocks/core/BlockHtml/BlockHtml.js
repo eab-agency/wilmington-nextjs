@@ -1,6 +1,6 @@
 'use client'
 import { findScriptHandler } from '@/lib/scriptComponentRegistry'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { isScriptAllowed } from './allowedScripts'
 
 // Global registry to prevent duplicate script processing across component remounts
@@ -23,6 +23,8 @@ if (typeof window !== 'undefined') {
  * - Scripts with inline event handlers (onerror, onload, etc.) are blocked
  * - Only team-approved scripts can execute
  *
+ * CRITICAL: HTML is sanitized BEFORE rendering to prevent script execution
+ *
  * To add a new trusted script domain:
  * 1. Add the domain to src/config/allowedScriptDomains.js
  * 2. Get team approval before deploying
@@ -32,62 +34,113 @@ export default function BlockHtml({ content, renderedHtml }) {
   const containerRef = useRef(null)
   const [specializedComponents, setSpecializedComponents] = useState([])
 
-  useEffect(() => {
-    if (!containerRef.current || !theHtml) return
+  // CRITICAL SECURITY FIX: Parse and sanitize HTML BEFORE rendering
+  // This prevents scripts from executing before security checks can run
+  const { sanitizedHtml, extractedScripts } = useMemo(() => {
+    if (!theHtml) return { sanitizedHtml: '', extractedScripts: [] }
 
-    const scriptTags = containerRef.current.querySelectorAll('script')
-    if (scriptTags.length === 0) return
+    const scripts = []
+
+    // Extract all script tags and their attributes using regex
+    // This works on both server and client
+    const scriptRegex = /<script([^>]*)>([\s\S]*?)<\/script>/gi
+    let match
+
+    while ((match = scriptRegex.exec(theHtml)) !== null) {
+      const attributesString = match[1]
+      const textContent = match[2]
+
+      // Parse attributes
+      const attributes = []
+      const attrRegex = /(\w+)(?:=["']([^"']*)["'])?/g
+      let attrMatch
+
+      while ((attrMatch = attrRegex.exec(attributesString)) !== null) {
+        if (attrMatch[1]) {
+          attributes.push({
+            name: attrMatch[1],
+            value: attrMatch[2] || ''
+          })
+        }
+      }
+
+      // Extract src if present
+      const srcAttr = attributes.find(attr => attr.name === 'src')
+
+      scripts.push({
+        src: srcAttr?.value || '',
+        textContent: textContent,
+        attributes: attributes
+      })
+    }
+
+    // Remove all script tags from HTML
+    const sanitizedHtml = theHtml.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+
+    // Debug logging
+    if (scripts.length > 0) {
+      // eslint-disable-next-line no-console
+      console.log('[BlockHtml] Extracted scripts before rendering:', scripts.length)
+      // eslint-disable-next-line no-console
+      console.log('[BlockHtml] Original HTML length:', theHtml.length, 'Sanitized:', sanitizedHtml.length)
+    }
+
+    // Return sanitized HTML (without scripts) and extracted script info
+    return {
+      sanitizedHtml,
+      extractedScripts: scripts
+    }
+  }, [theHtml])
+
+  useEffect(() => {
+    if (!containerRef.current || extractedScripts.length === 0) return
 
     const componentsToRender = []
 
-    scriptTags.forEach((oldScript) => {
+    extractedScripts.forEach((scriptInfo) => {
       // Generate unique ID for this script
-      const scriptId = oldScript.src || oldScript.textContent?.substring(0, 50)
+      const scriptId = scriptInfo.src || scriptInfo.textContent?.substring(0, 50)
 
       // Skip if already processed globally
       if (window.__PROCESSED_SCRIPTS.has(scriptId)) {
-        oldScript.remove()
         return
       }
 
       // SECURITY CHECK 1: Block inline scripts (no src attribute)
-      if (!oldScript.src || oldScript.src.trim() === '') {
+      if (!scriptInfo.src || scriptInfo.src.trim() === '') {
         // eslint-disable-next-line no-console
         console.warn(
           '[BlockHtml Security] Blocked inline script - all inline JavaScript is prohibited for security',
-          { textContent: oldScript.textContent?.substring(0, 100) }
+          { textContent: scriptInfo.textContent?.substring(0, 100) }
         )
-        oldScript.remove()
         return
       }
 
       // SECURITY CHECK 2: Block scripts not on allowlist
-      if (!isScriptAllowed(oldScript.src)) {
+      if (!isScriptAllowed(scriptInfo.src)) {
         // eslint-disable-next-line no-console
         console.warn(
           '[BlockHtml Security] Blocked script from unauthorized domain:',
-          oldScript.src
+          scriptInfo.src
         )
-        oldScript.remove()
         return
       }
 
       // SECURITY CHECK 3: Block scripts that have both src and inline content
       // This prevents potential XSS via inline handlers even if src is allowed
-      if (oldScript.textContent && oldScript.textContent.trim() !== '') {
+      if (scriptInfo.textContent && scriptInfo.textContent.trim() !== '') {
         // eslint-disable-next-line no-console
         console.warn(
           '[BlockHtml Security] Blocked script with both src and inline content:',
-          oldScript.src,
-          { inlineContent: oldScript.textContent?.substring(0, 100) }
+          scriptInfo.src,
+          { inlineContent: scriptInfo.textContent?.substring(0, 100) }
         )
-        oldScript.remove()
         return
       }
 
       // SECURITY CHECK 4: Block scripts with inline event handlers in attributes
       const dangerousAttrs = ['onerror', 'onload', 'onreadystatechange']
-      const hasDangerousAttr = Array.from(oldScript.attributes).some((attr) =>
+      const hasDangerousAttr = scriptInfo.attributes.some((attr) =>
         dangerousAttrs.includes(attr.name.toLowerCase())
       )
 
@@ -95,32 +148,34 @@ export default function BlockHtml({ content, renderedHtml }) {
         // eslint-disable-next-line no-console
         console.warn(
           '[BlockHtml Security] Blocked script with inline event handler attributes:',
-          oldScript.src,
+          scriptInfo.src,
           {
-            attributes: Array.from(oldScript.attributes).map((a) => a.name)
+            attributes: scriptInfo.attributes.map((a) => a.name)
           }
         )
-        oldScript.remove()
         return
       }
 
       // Mark as processed
       window.__PROCESSED_SCRIPTS.add(scriptId)
 
+      // Create temporary script element to check for registered handler
+      const tempScript = document.createElement('script')
+      scriptInfo.attributes.forEach((attr) => {
+        tempScript.setAttribute(attr.name, attr.value)
+      })
+
       // Check if this script matches any registered handler
-      const handler = findScriptHandler(oldScript)
+      const handler = findScriptHandler(tempScript)
 
       if (handler) {
         // Delegate to specialized component
-        const props = handler.getProps(oldScript)
+        const props = handler.getProps(tempScript)
         componentsToRender.push({
           Component: handler.component,
           props,
           key: scriptId
         })
-
-        // Remove the script tag since the specialized component will handle it
-        oldScript.remove()
         return
       }
 
@@ -128,31 +183,28 @@ export default function BlockHtml({ content, renderedHtml }) {
       const newScript = document.createElement('script')
 
       // Copy attributes (skip defer for external scripts so onload fires immediately)
-      Array.from(oldScript.attributes).forEach((attr) => {
-        if (attr.name !== 'defer' || !oldScript.src) {
+      scriptInfo.attributes.forEach((attr) => {
+        if (attr.name !== 'defer' || !scriptInfo.src) {
           newScript.setAttribute(attr.name, attr.value)
         }
       })
-
-      // Copy inline content
-      if (oldScript.textContent) {
-        newScript.textContent = oldScript.textContent
-      }
 
       newScript.onerror = () => {
         // eslint-disable-next-line no-console
         console.error('[BlockHtml] Script failed to load:', newScript.src)
       }
 
-      // Replace old script with new one to execute it
-      oldScript.parentNode.replaceChild(newScript, oldScript)
+      // Append to container to execute
+      if (containerRef.current) {
+        containerRef.current.appendChild(newScript)
+      }
     })
 
     // Update state with all specialized components to render
     if (componentsToRender.length > 0) {
       setSpecializedComponents(componentsToRender)
     }
-  }, [theHtml])
+  }, [extractedScripts])
 
   if (!theHtml) return null
 
@@ -162,7 +214,7 @@ export default function BlockHtml({ content, renderedHtml }) {
         ref={containerRef}
         className="block-html"
         suppressHydrationWarning
-        dangerouslySetInnerHTML={{ __html: theHtml }}
+        dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
       />
       {specializedComponents.map(({ Component, props, key }) => (
         <Component key={key} {...props} />
