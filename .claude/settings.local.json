@@ -22,7 +22,8 @@
       "Bash(git commit:*)",
       "Bash(pnpm update:*)",
       "Bash(npx stylelint:*)",
-      "Bash(npm run lint:*)"
+      "Bash(npm run lint:*)",
+      "mcp__playwright__browser_take_screenshot"
     ],
     "deny": [],
     "ask": []
