@@ -1,7 +1,7 @@
 'use client'
 import { findScriptHandler } from '@/lib/scriptComponentRegistry'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { isScriptAllowed } from './allowedScripts'
+import { isScriptAllowed, isInlineScriptSafe } from './allowedScripts'
 
 // Global registry to prevent duplicate script processing across component remounts
 if (typeof window !== 'undefined') {
@@ -16,7 +16,8 @@ if (typeof window !== 'undefined') {
  * to specialized components without hardcoding dependencies.
  *
  * SECURITY POLICY:
- * - ALL inline JavaScript is blocked (scripts without src attribute)
+ * - Inline JavaScript is blocked UNLESS it only loads scripts from approved domains
+ *   (e.g., BoxCast, which dynamically loads from boxcast.com)
  * - External scripts are only allowed if their domain is on the allowlist
  *   (see: src/config/allowedScriptDomains.js)
  * - Scripts with both src and inline content are blocked
@@ -107,28 +108,48 @@ export default function BlockHtml({ content, renderedHtml }) {
       }
 
       // SECURITY CHECK 1: Block inline scripts (no src attribute)
+      // UNLESS they only load scripts from approved domains (e.g., BoxCast)
       if (!scriptInfo.src || scriptInfo.src.trim() === '') {
-        // eslint-disable-next-line no-console
-        console.warn(
-          '[BlockHtml Security] Blocked inline script - all inline JavaScript is prohibited for security',
-          { textContent: scriptInfo.textContent?.substring(0, 100) }
-        )
-        return
+        // Check if inline script only loads from approved domains
+        if (isInlineScriptSafe(scriptInfo.textContent)) {
+          // eslint-disable-next-line no-console
+          console.log(
+            '[BlockHtml Security] Allowing safe inline script that only loads from approved domains',
+            { textContent: scriptInfo.textContent?.substring(0, 100) }
+          )
+          // Continue processing - allow this inline script
+        } else {
+          // eslint-disable-next-line no-console
+          console.warn(
+            '[BlockHtml Security] Blocked inline script - inline JavaScript must only load from approved domains',
+            { textContent: scriptInfo.textContent?.substring(0, 100) }
+          )
+          return
+        }
       }
 
-      // SECURITY CHECK 2: Block scripts not on allowlist
-      if (!isScriptAllowed(scriptInfo.src)) {
-        // eslint-disable-next-line no-console
-        console.warn(
-          '[BlockHtml Security] Blocked script from unauthorized domain:',
-          scriptInfo.src
-        )
-        return
+      // SECURITY CHECK 2: Block external scripts not on allowlist
+      // (Skip this check for inline scripts - they were validated above)
+      if (scriptInfo.src && scriptInfo.src.trim() !== '') {
+        if (!isScriptAllowed(scriptInfo.src)) {
+          // eslint-disable-next-line no-console
+          console.warn(
+            '[BlockHtml Security] Blocked script from unauthorized domain:',
+            scriptInfo.src
+          )
+          return
+        }
       }
 
       // SECURITY CHECK 3: Block scripts that have both src and inline content
       // This prevents potential XSS via inline handlers even if src is allowed
-      if (scriptInfo.textContent && scriptInfo.textContent.trim() !== '') {
+      // (Only applies to scripts that have an src attribute)
+      if (
+        scriptInfo.src &&
+        scriptInfo.src.trim() !== '' &&
+        scriptInfo.textContent &&
+        scriptInfo.textContent.trim() !== ''
+      ) {
         // eslint-disable-next-line no-console
         console.warn(
           '[BlockHtml Security] Blocked script with both src and inline content:',
@@ -188,6 +209,11 @@ export default function BlockHtml({ content, renderedHtml }) {
           newScript.setAttribute(attr.name, attr.value)
         }
       })
+
+      // For inline scripts, set the text content
+      if (!scriptInfo.src || scriptInfo.src.trim() === '') {
+        newScript.textContent = scriptInfo.textContent
+      }
 
       newScript.onerror = () => {
         // eslint-disable-next-line no-console
