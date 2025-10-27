@@ -16,6 +16,7 @@
     "format": "npx prettier  '**/*.{js,jsx,ts,tsx,md,html,css,scss,json,yml}' --write || true",
     "generate": "faust generatePossibleTypes",
     "import-redirects": "node scripts/import-redirects.js",
+    "index-archive-pages": "node scripts/index-archive-pages.js",
     "lint": "pnpm run format && pnpm run lint:js && pnpm run lint:css",
     "lint:css": "npx stylelint '**/*.css' --fix || true",
     "lint:js": "npx eslint '**/*.{js,ts,jsx,tsx}' --fix || true && eslint .",
