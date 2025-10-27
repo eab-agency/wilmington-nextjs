@@ -37,7 +37,8 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
 
   function extractDate(dateString: string) {
     const [year, month, day] = dateString.split('-')
-    return new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
+    // Use Date.UTC to create dates at midnight UTC for consistent comparisons
+    return new Date(Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day)))
   }
 
   const extractEventData = (event: Event) => {
@@ -84,14 +85,32 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
 
   const futureEvents = posts.filter((post) => {
     const now = new Date()
-    const currentDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-    const postDate = new Date(post.date)
-    const postEndDate = new Date(post.endDate)
-
-    return (
-      postDate >= currentDate ||
-      (postDate < currentDate && postEndDate >= currentDate)
+    // Get the start of today in UTC
+    const todayUTC = new Date(
+      Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
     )
+
+    // Post dates are already UTC from extractDate, but normalize to be safe
+    const postDateUTC = new Date(post.date)
+    postDateUTC.setUTCHours(0, 0, 0, 0)
+
+    // Handle potentially invalid endDate
+    const postEndDate = post.endDate ? new Date(post.endDate) : null
+    if (postEndDate) {
+      postEndDate.setUTCHours(0, 0, 0, 0)
+    }
+
+    // Show event if it starts today or in the future
+    if (postDateUTC >= todayUTC) {
+      return true
+    }
+
+    // Show event if it's a multi-day event that is still ongoing
+    if (postEndDate && postDateUTC < todayUTC && postEndDate >= todayUTC) {
+      return true
+    }
+
+    return false
   })
 
   const sortedFutureEvents = futureEvents
