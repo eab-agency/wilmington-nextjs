@@ -38,7 +38,9 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   function extractDate(dateString: string) {
     const [year, month, day] = dateString.split('-')
     // Use Date.UTC to create dates at midnight UTC for consistent comparisons
-    return new Date(Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day)))
+    return new Date(
+      Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day))
+    )
   }
 
   const extractEventData = (event: Event) => {

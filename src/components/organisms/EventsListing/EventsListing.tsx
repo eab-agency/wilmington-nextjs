@@ -69,6 +69,10 @@ interface EventsListingProps {
   listing_display?: string
 }
 
+// Type predicate function to check if a value is an ErrorObject
+const isErrorObject = (p: any): p is ErrorObject =>
+  p && typeof p === 'object' && 'isError' in p && p.isError
+
 function EventsListing({
   listing_title,
   posts,
@@ -82,19 +86,14 @@ function EventsListing({
   }
 
   // Type guard for error array
-  if (
-    Array.isArray(posts) &&
-    posts.length > 0 &&
-    'isError' in posts[0] &&
-    posts[0].isError
-  ) {
-    const errorPost = posts[0] as unknown as ErrorObject
+  if (Array.isArray(posts) && posts.length > 0 && isErrorObject(posts[0])) {
+    const errorPost = posts[0]
     return <div>{errorPost.message}</div>
   }
 
   // Type guard for error object
-  if (!Array.isArray(posts) && 'isError' in posts && posts.isError) {
-    const errorObj = posts as unknown as ErrorObject
+  if (!Array.isArray(posts) && isErrorObject(posts)) {
+    const errorObj = posts
     return <div>{errorObj.message}</div>
   }
 
