@@ -83,7 +83,8 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   }
 
   const futureEvents = posts.filter((post) => {
-    const currentDate = new Date()
+    const now = new Date()
+    const currentDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
     const postDate = new Date(post.date)
     const postEndDate = new Date(post.endDate)
 
