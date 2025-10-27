@@ -23,7 +23,8 @@
       "Bash(pnpm update:*)",
       "Bash(npx stylelint:*)",
       "Bash(npm run lint:*)",
-      "mcp__playwright__browser_take_screenshot"
+      "mcp__playwright__browser_take_screenshot",
+      "Bash(pnpm index-archive-pages:*)"
     ],
     "deny": [],
     "ask": []
