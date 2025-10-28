@@ -30,7 +30,9 @@ const AcfNewsListing = (props: AcfNewsListingProps) => {
     error: idsError,
     data: idsData
   } = useQuery(news_listing ? GET_NEWS_BY_IDS : GET_NEWS_BY_CATEGORY, {
-    variables: { ids: news_listing, category_id: news_category }
+    variables: { ids: news_listing, category_id: news_category },
+    fetchPolicy: 'cache-first', // Use cache if available, fallback to network
+    nextFetchPolicy: 'cache-first'
   })
 
   const posts: any[] = []
@@ -58,7 +60,10 @@ const AcfNewsListing = (props: AcfNewsListingProps) => {
     loading: latestLoading,
     error: latestError,
     data: latestData
-  } = useQuery(GET_LATEST_NEWS)
+  } = useQuery(GET_LATEST_NEWS, {
+    fetchPolicy: 'cache-first', // Use cache if available, fallback to network
+    nextFetchPolicy: 'cache-first'
+  })
 
   if (latestData && latestData.news.nodes.length > 0) {
     latestData.news.nodes.forEach((article: News) => {
