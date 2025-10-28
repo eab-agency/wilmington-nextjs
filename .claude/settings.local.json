@@ -24,7 +24,9 @@
       "Bash(npx stylelint:*)",
       "Bash(npm run lint:*)",
       "mcp__playwright__browser_take_screenshot",
-      "Bash(pnpm index-archive-pages:*)"
+      "Bash(pnpm index-archive-pages:*)",
+      "Bash(npx tsc:*)",
+      "Bash(pnpm build:*)"
     ],
     "deny": [],
     "ask": []
