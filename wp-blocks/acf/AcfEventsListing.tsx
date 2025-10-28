@@ -37,7 +37,8 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
 
   function extractDate(dateString: string) {
     const [year, month, day] = dateString.split('-')
-    // Use Date.UTC to create dates at midnight UTC for consistent comparisons
+    // Store as Date object using UTC to preserve the date components
+    // Eastern Time dates (YYYY-MM-DD) are stored as UTC midnight to avoid timezone shifts
     return new Date(
       Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day))
     )
@@ -86,29 +87,37 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   }
 
   const futureEvents = posts.filter((post) => {
+    // Get current date in Eastern Time (America/New_York)
     const now = new Date()
-    // Get the start of today in UTC
-    const todayUTC = new Date(
-      Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
-    )
+    const easternTimeString = now.toLocaleString('en-US', {
+      timeZone: 'America/New_York',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })
 
-    // Post dates are already UTC from extractDate, but normalize to be safe
-    const postDateUTC = new Date(post.date)
-    postDateUTC.setUTCHours(0, 0, 0, 0)
+    // Parse the Eastern Time date (format: MM/DD/YYYY)
+    const [month, day, year] = easternTimeString.split('/')
+    const todayET = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
 
-    // Handle potentially invalid endDate
-    const postEndDate = post.endDate ? new Date(post.endDate) : null
-    if (postEndDate) {
-      postEndDate.setUTCHours(0, 0, 0, 0)
+    // Post dates are Date objects - convert to YYYY-MM-DD for comparison
+    const postDate = post.date
+    const postDateString = `${postDate.getUTCFullYear()}-${String(postDate.getUTCMonth() + 1).padStart(2, '0')}-${String(postDate.getUTCDate()).padStart(2, '0')}`
+
+    // Handle endDate
+    let postEndDateString = null
+    if (post.endDate) {
+      const endDate = post.endDate
+      postEndDateString = `${endDate.getUTCFullYear()}-${String(endDate.getUTCMonth() + 1).padStart(2, '0')}-${String(endDate.getUTCDate()).padStart(2, '0')}`
     }
 
-    // Show event if it starts today or in the future
-    if (postDateUTC >= todayUTC) {
+    // Show event if it starts today or in the future (in Eastern Time)
+    if (postDateString >= todayET) {
       return true
     }
 
     // Show event if it's a multi-day event that is still ongoing
-    if (postEndDate && postDateUTC < todayUTC && postEndDate >= todayUTC) {
+    if (postEndDateString && postDateString < todayET && postEndDateString >= todayET) {
       return true
     }
 
