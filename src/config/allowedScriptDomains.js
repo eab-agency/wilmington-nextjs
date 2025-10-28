@@ -20,7 +20,8 @@
 export const ALLOWED_SCRIPT_DOMAINS = [
   'admiss.info', // EAB/Mautic forms and APIs
   'formstack.com', // Formstack forms and APIs
-  'youtube.com' // YouTube embeds
+  'youtube.com', // YouTube embeds
+  'workforcenow.adp.com'
   // Add additional trusted domains below:
   // 'google-analytics.com',
   // 'googletagmanager.com',
