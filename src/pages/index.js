@@ -8,6 +8,10 @@ export default function Page(props) {
   )
 }
 
-export function getStaticProps(ctx) {
-  return getWordPressProps({ ctx })
+export async function getStaticProps(ctx) {
+  const props = await getWordPressProps({ ctx })
+  return {
+    ...props,
+    revalidate: 30 // Revalidate homepage every 30 seconds
+  }
 }
