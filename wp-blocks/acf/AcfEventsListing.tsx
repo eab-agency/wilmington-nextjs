@@ -33,8 +33,8 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
     data: idsData
   } = useQuery(events_listing ? GET_EVENTS_BY_IDS : GET_EVENTS_BY_CATEGORY, {
     variables: { ids: events_listing, category_id: event_category },
-    fetchPolicy: 'cache-first', // Use cache if available, fallback to network
-    nextFetchPolicy: 'cache-first'
+    fetchPolicy: 'cache-and-network', // Show cached data immediately, then fetch fresh data
+    nextFetchPolicy: 'cache-first' // Subsequent queries can use cache-first
   })
 
   function extractDate(dateString: string) {
@@ -79,8 +79,8 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
     error: latestError,
     data: latestData
   } = useQuery(GET_LATEST_EVENTS, {
-    fetchPolicy: 'cache-first', // Use cache if available, fallback to network
-    nextFetchPolicy: 'cache-first'
+    fetchPolicy: 'cache-and-network', // Show cached data immediately, then fetch fresh data
+    nextFetchPolicy: 'cache-first' // Subsequent queries can use cache-first
   })
 
   if (latestData && latestData.events.nodes.length > 0) {
