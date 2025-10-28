@@ -37,7 +37,11 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
 
   function extractDate(dateString: string) {
     const [year, month, day] = dateString.split('-')
-    return new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
+    // Store as Date object using UTC to preserve the date components
+    // Eastern Time dates (YYYY-MM-DD) are stored as UTC midnight to avoid timezone shifts
+    return new Date(
+      Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day))
+    )
   }
 
   const extractEventData = (event: Event) => {
@@ -83,14 +87,41 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
   }
 
   const futureEvents = posts.filter((post) => {
-    const currentDate = new Date()
-    const postDate = new Date(post.date)
-    const postEndDate = new Date(post.endDate)
+    // Get current date in Eastern Time (America/New_York)
+    const now = new Date()
+    const easternTimeString = now.toLocaleString('en-US', {
+      timeZone: 'America/New_York',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })
 
-    return (
-      postDate >= currentDate ||
-      (postDate < currentDate && postEndDate >= currentDate)
-    )
+    // Parse the Eastern Time date (format: MM/DD/YYYY)
+    const [month, day, year] = easternTimeString.split('/')
+    const todayET = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+
+    // Post dates are Date objects - convert to YYYY-MM-DD for comparison
+    const postDate = post.date
+    const postDateString = `${postDate.getUTCFullYear()}-${String(postDate.getUTCMonth() + 1).padStart(2, '0')}-${String(postDate.getUTCDate()).padStart(2, '0')}`
+
+    // Handle endDate
+    let postEndDateString = null
+    if (post.endDate) {
+      const endDate = post.endDate
+      postEndDateString = `${endDate.getUTCFullYear()}-${String(endDate.getUTCMonth() + 1).padStart(2, '0')}-${String(endDate.getUTCDate()).padStart(2, '0')}`
+    }
+
+    // Show event if it starts today or in the future (in Eastern Time)
+    if (postDateString >= todayET) {
+      return true
+    }
+
+    // Show event if it's a multi-day event that is still ongoing
+    if (postEndDateString && postDateString < todayET && postEndDateString >= todayET) {
+      return true
+    }
+
+    return false
   })
 
   const sortedFutureEvents = futureEvents
