@@ -424,3 +424,8 @@ form {
     min-width: 25rem;
   }
 }
+
+
+.mautic-form-container{
+  padding-inline: clamp(0.5em, 2vw, 2em);
+}
