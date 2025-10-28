@@ -102,13 +102,17 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
 
     // Post dates are Date objects - convert to YYYY-MM-DD for comparison
     const postDate = post.date
-    const postDateString = `${postDate.getUTCFullYear()}-${String(postDate.getUTCMonth() + 1).padStart(2, '0')}-${String(postDate.getUTCDate()).padStart(2, '0')}`
+    const postDateString = `${postDate.getUTCFullYear()}-${String(
+      postDate.getUTCMonth() + 1
+    ).padStart(2, '0')}-${String(postDate.getUTCDate()).padStart(2, '0')}`
 
     // Handle endDate
     let postEndDateString = null
     if (post.endDate) {
       const endDate = post.endDate
-      postEndDateString = `${endDate.getUTCFullYear()}-${String(endDate.getUTCMonth() + 1).padStart(2, '0')}-${String(endDate.getUTCDate()).padStart(2, '0')}`
+      postEndDateString = `${endDate.getUTCFullYear()}-${String(
+        endDate.getUTCMonth() + 1
+      ).padStart(2, '0')}-${String(endDate.getUTCDate()).padStart(2, '0')}`
     }
 
     // Show event if it starts today or in the future (in Eastern Time)
@@ -117,7 +121,11 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
     }
 
     // Show event if it's a multi-day event that is still ongoing
-    if (postEndDateString && postDateString < todayET && postEndDateString >= todayET) {
+    if (
+      postEndDateString &&
+      postDateString < todayET &&
+      postEndDateString >= todayET
+    ) {
       return true
     }
 
