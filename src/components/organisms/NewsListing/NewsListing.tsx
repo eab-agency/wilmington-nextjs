@@ -1,14 +1,69 @@
-/* eslint-disable no-unused-vars */
 import NewsPostCard from '@/components/archive/NewsPostCard'
 import Button from '@/components/atoms/Buttons/Button'
 import MultiCarousel from '@/components/common/MultiCarousel'
 import useIsFrontPage from '@/functions/useIsFrontPage'
+import React from 'react'
 
-function NewsListing({ listing_title, posts, showImage, listing_display }) {
+// Type definitions for JS components
+type ButtonComponent = React.ComponentType<{
+  className?: string
+  url?: string
+  text?: string
+  [key: string]: any
+}>
+
+// Cast JS components to proper types
+const TypedButton = Button as unknown as ButtonComponent
+
+interface FeaturedImage {
+  node?: {
+    sourceUrl: string
+    altText?: string
+    mediaDetails?: {
+      height?: number
+      width?: number
+    }
+  }
+}
+
+interface NewsPost {
+  id: string
+  title: string
+  date: string
+  link: string
+  uri: string
+  excerpt?: string
+  featuredImage?: FeaturedImage
+}
+
+interface ErrorObject {
+  isError: true
+  message: string
+}
+
+type PostsData = NewsPost[] | ErrorObject
+
+interface NewsListingProps {
+  listing_title: string
+  posts: PostsData
+  showImage?: boolean
+  listing_display?: string
+}
+
+// Type predicate function to check if a value is an ErrorObject
+const isErrorObject = (p: any): p is ErrorObject =>
+  p && typeof p === 'object' && 'isError' in p && p.isError
+
+function NewsListing({
+  listing_title,
+  posts,
+  showImage,
+  listing_display
+}: NewsListingProps) {
   const isFrontPage = useIsFrontPage()
 
-  // if posts.isError is true then return posts.message
-  if (posts.isError) {
+  // Type guard for error object
+  if (isErrorObject(posts)) {
     return <div>{posts.message}</div>
   }
 
@@ -61,8 +116,8 @@ function NewsListing({ listing_title, posts, showImage, listing_display }) {
             />
           ))}
         </MultiCarousel>
-        <Button
-          className={!isFrontPage && 'secondary'}
+        <TypedButton
+          className={!isFrontPage ? 'secondary' : ''}
           url="/news"
           text="View All News"
         />
