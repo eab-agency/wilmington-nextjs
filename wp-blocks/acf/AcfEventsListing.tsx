@@ -32,7 +32,9 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
     error: idsError,
     data: idsData
   } = useQuery(events_listing ? GET_EVENTS_BY_IDS : GET_EVENTS_BY_CATEGORY, {
-    variables: { ids: events_listing, category_id: event_category }
+    variables: { ids: events_listing, category_id: event_category },
+    fetchPolicy: 'cache-and-network', // Show cached data immediately, then fetch fresh data
+    nextFetchPolicy: 'cache-first' // Subsequent queries can use cache-first
   })
 
   function extractDate(dateString: string) {
@@ -76,7 +78,10 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
     loading: latestLoading,
     error: latestError,
     data: latestData
-  } = useQuery(GET_LATEST_EVENTS)
+  } = useQuery(GET_LATEST_EVENTS, {
+    fetchPolicy: 'cache-and-network', // Show cached data immediately, then fetch fresh data
+    nextFetchPolicy: 'cache-first' // Subsequent queries can use cache-first
+  })
 
   if (latestData && latestData.events.nodes.length > 0) {
     latestData.events.nodes.forEach((event: Event) => {
@@ -102,13 +107,17 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
 
     // Post dates are Date objects - convert to YYYY-MM-DD for comparison
     const postDate = post.date
-    const postDateString = `${postDate.getUTCFullYear()}-${String(postDate.getUTCMonth() + 1).padStart(2, '0')}-${String(postDate.getUTCDate()).padStart(2, '0')}`
+    const postDateString = `${postDate.getUTCFullYear()}-${String(
+      postDate.getUTCMonth() + 1
+    ).padStart(2, '0')}-${String(postDate.getUTCDate()).padStart(2, '0')}`
 
     // Handle endDate
     let postEndDateString = null
     if (post.endDate) {
       const endDate = post.endDate
-      postEndDateString = `${endDate.getUTCFullYear()}-${String(endDate.getUTCMonth() + 1).padStart(2, '0')}-${String(endDate.getUTCDate()).padStart(2, '0')}`
+      postEndDateString = `${endDate.getUTCFullYear()}-${String(
+        endDate.getUTCMonth() + 1
+      ).padStart(2, '0')}-${String(endDate.getUTCDate()).padStart(2, '0')}`
     }
 
     // Show event if it starts today or in the future (in Eastern Time)
@@ -117,7 +126,11 @@ const AcfEventsListing = (props: AcfEventsListingProps) => {
     }
 
     // Show event if it's a multi-day event that is still ongoing
-    if (postEndDateString && postDateString < todayET && postEndDateString >= todayET) {
+    if (
+      postEndDateString &&
+      postDateString < todayET &&
+      postEndDateString >= todayET
+    ) {
       return true
     }
 
