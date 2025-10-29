@@ -29,7 +29,8 @@
       "Bash(pnpm build:*)",
       "Bash(git log:*)",
       "Bash(pnpm lint:css:*)",
-      "Bash(pnpm lint:js:*)"
+      "Bash(pnpm lint:js:*)",
+      "WebFetch(domain:vercel.com)"
     ],
     "deny": [],
     "ask": []
