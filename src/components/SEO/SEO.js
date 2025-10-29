@@ -71,7 +71,7 @@ export default function SEO({ seo = {}, title, description }) {
   // This helps prevent duplicate content issues as per Vercel best practices
   // https://vercel.com/guides/avoiding-duplicate-content-with-vercel-app-urls
   const canonicalUrl = `https://www.wilmington.edu${
-    router.asPath.split('?')[0]
+    router.asPath.split('?')[0].split('#')[0]
   }`
 
   return (
