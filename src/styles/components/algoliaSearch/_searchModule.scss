@@ -9,32 +9,89 @@
   position: relative;
 
   & .searchContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     position: fixed;
     width: 100vw;
     height: 100vh;
     top: 0;
     left: 0;
-    min-width: 15rem;
-    padding: clamp(1.5rem, 5vw, 4rem);
-    padding-top: clamp(1.5rem, 15vw, 15rem);
+    z-index: 9999;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 
-    .closeSearch {
+    // Backdrop - sits behind content, catches clicks
+    .searchBackdrop {
       position: absolute;
       width: 100%;
       height: 100%;
       top: 0;
-      right: 0;
-      font-size: 2rem;
-      background: none;
-      border: none;
-      cursor: default;
-      text-indent: -999em;
+      left: 0;
       background: rgba(tokens.$c-gray-400, 0.7);
       backdrop-filter: blur(3px);
+      cursor: default;
+      z-index: 1;
+    }
+
+    // Content wrapper - sits above backdrop
+    .searchContent {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: tokens.$mq-1000;
+      padding: clamp(1.5rem, 5vw, 4rem);
+      padding-top: clamp(1.5rem, 15vw, 15rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none; // Allow clicks to pass through padding
+
+      // Re-enable pointer events for actual content
+      & > * {
+        pointer-events: auto;
+      }
+    }
+
+    // Close button - positioned in top right
+    .closeSearch {
+      position: absolute;
+      top: clamp(1rem, 3vw, 2rem);
+      right: clamp(1rem, 3vw, 2rem);
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: tokens.$c-white;
+      border: 2px solid tokens.$c-gray-400;
+      border-radius: 50%;
+      cursor: pointer;
       padding: 0;
+      z-index: 3;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: tokens.$c-gray-700;
+        transition: color 0.2s ease;
+      }
+
+      &:hover,
+      &:focus {
+        background: tokens.$c-limeGreen-300;
+        border-color: tokens.$c-limeGreen-600;
+        transform: scale(1.05);
+
+        svg {
+          color: tokens.$c-darkGreen-800;
+        }
+      }
+
+      &:focus-visible {
+        outline: 3px solid tokens.$c-limeGreen-600;
+        outline-offset: 2px;
+      }
 
       &::after {
         display: none;
@@ -92,6 +149,7 @@
     position: relative;
     width: 100%;
     max-width: tokens.$mq-1000;
+    z-index: 10; // Ensure search box is above backdrop
 
     & input {
       width: 100%;
@@ -106,11 +164,21 @@
       font-family: '__Cantarell_da86bb', '__Cantarell_Fallback_da86bb',
         sans-serif;
 
+      // Safari-specific fixes for keyboard navigation
+      -webkit-user-select: text;
+      user-select: text;
+
       &::-webkit-search-decoration,
       &::-webkit-search-cancel-button,
       &::-webkit-search-results-button,
       &::-webkit-search-results-decoration {
         appearance: none;
+      }
+
+      // Ensure input is focusable in Safari
+      &:focus {
+        outline: 2px solid tokens.$c-limeGreen-600;
+        outline-offset: 2px;
       }
     }
 
