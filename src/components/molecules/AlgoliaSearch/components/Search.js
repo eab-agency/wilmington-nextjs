@@ -15,6 +15,7 @@ import Results from './Results'
  * @param  {string}  props.query          The search query.
  * @param  {boolean} props.useHistory     Whether to display search history.
  * @param  {function} props.onSearchStateChange Callback for search state changes.
+ * @param  {function} props.onCloseModal  Callback to close the search modal.
  * @param  {boolean} props.showResults    Whether to display search results.
  * @return {Element}                      The Search component.
  */
@@ -23,6 +24,7 @@ export default function Search({
   query,
   useHistory = true,
   onSearchStateChange,
+  onCloseModal,
   showResults = true,
   placeholder = 'Enter search term...'
 }) {
@@ -104,8 +106,20 @@ export default function Search({
 
       const key = e.key
 
+      // Handle Escape key
+      if (key === 'Escape') {
+        e.preventDefault()
+        // If user is navigating results, return focus to search input
+        if (focusedIndex >= 0) {
+          setFocusedIndex(-1)
+        }
+        // If user is already on search input, close the modal
+        else if (focusedIndex === -1 && onCloseModal) {
+          onCloseModal()
+        }
+      }
       // Handle ArrowDown
-      if (key === 'ArrowDown') {
+      else if (key === 'ArrowDown') {
         e.preventDefault()
         setFocusedIndex((prevIndex) => {
           const nextIndex = prevIndex < totalResults - 1 ? prevIndex + 1 : 0
@@ -150,7 +164,7 @@ export default function Search({
         }
       }
     },
-    [focusedIndex, totalResults, showResults]
+    [focusedIndex, totalResults, showResults, onCloseModal]
   )
 
   /**
@@ -255,5 +269,6 @@ Search.propTypes = {
   query: PropTypes.string,
   useHistory: PropTypes.bool,
   onSearchStateChange: PropTypes.func,
+  onCloseModal: PropTypes.func,
   showResults: PropTypes.bool
 }
