@@ -31,6 +31,10 @@
       "Bash(pnpm audit:*)",
       "Bash(pnpm why:*)",
       "Bash(pnpm install:*)"
+      "Bash(git log:*)",
+      "Bash(pnpm lint:css:*)",
+      "Bash(pnpm lint:js:*)",
+      "WebFetch(domain:vercel.com)"
     ],
     "deny": [],
     "ask": []
