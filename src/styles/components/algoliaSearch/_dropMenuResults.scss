@@ -128,6 +128,7 @@
       &:focus {
         text-decoration: underline;
         background: tokens.$c-limeGreen-200;
+        outline: none; // Remove default outline as we have custom focus state
 
         figure {
           background: tokens.$c-white;
@@ -138,6 +139,15 @@
             color: tokens.$c-gray-800;
           }
         }
+      }
+
+      // Enhanced focus-visible state for better keyboard navigation
+      &:focus-visible {
+        outline: 2px solid tokens.$c-limeGreen-600;
+        outline-offset: -2px;
+        box-shadow:
+          0 0 0 3px color.adjust(tokens.$c-limeGreen-500, $alpha: -0.7),
+          0 2px 8px rgba(0, 0, 0, 0.15);
       }
 
       & em {
