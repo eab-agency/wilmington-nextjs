@@ -22,6 +22,7 @@ function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
   const query = path.includes('q=') ? parseQuerystring(path, 'q') : '' // Parse the querystring.
   const [loadAlgolia, setLoadAlgolia] = useState(false)
   const searchRef = useRef()
+  const searchContentRef = useRef(null)
 
   // Provide a fallback empty object if the context is undefined
   const { algolia } = useWordPressContext() || {}
@@ -89,11 +90,9 @@ function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
                   onClick={() => {
                     toggleAlgolia(false)
                   }}
-                  aria-label="Click to close the search window"
-                  role="button"
-                  tabIndex={-1}
+                  aria-label="Close the search window"
                 />
-                <div className="searchContent">
+                <div className="searchContent" ref={searchContentRef}>
                   <button
                     type="button"
                     className="closeSearch"
@@ -117,6 +116,7 @@ function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
                     useHistory={useHistory}
                     query={query}
                     onCloseModal={() => toggleAlgolia(false)}
+                    searchContentRef={searchContentRef}
                   />
                 </div>
               </div>
