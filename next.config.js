@@ -99,12 +99,20 @@ const nextConfig = {
       }
     ]
 
-    // Block indexing on Vercel domains, only allow production domain
-    const isVercelDomain =
-      process.env.NEXT_PUBLIC_VERCEL_URL &&
-      !process.env.NEXT_PUBLIC_VERCEL_URL.includes('wilmington.edu')
+    // Block indexing on non-production environments following Vercel best practices
+    // https://vercel.com/guides/avoiding-duplicate-content-with-vercel-app-urls
+    //
+    // Strategy: Only allow indexing when VERCEL_ENV === 'production'
+    // This covers:
+    // - Preview deployments (VERCEL_ENV = 'preview')
+    // - Development (VERCEL_ENV = 'development')
+    // - QA/staging environments
+    //
+    // Note: VERCEL_URL will still be a .vercel.app domain even in production,
+    // but the actual public domain (wilmington.edu) is mapped via Vercel's domain settings.
+    // We rely on VERCEL_ENV to determine if indexing should be allowed.
 
-    if (isVercelDomain || process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production') {
+    if (process.env.VERCEL_ENV !== 'production') {
       headers.push({
         source: '/:path*',
         headers: [
