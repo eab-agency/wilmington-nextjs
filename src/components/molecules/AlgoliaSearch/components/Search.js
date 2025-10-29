@@ -17,6 +17,7 @@ import Results from './Results'
  * @param  {function} props.onSearchStateChange Callback for search state changes.
  * @param  {function} props.onCloseModal  Callback to close the search modal.
  * @param  {boolean} props.showResults    Whether to display search results.
+ * @param  {object}  props.searchContentRef Ref to the search content container.
  * @return {Element}                      The Search component.
  */
 export default function Search({
@@ -26,7 +27,8 @@ export default function Search({
   onSearchStateChange,
   onCloseModal,
   showResults = true,
-  placeholder = 'Enter search term...'
+  placeholder = 'Enter search term...',
+  searchContentRef
 }) {
   const storageName = indexName // Local Storage Name - set to algolia index.
   const historyLength = 6 // Max amount of history items to save to local storage.
@@ -93,7 +95,7 @@ export default function Search({
    * Get all focusable elements within the modal.
    */
   const getFocusableElements = useCallback(() => {
-    const searchContent = document.querySelector('.searchContent')
+    const searchContent = searchContentRef.current
     if (!searchContent) return []
 
     // Prioritize search input and results, exclude submit button from tab order
@@ -118,7 +120,7 @@ export default function Search({
 
       return isVisible && el.getAttribute('tabindex') !== '-1'
     })
-  }, [])
+  }, [searchContentRef])
 
   /**
    * Handle keyboard navigation through search results with focus trap.
@@ -228,7 +230,7 @@ export default function Search({
    */
   useEffect(() => {
     // Listen on searchContent to trap focus within modal
-    const searchContent = document.querySelector('.searchContent')
+    const searchContent = searchContentRef.current
     if (!searchContent) return
 
     // Use capture phase to catch events before they bubble
@@ -237,7 +239,7 @@ export default function Search({
     return () => {
       searchContent.removeEventListener('keydown', handleKeyDown, true)
     }
-  }, [handleKeyDown])
+  }, [handleKeyDown, searchContentRef])
 
   /**
    * Set initial focus to search input when modal opens.
@@ -245,16 +247,18 @@ export default function Search({
   useEffect(() => {
     // Use a short timeout to ensure modal is fully rendered
     const timer = setTimeout(() => {
-      const searchInput = document.querySelector(
-        '.searchContent .ais-SearchBox-input'
-      )
-      if (searchInput) {
-        searchInput.focus()
+      if (searchContentRef.current) {
+        const searchInput = searchContentRef.current.querySelector(
+          '.ais-SearchBox-input'
+        )
+        if (searchInput) {
+          searchInput.focus()
+        }
       }
     }, 100)
 
     return () => clearTimeout(timer)
-  }, []) // Run once on mount
+  }, [searchContentRef]) // Run once on mount
 
   /**
    * Focus the appropriate element when focusedIndex changes.
@@ -263,11 +267,10 @@ export default function Search({
   useEffect(() => {
     // Use requestAnimationFrame to ensure React has finished rendering
     const frameId = requestAnimationFrame(() => {
-      if (focusedIndex === -1) {
-        // Query the input directly each time (don't rely on refs)
-        // Updated selector to work with new searchContent wrapper
-        const searchInput = document.querySelector(
-          '.searchContent .ais-SearchBox-input, .searchContainer .ais-SearchBox-input'
+      if (focusedIndex === -1 && searchContentRef.current) {
+        // Query the input from the searchContent ref
+        const searchInput = searchContentRef.current.querySelector(
+          '.ais-SearchBox-input'
         )
         if (searchInput) {
           searchInput.focus()
@@ -286,7 +289,7 @@ export default function Search({
     return () => {
       cancelAnimationFrame(frameId)
     }
-  }, [focusedIndex])
+  }, [focusedIndex, searchContentRef])
 
   return (
     <InstantSearch searchClient={searchClient} indexName={indexName}>
@@ -342,5 +345,7 @@ Search.propTypes = {
   useHistory: PropTypes.bool,
   onSearchStateChange: PropTypes.func,
   onCloseModal: PropTypes.func,
-  showResults: PropTypes.bool
+  showResults: PropTypes.bool,
+  placeholder: PropTypes.string,
+  searchContentRef: PropTypes.object
 }
