@@ -30,7 +30,7 @@
     "@faustwp/cli": "3.2.3",
     "@faustwp/core": "^3.3.2",
     "@microsoft/clarity": "^1.0.0",
-    "@mui/material": "^6.4.2",
+    "@mui/material": "^7.3.4",
     "@newrelic/next": "^0.10.0",
     "@types/node": "^22.15.18",
     "@types/react": "^19.1.4",
@@ -57,7 +57,7 @@
     "md5": "^2.3.0",
     "newrelic": "^12.18.2",
     "next": "^15.4.7",
-    "next-auth": "^4.24.5",
+    "next-auth": "^4.24.12",
     "next-sitemap": "^4.0.7",
     "postcss": "^8.5.3",
     "qs": "^6.11.1",
@@ -72,7 +72,6 @@
     "react-tabs": "^6.0.1",
     "rimraf": "^5.0.0",
     "sass": "^1.88.0",
-    "sst": "3.14.25",
     "typescript": "5.8.3",
     "yup": "^1.0.2"
   },
@@ -106,5 +105,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "pnpm": {
+    "overrides": {
+      "@babel/runtime": ">=7.26.10"
+    }
   }
 }
