@@ -27,6 +27,9 @@
       "Bash(pnpm index-archive-pages:*)",
       "Bash(npx tsc:*)",
       "Bash(pnpm build:*)",
+      "Bash(git log:*)",
+      "Bash(pnpm lint:css:*)",
+      "Bash(pnpm lint:js:*)",
       "WebFetch(domain:vercel.com)"
     ],
     "deny": [],

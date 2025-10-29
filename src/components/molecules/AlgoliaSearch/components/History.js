@@ -42,6 +42,7 @@ export default function History({
               <li key={`history-${index}`}>
                 <button
                   type="button"
+                  tabIndex={0}
                   data-url={buildSearchUrl(item.title)}
                   onClick={(e) => searchClick(e)}
                 >
