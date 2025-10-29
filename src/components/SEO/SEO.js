@@ -1,5 +1,6 @@
 import parse from 'html-react-parser'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 /**
  * Provide SEO related meta tags to a page.
@@ -12,6 +13,7 @@ import Head from 'next/head'
  * @returns {React.ReactElement} The SEO component
  */
 export default function SEO({ seo = {}, title, description }) {
+  const router = useRouter()
   // List of production domains
   const productionDomains = [
     'wilmington.edu',
@@ -65,10 +67,16 @@ export default function SEO({ seo = {}, title, description }) {
     seo = { metaRobotsNoindex: 'index', metaRobotsNofollow: 'follow' }
   }
 
+  // Generate canonical URL for the current page
+  // This helps prevent duplicate content issues as per Vercel best practices
+  // https://vercel.com/guides/avoiding-duplicate-content-with-vercel-app-urls
+  const canonicalUrl = `https://www.wilmington.edu${router.asPath.split('?')[0]}`
+
   return (
     <Head>
       <title>{title ?? seo?.title}</title>
       <meta name="description" content={seo?.metaDesc ?? description} />
+      <link rel="canonical" href={canonicalUrl} />
       {modifiedFullHead && parse(modifiedFullHead)}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />

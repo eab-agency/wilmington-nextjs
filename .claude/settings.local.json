@@ -26,7 +26,8 @@
       "mcp__playwright__browser_take_screenshot",
       "Bash(pnpm index-archive-pages:*)",
       "Bash(npx tsc:*)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "WebFetch(domain:vercel.com)"
     ],
     "deny": [],
     "ask": []
