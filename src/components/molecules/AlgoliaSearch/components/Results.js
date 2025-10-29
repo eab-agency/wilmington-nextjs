@@ -29,8 +29,8 @@ const Results = ({
         results && results.hits && results.hits.length > 0
           ? results.hits.length // Number of results actually rendered, not total hits
           : displayHistory
-            ? searchHistory.length
-            : 0
+          ? searchHistory.length
+          : 0
       onResultsChange(count)
     }
   }, [results, searchHistory, displayHistory, onResultsChange])

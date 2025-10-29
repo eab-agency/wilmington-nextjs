@@ -90,20 +90,43 @@ export default function Search({
   }, [searchState])
 
   /**
-   * Handle keyboard navigation through search results.
+   * Get all focusable elements within the modal.
+   */
+  const getFocusableElements = useCallback(() => {
+    const searchContent = document.querySelector('.searchContent')
+    if (!searchContent) return []
+
+    // Prioritize search input and results, exclude submit button from tab order
+    const focusableSelectors = [
+      '.ais-SearchBox-input',
+      '.ais-Hits-item .button',
+      '.history button:not(.clear button)',
+      '.ais-SearchBox-reset:not([hidden])',
+      '.history .clear button',
+      '.closeSearch'
+    ].join(', ')
+
+    return Array.from(
+      searchContent.querySelectorAll(focusableSelectors)
+    ).filter((el) => {
+      // Filter out hidden elements and elements with display: none
+      const isVisible =
+        el.offsetParent !== null &&
+        !el.hasAttribute('hidden') &&
+        window.getComputedStyle(el).display !== 'none' &&
+        window.getComputedStyle(el).visibility !== 'hidden'
+
+      return isVisible && el.getAttribute('tabindex') !== '-1'
+    })
+  }, [])
+
+  /**
+   * Handle keyboard navigation through search results with focus trap.
    *
    * @param {KeyboardEvent} e - The keyboard event
    */
   const handleKeyDown = useCallback(
     (e) => {
-      // Only handle keyboard navigation when results are visible
-      if (!showResults || totalResults === 0) return
-
-      // Only handle if the event target is within the search input or results area
-      const searchInput = e.target.closest('.ais-SearchBox')
-      const searchResults = e.target.closest('.dropMenuResults')
-      if (!searchInput && !searchResults) return
-
       const key = e.key
 
       // Handle Escape key
@@ -117,9 +140,41 @@ export default function Search({
         else if (focusedIndex === -1 && onCloseModal) {
           onCloseModal()
         }
+        return
       }
+
+      // Handle Tab key with focus trap
+      if (key === 'Tab') {
+        e.preventDefault()
+        const focusableElements = getFocusableElements()
+
+        if (focusableElements.length === 0) return
+
+        const currentIndex = focusableElements.findIndex(
+          (el) => el === document.activeElement
+        )
+
+        let nextIndex
+
+        if (e.shiftKey) {
+          // Shift+Tab: move backwards
+          nextIndex =
+            currentIndex <= 0 ? focusableElements.length - 1 : currentIndex - 1
+        } else {
+          // Tab: move forwards
+          nextIndex =
+            currentIndex >= focusableElements.length - 1 ? 0 : currentIndex + 1
+        }
+
+        focusableElements[nextIndex]?.focus()
+        return
+      }
+
+      // Only handle arrow keys when results are visible
+      if (!showResults || totalResults === 0) return
+
       // Handle ArrowDown
-      else if (key === 'ArrowDown') {
+      if (key === 'ArrowDown') {
         e.preventDefault()
         setFocusedIndex((prevIndex) => {
           const nextIndex = prevIndex < totalResults - 1 ? prevIndex + 1 : 0
@@ -148,11 +203,6 @@ export default function Search({
           }
         })
       }
-      // Handle Tab (navigate forward through results)
-      else if (key === 'Tab' && !e.shiftKey && focusedIndex >= -1) {
-        // Allow natural tab behavior through the results
-        // The browser will handle focus on the links
-      }
       // Handle Enter on focused result
       else if (key === 'Enter' && focusedIndex >= 0) {
         e.preventDefault()
@@ -164,26 +214,47 @@ export default function Search({
         }
       }
     },
-    [focusedIndex, totalResults, showResults, onCloseModal]
+    [
+      focusedIndex,
+      totalResults,
+      showResults,
+      onCloseModal,
+      getFocusableElements
+    ]
   )
 
   /**
-   * Add keyboard event listener to the search container.
+   * Add keyboard event listener to the search container with focus trap.
    */
   useEffect(() => {
-    // Only attach listener when results container exists and is mounted
-    if (!resultsContainerRef.current) return
+    // Listen on searchContent to trap focus within modal
+    const searchContent = document.querySelector('.searchContent')
+    if (!searchContent) return
 
-    const searchContainer = resultsContainerRef.current.closest(
-      '.searchContainer'
-    )
-    if (!searchContainer) return
+    // Use capture phase to catch events before they bubble
+    searchContent.addEventListener('keydown', handleKeyDown, true)
 
-    searchContainer.addEventListener('keydown', handleKeyDown)
     return () => {
-      searchContainer.removeEventListener('keydown', handleKeyDown)
+      searchContent.removeEventListener('keydown', handleKeyDown, true)
     }
   }, [handleKeyDown])
+
+  /**
+   * Set initial focus to search input when modal opens.
+   */
+  useEffect(() => {
+    // Use a short timeout to ensure modal is fully rendered
+    const timer = setTimeout(() => {
+      const searchInput = document.querySelector(
+        '.searchContent .ais-SearchBox-input'
+      )
+      if (searchInput) {
+        searchInput.focus()
+      }
+    }, 100)
+
+    return () => clearTimeout(timer)
+  }, []) // Run once on mount
 
   /**
    * Focus the appropriate element when focusedIndex changes.
@@ -194,8 +265,9 @@ export default function Search({
     const frameId = requestAnimationFrame(() => {
       if (focusedIndex === -1) {
         // Query the input directly each time (don't rely on refs)
+        // Updated selector to work with new searchContent wrapper
         const searchInput = document.querySelector(
-          '.searchContainer .ais-SearchBox-input'
+          '.searchContent .ais-SearchBox-input, .searchContainer .ais-SearchBox-input'
         )
         if (searchInput) {
           searchInput.focus()

@@ -5,6 +5,7 @@
   width: 100%;
   max-width: calc(tokens.$mq-1000 - 0.8em);
   position: relative;
+  z-index: 10; // Ensure results are above backdrop
 
   .algoliaResults & {
     max-width: tokens.$mq-1000;
@@ -76,6 +77,11 @@
       cursor: pointer;
       text-transform: initial;
       box-shadow: none;
+      // Safari-specific fixes for focusability
+      -webkit-user-select: auto;
+      user-select: auto;
+      position: relative;
+      z-index: 1;
 
       figure {
         display: flex;
@@ -145,8 +151,8 @@
       &:focus-visible {
         outline: 2px solid tokens.$c-limeGreen-600;
         outline-offset: -2px;
-        box-shadow:
-          0 0 0 3px color.adjust(tokens.$c-limeGreen-500, $alpha: -0.7),
+        box-shadow: 0 0 0 3px
+            color.adjust(tokens.$c-limeGreen-500, $alpha: -0.7),
           0 2px 8px rgba(0, 0, 0, 0.15);
       }
 

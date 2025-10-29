@@ -60,7 +60,7 @@ export default function Hit({ hit }) {
   }
 
   return (
-    <Link href={permalink} className="button">
+    <Link href={permalink} className="button" tabIndex={0}>
       <PostIcon />
       <div className="hitResultContent">
         <Highlight
