@@ -83,6 +83,7 @@ function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
                   indexName={algolia?.indexName}
                   useHistory={useHistory}
                   query={query}
+                  onCloseModal={() => toggleAlgolia(false)}
                 />
               </div>
             </>
