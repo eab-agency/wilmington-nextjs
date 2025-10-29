@@ -53,6 +53,33 @@ function AlgoliaSearch({ useHistory, usePlaceholder, className }) {
     }
   }, [loadAlgolia])
 
+  /**
+   * Global keyboard listener for Command+K (Mac) or Ctrl+K (Windows/Linux)
+   * to open the search modal.
+   */
+  useEffect(() => {
+    function handleKeyDown(event) {
+      // Check for Command+K (Mac) or Ctrl+K (Windows/Linux)
+      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+        event.preventDefault()
+        toggleAlgolia(true)
+      }
+      // Close search with Escape key
+      if (event.key === 'Escape' && loadAlgolia) {
+        event.preventDefault()
+        toggleAlgolia(false)
+      }
+    }
+
+    // Add event listener to document
+    document.addEventListener('keydown', handleKeyDown)
+
+    // Cleanup listener on unmount
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [loadAlgolia])
+
   // /**
   //  * Set a min-height value on the search wrapper
   //  * to avoid DOM movement during dynamic render.
