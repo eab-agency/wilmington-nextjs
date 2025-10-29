@@ -99,32 +99,19 @@ const nextConfig = {
       }
     ]
 
-    // Block indexing on non-production domains following Vercel best practices
+    // Block indexing on non-production environments following Vercel best practices
     // https://vercel.com/guides/avoiding-duplicate-content-with-vercel-app-urls
     //
-    // According to Vercel docs: "Preview deployments are not indexed by search engines
-    // by default because the X-Robots-Tag HTTP header is set to noindex automatically by Vercel."
+    // Strategy: Only allow indexing when VERCEL_ENV === 'production'
+    // This covers:
+    // - Preview deployments (VERCEL_ENV = 'preview')
+    // - Development (VERCEL_ENV = 'development')
+    // - QA/staging environments
     //
-    // However, we want to be explicit and also block any non-wilmington.edu domains
-    // Strategy: Only allow indexing on wilmington.edu and www.wilmington.edu
+    // Note: VERCEL_URL will still be a .vercel.app domain even in production,
+    // but the actual public domain (wilmington.edu) is mapped via Vercel's domain settings.
+    // We rely on VERCEL_ENV to determine if indexing should be allowed.
 
-    // Block all vercel.app domains (preview/production deployments on Vercel infrastructure)
-    if (
-      process.env.VERCEL_URL &&
-      process.env.VERCEL_URL.includes('.vercel.app')
-    ) {
-      headers.push({
-        source: '/:path*',
-        headers: [
-          {
-            key: 'X-Robots-Tag',
-            value: 'noindex, nofollow'
-          }
-        ]
-      })
-    }
-
-    // Block non-production environments (development, preview, QA)
     if (process.env.VERCEL_ENV !== 'production') {
       headers.push({
         source: '/:path*',

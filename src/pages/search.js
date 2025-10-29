@@ -18,7 +18,17 @@ const postType = 'page'
  */
 export default function Search() {
   const router = useRouter()
-  const path = router?.asPath // URL from router.
+
+  // Wait for router to be ready to prevent hydration mismatch
+  if (!router.isReady) {
+    return (
+      <Layout>
+        <Container />
+      </Layout>
+    )
+  }
+
+  const path = router.asPath // URL from router.
   const query = path.includes('q=') ? parseQuerystring(path, 'q') : '' // Parse the querystring.
   const algoliaConfig = {
     query: query,
