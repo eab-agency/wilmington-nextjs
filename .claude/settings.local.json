@@ -27,6 +27,10 @@
       "Bash(pnpm index-archive-pages:*)",
       "Bash(npx tsc:*)",
       "Bash(pnpm build:*)",
+      "WebFetch(domain:vercel.com)",
+      "Bash(pnpm audit:*)",
+      "Bash(pnpm why:*)",
+      "Bash(pnpm install:*)"
       "Bash(git log:*)",
       "Bash(pnpm lint:css:*)",
       "Bash(pnpm lint:js:*)",
