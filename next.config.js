@@ -109,7 +109,10 @@ const nextConfig = {
     // Strategy: Only allow indexing on wilmington.edu and www.wilmington.edu
 
     // Block all vercel.app domains (preview/production deployments on Vercel infrastructure)
-    if (process.env.VERCEL_URL && process.env.VERCEL_URL.includes('.vercel.app')) {
+    if (
+      process.env.VERCEL_URL &&
+      process.env.VERCEL_URL.includes('.vercel.app')
+    ) {
       headers.push({
         source: '/:path*',
         headers: [
