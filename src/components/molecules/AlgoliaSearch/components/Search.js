@@ -1,6 +1,6 @@
 import { searchClient } from '@/lib/algolia/connector'
 import PropTypes from 'prop-types'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { MdOutlineSearch } from 'react-icons/md'
 import { Configure, InstantSearch, SearchBox } from 'react-instantsearch'
 import { deleteLocalStorage } from '../functions/localStorage'
@@ -15,7 +15,9 @@ import Results from './Results'
  * @param  {string}  props.query          The search query.
  * @param  {boolean} props.useHistory     Whether to display search history.
  * @param  {function} props.onSearchStateChange Callback for search state changes.
+ * @param  {function} props.onCloseModal  Callback to close the search modal.
  * @param  {boolean} props.showResults    Whether to display search results.
+ * @param  {object}  props.searchContentRef Ref to the search content container.
  * @return {Element}                      The Search component.
  */
 export default function Search({
@@ -23,8 +25,10 @@ export default function Search({
   query,
   useHistory = true,
   onSearchStateChange,
+  onCloseModal,
   showResults = true,
-  placeholder = 'Enter search term...'
+  placeholder = 'Enter search term...',
+  searchContentRef
 }) {
   const storageName = indexName // Local Storage Name - set to algolia index.
   const historyLength = 6 // Max amount of history items to save to local storage.
@@ -32,6 +36,9 @@ export default function Search({
   const [searchState, setSearchState] = useState(query)
   const [searchHistory, setSearchHistory] = useState([])
   const [displayHistory, setDisplayHistory] = useState(0)
+  const [focusedIndex, setFocusedIndex] = useState(-1)
+  const [totalResults, setTotalResults] = useState(0)
+  const resultsContainerRef = useRef(null)
   const config = {
     query,
     hitsPerPage
@@ -77,6 +84,213 @@ export default function Search({
     setSearchHistory([])
   }
 
+  /**
+   * Reset focused index when search state changes.
+   */
+  useEffect(() => {
+    setFocusedIndex(-1)
+  }, [searchState])
+
+  /**
+   * Get all focusable elements within the modal.
+   */
+  const getFocusableElements = useCallback(() => {
+    const searchContent = searchContentRef.current
+    if (!searchContent) return []
+
+    // Prioritize search input and results, exclude submit button from tab order
+    const focusableSelectors = [
+      '.ais-SearchBox-input',
+      '.ais-Hits-item .button',
+      '.history button:not(.clear button)',
+      '.ais-SearchBox-reset:not([hidden])',
+      '.history .clear button',
+      '.closeSearch'
+    ].join(', ')
+
+    return Array.from(
+      searchContent.querySelectorAll(focusableSelectors)
+    ).filter((el) => {
+      // Filter out hidden elements and elements with display: none
+      const isVisible =
+        el.offsetParent !== null &&
+        !el.hasAttribute('hidden') &&
+        window.getComputedStyle(el).display !== 'none' &&
+        window.getComputedStyle(el).visibility !== 'hidden'
+
+      return isVisible && el.getAttribute('tabindex') !== '-1'
+    })
+  }, [searchContentRef])
+
+  /**
+   * Handle keyboard navigation through search results with focus trap.
+   *
+   * @param {KeyboardEvent} e - The keyboard event
+   */
+  const handleKeyDown = useCallback(
+    (e) => {
+      const key = e.key
+
+      // Handle Escape key
+      if (key === 'Escape') {
+        e.preventDefault()
+        // If user is navigating results, return focus to search input
+        if (focusedIndex >= 0) {
+          setFocusedIndex(-1)
+        }
+        // If user is already on search input, close the modal
+        else if (focusedIndex === -1 && onCloseModal) {
+          onCloseModal()
+        }
+        return
+      }
+
+      // Handle Tab key with focus trap
+      if (key === 'Tab') {
+        e.preventDefault()
+        const focusableElements = getFocusableElements()
+
+        if (focusableElements.length === 0) return
+
+        const currentIndex = focusableElements.findIndex(
+          (el) => el === document.activeElement
+        )
+
+        let nextIndex
+
+        if (e.shiftKey) {
+          // Shift+Tab: move backwards
+          nextIndex =
+            currentIndex <= 0 ? focusableElements.length - 1 : currentIndex - 1
+        } else {
+          // Tab: move forwards
+          nextIndex =
+            currentIndex >= focusableElements.length - 1 ? 0 : currentIndex + 1
+        }
+
+        focusableElements[nextIndex]?.focus()
+        return
+      }
+
+      // Only handle arrow keys when results are visible
+      if (!showResults || totalResults === 0) return
+
+      // Handle ArrowDown
+      if (key === 'ArrowDown') {
+        e.preventDefault()
+        setFocusedIndex((prevIndex) => {
+          const nextIndex = prevIndex < totalResults - 1 ? prevIndex + 1 : 0
+          return nextIndex
+        })
+      }
+      // Handle ArrowUp
+      else if (key === 'ArrowUp') {
+        e.preventDefault()
+        setFocusedIndex((prevIndex) => {
+          // If at first result (0), return to search input (-1)
+          if (prevIndex === 0) {
+            return -1
+          }
+          // If at search input (-1), wrap to last result
+          else if (prevIndex === -1) {
+            return totalResults - 1
+          }
+          // Otherwise move up one result
+          else if (prevIndex > 0) {
+            return prevIndex - 1
+          }
+          // Edge case: if somehow negative (shouldn't happen), go to first result
+          else {
+            return 0
+          }
+        })
+      }
+      // Handle Enter on focused result
+      else if (key === 'Enter' && focusedIndex >= 0) {
+        e.preventDefault()
+        const resultLinks = resultsContainerRef.current?.querySelectorAll(
+          '.ais-Hits-item .button, .history button'
+        )
+        if (resultLinks && resultLinks[focusedIndex]) {
+          resultLinks[focusedIndex].click()
+        }
+      }
+    },
+    [
+      focusedIndex,
+      totalResults,
+      showResults,
+      onCloseModal,
+      getFocusableElements
+    ]
+  )
+
+  /**
+   * Add keyboard event listener to the search container with focus trap.
+   */
+  useEffect(() => {
+    // Listen on searchContent to trap focus within modal
+    const searchContent = searchContentRef.current
+    if (!searchContent) return
+
+    // Use capture phase to catch events before they bubble
+    searchContent.addEventListener('keydown', handleKeyDown, true)
+
+    return () => {
+      searchContent.removeEventListener('keydown', handleKeyDown, true)
+    }
+  }, [handleKeyDown, searchContentRef])
+
+  /**
+   * Set initial focus to search input when modal opens.
+   */
+  useEffect(() => {
+    // Use a short timeout to ensure modal is fully rendered
+    const timer = setTimeout(() => {
+      if (searchContentRef.current) {
+        const searchInput = searchContentRef.current.querySelector(
+          '.ais-SearchBox-input'
+        )
+        if (searchInput) {
+          searchInput.focus()
+        }
+      }
+    }, 100)
+
+    return () => clearTimeout(timer)
+  }, [searchContentRef]) // Run once on mount
+
+  /**
+   * Focus the appropriate element when focusedIndex changes.
+   * Uses requestAnimationFrame to ensure DOM is ready.
+   */
+  useEffect(() => {
+    // Use requestAnimationFrame to ensure React has finished rendering
+    const frameId = requestAnimationFrame(() => {
+      if (focusedIndex === -1 && searchContentRef.current) {
+        // Query the input from the searchContent ref
+        const searchInput = searchContentRef.current.querySelector(
+          '.ais-SearchBox-input'
+        )
+        if (searchInput) {
+          searchInput.focus()
+        }
+      } else if (focusedIndex >= 0 && resultsContainerRef.current) {
+        // Focus the result at focusedIndex
+        const resultLinks = resultsContainerRef.current.querySelectorAll(
+          '.ais-Hits-item .button, .history button'
+        )
+        if (resultLinks[focusedIndex]) {
+          resultLinks[focusedIndex].focus()
+        }
+      }
+    })
+
+    return () => {
+      cancelAnimationFrame(frameId)
+    }
+  }, [focusedIndex, searchContentRef])
+
   return (
     <InstantSearch searchClient={searchClient} indexName={indexName}>
       <Configure {...config} />
@@ -117,6 +331,8 @@ export default function Search({
           displayHistory={displayHistory}
           searchHistory={searchHistory}
           clearLocalStorage={clearLocalStorage}
+          resultsContainerRef={resultsContainerRef}
+          onResultsChange={setTotalResults}
         />
       )}
     </InstantSearch>
@@ -128,5 +344,8 @@ Search.propTypes = {
   query: PropTypes.string,
   useHistory: PropTypes.bool,
   onSearchStateChange: PropTypes.func,
-  showResults: PropTypes.bool
+  onCloseModal: PropTypes.func,
+  showResults: PropTypes.bool,
+  placeholder: PropTypes.string,
+  searchContentRef: PropTypes.object
 }

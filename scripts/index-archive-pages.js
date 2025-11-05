@@ -91,7 +91,7 @@ const ARCHIVE_PAGES = [
     post_title: 'Wilmington Student Organizations',
     post_type: 'page',
     post_type_label: 'Page',
-    permalink: `${BASE_URL}/organization/`,
+    permalink: `${BASE_URL}/student-organizations/`,
     content:
       'Explore student organizations and clubs at Wilmington College. Get involved in campus life through academic clubs, social organizations, service groups, honor societies, and special interest organizations.',
     priority: 1000,
