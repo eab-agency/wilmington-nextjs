@@ -8,6 +8,7 @@ require('dotenv').config({ path: '.env.local' })
  * description of configuration variables and their potential values.
  */
 exports.config = {
+  agent_enabled: process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production',
   app_name: [process.env.NEW_RELIC_APP_NAME],
   license_key: process.env.NEW_RELIC_LICENSE_KEY,
 
