@@ -1,6 +1,6 @@
 import { useWordPressContext } from '@/components/common/WordPressProvider'
 import { searchResultsClient } from '@/lib/algolia/connector'
-import React from 'react'
+import React, { useRef } from 'react'
 import { Configure, InstantSearch } from 'react-instantsearch'
 import Search from '../AlgoliaSearch/components/Search'
 import NoResults from './templates/NoResults'
@@ -19,6 +19,7 @@ export default function AlgoliaResults({
   }
 }) {
   const { algolia } = useWordPressContext()
+  const searchContentRef = useRef(null)
 
   // Dispatch console warning if Index Name missing.
   if (!algolia?.indexName) {
@@ -34,8 +35,12 @@ export default function AlgoliaResults({
         >
           <Configure {...config} />
           <div className="searchResults">
-            <div className="results">
-              <Search indexName={algolia?.indexName} query={config.query} />
+            <div className="results" ref={searchContentRef}>
+              <Search
+                indexName={algolia?.indexName}
+                query={config.query}
+                searchContentRef={searchContentRef}
+              />
               <Configure {...config} />
               <SearchResults indexName={algolia?.indexName} />
             </div>

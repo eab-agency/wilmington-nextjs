@@ -34,9 +34,14 @@ const refinements = {
 const SearchResults = () => {
   const { results } = useInstantSearch()
 
+  // Handle loading state or missing results (prevents hydration mismatch)
+  if (!results || results.nbHits === undefined) {
+    return null
+  }
+
   return (
     <>
-      {results && results.nbHits > 0 ? (
+      {results.nbHits > 0 ? (
         <>
           <div className="resultsHeader">
             <RichText tag="h1">Search Results</RichText>
@@ -64,9 +69,8 @@ const SearchResults = () => {
           </aside>
         </>
       ) : (
-        <></>
+        <NoResults query={results.query} />
       )}
-      {results && results.nbHits === 0 && <NoResults query={results.query} />}
     </>
   )
 }
