@@ -9,7 +9,10 @@ export async function getStaticProps(ctx) {
     const props = await getWordPressProps({ ctx })
     return {
       ...props,
-      revalidate: 900 // 15 minutes
+      // Increased from 15 minutes to 1 day (conservative approach) to reduce function invocations.
+      // Use on-demand revalidation webhook (/api/wordpress/revalidate) for immediate updates.
+      // This provides a 24-hour safety net if on-demand revalidation fails.
+      revalidate: 86400 // 1 day
     }
   } catch (error) {
     // If WordPress returns not found or error, return 404
