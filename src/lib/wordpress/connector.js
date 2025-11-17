@@ -44,15 +44,41 @@ export function createWpApolloClient(auth = false) {
         timeout: 30000 // 30 seconds timeout
       }
     }),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            // Enable caching for common query types
+            news: {
+              merge: true
+            },
+            events: {
+              merge: true
+            },
+            posts: {
+              merge: true
+            },
+            pages: {
+              merge: true
+            },
+            programs: {
+              merge: true
+            },
+            faculty: {
+              merge: true
+            }
+          }
+        }
+      }
+    }),
     defaultOptions: {
       watchQuery: {
         errorPolicy: 'all', // Handle both data and errors
-        fetchPolicy: 'network-only' // Don't use cache for queries
+        fetchPolicy: 'cache-and-network' // Show cached data immediately, then fetch fresh
       },
       query: {
         errorPolicy: 'all', // Handle both data and errors
-        fetchPolicy: 'network-only' // Don't use cache for queries
+        fetchPolicy: 'cache-first' // Use cache when available, significantly reducing API calls
       },
       mutate: {
         errorPolicy: 'all' // Handle both data and errors
