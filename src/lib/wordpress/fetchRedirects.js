@@ -1,9 +1,16 @@
 /* eslint-disable no-console */
+const fs = require('fs')
+const path = require('path')
+
 const wpAppUser = process.env.WORDPRESS_APPLICATION_USERNAME
 const wpAppPass = process.env.WORDPRESS_APPLICATION_PASSWORD
 
 const auth = Buffer.from(`${wpAppUser}:${wpAppPass}`).toString('base64')
 const url = 'https://wordpress.wilmington.edu/wp-json/redirection/v1/redirect'
+
+// Cache configuration
+const CACHE_FILE_PATH = path.join(process.cwd(), '.redirects-cache.json')
+const CACHE_MAX_AGE = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
 
 // Get credential info (partially masked for security)
 const getCredentialInfo = () => {
@@ -168,7 +175,11 @@ const testRedirectionEndpoint = async () => {
   }
 }
 
-const fetchRedirects = async () => {
+/**
+ * Fetches redirects from WordPress Redirection plugin API
+ * This is the internal function that does the actual API call
+ */
+const fetchRedirectsFromWordPress = async () => {
   // Check if credentials are present
   if (!wpAppUser || !wpAppPass) {
     console.warn('━'.repeat(80))
@@ -349,6 +360,48 @@ const fetchRedirects = async () => {
       console.warn('━'.repeat(80))
       return [] // Return empty array on error to prevent build failure
     })
+}
+
+/**
+ * Main export function with caching layer
+ * Fetches redirects from cache if available and fresh, otherwise fetches from WordPress
+ * Also includes static redirects like wp-content uploads
+ */
+const fetchRedirects = async () => {
+  let redirects = []
+
+  try {
+    // Check if cache file exists and is fresh
+    if (fs.existsSync(CACHE_FILE_PATH)) {
+      const stats = fs.statSync(CACHE_FILE_PATH)
+      const cacheAge = Date.now() - stats.mtimeMs
+
+      if (cacheAge < CACHE_MAX_AGE) {
+        // Cache is fresh, use it
+        const cachedData = JSON.parse(fs.readFileSync(CACHE_FILE_PATH, 'utf-8'))
+        console.log(
+          `✅ Using cached redirects (${cachedData.length} rules, age: ${Math.round(cacheAge / 1000 / 60)} minutes)`
+        )
+        return cachedData
+      } else {
+        console.log('⏰ Redirect cache expired, fetching fresh data...')
+        redirects = await fetchRedirectsFromWordPress()
+        fs.writeFileSync(CACHE_FILE_PATH, JSON.stringify(redirects, null, 2))
+      }
+    } else {
+      // No cache exists, fetch and create
+      console.log('📥 No redirect cache found, fetching from WordPress...')
+      redirects = await fetchRedirectsFromWordPress()
+      fs.writeFileSync(CACHE_FILE_PATH, JSON.stringify(redirects, null, 2))
+    }
+  } catch (error) {
+    console.error('❌ Error with redirect caching:', error.message)
+    // Fallback to fresh fetch if cache fails
+    redirects = await fetchRedirectsFromWordPress()
+  }
+
+  // To force a fresh fetch of redirects, delete: .redirects-cache.json
+  return redirects
 }
 
 module.exports = fetchRedirects

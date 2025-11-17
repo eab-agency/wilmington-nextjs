@@ -6,7 +6,6 @@ const remotePatterns = require('./src/config/imageConfig')
 const nrExternals = require('newrelic/load-externals')
 const path = require('path')
 const glob = require('glob')
-const fs = require('fs')
 
 // Clean all NEXT_PUBLIC environment variables of whitespace/newlines
 // This prevents "argument name is invalid" errors in cookie setting
@@ -54,40 +53,7 @@ const nextConfig = {
     ]
   },
   async redirects() {
-    const redirectsCachePath = path.join(__dirname, '.redirects-cache.json')
-    const cacheMaxAge = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
-    let redirects = []
-
-    try {
-      // Check if cache file exists and is fresh
-      if (fs.existsSync(redirectsCachePath)) {
-        const stats = fs.statSync(redirectsCachePath)
-        const cacheAge = Date.now() - stats.mtimeMs
-
-        if (cacheAge < cacheMaxAge) {
-          // Cache is fresh, use it
-          redirects = JSON.parse(fs.readFileSync(redirectsCachePath, 'utf-8'))
-          console.log(
-            `✅ Using cached redirects (${redirects.length} rules, age: ${Math.round(cacheAge / 1000 / 60)} minutes)`
-          )
-        } else {
-          console.log('⏰ Redirect cache expired, fetching fresh data...')
-          redirects = await fetchRedirects()
-          fs.writeFileSync(redirectsCachePath, JSON.stringify(redirects, null, 2))
-        }
-      } else {
-        // No cache exists, fetch and create
-        console.log('📥 No redirect cache found, fetching from WordPress...')
-        redirects = await fetchRedirects()
-        fs.writeFileSync(redirectsCachePath, JSON.stringify(redirects, null, 2))
-      }
-    } catch (error) {
-      console.error('❌ Error with redirect caching:', error.message)
-      // Fallback to fresh fetch if cache fails
-      redirects = await fetchRedirects()
-    }
-
-    // To force a fresh fetch of redirects, delete: .redirects-cache.json
+    const redirects = await fetchRedirects()
     return [
       {
         source: '/wp-content/uploads/:slug*',
