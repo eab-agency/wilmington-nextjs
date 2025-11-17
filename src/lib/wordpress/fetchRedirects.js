@@ -380,7 +380,9 @@ const fetchRedirects = async () => {
         // Cache is fresh, use it
         const cachedData = JSON.parse(fs.readFileSync(CACHE_FILE_PATH, 'utf-8'))
         console.log(
-          `✅ Using cached redirects (${cachedData.length} rules, age: ${Math.round(cacheAge / 1000 / 60)} minutes)`
+          `✅ Using cached redirects (${
+            cachedData.length
+          } rules, age: ${Math.round(cacheAge / 1000 / 60)} minutes)`
         )
         return cachedData
       } else {
