@@ -61,7 +61,14 @@ export default async function proxy(req, res) {
   }
 
   res.setHeader('Content-Type', contentType)
-  res.setHeader('Cache-Control', 'max-age=60')
+  // Increased cache duration to reduce WordPress API calls:
+  // - max-age=3600: Browser caches for 1 hour
+  // - s-maxage=86400: CDN/Vercel edge caches for 24 hours
+  // - stale-while-revalidate=86400: Serve stale content while revalidating for 24 hours
+  res.setHeader(
+    'Cache-Control',
+    'max-age=3600, s-maxage=86400, stale-while-revalidate=86400'
+  )
 
   res.send(content)
 }
