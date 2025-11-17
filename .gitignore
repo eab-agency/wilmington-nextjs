@@ -42,6 +42,9 @@ next-env.d.ts
 public/robots.txt
 public/*.xml
 
+# redirect cache
+.redirects-cache.json
+
 # sst
 .sst
 
