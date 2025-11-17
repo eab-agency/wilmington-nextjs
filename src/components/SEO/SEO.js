@@ -71,9 +71,9 @@ export default function SEO({ seo = {}, title, description }) {
   // This helps prevent duplicate content issues as per Vercel best practices
   // https://vercel.com/guides/avoiding-duplicate-content-with-vercel-app-urls
   // Normalize trailing slash: remove unless root path
-  const path = router.asPath.split('?')[0];
-  const normalizedPath = path !== '/' ? path.replace(/\/$/, '') : path;
-  const canonicalUrl = `https://www.wilmington.edu${normalizedPath}`;
+  const path = router.asPath.split('?')[0]
+  const normalizedPath = path !== '/' ? path.replace(/\/$/, '') : path
+  const canonicalUrl = `https://www.wilmington.edu${normalizedPath}`
 
   return (
     <Head>
