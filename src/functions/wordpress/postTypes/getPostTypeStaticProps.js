@@ -24,7 +24,9 @@ export default async function getPostTypeStaticProps(
   previewData = null
 ) {
   // Set revalidate length (seconds).
-  const revalidate = 60 * 0.5
+  // Increased from 30s to 5 minutes to reduce function invocations.
+  // Use on-demand revalidation webhook (/api/wordpress/revalidate) for immediate updates.
+  const revalidate = 60 * 5
 
   // Set sharedProps.
   const sharedProps = {
