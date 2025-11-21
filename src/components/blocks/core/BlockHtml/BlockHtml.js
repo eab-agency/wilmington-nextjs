@@ -208,7 +208,7 @@ export default function BlockHtml({ content, renderedHtml }) {
 
       // Special handling for recruitment.js: append to head so it can find itself in document.scripts
       // (recruitment.js uses getBaseUrl() which searches document.scripts to determine base URL)
-      const needsHeadAppend = scriptInfo.src.includes('recruitment.js')
+      const needsHeadAppend = scriptInfo.src && scriptInfo.src.includes('recruitment.js')
 
       if (needsHeadAppend) {
         document.head.appendChild(newScript)
