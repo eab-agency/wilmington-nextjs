@@ -206,8 +206,13 @@ export default function BlockHtml({ content, renderedHtml }) {
         console.error('[BlockHtml] Script failed to load:', newScript.src)
       }
 
-      // Append to container to execute
-      if (containerRef.current) {
+      // Special handling for recruitment.js: append to head so it can find itself in document.scripts
+      // (recruitment.js uses getBaseUrl() which searches document.scripts to determine base URL)
+      const needsHeadAppend = scriptInfo.src && scriptInfo.src.includes('recruitment.js')
+
+      if (needsHeadAppend) {
+        document.head.appendChild(newScript)
+      } else if (containerRef.current) {
         containerRef.current.appendChild(newScript)
       }
     })
@@ -216,7 +221,7 @@ export default function BlockHtml({ content, renderedHtml }) {
     if (componentsToRender.length > 0) {
       setSpecializedComponents(componentsToRender)
     }
-  }, [extractedScripts])
+  }, [extractedScripts, containerRef])
 
   if (!theHtml) return null
 
